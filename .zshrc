@@ -12,6 +12,8 @@ plugins=(
   python
 )
 
+ZLE_RPROMPT_INDENT=0
+
 alias ls=colorls
 alias zshconfig="vi ~/.zshrc"
 alias vimconfig="vi ~/.config/nvim/init.vim"
