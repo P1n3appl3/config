@@ -1,0 +1,15 @@
+[user]
+    name = Joseph Ryan
+	username = P1n3appl3
+	email = josephryan3.14@gmail.com
+[core]
+    editor = vim
+[alias]
+    a = add
+    s = status
+    c = commit --verbose
+    ca = commit -a --verbose
+    cm = commit -m
+    cam = commit -a -m
+    d = diff
+    l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
