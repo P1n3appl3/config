@@ -1,0 +1,18 @@
+# Braces
+style=attach
+
+# Padding
+pad-oper
+pad-comma
+
+# Allignment
+align-pointer=type
+align-reference=name
+
+# One liners
+break-one-line-headers
+add-braces
+
+# Line length
+max-code-length=80
+

@@ -13,12 +13,15 @@ Plug 'scrooloose/nerdtree'
 
 " Programming
 Plug 'majutsushi/tagbar'
-Plug 'Townk/vim-autoclose'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'tell-k/vim-autopep8'
 Plug 'airblade/vim-gitgutter'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-clang'
 
 call plug#end()
 
@@ -38,6 +41,11 @@ let g:syntastic_c_checkers = ['clang_check']
 let g:autopep8_disable_show_diff = 1
 let g:autopep8_ignore = 'E24, W6'
 
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/x86_64-linux-gnu/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
 colorscheme gruvbox
 
 if !exists('g:airline_symbols')
@@ -56,7 +64,6 @@ let g:NERDCommentEmptyLines = 1
 
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
-
 syntax on
 set background=dark
 set t_Co=256
@@ -64,22 +71,24 @@ set hidden
 set ignorecase
 set smartcase
 set mouse=a
+set so=7
 set tabstop=4
 set shiftwidth=4
 set smarttab
 set expandtab
 set number relativenumber
-
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+set wildignore=*o,*pyc
 
 let mapleader = ','
 noremap <C-n> :NERDTreeToggle<CR>
 noremap <leader>tt :TagbarToggle<CR>
+map <silent> <leader>/ :nohl<CR>
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-autocmd FileType c      noremap <buffer> <C-B> :%!astyle<CR>
-autocmd FileType python noremap <buffer> <C-B> :call Autopep8()<CR>
+autocmd FileType c,cpp,java noremap <buffer> <C-B> :%!astyle<CR>
+autocmd FileType python     noremap <buffer> <C-B> :call Autopep8()<CR>
 
