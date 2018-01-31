@@ -3,15 +3,13 @@ style=attach
 
 # Padding
 pad-oper
-pad-comma
 
 # Allignment
 align-pointer=type
 align-reference=name
 
 # One liners
-break-one-line-headers
-add-braces
+-j
 
 # Line length
 max-code-length=80
