@@ -17,6 +17,6 @@
     fu = fetch upstream
     ls = ls-files
     pr = prune -v
-    l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
+    l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short --reverse
 [push]
     default = matching
