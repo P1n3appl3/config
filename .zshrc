@@ -18,7 +18,7 @@ cs() { cd "$@" && clear && ls; }
 
 source $ZSH/oh-my-zsh.sh
 source /etc/zsh_command_not_found
-source /opt/ros/kinetic/setup.zsh
-source ~/catkin_ws/devel/setup.zsh
-source ~/catkin_ws/install/setup.zsh
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
