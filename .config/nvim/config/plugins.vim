@@ -25,6 +25,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
+Plug 'fishbullet/deoplete-ruby'
 Plug 'sebastianmarkow/deoplete-rust'
 Plug 'rust-lang/rust.vim'
 

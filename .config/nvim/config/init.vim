@@ -14,6 +14,9 @@ let b:easytags_auto_highlight = 0
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 
+autocmd BufRead,BufNewFile *.md setlocal spell
+set complete+=kspell
+
 syntax on
 set background=dark
 set t_Co=256
