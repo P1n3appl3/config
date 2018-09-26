@@ -5,6 +5,9 @@ Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify'
+Plug 'yuttie/comfortable-motion.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Utility
 Plug 'tpope/vim-sensible'
