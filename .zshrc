@@ -18,7 +18,7 @@ alias cat=bat
 alias find=fd
 
 alias zshconfig="vi $HOME/.zshrc"
-alias vimconfig="vi $HOME/.config/nvim/config/* -p"
+alias vimconfig="vi $HOME/.config/nvim/init.vim"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias o=xdg-open
 alias ls=colorls
