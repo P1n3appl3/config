@@ -36,7 +36,7 @@ format = "{max}° max, {average}° avg"
 [[block]]
 block = "sound"
 step_width = 1
-on_click = "( pgrep pavucontrol ) && killall pavucontrol || pavucontrol &"
+on_click = "killall pavucontrol || pavucontrol &"
 
 [[block]]
 block = "time"
