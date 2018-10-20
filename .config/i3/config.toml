@@ -1,0 +1,45 @@
+icons = "awesome"
+
+[theme]
+name = "gruvbox-dark"
+[theme.overrides]
+separator = "|"
+separator_fg = "#aaaaaa"
+separator_bg = "#282828"
+
+[[block]]
+block = "net"
+device = "enp0s31f6"
+
+[[block]]
+block = "nvidia_gpu"
+show_memory = false
+show_temperature = false
+
+[[block]]
+block = "memory"
+format_mem = "{Mupi}%"
+format_swap = "{SUpi}%"
+warning_mem = 50
+warning_swap = 50
+critical_mem = 90
+critical_swap = 90
+
+[[block]]
+block = "cpu"
+
+[[block]]
+block = "temperature"
+interval = 10
+format = "{max}° max, {average}° avg"
+
+[[block]]
+block = "sound"
+step_width = 1
+on_click = "( pgrep pavucontrol ) && killall pavucontrol || pavucontrol &"
+
+[[block]]
+block = "time"
+format = "%-I:%M%P"
+interval = 60
+on_click = "notify-send $(date +%D)"
