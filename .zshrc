@@ -1,31 +1,34 @@
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs newline)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator command_execution_time)
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+# Initialize oh-my-zsh and my powerline theme
+export ZSH="/home/joseph/.oh-my-zsh"
+export ZSH_THEME="powerlevel9k/powerlevel9k"
+DISABLE_UPDATE_PROMPT=true
+POWERLEVEL9K_MODE="nerdfont-complete"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir_writable dir vcs newline)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
+plugins=(
+colored-man-pages
+command-not-found
+z
+fzf
+fzf-z
+zsh-completions
+zsh-autosuggestions
+zsh-syntax-highlighting
+)
+autoload -U compinit && compinit
+source $ZSH/oh-my-zsh.sh
 
-alias zshconfig="vi $HOME/.zshrc"
+# Add language stuff to path
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+
+# Shortcuts for tweaking dotfiles
+alias i3config="vi $HOME/.config/i3/* -p"
 alias vimconfig="vi $HOME/.config/nvim/init.vim"
+alias zshconfig="vi $HOME/.zshrc"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
-/usr/share/fzf/key-bindings.zsh
-/usr/share/fzf/completions.zsh
-
-# Colorize man
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
-
-# Fix keybinds
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;2C" forward-word
-bindkey "^[[1;2D" backward-word
-bindkey "\e[3~" delete-char
-
-# You better have nvim
+# You better have neovim
 export VISUAL=nvim
 export EDITOR=nvim
 alias vi=nvim
@@ -38,7 +41,18 @@ alias find=fd
 alias ls=exa
 export TERMINAL=alacritty
 
+# Misc. aliases
 alias o=xdg-open
+alias so=source
 alias cs=colorls
+alias pac="pakku -Syu"
+alias paclist="pacman -Qqs"
+alias sc=systemctl
+
+# Enable fzf
+# source /usr/share/fzf/key-bindings.zsh
+export FZF_DEFAULT_COMMAND="fd . $HOME --type f"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd . $HOME --type d"
 
 neofetch
