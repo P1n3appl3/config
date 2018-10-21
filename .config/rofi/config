@@ -1,0 +1,10 @@
+rofi.modi:  drun,window,calc
+rofi.theme: gruvbox-dark-hard
+rofi.kb-row-tab:
+rofi.kb-remove-char-back: BackSpace
+rofi.kb-accept-entry:     Control+m,Return,KP_Enter
+rofi.kb-remove-to-eol:    Control+Shift+e
+rofi.kb-row-up:           Up,Control+k
+rofi.kb-row-down:         Down,Control+j
+rofi.kb-mode-next:        Tab,Shift+Right,Control+Tab,Control+l
+rofi.kb-mode-previous:    Shift+Tab,Shift+Left,Control+Shift+Tab,Control+h

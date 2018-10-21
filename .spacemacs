@@ -38,7 +38,7 @@
 (defun dotspacemacs/user-config ()
   ;; Fix mouse scrolling (shouldn't be scrolling anyways)
   (setq scroll-margin 5
-        mouse-wheel-scroll-amount '(1 ((shift) . 1))
+        mouse-wheel-scroll-amount '(2 ((shift) . 2))
         mouse-wheel-progressive-speed nil)
 
   ;; Fix bug that pastes when opening new files
@@ -91,10 +91,10 @@
                                 (projects . 4))
    dotspacemacs-startup-buffer-responsive t
    dotspacemacs-scratch-mode 'text-mode
-   dotspacemacs-themes '(spacemacs-dark gruvbox monokai)
+   dotspacemacs-themes '(spacemacs-dark gruvbox-dark-hard darkokai)
    dotspacemacs-colorize-cursor-according-to-state t
-   dotspacemacs-default-font '("Source Code Variable"
-                               :size 16
+   dotspacemacs-default-font '("SauceCodePro Nerd Font Mono"
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)
