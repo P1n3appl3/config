@@ -23,8 +23,8 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 
 # Shortcuts for tweaking dotfiles
-alias i3config="vi $HOME/.config/i3/* -p"
-alias vimconfig="vi $HOME/.config/nvim/init.vim"
+alias i3config="vi $HOME/.config/i3/*"
+alias vimconfig="vi $HOME/.config/nvim/*"
 alias zshconfig="vi $HOME/.zshrc"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
