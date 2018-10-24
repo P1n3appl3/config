@@ -28,12 +28,6 @@ alias vimconfig="vi $HOME/.config/nvim/*"
 alias zshconfig="vi $HOME/.zshrc"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
-# You better have neovim
-export VISUAL=nvim
-export EDITOR=nvim
-alias vi=nvim
-alias vim=nvim
-
 # And rust
 alias grep=rg
 alias cat=bat
