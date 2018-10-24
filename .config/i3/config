@@ -123,7 +123,7 @@ exec --no-startup-id redshift-gtk -l 30:-98
 exec --no-startup-id feh --bg-scale ~/Images/melee_wallpaper_minimal.jpg
 # Screen timeout isn't working yet
 # exec --no-startup-id xautolock -time 15 -locker betterlockscreen -l
-# exec --no-startup-id xss-lock betterlockscreen -l
+exec --no-startup-id xss-lock betterlockscreen -l
 bindsym $mod+End exec betterlockscreen -l
 
 # Keyboard volume buttons
