@@ -35,13 +35,15 @@ alias find=fd
 alias ls=exa
 export TERMINAL=alacritty
 
-# Misc. aliases
+# Misc.
 alias o=xdg-open
 alias so=source
 alias cs=colorls
 alias pac="pakku -Syu"
 alias paclist="pacman -Qqs"
 alias sc=systemctl
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Enable fzf
 source /usr/share/fzf/key-bindings.zsh
