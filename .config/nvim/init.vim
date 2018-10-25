@@ -19,6 +19,7 @@ let g:ale_linters = {'c': ['clang', 'clangcheck', 'clangtidy']}
 let g:ale_linter_aliases = {'cpp': 'c'}
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
@@ -35,16 +36,16 @@ Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark = 'hard'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
 call plug#end()
 let g:airline_theme = 'dark'
+let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_section_x = ''
+let g:airline_section_y = ''
 let g:airline_section_z = airline#section#create(['%2p%%', 'linenr', ':%2v'])
 let g:airline_symbols.linenr = ''
 let g:airline_skip_empty_sections = 1
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 colorscheme gruvbox
 set termguicolors background=dark
 
