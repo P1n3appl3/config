@@ -44,8 +44,8 @@ set $ws3 "4:"
 set $ws4 "5:"
 set $ws5 "6:5"
 set $ws6 "7:6"
-set $ws7 "8:7"
-set $ws8 "9:8"
+set $ws7 "8:"
+set $ws8 "9:"
 set $ws9 "10:"
 set $ws10 "11:"
 
@@ -105,6 +105,14 @@ bindsym $mod+minus split v
 for_window [class="Pavucontrol"] floating enable
 for_window [class="feh"] floating enable
 
+# Open some things in their assigned workspace
+assign [class="Emacs"] $ws2
+assign [class="Slack"] $ws4
+assign [class="discord"] $ws4
+assign [class="obs"] $ws8
+assign [class="Dolphin-emu"] $ws9
+assign [class="dotnet"] $ws9 # Osu
+
 # Compositor
 exec --no-startup-id compton -CG
 
@@ -114,15 +122,16 @@ focus_on_window_activation focus
 bindsym $mod+x [urgent=latest] focus
 
 # Launcher and window switcher
-bindsym $mod+d exec rofi -show drun -drun-icon-theme arc -show-icons
+bindsym Super_L exec rofi -show drun -drun-icon-theme arc -show-icons
 
 # Screen tinter
 exec --no-startup-id redshift-gtk -l 30:-98
 
 # Desktop and lock screen
 exec --no-startup-id feh --bg-scale ~/Images/melee_wallpaper_minimal.jpg
+exec --no-startup-id betterlockscreen -l
 # Screen timeout isn't working yet
-# exec --no-startup-id xautolock -time 15 -locker betterlockscreen -l
+exec --no-startup-id xautolock -time 15 -locker "betterlockscreen -l"
 exec --no-startup-id xss-lock betterlockscreen -l
 bindsym $mod+End exec betterlockscreen -l
 
