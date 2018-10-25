@@ -28,7 +28,7 @@ alias vimconfig="vi $HOME/.config/nvim/*"
 alias zshconfig="vi $HOME/.zshrc"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
-# And rust
+# I <3 Rust
 alias grep=rg
 alias cat=bat
 alias find=fd
@@ -44,9 +44,9 @@ alias paclist="pacman -Qqs"
 alias sc=systemctl
 
 # Enable fzf
-# source /usr/share/fzf/key-bindings.zsh
-export FZF_DEFAULT_COMMAND="fd . $HOME --type f"
+source /usr/share/fzf/key-bindings.zsh
+export FZF_DEFAULT_COMMAND="fd --hidden --type f --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd . $HOME --type d"
+export FZF_ALT_C_COMMAND="fd . $HOME --hidden --type d --exclude .git"
 
 neofetch
