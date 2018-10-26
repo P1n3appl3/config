@@ -45,7 +45,7 @@ alias sc=systemctl
 export EDITOR=nvim
 export VISUAL=nvim
 
-# Enable fzf
+# FZF
 source /usr/share/fzf/key-bindings.zsh
 export FZF_DEFAULT_COMMAND="fd --hidden --type f --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
