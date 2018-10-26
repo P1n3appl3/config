@@ -17,8 +17,6 @@ let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '➤'
 let g:ale_linters = {'c': ['clang', 'clangcheck', 'clangtidy']}
 let g:ale_linter_aliases = {'cpp': 'c'}
-Plug 'rust-lang/rust.vim'
-Plug 'cespare/vim-toml'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 let g:tagbar_autoclose = 1
@@ -29,7 +27,9 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 let g:NERDAltDelims_c = 1
-Plug 'mhinz/vim-signify'
+Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
+Plug 'airblade/vim-gitgutter'
 
 " Appearance
 Plug 'morhetz/gruvbox'
@@ -63,6 +63,7 @@ set nofoldenable foldmethod=syntax
 set number relativenumber
 set scrolloff=7
 set smarttab expandtab tabstop=4 shiftwidth=4
+set updatetime=100
 set wildignore=*o,*.obj,*.pyc
 
 " General maps
@@ -85,7 +86,7 @@ map <C-O> :FZF<CR>
 map <C-P> :FZF ~<CR>
 
 " Window/tab management
-map <leader>w <C-W>
+map <space>w <C-W>
 map <silent> <C-L> :bnext<CR>
 map <silent> <C-H> :bprevious<CR>
 
