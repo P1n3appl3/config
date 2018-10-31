@@ -39,8 +39,8 @@ bindsym $mod+Shift+Right move right
 set $wsT "0:Tab"
 set $ws0 "1:"
 set $ws1 "2:"
-set $ws2 "3:"
-set $ws3 "4:"
+set $ws2 "3:"
+set $ws3 "4:"
 set $ws4 "5:"
 set $ws5 "6:5"
 set $ws6 "7:6"
@@ -106,7 +106,7 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="feh"] floating enable
 
 # Open some things in their assigned workspace
-assign [class="Emacs"] $ws2
+assign [class="Emacs"] $ws3
 assign [class="Slack"] $ws4
 assign [class="discord"] $ws4
 assign [class="obs"] $ws8
@@ -114,15 +114,16 @@ assign [class="Dolphin-emu"] $ws9
 assign [class="dotnet"] $ws9 # Osu
 
 # Compositor
-exec --no-startup-id compton -CG
+exec --no-startup-id compton -fCG
 
-# Notification daemon
-exec --no-startup-id twmnd
+# Notifications
 focus_on_window_activation focus
 bindsym $mod+x [urgent=latest] focus
 
-# Launcher and window switcher
+# Launcher/window switcher/calculator/clipboard manager
 bindsym Super_L exec rofi -show drun -drun-icon-theme arc -show-icons
+exec --no-startup-id greenclip daemon
+bindsym $mod+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 # Screen tinter
 exec --no-startup-id redshift-gtk -l 30:-98
@@ -141,10 +142,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master -q 5%-
 bindsym XF86AudioMute exec --no-startup-id amixer sset Master toggle
 
 # Map caps lock to escape
-exec --no-startup-id setxkbmap -option caps:escape
+exec_always setxkbmap -option caps:escape
 
 # Screenshots
 bindsym Shift+Print --release exec --no-startup-id \
-"maim | tee ~/screenshots/$(date +%s).png | xclip -selection c -t image/png"
+"maim | tee ~/screenshots/$(date +%s).png | xclip -selection c -t image/png \
+;notify-send -u Low 'screenshot taken'"
 bindsym Print exec --no-startup-id \
-"maim -s | tee ~/screenshots/$(date +%s).png | xclip -selection c -t image/png"
+"maim -s | tee ~/screenshots/$(date +%s).png | xclip -selection c -t image/png \
+;notify-send -u Low 'screenshot taken'"
