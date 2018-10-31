@@ -35,6 +35,9 @@ alias find=fd
 alias ls=exa
 export TERMINAL=alacritty
 
+# Disable plugins when pasting (don't try to syntax highlight till its done)
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+
 # Misc.
 alias o=xdg-open
 alias so=source
@@ -47,8 +50,8 @@ export VISUAL=nvim
 
 # FZF
 source /usr/share/fzf/key-bindings.zsh
-export FZF_DEFAULT_COMMAND="fd --hidden --type f --exclude .git"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd . $HOME --hidden --type d --exclude .git"
+export FZF_DEFAULT_COMMAND="fd . ~ --hidden --exclude '{.git,.cache}'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 
 neofetch

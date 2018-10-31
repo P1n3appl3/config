@@ -10,23 +10,34 @@ separator_bg = "#282828"
 [[block]]
 block = "net"
 device = "enp0s31f6"
+ssid = true
+# bitrate = true
+speed_up = false
+speed_down = false
 
 [[block]]
 block = "memory"
 format_mem = "{Mupi}%"
 format_swap = "{SUpi}%"
-warning_mem = 50
-warning_swap = 50
-critical_mem = 90
-critical_swap = 90
+warning_mem = 60
+warning_swap = 25
+critical_mem = 80
+critical_swap = 75
 
 [[block]]
 block = "cpu"
 
 [[block]]
 block = "temperature"
-interval = 10
+interval = 5
 format = "{max}° max, {average}° avg"
+
+[[block]]
+block = "toggle"
+text = ""
+command_state = "true"
+command_on = "notify-send DUNST_COMMAND_PAUSE"
+command_off = "notify-send DUNST_COMMAND_RESUME"
 
 [[block]]
 block = "sound"

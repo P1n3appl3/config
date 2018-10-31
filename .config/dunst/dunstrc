@@ -1,0 +1,35 @@
+[global]
+    geometry = "480+720"
+    indicate_hidden = yes
+    transparency = 10
+    separator_height = 1
+    padding = 4
+    horizontal_padding = 4
+    separator_color = foreground
+
+    font = SauceCodePro Nerd Font Mono 10
+    format = "<b>%s</b>\n%b"
+    alignment = center
+    word_wrap = true
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+grave
+
+[urgency_low]
+    background = "#282828"
+    foreground = "#aaaaaa"
+    timeout = 10
+
+[urgency_normal]
+    background = "#aaaaaa"
+    foreground = "#282828"
+    timeout = 10
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#cccccc"
+    frame_color = "#ff0000"
+    timeout = 30
