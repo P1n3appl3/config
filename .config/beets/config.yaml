@@ -1,0 +1,18 @@
+directory: /media/music/library/
+library: /media/music/library.db
+import:
+    copy: no
+    move: yes
+color: yes
+art_filename: albumart
+plugins: duplicates edit embedart fetchart fromfilename lastgenre lastimport mpdstats mpdupdate replaygain
+
+lastfm:
+    user: pin3appl3
+
+mpd:
+    host: localhost
+    port: 6600
+
+replaygain:
+    auto: no
