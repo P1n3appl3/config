@@ -1,7 +1,7 @@
 # Use alt as prefix key
 set $mod Mod1
 
-font pango:SauceCodePro Nerd Font
+font pango:SauceCodePro Nerd Font 8
 
 bindsym $mod+f fullscreen toggle
 bindsym $mod+t layout tabbed
@@ -135,33 +135,32 @@ focus_on_window_activation focus
 bindsym $mod+x [urgent=latest] focus
 
 # Utility bar (Launcher/window switcher/calculator/etc.)
-bindsym Super_L exec --no-startup-id rofi -p run -show drun -drun-icon-theme arc -show-icons
+bindsym Super_L exec --no-startup-id rofi -show drun -drun-icon-theme aidiwa -show-icons
 bindsym $mod+slash exec --no-startup-id rofi -show window -show-icons
 exec --no-startup-id greenclip daemon
 bindsym $mod+v exec rofi -modi "clipboard:greenclip print" \
 -show clipboard -run-command '{cmd}'
 bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh
 
-# Screen tinter
+# Start apps
 exec --no-startup-id redshift-gtk -l 30:-98
+exec --no-startup-id nm-applet
+exec --no-startup-id mpDris2
 
-# Desktop and lock screen
-exec --no-startup-id feh --bg-scale ~/Images/melee_wallpaper_minimal.jpg
+# Desktop background and lock screen
+exec --no-startup-id betterlockscreen -w
 exec --no-startup-id betterlockscreen -l
+exec --no-startup-id xss-lock -- betterlockscreen -l
 # Screen timeout isn't working yet
 exec --no-startup-id xautolock -time 15 -locker "betterlockscreen -l"
-exec --no-startup-id xss-lock betterlockscreen -l
 bindsym $mod+End exec betterlockscreen -l
 
-# Music
-exec --no-startup-id mpd
-# exec --no-startup-id mpDris2
-exec --no-startup-id mpdas
-
 # Media keys
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master -q 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master -q 5%-
-bindsym XF86AudioMute exec --no-startup-id amixer sset Master toggle
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master -q 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master -q 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
 bindsym XF86AudioPlay exec --no-startup-id mpc toggle
 bindsym XF86AudioNext exec --no-startup-id mpc next
@@ -171,8 +170,8 @@ exec_always setxkbmap -option caps:escape
 
 # Screenshots
 bindsym Shift+Print --release exec --no-startup-id \
-"maim | tee ~/screenshots/$(date +%s).png | xclip -selection c -t image/png \
+"maim | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t image/png \
 ;notify-send -u Low 'screenshot taken'"
 bindsym Print exec --no-startup-id \
-"maim -s | tee ~/screenshots/$(date +%s).png | xclip -selection c -t image/png \
+"maim -s | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t image/png \
 ;notify-send -u Low 'screenshot taken'"

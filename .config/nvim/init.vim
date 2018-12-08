@@ -69,7 +69,7 @@ set wildignore=*o,*.obj,*.pyc
 
 " General maps
 let mapleader = ','
-map <C-Q> :bd<CR>
+map <C-Q> :q<CR>
 map <C-S> :w<CR>
 
 " Completion

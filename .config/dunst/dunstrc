@@ -1,5 +1,5 @@
 [global]
-    geometry = "480+720"
+    geometry = "960+800"
     indicate_hidden = yes
     transparency = 10
     separator_height = 1
@@ -7,7 +7,7 @@
     horizontal_padding = 4
     separator_color = foreground
 
-    font = SauceCodePro Nerd Font Mono 10
+    font = SauceCodePro Nerd Font Mono 8
     format = "<b>%s</b>\n%b"
     alignment = center
     word_wrap = true
