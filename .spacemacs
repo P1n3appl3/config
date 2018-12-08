@@ -24,7 +24,7 @@
      git version-control syntax-checking imenu-list
 
      ;; General
-     ivy org vinegar xkcd
+     ivy org vinegar xkcd ; spell-checking
      )
    dotspacemacs-additional-packages '(rmsbolt)
    dotspacemacs-frozen-packages '()
@@ -136,10 +136,9 @@
    dotspacemacs-mode-line-unicode-symbols t
    dotspacemacs-smooth-scrolling t
    dotspacemacs-line-numbers
-   '(:relative t
-               :disabled-for-modes dired-mode doc-view-mode markdown-mode
-               org-mode pdf-view-mode text-mode
-               :size-limit-kb 1000)
+   '(:disabled-for-modes dired-mode doc-view-mode markdown-mode
+                         org-mode pdf-view-mode text-mode
+                         :size-limit-kb 1000)
    dotspacemacs-folding-method 'evil
    dotspacemacs-smartparens-strict-mode nil
    dotspacemacs-smart-closing-parenthesis nil
