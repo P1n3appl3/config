@@ -24,7 +24,7 @@
      git version-control syntax-checking imenu-list
 
      ;; General
-     evil-snipe ivy org spell-checking vinegar xkcd
+     ivy org vinegar xkcd
      )
    dotspacemacs-additional-packages '(rmsbolt)
    dotspacemacs-frozen-packages '()
@@ -76,6 +76,9 @@
   ;; Make j and k work well in single line paragraphs
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+  ;; Bind s to easy-motion jump
+  (define-key evil-normal-state-map (kbd "s") 'evil-avy-goto-char-2)
   )
 
 (defun dotspacemacs/init ()
@@ -94,7 +97,7 @@
    dotspacemacs-themes '(spacemacs-dark gruvbox-dark-hard darkokai)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("SauceCodePro Nerd Font Mono"
-                               :size 14
+                               :size 22
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)

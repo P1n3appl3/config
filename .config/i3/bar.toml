@@ -15,9 +15,8 @@ buttons = ["prev", "play", "next"]
 
 [[block]]
 block = "net"
-device = "enp0s31f6"
+device = "wlp4s0"
 ssid = true
-# bitrate = true
 speed_up = false
 speed_down = false
 
@@ -34,6 +33,9 @@ critical_swap = 75
 block = "cpu"
 
 [[block]]
+block = "battery"
+
+[[block]]
 block = "temperature"
 interval = 5
 format = "{max}° max, {average}° avg"
@@ -44,6 +46,10 @@ text = ""
 command_state = "true"
 command_on = "notify-send DUNST_COMMAND_PAUSE"
 command_off = "notify-send DUNST_COMMAND_RESUME"
+
+[[block]]
+block = "backlight"
+step_width = 1
 
 [[block]]
 block = "sound"

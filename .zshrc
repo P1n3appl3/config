@@ -1,25 +1,35 @@
-# Initialize oh-my-zsh and my powerline theme
-export ZSH="/home/joseph/.oh-my-zsh"
-export ZSH_THEME="powerlevel9k/powerlevel9k"
-DISABLE_UPDATE_PROMPT=true
+source ~/.zplug/init.zsh
+
 POWERLEVEL9K_MODE="nerdfont-complete"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir_writable dir vcs newline)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
-plugins=(
-colored-man-pages
-command-not-found
-z
-fzf
-fzf-z
-zsh-completions
-zsh-autosuggestions
-zsh-syntax-highlighting
-)
-autoload -U compinit && compinit
-source $ZSH/oh-my-zsh.sh
+
+zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+zplug "lib/key-bindings", from:oh-my-zsh
+zplug "lib/directories", from:oh-my-zsh
+zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
+zplug "zsh-users/zsh-autosuggestions"
+# zplug "changyuheng/zsh-interactive-cd"
+# zplug "zdharma/fast-syntax-highlighting", defer:3
+# zplug "b4b4r07/enhancd", use:enhancd.sh
+! zplug check && zplug install
+zplug load
+
+autoload -U compinit; compinit -d ~/.zcompdump
+
+# Change autosuggestion color
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+
+# If no command is given, try to cd
+setopt AUTO_CD
+alias -g ...='../..'
 
 # Add language stuff to path
 export PATH="$PATH:$HOME/.cargo/bin"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 
 # Shortcuts for tweaking dotfiles
@@ -35,9 +45,6 @@ alias find=fd
 alias ls=exa
 export TERMINAL=alacritty
 
-# Disable plugins when pasting (don't try to syntax highlight till its done)
-zstyle ':bracketed-paste-magic' active-widgets '.self-*'
-
 # Misc.
 alias o=xdg-open
 alias so=source
@@ -50,8 +57,8 @@ export VISUAL=nvim
 
 # FZF
 source /usr/share/fzf/key-bindings.zsh
-export FZF_DEFAULT_COMMAND="fd . ~ --hidden --exclude '{.git,.cache}'"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
+export FZF_DEFAULT_COMMAND="fd . --hidden --exclude '{.git,.cache}'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f ~"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d ~"
 
 neofetch
