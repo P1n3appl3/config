@@ -1,7 +1,7 @@
 source ~/.zplug/init.zsh
 
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir_writable dir vcs newline)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir_writable dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
 
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
@@ -31,6 +31,7 @@ alias -g ...='../..'
 export PATH="$PATH:$HOME/.cargo/bin"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export PATH="$PATH":"$HOME/.local/bin"
 
 # Shortcuts for tweaking dotfiles
 alias i3config="vi $HOME/.config/i3/*"
@@ -42,7 +43,7 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias grep=rg
 alias cat=bat
 alias find=fd
-alias ls=exa
+alias ls=lsd # exa if you don't like pretty things
 export TERMINAL=alacritty
 
 # Misc.
