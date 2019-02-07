@@ -1,4 +1,3 @@
-env:
 window:
   dimensions:
     columns: 80
@@ -27,9 +26,7 @@ font:
   glyph_offset:
     x: 0
     y: 0
-  scale_with_dpi: false
 render_timer: false
-custom_cursor_colors: false
 draw_bold_text_with_bright_colors: true
 colors:
   primary:
@@ -43,7 +40,7 @@ colors:
     blue:       '0x2176c7'
     magenta:    '0xc61c6f'
     cyan:       '0x259286'
-    white:      '0xeae3cb'
+    white:      '0xeee7cf'
   bright:
     black:      '0x001e27'
     red:        '0xbd3613'
@@ -66,9 +63,6 @@ selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
   save_to_clipboard: false
 dynamic_title: true
-hide_cursor_when_typing: false
-cursor_style: Block
-unfocused_hollow_cursor: true
 live_config_reload: true
 key_bindings:
   - { key: V,        mods: Control|Shift,    action: Paste               }

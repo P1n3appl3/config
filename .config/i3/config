@@ -1,39 +1,35 @@
-# Use alt as prefix key
-set $mod Mod1
-
 font pango:SauceCodePro Nerd Font 8
+
+# i3 stuff
+set $mod Mod1
+floating_modifier $mod
+bindsym $mod+Shift+r restart
+bindsym $mod+Return exec alacritty
 
 # General window management
 bindsym $mod+f fullscreen toggle
-bindsym $mod+t layout tabbed
-bindsym $mod+s layout toggle split
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
-floating_modifier $mod
 bindsym $mod+a focus parent
-bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
-bindsym $mod+Shift+r restart
+
+# Split orientation
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+bindsym $mod+backslash split h
+bindsym $mod+minus split v
 
 # Switch focused window
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 # Move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 set $wsT "0:Tab"
 set $ws0 "1:"
@@ -82,10 +78,6 @@ mode "resize" {
         bindsym $mod+h      resize shrink width 10 px or 10 ppt
         bindsym $mod+j      resize grow height 10 px or 10 ppt
         bindsym $mod+k      resize shrink height 10 px or 10 ppt
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym Mod1+r mode "default"
@@ -111,10 +103,6 @@ focus_follows_mouse no
 workspace_auto_back_and_forth yes
 hide_edge_borders smart
 
-# Split orientation
-bindsym $mod+backslash split h
-bindsym $mod+minus split v
-
 # Open some things as floating windows by default
 for_window [class="Pavucontrol"] floating enable
 for_window [class="feh"] floating enable
@@ -136,8 +124,9 @@ exec --no-startup-id compton -fCG
 focus_on_window_activation focus
 bindsym $mod+x [urgent=latest] focus
 
-# Utility bar (Launcher/window switcher/calculator/etc.)
-bindsym Super_L exec --no-startup-id rofi -show drun -drun-icon-theme aidiwa -show-icons
+# Utility bar (Launcher/window switcher/calculator/music browser/etc.)
+bindsym Super_L exec --no-startup-id rofi -show drun \
+-drun-icon-theme aidiwa -show-icons
 bindsym $mod+slash exec --no-startup-id rofi -show window -show-icons
 exec --no-startup-id greenclip daemon
 bindsym $mod+v exec rofi -modi "clipboard:greenclip print" \
@@ -153,7 +142,6 @@ exec_always --no-startup-id systemctl --user restart mpdas
 exec --no-startup-id betterlockscreen -w
 exec --no-startup-id betterlockscreen -l
 exec --no-startup-id xss-lock -- betterlockscreen -l
-# Screen timeout isn't working yet
 exec --no-startup-id xautolock -time 15 -locker "betterlockscreen -l"
 bindsym $mod+End exec betterlockscreen -l
 
@@ -172,8 +160,8 @@ exec_always setxkbmap -option caps:escape
 
 # Screenshots
 bindsym Shift+Print --release exec --no-startup-id \
-"maim | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t image/png \
+"maim -u | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t image/png \
 ;notify-send -u Low 'screenshot taken'"
 bindsym Print exec --no-startup-id \
-"maim -s | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t image/png \
+"maim -su | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t image/png \
 ;notify-send -u Low 'screenshot taken'"
