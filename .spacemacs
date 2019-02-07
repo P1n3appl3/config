@@ -8,7 +8,8 @@
    '(
      ;; Languages
      (c-c++ :variables c-c++-enable-clang-support t)
-     python rust markdown ruby emacs-lisp scheme
+     (python :variables python-backend 'lsp)
+     rust markdown ruby emacs-lisp scheme java
 
      ;; Visual
      (colors :variables colors-enable-nyan-cat-progress-bar t)
@@ -21,7 +22,7 @@
                       auto-completion-enable-sort-by-usage t)
      (semantic :disabled-for emacs-lisp
                :packages (not stickyfunc-enhance))
-     git version-control syntax-checking imenu-list
+     git version-control syntax-checking imenu-list lsp
 
      ;; General
      ivy org vinegar xkcd ; spell-checking
@@ -50,6 +51,12 @@
   (spaceline-toggle-purpose-off)
   (spaceline-toggle-major-mode-off)
   (spaceline-toggle-minor-modes-off)
+
+  ;; Enable LSP stuff
+  (require 'lsp-mode)
+  (require 'lsp-ui)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-hook 'lsp-ui-mode-hook 'flycheck-mode)
 
   ;; Set the one true tab width
   (setq-default tab-width 4)
