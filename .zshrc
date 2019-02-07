@@ -1,7 +1,7 @@
 source ~/.zplug/init.zsh
 
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir_writable dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir_writable dir vcs newline)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
 
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
@@ -43,13 +43,13 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias grep=rg
 alias cat=bat
 alias find=fd
-alias ls=lsd # exa if you don't like pretty things
+alias ls=lsd # exa if no unicode support
 export TERMINAL=alacritty
 
 # Misc.
 alias o=xdg-open
+alias c=clear
 alias so=source
-alias cs=colorls
 alias pac="pakku -Syu"
 alias paclist="pacman -Qqs"
 alias sc=systemctl
