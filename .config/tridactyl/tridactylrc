@@ -1,5 +1,3 @@
-" vim: filetype=vim
-
 " This wipes all existing settings. This means that if a setting in this file
 " is removed, then it will return to default. In other words, this file serves
 " as an enforced single point of truth for Tridactyl's configuration.
@@ -15,15 +13,16 @@ set editorcmd alacritty -e vim -c 'set binary' -c 'set noeol'
 " Ctrl-F should use the browser's native 'find' functionality.
 unbind <C-f>
 
+" Ctrl-O opens stuff
+unbind <C-o>
+
 " But also support Tridactyl search too.
 bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 " Remove search highlighting.
-bind ,<Space> nohlsearch
-" Use sensitive case. Smart case would be nice here, but it doesn't work.
-set findcase sensitive
+bind ,/ nohlsearch
 
 " Smooth scrolling, yes please. This is still a bit janky in Tridactyl.
 set smoothscroll true
@@ -32,19 +31,20 @@ set smoothscroll true
 bind j scrollline 5
 bind k scrollline -5
 
-" vim keys for tab switching and moving and history navigation
-bind H tabprev
-bind L tabnext
+" vim keys for tab switching and moving
+bind <C-h> tabprev
+bind <C-l> tabnext
 bind <C-H> tabmove -1
 bind <C-L> tabmove +1
-bind X tabclose
-bind <C-j> forward
-bind <C-k> back
+
+bind T current_url tabopen -b
+
+" Use backspace for back (and forward)
+unbind L
+unbind H
+bind <C-Backspace> back
+bind <CS-Backspace> forward
 
 " Don't run Tridactyl on some web sites because it doesn't work well, or
 " because the web site has its own keybindings.
 autocmd DocStart mail.google.com mode ignore
-
-" Sometimes the status bar in the bottom left corner overlaps the Tridactyl
-" command line, so set an option to move the status bar to the right.
-guiset_quiet hoverlink right

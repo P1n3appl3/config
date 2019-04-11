@@ -9,7 +9,8 @@
      ;; Languages
      (c-c++ :variables c-c++-enable-clang-support t)
      (python :variables python-backend 'lsp)
-     rust markdown ruby emacs-lisp scheme java
+     (haskell :variables haskell-process-type 'stack-ghci)
+     rust markdown ruby emacs-lisp scheme java yaml
 
      ;; Visual
      (colors :variables colors-enable-nyan-cat-progress-bar t)
@@ -22,7 +23,7 @@
                       auto-completion-enable-sort-by-usage t)
      (semantic :disabled-for emacs-lisp
                :packages (not stickyfunc-enhance))
-     git version-control syntax-checking imenu-list lsp
+     git version-control lsp syntax-checking imenu-list
 
      ;; General
      ivy org vinegar xkcd ; spell-checking
@@ -37,7 +38,7 @@
   (load custom-file))
 
 (defun dotspacemacs/user-config ()
-  ;; Fix mouse scrolling (shouldn't be scrolling anyways)
+  ;; Fix mouse scrolling (shouldn't be doing it anyways)
   (setq scroll-margin 5
         mouse-wheel-scroll-amount '(2 ((shift) . 2))
         mouse-wheel-progressive-speed nil)
@@ -65,16 +66,15 @@
   ;; Don't create .#temp files
   (setq create-lockfiles nil)
 
+  (add-to-list 'exec-path "~/.local/bin/")
+
   ;; Use // instead of /**/ comments in C
   (add-hook 'c-mode-hook '(lambda () (setq comment-start "//" comment-end "")))
 
   ;; Make word motions work like vim (underscores don't break words)
-  (add-hook 'c-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-  (add-hook 'rust-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-
-  ;; Add clang format to C mode
-  (evil-leader/set-key-for-mode 'c-mode "=" 'clang-format-buffer)
+  (mapc (lambda (mode-hook)
+          (add-hook mode-hook #'(lambda () (modify-syntax-entry ?_ "w"))))
+        '(c-mode-hook python-mode-hook rust-mode-hook))
 
   ;; Bind Ctrl +/- to increment and decrement numbers
   (define-key evil-normal-state-map (kbd "C-=") 'evil-numbers/inc-at-pt)
@@ -103,6 +103,7 @@
    dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(spacemacs-dark gruvbox-dark-hard darkokai)
    dotspacemacs-colorize-cursor-according-to-state t
+   dotspacemacs-mode-line-theme 'spacemacs
    dotspacemacs-default-font '("SauceCodePro Nerd Font Mono"
                                :size 22
                                :weight normal

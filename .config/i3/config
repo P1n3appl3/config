@@ -5,6 +5,10 @@ set $mod Mod1
 floating_modifier $mod
 bindsym $mod+Shift+r restart
 bindsym $mod+Return exec alacritty
+for_window [class="^.*"] border pixel 1
+focus_follows_mouse no
+workspace_auto_back_and_forth yes
+hide_edge_borders smart
 
 # General window management
 bindsym $mod+f fullscreen toggle
@@ -35,9 +39,9 @@ set $wsT "0:Tab"
 set $ws0 "1:"
 set $ws1 "2:"
 set $ws2 "3:"
-set $ws3 "4:"
+set $ws3 "4:λ"
 set $ws4 "5:"
-set $ws5 "6:5"
+set $ws5 "6:"
 set $ws6 "7:6"
 set $ws7 "8:"
 set $ws8 "9:"
@@ -98,11 +102,6 @@ bar {
         }
 }
 
-for_window [class="^.*"] border pixel 1
-focus_follows_mouse no
-workspace_auto_back_and_forth yes
-hide_edge_borders smart
-
 # Open some things as floating windows by default
 for_window [class="Pavucontrol"] floating enable
 for_window [class="feh"] floating enable
@@ -124,14 +123,21 @@ exec --no-startup-id compton -fCG
 focus_on_window_activation focus
 bindsym $mod+x [urgent=latest] focus
 
-# Utility bar (Launcher/window switcher/calculator/music browser/etc.)
+# Utility bar
+# Application launcher (windows key)
 bindsym Super_L exec --no-startup-id rofi -show drun \
 -drun-icon-theme aidiwa -show-icons
+# Window switcher
 bindsym $mod+slash exec --no-startup-id rofi -show window -show-icons
+# Clipboard history search
 exec --no-startup-id greenclip daemon
 bindsym $mod+v exec rofi -modi "clipboard:greenclip print" \
 -show clipboard -run-command '{cmd}'
+# Search/play music
 bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh
+# Put unicode character into clipboard
+bindsym $mod+u exec --no-startup-id unipicker --command \
+"rofi -dmenu" --copy-command "xclip -i -selection clipboard" --copy
 
 # Start apps
 exec --no-startup-id redshift-gtk -l 30:-98
