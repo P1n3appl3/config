@@ -82,6 +82,10 @@ mode "resize" {
         bindsym $mod+h      resize shrink width 10 px or 10 ppt
         bindsym $mod+j      resize grow height 10 px or 10 ppt
         bindsym $mod+k      resize shrink height 10 px or 10 ppt
+        bindsym $mod+Shift+l      resize grow width 50 px or 50 ppt
+        bindsym $mod+Shift+h      resize shrink width 50 px or 50 ppt
+        bindsym $mod+Shift+j      resize grow height 50 px or 50 ppt
+        bindsym $mod+Shift+k      resize shrink height 50 px or 50 ppt
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym Mod1+r mode "default"
@@ -111,6 +115,7 @@ for_window [class="mpv"] floating enable
 assign [class="Emacs"] $ws3
 assign [class="Slack"] $ws4
 assign [class="discord"] $ws4
+assign [class="Caprine"] $ws4
 assign [class="obs"] $ws8
 assign [class="Steam"] $ws8
 assign [class="Dolphin-emu"] $ws9
@@ -171,3 +176,4 @@ bindsym Shift+Print --release exec --no-startup-id \
 bindsym Print exec --no-startup-id \
 "maim -su | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t image/png \
 ;notify-send -u Low 'screenshot taken'"
+
