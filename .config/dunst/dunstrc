@@ -12,6 +12,10 @@
     alignment = center
     word_wrap = true
 
+    icon_position = left
+    icon_path = /usr/share/icons/Papirus/32x32/apps:/usr/share/icons/Arc/status/32
+    max_icon_size = 64
+
 [shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
