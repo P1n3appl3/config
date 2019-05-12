@@ -34,7 +34,7 @@ export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export PATH="$PATH":"$HOME/.local/bin"
 
 # Shortcuts for tweaking dotfiles
-alias i3config="vi $HOME/.config/i3/*"
+alias swayconfig="vi $HOME/.config/sway/*"
 alias vimconfig="vi $HOME/.config/nvim/*"
 alias zshconfig="vi $HOME/.zshrc"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
@@ -58,8 +58,12 @@ export VISUAL=nvim
 
 # FZF
 source /usr/share/fzf/key-bindings.zsh
-export FZF_DEFAULT_COMMAND="fd . --hidden --exclude '{.git,.cache}'"
+export FZF_DEFAULT_COMMAND="fd . -L" # because I symlink ~/config to ~/.config
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f ~"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d ~"
 
-neofetch
+case $(tty) in 
+  (/dev/tty[1-9]) prompt_powerlevel9k_teardown;
+      PROMPT='%~ -> ';
+      ~/config/scripts/logo.py;clear;; esac
+#neofetch

@@ -1,0 +1,192 @@
+font pango:SauceCodePro Nerd Font Mono 16
+
+set $mod Mod1
+floating_modifier $mod
+bindsym $mod+Shift+r reload
+bindsym $mod+Return exec alacritty
+for_window [class="^.*"] border pixel 1
+focus_follows_mouse no
+workspace_auto_back_and_forth yes
+# TODO: add lone_tab
+hide_edge_borders smart
+
+# General window management
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+q kill
+
+# Window layout
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+t split h, layout tabbed
+bindsym $mod+s layout toggle split
+bindsym $mod+backslash split h
+bindsym $mod+minus split v
+
+# Switch focused window
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+set $wsT 0
+set $ws0 1
+set $ws1 2
+set $ws2 3
+set $ws3 4
+set $ws4 5
+set $ws5 6
+set $ws6 7
+set $ws7 8
+set $ws8 9
+set $ws9 10
+set $ws10 11
+
+# Switch to workspace
+bindsym $mod+Tab workspace $wsT
+bindsym $mod+grave workspace $ws0
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+Tab move container to workspace $wsT
+bindsym $mod+Shift+grave move container to workspace $ws0
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bar {
+    strip_workspace_numbers yes
+    swaybar_command waybar
+}
+
+# Open some things as floating windows by default
+for_window [title="Volume Control"] floating enable
+for_window [title="Network Connections"] floating enable
+for_window [class="mpv"] floating enable
+
+# Open some things in their assigned workspace
+assign [class="Emacs"] $ws3
+assign [class="Slack"] $ws4
+assign [class="discord"] $ws4
+assign [class="Caprine"] $ws4
+assign [class="obs"] $ws8
+assign [class="Steam"] $ws8
+assign [class="Dolphin-emu-faster-melee"] $ws9
+# Osu!Lazer
+assign [class="dotnet"] $ws9
+
+# Notifications
+#TODO: key bindings for dunst (use dunstcmd if possible) see:
+# https://github.com/dunst-project/dunst/issues/445
+exec_always dunst
+focus_on_window_activation focus
+bindsym $mod+x [urgent=latest] focus
+
+# Application launcher (windows key)
+bindsym Super_L exec rofi -show drun -drun-icon-theme papirus -show-icons
+
+# Clipboard history search
+#TODO: remove numbers
+exec wl-clipboard-history -t
+bindsym $mod+v exec wl-clipboard-history -p \
+"$(wl-clipboard-history -l 100 | rofi -dmenu | cut -d ',' -f1)" | wl-copy
+
+# Search/play music
+bindsym $mod+m exec ~/.config/scripts/song.sh
+
+# Put unicode character into clipboard
+bindsym $mod+u exec unipicker --command \
+"rofi -dmenu" --copy-command "wl-copy" --copy
+
+# Calculator
+bindsym $mod+q exec rofi -show calc -modi calc \
+-no-show-match -no-sort -calc-command "echo '{result}' | wl-copy"
+
+# Last.fm integration
+exec_always systemctl --user restart mpdas
+
+# Lock screen and idle control
+bindsym $mod+End exec swaylock-blur
+exec swayidle -w \
+        timeout 420 'swaylock-blur' \
+        timeout 600 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"' \
+        before-sleep 'swaylock-blur'
+
+# Media keys
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master -q 5%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master -q 5%-
+bindsym XF86AudioMute exec amixer -D pulse sset Master toggle
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+
+# Screenshots
+bindsym Print exec grim -g "$(slurp -d)" ~/Images/screenshots/$(date +%s).png
+bindsym Shift+Print exec grim -o $(swaymsg -t get_outputs | \
+jq -r '.[] | select(.focused) | .name') ~/Images/screenshots/$(date +%s).png \
+&& notify-send "screenshot taken"
+
+# GTK settings
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Materia-dark-compact'
+    gsettings set $gnome-schema icon-theme 'Papirus'
+    gsettings set $gnome-schema font-name 'Arial 18'
+}
+
+output eDP-1 {
+    scale 1
+    position 0,0
+    resolution 2560x1440
+    background ~/Images/wallpapers/melee_wallpaper_minimal.png fill
+}
+
+output eDP-1 {
+    scale 1
+    position 0,0
+    resolution 2560x1440
+    background ~/Images/wallpapers/melee_wallpaper_minimal.png fill
+}
+
+# TODO: replace with type:keyboard
+input 1:1:AT_Translated_Set_2_keyboard {
+    xkb_options caps:escape
+}
+# TODO: replace with type:touchpad
+input 2:7:SynPS/2_Synaptics_TouchPad {
+    tap enabled
+    dwt enabled
+    natural_scroll enabled
+}
+# TODO: replace with type:tablettool or type:pointer
+input 9580:110:HUION_420_Pen {
+    tap disabled
+}
+
+exec xrdb -load ~/.Xresources
