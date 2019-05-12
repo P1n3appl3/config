@@ -5,6 +5,7 @@ Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_smartcase = 1
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+Plug 'chrisbra/Colorizer'
 
 " Programming
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

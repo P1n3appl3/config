@@ -6,7 +6,7 @@ tabspaces: 4
 font:
   normal:
     family: SauceCodePro Nerd Font Mono
-  size: 8.0
+  size: 16
 colors:
   primary:
     background: '0x000000'

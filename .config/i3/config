@@ -131,7 +131,7 @@ bindsym $mod+x [urgent=latest] focus
 # Utility bar
 # Application launcher (windows key)
 bindsym Super_L exec --no-startup-id rofi -show drun \
--drun-icon-theme aidiwa -show-icons
+-drun-icon-theme papirus -show-icons
 # Window switcher
 bindsym $mod+slash exec --no-startup-id rofi -show window -show-icons
 # Clipboard history search
@@ -143,6 +143,9 @@ bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh
 # Put unicode character into clipboard
 bindsym $mod+u exec --no-startup-id unipicker --command \
 "rofi -dmenu" --copy-command "xclip -i -selection clipboard" --copy
+# Calculator
+bindsym $mod+q exec --no-startup-id rofi -show calc -modi calc -no-show-match \
+-no-sort -calc-command "echo '{result}' | xclip -selection clipboard"
 
 # Start apps
 exec --no-startup-id redshift-gtk -l 30:-98
@@ -171,9 +174,8 @@ exec_always setxkbmap -option caps:escape
 
 # Screenshots
 bindsym Shift+Print --release exec --no-startup-id \
-"maim -u | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t image/png \
-;notify-send -u Low 'screenshot taken'"
+"maim -u | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t \
+image/png; notify-send -u Low 'screenshot taken'"
 bindsym Print exec --no-startup-id \
-"maim -su | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t image/png \
-;notify-send -u Low 'screenshot taken'"
-
+"maim -su | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t \
+image/png; notify-send -u Low 'screenshot taken'"

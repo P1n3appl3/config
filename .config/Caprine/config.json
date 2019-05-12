@@ -1,0 +1,31 @@
+{
+	"followSystemAppearance": true,
+	"darkMode": true,
+	"vibrancy": "none",
+	"zoomFactor": 0.9,
+	"lastWindowState": {
+		"x": 854,
+		"y": 26,
+		"width": 854,
+		"height": 934
+	},
+	"alwaysOnTop": false,
+	"bounceDockOnMessage": false,
+	"showUnreadBadge": true,
+	"showMessageButtons": true,
+	"launchMinimized": false,
+	"flashWindowOnMessage": true,
+	"block": {
+		"chatSeen": true,
+		"typingIndicator": true
+	},
+	"emojiStyle": "facebook-3-0",
+	"confirmImagePaste": true,
+	"useWorkChat": false,
+	"sidebarHidden": false,
+	"autoHideMenuBar": true,
+	"notificationsMuted": false,
+	"hardwareAcceleration": true,
+	"quitOnWindowClose": false,
+	"keepMeSignedIn": true
+}

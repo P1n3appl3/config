@@ -1,0 +1,98 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "SauceCodePro Nerd Font";
+    font-size: 22px;
+    min-height: 0;
+    color: #eee7cf;
+    background: transparent;
+}
+
+window#waybar {
+    color: #eee7cf;
+    transition-property: background;
+    transition-duration: .5s;
+}
+
+#workspaces button {
+    padding: 0 5px;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#workspaces button.focused {
+    background: #64727D;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #pulseaudio, #mpd, #custom, #tray {
+    padding: 0 10px;
+    margin: 0 0;
+}
+
+#pulseaudio.muted {
+    text-decoration: line-through;
+    color: #eb4d4b;
+}
+
+#network.disconnected {
+    color: #eb4d4b;
+}
+
+@keyframes blink {
+    to {
+        background-color: transparent;
+    }
+}
+
+#battery.charging {
+    background: #2ecc71;
+    animation-name: blink;
+    animation-duration: 3.0s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#battery.warning:not(.charging) {
+    background: #ffaf00;
+    color: #282828;
+}
+
+#battery.critical:not(.charging) {
+    background: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#temperature.critical {
+    background: #f53c3c;
+    animation-name: blink;
+    animation-duration: 2.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#mpd.disconnected {
+    color: #eb4d4b;
+}
+
+/*
+#mpd.playing {
+    background: #2980b9;
+    animation-name: blink;
+    animation-duration: 2.0s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+*/
