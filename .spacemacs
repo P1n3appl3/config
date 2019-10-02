@@ -7,10 +7,9 @@
    dotspacemacs-configuration-layers
    '(
      ;; Languages
-     (c-c++ :variables c-c++-enable-clang-support t)
      (python :variables python-backend 'lsp)
      (haskell :variables haskell-process-type 'stack-ghci)
-     rust markdown ruby emacs-lisp scheme java yaml
+     rust c-c++ markdown ruby emacs-lisp scheme java yaml
 
      ;; Visual
      (colors :variables colors-enable-nyan-cat-progress-bar t)

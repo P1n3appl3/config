@@ -1,8 +1,7 @@
 {
     "height": 30, // (to be removed for auto height)
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    //"modules-center": ["custom/prevsong", "mpd", "custom/nextsong"],
-    "modules-center": ["time"],
+    "modules-left": ["sway/workspaces", "sway/mode", "idle_inhibitor"],
+    "modules-center": ["custom/prevsong", "mpd", "custom/nextsong"],
     "modules-right": ["pulseaudio", "network", "temperature", "cpu", "memory", "backlight", "battery", "custom/donotdisturb", "clock"],
     "sway/workspaces": {
         "disable-scroll": true,
@@ -64,17 +63,27 @@
     },
     "cpu": {
         "format": ":{usage}%",
-        "on-click": "alacritty -e htop"
+        "on-click": "pgrep htop || (swaymsg split h, layout tabbed; alacritty -e htop)",
+        "states": {
+            "critical": 100,
+            "warning": 80,
+            "normal": 50
+        }
     },
     "memory": {
-        "format": ":{}%"
+        "format": ":{}%",
+        "states": {
+            "critical": 100,
+            "warning": 90,
+            "normal": 70
+        }
     },
     "temperature": {
         "critical-threshold": 80,
         "format": "",
-        "format-critical": ""
+        "format-critical": "",
         // TODO: figure out why this doesnt work
-        // "tooltip-format": "{temperatureC}°C"
+        "tooltip-format": "{temperatureC}°C"
         // "format-icons": ["","","","",""]
     },
     "backlight": {
@@ -102,7 +111,7 @@
         "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
         "format-disconnected": "⚠ Disconnected",
         "interval": 30,
-        "on-click": "nm-connection-editor"
+        "on-click": "killall nm-connection-e || nm-connection-editor"
     },
     "pulseaudio": {
         "format": "{icon}:{volume}%",
@@ -117,7 +126,14 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol",
+        "on-click": "killall pavucontrol || pavucontrol",
         "tooltip": false
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
     }
 }

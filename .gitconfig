@@ -2,9 +2,11 @@
     name = Joseph Ryan
     username = P1n3appl3
     email = josephryan3.14@gmail.com
+    signingkey = 576B6E8397D463348DE9C6B494093348D32DD171
 [core]
     editor = vim
 	excludesfile = /home/joseph/.gitignore
+	autocrlf = input
 [alias]
     a = add
     b = branch
@@ -24,3 +26,10 @@
     default = matching
 [pager]
     branch = false
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

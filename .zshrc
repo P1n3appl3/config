@@ -34,8 +34,8 @@ export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export PATH="$PATH":"$HOME/.local/bin"
 
 # Shortcuts for tweaking dotfiles
-alias swayconfig="vi $HOME/.config/sway/*"
-alias vimconfig="vi $HOME/.config/nvim/*"
+alias i3config="vi $HOME/.config/i3/*"
+alias vimconfig="vi $HOME/.config/nvim/*.vim"
 alias zshconfig="vi $HOME/.zshrc"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
@@ -43,7 +43,7 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias grep=rg
 alias cat=bat
 alias find=fd
-alias ls=lsd # exa if no unicode support
+alias ls=lsd
 export TERMINAL=alacritty
 
 # Misc.
@@ -53,6 +53,7 @@ alias so=source
 alias pac="pakku -Syu"
 alias paclist="pacman -Qqs"
 alias sc=systemctl
+alias music=ncmpcpp
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -62,8 +63,17 @@ export FZF_DEFAULT_COMMAND="fd . -L" # because I symlink ~/config to ~/.config
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f ~"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d ~"
 
-case $(tty) in 
-  (/dev/tty[1-9]) prompt_powerlevel9k_teardown;
+# Change terminal title to the current directory
+precmd() {
+    #LASTCMD=$(history | cut -c8- | tail -n 1);
+    CURRENT_DIR=$(pwd | sed 's/\/home\/joseph/~/')
+    echo -ne "\e]0;$CURRENT_DIR\007";
+}
+
+# Turn off unicode stuff if we're in a TTY
+case $(tty) in
+  (/dev/tty[1-9])
+      prompt_powerlevel9k_teardown;
       PROMPT='%~ -> ';
-      ~/config/scripts/logo.py;clear;; esac
-#neofetch
+      alias ls=exa;; esac
+neofetch

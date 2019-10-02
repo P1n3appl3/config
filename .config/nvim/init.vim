@@ -1,104 +1,109 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Utility
-Plug 'easymotion/vim-easymotion'
-let g:EasyMotion_smartcase = 1
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'chrisbra/Colorizer'
+Plug 'junegunn/fzf.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'Valloric/ListToggle'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Programming
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
-Plug 'w0rp/ale'
-let g:ale_enabled = 0
-let g:airline#extensions#ale#enabled = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_open_list = 1
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '➤'
-let g:ale_linters = {'c': ['clang', 'clangcheck', 'clangtidy']}
-let g:ale_linter_aliases = {'cpp': 'c'}
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'dense-analysis/ale'
 Plug 'majutsushi/tagbar'
-let g:tagbar_autoclose = 1
-let g:tagbar_autofocus = 1
-Plug 'scrooloose/nerdcommenter'
-let g:NERDSpaceDelims = 1
-let g:NERDTrimTrailingWhitespace = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDCommentEmptyLines = 1
-let g:NERDAltDelims_c = 1
+Plug 'gaving/vim-textobj-argument'
+Plug 'sbdchd/neoformat'
+Plug 'tpope/vim-commentary'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
-Plug 'airblade/vim-gitgutter'
+Plug 'tveskag/nvim-blame-line'
 
 " Appearance
 Plug 'morhetz/gruvbox'
-let g:gruvbox_contrast_dark = 'hard'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'chrisbra/Colorizer'
 call plug#end()
-let g:airline_theme = 'dark'
-let g:airline#extensions#gutentags#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline_section_x = ''
-let g:airline_section_y = ''
-let g:airline_section_z = airline#section#create(['%2p%%', 'linenr', ':%2v'])
-let g:airline_symbols.linenr = ''
-let g:airline_skip_empty_sections = 1
-colorscheme gruvbox
-set termguicolors background=dark
+
+let g:UltiSnipsExpandTrigger="<tab>"
+
+let g:ale_enabled = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '➤'
+let g:ale_linters = {
+            \   'c': ['clangd'],
+            \   'rust': ['rls'],
+            \   'python': ['flake8']}
+
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('sources', {'_': ['buffer', 'ale']})
+
+let g:neoformat_enabled_python = ['black']
+
+source $HOME/.config/nvim/pretty.vim
 
 " General settings
 syntax on
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us complete+=kspell
-set autoread
-set backspace=indent,eol,start
-set gdefault
-set hidden
-set ignorecase smartcase
-set inccommand=nosplit
-set mouse=a
-set nofoldenable foldmethod=syntax
-set number relativenumber
-set scrolloff=7
+autocmd BufRead,BufNewFile *.h set filetype=c
+set autoread gdefault hidden ignorecase smartcase number relativenumber
+set backspace=indent,eol,start inccommand=nosplit mouse=a
+set nofoldenable foldmethod=syntax scrolloff=7
 set smarttab expandtab tabstop=4 shiftwidth=4
-set updatetime=100
-set wildignore=*o,*.obj,*.pyc
+set updatetime=100 wildignore=*.o,*.obj,*.pyc
+set commentstring=//\ %s
 
-" General maps
-let mapleader = ','
-map <C-Q> :q<CR>
-map <C-S> :w<CR>
+" General mappings
+noremap <SPACE> <NOP>
+let mapleader = ' '
+map <leader><leader> :Commands<CR>
+map <leader>qq :qa<CR>
+map <leader>fs :w<CR>
+map <leader>fS :wa<CR>
+map <leader>c gc
+map Y y$
+map <C-Y> "+y
+map <C-P> "+p
+map + <C-A>
+map - <C-X>
+map ,= :Neoformat<CR>
+map K :ALEHover<CR>
+map <leader>gb :ToggleBlameLine<CR>
 
-" Completion
-inoremap <expr><tab> pumvisible()?"\<c-n>":"\<tab>"
+" Completion menu navigation
+inoremap <expr><tab> pumvisible()?"\<C-n>":"\<tab>"
 inoremap <expr><C-J> pumvisible()?"\<C-n>":"j"
 inoremap <expr><C-K> pumvisible()?"\<C-p>":"k"
 
-" Plugin toggles
-map <leader>l :ALEToggle<CR>
-map <leader>e :lopen<CR>
-map <leader>E :lclose<CR>
-map <leader>d :call deoplete#toggle()<CR>
-map <leader>t :TagbarToggle<CR>
-map <C-O> :FZF<CR>
-map <C-P> :FZF ~<CR>
-
-" Window/tab management
-map <space>w <C-W>
+" Window/tab/buffer management
+map <leader>w <C-W>
 map <silent> <C-L> :bnext<CR>
 map <silent> <C-H> :bprevious<CR>
+map <leader>bb :Buffers<CR>
+map <leader>bd :bd<CR>
+map <leader><tab> :b#<CR>
 
-" Replace
+" Find/replace
 map <C-_> :%s/
 vmap <C-_> :s/
+map <silent> ,/ :nohl<CR>
 
-" Moving around
+" Moving around and finding stuff
 map j gj
 map k gk
-map <silent> <leader>/ :nohl<CR>
-map <silent> s <Plug>(easymotion-s2)
-map <silent> S <Plug>(easymotion-bd-w)
+noremap <C-J> <C-E>
+noremap <C-K> <C-Y>
+map <leader>s <Plug>(easymotion-prefix)
+map s <Plug>(easymotion-s2)
+map S <Plug>(easymotion-bd-w)
+map <leader>rg :Rg<CR>
+map <leader>t :TagbarOpenAutoClose<CR>
+map <leader>ff :Files<CR>
+map <leader>fF :Files ~<CR>
+map <leader>f/ :Files /<CR>
+map <leader>en :ALENextWrap<CR>
+map <leader>eN :ALEPreviousWrap<CR>
+nnoremap gD gd
+map gd :ALEGoToDefinition<CR>

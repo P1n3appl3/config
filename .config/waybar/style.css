@@ -30,7 +30,7 @@ label:focus {
     background-color: #eb4d4b;
 }
 
-#clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #pulseaudio, #mpd, #custom, #tray {
+#clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #pulseaudio, #mpd, #custom, #tray, #idle_inhibitor {
     padding: 0 10px;
     margin: 0 0;
 }
@@ -84,6 +84,24 @@ label:focus {
 
 #mpd.disconnected {
     color: #eb4d4b;
+}
+
+#memory.warning {
+    background: #ffaf00;
+    color: #282828;
+}
+
+#memory.critical {
+    background: #f53c3c;
+}
+
+#cpu.warning {
+    background: #ffaf00;
+    color: #282828;
+}
+
+#cpu.critical {
+    background: #f53c3c;
 }
 
 /*

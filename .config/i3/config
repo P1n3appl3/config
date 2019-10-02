@@ -17,8 +17,10 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+Shift+q kill
 
-# Split orientation
+# Window layout
 bindsym $mod+t layout tabbed
+bindsym $mod+Shift+t split h, layout tabbed
+bindsym $mod+Shift+s layout stacked
 bindsym $mod+s layout toggle split
 bindsym $mod+backslash split h
 bindsym $mod+minus split v
@@ -76,21 +78,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-bindsym $mod+r mode "resize"
-mode "resize" {
-        bindsym $mod+l      resize grow width 10 px or 10 ppt
-        bindsym $mod+h      resize shrink width 10 px or 10 ppt
-        bindsym $mod+j      resize grow height 10 px or 10 ppt
-        bindsym $mod+k      resize shrink height 10 px or 10 ppt
-        bindsym $mod+Shift+l      resize grow width 50 px or 50 ppt
-        bindsym $mod+Shift+h      resize shrink width 50 px or 50 ppt
-        bindsym $mod+Shift+j      resize grow height 50 px or 50 ppt
-        bindsym $mod+Shift+k      resize shrink height 50 px or 50 ppt
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym Mod1+r mode "default"
-}
-
 bar {
         strip_workspace_numbers yes
         position top
@@ -116,8 +103,9 @@ assign [class="Emacs"] $ws3
 assign [class="Slack"] $ws4
 assign [class="discord"] $ws4
 assign [class="Caprine"] $ws4
+assign [class="telegram-desktop"] $ws4
 assign [class="obs"] $ws8
-assign [class="Steam"] $ws8
+assign [class="Steam"] $ws9
 assign [class="Dolphin-emu"] $ws9
 assign [class="dotnet"] $ws9 # Osu
 
@@ -128,21 +116,25 @@ exec --no-startup-id compton -fCG
 focus_on_window_activation focus
 bindsym $mod+x [urgent=latest] focus
 
-# Utility bar
 # Application launcher (windows key)
 bindsym Super_L exec --no-startup-id rofi -show drun \
 -drun-icon-theme papirus -show-icons
+
 # Window switcher
 bindsym $mod+slash exec --no-startup-id rofi -show window -show-icons
+
 # Clipboard history search
 exec --no-startup-id greenclip daemon
 bindsym $mod+v exec rofi -modi "clipboard:greenclip print" \
 -show clipboard -run-command '{cmd}'
+
 # Search/play music
 bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh
+
 # Put unicode character into clipboard
 bindsym $mod+u exec --no-startup-id unipicker --command \
 "rofi -dmenu" --copy-command "xclip -i -selection clipboard" --copy
+
 # Calculator
 bindsym $mod+q exec --no-startup-id rofi -show calc -modi calc -no-show-match \
 -no-sort -calc-command "echo '{result}' | xclip -selection clipboard"
