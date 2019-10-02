@@ -1,3 +1,4 @@
+#// vim: set ft=conf:
 font pango:SauceCodePro Nerd Font Mono 16
 
 set $mod Mod1
@@ -79,7 +80,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 bar {
     strip_workspace_numbers yes
-    swaybar_command waybar
+    swaybar_command "waybar > /var/log/waybar.log 2>&1"
 }
 
 # Open some things as floating windows by default
@@ -93,7 +94,7 @@ assign [class="Slack"] $ws4
 assign [class="discord"] $ws4
 assign [class="Caprine"] $ws4
 assign [class="obs"] $ws8
-assign [class="Steam"] $ws8
+assign [class="Steam"] $ws9
 assign [class="Dolphin-emu-faster-melee"] $ws9
 # Osu!Lazer
 assign [class="dotnet"] $ws9
@@ -101,7 +102,7 @@ assign [class="dotnet"] $ws9
 # Notifications
 #TODO: key bindings for dunst (use dunstcmd if possible) see:
 # https://github.com/dunst-project/dunst/issues/445
-exec_always dunst
+exec dunst
 focus_on_window_activation focus
 bindsym $mod+x [urgent=latest] focus
 
@@ -126,15 +127,16 @@ bindsym $mod+q exec rofi -show calc -modi calc \
 -no-show-match -no-sort -calc-command "echo '{result}' | wl-copy"
 
 # Last.fm integration
-exec_always systemctl --user restart mpdas
+exec systemctl --user restart mpdas
 
 # Lock screen and idle control
-bindsym $mod+End exec swaylock-blur
+bindsym $mod+End exec swaylock-fancy
 exec swayidle -w \
-        timeout 420 'swaylock-blur' \
+        timeout 410 'notify-send "About to lock..."' \
+        timeout 420 'swaylock-fancy' \
         timeout 600 'swaymsg "output * dpms off"' \
         resume 'swaymsg "output * dpms on"' \
-        before-sleep 'swaylock-blur'
+        before-sleep 'swaylock-fancy'
 
 # Media keys
 bindsym XF86MonBrightnessUp exec light -A 5
@@ -154,23 +156,20 @@ jq -r '.[] | select(.focused) | .name') ~/Images/screenshots/$(date +%s).png \
 
 # GTK settings
 set $gnome-schema org.gnome.desktop.interface
-exec_always {
+exec {
     gsettings set $gnome-schema gtk-theme 'Materia-dark-compact'
     gsettings set $gnome-schema icon-theme 'Papirus'
     gsettings set $gnome-schema font-name 'Arial 18'
 }
 
 output eDP-1 {
-    scale 1
-    position 0,0
     resolution 2560x1440
     background ~/Images/wallpapers/melee_wallpaper_minimal.png fill
 }
 
-output eDP-1 {
-    scale 1
-    position 0,0
-    resolution 2560x1440
+output HDMI-A-2 {
+    position 2560,0
+    resolution 1920x1080
     background ~/Images/wallpapers/melee_wallpaper_minimal.png fill
 }
 

@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-systemctl suspend; betterlockscreen -l
+systemctl suspend; swaylock-fancy
