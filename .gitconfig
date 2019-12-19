@@ -7,6 +7,7 @@
     editor = vim
 	excludesfile = /home/joseph/.gitignore
 	autocrlf = input
+    pager = delta --dark --plus-color="#012800" --minus-color="#340001" --theme="OneHalfDark"
 [alias]
     a = add
     b = branch
@@ -33,3 +34,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[gpg]
+	program = gpg2

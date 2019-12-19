@@ -146,10 +146,10 @@ exec_always --no-startup-id systemctl --user restart mpdas
 
 # Desktop background and lock screen
 exec --no-startup-id betterlockscreen -w
-exec --no-startup-id betterlockscreen -l
-exec --no-startup-id xss-lock -- betterlockscreen -l
-exec --no-startup-id xautolock -time 15 -locker "betterlockscreen -l"
-bindsym $mod+End exec betterlockscreen -l
+exec --no-startup-id xss-lock -- betterlockscreen -l -- --timestr "%-I:%M:%S"
+exec --no-startup-id xautolock -time 15 -locker betterlockscreen -l -- \
+--timestr "%-I:%M:%S"
+bindsym $mod+End exec betterlockscreen -l -- --timestr "%-I:%M:%S"
 
 # Media keys
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
@@ -166,8 +166,6 @@ exec_always setxkbmap -option caps:escape
 
 # Screenshots
 bindsym Shift+Print --release exec --no-startup-id \
-"maim -u | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t \
-image/png; notify-send -u Low 'screenshot taken'"
-bindsym Print exec --no-startup-id \
-"maim -su | tee ~/Images/screenshots/$(date +%s).png | xclip -selection c -t \
-image/png; notify-send -u Low 'screenshot taken'"
+~/.config/scripts/screenshot.sh
+
+bindsym Print exec --no-startup-id ~/.config/scripts/screenshot.sh s

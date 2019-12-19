@@ -6,11 +6,11 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'Valloric/ListToggle'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Programming
-Plug 'dense-analysis/ale'
-Plug 'majutsushi/tagbar'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
+Plug 'liuchengxu/vista.vim'
 Plug 'gaving/vim-textobj-argument'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary'
@@ -26,21 +26,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'chrisbra/Colorizer'
 call plug#end()
 
-let g:UltiSnipsExpandTrigger="<tab>"
-
-let g:ale_enabled = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '➤'
-let g:ale_linters = {
-            \   'c': ['clangd'],
-            \   'rust': ['rls'],
-            \   'python': ['flake8']}
-
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('sources', {'_': ['buffer', 'ale']})
+let g:vista_blink = [0, 0]
+let g:vista_top_level_blink = [0, 0]
 
 let g:neoformat_enabled_python = ['black']
+
+let g:vista_close_on_jump = 1
 
 source $HOME/.config/nvim/pretty.vim
 
@@ -48,12 +39,14 @@ source $HOME/.config/nvim/pretty.vim
 syntax on
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us complete+=kspell
 autocmd BufRead,BufNewFile *.h set filetype=c
+autocmd CursorHold * silent call CocActionAsync('highlight')
 set autoread gdefault hidden ignorecase smartcase number relativenumber
 set backspace=indent,eol,start inccommand=nosplit mouse=a
 set nofoldenable foldmethod=syntax scrolloff=7
 set smarttab expandtab tabstop=4 shiftwidth=4
 set updatetime=100 wildignore=*.o,*.obj,*.pyc
-set commentstring=//\ %s
+set commentstring=//\ %s nobackup nowritebackup
+set shortmess+=c
 
 " General mappings
 noremap <SPACE> <NOP>
@@ -69,13 +62,23 @@ map <C-P> "+p
 map + <C-A>
 map - <C-X>
 map ,= :Neoformat<CR>
-map K :ALEHover<CR>
+noremap <silent> K :call CocAction('doHover')<CR>
 map <leader>gb :ToggleBlameLine<CR>
 
-" Completion menu navigation
-inoremap <expr><tab> pumvisible()?"\<C-n>":"\<tab>"
+" Completion
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? '\<C-n>' :
+      \ <SID>check_back_space() ? '\<TAB>' :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr><C-J> pumvisible()?"\<C-n>":"j"
 inoremap <expr><C-K> pumvisible()?"\<C-p>":"k"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Window/tab/buffer management
 map <leader>w <C-W>
@@ -99,11 +102,28 @@ map <leader>s <Plug>(easymotion-prefix)
 map s <Plug>(easymotion-s2)
 map S <Plug>(easymotion-bd-w)
 map <leader>rg :Rg<CR>
-map <leader>t :TagbarOpenAutoClose<CR>
+map <leader>t :Vista!!<CR>
 map <leader>ff :Files<CR>
 map <leader>fF :Files ~<CR>
 map <leader>f/ :Files /<CR>
-map <leader>en :ALENextWrap<CR>
-map <leader>eN :ALEPreviousWrap<CR>
-nnoremap gD gd
-map gd :ALEGoToDefinition<CR>
+map <leader>en <Plug>(coc-diagnostic-next)
+map <leader>eN <Plug>(coc-diagnostic-prev)
+map <silent> gd <Plug>(coc-definition)
+map <silent> gD <Plug>(coc-declaration)
+map <silent> gy <Plug>(coc-type-definition)
+map <silent> gi <Plug>(coc-implementation)
+map <silent> gr <Plug>(coc-references)
+
+" Function text objects
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" LSP stuff
+map ,,  :CocList<CR>
+map <leader>a  <Plug>(coc-codeaction)
+map <leader>qf  <Plug>(coc-fix-current)
+map <leader>rn <Plug>(coc-rename)
+map <leader>ps :call CocAction('workspaceSymbols')<CR>
+command! -nargs=0 LSPFormat :call CocAction('format')
