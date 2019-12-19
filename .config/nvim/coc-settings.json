@@ -1,0 +1,12 @@
+{
+  "diagnostic.errorSign": "✖",
+  "diagnostic.warningSign": "➤",
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "args": ["--background-index"],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".git/"],
+      "filetypes": ["c", "cpp"]
+    }
+  }
+}

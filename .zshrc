@@ -50,6 +50,7 @@ export TERMINAL=alacritty
 alias o=xdg-open
 alias c=clear
 alias so=source
+alias please=sudo
 alias pac="pakku -Syu"
 alias paclist="pacman -Qqs"
 alias sc=systemctl
@@ -62,6 +63,9 @@ source /usr/share/fzf/key-bindings.zsh
 export FZF_DEFAULT_COMMAND="fd . -L" # because I symlink ~/config to ~/.config
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f ~"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d ~"
+
+# Parallelize Make
+alias make="make -j$(nproc)"
 
 # Change terminal title to the current directory
 precmd() {
@@ -76,4 +80,4 @@ case $(tty) in
       prompt_powerlevel9k_teardown;
       PROMPT='%~ -> ';
       alias ls=exa;; esac
-neofetch
+# neofetch

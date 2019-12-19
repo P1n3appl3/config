@@ -19,7 +19,7 @@ colors:
     blue:       '0x2176c7'
     magenta:    '0xc61c6f'
     cyan:       '0x259286'
-    white:      '0xeee7cf'
+    white:      '0xefe8d0'
   bright:
     black:      '0x928374'
     red:        '0xbd3613'

@@ -4,14 +4,14 @@
 	"vibrancy": "none",
 	"zoomFactor": 0.9,
 	"lastWindowState": {
-		"x": 854,
+		"x": 1,
 		"y": 47,
-		"width": 852,
+		"width": 851,
 		"height": 912
 	},
 	"menuBarMode": false,
 	"showDockIcon": true,
-	"showTrayIcon": true,
+	"showTrayIcon": false,
 	"alwaysOnTop": false,
 	"bounceDockOnMessage": false,
 	"showUnreadBadge": true,
@@ -31,7 +31,7 @@
 	"autoHideMenuBar": true,
 	"notificationsMuted": false,
 	"hardwareAcceleration": true,
-	"quitOnWindowClose": false,
+	"quitOnWindowClose": true,
 	"keepMeSignedIn": true,
 	"autoplayVideos": true,
 	"privateMode": false
