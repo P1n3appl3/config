@@ -45,14 +45,15 @@ alias cat=bat
 alias find=fd
 alias ls=lsd
 export TERMINAL=alacritty
+export RUSTC_WRAPPER=sccache
 
 # Misc.
 alias o=xdg-open
 alias c=clear
 alias so=source
 alias please=sudo
-alias pac="pakku -Syu"
 alias paclist="pacman -Qqs"
+alias yay="yay --sudoloop --answerclean None --answerdiff None --answeredit None --answerupgrade None"
 alias sc=systemctl
 alias music=ncmpcpp
 export EDITOR=nvim

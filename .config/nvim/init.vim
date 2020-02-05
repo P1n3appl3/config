@@ -62,23 +62,16 @@ map <C-P> "+p
 map + <C-A>
 map - <C-X>
 map ,= :Neoformat<CR>
-noremap <silent> K :call CocAction('doHover')<CR>
 map <leader>gb :ToggleBlameLine<CR>
 
 " Completion
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? '\<C-n>' :
-      \ <SID>check_back_space() ? '\<TAB>' :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr><cr> pumvisible()?"\<C-y>":"\<C-g>u\<CR>"
+inoremap <expr><tab> pumvisible()?"\<C-n>":"\<tab>"
+inoremap <expr><S-tab> pumvisible()?"\<C-p>":"\<C-h>"
 inoremap <expr><C-J> pumvisible()?"\<C-n>":"j"
 inoremap <expr><C-K> pumvisible()?"\<C-p>":"k"
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+imap <C-l> <Plug>(coc-snippets-expand-jump)
 
 " Window/tab/buffer management
 map <leader>w <C-W>
@@ -121,9 +114,11 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " LSP stuff
-map ,,  :CocList<CR>
+map ,, :CocList<CR>
+noremap <silent> K :call CocAction('doHover')<CR>
 map <leader>a  <Plug>(coc-codeaction)
 map <leader>qf  <Plug>(coc-fix-current)
 map <leader>rn <Plug>(coc-rename)
 map <leader>ps :call CocAction('workspaceSymbols')<CR>
 command! -nargs=0 LSPFormat :call CocAction('format')
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')

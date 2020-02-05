@@ -143,6 +143,7 @@ bindsym $mod+q exec --no-startup-id rofi -show calc -modi calc -no-show-match \
 exec --no-startup-id redshift-gtk -l 30:-98
 exec --no-startup-id nm-applet
 exec_always --no-startup-id systemctl --user restart mpdas
+exec_always --no-startup-id systemctl --user restart dunst
 
 # Desktop background and lock screen
 exec --no-startup-id betterlockscreen -w
