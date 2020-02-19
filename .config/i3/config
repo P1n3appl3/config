@@ -1,4 +1,5 @@
-font pango:SauceCodePro Nerd Font 8
+font pango:FuraCode Nerd Font 8
+# font pango:SauceCodePro Nerd Font 8
 
 # i3 stuff
 set $mod Mod1
