@@ -6,6 +6,7 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'Valloric/ListToggle'
+Plug 'gabrielelana/vim-markdown'
 
 " Programming
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -28,10 +29,12 @@ call plug#end()
 
 let g:vista_blink = [0, 0]
 let g:vista_top_level_blink = [0, 0]
+let g:vista_close_on_jump = 1
+let g:vista_cursor_delay = 50
+
+let g:markdown_enable_mappings = 0
 
 let g:neoformat_enabled_python = ['black']
-
-let g:vista_close_on_jump = 1
 
 source $HOME/.config/nvim/pretty.vim
 

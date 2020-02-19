@@ -1,10 +1,6 @@
 source ~/.zplug/init.zsh
 
-POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir_writable dir vcs newline)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time background_jobs)
-
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
+eval "$(starship init zsh)"
 zplug "lib/completion", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
 zplug "lib/key-bindings", from:oh-my-zsh
@@ -68,17 +64,16 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d ~"
 # Parallelize Make
 alias make="make -j$(nproc)"
 
-# Change terminal title to the current directory
-precmd() {
+change_window_title() {
     #LASTCMD=$(history | cut -c8- | tail -n 1);
     CURRENT_DIR=$(pwd | sed 's/\/home\/joseph/~/')
     echo -ne "\e]0;$CURRENT_DIR\007";
 }
 
+precmd_functions+=(change_window_title)
+
 # Turn off unicode stuff if we're in a TTY
 case $(tty) in
   (/dev/tty[1-9])
-      prompt_powerlevel9k_teardown;
       PROMPT='%~ -> ';
       alias ls=exa;; esac
-# neofetch

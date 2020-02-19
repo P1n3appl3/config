@@ -54,10 +54,10 @@ step_width = 1
 [[block]]
 block = "sound"
 step_width = 1
-on_click = "killall pavucontrol || pavucontrol &"
+on_click = "/home/joseph/config/scripts/bar/volume.sh"
 
 [[block]]
 block = "time"
 format = "%-I:%M%P"
 interval = 60
-on_click = "notify-send $(date +%D)"
+on_click = "/home/joseph/config/scripts/bar/date.sh"

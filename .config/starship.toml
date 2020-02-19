@@ -1,0 +1,45 @@
+add_newline = false
+
+[character]
+symbol = "🍍" # ❯
+
+[directory]
+style = "bold white"
+
+[line_break]
+disabled = true
+
+[package]
+disabled = true
+[rust]
+disabled = true
+[python]
+disabled = true
+[ruby]
+disabled = true
+
+[cmd_duration]
+prefix = ""
+
+[git_branch]
+symbol = " " # 🌱 
+
+[git_status]
+style = "purple"
+conflicted = "😠"
+ahead = " "
+behind = "  "
+show_sync_count = true
+diverged = ""
+stashed = " "
+untracked = "  "
+untracked_count.enabled = true
+modified = "  "
+modified_count.enabled = true
+staged = "  "
+staged_count.enabled = true
+renamed = ""
+deleted = "" # 🗑
+prefix = "("
+suffix = ")"
+
