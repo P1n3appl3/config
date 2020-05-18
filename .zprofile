@@ -9,7 +9,7 @@ export GDK_DPI_SCALE=.75
 #export MOZ_WEBRENDER=1
 #export SDL_VIDEODRIVER=wayland
 
-~/.config/scripts/logo.py
+# ~/.config/scripts/logo.py
 
 #sway > /var/log/sway.log 2>&1
 startx

@@ -2,7 +2,6 @@ window:
   padding:
     x: 0
     y: 0
-tabspaces: 4
 font:
   normal:
     family: SauceCodePro Nerd Font

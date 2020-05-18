@@ -2,6 +2,8 @@ add_newline = false
 
 [character]
 symbol = "🍍" # ❯
+# error_symbol = "❌"
+use_symbol_for_status = true
 
 [directory]
 style = "bold white"
@@ -15,14 +17,18 @@ disabled = true
 disabled = true
 [python]
 disabled = true
+[java]
+disabled = true
 [ruby]
+disabled = true
+[nodejs]
 disabled = true
 
 [cmd_duration]
 prefix = ""
 
 [git_branch]
-symbol = " " # 🌱 
+symbol = " " # 🌱
 
 [git_status]
 style = "purple"
@@ -31,7 +37,7 @@ ahead = " "
 behind = "  "
 show_sync_count = true
 diverged = ""
-stashed = " "
+stashed = "  "
 untracked = "  "
 untracked_count.enabled = true
 modified = "  "
@@ -41,5 +47,5 @@ staged_count.enabled = true
 renamed = ""
 deleted = "" # 🗑
 prefix = "("
-suffix = ")"
+suffix = ") "
 
