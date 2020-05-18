@@ -9,9 +9,9 @@ separator_bg = "#282828"
 
 [[block]]
 block = "music"
-max_width = 35
 player = "mpd"
 buttons = ["prev", "play", "next"]
+# max_width = 35
 
 [[block]]
 block = "net"

@@ -81,7 +81,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 bar {
         strip_workspace_numbers yes
-        position top
+        position bottom
         status_command /usr/bin/i3status-rs ~/.config/i3/bar.toml
         colors {
             separator #666666
@@ -111,7 +111,7 @@ assign [class="Dolphin-emu"] $ws9
 assign [class="dotnet"] $ws9 # Osu
 
 # Compositor
-exec --no-startup-id compton -fCG
+exec --no-startup-id picom -fCG
 
 # Notifications
 focus_on_window_activation focus
@@ -130,7 +130,8 @@ bindsym $mod+v exec rofi -modi "clipboard:greenclip print" \
 -show clipboard -run-command '{cmd}'
 
 # Search/play music
-bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh
+bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh play
+bindsym $mod+Shift+m exec --no-startup-id ~/.config/scripts/song.sh
 
 # Put unicode character into clipboard
 bindsym $mod+u exec --no-startup-id unipicker --command \
@@ -171,3 +172,6 @@ bindsym Shift+Print --release exec --no-startup-id \
 ~/.config/scripts/screenshot.sh
 
 bindsym Print exec --no-startup-id ~/.config/scripts/screenshot.sh s
+
+# Use music key as printscreen for my tiny keyboard
+bindsym XF86Tools exec --no-startup-id ~/.config/scripts/screenshot.sh s

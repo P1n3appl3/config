@@ -27,6 +27,7 @@ alias -g ...='../..'
 export PATH="$PATH:$HOME/.cargo/bin"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export PATH="$PATH":"$HOME/go/bin"
 export PATH="$PATH":"$HOME/.local/bin"
 
 # Shortcuts for tweaking dotfiles
@@ -39,27 +40,30 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias grep=rg
 alias cat=bat
 alias find=fd
-alias ls=lsd
+alias ls=exa
+alias l=lsd
+alias ll="lsd -l"
 export TERMINAL=alacritty
 export RUSTC_WRAPPER=sccache
+
+# Fuzzy searching
+source /usr/share/skim/key-bindings.zsh
+export SKIM_DEFAULT_COMMAND="fd . -L" # because I symlink ~/config to ~/.config
+export SKIM_CTRL_T_COMMAND="$SKIM_DEFAULT_COMMAND --type f"
+export SKIM_ALT_C_COMMAND="$SKIM_DEFAULT_COMMAND --type d ~"
 
 # Misc.
 alias o=xdg-open
 alias c=clear
 alias so=source
 alias please=sudo
+alias fuck=killall
 alias paclist="pacman -Qqs"
 alias yay="yay --sudoloop --answerclean None --answerdiff None --answeredit None --answerupgrade None"
 alias sc=systemctl
 alias music=ncmpcpp
 export EDITOR=nvim
 export VISUAL=nvim
-
-# FZF
-source /usr/share/fzf/key-bindings.zsh
-export FZF_DEFAULT_COMMAND="fd . -L" # because I symlink ~/config to ~/.config
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f ~"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d ~"
 
 # Parallelize Make
 alias make="make -j$(nproc)"
@@ -75,5 +79,4 @@ precmd_functions+=(change_window_title)
 # Turn off unicode stuff if we're in a TTY
 case $(tty) in
   (/dev/tty[1-9])
-      PROMPT='%~ -> ';
-      alias ls=exa;; esac
+      PROMPT='%~ -> ';; esac

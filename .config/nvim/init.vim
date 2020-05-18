@@ -3,7 +3,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Utility
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'junegunn/fzf.vim'
+Plug 'lotabout/skim.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'Valloric/ListToggle'
 Plug 'gabrielelana/vim-markdown'
@@ -42,6 +42,7 @@ source $HOME/.config/nvim/pretty.vim
 syntax on
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us complete+=kspell
 autocmd BufRead,BufNewFile *.h set filetype=c
+autocmd BufRead,BufNewFile *.s set filetype=nasm commentstring=;\ %s
 autocmd CursorHold * silent call CocActionAsync('highlight')
 set autoread gdefault hidden ignorecase smartcase number relativenumber
 set backspace=indent,eol,start inccommand=nosplit mouse=a
@@ -109,6 +110,7 @@ map <silent> gD <Plug>(coc-declaration)
 map <silent> gy <Plug>(coc-type-definition)
 map <silent> gi <Plug>(coc-implementation)
 map <silent> gr <Plug>(coc-references)
+map <leader>ps :call CocAction('workspaceSymbols')<CR>
 
 " Function text objects
 xmap if <Plug>(coc-funcobj-i)
@@ -122,6 +124,5 @@ noremap <silent> K :call CocAction('doHover')<CR>
 map <leader>a  <Plug>(coc-codeaction)
 map <leader>qf  <Plug>(coc-fix-current)
 map <leader>rn <Plug>(coc-rename)
-map <leader>ps :call CocAction('workspaceSymbols')<CR>
 command! -nargs=0 LSPFormat :call CocAction('format')
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
