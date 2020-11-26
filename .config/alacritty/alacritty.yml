@@ -1,7 +1,5 @@
 window:
-  padding:
-    x: 0
-    y: 0
+  dynamic_title: true
 font:
   normal:
     family: SauceCodePro Nerd Font
@@ -32,5 +30,8 @@ colors:
 background_opacity: 1.0
 mouse_bindings:
   - { mouse: Middle, action: None }
-dynamic_title: true
+key_bindings:
+  - { key: PageUp,   action: ScrollPageUp   }
+  - { key: PageDown, action: ScrollPageDown }
+  - { key: F, mods: Control|Shift, action: SearchForward }
 live_config_reload: true

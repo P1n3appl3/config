@@ -1,34 +1,32 @@
-source ~/.zplug/init.zsh
+# Add language stuff to path
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export PATH="$PATH":"$HOME/go/bin"
+export PATH="$PATH":"$HOME/.local/bin"
 
+# Prompt
 eval "$(starship init zsh)"
-zplug "lib/completion", from:oh-my-zsh
-zplug "lib/history", from:oh-my-zsh
-zplug "lib/key-bindings", from:oh-my-zsh
-zplug "lib/directories", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting", defer:3
-zplug "zsh-users/zsh-autosuggestions"
-# zplug "changyuheng/zsh-interactive-cd"
-# zplug "zdharma/fast-syntax-highlighting", defer:3
-# zplug "b4b4r07/enhancd", use:enhancd.sh
-! zplug check && zplug install
-zplug load
 
-autoload -U compinit; compinit -d ~/.zcompdump
+# Load plugins
+if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
+  zr \
+    zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-syntax-highlighting \
+    ohmyzsh/ohmyzsh.git/lib/completion.zsh \
+    ohmyzsh/ohmyzsh.git/lib/history.zsh \
+    ohmyzsh/ohmyzsh.git/lib/key-bindings.zsh \
+    > ~/.config/zr.zsh
+    # zdharma/fast-syntax-highlighting \
+    # b4b4r07/enhancd \
+    # changyuheng/zsh-interactive-cd \
+fi; source ~/.config/zr.zsh
 
-# Change autosuggestion color
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+# make autosuggest green instead of gray
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 
 # If no command is given, try to cd
 setopt AUTO_CD
 alias -g ...='../..'
-
-# Add language stuff to path
-export PATH="$PATH:$HOME/.cargo/bin"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
-export PATH="$PATH":"$HOME/go/bin"
-export PATH="$PATH":"$HOME/.local/bin"
 
 # Shortcuts for tweaking dotfiles
 alias i3config="vi $HOME/.config/i3/*"
@@ -40,9 +38,10 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias grep=rg
 alias cat=bat
 alias find=fd
-alias ls=exa
 alias l=lsd
-alias ll="lsd -l"
+alias ls="exa -l --icons"
+alias la="exa -la --icons"
+alias tree="exa --tree --icons"
 export TERMINAL=alacritty
 export RUSTC_WRAPPER=sccache
 
@@ -59,7 +58,6 @@ alias so=source
 alias please=sudo
 alias fuck=killall
 alias paclist="pacman -Qqs"
-alias yay="yay --sudoloop --answerclean None --answerdiff None --answeredit None --answerupgrade None"
 alias sc=systemctl
 alias music=ncmpcpp
 export EDITOR=nvim
@@ -75,8 +73,3 @@ change_window_title() {
 }
 
 precmd_functions+=(change_window_title)
-
-# Turn off unicode stuff if we're in a TTY
-case $(tty) in
-  (/dev/tty[1-9])
-      PROMPT='%~ -> ';; esac

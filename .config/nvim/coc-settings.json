@@ -4,7 +4,7 @@
   "suggest.enablePreview": true,
   "diagnostic.errorSign": "✖",
   "diagnostic.warningSign": "➤",
-  "rust-analyzer.cargo-watch.command": "clippy",
+  "python.jediEnabled": false,
   "languageserver": {
     "clangd": {
       "command": "clangd",
