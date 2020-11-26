@@ -81,7 +81,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 bar {
         strip_workspace_numbers yes
-        position bottom
+        position top
         status_command /usr/bin/i3status-rs ~/.config/i3/bar.toml
         colors {
             separator #666666
@@ -125,12 +125,11 @@ bindsym Super_L exec --no-startup-id rofi -show drun \
 bindsym $mod+slash exec --no-startup-id rofi -show window -show-icons
 
 # Clipboard history search
-exec --no-startup-id greenclip daemon
-bindsym $mod+v exec rofi -modi "clipboard:greenclip print" \
--show clipboard -run-command '{cmd}'
+bindsym $mod+v exec CM_LAUNCHER=rofi CM_HISTLENGTH=20 clipmenu
 
 # Search/play music
 bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh play
+# Shift to play next instead of immediately
 bindsym $mod+Shift+m exec --no-startup-id ~/.config/scripts/song.sh
 
 # Put unicode character into clipboard
@@ -140,6 +139,10 @@ bindsym $mod+u exec --no-startup-id unipicker --command \
 # Calculator
 bindsym $mod+q exec --no-startup-id rofi -show calc -modi calc -no-show-match \
 -no-sort -calc-command "echo '{result}' | xclip -selection clipboard"
+
+# Power
+bindsym $mod+p exec --no-startup-id rofi -show power-menu -modi \
+power-menu:~/config/scripts/rofi-power-menu
 
 # Start apps
 exec --no-startup-id redshift-gtk -l 30:-98

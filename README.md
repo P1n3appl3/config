@@ -4,18 +4,18 @@
 
 See more screenshots [here](https://imgur.com/a/QS7Ik7D)
 
+- **Window manager**: i3
+- **Terminal emulator**: Alacritty
+- **Text editor**: Neovim
 - **Bar**: i3status-rust
 - **Browser**: Firefox
-- **File Manager**: ranger/PCManFM
 - **Font**: SauceCodePro
 - **GTK Theme** Materia-dark
 - **Icons** Papirus/Arc
 - **IDE**: spacemacs
 - **Lockscreen**: betterlockscreen
 - **Program launcher**: rofi
-- **Text editor**: Neovim
-- **Terminal emulator**: Alacritty
-- **Window manager**: i3
+- **File Manager**: ranger/PCManFM
 
 # Usage
 
