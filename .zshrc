@@ -1,4 +1,4 @@
-source ~/.zplug/init.zsh
+source /usr/share/zsh/scripts/zplug/init.zsh
 
 eval "$(starship init zsh)"
 zplug "lib/completion", from:oh-my-zsh
@@ -25,8 +25,6 @@ alias -g ...='../..'
 
 # Add language stuff to path
 export PATH="$PATH:$HOME/.cargo/bin"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export PATH="$PATH":"$HOME/.local/bin"
 
 # Shortcuts for tweaking dotfiles
@@ -39,17 +37,19 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias grep=rg
 alias cat=bat
 alias find=fd
-alias ls=lsd
+alias l="exa --icons"
+alias ls="exa -l --icons"
+alias la="exa -la --icons"
+alias ll="lsd -l"
+alias tree="exa --tree --icons"
 export TERMINAL=alacritty
-export RUSTC_WRAPPER=sccache
 
 # Misc.
 alias o=xdg-open
 alias c=clear
-alias so=source
+# alias so=source
 alias please=sudo
 alias paclist="pacman -Qqs"
-alias yay="yay --sudoloop --answerclean None --answerdiff None --answeredit None --answerupgrade None"
 alias sc=systemctl
 alias music=ncmpcpp
 export EDITOR=nvim
@@ -75,5 +75,4 @@ precmd_functions+=(change_window_title)
 # Turn off unicode stuff if we're in a TTY
 case $(tty) in
   (/dev/tty[1-9])
-      PROMPT='%~ -> ';
-      alias ls=exa;; esac
+      PROMPT='%~ -> ';; esac
