@@ -1,21 +1,19 @@
-# Pineapple's Setup
+# My Setup
 
 ![images in the terminal!!!](https://i.imgur.com/6cHqz1s.png)
 
 See more screenshots [here](https://imgur.com/a/QS7Ik7D)
 
+- **Window manager**: i3
+- **Terminal emulator**: Alacritty
+- **Text editor**: Neovim
 - **Bar**: i3status-rust
 - **Browser**: Firefox
-- **File Manager**: ranger/PCManFM
-- **Font**: SauceCodePro
+- **Font**: SauceCodePro/FuraCode/Noto
 - **GTK Theme** Materia-dark
 - **Icons** Papirus/Arc
-- **IDE**: spacemacs
-- **Lockscreen**: betterlockscreen
 - **Program launcher**: rofi
-- **Text editor**: Neovim
-- **Terminal emulator**: Alacritty
-- **Window manager**: i3
+- **File Manager**: PCManFM
 
 # Usage
 
@@ -34,7 +32,10 @@ if [ $? = 0 ]; then
   echo "Checked out config.";
   else
     echo "Backing up pre-existing dot files.";
-    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+    config checkout 2>&1 | grep "\s+\." | sed 's/^\t//g' | while read -r f; do
+        mkdir -p .config_backup/$(dirname $f);
+        mv $f .config_backup/$f;
+    done
 fi;
 config checkout
 config config status.showUntrackedFiles no

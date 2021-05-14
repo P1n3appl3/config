@@ -13,6 +13,7 @@
 
   "rust-analyzer.cargo-watch.command": "clippy",
   "rust-analyzer.inlayHints.typeHints": false,
+  "python.jediEnabled": false,
   "languageserver": {
     "clangd": {
       "command": "clangd",
