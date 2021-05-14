@@ -2,12 +2,12 @@ window:
   padding:
     x: 0
     y: 0
-tabspaces: 4
+  dynamic_title: true
 font:
   normal:
     family: SauceCodePro Nerd Font
     style: Regular
-  size: 8
+  size: 12
 colors:
   primary:
     background: '0x000000'
@@ -33,5 +33,6 @@ colors:
 background_opacity: 1.0
 mouse_bindings:
   - { mouse: Middle, action: None }
-dynamic_title: true
+# key_bindings:
+  # - { key: F, mods: Control|Shift, action: SearchForward }
 live_config_reload: true

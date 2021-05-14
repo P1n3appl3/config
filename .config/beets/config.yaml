@@ -1,5 +1,5 @@
-directory: /media/music/library/
-library: /media/music/library.db
+directory: ~/Music/library
+library: ~/Music/library.db
 import:
     copy: no
     move: yes

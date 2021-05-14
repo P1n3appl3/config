@@ -2,7 +2,7 @@
 Name=Suspend
 Comment=Sleep the system
 GenericName=Sleep
-Exec=/home/joseph/.config/scripts/suspend.sh
-Icon=/home/joseph/.config/scripts/sleep.png
+Exec=/home/joseph/.config/scripts/suspend/suspend.sh
+Icon=/home/joseph/.config/scripts/suspend/sleep.png
 Type=Application
 Categories=System

@@ -2,3 +2,5 @@ tags
 compile_commands.json
 *~
 *.swp
+.vim
+*.temp

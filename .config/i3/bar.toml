@@ -8,56 +8,69 @@ separator_fg = "#aaaaaa"
 separator_bg = "#282828"
 
 [[block]]
-block = "music"
-max_width = 35
-player = "mpd"
-buttons = ["prev", "play", "next"]
+block = "weather"
+# format = "{weather} and {apparent}° in {location}"
+format = "{apparent}° {weather}"
+# autolocate = true
+[block.service]
+name = "openweathermap"
+api_key = "26e1b521f7083d19b7eefe9b92961288"
+units = "imperial"
+place = "Austin"
+
+[[block]]
+block = "uptime"
 
 [[block]]
 block = "net"
-device = "wlp4s0"
-ssid = true
-speed_up = false
-speed_down = false
+interval = 3
+# format_alt = "{ip}"
+
+[[block]]
+block = "disk_space"
+format = "{icon} {available} {unit} free"
+
+[[block]]
+block = "pacman"
+interval = 86400
+format = "{both} updates available"
+format_singular = "{both} update available"
+format_up_to_date = "system up to date"
+critical_updates_regex = "linux"
+aur_command = "yay -Qua"
+
+[[block]]
+block = "nvidia_gpu"
+show_memory = false
+show_fan_speed=true
+interval = 3
 
 [[block]]
 block = "memory"
 format_mem = "{Mupi}%"
 format_swap = "{SUpi}%"
-warning_mem = 60
-warning_swap = 25
-critical_mem = 80
-critical_swap = 75
 
 [[block]]
 block = "cpu"
-
-[[block]]
-block = "battery"
+format = "{utilization} {frequency}"
+interval = 3
 
 [[block]]
 block = "temperature"
-interval = 5
-format = "{max}° max, {average}° avg"
-
-[[block]]
-block = "toggle"
-text = ""
-command_state = "true"
-command_on = "notify-send DUNST_COMMAND_PAUSE"
-command_off = "notify-send DUNST_COMMAND_RESUME"
-
-[[block]]
-block = "backlight"
-step_width = 1
+interval = 3
+idle = 60
+info = 70
+# chip = "k10temp-pci-00c3"
+collapsed = false
+format = "{average}°C, {max}°C max"
 
 [[block]]
 block = "sound"
 step_width = 1
-on_click = "/home/joseph/config/scripts/bar/volume.sh"
+on_click = "killall pavucontrol || pavucontrol &"
 
 [[block]]
 block = "time"
 format = "%-I:%M%P"
 interval = 60
-on_click = "/home/joseph/config/scripts/bar/date.sh"
+on_click = "notify-send $(date +%D)"

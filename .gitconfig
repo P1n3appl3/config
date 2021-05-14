@@ -5,8 +5,8 @@
     signingkey = 576B6E8397D463348DE9C6B494093348D32DD171
 [core]
     editor = vim
-	excludesfile = /home/joseph/.gitignore
-	autocrlf = input
+    excludesfile = /home/joseph/.gitignore
+    autocrlf = input
     ; pager = delta --dark --plus-color="#012800" --minus-color="#340001" --theme="OneHalfDark"
 [alias]
     a = add
@@ -22,19 +22,23 @@
     fu = fetch upstream
     ls = ls-files
     pr = prune -v
-    l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short --reverse
+    l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
 [push]
     default = matching
 [pager]
     branch = false
 [commit]
-	gpgsign = true
+    gpgsign = true
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 [gpg]
-	program = gpg2
+    program = gpg2
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always
+[submodule]
+    ; recurse = true
+[init]
+	defaultBranch = main
