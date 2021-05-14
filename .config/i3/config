@@ -1,5 +1,4 @@
 font pango:FuraCode Nerd Font 11
-# font pango:SauceCodePro Nerd Font 10
 
 # i3 stuff
 set $mod Mod1
@@ -35,8 +34,6 @@ bindsym $mod+l focus right
 # Move workspace to other monitor
 bindsym $mod+Control+Shift+h move workspace to output left
 bindsym $mod+Control+Shift+l move workspace to output right
-# bindsym $mod+Control+Shift+j move workspace to output down
-# bindsym $mod+Control+Shift+k move workspace to output up
 
 # Move focused window
 bindsym $mod+Shift+h move left
@@ -135,9 +132,10 @@ assign [class="Steam"] $ws9
 assign [class="Dolphin-emu"] $ws9
 assign [class="dotnet"] $ws9 # Osu
 
-# Compositor
-exec --no-startup-id picom --experimental-backends --backend glx --xrender-sync-fence
+# Start stuff that aren't systemd services
+exec --no-startup-id picom -experimental-backends --backend xrender
 exec --no-startup-id mpDris2
+# exec --no-startup-id nm-applet
 
 # Notifications
 focus_on_window_activation focus
@@ -151,12 +149,12 @@ bindsym Super_L exec --no-startup-id rofi -show drun \
 bindsym $mod+slash exec --no-startup-id rofi -show window -show-icons
 
 # Clipboard history search
-# exec --no-startup-id greenclip daemon
-# bindsym $mod+v exec rofi -modi "clipboard:greenclip print" \
-# -show clipboard -run-command '{cmd}'
+bindsym $mod+v exec CM_LAUNCHER=rofi CM_HISTLENGTH=20 clipmenu
 
 # Search/play music
-bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh
+bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh play
+# Shift to play next instead of immediately
+bindsym $mod+Shift+m exec --no-startup-id ~/.config/scripts/song.sh
 
 # Put unicode character into clipboard
 bindsym $mod+u exec --no-startup-id unipicker --command \
@@ -166,15 +164,19 @@ bindsym $mod+u exec --no-startup-id unipicker --command \
 bindsym $mod+q exec --no-startup-id rofi -show calc -modi calc -no-show-match \
 -no-sort -calc-command "echo '{result}' | xclip -selection clipboard"
 
+# Power
+bindsym $mod+p exec --no-startup-id rofi -show power-menu -modi \
+power-menu:~/config/scripts/rofi-power-menu
+
 # Media keys
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master -q 5%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master -q 5%-
-# bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle
-# bindsym XF86AudioPrev exec --no-startup-id mpc prev
-# bindsym XF86AudioPlay exec --no-startup-id mpc toggle
-# bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioNext exec --no-startup-id mpc next
 
 # Map caps lock to escape
 exec_always setxkbmap -option caps:escape
@@ -182,3 +184,6 @@ exec_always setxkbmap -option caps:escape
 # Screenshots
 bindsym Shift+Print --release exec --no-startup-id ~/.config/scripts/screenshot.sh
 bindsym Print exec --no-startup-id ~/.config/scripts/screenshot.sh s
+
+# Use music key as printscreen for my tiny keyboard
+bindsym XF86Tools exec --no-startup-id ~/.config/scripts/screenshot.sh s

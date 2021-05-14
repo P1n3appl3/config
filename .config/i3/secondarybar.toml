@@ -1,0 +1,39 @@
+icons = "awesome"
+
+[theme]
+name = "gruvbox-dark"
+[theme.overrides]
+separator = "|"
+separator_fg = "#aaaaaa"
+
+[[block]]
+block = "music"
+player = "mpd"
+max_width = 80
+dynamic_width = true
+hide_when_empty = true
+buttons = ["prev", "play", "next"]
+format = "{title}"
+color_overrides = {"info_bg" = "#282828"}
+
+[[block]]
+block = "hueshift"
+click_temp = 3500
+
+[[block]]
+block = "toggle"
+text = ""
+command_state = "true"
+command_on = "notify-send DUNST_COMMAND_PAUSE"
+command_off = "notify-send DUNST_COMMAND_RESUME"
+
+[[block]]
+block = "sound"
+step_width = 1
+on_click = "killall pavucontrol || pavucontrol &"
+
+[[block]]
+block = "time"
+format = "%-I:%M%P"
+interval = 60
+on_click = "notify-send $(date +%D)"
