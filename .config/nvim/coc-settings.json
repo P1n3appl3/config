@@ -2,9 +2,17 @@
   "coc.preferences.extensionUpdateCheck": "never",
   "codeLens.enable": true,
   "suggest.enablePreview": true,
+  "suggest.noselect": false,
   "diagnostic.errorSign": "✖",
   "diagnostic.warningSign": "➤",
+
+  //"diagnostic.virtualText": true,
+  //"diagnostic.virtualTextCurrentLineOnly": false,
+  //"diagnostic.enableMessage": "never",
+  //"diagnostic.enablePreselect": true,
+
   "rust-analyzer.cargo-watch.command": "clippy",
+  "rust-analyzer.inlayHints.typeHints": false,
   "languageserver": {
     "clangd": {
       "command": "clangd",
@@ -17,6 +25,10 @@
       "args": ["start"],
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
+    },
+    "svls": {
+        "command": "svls",
+        "filetypes": ["systemverilog"]
     }
   },
   "suggest.completionItemKindLabels": {

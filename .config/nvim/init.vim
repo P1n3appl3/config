@@ -6,7 +6,10 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'Valloric/ListToggle'
-Plug 'gabrielelana/vim-markdown'
+Plug 'plasticboy/vim-markdown'
+" Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plug 'lervag/vimtex'
+Plug 'godlygeek/tabular'
 
 " Programming
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -18,6 +21,7 @@ Plug 'tpope/vim-commentary'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
 Plug 'tveskag/nvim-blame-line'
+Plug 'elzr/vim-json'
 
 " Appearance
 Plug 'morhetz/gruvbox'
@@ -32,14 +36,22 @@ let g:vista_top_level_blink = [0, 0]
 let g:vista_close_on_jump = 1
 let g:vista_cursor_delay = 50
 
-let g:markdown_enable_mappings = 0
+" let g:markdown_enable_mappings = 0
+" let g:instant_markdown_slow = 1
 
+let g:neoformat_python_black = {'exe': 'black', 'args': ['-l 100', '-'], 'stdin': 1}
 let g:neoformat_enabled_python = ['black']
+let g:neoformat_verilog_verible = {'exe': 'verible-verilog-format',
+            \ 'args': ['--try_wrap_long_lines', '--format_module_instantiations=false']}
+let g:neoformat_enabled_verilog = ['verible']
+
+let g:vimtex_view_method = 'zathura'
 
 source $HOME/.config/nvim/pretty.vim
 
 " General settings
 syntax on
+filetype plugin on
 autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us complete+=kspell
 autocmd BufRead,BufNewFile *.h set filetype=c
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -70,7 +82,9 @@ map <leader>gb :ToggleBlameLine<CR>
 " Completion
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr><cr> pumvisible()?"\<C-y>":"\<C-g>u\<CR>"
-inoremap <expr><tab> pumvisible()?"\<C-n>":"\<tab>"
+inoremap <expr><tab> pumvisible()?"\<C-n>":
+            \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>"
+            \ :"\<tab>"
 inoremap <expr><S-tab> pumvisible()?"\<C-p>":"\<C-h>"
 inoremap <expr><C-J> pumvisible()?"\<C-n>":"j"
 inoremap <expr><C-K> pumvisible()?"\<C-p>":"k"
@@ -106,7 +120,7 @@ map <leader>en <Plug>(coc-diagnostic-next)
 map <leader>eN <Plug>(coc-diagnostic-prev)
 map <silent> gd <Plug>(coc-definition)
 map <silent> gD <Plug>(coc-declaration)
-map <silent> gy <Plug>(coc-type-definition)
+map <silent> gt <Plug>(coc-type-definition)
 map <silent> gi <Plug>(coc-implementation)
 map <silent> gr <Plug>(coc-references)
 

@@ -4,10 +4,10 @@
 	"vibrancy": "none",
 	"zoomFactor": 0.9,
 	"lastWindowState": {
-		"x": 854,
-		"y": 45,
-		"width": 852,
-		"height": 914
+		"x": 2561,
+		"y": 46,
+		"width": 1078,
+		"height": 925
 	},
 	"menuBarMode": false,
 	"showDockIcon": true,
@@ -35,5 +35,9 @@
 	"keepMeSignedIn": true,
 	"autoplayVideos": true,
 	"privateMode": false,
-	"sidebar": "default"
+	"sidebar": "default",
+	"showPrivateModePrompt": true,
+	"callRingtoneMuted": false,
+	"spellCheckerLanguages": [],
+	"isSpellCheckerEnabled": true
 }
