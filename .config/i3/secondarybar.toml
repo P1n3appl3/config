@@ -21,13 +21,6 @@ block = "hueshift"
 click_temp = 3500
 
 [[block]]
-block = "toggle"
-text = ""
-command_state = "true"
-command_on = "notify-send DUNST_COMMAND_PAUSE"
-command_off = "notify-send DUNST_COMMAND_RESUME"
-
-[[block]]
 block = "sound"
 step_width = 1
 on_click = "killall pavucontrol || pavucontrol &"

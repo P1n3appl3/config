@@ -25,7 +25,7 @@ alias -g ...='../..'
 
 # Shortcuts for tweaking dotfiles
 alias i3config="vi $HOME/.config/i3/*"
-alias vimconfig="vi $HOME/.config/nvim/*.vim"
+alias vimconfig="vi $HOME/.config/nvim/*.lua"
 alias zshconfig="vi $HOME/.zshrc"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
@@ -36,7 +36,7 @@ alias find=fd
 alias l=lsd
 alias ls="exa -l --icons"
 alias la="exa -la --icons"
-alias tree="exa --tree --icons"
+alias tree="exa --tree --icons --git-ignore"
 export TERMINAL=alacritty
 
 # Fuzzy searching
@@ -56,6 +56,7 @@ alias sc=systemctl
 alias music=ncmpcpp
 export EDITOR=nvim
 export VISUAL=nvim
+export TIMEFMT=$'\nreal\t%*E s\nuser\t%*U s\nsys\t%*S s\nmaxmem\t%M MB\nfaults\t%F'
 
 # Parallelize Make
 alias make="make -j$(nproc)"

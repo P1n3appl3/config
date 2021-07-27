@@ -126,9 +126,6 @@ bindsym $mod+u exec unipicker --command \
 bindsym $mod+q exec rofi -show calc -modi calc \
 -no-show-match -no-sort -calc-command "echo '{result}' | wl-copy"
 
-# Last.fm integration
-exec systemctl --user restart mpdas
-
 # Lock screen and idle control
 bindsym $mod+End exec swaylock-fancy
 exec swayidle -w \
