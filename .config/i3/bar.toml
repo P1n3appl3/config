@@ -8,27 +8,37 @@ separator_fg = "#aaaaaa"
 separator_bg = "#282828"
 
 [[block]]
+block = "music"
+player = "mpd"
+max_width = 80
+dynamic_width = true
+hide_when_empty = true
+buttons = ["prev", "play", "next"]
+format = "{title}"
+# color_overrides = {"info_bg" = "#282828"}
+
+[[block]]
 block = "weather"
 # format = "{weather} and {apparent}° in {location}"
-format = "{apparent}° {weather}"
+format = "{apparent}"
 # autolocate = true
 [block.service]
 name = "openweathermap"
 api_key = "26e1b521f7083d19b7eefe9b92961288"
 units = "imperial"
-place = "Austin"
+place = "Sunnyvale"
 
-[[block]]
-block = "uptime"
+# [[block]]
+# block = "uptime"
 
-[[block]]
-block = "net"
-interval = 3
+# [[block]]
+# block = "net"
+# interval = 3
 # format_alt = "{ip}"
 
 [[block]]
 block = "disk_space"
-format = "{icon} {available} {unit} free"
+format = "{icon} {available} free"
 
 [[block]]
 block = "pacman"
@@ -37,18 +47,18 @@ format = "{both} updates available"
 format_singular = "{both} update available"
 format_up_to_date = "system up to date"
 critical_updates_regex = "linux"
-aur_command = "yay -Qua"
+aur_command = "paru -Qua"
 
-[[block]]
-block = "nvidia_gpu"
-show_memory = false
-show_fan_speed=true
-interval = 3
+# [[block]]
+# block = "nvidia_gpu"
+# show_memory = false
+# show_fan_speed=true
+# interval = 3
 
 [[block]]
 block = "memory"
-format_mem = "{Mupi}%"
-format_swap = "{SUpi}%"
+format_mem = "{mem_used_percents:1}"
+format_swap = "{swap_used_percents:1}"
 
 [[block]]
 block = "cpu"
@@ -62,7 +72,23 @@ idle = 60
 info = 70
 # chip = "k10temp-pci-00c3"
 collapsed = false
-format = "{average}°C, {max}°C max"
+format = "{average}C, {max}C max"
+
+[[block]]
+block = "backlight"
+step_width = 1
+invert_icons = true
+
+[[block]]
+block = "battery"
+driver = "upower"
+
+[[block]]
+block = "toggle"
+text = ""
+command_state = "true"
+command_on = "dunstctl set-paused true"
+command_off = "dunstctl set-paused false"
 
 [[block]]
 block = "sound"

@@ -3,7 +3,6 @@ add_newline = false
 [character]
 success_symbol = "🍍"
 error_symbol = "❌"
-use_symbol_for_status = true
 
 [directory]
 style = "bold white"
@@ -39,17 +38,13 @@ symbol = " " # 🌱
 [git_status]
 style = "purple"
 conflicted = "😠"
-ahead = " "
-behind = "  "
-show_sync_count = true
-diverged = ""
+ahead = " $count"
+behind = "  $count"
+diverged = " $count  $count"
 stashed = "  "
-untracked = "  "
-untracked_count.enabled = true
-modified = "  "
-modified_count.enabled = true
-staged = "  "
-staged_count.enabled = true
+untracked = "  $count"
+modified = "  $count"
+staged = "  $count"
 renamed = ""
 deleted = "" # 🗑
 

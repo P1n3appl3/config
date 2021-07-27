@@ -1,23 +1,23 @@
 /* vim:ft=css */
 configuration {
-	modi: "drun,calc";
+    modi: "drun,calc";
     width: 40;
     lines: 30;
-	font: "Noto Sans 11";
-	bw: 0;
-	padding: 500;
-	terminal: "alacritty";
-	theme: "~/.config/rofi/denvit.rasi";
-	kb-remove-char-forward: "Delete";
-	kb-remove-char-back: "BackSpace";
-	kb-remove-to-eol: "Control+Shift+e";
-	kb-remove-to-sol: "";
-	kb-accept-entry: "Control+m,Return,KP_Enter";
-	kb-mode-next: "Tab,Shift+Right,Control+Tab,Control+l";
-	kb-mode-previous: "Shift+Tab,Shift+Left,Control+Shift+Tab,Control+h";
-	kb-row-up: "Up,Control+k";
-	kb-row-down: "Down,Control+j";
-	kb-row-tab: "";
-	kb-page-prev: "Control+u";
-	kb-page-next: "Control+d";
+    font: "Noto Sans 16";
+    bw: 0;
+    padding: 500;
+    terminal: "alacritty";
+    theme: "~/.config/rofi/denvit.rasi";
+    kb-remove-char-forward: "Delete";
+    kb-remove-char-back: "BackSpace";
+    kb-remove-to-eol: "Control+Shift+e";
+    kb-remove-to-sol: "";
+    kb-accept-entry: "Control+m,Return,KP_Enter";
+    kb-mode-next: "Tab,Shift+Right,Control+Tab,Control+l";
+    kb-mode-previous: "Shift+Tab,Shift+Left,Control+Shift+Tab,Control+h";
+    kb-row-up: "Up,Control+k";
+    kb-row-down: "Down,Control+j";
+    kb-row-tab: "";
+    kb-page-prev: "Control+u";
+    kb-page-next: "Control+d";
 }

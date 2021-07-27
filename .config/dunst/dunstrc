@@ -14,7 +14,7 @@
     word_wrap = true
     shrink = true
 
-    font = Noto Sans 10
+    font = Noto Sans 8
     markup = full
     format = "%s %p\n%b"
     show_age_threshold = 60

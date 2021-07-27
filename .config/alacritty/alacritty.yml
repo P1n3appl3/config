@@ -4,7 +4,7 @@ font:
   normal:
     family: SauceCodePro Nerd Font
     style: Regular
-  size: 12
+  size: 8
 colors:
   primary:
     background: '0x000000'
@@ -34,4 +34,8 @@ key_bindings:
   - { key: PageUp,   action: ScrollPageUp   }
   - { key: PageDown, action: ScrollPageDown }
   - { key: F, mods: Control|Shift, action: SearchForward }
+    # Bindings for vim
+  - { key: K, mods: Control|Shift, chars: "\x1b[75;5u" }
+  - { key: H, mods: Control|Shift, chars: "\x1b[72;5u" }
+  - { key: L, mods: Control|Shift, chars: "\x1b[76;5u" }
 live_config_reload: true
