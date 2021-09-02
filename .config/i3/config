@@ -4,7 +4,7 @@ font pango:FuraCode Nerd Font 8
 set $mod Mod1
 floating_modifier $mod
 bindsym $mod+Shift+r restart
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty -1
 for_window [class="^.*"] border pixel 1
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
@@ -157,8 +157,7 @@ bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh play
 bindsym $mod+Shift+m exec --no-startup-id ~/.config/scripts/song.sh
 
 # Put unicode character into clipboard
-bindsym $mod+u exec --no-startup-id unipicker --command \
-"rofi -dmenu" --copy-command "xclip -i -selection clipboard" --copy
+bindsym $mod+u exec --no-startup-id rofimoji
 
 # Calculator
 bindsym $mod+q exec --no-startup-id rofi -show calc -modi calc -no-show-match \

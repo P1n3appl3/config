@@ -1,0 +1,3 @@
+action = copy
+skin-tone = neutral
+files = [emojis, greek_and_coptic]
