@@ -1,4 +1,3 @@
-/* vim:ft=css */
 configuration {
     modi: "drun,calc";
     width: 40;
@@ -6,7 +5,7 @@ configuration {
     font: "Noto Sans 16";
     bw: 0;
     padding: 500;
-    terminal: "alacritty";
+    terminal: "kitty";
     theme: "~/.config/rofi/denvit.rasi";
     kb-remove-char-forward: "Delete";
     kb-remove-char-back: "BackSpace";
@@ -14,6 +13,7 @@ configuration {
     kb-remove-to-sol: "";
     kb-accept-entry: "Control+m,Return,KP_Enter";
     kb-mode-next: "Tab,Shift+Right,Control+Tab,Control+l";
+    kb-mode-complete: "Control+c";
     kb-mode-previous: "Shift+Tab,Shift+Left,Control+Shift+Tab,Control+h";
     kb-row-up: "Up,Control+k";
     kb-row-down: "Down,Control+j";

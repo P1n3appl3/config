@@ -36,16 +36,16 @@ place = "Sunnyvale"
 # interval = 3
 # format_alt = "{ip}"
 
-[[block]]
-block = "disk_space"
-format = "{icon} {available} free"
+# [[block]]
+# block = "disk_space"
+# format = "{icon} {available} free"
 
 [[block]]
 block = "pacman"
 interval = 86400
-format = "{both} updates available"
-format_singular = "{both} update available"
-format_up_to_date = "system up to date"
+format = "{both}"
+format_singular = "1"
+format_up_to_date = "0"
 critical_updates_regex = "linux"
 aur_command = "paru -Qua"
 
