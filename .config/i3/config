@@ -1,10 +1,11 @@
-font pango:FuraCode Nerd Font 8
+font pango:monospace 8
 
 # i3 stuff
 set $mod Mod1
+set $bind bindsym $mod+
+set $run exec --no-startup-id
 floating_modifier $mod
 bindsym $mod+Shift+r restart
-bindsym $mod+Return exec kitty -1
 for_window [class="^.*"] border pixel 1
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
@@ -118,12 +119,9 @@ bar {
 for_window [class="Pavucontrol"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="mpv"] floating enable
-for_window [class="ArenaTracker"] floating enable
 for_window [class="fcadefbneo.exe"] floating enable
 
 # Open some things in their assigned workspace
-assign [class="Emacs"] $ws3
-assign [class="Slack"] $ws4
 assign [class="discord"] $ws4
 assign [class="Caprine"] $ws4
 assign [class="telegram-desktop"] $ws4
@@ -132,57 +130,38 @@ assign [class="Steam"] $ws9
 assign [class="Dolphin-emu"] $ws9
 assign [class="dotnet"] $ws9 # Osu
 
-# Start stuff that aren't systemd services
-exec --no-startup-id picom -experimental-backends --backend xrender
-exec --no-startup-id mpDris2
-exec --no-startup-id nm-applet
+# Start things that aren't systemd services
+# $run picom -b -experimental-backends --backend xrender
+$run nm-applet
 
 # Notifications
 focus_on_window_activation focus
 bindsym $mod+x [urgent=latest] focus
 
-# Application launcher (windows key)
-bindsym Super_L exec --no-startup-id rofi -show drun \
--drun-icon-theme papirus -show-icons
-
-# Window switcher
-bindsym $mod+slash exec --no-startup-id rofi -show window -show-icons
-
-# Clipboard history search
+# Application launcher (windows key) and various other launchers
+bindsym Super_L $run rofi -show combi
+bindsym $mod+Return $run kitty -1
+bindsym $mod+slash $run rofi -show window
 bindsym $mod+v exec CM_LAUNCHER=rofi CM_HISTLENGTH=20 clipmenu
-
-# Search/play music
-bindsym $mod+m exec --no-startup-id ~/.config/scripts/song.sh play
-# Shift to play next instead of immediately
-bindsym $mod+Shift+m exec --no-startup-id ~/.config/scripts/song.sh
-
-# Put unicode character into clipboard
-bindsym $mod+u exec --no-startup-id rofimoji
-
-# Calculator
-bindsym $mod+q exec --no-startup-id rofi -show calc -modi calc -no-show-match \
--no-sort -calc-command "echo '{result}' | xclip -selection clipboard"
-
-# Power
-bindsym $mod+p exec --no-startup-id rofi -show power-menu -modi \
-power-menu:~/config/scripts/rofi-power-menu
+bindsym $mod+m $run ~/.config/scripts/song.sh play
+bindsym $mod+Shift+m $run ~/.config/scripts/song.sh
+bindsym $mod+u $run rofimoji
+bindsym $mod+q $run rofi -show calc -no-sort \
+    -calc-command "xclip -selection c <<< {result}'"
 
 # Media keys
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master -q 5%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master -q 5%-
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle
-bindsym XF86AudioPrev exec --no-startup-id mpc prev
-bindsym XF86AudioPlay exec --no-startup-id mpc toggle
-bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86MonBrightnessUp $run light -A 5
+bindsym XF86MonBrightnessDown $run light -U 5
+bindsym XF86AudioRaiseVolume $run amixer -D pulse sset Master -q 5%+
+bindsym XF86AudioLowerVolume $run amixer -D pulse sset Master -q 5%-
+bindsym XF86AudioMute $run amixer -D pulse sset Master toggle
+bindsym XF86AudioPrev $run mpc prev
+bindsym XF86AudioPlay $run mpc toggle
+bindsym XF86AudioNext $run mpc next
 
 # Map caps lock to escape
 exec_always setxkbmap -option caps:escape
 
 # Screenshots
-bindsym Shift+Print --release exec --no-startup-id ~/.config/scripts/screenshot.sh
-bindsym Print exec --no-startup-id ~/.config/scripts/screenshot.sh s
-
-# Use music key as printscreen for my tiny keyboard
-bindsym XF86Tools exec --no-startup-id ~/.config/scripts/screenshot.sh s
+bindsym Shift+Print --release $run ~/.config/scripts/screenshot.sh
+bindsym Print $run ~/.config/scripts/screenshot.sh s

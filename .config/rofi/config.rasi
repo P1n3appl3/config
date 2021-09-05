@@ -1,12 +1,13 @@
+// vim:ft=css
 configuration {
-    modi: "drun,calc";
-    width: 40;
-    lines: 30;
-    font: "Noto Sans 16";
-    bw: 0;
-    padding: 500;
+    modi: "";
+    combi-modi: "drun,power:~/.config/scripts/powermenu.sh";
+    combi-hide-mode-prefix: true;
+    font: "monospace 16";
     terminal: "kitty";
     theme: "~/.config/rofi/denvit.rasi";
+    show-icons: true;
+    icon-theme: "papirus";
     kb-remove-char-forward: "Delete";
     kb-remove-char-back: "BackSpace";
     kb-remove-to-eol: "Control+Shift+e";

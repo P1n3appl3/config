@@ -19,13 +19,9 @@ if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
 fi
 source ~/.config/zr.zsh
 
-# If no command is given, try to cd
-setopt AUTO_CD
-alias -g ...='../..'
-
 # Shortcuts for tweaking dotfiles
-alias i3config="vi $HOME/.config/i3/*"
-alias vimconfig="vi $HOME/.config/nvim/*.lua"
+alias i3config="vi $HOME/.config/i3/{config,*}"
+alias vimconfig="vi $HOME/.config/nvim/{*.lua,lua/*.lua}"
 alias zshconfig="vi $HOME/.zshrc"
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
@@ -34,12 +30,12 @@ alias grep=rg
 alias cat=bat
 alias find=fd
 alias l="exa --icons"
-alias ls="exa -l --icons"
-alias la="exa -la --icons"
-alias tree="exa --tree --icons --git-ignore"
+alias ls="l -l"
+alias la="l -la"
+tree() { fd | as-tree; } # TODO: exa once it supports .ignore
 
 # Fuzzy searching
-export SKIM_DEFAULT_COMMAND="fd . -H --one-file-system -d 10"
+export SKIM_DEFAULT_COMMAND="fd . -H --one-file-system"
 export SKIM_CTRL_T_COMMAND="$SKIM_DEFAULT_COMMAND --type f"
 export SKIM_ALT_C_COMMAND="$SKIM_DEFAULT_COMMAND --type d ~"
 

@@ -1,0 +1,19 @@
+.cache
+cache
+Cache
+compile-cache
+CachedData
+Code\ Cache
+*.a
+*.o
+*.so
+*.so.*
+*.d
+*.dll
+*.class
+.firefox
+.clangd
+.vscode*
+.node-gyp
+.rustup
+.cargo
