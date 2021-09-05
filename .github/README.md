@@ -1,19 +1,12 @@
 # My Setup
 
-![images in the terminal!!!](https://i.imgur.com/6cHqz1s.png)
-
-See more screenshots [here](https://imgur.com/a/QS7Ik7D)
-
 -   **Window manager**: i3
--   **Terminal emulator**: Alacritty/Kitty/Wezterm
 -   **Text editor**: Neovim
--   **Browser**: Firefox
+-   **Shell**: zsh
+-   **Terminal emulator**: kitty
 -   **Bar**: i3status-rust
--   **Font**: SauceCodePro/FuraCode
--   **GTK Theme** Materia-dark
--   **Program launcher**: rofi
--   **Icons** Papirus/Arc
--   **File Manager**: PCManFM
+-   **Font**: Source Code Pro
+-   **Launcher**: rofi
 
 # Usage
 

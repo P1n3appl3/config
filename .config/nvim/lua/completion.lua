@@ -1,66 +1,51 @@
-vim.opt.completeopt = { "menuone", "noselect" }
+vim.g.coq_settings = {
+    auto_start = "shut-up",
+    keymap = { recommended = false },
+    display = {
+        icons = { mode = "short" }, -- TODO: pick better icons
+        pum = {
+            fast_close = false,
+            kind_context = { "", "" },
+            source_context = { "", "" },
+        },
+    },
+}
 
-require("compe").setup({
-	enabled = true,
-	autocomplete = true,
-	debug = false,
-	min_length = 1,
-	preselect = "enable",
-	throttle_time = 80,
-	source_timeout = 200,
-	incomplete_delay = 400,
-	max_abbr_width = 100,
-	max_kind_width = 100,
-	max_menu_width = 100,
-	documentation = true,
+local npairs = require "nvim-autopairs"
+npairs.setup()
+_G.Util = {}
 
-	source = {
-		path = true,
-		nvim_lsp = true,
-		luasnip = true,
-	},
-})
-
-local t = function(str)
-	return vim.api.nvim_replace_termcodes(str, true, true, true)
+Util.CR = function()
+    if vim.fn.pumvisible() ~= 0 then
+        if vim.fn.complete_info({ "selected" }).selected ~= -1 then
+            return npairs.esc "<C-y>"
+        else
+            return npairs.esc "<C-e>" .. npairs.autopairs_cr()
+        end
+    else
+        return npairs.autopairs_cr()
+    end
+end
+Util.BS = function()
+    if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ "mode" }).mode == "eval" then
+        return npairs.esc "<C-e>" .. npairs.autopairs_bs()
+    else
+        return npairs.autopairs_bs()
+    end
 end
 
-local check_back_space = function()
-	local col = vim.fn.col(".") - 1
-	if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-		return true
-	else
-		return false
-	end
-end
-
-local luasnip = require("luasnip")
-_G.tab_complete = function()
-	if vim.fn.pumvisible() == 1 then
-		return t("<C-n>")
-	elseif luasnip.expand_or_jumpable() then
-		return t("<Plug>luasnip-expand-or-jump")
-	elseif check_back_space() then
-		return t("<Tab>")
-	else
-		return vim.fn["compe#complete"]()
-	end
-end
-_G.s_tab_complete = function()
-	if vim.fn.pumvisible() == 1 then
-		return t("<C-p>")
-	elseif luasnip.jumpable(-1) then
-		return t("<Plug>luasnip-jump-prev")
-	else
-		return t("<S-Tab>")
-	end
-end
-
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-
---This line is important for auto-import
-vim.api.nvim_set_keymap("i", "<cr>", 'compe#confirm("<cr>")', { expr = true })
-vim.api.nvim_set_keymap("i", "<c-space>", "compe#complete()", { expr = true })
+vim.api.nvim_set_keymap(
+    "i",
+    "<esc>",
+    [[pumvisible() ? "<C-e><esc>" : "<esc>"]],
+    { expr = true, noremap = true }
+)
+vim.api.nvim_set_keymap(
+    "i",
+    "<tab>",
+    [[pumvisible() ? "<C-n>" : "<tab>"]],
+    { expr = true, noremap = true }
+)
+vim.api.nvim_set_keymap("i", "<s-tab>", "<C-p>", { noremap = true })
+vim.api.nvim_set_keymap("i", "<CR>", "v:lua.Util.CR()", { expr = true, noremap = true })
+vim.api.nvim_set_keymap("i", "<BS>", "v:lua.Util.BS()", { expr = true, noremap = true })

@@ -15,11 +15,10 @@ dynamic_width = true
 hide_when_empty = true
 buttons = ["prev", "play", "next"]
 format = "{title}"
-# color_overrides = {"info_bg" = "#282828"}
+theme_overrides = {"info_bg" = "#282828"}
 
 [[block]]
 block = "weather"
-# format = "{weather} and {apparent}° in {location}"
 format = "{apparent}"
 # autolocate = true
 [block.service]
@@ -28,31 +27,21 @@ api_key = "26e1b521f7083d19b7eefe9b92961288"
 units = "imperial"
 place = "Sunnyvale"
 
-# [[block]]
-# block = "uptime"
-
-# [[block]]
-# block = "net"
-# interval = 3
-# format_alt = "{ip}"
-
-# [[block]]
-# block = "disk_space"
-# format = "{icon} {available} free"
-
 [[block]]
 block = "pacman"
 interval = 86400
+icons_format = " 📦 "
 format = "{both}"
 format_singular = "1"
 format_up_to_date = "0"
 critical_updates_regex = "linux"
 aur_command = "paru -Qua"
+theme_overrides = {"info_bg" = "#282828"}
 
 # [[block]]
 # block = "nvidia_gpu"
 # show_memory = false
-# show_fan_speed=true
+# show_fan_speed = true
 # interval = 3
 
 [[block]]
@@ -62,17 +51,17 @@ format_swap = "{swap_used_percents:1}"
 
 [[block]]
 block = "cpu"
-format = "{utilization} {frequency}"
+format = "{utilization}"
 interval = 3
 
 [[block]]
 block = "temperature"
 interval = 3
-idle = 60
+idle = 50
 info = 70
-# chip = "k10temp-pci-00c3"
 collapsed = false
-format = "{average}C, {max}C max"
+icons_format = " {icon}"
+format = "{max}C"
 
 [[block]]
 block = "backlight"
@@ -84,11 +73,7 @@ block = "battery"
 driver = "upower"
 
 [[block]]
-block = "toggle"
-text = ""
-command_state = "true"
-command_on = "dunstctl set-paused true"
-command_off = "dunstctl set-paused false"
+block = "notify"
 
 [[block]]
 block = "sound"
@@ -97,6 +82,7 @@ on_click = "killall pavucontrol || pavucontrol &"
 
 [[block]]
 block = "time"
+icons_format = " "
 format = "%-I:%M%P"
 interval = 60
 on_click = "notify-send $(date +%D)"

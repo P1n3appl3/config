@@ -1,144 +1,132 @@
-require("paq")({
-	"savq/paq-nvim",
+require "paq" {
+    -- general
+    "savq/paq-nvim",
+    "vijaymarupudi/nvim-fzf",
+    "ibhagwan/fzf-lua", -- TODO: vim-clap?
+    "phaazon/hop.nvim",
+    "jbyuki/instant.nvim",
+    "dstein64/vim-startuptime",
+    "nvim-lua/plenary.nvim",
+    -- TODO: session reload and toggleterm
 
-	-- navigation
-	"nvim-lua/popup.nvim",
-	"nvim-lua/plenary.nvim",
-	"nvim-telescope/telescope.nvim",
-	"lotabout/skim.vim",
-	"phaazon/hop.nvim",
-	-- "ggandor/lightspeed.nvim",
+    -- appearance
+    "rktjmp/lush.nvim",
+    "norcalli/nvim-colorizer.lua",
+    "lewis6991/gitsigns.nvim",
+    "kyazdani42/nvim-web-devicons",
+    "davidgranstrom/nvim-markdown-preview",
 
-	-- visual
-	"rktjmp/lush.nvim",
-	"npxbr/gruvbox.nvim",
-	"norcalli/nvim-colorizer.lua",
-	"lewis6991/gitsigns.nvim",
-	"kyazdani42/nvim-web-devicons",
-	-- "romgrk/barbar.nvim",
-	-- "akinsho/nvim-bufferline.lua",
-	"folke/trouble.nvim",
+    -- programming
+    "terrortylor/nvim-comment",
+    "blackCauldron7/surround.nvim",
+    "windwp/nvim-autopairs",
+    "sbdchd/neoformat", -- TODO: nvim-format and use lsp when available
+    { "ms-jpq/coq_nvim", branch = "coq" },
+    { "ms-jpq/coq.artifacts", branch = "artifacts" },
+    "neovim/nvim-lspconfig", -- TODO: diagnosticls, efm, or nvim-lint
+    "nvim-lua/lsp-status.nvim",
+    "simrat39/rust-tools.nvim",
+    "folke/lua-dev.nvim",
+    "cespare/vim-toml", -- TODO: remove once nvim merges commentstring
+    {
+        "nvim-treesitter/nvim-treesitter",
+        run = function()
+            vim.cmd "TSUpdate bash c cpp json lua python rust toml"
+        end,
+    },
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "mfussenegger/nvim-dap", -- TODO: configure
+}
 
-	-- "itchyny/lightline.vim",
-	"vim-airline/vim-airline",
-	"vim-airline/vim-airline-themes",
-	-- "famiu/feline.nvim",
-	-- "ojroques/nvim-hardline",
-	-- "hoob3rt/lualine.nvim",
-	-- "glepnir/galaxyline.nvim",
-
-	-- "folke/twilight.nvim",
-	-- "edluffy/specs.nvim",
-	-- "karb94/neoscroll.nvim",
-	-- "p00f/nvim-ts-rainbow",
-
-	-- programming
-	"terrortylor/nvim-comment",
-	"blackCauldron7/surround.nvim",
-	"steelsojka/pears.nvim",
-	-- "windwp/nvim-autopairs", -- TODO: compare
-	"sbdchd/neoformat",
-	-- "mhartington/formatter.nvim",
-	"davidgranstrom/nvim-markdown-preview",
-	-- "nvim-lua/completion-nvim",
-	"hrsh7th/nvim-compe",
-	"L3MON4D3/LuaSnip",
-	"neovim/nvim-lspconfig",
-	"simrat39/rust-tools.nvim",
-	"folke/lua-dev.nvim",
-	"simrat39/symbols-outline.nvim",
-	-- "kosayoda/nvim-lightbulb",
-	{
-		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			vim.cmd("TSUpdate bash c cpp json lua python rust toml")
-		end,
-	},
-	"nvim-treesitter/nvim-treesitter-textobjects",
-	-- "nvim-treesitter/nvim-treesitter-refactor",
-	-- "lewis6991/spellsitter.nvim",
-	"mfussenegger/nvim-dap", -- TODO: configure/test
-})
-
+-- general options
 local o = vim.opt
 o.gdefault = true
-o.hidden = true -- TODO: make sure i want this
+o.hidden = true
 o.ignorecase = true
 o.smartcase = true
+o.termguicolors = true
+o.lazyredraw = true
 o.number = true
 o.relativenumber = true
 o.expandtab = true
 o.tabstop = 4
 o.shiftwidth = 4
 o.foldenable = false
+o.updatetime = 500
 o.backspace = { "indent", "eol", "start" }
-o.inccommand = "split"
+o.inccommand = "nosplit"
 o.mouse = "a"
 o.scrolloff = 7
-o.updatetime = 500 -- TODO: only use if needed for hover
 o.wildignore = { "*.o", "*.obj", "*.pyc" }
-o.shortmess:append("c") -- TODO: make sure i want this
+o.shortmess:append "c"
 
+-- my other configs
+vim.cmd [[colorscheme custom]]
+require "pretty"
+require "completion"
+
+-- plugin options
 require("nvim_comment").setup()
 vim.g.surround_mappings_style = "surround"
-require("surround").setup({})
-require("pears").setup(function(conf)
-	conf.on_enter(function(pears_handle)
-		if vim.fn.pumvisible() == 1 and vim.fn.complete_info().selected ~= -1 then
-			return vim.fn["compe#confirm"]("<CR>")
-		else
-			pears_handle()
-		end
-	end)
-end)
+require("surround").setup {}
 require("hop").setup()
-require("gitsigns").setup({ keymaps = {} })
-require("compe").setup({ enabled = true, source = { buffer = true, nvim_lsp = true } })
-require("nvim-treesitter.configs").setup({
-	highlight = { enable = true, additional_vim_regex_highlighting = false },
-	textobjects = {
-		select = {
-			enable = true,
-			keymaps = { -- TODO: goto next arg
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["aa"] = "@parameter.outer",
-				["ia"] = "@parameter.inner",
-			},
-		},
-	},
-	-- refactor = { highlight_definitions = { enable = true } },
-})
-require("trouble").setup({})
-vim.g.symbols_outline = { highlight_hovered_item = false, show_guides = false, auto_preview = false }
-local lspconfig = require("lspconfig")
-lspconfig.clangd.setup({})
-lspconfig.rust_analyzer.setup({})
-require("rust-tools").setup({})
-lspconfig.sumneko_lua.setup(require("lua-dev").setup({ lspconfig = { cmd = { "lua-language-server" } } }))
-lspconfig.bashls.setup({})
--- lspconfig.diagnosticls.setup({})
-lspconfig.jedi_language_server.setup({})
-lspconfig.pyright.setup({})
-lspconfig.racket_langserver.setup({})
-lspconfig.svls.setup({})
+require("gitsigns").setup { keymaps = {}, current_line_blame_opts = { delay = 100 } }
+require("nvim-treesitter.configs").setup {
+    highlight = { enable = true, additional_vim_regex_highlighting = false },
+    textobjects = {
+        select = {
+            enable = true,
+            keymaps = {
+                ["af"] = "@function.outer",
+                ["if"] = "@function.inner",
+                ["aa"] = "@parameter.outer",
+                ["ia"] = "@parameter.inner",
+                ["ab"] = "@block.outer",
+                ["ib"] = "@block.inner",
+            },
+        },
+    },
+}
+FZF = require "fzf-lua"
+FZF.setup {
+    fzf_bin = "sk",
+    preview_vertical = "up",
+    files = { fd_opts = "-Htf --one-file-system" },
+    grep = { rg_opts = "-S. --no-heading --color always" },
+}
 
-vim.cmd([[ filetype plugin on ]]) -- TODO: test if this is needed
--- TODO: lua autocommands: https://github.com/neovim/neovim/pull/12378
-vim.cmd([[autocmd TextYankPost * lua vim.highlight.on_yank {timeout=100, on_macro=true}]])
--- vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
+-- language server
+local lspconfig = require "lspconfig"
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    { virtual_text = false, signs = true, underline = true, update_in_insert = false }
+)
+lspconfig.pyright.setup {}
+require("rust-tools").setup {}
+lspconfig.clangd.setup {} -- TODO: clang-tidy with user config, more file ext's
+lspconfig.bashls.setup {}
+lspconfig.sumneko_lua.setup(require("lua-dev").setup {
+    lspconfig = { cmd = { "lua-language-server" } },
+})
 
 -- general mappings
 local modemap = vim.api.nvim_set_keymap
 local function map(lhs, rhs, opt)
-	opt = opt or {}
-	modemap("", lhs, rhs, opt)
+    opt = opt or {}
+    modemap("", lhs, rhs, opt)
 end
-modemap("n", "<Space>", "<NOP>", { noremap = true })
 vim.g.mapleader = " "
-map("<leader>qq", ":qa<CR>")
-map("<leader>fs", ":w<CR>")
-map("<leader>fS", ":wa<CR>")
+modemap("n", "<space>", "<NOP>", { noremap = true })
+map("<space>qq", ":qa<CR>")
+map("<space>fs", ":w<CR>")
+map("<space>fS", ":wa<CR>")
+map("<space>w", "<C-w>")
+map("<space>d", ":bd<CR>")
+map("<space><tab>", ":b#<CR>")
+vim.cmd [[ command! Reload execute 'so $MYVIMRC' ]]
+-- toggleterm with <A-t>
+-- modemap("t", "jk", "<C-\\><C-n>", { silent = true })
+modemap("t", "<A-esc>", "<C-\\><C-n>", { silent = true })
 
 -- search/replace
 modemap("n", ",/", ":nohl<CR>", { silent = true })
@@ -146,93 +134,66 @@ modemap("n", "<C-_>", ":%s/", {})
 modemap("v", "<C-_>", ":s/", {})
 
 -- clipboard
-map("Y", "y$")
 map("<C-y>", '"+y')
+map("<C-p>", '"+p')
+map("Y", "y$") -- TODO: reomove when this lands as default upstream
 
 -- movement
 map("j", "gj")
 map("k", "gk")
 map("<C-j>", "<C-E>", { noremap = true })
 map("<C-k>", "<C-Y>", { noremap = true })
-map("s", ":HopChar2<CR>")
-map("S", ":HopWord<CR>")
-
-map("<leader>w", "<C-y>")
-map("<leader>bd", ":bd<CR>")
-map("<leader><tab>", ":b#<CR>")
-map("<C-l>", ":bn<CR>", { silent = true })
--- map("<C-l>", ":BufferNext<CR>", { silent = true })
-map("<C-h>", ":bp<CR>", { silent = true })
--- map("<C-h>", ":BufferPrevious<CR>", { silent = true })
--- map("<C-S-l>", ":BufferMoveNext<CR>", { silent = true })
--- map("<C-S-h>", ":BufferMovePrevious<CR>", { silent = true })
-map("<leader>gn", ":lua require'gitsigns.actions'.next_hunk()<CR>")
-map("<leader>gN", ":lua require'gitsigns.actions'.prev_hunk()<CR>")
-
--- completion
-require("completion")
--- require("tab_complete")
--- modemap("i", "<C-Space>", "compe#complete()", { expr = true })
--- modemap("i", "<CR>", "compe#confirm()", { expr = true })
--- vim.cmd([[ inoremap <silent><expr> <C-Space> compe#complete() ]])
--- vim.cmd([[ inoremap <silent><expr> <CR>      compe#confirm('<CR>') ]])
--- modemap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
--- modemap("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
+map("s", "<cmd>HopChar2<CR>")
+map("S", "<cmd>HopWord<CR>")
 
 -- programming
-map("<leader>gb", ":lua require'gitsigns'.blame_line(true)<CR>")
-map("<leader>c", "gc")
-map(",=", ":Neoformat<CR>") -- TODO: lsp format
-map("<leader>t", ":SymbolsOutline<CR>")
-map("<leader>l", ":TroubleToggle<CR>")
-
-map("gd", ":Telescope lsp_definitions<CR>")
--- map("gd", ":lua vim.lsp.buf.definition()<CR>")
-map("gi", ":Telescope lsp_implementations<CR>")
--- map("gi", ":lua vim.lsp.buf.implementation()<CR>")
-map("gr", ":Telescope lsp_references<CR>")
--- map("gr", ":lua vim.lsp.buf.references()<CR>")
--- map("<leader>a", ":Telescope lsp_code_actions<CR>")
-map("<leader>a", ":lua vim.lsp.buf.code_action()<CR>")
-map("<leader>f;", ":Telescope command_history<CR>")
-map("<leader><leader>", ":Telescope commands<CR>")
--- map("<leader>ff", ":Telescope find_files<CR>")
-map("<leader>ff", ":Files<CR>")
-map("<leader>fF", ":Files ~<CR>")
-map("<leader>f/", ":Files /<CR>")
--- map("<leader>bb", ":Telescope buffers<CR>")
-map("<leader>bb", ":Buffers<CR>")
--- map("<leader>rg", ":Telescope live_grep<CR>")
-map("<leader>rg", ":Rg<CR>")
--- map("<leader>fh", ":Telescope help_tags<CR>")
-map("<leader>el", ":Telescope lsp_workspace_diagnostics<CR>")
-map("<leader>cs", ":Telescope lsp_workspace_symbols<CR>")
-map("<leader>cS", ":Telescope lsp_dynamic_workspace_symbols<CR>")
-
-map("gD", ":lua vim.lsp.buf.declaration()<CR>")
-map("gy", ":lua vim.lsp.buf.type_definition()<CR>")
+map("<space>gb", ":Gitsigns toggle_current_line_blame<CR>")
+map("<space>c", "gc")
+map(",=", ":Neoformat<CR>") -- TODO: lsp format once the ecosystem gets there
+vim.cmd [[ command! LspFormat execute 'lua vim.lsp.buf.formatting()' ]]
 map("K", ":lua vim.lsp.buf.hover()<CR>")
-map("<C-S-k>", ":lua vim.lsp.buf.signature_help()<CR>")
-map("<leader>rn", ":lua vim.lsp.buf.rename()<CR>")
-map("<leader>ee", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-map("<leader>en", ":lua vim.lsp.diagnostic.goto_next()<CR>")
-map("<leader>eN", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
--- map("<leader>el", ":lua vim.lsp.diagnostic.set_loclist()<CR>") -- TODO: toggle
-vim.cmd([[ command! LspFormat execute 'lua vim.lsp.buf.formatting()' ]])
+map("<space>;", ":lua vim.lsp.buf.signature_help()<CR>")
+map("<space>rn", ":lua vim.lsp.buf.rename()<CR>")
+map("<space>ee", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+map("<space>en", ":lua vim.lsp.diagnostic.goto_next()<CR>")
+map("<space>eN", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
+map("<space>gn", ":lua require'gitsigns.actions'.next_hunk()<CR>")
+map("<space>gN", ":lua require'gitsigns.actions'.prev_hunk()<CR>")
 
--- Finder
-local actions = require("telescope.actions")
-require("telescope").setup({
-	defaults = {
-		mappings = {
-			i = {
-				["<C-k>"] = actions.move_selection_previous,
-				["<C-j>"] = actions.move_selection_next,
-				["<esc>"] = actions.close,
-			},
-		},
-	},
-})
+-- fuzzy finder
+map("gd", ":lua FZF.lsp_definitions({ jump_to_single_result = true })<CR>")
+map("gi", ":lua FZF.lsp_implementations({ jump_to_single_result = true })<CR>")
+map("gr", ":lua FZF.lsp_references({ jump_to_single_result = true })<CR>")
+map("gD", ":lua FZF.lsp_declarations({ jump_to_single_result = true })<CR>")
+map("gt", ":lua vim.lsp.buf.type_definition()<CR>")
+map("<space>t", ":FzfLua lsp_document_symbols<CR>")
+map("<space>T", ":FzfLua lsp_workspace_symbols<CR>")
+map("<space>el", ":FzfLua lsp_document_diagnostics<CR>")
+map("<space>eL", ":FzfLua lsp_workspace_diagnostics<CR>")
+map("<space>ca", ":FzfLua lsp_code_actions<CR>")
+map("<space>qf", ":FzfLua quickfix<CR>")
+map("<space>:", ":FzfLua command_history<CR>")
+map("<space><space>", ":FzfLua commands<CR>")
+map("<space>ff", ":FzfLua files<CR>")
+map("<space>fF", ":FzfLua files cwd=~<CR>")
+map("<space>f/", ":FzfLua files cwd=/<CR>")
+map("<space>fh", ":FzfLua oldfiles<CR>")
+map("<space>fG", ":FzfLua git_files<CR>")
+map("<space>fg", ":FzfLua git_status<CR>")
+map("<space>b", ":FzfLua buffers<CR>")
+map("<space>/", ":FzfLua search_history<CR>")
+map("<space>rg", ":FzfLua live_grep<CR>")
+map("<space>h", ":FzfLua help_tags<CR>")
+map("<space>s", ":FzfLua spell_suggest<CR>")
 
--- require("pretty")
-vim.cmd([[ source $HOME/.config/nvim/pretty.vim ]])
+-- Debug
+function _G.put(...)
+    local objects = {}
+    for i = 1, select("#", ...) do
+        local v = select(i, ...)
+        table.insert(objects, vim.inspect(v))
+    end
+
+    print(table.concat(objects, "\n"))
+    return ...
+end

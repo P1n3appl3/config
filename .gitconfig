@@ -39,6 +39,6 @@
 [branch]
     autosetuprebase = always
 [submodule]
-    ; recurse = true
+    recurse = true
 [init]
-	defaultBranch = main
+    defaultBranch = main

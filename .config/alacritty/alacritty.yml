@@ -2,7 +2,7 @@ window:
   dynamic_title: true
 font:
   normal:
-    family: SauceCodePro Nerd Font
+    family: monospace
     style: Regular
   size: 8
 colors:

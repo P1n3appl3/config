@@ -1,6 +1,9 @@
 tags
 compile_commands.json
+.git
+.vim
 *~
 *.swp
-.vim
 *.temp
+*.o
+*.d
