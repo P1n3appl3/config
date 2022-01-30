@@ -139,7 +139,7 @@ focus_on_window_activation focus
 bindsym $mod+x [urgent=latest] focus
 
 # Application launcher (windows key) and various other launchers
-bindsym Super_L $run rofi -show combi
+bindsym Super_L $run rofi -show drun
 bindsym $mod+Return $run kitty -1
 bindsym $mod+slash $run rofi -show window
 bindsym $mod+v exec CM_LAUNCHER=rofi CM_HISTLENGTH=20 clipmenu
@@ -152,9 +152,9 @@ bindsym $mod+q $run rofi -show calc -no-sort \
 # Media keys
 bindsym XF86MonBrightnessUp $run light -A 5
 bindsym XF86MonBrightnessDown $run light -U 5
-bindsym XF86AudioRaiseVolume $run amixer -D pulse sset Master -q 5%+
-bindsym XF86AudioLowerVolume $run amixer -D pulse sset Master -q 5%-
-bindsym XF86AudioMute $run amixer -D pulse sset Master toggle
+bindsym XF86AudioRaiseVolume $run pamixer -i 5
+bindsym XF86AudioLowerVolume $run pamixer -d 5
+bindsym XF86AudioMute $run pamixer -t
 bindsym XF86AudioPrev $run mpc prev
 bindsym XF86AudioPlay $run mpc toggle
 bindsym XF86AudioNext $run mpc next

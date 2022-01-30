@@ -20,6 +20,13 @@ local icons = {
     Error = "",
 }
 
+local sev = {
+    Hint = vim.diagnostic.severity.HINT,
+    Information = vim.diagnostic.severity.INFO,
+    Warning = vim.diagnostic.severity.WARN,
+    Error = vim.diagnostic.severity.ERROR,
+}
+
 for l, _ in pairs(icons) do
     vim.fn.sign_define(
         "LspDiagnosticsSign" .. l,
@@ -47,7 +54,7 @@ local function lsp()
     }
     local t = {}
     for l, s in pairs(levels) do
-        local n = vim.lsp.diagnostic.get_count(0, l)
+        local n = #vim.diagnostic.get(0, { severity = sev[l] })
         if n > 0 then
             t[#t + 1] = string.format(s .. " %s %s ", icons[l], n)
         end

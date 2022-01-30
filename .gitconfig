@@ -7,7 +7,7 @@
     editor = vim
     excludesfile = /home/joseph/.gitignore
     autocrlf = input
-    ; pager = delta --dark --plus-color="#012800" --minus-color="#340001" --theme="OneHalfDark"
+    pager = delta
 [alias]
     a = add
     b = branch
@@ -22,7 +22,7 @@
     fu = fetch upstream
     ls = ls-files
     pr = prune -v
-    l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short
+    l = log --pretty=format:'%C(yellow)%h %Cred%as %Cblue%<(20,trunc)%an%Cgreen%d %Creset%s'
 [push]
     default = matching
 [pager]
@@ -42,3 +42,11 @@
     recurse = true
 [init]
     defaultBranch = main
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default

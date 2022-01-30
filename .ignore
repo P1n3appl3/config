@@ -4,6 +4,7 @@ Cache
 compile-cache
 CachedData
 Code\ Cache
+target
 *.a
 *.o
 *.so

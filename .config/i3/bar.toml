@@ -20,12 +20,8 @@ theme_overrides = {"info_bg" = "#282828"}
 [[block]]
 block = "weather"
 format = "{apparent}"
-# autolocate = true
-[block.service]
-name = "openweathermap"
-api_key = "26e1b521f7083d19b7eefe9b92961288"
-units = "imperial"
-place = "Sunnyvale"
+autolocate = true
+service = { name = "openweathermap", units = "imperial", place = "Sunnyvale" }
 
 [[block]]
 block = "pacman"
@@ -70,7 +66,7 @@ invert_icons = true
 
 [[block]]
 block = "battery"
-driver = "upower"
+# driver = "upower"
 
 [[block]]
 block = "notify"

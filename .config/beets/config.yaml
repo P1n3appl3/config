@@ -7,9 +7,6 @@ color: yes
 art_filename: albumart
 plugins: duplicates edit embedart fetchart fromfilename lastgenre lastimport mpdstats mpdupdate replaygain
 
-lastfm:
-    user: pin3appl3
-
 mpd:
     host: localhost
     port: 6600
