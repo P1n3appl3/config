@@ -7,25 +7,6 @@ error_symbol = "❌"
 [directory]
 style = "bold white"
 
-[line_break]
-disabled = true
-
-[package]
-disabled = true
-[rust]
-disabled = true
-[python]
-disabled = true
-[java]
-disabled = true
-[ruby]
-disabled = true
-[nodejs]
-disabled = true
-
-[username]
-format = "[$user]($style)@"
-
 [hostname]
 format = "[$hostname]($style):"
 
@@ -48,5 +29,21 @@ staged = "  $count"
 renamed = ""
 deleted = "" # 🗑
 
+[line_break]
+disabled = true
+[package]
+disabled = true
+[rust]
+disabled = true
+[python]
+disabled = true
+[java]
+disabled = true
+[ruby]
+disabled = true
+[nodejs]
+disabled = true
 [gcloud]
+disabled = true
+[username]
 disabled = true

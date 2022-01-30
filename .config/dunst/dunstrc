@@ -1,46 +1,24 @@
 # vim: ft=cfg
 [global]
     monitor = 1
-    frame_width = 1
     frame_color = "#788388"
-
-    transparency = 15
-    line_height = 0
-    separator_height = 1
-    padding = 8
-    horizontal_padding = 10
-
-    geometry = "600x4-25+25"
-    word_wrap = true
-    shrink = true
+    frame_width = 0
+    corner_radius = 8
+    width = (0, 300)
 
     font = Noto Sans 8
-    markup = full
-    format = "%s %p\n%b"
-    show_age_threshold = 60
-
-    dmenu = /usr/bin/dmenu -p dunst:
-    icon_position = left
-    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
-    max_icon_size=64
-
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+grave
+    icon_path = /usr/share/icons/papirus/32x32/status/:/usr/share/icons/papirus/32x32/devices/
+    max_icon_size=32
+    format = "%s\n%b"
 
 [urgency_low]
     background = "#263238"
     foreground = "#556064"
-    timeout = 10
 
 [urgency_normal]
     background = "#263238"
     foreground = "#F9FAF9"
-    timeout = 10
 
 [urgency_critical]
     background = "#D62929"
     foreground = "#F9FAF9"
-    timeout = 0

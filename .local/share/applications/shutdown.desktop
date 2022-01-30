@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Shutdown
+Keywords=power;off
+Type=Application
+Categories=System
+Exec=systemctl poweroff
+Icon=system-shutdown

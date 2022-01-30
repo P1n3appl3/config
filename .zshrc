@@ -18,6 +18,7 @@ if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
         >~/.config/zr.zsh
 fi
 source ~/.config/zr.zsh
+autoload -U compinit && compinit -c
 
 # Shortcuts for tweaking dotfiles
 alias i3config="vi $HOME/.config/i3/{config,*}"
@@ -27,12 +28,14 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # I <3 Rust
 alias grep=rg
-alias cat=bat
+alias cat="bat -pp"
 alias find=fd
+alias dig=dog
 alias l="exa --icons"
 alias ls="l -l"
 alias la="l -la"
-tree() { fd | as-tree; } # TODO: exa once it supports .ignore
+alias tree"l -T --git-ignore"
+alias rm=rip
 
 # Fuzzy searching
 export SKIM_DEFAULT_COMMAND="fd . -H --one-file-system"
@@ -45,16 +48,15 @@ alias c=clear
 alias so=source
 alias please=sudo
 alias fuck=killall
-alias paclist="pacman -Qqs"
+alias paclist="paru -Qqs"
+function pacsize {
+    paru -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
+}
+function pacclean {
+    paru -Qtdq | paru -Rns -
+}
 alias sc=systemctl
 alias music=ncmpcpp
 export EDITOR=nvim
 export VISUAL=nvim
 export TIMEFMT=$'\nreal\t%*E s\nuser\t%*U s\nsys\t%*S s\ncpu\t%P\nmaxmem\t%M MB\nfaults\t%F'
-
-# TODO: handle this stuff in kitty
-change_window_title() {
-    CURRENT_DIR=$(pwd | sed 's/\/home\/joseph/~/')
-    echo -ne "\e]0;$CURRENT_DIR\007"
-}
-precmd_functions+=(change_window_title)

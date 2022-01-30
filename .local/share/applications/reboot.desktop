@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Reboot
+Keywords=power;restart
+Type=Application
+Categories=System
+Exec=systemctl reboot
+Icon=system-reboot

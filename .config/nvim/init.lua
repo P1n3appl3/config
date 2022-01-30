@@ -7,7 +7,8 @@ require "paq" {
     "jbyuki/instant.nvim",
     "dstein64/vim-startuptime",
     "nvim-lua/plenary.nvim",
-    -- TODO: session reload and toggleterm
+    "rmagatti/auto-session",
+    -- TODO: toggleterm
 
     -- appearance
     "rktjmp/lush.nvim",
@@ -41,7 +42,6 @@ require "paq" {
 -- general options
 local o = vim.opt
 o.gdefault = true
-o.hidden = true
 o.ignorecase = true
 o.smartcase = true
 o.termguicolors = true
@@ -54,7 +54,6 @@ o.shiftwidth = 4
 o.foldenable = false
 o.updatetime = 500
 o.backspace = { "indent", "eol", "start" }
-o.inccommand = "nosplit"
 o.mouse = "a"
 o.scrolloff = 7
 o.wildignore = { "*.o", "*.obj", "*.pyc" }
@@ -102,7 +101,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     { virtual_text = false, signs = true, underline = true, update_in_insert = false }
 )
 lspconfig.pyright.setup {}
-require("rust-tools").setup {}
+require("rust-tools").setup { tools = { inlay_hints = { only_current_line = true } } }
 lspconfig.clangd.setup {} -- TODO: clang-tidy with user config, more file ext's
 lspconfig.bashls.setup {}
 lspconfig.sumneko_lua.setup(require("lua-dev").setup {
@@ -154,9 +153,9 @@ vim.cmd [[ command! LspFormat execute 'lua vim.lsp.buf.formatting()' ]]
 map("K", ":lua vim.lsp.buf.hover()<CR>")
 map("<space>;", ":lua vim.lsp.buf.signature_help()<CR>")
 map("<space>rn", ":lua vim.lsp.buf.rename()<CR>")
-map("<space>ee", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-map("<space>en", ":lua vim.lsp.diagnostic.goto_next()<CR>")
-map("<space>eN", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
+map("<space>ee", ":lua vim.diagnostic.open_float()<CR>")
+map("<space>en", ":lua vim.diagnostic.goto_next()<CR>")
+map("<space>eN", ":lua vim.diagnostic.goto_prev()<CR>")
 map("<space>gn", ":lua require'gitsigns.actions'.next_hunk()<CR>")
 map("<space>gN", ":lua require'gitsigns.actions'.prev_hunk()<CR>")
 
@@ -174,7 +173,7 @@ map("<space>ca", ":FzfLua lsp_code_actions<CR>")
 map("<space>qf", ":FzfLua quickfix<CR>")
 map("<space>:", ":FzfLua command_history<CR>")
 map("<space><space>", ":FzfLua commands<CR>")
-map("<space>ff", ":FzfLua files<CR>")
+map("<space>F", ":FzfLua files<CR>")
 map("<space>fF", ":FzfLua files cwd=~<CR>")
 map("<space>f/", ":FzfLua files cwd=/<CR>")
 map("<space>fh", ":FzfLua oldfiles<CR>")
@@ -193,7 +192,6 @@ function _G.put(...)
         local v = select(i, ...)
         table.insert(objects, vim.inspect(v))
     end
-
     print(table.concat(objects, "\n"))
     return ...
 end

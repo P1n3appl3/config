@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Suspend
+Keywords=power;sleep
+Type=Application
+Categories=System
+Exec=systemctl suspend
+Icon=system-suspend
