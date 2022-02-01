@@ -77,13 +77,7 @@ chmod 600 /swapfile
 mkswap /swapfile
 END
 
-# Maybe need extra kernel param
-# vt.global_cursor_default=0
-
 # Manually mount windows ESP and yoink EFI/Microsoft into new ESP
 # Manually uncomment %wheel in /etc/sudoers
-# Manually edit /etc/pacman.conf to uncomment/include:
-# Color
-# VerbosePkgLists
-# ParallelDownloads = 5
-# ILoveCandy
+# Manually edit /etc/pacman.conf to uncomment/include these settings and multilib:
+# Color, VerbosePkgLists, ParallelDownloads = 5, ILoveCandy

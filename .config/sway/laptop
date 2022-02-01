@@ -1,0 +1,26 @@
+# vim: ft=conf
+bar {
+    position top
+    status_command i3status-rs ~/.config/sway/laptop.toml
+    strip_workspace_numbers yes
+    colors {
+        separator #666666
+        background #282828
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
+    }
+}
+
+output eDP-1 mode 2560x1440 scale 2
+
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+    natural_scroll enabled
+    middle_emulation disabled
+}
+
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_options caps:escape
+}

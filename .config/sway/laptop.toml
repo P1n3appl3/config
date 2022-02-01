@@ -29,16 +29,10 @@ interval = 86400
 icons_format = " 📦 "
 format = "{both}"
 format_singular = "1"
-format_up_to_date = "0"
+format_up_to_date = ""
 critical_updates_regex = "linux"
 aur_command = "paru -Qua"
 theme_overrides = {"info_bg" = "#282828"}
-
-# [[block]]
-# block = "nvidia_gpu"
-# show_memory = false
-# show_fan_speed = true
-# interval = 3
 
 [[block]]
 block = "memory"
@@ -66,7 +60,6 @@ invert_icons = true
 
 [[block]]
 block = "battery"
-# driver = "upower"
 
 [[block]]
 block = "notify"

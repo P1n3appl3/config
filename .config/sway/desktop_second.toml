@@ -1,11 +1,11 @@
+icons = "awesome"
+
 [theme]
 name = "gruvbox-dark"
 [theme.overrides]
 separator = "|"
 separator_fg = "#aaaaaa"
 separator_bg = "#282828"
-
-icons = "awesome"
 
 [[block]]
 block = "music"
@@ -16,10 +16,6 @@ hide_when_empty = true
 buttons = ["prev", "play", "next"]
 format = "{title}"
 theme_overrides = {"info_bg" = "#282828"}
-
-[[block]]
-block = "hueshift"
-click_temp = 3500
 
 [[block]]
 block = "sound"

@@ -1,0 +1,65 @@
+icons = "awesome"
+
+[theme]
+name = "gruvbox-dark"
+[theme.overrides]
+separator = "|"
+separator_fg = "#aaaaaa"
+separator_bg = "#282828"
+
+[[block]]
+block = "weather"
+format = "{apparent}"
+autolocate = true
+service = { name = "openweathermap", units = "imperial", place = "Sunnyvale" }
+
+[[block]]
+block = "pacman"
+interval = 86400
+icons_format = " 📦 "
+format = "{both}"
+format_singular = "1"
+format_up_to_date = ""
+critical_updates_regex = "linux"
+aur_command = "paru -Qua"
+theme_overrides = {"info_bg" = "#282828"}
+
+[[block]]
+block = "nvidia_gpu"
+show_memory = false
+show_fan_speed = true
+interval = 3
+
+[[block]]
+block = "memory"
+format_mem = "{mem_used_percents:1}"
+format_swap = "{swap_used_percents:1}"
+
+[[block]]
+block = "cpu"
+format = "{utilization}"
+interval = 3
+
+[[block]]
+block = "temperature"
+interval = 3
+idle = 50
+info = 70
+collapsed = false
+icons_format = " {icon}"
+format = "{max}C"
+
+[[block]]
+block = "notify"
+
+[[block]]
+block = "sound"
+step_width = 1
+on_click = "killall pavucontrol || pavucontrol &"
+
+[[block]]
+block = "time"
+icons_format = " "
+format = "%-I:%M%P"
+interval = 60
+on_click = "notify-send $(date +%D)"
