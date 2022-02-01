@@ -2,9 +2,9 @@
 
 set -o pipefail
 
-img_path=/tmp/latest_screenshot.png
-
-maim -u$1 | tee $img_path | xclip -selection c -t image/png &&
-    cp $img_path ~/Images &&
+img_path=~/Images/latest_screenshot.png
+{ if [ $# = 0 ]; then slurp | grim -g- -; else grim -; fi; } |
+    tee $img_path |
+    wl-copy -t image/png &&
     cp $img_path ~/Images/screenshots/$(date +%s).png &&
-    notify-send -u Low 'screenshot taken'
+    notify-send -u low 'screenshot taken'

@@ -8,10 +8,10 @@ dev=(rustup sccache rust-analyzer cargo-edit clang llvm lld lldb gdb bear
 desktop=(sway i3status-rust pipewire pipewire-pulse pipewire-alsa udiskie light
     kitty firefox google-chrome telegram-desktop discord caprine
     lxappearance materia-gtk-theme papirus-icon-theme
+    dunst rofi rofi-calc rofimoji wtype wl-clipboard slurp grim qt5-wayland qt6-wayland
     nerd-fonts-source-code-pro noto-fonts noto-fonts-cjk noto-fonts-emoji
-    openrazer-meta rofi rofimoji rofi-calc nautilus sushi
     zathura zathura-pdf-mupdf pavucontrol pamixer mpc mpd mpdris2 ncmpcpp beets mpv imv
-    via-bin calibre ntfs-3g udiskie nvidia-utils)
+    openrazer-meta nautilus sushi via-bin calibre ntfs-3g udiskie)
 games=(steam lutris osu-lazer-bin slippi-online-appimage dolphin-emu snes9x-gtk
     minecraft pacmc fabric-installer dwarffortress dwarftherapist xdelta3)
 tools=(obs-studio ffmpeg sox imagemagick krita inkscape kdenlive
@@ -25,19 +25,28 @@ cd
 read "host?Pick a hostname: "
 sudo hostnamectl hostname $host
 
-mkdir Documents Downloads Games Images Music Videos test
+mkdir Documents Downloads Games Images Images/screenshots Music Videos test
 
-# secrets
+# secrets + env
+mkdir -p .ssh
 lpass login --trust josephryan3.14@gmail.com
 lpass show --notes ssh_private >.ssh/id_rsa
 lpass show --notes ssh_public >.ssh/id_rsa.pub
-mkdir -p .config/environment.d
+# TODO: replace zprofile with .config/environment.d
 echo OPENWEATHERMAP_API_KEY=$(lpass show --notes openweathermap) \
-    >.config/environment.d/weather.conf
+    >>.zprofile
 # TODO: lastpass with attachment downloading michaelfbryan for gpg
+cat >>.zprofile <<EOF
+export QT_QPA_PLATFORM=wayland
+export MOZ_ENABLE_WAYLAND=1
+# about:support -> Window Protocol should say wayland
+# about:config gfx.webrender.compositor.force-enabled = true
+# about:config ui.systemUsesDarkTheme = 1
+EOF
 
 # get dotfiles
-curl -L https://raw.github.com/P1n3appl3/dotfiles/master/.config/setup.sh | sh
+curl -L https://raw.github.com/P1n3appl3/dotfiles/master/.config/scripts/setup.sh | sh
+ln -s desktop .config/sway/current_device
 
 # Time
 .config/scripts/timezone.sh
