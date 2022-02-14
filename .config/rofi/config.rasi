@@ -1,6 +1,6 @@
 // vim:ft=css
 configuration {
-    font: "monospace 8";
+    font: "monospace 16";
     terminal: "kitty";
     show-icons: true;
     icon-theme: "papirus";

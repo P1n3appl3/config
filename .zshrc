@@ -21,10 +21,11 @@ source ~/.config/zr.zsh
 autoload -U compinit && compinit -c
 
 # Shortcuts for tweaking dotfiles
-alias i3config="vi $HOME/.config/i3/{config,*}"
+alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias i3config="vi $HOME/.config/i3/{common,*}"
 alias vimconfig="vi $HOME/.config/nvim/{*.lua,lua/*.lua}"
 alias zshconfig="vi $HOME/.zshrc"
-alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias swayconfig="vi $HOME/.config/sway/{config,*}"
 
 # I <3 Rust
 alias grep=rg

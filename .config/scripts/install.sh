@@ -23,7 +23,7 @@ sudo mkdir /mnt/boot
 sudo mount $boot /mnt/boot
 
 sudo pacstrap /mnt base linux-zen linux-firmware amd-ucode base-devel \
-    dhcpcd openssh zsh git lastpass-cli
+    dhcpcd openssh zsh git lastpass-cli ccache sccache
 genfstab -U /mnt | sudo tee -a /mnt/etc/fstab >/dev/null
 
 less /mnt/etc/fstab
@@ -42,7 +42,7 @@ sudo arch-chroot /mnt <<END
 passwd
 $pass
 $pass
-useradd -m joseph -s /bin/zsh -G wheel
+useradd -m joseph -s /bin/zsh -G wheel,plugdev
 passwd joseph
 $pass
 $pass
@@ -65,7 +65,7 @@ title   Arch Linux
 linux   /vmlinuz-linux-zen
 initrd  /amd-ucode.img
 initrd  /initramfs-linux-zen.img
-options root=LABEL=main rw
+options root=LABEL=main rw nowatchdog
 EOF
 
 systemctl enable systemd-timesyncd

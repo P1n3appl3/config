@@ -1,0 +1,111 @@
+# vim: ft=conf
+
+set $mod Mod1
+set $run exec --no-startup-id
+set $wsT "0:Tab"
+set $ws0 "1:"
+set $ws1 "2:"
+set $ws2 "3:"
+set $ws3 "4:λ"
+set $ws4 "5:"
+set $ws5 "6:"
+set $ws6 "7:6"
+set $ws7 "8:"
+set $ws8 "9:"
+set $ws9 "10:"
+set $ws10 "11:"
+
+floating_modifier $mod
+workspace_auto_back_and_forth yes
+focus_follows_mouse no
+focus_on_window_activation focus
+hide_edge_borders smart
+for_window [class="Pavucontrol"] floating enable
+for_window [class="^.*"] border pixel 1
+$run dunst
+
+# Media keys
+bindsym XF86MonBrightnessUp $run light -A 5
+bindsym XF86MonBrightnessDown $run light -U 5
+bindsym XF86AudioRaiseVolume $run pamixer -i 5
+bindsym XF86AudioLowerVolume $run pamixer -d 5
+bindsym XF86AudioMute $run pamixer -t
+bindsym XF86AudioPrev $run mpc prev
+bindsym XF86AudioPlay $run mpc toggle
+bindsym XF86AudioNext $run mpc next
+bindsym Shift+Print $run ~/.config/scripts/screenshot.sh
+bindsym Print $run ~/.config/scripts/screenshot.sh s
+# TODO: color picker to clipboard
+
+# Run stuff
+bindsym Super_L $run rofi -show drun
+bindsym $mod+Return $run kitty -1
+bindsym $mod+slash $run rofi -show window
+bindsym $mod+v $run CM_LAUNCHER=rofi CM_HISTLENGTH=20 clipmenu
+bindsym $mod+m $run ~/.config/scripts/song.sh play
+bindsym $mod+Shift+m $run ~/.config/scripts/song.sh
+bindsym $mod+u $run rofimoji
+bindsym $mod+q $run rofi -show calc -no-sort \
+    -calc-command "xclip -selection c <<< {result}'"
+# TODO: mod+n recall notif
+
+# General window management
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+r reload
+
+# Window layout
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+t split h, layout tabbed
+bindsym $mod+Shift+s layout stacking
+bindsym $mod+s layout toggle split
+bindsym $mod+backslash split h
+bindsym $mod+minus split v
+
+# Switch focused window
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move workspace to other monitor
+bindsym $mod+Control+Shift+h move workspace to output left
+bindsym $mod+Control+Shift+l move workspace to output right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Switch to workspace
+bindsym $mod+Tab workspace $wsT
+bindsym $mod+grave workspace $ws0
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+Tab move container to workspace $wsT
+bindsym $mod+Shift+grave move container to workspace $ws0
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10

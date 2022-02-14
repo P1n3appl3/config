@@ -1,124 +1,16 @@
 # vim: ft=conf
 font monospace 8
-include current_device # symlink this to laptop or desktop
+include ~/.config/i3/common
+include current_device # a symlink to "laptop" or "desktop"
 
 titlebar_padding 5 2
 default_border pixel 1
 default_floating_border pixel 1
 
-set $mod Mod1
-bindsym $mod+Shift+r reload
-bindsym $mod+Shift+q kill
-floating_modifier $mod
-focus_follows_mouse no
-workspace_auto_back_and_forth yes
-smart_borders no_gaps
-
-# Applications and various launchers
-bindsym $mod+Return exec kitty
-bindsym Super_L exec rofi -show drun
-# bindsym $mod+slash exec rofi -show window # TODO: fix on wayland
-bindsym $mod+m exec ~/.config/scripts/song.sh play
-bindsym $mod+Shift+m exec ~/.config/scripts/song.sh
 # TODO: rev null separated list in bash?
-bindsym $mod+v exec ~/.config/scripts/clipboard.sh
-bindsym $mod+u exec rofimoji
-bindsym $mod+q exec rofi -show calc -no-sort -calc-command "wl-copy {result}"
+bindsym --no-warn $mod+v exec ~/.config/scripts/clipboard.sh
+bindsym --no-warn $mod+q exec rofi -show calc -no-sort -calc-command "wl-copy {result}"
 
-# Notifications
-# TODO
-
-# Media keys
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
-bindsym XF86AudioRaiseVolume exec pamixer -i 5
-bindsym XF86AudioLowerVolume exec pamixer -d 5
-bindsym XF86AudioMute exec pamixer -t
-bindsym XF86AudioPrev exec mpc prev
-bindsym XF86AudioPlay exec mpc toggle
-bindsym XF86AudioNext exec mpc next
-
-# Screenshots
-set $shot ~/.config/scripts/screenshot.sh
-bindsym Shift+Print exec $shot whole_screen
-bindsym Print exec $shot
-
-# General window management
-bindsym $mod+f fullscreen toggle
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
-bindsym $mod+a focus parent
-bindsym $mod+Shift+a focus child
-
-# Window layout
-bindsym $mod+t layout tabbed
-bindsym $mod+Shift+t splith, layout tabbed
-bindsym $mod+Shift+s layout stacking
-bindsym $mod+s layout toggle split
-bindsym $mod+backslash splith
-bindsym $mod+minus splitv
-
-# Switch focused window
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# Move workspace to other monitor
-bindsym $mod+Control+Shift+h move workspace to output left
-bindsym $mod+Control+Shift+l move workspace to output right
-
-# Move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-set $wsT "0:Tab"
-set $ws0 "1:"
-set $ws1 "2:"
-set $ws2 "3:"
-set $ws3 "4:λ"
-set $ws4 "5:"
-set $ws5 "6:"
-set $ws6 "7:6"
-set $ws7 "8:"
-set $ws8 "9:"
-set $ws9 "10:"
-set $ws10 "11:"
-
-# Switch to workspace
-bindsym $mod+Tab workspace $wsT
-bindsym $mod+grave workspace $ws0
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-# Move focused container to workspace
-bindsym $mod+Shift+Tab move container to workspace $wsT
-bindsym $mod+Shift+grave move container to workspace $ws0
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-
-# Open some things as floating windows by default
-for_window [app_id="pavucontrol"] floating enable
-
-exec dunst
 exec wl-paste -w ~/.config/scripts/cliphandler.sh
-exec swayidle -w timeout 600 'swaymsg "output * dpms off' \
-    resume 'swaymsg "output * dpms on'
+exec swayidle -w timeout 600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"'
