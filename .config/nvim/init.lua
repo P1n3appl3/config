@@ -19,16 +19,16 @@ require "paq" {
 
     -- programming
     "terrortylor/nvim-comment",
-    "blackCauldron7/surround.nvim",
+    "ur4ltz/surround.nvim",
     "windwp/nvim-autopairs",
     "sbdchd/neoformat", -- TODO: nvim-format and use lsp when available
     { "ms-jpq/coq_nvim", branch = "coq" },
     { "ms-jpq/coq.artifacts", branch = "artifacts" },
-    "neovim/nvim-lspconfig", -- TODO: diagnosticls, efm, or nvim-lint
-    "nvim-lua/lsp-status.nvim",
+    "neovim/nvim-lspconfig",
+    -- TODO: diagnosticls, efm, or nvim-lint
+    "j-hui/fidget.nvim",
     "simrat39/rust-tools.nvim",
     "folke/lua-dev.nvim",
-    "cespare/vim-toml", -- TODO: remove once nvim merges commentstring
     {
         "nvim-treesitter/nvim-treesitter",
         run = function()
@@ -48,6 +48,7 @@ o.termguicolors = true
 o.lazyredraw = true
 o.number = true
 o.relativenumber = true
+o.signcolumn = "number"
 o.expandtab = true
 o.tabstop = 4
 o.shiftwidth = 4
@@ -69,6 +70,8 @@ require("nvim_comment").setup()
 vim.g.surround_mappings_style = "surround"
 require("surround").setup {}
 require("hop").setup()
+require("auto-session").setup { auto_save_enabled = true, auto_restore_enabled = false }
+require("fidget").setup {}
 require("gitsigns").setup { keymaps = {}, current_line_blame_opts = { delay = 100 } }
 require("nvim-treesitter.configs").setup {
     highlight = { enable = true, additional_vim_regex_highlighting = false },
@@ -90,6 +93,7 @@ FZF = require "fzf-lua"
 FZF.setup {
     fzf_bin = "sk",
     preview_vertical = "up",
+    keymap = { fzf = { ["ctrl-u"] = "half-page-up", ["ctrl-d"] = "half-page-down" } },
     files = { fd_opts = "-Htf --one-file-system" },
     grep = { rg_opts = "-S. --no-heading --color always" },
 }
@@ -100,8 +104,15 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     { virtual_text = false, signs = true, underline = true, update_in_insert = false }
 )
+vim.lsp.set_log_level "debug"
 lspconfig.pyright.setup {}
-require("rust-tools").setup { tools = { inlay_hints = { only_current_line = true } } }
+require("rust-tools").setup {
+    -- TODO: https://github.com/simrat39/rust-tools.nvim/issues/163
+    tools = { inlay_hints = { only_current_line = true } },
+    server = {
+        settings = { ["rust-analyzer"] = { checkOnSave = { command = "clippy" } } },
+    },
+}
 lspconfig.clangd.setup {} -- TODO: clang-tidy with user config, more file ext's
 lspconfig.bashls.setup {}
 lspconfig.sumneko_lua.setup(require("lua-dev").setup {
@@ -122,7 +133,6 @@ map("<space>fS", ":wa<CR>")
 map("<space>w", "<C-w>")
 map("<space>d", ":bd<CR>")
 map("<space><tab>", ":b#<CR>")
-vim.cmd [[ command! Reload execute 'so $MYVIMRC' ]]
 -- toggleterm with <A-t>
 -- modemap("t", "jk", "<C-\\><C-n>", { silent = true })
 modemap("t", "<A-esc>", "<C-\\><C-n>", { silent = true })
@@ -132,10 +142,9 @@ modemap("n", ",/", ":nohl<CR>", { silent = true })
 modemap("n", "<C-_>", ":%s/", {})
 modemap("v", "<C-_>", ":s/", {})
 
--- clipboard
+-- system clipboard
 map("<C-y>", '"+y')
 map("<C-p>", '"+p')
-map("Y", "y$") -- TODO: reomove when this lands as default upstream
 
 -- movement
 map("j", "gj")
@@ -148,8 +157,10 @@ map("S", "<cmd>HopWord<CR>")
 -- programming
 map("<space>gb", ":Gitsigns toggle_current_line_blame<CR>")
 map("<space>c", "gc")
-map(",=", ":Neoformat<CR>") -- TODO: lsp format once the ecosystem gets there
-vim.cmd [[ command! LspFormat execute 'lua vim.lsp.buf.formatting()' ]]
+map(",=", ":Neoformat<CR>") -- TODO: LspFormat once the ecosystem gets there
+vim.api.nvim_create_user_command("LspFormat", function()
+    vim.lsp.buf.formatting()
+end, {})
 map("K", ":lua vim.lsp.buf.hover()<CR>")
 map("<space>;", ":lua vim.lsp.buf.signature_help()<CR>")
 map("<space>rn", ":lua vim.lsp.buf.rename()<CR>")
@@ -181,7 +192,7 @@ map("<space>fG", ":FzfLua git_files<CR>")
 map("<space>fg", ":FzfLua git_status<CR>")
 map("<space>b", ":FzfLua buffers<CR>")
 map("<space>/", ":FzfLua search_history<CR>")
-map("<space>rg", ":FzfLua live_grep<CR>")
+map("<space>rg", ":FzfLua live_grep_native<CR>")
 map("<space>h", ":FzfLua help_tags<CR>")
 map("<space>s", ":FzfLua spell_suggest<CR>")
 
@@ -195,3 +206,4 @@ function _G.put(...)
     print(table.concat(objects, "\n"))
     return ...
 end
+vim.api.nvim_create_user_command("Reload", "so $MYVIMRC", {})

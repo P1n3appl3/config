@@ -1,0 +1,4 @@
+[binds]
+<Shift+J> = next
+<Shift+K> = prev
+<Shift+X> = exec rip "$imv_current_file"; close

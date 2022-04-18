@@ -1,18 +1,25 @@
--- TODO: trailing whitespace and mixed indent alert
+-- TODO: trailing whitespace and mixed indent alert (obviated by formatters?)
 
 require("colorizer").setup()
 
-vim.cmd [[
-augroup general
-    au!
-    au TextYankPost * lua vim.highlight.on_yank {timeout=100}
-    au CursorHold   * lua vim.lsp.buf.document_highlight()
-    au CursorHoldI  * lua vim.lsp.buf.document_highlight()
-    au CursorMoved  * lua vim.lsp.buf.clear_references()
-    au CursorMovedI * lua vim.lsp.buf.clear_references()
-augroup END
-]] -- TODO: lua autocommands: https://github.com/neovim/neovim/pull/12378
+-- highlight on yank or lsp references
+local general = vim.api.nvim_create_augroup("general", {})
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = general,
+    callback = function()
+        vim.highlight.on_yank { timeout = 150 }
+    end,
+})
+vim.api.nvim_create_autocmd(
+    { "CursorHold", "CursorHoldI" },
+    { group = general, callback = vim.lsp.buf.document_highlight }
+)
+vim.api.nvim_create_autocmd(
+    { "CursorMoved", "CursorMovedI" },
+    { group = general, callback = vim.lsp.buf.clear_references }
+)
 
+-- status line
 local icons = {
     Hint = "",
     Information = "",
@@ -52,6 +59,7 @@ local function lsp()
         Warning = "%%#OrangeSign#",
         Error = "%%#RedSign#",
     }
+    -- TODO: handle progress messages manually
     local t = {}
     for l, s in pairs(levels) do
         local n = #vim.diagnostic.get(0, { severity = sev[l] })
@@ -105,10 +113,12 @@ StatusLine = {
     end,
 }
 
-vim.cmd [[
-  augroup StatusLine
-  au!
-  au WinEnter,BufEnter * setlocal statusline=%!v:lua.StatusLine.active()
-  au WinLeave,BufLeave * setlocal statusline=%!v:lua.StatusLine.inactive()
-  augroup END
-]]
+local status = vim.api.nvim_create_augroup("StatusLine", {})
+vim.api.nvim_create_autocmd({ "WinEnter", "BufEnter" }, {
+    group = status,
+    command = "setlocal statusline=%!v:lua.StatusLine.active()",
+})
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+    group = status,
+    command = "setlocal statusline=%!v:lua.StatusLine.inactive()",
+})
