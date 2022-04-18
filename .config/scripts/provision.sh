@@ -4,12 +4,12 @@ core=(starship zr-git neovim neovim-symlinks rsync ripgrep fd skim sd exa
     bat ouch git-delta tokei hexyl dog xh choose rm-improved ncdu
     lm_sensors htop bottom bandwhich usbtop procs powertop pacman-cleanup-hook)
 dev=(rustup rust-analyzer cargo-edit clang llvm lld lldb gdb bear
-    python python-black pyright lua stylua-bin lua-language-server bash-language-server)
+    python python-black pyright lua stylua lua-language-server shellcheck shfmt)
 desktop=(i3status-rust pipewire pipewire-pulse pipewire-alsa udiskie light
     kitty firefox google-chrome telegram-desktop discord caprine
     lxappearance materia-gtk-theme papirus-icon-theme
     dunst rofi rofi-calc rofimoji
-    i3-wm
+    i3-wm maim clipmenu
     # sway wtype wl-clipboard slurp grim qt5-wayland qt6-wayland
     nerd-fonts-source-code-pro noto-fonts noto-fonts-cjk noto-fonts-emoji
     zathura zathura-pdf-mupdf pavucontrol pamixer mpc mpd mpdris2 ncmpcpp beets mpv imv

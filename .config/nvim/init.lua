@@ -25,7 +25,7 @@ require "paq" {
     { "ms-jpq/coq_nvim", branch = "coq" },
     { "ms-jpq/coq.artifacts", branch = "artifacts" },
     "neovim/nvim-lspconfig",
-    -- TODO: diagnosticls, efm, or nvim-lint
+    "mfussenegger/nvim-lint",
     "j-hui/fidget.nvim",
     "simrat39/rust-tools.nvim",
     "folke/lua-dev.nvim",
@@ -36,7 +36,7 @@ require "paq" {
         end,
     },
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "mfussenegger/nvim-dap", -- TODO: configure
+    -- "mfussenegger/nvim-dap", -- TODO: configure for rust/c/python/lua
 }
 
 -- general options
@@ -48,7 +48,6 @@ o.termguicolors = true
 o.lazyredraw = true
 o.number = true
 o.relativenumber = true
-o.signcolumn = "number"
 o.expandtab = true
 o.tabstop = 4
 o.shiftwidth = 4
@@ -98,14 +97,8 @@ FZF.setup {
     grep = { rg_opts = "-S. --no-heading --color always" },
 }
 
--- language server
+-- language server configuration
 local lspconfig = require "lspconfig"
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    { virtual_text = false, signs = true, underline = true, update_in_insert = false }
-)
-vim.lsp.set_log_level "debug"
-lspconfig.pyright.setup {}
 require("rust-tools").setup {
     -- TODO: https://github.com/simrat39/rust-tools.nvim/issues/163
     tools = { inlay_hints = { only_current_line = true } },
@@ -114,10 +107,27 @@ require("rust-tools").setup {
     },
 }
 lspconfig.clangd.setup {} -- TODO: clang-tidy with user config, more file ext's
-lspconfig.bashls.setup {}
-lspconfig.sumneko_lua.setup(require("lua-dev").setup {
-    lspconfig = { cmd = { "lua-language-server" } },
+lspconfig.pyright.setup {}
+lspconfig.sumneko_lua.setup(require("lua-dev").setup {})
+
+-- non-lsp linters
+local lint = require "lint"
+lint.linters_by_ft = { sh = { "shellcheck" } }
+local lint_group = vim.api.nvim_create_augroup("lint_group", {})
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+    group = lint_group,
+    callback = function()
+        lint.try_lint()
+    end,
 })
+
+-- global language client settings
+vim.lsp.set_log_level "debug"
+vim.diagnostic.config { virtual_text = false }
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    { signs = true, underline = true, update_in_insert = false }
+)
 
 -- general mappings
 local modemap = vim.api.nvim_set_keymap
