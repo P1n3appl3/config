@@ -3,8 +3,8 @@
 core=(starship zr-git neovim neovim-symlinks rsync ripgrep fd skim sd exa
     bat ouch git-delta tokei hexyl dog xh choose rm-improved ncdu
     lm_sensors htop bottom bandwhich usbtop procs powertop pacman-cleanup-hook)
-dev=(rustup rust-analyzer cargo-edit clang llvm lld lldb gdb bear
-    python python-black pyright lua stylua lua-language-server shellcheck shfmt)
+dev=(rustup rust-analyzer clang llvm lld lldb gdb bear python python-black pyright
+    lua stylua lua-language-server shellcheck shfmt prettier)
 desktop=(i3status-rust pipewire pipewire-pulse pipewire-alsa udiskie light
     kitty firefox google-chrome telegram-desktop discord caprine
     lxappearance materia-gtk-theme papirus-icon-theme

@@ -70,7 +70,7 @@ vim.g.surround_mappings_style = "surround"
 require("surround").setup {}
 require("hop").setup()
 require("auto-session").setup { auto_save_enabled = true, auto_restore_enabled = false }
-require("fidget").setup {}
+require("fidget").setup { text = { spinner = "dots" } }
 require("gitsigns").setup { keymaps = {}, current_line_blame_opts = { delay = 100 } }
 require("nvim-treesitter.configs").setup {
     highlight = { enable = true, additional_vim_regex_highlighting = false },
@@ -91,6 +91,7 @@ require("nvim-treesitter.configs").setup {
 FZF = require "fzf-lua"
 FZF.setup {
     fzf_bin = "sk",
+    preview_layout = "vertical",
     preview_vertical = "up",
     keymap = { fzf = { ["ctrl-u"] = "half-page-up", ["ctrl-d"] = "half-page-down" } },
     files = { fd_opts = "-Htf --one-file-system" },
@@ -195,7 +196,7 @@ map("<space>qf", ":FzfLua quickfix<CR>")
 map("<space>:", ":FzfLua command_history<CR>")
 map("<space><space>", ":FzfLua commands<CR>")
 map("<space>F", ":FzfLua files<CR>")
-map("<space>fF", ":FzfLua files cwd=~<CR>")
+map("<space>ff", ":FzfLua files cwd=~<CR>")
 map("<space>f/", ":FzfLua files cwd=/<CR>")
 map("<space>fh", ":FzfLua oldfiles<CR>")
 map("<space>fG", ":FzfLua git_files<CR>")
