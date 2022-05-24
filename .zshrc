@@ -22,21 +22,21 @@ autoload -U compinit && compinit -c
 
 # Shortcuts for tweaking dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-alias i3config="vi $HOME/.config/i3/{common,*}"
+alias i3config="vi $HOME/.config/i3/{config,*}"
 alias vimconfig="vi $HOME/.config/nvim/{*.lua,lua/*.lua}"
 alias zshconfig="vi $HOME/.zshrc"
 alias swayconfig="vi $HOME/.config/sway/{config,*}"
 
 # I <3 Rust
 alias grep=rg
-alias cat="bat -pp"
+alias cat=bat
 alias find=fd
 alias dig=dog
 alias l="exa --icons"
 alias ls="l -l"
 alias la="l -la"
 alias tree"l -T --git-ignore"
-alias rm=rip
+# alias rm=rip
 
 # Fuzzy searching
 export SKIM_DEFAULT_COMMAND="fd . -H --one-file-system"
