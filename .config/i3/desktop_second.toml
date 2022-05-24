@@ -18,6 +18,9 @@ format = "{title}"
 theme_overrides = {"info_bg" = "#282828"}
 
 [[block]]
+block = "notify"
+
+[[block]]
 block = "sound"
 step_width = 1
 on_click = "killall pavucontrol || pavucontrol &"

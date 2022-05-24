@@ -18,5 +18,4 @@ configuration {
     kb-page-prev: "Control+u";
     kb-page-next: "Control+d";
 }
-
 @theme "~/.config/rofi/denvit.rasi"
