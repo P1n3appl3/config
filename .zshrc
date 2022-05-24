@@ -1,6 +1,10 @@
 # Add stuff to $PATH
-export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$PATH:$HOME/fuchsia/.jiri_root/bin"
+source ~/fuchsia/scripts/fx-env.sh
+export FUCHSIA_BUILD_DIR="$FUCHSIA_DIR/out/default"
+unset -f fd
 
 # Prompt
 eval "$(starship init zsh)"
@@ -22,21 +26,21 @@ autoload -U compinit && compinit -c
 
 # Shortcuts for tweaking dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-alias i3config="vi $HOME/.config/i3/{common,*}"
+alias i3config="vi $HOME/.config/i3/{config,*}"
 alias vimconfig="vi $HOME/.config/nvim/{*.lua,lua/*.lua}"
 alias zshconfig="vi $HOME/.zshrc"
 alias swayconfig="vi $HOME/.config/sway/{config,*}"
 
 # I <3 Rust
+alias cat=bat
 alias grep=rg
-alias cat="bat -pp"
 alias find=fd
 alias dig=dog
 alias l="exa --icons"
 alias ls="l -l"
 alias la="l -la"
-alias tree"l -T --git-ignore"
-alias rm=rip
+alias tree="l -T --git-ignore"
+# alias rm=rip
 
 # Fuzzy searching
 export SKIM_DEFAULT_COMMAND="fd . -H --one-file-system"
@@ -61,3 +65,4 @@ alias music=ncmpcpp
 export EDITOR=nvim
 export VISUAL=nvim
 export TIMEFMT=$'\nreal\t%*E s\nuser\t%*U s\nsys\t%*S s\ncpu\t%P\nmaxmem\t%M MB\nfaults\t%F'
+export TEMPDIR=/tmp

@@ -8,8 +8,8 @@ if [ $? != 0 ]; then
     mkdir -p .config-backup
     echo "Backing up pre-existing dot files."
     config checkout 2>&1 | grep '^\s' | sed 's/^\t//g' | while read -r f; do
-        mkdir -p .config_backup/$(dirname $f)
-        mv $f .config_backup/$f
+        mkdir -p .config_backup/"$(dirname "$f")"
+        mv "$f" .config_backup/"$f"
     done
 fi
 config checkout

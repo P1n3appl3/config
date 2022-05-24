@@ -1,17 +1,16 @@
 [user]
     name = Joseph Ryan
-    username = P1n3appl3
     email = josephryan3.14@gmail.com
-    signingkey = 576B6E8397D463348DE9C6B494093348D32DD171
 [core]
     editor = vim
-    excludesfile = /home/joseph/.gitignore
+	excludesfile = ~/.gitignore
     autocrlf = input
     pager = delta
 [alias]
     a = add
     b = branch
     s = status
+    changed = diff --stat HEAD~1
     c = commit --verbose
     ca = commit -a --verbose
     cm = commit -m
@@ -23,19 +22,18 @@
     ls = ls-files
     pr = prune -v
     l = log --pretty=format:'%C(yellow)%h %Cred%as %Cblue%<(20,trunc)%an%Cgreen%d %Creset%s'
+    vi = "!vi() { git diff ${@:-HEAD^} --name-only | xargs vi; } ; vi"
+[feature]
+    manyFiles = true
 [push]
     default = matching
 [pager]
     branch = false
-[commit]
-    gpgsign = true
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-[gpg]
-    program = gpg2
 [branch]
     autosetuprebase = always
 [submodule]
@@ -50,3 +48,5 @@
     conflictstyle = diff3
 [diff]
     colorMoved = default
+[http]
+	cookiefile = ~/.gitcookies

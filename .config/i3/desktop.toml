@@ -25,12 +25,6 @@ aur_command = "paru -Qua"
 theme_overrides = {"info_bg" = "#282828"}
 
 [[block]]
-block = "nvidia_gpu"
-show_memory = false
-show_fan_speed = true
-interval = 3
-
-[[block]]
 block = "memory"
 format_mem = "{mem_used_percents:1}"
 format_swap = "{swap_used_percents:1}"
@@ -48,6 +42,8 @@ info = 70
 collapsed = false
 icons_format = " {icon}"
 format = "{max}C"
+chip = "k10temp-pci-*"
+inputs = ["Tccd1"]
 
 [[block]]
 block = "notify"

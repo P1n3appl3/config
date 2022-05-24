@@ -8,58 +8,30 @@ separator_fg = "#aaaaaa"
 separator_bg = "#282828"
 
 [[block]]
-block = "music"
-player = "mpd"
-max_width = 80
-dynamic_width = true
-hide_when_empty = true
-buttons = ["prev", "play", "next"]
-format = "{title}"
-theme_overrides = {"info_bg" = "#282828"}
-
-[[block]]
 block = "weather"
 format = "{apparent}"
 autolocate = true
 service = { name = "openweathermap", units = "imperial", place = "Sunnyvale" }
 
 [[block]]
-block = "pacman"
-interval = 86400
+block = "apt"
+interval = 1800
 icons_format = " 📦 "
-format = "{both}"
-format_singular = "1"
-format_up_to_date = ""
-critical_updates_regex = "linux"
-aur_command = "paru -Qua"
-theme_overrides = {"info_bg" = "#282828"}
+format = "{count:1}"
+format_singular = "{count:1}"
+format_up_to_date = "system up to date"
+critical_updates_regex = "(linux|linux-lts|linux-zen)"
+# shows dmenu with cached available updates. Any dmenu alternative should also work.
+on_click = "APT_CONFIG=/tmp/i3rs-apt/apt.conf apt list --upgradable | tail -n +2 | rofi -dmenu"
 
-[[block]]
-block = "memory"
-format_mem = "{mem_used_percents:1}"
-format_swap = "{swap_used_percents:1}"
-
-[[block]]
-block = "cpu"
-format = "{utilization}"
-interval = 3
-
-[[block]]
-block = "temperature"
-interval = 3
-idle = 50
-info = 70
-collapsed = false
-icons_format = " {icon}"
-format = "{max}C"
-
-[[block]]
-block = "backlight"
-step_width = 1
-invert_icons = true
-
-[[block]]
-block = "battery"
+# [[block]]
+# block = "backlight"
+# step_width = 1
+# invert_icons = true
+# 
+# [[block]]
+# block = "battery"
+# driver = "upower"
 
 [[block]]
 block = "notify"
