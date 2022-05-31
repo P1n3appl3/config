@@ -1,4 +1,25 @@
+[options]
+background = 222222
+overlay = true
+overlay_text_alpha = d0
+overlay_background_alpha = 80
+overlay_position_bottom = true
+scaling_mode = none
+upscaling_method = nearest_neighbour
+
 [binds]
 <Shift+J> = next
+n = next
 <Shift+K> = prev
+p = prev
 <Shift+X> = exec rip "$imv_current_file"; close
+
+<i> = zoom 10
+<equal> = zoom 10
+<Shift+I> = zoom 1
+<Shift+plus> = zoom 1
+
+<o> = zoom -10
+<minus> = zoom -10
+<Shift+O> = zoom -1
+<Shift+underscore> = zoom -1
