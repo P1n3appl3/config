@@ -28,14 +28,12 @@ alias zshconfig="vi $HOME/.zshrc"
 alias swayconfig="vi $HOME/.config/sway/{config,*}"
 
 # I <3 Rust
-alias grep=rg
 alias cat=bat
-alias find=fd
 alias dig=dog
 alias l="exa --icons"
 alias ls="l -l"
 alias la="l -la"
-alias tree"l -T --git-ignore"
+alias tree="l -T --git-ignore"
 # alias rm=rip
 
 # Fuzzy searching

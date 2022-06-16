@@ -21,6 +21,7 @@ require "paq" {
     "terrortylor/nvim-comment",
     "ur4ltz/surround.nvim",
     "windwp/nvim-autopairs",
+    -- "mhartington/formatter.nvim", -- TODO: lsp-format + null-ls?
     "sbdchd/neoformat", -- TODO: nvim-format and use lsp when available
     { "ms-jpq/coq_nvim", branch = "coq" },
     { "ms-jpq/coq.artifacts", branch = "artifacts" },
@@ -100,14 +101,18 @@ FZF.setup {
 
 -- language server configuration
 local lspconfig = require "lspconfig"
+local ra_settings = {
+    checkOnSave = { command = "clippy" },
+    cachePriming = { enable = false },
+    diagnostics = { disabled = { "unresolved-proc-macro" } },
+}
 require("rust-tools").setup {
     -- TODO: https://github.com/simrat39/rust-tools.nvim/issues/163
     tools = { inlay_hints = { only_current_line = true } },
-    server = {
-        settings = { ["rust-analyzer"] = { checkOnSave = { command = "clippy" } } },
-    },
+    server = { settings = { ["rust-analyzer"] = ra_settings } },
 }
-lspconfig.clangd.setup {} -- TODO: clang-tidy with user config, more file ext's
+-- TODO: clang-tidy with user config, more file ext's, semantic highlighting
+lspconfig.clangd.setup {}
 lspconfig.pyright.setup {}
 lspconfig.sumneko_lua.setup(require("lua-dev").setup {})
 
@@ -169,9 +174,6 @@ map("S", "<cmd>HopWord<CR>")
 map("<space>gb", ":Gitsigns toggle_current_line_blame<CR>")
 map("<space>c", "gc")
 map(",=", ":Neoformat<CR>") -- TODO: LspFormat once the ecosystem gets there
-vim.api.nvim_create_user_command("LspFormat", function()
-    vim.lsp.buf.formatting()
-end, {})
 map("K", ":lua vim.lsp.buf.hover()<CR>")
 map("<space>;", ":lua vim.lsp.buf.signature_help()<CR>")
 map("<space>rn", ":lua vim.lsp.buf.rename()<CR>")
@@ -199,8 +201,8 @@ map("<space>F", ":FzfLua files<CR>")
 map("<space>ff", ":FzfLua files cwd=~<CR>")
 map("<space>f/", ":FzfLua files cwd=/<CR>")
 map("<space>fh", ":FzfLua oldfiles<CR>")
-map("<space>fG", ":FzfLua git_files<CR>")
-map("<space>fg", ":FzfLua git_status<CR>")
+map("<space>fg", ":FzfLua git_files<CR>")
+map("<space>G", ":FzfLua git_status<CR>")
 map("<space>b", ":FzfLua buffers<CR>")
 map("<space>/", ":FzfLua search_history<CR>")
 map("<space>rg", ":FzfLua live_grep_native<CR>")

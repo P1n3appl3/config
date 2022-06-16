@@ -1,3 +1,3 @@
 action = copy
 skin-tone = neutral
-files = [emojis, greek_and_coptic, mathematical_operators, arrows, latin-1_supplement, latin_extended-a, latin_extended_additional, currency_symbols, superscripts_and_subscripts, chess_symbols, mathematical_alphanumeric_symbols, katakana, hiragana, miscellaneous_symbols_and_arrows]
+files = [emojis, greek_and_coptic, mathematical_operators, arrows, latin-1_supplement, latin_extended-a, latin_extended_additional, currency_symbols, superscripts_and_subscripts, chess_symbols, mathematical_alphanumeric_symbols, katakana, hiragana, miscellaneous_symbols_and_arrows, general_punctuation]
