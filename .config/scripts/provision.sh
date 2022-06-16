@@ -3,8 +3,8 @@
 core=(starship zr-git neovim neovim-symlinks rsync ripgrep fd skim sd exa
     bat ouch git-delta tokei hexyl dog xh choose rm-improved ncdu
     lm_sensors htop bottom bandwhich usbtop procs powertop pacman-cleanup-hook)
-dev=(rustup rust-analyzer clang llvm lld lldb gdb bear python python-black pyright
-    lua stylua lua-language-server shellcheck shfmt prettier)
+dev=(rustup rust-analyzer clang llvm mold lld lldb gdb bear python python-black pyright
+    lua stylua lua-language-server shellcheck-bin shfmt prettier taplo-cli github-cli)
 desktop=(i3status-rust pipewire pipewire-pulse pipewire-alsa udiskie light
     kitty firefox google-chrome telegram-desktop discord caprine
     lxappearance materia-gtk-theme papirus-icon-theme
@@ -17,7 +17,7 @@ desktop=(i3status-rust pipewire pipewire-pulse pipewire-alsa udiskie light
 games=(steam lutris osu-lazer-bin slippi-online-appimage dolphin-emu snes9x-gtk
     minecraft-launcher pacmc fabric-installer dwarffortress dwarftherapist xdelta3)
 tools=(obs-studio ffmpeg sox imagemagick krita inkscape kdenlive
-    lmms helio-workstation-bin musescore blender godot freecad python-solidpython
+    helio-workstation-bin musescore blender godot freecad python-solidpython
     kicad kicad-library pcbdraw gtkwave saleae-logic2 openocd logisim)
 # find an audacity fork
 
@@ -34,16 +34,41 @@ mkdir -p .ssh
 lpass login --trust josephryan3.14@gmail.com
 lpass show --notes ssh_private >.ssh/id_rsa
 lpass show --notes ssh_public >.ssh/id_rsa.pub
-# TODO: replace zprofile with .config/environment.d once supported
-echo OPENWEATHERMAP_API_KEY=$(lpass show --notes openweathermap) \
-    >>.zprofile
+# TODO: replace xprofile with .config/environment.d once supported
+echo export OPENWEATHERMAP_API_KEY=$(lpass show --notes openweathermap) \
+    >>.xprofile
 # TODO: lastpass with attachment downloading michaelfbryan for gpg
-cat >>.zprofile <<EOF
-export QT_QPA_PLATFORM=wayland
-export MOZ_ENABLE_WAYLAND=1
+cat >>.xprofile <<EOF
+# export QT_QPA_PLATFORM=wayland
+# export MOZ_ENABLE_WAYLAND=1
 # about:support -> Window Protocol should say wayland
 # about:config gfx.webrender.compositor.force-enabled = true
 # about:config ui.systemUsesDarkTheme = 1
+EOF
+
+cat >.xprofile <<EOF
+#!/bin/sh
+
+userresources=$HOME/.Xresources
+usermodmap=$HOME/.Xmodmap
+sysresources=/etc/X11/xinit/.Xresources
+sysmodmap=/etc/X11/xinit/.Xmodmap
+
+[ -f $sysresources ] && xrdb -merge $sysresources
+[ -f $sysmodmap ] && xmodmap $sysmodmap
+[ -f "$userresources" ] && xrdb -merge "$userresources"
+[ -f "$usermodmap" ] && xmodmap "$usermodmap"
+
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
+
+[ -f ~/.xprofile ] && . ~/.xprofile
+
+exec i3
 EOF
 
 # get dotfiles
@@ -67,12 +92,13 @@ rate-mirrors --save /etc/pacman.d/mirrorlist arch
 
 paru -S ${core[@]}
 paru -S ${dev[@]}
-paru -S ${desktop[@]}
-paru -S ${games[@]}
-paru -S ${tools[@]}
 
 # Neovim
 git clone --depth=1 https://github.com/savq/paq-nvim.git \
     $HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim
 vi --headless +PaqInstall +q
 vi --headless +PaqList +q
+
+paru -S ${desktop[@]}
+paru -S ${games[@]}
+paru -S ${tools[@]}
