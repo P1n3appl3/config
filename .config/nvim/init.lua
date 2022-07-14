@@ -33,7 +33,10 @@ require "paq" {
     {
         "nvim-treesitter/nvim-treesitter",
         run = function()
-            vim.cmd "TSUpdate bash c cpp json lua python rust toml"
+            vim.cmd(
+                "TSUpdate bash c cpp json lua python rust toml markdown"
+                    .. " html css typescript javascript json ninja make dot zig"
+            )
         end,
     },
     "nvim-treesitter/nvim-treesitter-textobjects",
@@ -59,6 +62,10 @@ o.mouse = "a"
 o.scrolloff = 7
 o.wildignore = { "*.o", "*.obj", "*.pyc" }
 o.shortmess:append "c"
+
+-- opt into the new filetype detection
+vim.g.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0
 
 -- my other configs
 vim.cmd [[colorscheme custom]]
@@ -107,8 +114,8 @@ local ra_settings = {
     diagnostics = { disabled = { "unresolved-proc-macro" } },
 }
 require("rust-tools").setup {
+    tools = { autoSetHints = false },
     -- TODO: https://github.com/simrat39/rust-tools.nvim/issues/163
-    tools = { inlay_hints = { only_current_line = true } },
     server = { settings = { ["rust-analyzer"] = ra_settings } },
 }
 -- TODO: clang-tidy with user config, more file ext's, semantic highlighting
@@ -155,8 +162,8 @@ modemap("t", "<A-esc>", "<C-\\><C-n>", { silent = true })
 
 -- search/replace
 modemap("n", ",/", ":nohl<CR>", { silent = true })
-modemap("n", "<C-_>", ":%s/", {})
-modemap("v", "<C-_>", ":s/", {})
+modemap("n", "<C-/>", ":%s/", {})
+modemap("v", "<C-/>", ":s/", {})
 
 -- system clipboard
 map("<C-y>", '"+y')
@@ -174,7 +181,7 @@ map("S", "<cmd>HopWord<CR>")
 map("<space>gb", ":Gitsigns toggle_current_line_blame<CR>")
 map("<space>c", "gc")
 map(",=", ":Neoformat<CR>") -- TODO: LspFormat once the ecosystem gets there
-map("K", ":lua vim.lsp.buf.hover()<CR>")
+map("K", ":lua vim.lsp.buf.hover()<CR>") -- TODO: defer to normal behavior
 map("<space>;", ":lua vim.lsp.buf.signature_help()<CR>")
 map("<space>rn", ":lua vim.lsp.buf.rename()<CR>")
 map("<space>ee", ":lua vim.diagnostic.open_float()<CR>")
@@ -219,4 +226,9 @@ function _G.put(...)
     print(table.concat(objects, "\n"))
     return ...
 end
+vim.cmd [[ function! SynGroup()                                                            
+    let l:s = synID(line('.'), col('.'), 1)                                       
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun ]]
+vim.api.nvim_create_user_command("SynGroup", "call SynGroup()", {})
 vim.api.nvim_create_user_command("Reload", "so $MYVIMRC", {})
