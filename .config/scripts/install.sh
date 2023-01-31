@@ -23,7 +23,7 @@ sudo mkdir /mnt/boot
 sudo mount $boot /mnt/boot
 
 sudo pacstrap /mnt base linux-zen linux-firmware amd-ucode base-devel \
-    dhcpcd openssh zsh git lastpass-cli ccache sccache
+    dhcpcd openssh zsh git bitwarden-cli ccache sccache
 genfstab -U /mnt | sudo tee -a /mnt/etc/fstab >/dev/null
 
 less /mnt/etc/fstab

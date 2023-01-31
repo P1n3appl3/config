@@ -6,7 +6,7 @@
     corner_radius = 8
     width = (0, 300)
 
-    font = Noto Sans 20
+    font = Noto Sans 11
     icon_path = /usr/share/icons/papirus/32x32/status/:/usr/share/icons/papirus/32x32/devices/
     max_icon_size=32
     format = "%s\n%b"
