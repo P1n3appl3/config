@@ -15,7 +15,7 @@ desktop=(i3status-rust pipewire pipewire-pulse pipewire-alsa udiskie light
     zathura zathura-pdf-mupdf pavucontrol pamixer mpc mpd mpdris2 ncmpcpp beets mpv imv
     openrazer-meta nautilus sushi via-bin calibre ntfs-3g)
 games=(steam lutris osu-lazer-bin slippi-online-appimage dolphin-emu snes9x-gtk
-    minecraft-launcher pacmc fabric-installer dwarffortress dwarftherapist xdelta3)
+    minecraft-launcher pacmc fabric-installer xdelta3)
 tools=(obs-studio ffmpeg sox imagemagick krita inkscape kdenlive
     helio-workstation-bin musescore blender godot freecad python-solidpython
     kicad kicad-library pcbdraw gtkwave saleae-logic2 openocd logisim)
@@ -31,11 +31,11 @@ mkdir Documents Downloads Games Images Images/screenshots Music Videos test
 
 # secrets + env
 mkdir -p .ssh
-lpass login --trust josephryan3.14@gmail.com
-lpass show --notes ssh_private >.ssh/id_rsa
-lpass show --notes ssh_public >.ssh/id_rsa.pub
+bw login --trust josephryan3.14@gmail.com
+bw get notes ssh_private >.ssh/id_rsa
+bw get notes ssh_public >.ssh/id_rsa.pub
 # TODO: replace xprofile with .config/environment.d once supported
-echo export OPENWEATHERMAP_API_KEY=$(lpass show --notes openweathermap) \
+echo export OPENWEATHERMAP_API_KEY=$(bw get notes openweathermap) \
     >>.xprofile
 # TODO: lastpass with attachment downloading michaelfbryan for gpg
 cat >>.xprofile <<EOF
@@ -71,8 +71,8 @@ fi
 exec i3
 EOF
 
-# get dotfiles
-curl -L https://raw.github.com/P1n3appl3/dotfiles/master/.config/scripts/setup.sh | sh
+# get config files
+curl -L https://raw.github.com/P1n3appl3/config/master/.config/scripts/setup.sh | sh
 ln -s desktop .config/sway/current_device
 
 # Time

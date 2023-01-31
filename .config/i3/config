@@ -1,6 +1,6 @@
 # vim: ft=conf
 
-set $mod Mod1
+set $mod Mod4
 set $run exec --no-startup-id
 set $wsT "0:Tab"
 set $ws0 "1:"
@@ -38,7 +38,7 @@ bindsym Print $run ~/.config/scripts/screenshot.sh s
 # TODO: color picker to clipboard
 
 # Run stuff
-bindsym Super_L $run rofi -show drun
+bindsym $mod+R $run rofi -show drun
 bindsym $mod+Return $run kitty -1
 bindsym $mod+slash $run rofi -show window
 bindsym $mod+v $run CM_LAUNCHER=rofi CM_HISTLENGTH=20 clipmenu

@@ -19,7 +19,7 @@ require "paq" {
 
     -- programming
     "terrortylor/nvim-comment",
-    "ur4ltz/surround.nvim",
+    "ur4ltz/surround.nvim", -- TODO: minisurround or nvim-surround
     "windwp/nvim-autopairs",
     -- "mhartington/formatter.nvim", -- TODO: lsp-format + null-ls?
     "sbdchd/neoformat", -- TODO: nvim-format and use lsp when available
@@ -29,7 +29,7 @@ require "paq" {
     "mfussenegger/nvim-lint",
     "j-hui/fidget.nvim",
     "simrat39/rust-tools.nvim",
-    "folke/lua-dev.nvim",
+    "folke/neodev.nvim",
     {
         "nvim-treesitter/nvim-treesitter",
         run = function()
@@ -64,8 +64,8 @@ o.wildignore = { "*.o", "*.obj", "*.pyc" }
 o.shortmess:append "c"
 
 -- opt into the new filetype detection
-vim.g.do_filetype_lua = 1
-vim.g.did_load_filetypes = 0
+-- vim.g.do_filetype_lua = 1
+-- vim.g.did_load_filetypes = 0
 
 -- my other configs
 vim.cmd [[colorscheme custom]]
@@ -104,9 +104,11 @@ FZF.setup {
     keymap = { fzf = { ["ctrl-u"] = "half-page-up", ["ctrl-d"] = "half-page-down" } },
     files = { fd_opts = "-Htf --one-file-system" },
     grep = { rg_opts = "-S. --no-heading --color always" },
+    fzf_opts = { ["--border"] = false },
 }
 
 -- language server configuration
+require("neodev").setup {}
 local lspconfig = require "lspconfig"
 local ra_settings = {
     checkOnSave = { command = "clippy" },
@@ -121,7 +123,7 @@ require("rust-tools").setup {
 -- TODO: clang-tidy with user config, more file ext's, semantic highlighting
 lspconfig.clangd.setup {}
 lspconfig.pyright.setup {}
-lspconfig.sumneko_lua.setup(require("lua-dev").setup {})
+lspconfig.sumneko_lua.setup {}
 
 -- non-lsp linters
 local lint = require "lint"

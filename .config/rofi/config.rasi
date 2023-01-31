@@ -9,7 +9,7 @@ configuration {
     kb-remove-to-eol: "";
     kb-remove-to-sol: "";
     kb-accept-entry: "Control+m,Return,KP_Enter";
-    kb-mode-next: "Tab,Shift+Right,Control+Tab,Control+l";
+    kb-mode-next: "Shift+Right,Control+Tab,Control+l";
     kb-mode-complete: "Control+c";
     kb-mode-previous: "Shift+Tab,Shift+Left,Control+Shift+Tab,Control+h";
     kb-row-up: "Up,Control+k";
