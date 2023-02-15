@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 
 core=(starship zr-git neovim neovim-symlinks rsync ripgrep fd skim sd exa
     bat ouch git-delta tokei hexyl dog xh choose rm-improved ncdu
@@ -24,8 +24,9 @@ tools=(obs-studio ffmpeg sox imagemagick krita inkscape kdenlive
 set -exu
 cd
 
-read "host?Pick a hostname: "
-sudo hostnamectl hostname $host
+echo -n "Pick a hostname: "
+read -r host
+sudo hostnamectl hostname "$host"
 
 mkdir Documents Downloads Games Images Images/screenshots Music Videos test
 
@@ -46,9 +47,7 @@ cat >>.xprofile <<EOF
 # about:config ui.systemUsesDarkTheme = 1
 EOF
 
-cat >.xprofile <<EOF
-#!/bin/sh
-
+cat >.xprofile <<'EOF'
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -90,15 +89,15 @@ rm paru
 sudo chown joseph /etc/pacman.d/mirrorlist
 rate-mirrors --save /etc/pacman.d/mirrorlist arch
 
-paru -S ${core[@]}
-paru -S ${dev[@]}
+paru -S "${core[@]}"
+paru -S "${dev[@]}"
 
 # Neovim
 git clone --depth=1 https://github.com/savq/paq-nvim.git \
-    $HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim
+    "$HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim"
 vi --headless +PaqInstall +q
 vi --headless +PaqList +q
 
-paru -S ${desktop[@]}
-paru -S ${games[@]}
-paru -S ${tools[@]}
+paru -S "${desktop[@]}"
+paru -S "${games[@]}"
+paru -S "${tools[@]}"

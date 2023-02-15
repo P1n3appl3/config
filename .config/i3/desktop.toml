@@ -9,7 +9,7 @@ separator_bg = "#282828"
 
 [[block]]
 block = "weather"
-format = "{apparent}"
+format = "{temp}"
 autolocate = true
 service = { name = "openweathermap", units = "imperial", place = "Sunnyvale" }
 

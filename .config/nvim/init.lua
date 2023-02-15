@@ -4,7 +4,6 @@ require "paq" {
     "vijaymarupudi/nvim-fzf",
     "ibhagwan/fzf-lua", -- TODO: vim-clap?
     "phaazon/hop.nvim",
-    "jbyuki/instant.nvim",
     "dstein64/vim-startuptime",
     "nvim-lua/plenary.nvim",
     "rmagatti/auto-session",
@@ -18,8 +17,9 @@ require "paq" {
     "davidgranstrom/nvim-markdown-preview",
 
     -- programming
-    "terrortylor/nvim-comment",
     "ur4ltz/surround.nvim", -- TODO: minisurround or nvim-surround
+    -- "terrortylor/nvim-comment",
+    "tpope/vim-commentary",
     "windwp/nvim-autopairs",
     -- "mhartington/formatter.nvim", -- TODO: lsp-format + null-ls?
     "sbdchd/neoformat", -- TODO: nvim-format and use lsp when available
@@ -30,16 +30,17 @@ require "paq" {
     "j-hui/fidget.nvim",
     "simrat39/rust-tools.nvim",
     "folke/neodev.nvim",
+    "kalcutter/vim-gn",
+    -- "imsnif/kdl.vim", -- TODO: contribute (fix indent) and compare vs treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         run = function()
-            vim.cmd(
-                "TSUpdate bash c cpp json lua python rust toml markdown"
-                    .. " html css typescript javascript json ninja make dot zig"
-            )
+            vim.cmd "TSUpdate"
         end,
     },
     "nvim-treesitter/nvim-treesitter-textobjects",
+    "nvim-treesitter/nvim-treesitter-context",
+    "nvim-treesitter/playground",
     -- "mfussenegger/nvim-dap", -- TODO: configure for rust/c/python/lua
 }
 
@@ -62,6 +63,9 @@ o.mouse = "a"
 o.scrolloff = 7
 o.wildignore = { "*.o", "*.obj", "*.pyc" }
 o.shortmess:append "c"
+-- o.laststatus = 3
+-- https://github.com/neovim/neovim/issues/18958
+-- o.cmdheight = 0
 
 -- opt into the new filetype detection
 -- vim.g.do_filetype_lua = 1
@@ -73,14 +77,19 @@ require "pretty"
 require "completion"
 
 -- plugin options
-require("nvim_comment").setup()
+-- require("nvim_comment").setup()
 vim.g.surround_mappings_style = "surround"
 require("surround").setup {}
 require("hop").setup()
 require("auto-session").setup { auto_save_enabled = true, auto_restore_enabled = false }
 require("fidget").setup { text = { spinner = "dots" } }
 require("gitsigns").setup { keymaps = {}, current_line_blame_opts = { delay = 100 } }
+-- stylua: ignore
 require("nvim-treesitter.configs").setup {
+    ensure_installed = {
+        "bash", "c", "cpp", "python", "rust", "lua", "kdl", "json", "toml", "json",
+	    "make", "ninja", "dot", "zig", "html", "css", "typescript", "javascript"
+    },
     highlight = { enable = true, additional_vim_regex_highlighting = false },
     textobjects = {
         select = {
@@ -96,6 +105,7 @@ require("nvim-treesitter.configs").setup {
         },
     },
 }
+require("treesitter-context").setup { patterns = { python = { "if", "elif" } } }
 FZF = require "fzf-lua"
 FZF.setup {
     fzf_bin = "sk",
@@ -110,20 +120,23 @@ FZF.setup {
 -- language server configuration
 require("neodev").setup {}
 local lspconfig = require "lspconfig"
+-- TODO: clang-tidy with user config, more file ext's, semantic highlighting
+lspconfig.clangd.setup {}
+lspconfig.pyright.setup {}
+lspconfig.lua_ls.setup {}
+-- lspconfig.wgsl_analyzer.setup {}
+
+local fuchsia = vim.startswith(vim.loop.cwd() or "", "/mnt/fuchsia")
+local fx_clippy = { overrideCommand = { "fx", "clippy", "--all", "--raw" } }
 local ra_settings = {
-    checkOnSave = { command = "clippy" },
+    checkOnSave = fuchsia and fx_clippy or { command = "clippy" },
     cachePriming = { enable = false },
     diagnostics = { disabled = { "unresolved-proc-macro" } },
 }
 require("rust-tools").setup {
     tools = { autoSetHints = false },
-    -- TODO: https://github.com/simrat39/rust-tools.nvim/issues/163
     server = { settings = { ["rust-analyzer"] = ra_settings } },
 }
--- TODO: clang-tidy with user config, more file ext's, semantic highlighting
-lspconfig.clangd.setup {}
-lspconfig.pyright.setup {}
-lspconfig.sumneko_lua.setup {}
 
 -- non-lsp linters
 local lint = require "lint"
@@ -137,7 +150,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 })
 
 -- global language client settings
-vim.lsp.set_log_level "debug"
+-- vim.lsp.set_log_level "debug"
 vim.diagnostic.config { virtual_text = false }
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -145,13 +158,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 -- general mappings
-local modemap = vim.api.nvim_set_keymap
+local modemap = vim.keymap.set
 local function map(lhs, rhs, opt)
-    opt = opt or {}
     modemap("", lhs, rhs, opt)
 end
 vim.g.mapleader = " "
-modemap("n", "<space>", "<NOP>", { noremap = true })
+map("<space>", "<NOP>", { noremap = true })
 map("<space>qq", ":qa<CR>")
 map("<space>fs", ":w<CR>")
 map("<space>fS", ":wa<CR>")
@@ -164,8 +176,8 @@ modemap("t", "<A-esc>", "<C-\\><C-n>", { silent = true })
 
 -- search/replace
 modemap("n", ",/", ":nohl<CR>", { silent = true })
-modemap("n", "<C-/>", ":%s/", {})
-modemap("v", "<C-/>", ":s/", {})
+modemap("n", "<C-/>", ":%s/")
+modemap("v", "<C-/>", ":s/")
 
 -- system clipboard
 map("<C-y>", '"+y')
@@ -174,16 +186,28 @@ map("<C-p>", '"+p')
 -- movement
 map("j", "gj")
 map("k", "gk")
-map("<C-j>", "<C-E>", { noremap = true })
-map("<C-k>", "<C-Y>", { noremap = true })
+map("<C-j>", "<C-e>", { noremap = true })
+map("<C-k>", "<C-y>", { noremap = true })
 map("s", "<cmd>HopChar2<CR>")
 map("S", "<cmd>HopWord<CR>")
 
 -- programming
 map("<space>gb", ":Gitsigns toggle_current_line_blame<CR>")
-map("<space>c", "gc")
+map("<space>cl", ":Commentary<CR>")
 map(",=", ":Neoformat<CR>") -- TODO: LspFormat once the ecosystem gets there
+vim.api.nvim_create_user_command("LspFormat", function()
+    vim.lsp.buf.formatting()
+end, {})
 map("K", ":lua vim.lsp.buf.hover()<CR>") -- TODO: defer to normal behavior
+-- map("gd", ":lua FZF.lsp_definitions({ jump_to_single_result = true })<CR>")
+-- map("gi", ":lua FZF.lsp_implementations({ jump_to_single_result = true })<CR>")
+-- map("gr", ":lua FZF.lsp_references({ jump_to_single_result = true })<CR>")
+-- map("gD", ":lua FZF.lsp_declarations({ jump_to_single_result = true })<CR>")
+map("gd", ":lua vim.lsp.buf.definition()<CR>")
+map("gi", ":lua vim.lsp.buf.implementation()<CR>")
+map("gr", ":lua vim.lsp.buf.references()<CR>")
+map("gD", ":lua vim.lsp.buf.declaration()<CR>")
+map("gt", ":lua vim.lsp.buf.type_definition()<CR>")
 map("<space>;", ":lua vim.lsp.buf.signature_help()<CR>")
 map("<space>rn", ":lua vim.lsp.buf.rename()<CR>")
 map("<space>ee", ":lua vim.diagnostic.open_float()<CR>")
@@ -191,19 +215,15 @@ map("<space>en", ":lua vim.diagnostic.goto_next()<CR>")
 map("<space>eN", ":lua vim.diagnostic.goto_prev()<CR>")
 map("<space>gn", ":lua require'gitsigns.actions'.next_hunk()<CR>")
 map("<space>gN", ":lua require'gitsigns.actions'.prev_hunk()<CR>")
-
--- fuzzy finder
-map("gd", ":lua FZF.lsp_definitions({ jump_to_single_result = true })<CR>")
-map("gi", ":lua FZF.lsp_implementations({ jump_to_single_result = true })<CR>")
-map("gr", ":lua FZF.lsp_references({ jump_to_single_result = true })<CR>")
-map("gD", ":lua FZF.lsp_declarations({ jump_to_single_result = true })<CR>")
-map("gt", ":lua vim.lsp.buf.type_definition()<CR>")
 map("<space>t", ":FzfLua lsp_document_symbols<CR>")
 map("<space>T", ":FzfLua lsp_workspace_symbols<CR>")
 map("<space>el", ":FzfLua lsp_document_diagnostics<CR>")
 map("<space>eL", ":FzfLua lsp_workspace_diagnostics<CR>")
 map("<space>ca", ":FzfLua lsp_code_actions<CR>")
 map("<space>qf", ":FzfLua quickfix<CR>")
+map("<space>i", ":RustToggleInlayHints<CR>")
+
+-- fuzzy finder
 map("<space>:", ":FzfLua command_history<CR>")
 map("<space><space>", ":FzfLua commands<CR>")
 map("<space>F", ":FzfLua files<CR>")
@@ -228,9 +248,21 @@ function _G.put(...)
     print(table.concat(objects, "\n"))
     return ...
 end
+
 vim.cmd [[ function! SynGroup()                                                            
     let l:s = synID(line('.'), col('.'), 1)                                       
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun ]]
 vim.api.nvim_create_user_command("SynGroup", "call SynGroup()", {})
 vim.api.nvim_create_user_command("Reload", "so $MYVIMRC", {})
+
+function _G.starlark_lsp()
+    vim.lsp.start {
+        name = "Starlark LSP",
+        cmd = { "starlark", "lsp" },
+        root_dir = vim.fs.dirname(
+            vim.fs.find({ "WORKSPACE", "WORKSPACE.bazel" }, { upward = true })[1]
+        ),
+    }
+end
+vim.api.nvim_create_user_command("Starlark", "lua starlark_lsp()", {})

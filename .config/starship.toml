@@ -1,13 +1,26 @@
-add_newline = false
+command_timeout = 500
+# add_newline = false
+
+[line_break]
+disabled = true
 
 [character]
 success_symbol = "🍍"
-error_symbol = "❌"
+error_symbol = "🍍"
+# error_symbol = "❌"
+
+[status]
+disabled = false
+map_symbol = true
+sigint_symbol = "💀"
+# pipestatus = true
+format = "[$symbol]($style)"
 
 [directory]
 style = "bold white"
 
 [hostname]
+# format = "[$ssh_symbol$hostname]($style):"
 format = "[$hostname]($style):"
 
 [cmd_duration]
@@ -23,19 +36,19 @@ ahead = " $count"
 behind = "  $count"
 diverged = " $count  $count"
 stashed = "  "
-untracked = "  $count"
+untracked = "" # for performance
+# untracked = "  $count"
 modified = "  $count"
 staged = "  $count"
 renamed = ""
-deleted = "" # 🗑
-
-[line_break]
-disabled = true
+deleted = " $count"
 [package]
 disabled = true
 [rust]
 disabled = true
 [python]
+disabled = true
+[golang]
 disabled = true
 [java]
 disabled = true

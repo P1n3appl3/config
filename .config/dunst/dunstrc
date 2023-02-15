@@ -6,10 +6,20 @@
     corner_radius = 8
     width = (0, 300)
 
-    font = Noto Sans 11
+    font = sans 11
+    markup = full
     icon_path = /usr/share/icons/papirus/32x32/status/:/usr/share/icons/papirus/32x32/devices/
     max_icon_size=32
-    format = "%s\n%b"
+    icon_position = left
+    format = "%s %p\n%b"
+    show_age_threshold = 60
+    dmenu = /usr/bin/rofi -dmenu -p dunst:
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+grave
 
 [urgency_low]
     background = "#263238"

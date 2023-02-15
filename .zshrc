@@ -1,6 +1,6 @@
 # Add stuff to $PATH
-export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Prompt
 eval "$(starship init zsh)"
@@ -27,14 +27,12 @@ alias vimconfig="vi $HOME/.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}"
 alias zshconfig="vi $HOME/.zshrc"
 alias swayconfig="vi $HOME/.config/sway/{config,*}"
 
-# I <3 Rust
 alias cat=bat
 alias dig=dog
 alias l="exa --icons"
 alias ls="l -l"
 alias la="l -la"
 alias tree="l -T --git-ignore"
-# alias rm=rip
 
 # Fuzzy searching
 export SKIM_DEFAULT_COMMAND="fd . -H --one-file-system"
@@ -57,5 +55,6 @@ function pacclean {
 alias sc=systemctl
 alias music=ncmpcpp
 export EDITOR=nvim
-export VISUAL=nvim
+export VISUAL=$EDITOR
 export TIMEFMT=$'\nreal\t%*E s\nuser\t%*U s\nsys\t%*S s\ncpu\t%P\nmaxmem\t%M MB\nfaults\t%F'
+export TEMPDIR=/tmp

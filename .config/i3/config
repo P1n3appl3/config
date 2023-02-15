@@ -1,4 +1,5 @@
 # vim: ft=conf
+font pango:monospace 12
 
 set $mod Mod4
 set $run exec --no-startup-id
@@ -47,7 +48,8 @@ bindsym $mod+Shift+m $run ~/.config/scripts/song.sh
 bindsym $mod+u $run rofimoji
 bindsym $mod+q $run rofi -show calc -no-sort \
     -calc-command "xclip -selection c <<< {result}'"
-# TODO: mod+n recall notif
+bindsym $mod+n $run dunstctl close
+bindsym $mod+Shift+n $run dunstctl history-pop
 
 # General window management
 bindsym $mod+f fullscreen toggle
