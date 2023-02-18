@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-core=(starship zr-git neovim neovim-symlinks rsync ripgrep fd skim sd exa
-    bat ouch git-delta tokei hexyl dog xh choose rm-improved ncdu
+core=(starship zr-git neovim neovim-symlinks rsync ripgrep fd fzf sd exa
+    bat ouch git-delta tokei hexyl dog xh choose rm-improved ncdu sysz
     lm_sensors htop bottom bandwhich usbtop procs powertop pacman-cleanup-hook)
 dev=(rustup rust-analyzer clang llvm mold lld lldb gdb bear python python-black pyright
     lua stylua lua-language-server shellcheck-bin shfmt prettier taplo-cli github-cli)

@@ -51,8 +51,6 @@ o.ignorecase = true
 o.smartcase = true
 o.termguicolors = true
 o.lazyredraw = true
-o.number = true
-o.relativenumber = true
 o.expandtab = true
 o.tabstop = 4
 o.shiftwidth = 4
@@ -108,13 +106,11 @@ require("nvim-treesitter.configs").setup {
 require("treesitter-context").setup { patterns = { python = { "if", "elif" } } }
 FZF = require "fzf-lua"
 FZF.setup {
-    fzf_bin = "sk",
     preview_layout = "vertical",
     preview_vertical = "up",
     keymap = { fzf = { ["ctrl-u"] = "half-page-up", ["ctrl-d"] = "half-page-down" } },
-    files = { fd_opts = "-Htf --one-file-system" },
+    files = { fd_opts = "-Htf --mount --color always" },
     grep = { rg_opts = "-S. --no-heading --color always" },
-    fzf_opts = { ["--border"] = false },
 }
 
 -- language server configuration
@@ -199,14 +195,10 @@ vim.api.nvim_create_user_command("LspFormat", function()
     vim.lsp.buf.formatting()
 end, {})
 map("K", ":lua vim.lsp.buf.hover()<CR>") -- TODO: defer to normal behavior
--- map("gd", ":lua FZF.lsp_definitions({ jump_to_single_result = true })<CR>")
--- map("gi", ":lua FZF.lsp_implementations({ jump_to_single_result = true })<CR>")
--- map("gr", ":lua FZF.lsp_references({ jump_to_single_result = true })<CR>")
--- map("gD", ":lua FZF.lsp_declarations({ jump_to_single_result = true })<CR>")
-map("gd", ":lua vim.lsp.buf.definition()<CR>")
-map("gi", ":lua vim.lsp.buf.implementation()<CR>")
-map("gr", ":lua vim.lsp.buf.references()<CR>")
-map("gD", ":lua vim.lsp.buf.declaration()<CR>")
+map("gd", ":lua FZF.lsp_definitions({ jump_to_single_result = true })<CR>")
+map("gi", ":lua FZF.lsp_implementations({ jump_to_single_result = true })<CR>")
+map("gr", ":lua FZF.lsp_references({ jump_to_single_result = true })<CR>")
+map("gD", ":lua FZF.lsp_declarations({ jump_to_single_result = true })<CR>")
 map("gt", ":lua vim.lsp.buf.type_definition()<CR>")
 map("<space>;", ":lua vim.lsp.buf.signature_help()<CR>")
 map("<space>rn", ":lua vim.lsp.buf.rename()<CR>")
@@ -255,14 +247,3 @@ vim.cmd [[ function! SynGroup()
 endfun ]]
 vim.api.nvim_create_user_command("SynGroup", "call SynGroup()", {})
 vim.api.nvim_create_user_command("Reload", "so $MYVIMRC", {})
-
-function _G.starlark_lsp()
-    vim.lsp.start {
-        name = "Starlark LSP",
-        cmd = { "starlark", "lsp" },
-        root_dir = vim.fs.dirname(
-            vim.fs.find({ "WORKSPACE", "WORKSPACE.bazel" }, { upward = true })[1]
-        ),
-    }
-end
-vim.api.nvim_create_user_command("Starlark", "lua starlark_lsp()", {})

@@ -15,12 +15,6 @@
     show_age_threshold = 60
     dmenu = /usr/bin/rofi -dmenu -p dunst:
 
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+grave
-
 [urgency_low]
     background = "#263238"
     foreground = "#556064"

@@ -1,45 +1,53 @@
-# Add stuff to $PATH
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export EDITOR=nvim
+export VISUAL=$EDITOR
+export TEMPDIR=/tmp
 
-# Prompt
-eval "$(starship init zsh)"
+# My configs
+for f in $HOME/.config/zsh/{keybinds,completion,history,fuzzy}.zsh; do
+    source $f
+done
 
 # Load plugins
+eval "$(starship init zsh)" # Prompt
+# when acting like cd, completion should just be for dirs not files:
+# https://github.com/ajeetdsouza/zoxide/issues/513
+eval "$(zoxide init --cmd j zsh)" # Dir jumper
+# https://github.com/ellie/atuin/issues/391#issuecomment-1399078206
+ATUIN_NOBIND="true" eval "$(atuin init zsh)" # History
+
 if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
     zr \
-        zsh-users/zsh-autosuggestions \
         zsh-users/zsh-syntax-highlighting \
-        ohmyzsh/ohmyzsh.git/lib/completion.zsh \
-        ohmyzsh/ohmyzsh.git/lib/history.zsh \
-        ohmyzsh/ohmyzsh.git/lib/key-bindings.zsh \
-        lotabout/skim.git/shell/key-bindings.zsh \
-        lotabout/skim.git/shell/completion.zsh \
+        zsh-users/zsh-autosuggestions \
+        junegunn/fzf.git/shell/completion.zsh \
         >~/.config/zr.zsh
 fi
+# ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 source ~/.config/zr.zsh
-autoload -U compinit && compinit -c
 
 # Shortcuts for tweaking dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias i3config="vi $HOME/.config/i3/{config,*}"
 alias vimconfig="vi $HOME/.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}"
-alias zshconfig="vi $HOME/.zshrc"
-alias swayconfig="vi $HOME/.config/sway/{config,*}"
+alias zshconfig="vi $HOME/.zshrc $HOME/.config/zsh/*"
+
+# Misc.
+unsetopt flowcontrol
+setopt no_case_glob
+WORDCHARS='_.$<>'
+TIMEFMT=$'\nreal\t%*E s\nuser\t%*U s\nsys\t%*S s\ncpu\t%P\nmem\t%M MB\nfaults\t%F'
 
 alias cat=bat
 alias dig=dog
+# add hyperlinks to exa or switch to lsd once this is resolved:
+# https://github.com/Peltoche/lsd/issues/192#issuecomment-1416334853
 alias l="exa --icons"
 alias ls="l -l"
 alias la="l -la"
 alias tree="l -T --git-ignore"
-
-# Fuzzy searching
-export SKIM_DEFAULT_COMMAND="fd . -H --one-file-system"
-export SKIM_CTRL_T_COMMAND="$SKIM_DEFAULT_COMMAND --type f"
-export SKIM_ALT_C_COMMAND="$SKIM_DEFAULT_COMMAND --type d ~"
-
-# Misc.
+function cd { echo "you aliased that to j silly…" && j $@; }
 alias o=xdg-open
 alias c=clear
 alias so=source
@@ -54,7 +62,3 @@ function pacclean {
 }
 alias sc=systemctl
 alias music=ncmpcpp
-export EDITOR=nvim
-export VISUAL=$EDITOR
-export TIMEFMT=$'\nreal\t%*E s\nuser\t%*U s\nsys\t%*S s\ncpu\t%P\nmaxmem\t%M MB\nfaults\t%F'
-export TEMPDIR=/tmp
