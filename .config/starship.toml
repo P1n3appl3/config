@@ -18,6 +18,7 @@ format = "[$symbol]($style)"
 
 [directory]
 style = "bold white"
+# truncation_symbol = "…/"
 
 [hostname]
 # format = "[$ssh_symbol$hostname]($style):"
