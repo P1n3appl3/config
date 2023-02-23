@@ -1,7 +1,7 @@
 bindkey -e
-_zle_load() { autoload -U $1 && zle -N $1; }
 zle-line-init() { echoti smkx; } && zle -N zle-line-init
 zle-line-finish() { echoti rmkx; } && zle -N zle-line-finish
+_zle_load() { autoload -U $1 && zle -N $1; }
 _zle_load up-line-or-beginning-search
 _zle_load down-line-or-beginning-search
 bindkey ${terminfo[kcuu1]} up-line-or-beginning-search   # up
@@ -17,7 +17,7 @@ bindkey ${terminfo[khome]} beginning-of-line # home
 bindkey ${terminfo[kend]} end-of-line        # end
 bindkey '^[[Z' reverse-menu-complete         # shift+tab
 bindkey '^R' _atuin_search_widget
-bindkey -r '^J'
+bindkey -r '^J' '^T'
 
 # backwards-word should go to the end of the last word
 zle -N backward-word backward-word-end
