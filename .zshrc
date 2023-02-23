@@ -1,5 +1,9 @@
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="/mnt/infra/fuchsia/prebuilt/tools:$PATH"
+export PATH="$PATH:/mnt/fuchsia/.jiri_root/bin"
+
 export EDITOR=nvim
 export VISUAL=$EDITOR
 export TEMPDIR=/tmp
@@ -15,7 +19,8 @@ eval "$(starship init zsh)" # Prompt
 # https://github.com/ajeetdsouza/zoxide/issues/513
 eval "$(zoxide init --cmd j zsh)" # Dir jumper
 # https://github.com/ellie/atuin/issues/391#issuecomment-1399078206
-ATUIN_NOBIND="true" eval "$(atuin init zsh)" # History
+# TODO: replace with cli arg
+eval "$(ATUIN_NOBIND='true' atuin init zsh)" # History
 
 if [[ ! -f ~/.config/zr.zsh ]] || [[ ~/.zshrc -nt ~/.config/zr.zsh ]]; then
     zr \
@@ -50,7 +55,6 @@ alias tree="l -T --git-ignore"
 function cd { echo "you aliased that to j silly…" && j $@; }
 alias o=xdg-open
 alias c=clear
-alias so=source
 alias please=sudo
 alias fuck=killall
 alias paclist="paru -Qqs"
