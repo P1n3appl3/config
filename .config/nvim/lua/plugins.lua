@@ -45,7 +45,7 @@ local ra_settings = {
     diagnostics = { disabled = { "unresolved-proc-macro" } },
 }
 require("rust-tools").setup {
-    tools = { autoSetHints = false },
+    tools = { inlay_hints = { auto = false } },
     server = { settings = { ["rust-analyzer"] = ra_settings } },
 }
 

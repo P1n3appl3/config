@@ -17,7 +17,7 @@ __fzf() {
         fzf --multi --height=80% --ansi \
             --preview "$HOME/.config/scripts/preview.sh {}" \
             --bind "ctrl-/:reload(fd . / --mount -t$1)" \
-            --bind "ctrl-h:reload(fd . ~ --mount -t$1)" \
+            --bind "ctrl-h:reload(fd . ~ -H --mount -t$1)" \
             --bind "ctrl-w:reload(fd --mount -t$1)" |
         while read item; do
             echo -n "${(q)item} " # https://github.com/mvdan/sh/issues/960

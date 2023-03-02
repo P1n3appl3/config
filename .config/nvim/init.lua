@@ -14,7 +14,7 @@ require "paq" {
     -- appearance
     "rktjmp/lush.nvim",
     "norcalli/nvim-colorizer.lua",
-    "lewis6991/gitsigns.nvim", -- TODO: keymap or null-ls code action for hunk stage/diff
+    "lewis6991/gitsigns.nvim", -- TODO: keybind or null-ls code action for hunk stage/diff
     "kyazdani42/nvim-web-devicons",
     "davidgranstrom/nvim-markdown-preview",
 

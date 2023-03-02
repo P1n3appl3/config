@@ -2,7 +2,7 @@
     name = Joseph Ryan
     email = josephryan3.14@gmail.com
 [core]
-    editor = vim
+    editor = nvim
 	excludesfile = ~/.gitignore
     autocrlf = input
     pager = delta
@@ -44,10 +44,16 @@
     diffFilter = delta --color-only
 [delta]
     navigate = true
+[diff]
+    colorMoved = default
 [merge]
     tool = nvimdiff
     conflictstyle = zdiff3
-[diff]
-    colorMoved = default
+[mergetool]
+    keepBackup = false
+    prompt = true
+[mergetool "nvimdiff"] # TODO: fugitive? or just some key bindings?
+    layout = "LOCAL,BASE,REMOTE / MERGED + BASE,LOCAL + \
+        BASE,REMOTE + (LOCAL/BASE/REMOTE),MERGED"
 [http]
     cookiefile = ~/.gitcookies
