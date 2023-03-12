@@ -25,7 +25,6 @@ for_window [class="Pavucontrol"] floating enable
 default_border pixel 1
 $run setxkbmap -option caps:escape
 $run dunst
-$run /usr/share/goobuntu-indicator/goobuntu_indicator.py
 
 # Media keys
 bindsym XF86MonBrightnessUp $run light -A 5
@@ -114,18 +113,4 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-bar {
-    position top
-    output DP-2
-    status_command i3status-rs ~/.config/i3/thirdbar.toml --never-pause
-    strip_workspace_numbers yes
-    colors {
-        separator #666666
-        background #282828
-        statusline #dddddd
-        focused_workspace #0088CC #0088CC #ffffff
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
-    }
-}
+include ~/.config/i3/`hostname`.conf

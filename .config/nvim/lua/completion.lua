@@ -1,5 +1,6 @@
 vim.g.coq_settings = {
     auto_start = "shut-up",
+    xdg = true,
     keymap = { recommended = false },
     display = {
         icons = { mode = "short" }, -- TODO: pick better icons
@@ -49,3 +50,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap("i", "<s-tab>", "<C-p>", { noremap = true })
 vim.api.nvim_set_keymap("i", "<CR>", "v:lua.Util.CR()", { expr = true, noremap = true })
 vim.api.nvim_set_keymap("i", "<BS>", "v:lua.Util.BS()", { expr = true, noremap = true })
+
+require "coq_3p" {
+    { src = "nvimlua", short_name = "nLUA" },
+}

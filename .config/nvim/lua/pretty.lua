@@ -8,10 +8,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     group = general,
     callback = function() vim.highlight.on_yank { timeout = 150 } end,
 })
-vim.api.nvim_create_autocmd(
-    { "CursorHold", "CursorHoldI" },
-    { group = general, callback = vim.lsp.buf.document_highlight }
-)
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = general,
+    callback = function()
+        local c = vim.lsp.get_active_clients()[1]
+        if c and c.server_capabilities.documentHighlightProvider then
+            vim.lsp.buf.document_highlight()
+        end
+    end,
+})
 vim.api.nvim_create_autocmd(
     { "CursorMoved", "CursorMovedI" },
     { group = general, callback = vim.lsp.buf.clear_references }
@@ -75,16 +80,7 @@ local fill = "%="
 
 StatusLine = {
     active = function()
-        return table.concat {
-            readonly(),
-            file,
-            git(),
-            modcol(),
-            fill,
-            lsp(),
-            "%*",
-            line_col,
-        }
+        return table.concat { readonly(), file, git(), modcol(), fill, lsp(), "%*", line_col }
     end,
     inactive = function() return table.concat { file, fill, line_col } end,
 }

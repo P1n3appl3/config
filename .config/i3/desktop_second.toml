@@ -1,7 +1,10 @@
-icons = "awesome"
+[icons]
+icons = "awesome5"
+[icons.overrides]
+volume_muted = "\uf466"
 
 [theme]
-name = "gruvbox-dark"
+theme = "gruvbox-dark"
 [theme.overrides]
 separator = "|"
 separator_fg = "#aaaaaa"
@@ -10,12 +13,9 @@ separator_bg = "#282828"
 [[block]]
 block = "music"
 player = "mpd"
-max_width = 80
-dynamic_width = true
-hide_when_empty = true
-buttons = ["prev", "play", "next"]
-format = "{title}"
-theme_overrides = {"info_bg" = "#282828"}
+icons_format = " {icon} "
+format = " $icon $title.str(max_w:35) $prev$play$next"
+theme_overrides = { "info_bg" = "#282828" }
 
 [[block]]
 block = "notify"
@@ -23,10 +23,14 @@ block = "notify"
 [[block]]
 block = "sound"
 step_width = 1
-on_click = "killall pavucontrol || pavucontrol &"
+click = [{ cmd = "killall pavucontrol || pavucontrol &", button = "left" }]
 
 [[block]]
 block = "time"
-format = "%-I:%M%P"
-interval = 60
-on_click = "notify-send $(date +%D)"
+format = " $timestamp.datetime(f:'%-I:%M%P') "
+interval = 3
+click = [
+  { button = "left", cmd = "~/.config/scripts/cal.sh curr" },
+  { button = "up", cmd = "~/.config/scripts/cal.sh next" },
+  { button = "down", cmd = "~/.config/scripts/cal.sh prev" },
+]

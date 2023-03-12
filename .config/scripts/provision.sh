@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-core=(starship zr-git neovim neovim-symlinks rsync ripgrep fd fzf sd exa
-    bat ouch git-delta tokei hexyl dog xh choose rm-improved ncdu sysz
-    lm_sensors htop bottom bandwhich usbtop procs powertop pacman-cleanup-hook)
-dev=(rustup rust-analyzer clang llvm mold lld lldb gdb bear python python-black pyright
-    lua stylua lua-language-server shellcheck-bin shfmt prettier taplo-cli github-cli)
+dev=(neovim neovim-symlinks rsync pacman-cleanup-hook)
 desktop=(i3status-rust pipewire pipewire-pulse pipewire-alsa udiskie light
     kitty firefox google-chrome telegram-desktop discord caprine
     lxappearance materia-gtk-theme papirus-icon-theme
@@ -32,11 +28,11 @@ mkdir Documents Downloads Games Images Images/screenshots Music Videos test
 
 # secrets + env
 mkdir -p .ssh
-bw login --trust josephryan3.14@gmail.com
-bw get notes ssh_private >.ssh/id_rsa
-bw get notes ssh_public >.ssh/id_rsa.pub
+rbw config set email josephryan3.14@gmail.com
+rbw get ssh_private >.ssh/id_rsa
+rbw get ssh_public >.ssh/id_rsa.pub
 # TODO: replace xprofile with .config/environment.d once supported
-echo export OPENWEATHERMAP_API_KEY=$(bw get notes openweathermap) \
+echo export OPENWEATHERMAP_API_KEY=$(rbw get openweathermap) \
     >>.xprofile
 # TODO: lastpass with attachment downloading michaelfbryan for gpg
 cat >>.xprofile <<EOF
@@ -70,10 +66,6 @@ fi
 exec i3
 EOF
 
-# get config files
-curl -L https://raw.github.com/P1n3appl3/config/master/.config/scripts/setup.sh | sh
-ln -s desktop .config/sway/current_device
-
 # Time
 .config/scripts/timezone.sh
 timedatectl set-ntp true
@@ -89,14 +81,10 @@ rm paru
 sudo chown joseph /etc/pacman.d/mirrorlist
 rate-mirrors --save /etc/pacman.d/mirrorlist arch
 
-paru -S "${core[@]}"
 paru -S "${dev[@]}"
 
-# Neovim
-git clone --depth=1 https://github.com/savq/paq-nvim.git \
-    "$HOME/.local/share/nvim/site/pack/paqs/start/paq-nvim"
-vi --headless +PaqInstall +q
-vi --headless +PaqList +q
+# get config files
+curl -L https://raw.github.com/P1n3appl3/config/master/.config/scripts/setup.sh | sh
 
 paru -S "${desktop[@]}"
 paru -S "${games[@]}"
