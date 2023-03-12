@@ -38,7 +38,9 @@ modemap("v", "<space>cl", "<Plug>(comment_toggle_linewise_visual)")
 modemap("v", "<space>cb", "<Plug>(comment_toggle_blockwise_visual)")
 map(",=", ":Neoformat<CR>") -- TODO: LspFormat once the ecosystem gets there
 vim.api.nvim_create_user_command("LspFormat", function() vim.lsp.buf.format() end, {})
-map("K", ":lua vim.lsp.buf.hover()<CR>") -- TODO: defer to normal behavior
+vim.api.nvim_create_autocmd("LspAttach", {callback = function(_args)
+    map("K", ":lua vim.lsp.buf.hover()<CR>") -- TODO: defer to normal behavior
+end})
 map("gd", ":lua FZF.lsp_definitions({ jump_to_single_result = true })<CR>")
 map("gi", ":lua FZF.lsp_implementations({ jump_to_single_result = true })<CR>")
 map("gr", ":lua FZF.lsp_references({ jump_to_single_result = true })<CR>")

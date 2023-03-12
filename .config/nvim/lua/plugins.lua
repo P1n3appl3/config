@@ -3,13 +3,10 @@ require("nvim-surround").setup {}
 require("Comment").setup { mappings = false }
 require("auto-session").setup { auto_save_enabled = true, auto_restore_enabled = false }
 require("fidget").setup { text = { spinner = "dots" } }
+-- TODO: keybind or null-ls code action for hunk stage/diff
 require("gitsigns").setup { keymaps = {}, current_line_blame_opts = { delay = 100 } }
 -- stylua: ignore
 require("nvim-treesitter.configs").setup {
-    ensure_installed = {
-        "bash", "c", "cpp", "python", "rust", "lua", "kdl", "json", "toml", "json",
-	    "make", "ninja", "dot", "zig", "html", "css", "typescript", "javascript"
-    },
     highlight = { enable = true, additional_vim_regex_highlighting = false },
     textobjects = { select = { enable = true,
         keymaps = {
@@ -27,15 +24,17 @@ FZF.setup {
     files = { fd_opts = "-Htf --mount --color always" },
     grep = { rg_opts = "-S. --no-heading --color always" },
 }
+local coq = require "coq"
 
 -- language server configuration
 require("neodev").setup {}
 local lspconfig = require "lspconfig"
 -- TODO: clang-tidy with user config, more file ext's, semantic highlighting
-lspconfig.clangd.setup {}
-lspconfig.pyright.setup {}
-lspconfig.lua_ls.setup {}
--- lspconfig.wgsl_analyzer.setup {}
+local servers = { "clangd", "pyright", "lua_ls", "nil_ls" }
+for _, s in ipairs(servers) do
+    lspconfig[s].setup(coq.lsp_ensure_capabilities {})
+end
+-- TODO: try wgsl_analyzer
 
 local fuchsia = vim.startswith(vim.loop.cwd() or "", "/mnt/fuchsia")
 local fx_clippy = { overrideCommand = { "fx", "clippy", "--all", "--raw" } }
@@ -44,10 +43,10 @@ local ra_settings = {
     cachePriming = { enable = false },
     diagnostics = { disabled = { "unresolved-proc-macro" } },
 }
-require("rust-tools").setup {
+require("rust-tools").setup(coq.lsp_ensure_capabilities {
     tools = { inlay_hints = { auto = false } },
     server = { settings = { ["rust-analyzer"] = ra_settings } },
-}
+})
 
 -- non-lsp linters
 local lint = require "lint"
