@@ -8,7 +8,9 @@ for f in $my_configs; do source $HOME/.config/zsh/$f.zsh; done
 eval "$(atuin init zsh --disable-up-arrow)" # History
 eval "$(zoxide init zsh --cmd j)"           # Dir jumper
 eval "$(starship init zsh)"                 # Prompt
+eval "$(direnv hook zsh)"                   # Env vars
 
+unset __HM_SESS_VARS_SOURCED
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 source $HOME/.nix-profile/share/fzf/completion.zsh
 for f in zsh-syntax-highlighting zsh-autosuggestions; do
@@ -40,10 +42,17 @@ alias c=clear
 alias please=sudo
 alias fuck=killall
 alias paclist="paru -Qqs"
+alias pacfind="paru -Fy"
 function pacsize {
     paru -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
 }
 function pacclean { paru -Qtdq | paru -Rns -; }
+alias nixlist='home-manager packages'
+function nixfind {
+    nix-locate --color=always -t r -t x --top-level $@ |
+        sd '/nix/store/[^/]+' '' | sort
+}
+alias nixsize='nix-tree $HOME/.config/nixpkgs#homeConfigurations.joseph.activationPackage'
 alias nixclean="nix-collect-garbage -d"
 alias sc=systemctl
 alias music=ncmpcpp

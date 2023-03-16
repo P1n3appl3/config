@@ -7,5 +7,8 @@ zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path $HOME/.cache/zsh
 zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|=*' 'l:|=* r:|=*'
+
 autoload -U bashcompinit && bashcompinit
 autoload -U compinit && compinit
+
+FPATH="$FPATH:$HOME/.nix-profile/share/zsh/site-functions"
