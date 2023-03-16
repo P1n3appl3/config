@@ -43,6 +43,10 @@ modified = "  $count"
 staged = "  $count"
 renamed = ""
 deleted = " $count"
+
+[nix_shell]
+format = '$symbol'
+
 [package]
 disabled = true
 [rust]

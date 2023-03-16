@@ -80,16 +80,14 @@
     };
     pyWithDeps = python.withPackages ( p : with p; [ pyyaml std2 pynvim_pp ] );
   in pkgs.vimPlugins.coq_nvim.overrideAttrs ( prev: {
-    nativeBuildInputs = (prev.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
     postInstall = prev.postInstall + ''
       mkdir $out/.vars/runtime/bin -p
-      # Don't check that python lives inside the venv
+      # Don't check that python lives inside the venv, or that we used pip
       substituteInPlace $out/coq/__main__.py \
-        --replace '_IN_VENV = _RT_PY == _EXEC_PATH' _IN_VENV=True
+        --replace '_IN_VENV = _RT_PY == _EXEC_PATH' _IN_VENV=True \
+        --replace 'lock != _REQ' False
       # Don't use xdg dir for python
       substituteInPlace $out/lua/coq.lua --replace 'main(is_xdg)' 'main(false)'
-      # We handle dep installation
-      cp $out/requirements.txt $out/.vars/runtime/requirements.lock
       # This is where it looks for python
       ln -s ${pkgs.lib.getExe pyWithDeps} $out/.vars/runtime/bin/python3
       # Check that our versions match

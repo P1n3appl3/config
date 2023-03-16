@@ -6,23 +6,23 @@
   home.sessionVariables = {};
   home.packages = with pkgs; [
     # Shell
-    atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions
+    atuin starship zoxide direnv zsh-syntax-highlighting zsh-autosuggestions
     # Utils
-    fzf sysz ripgrep fd bat exa sd dog rm-improved ouch jq
+    fzf sysz ripgrep fd bat exa sd dogdns rm-improved ouch jq
     xh gh rbw hyperfine hexyl choose tokei git delta zellij rsync
     # System info
     ncdu duf du-dust htop lm_sensors bottom bandwhich usbtop procs powertop
     # Language tools
-    shfmt shellcheck stylua sumneko-lua-language-server
-    taplo rust-analyzer black pyright nil
+    shfmt shellcheck stylua sumneko-lua-language-server black pyright
+    taplo rust-analyzer clang-tools nil
     # Toolchain
-    rustup sccache ccache python3 mold lld bear gdb clang clang-tools llvm lldb
+    sccache ccache python3 mold bear rustup # gdb lldb
     # Cargo
     cargo-edit cargo-expand cargo-outdated cargo-udeps cargo-watch
     cargo-bloat cargo-flamegraph cargo-clone cargo-play
     # Nix
-    nix-output-monitor nix-tree
-  ];
+    nix nix-output-monitor nix-tree nix-direnv
+  ]; # ++ (with llvmPackages; [ (lib.hiPrio clang-unwrapped) bintools ]);
 
   imports = [ ./vim.nix ];
 
