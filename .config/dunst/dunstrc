@@ -6,7 +6,7 @@
     corner_radius = 8
     width = (0, 500)
 
-    font = monospace 12
+    font = sans 12
     markup = full
     icon_path = /usr/share/icons/papirus/32x32/status/:/usr/share/icons/papirus/32x32/devices/
     max_icon_size=32

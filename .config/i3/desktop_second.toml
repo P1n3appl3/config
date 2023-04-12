@@ -29,8 +29,4 @@ click = [{ cmd = "killall pavucontrol || pavucontrol &", button = "left" }]
 block = "time"
 format = " $timestamp.datetime(f:'%-I:%M%P') "
 interval = 3
-click = [
-  { button = "left", cmd = "~/.config/scripts/cal.sh curr" },
-  { button = "up", cmd = "~/.config/scripts/cal.sh next" },
-  { button = "down", cmd = "~/.config/scripts/cal.sh prev" },
-]
+click = [{ button = "left", cmd = "notify-send $(date +%D)" }]

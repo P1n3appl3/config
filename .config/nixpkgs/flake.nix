@@ -9,7 +9,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, nix-index-database, self }:
+  outputs = { nixpkgs, home-manager, flake-utils, nix-index-database, self } @ inputs:
   flake-utils.lib.eachDefaultSystem (system :
     let
       pkgs = nixpkgs.legacyPackages.${system};
@@ -21,6 +21,7 @@
             ./home.nix
             nix-index-database.hmModules.nix-index
           ];
+          extraSpecialArgs = { inherit inputs; };
         };
     }
   );

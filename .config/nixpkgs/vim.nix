@@ -8,6 +8,7 @@
       hop-nvim
       auto-session
       nvim-osc52
+      vim-fetch
       impatient-nvim
       vim-startuptime
       plenary-nvim
@@ -31,7 +32,7 @@
       vim-gn
       neodev-nvim
       rust-tools-nvim
-      # TODO: imsnif/kdl.vim
+      # TODO: imsnif/kdl.vim if it's better than treesitter
       # TODO: mfussenger/nvim-dap
     ];
   };
