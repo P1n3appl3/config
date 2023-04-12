@@ -1,4 +1,4 @@
--- NOTE: plugins are handled by nix. See ~/.config/nixpkgs/vim.nix
+-- NOTE: plugins are handled by nix, see ~/.config/nixpkgs/vim.nix
 
 require "impatient" -- TODO: disable once upstreamed
 

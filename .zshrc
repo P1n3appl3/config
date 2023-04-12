@@ -1,5 +1,4 @@
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+path=($HOME/.cargo/bin $HOME/.local/bin $path)
 
 # Load other configs
 my_configs=(keybinds completion fuzzy history terminal)
@@ -9,6 +8,7 @@ eval "$(atuin init zsh --disable-up-arrow)" # History
 eval "$(zoxide init zsh --cmd j)"           # Dir jumper
 eval "$(starship init zsh)"                 # Prompt
 eval "$(direnv hook zsh)"                   # Env vars
+eval "$(any-nix-shell zsh --info-right)"
 
 unset __HM_SESS_VARS_SOURCED
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
@@ -54,5 +54,6 @@ function nixfind {
 }
 alias nixsize='nix-tree $HOME/.config/nixpkgs#homeConfigurations.joseph.activationPackage'
 alias nixclean="nix-collect-garbage -d"
+function switch { home-manager switch --flake ~/.config/nixpkgs $@ |& nom; }
 alias sc=systemctl
 alias music=ncmpcpp

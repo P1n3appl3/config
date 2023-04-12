@@ -1,0 +1,6 @@
+# TODO: ctrl-backspace not working. probably crossterm issue
+# TODO: reverse order like fzf
+dialect = "us"
+style = "compact"
+inline_height = 25
+sync_frequency = "12h"
