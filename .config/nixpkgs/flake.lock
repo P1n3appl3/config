@@ -18,6 +18,24 @@
         "type": "github"
       }
     },
+    "flu": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1681202837,
+        "narHash": "sha256-H+Rh19JDwRtpVPAWp64F+rlEtxUWBAQW28eAi3SRSzg=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "cfacdce06f30d2b68473a46042957675eebb3401",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -59,6 +77,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1662587984,
+        "narHash": "sha256-fcfx8hEeAfQLzIQFy94/qADIHAhvDxk8t/QNJPXosy8=",
+        "owner": "rrbutani",
+        "repo": "nixos-hardware",
+        "rev": "0ac5732b0e4c8ca8287c3451f272c3c4b1bea8b0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rrbutani",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1681126633,
@@ -75,15 +109,59 @@
         "type": "github"
       }
     },
+    "rahul-config": {
+      "inputs": {
+        "darwin": [],
+        "flu": "flu",
+        "home-manager": [
+          "home-manager"
+        ],
+        "impermanence": [],
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "ragenix": []
+      },
+      "locked": {
+        "lastModified": 1662856717,
+        "narHash": "sha256-/LEU7vfWAXywpmG680i3477bCefsHm3qOUEmED9ssFY=",
+        "owner": "rrbutani",
+        "repo": "nix-config",
+        "rev": "10debc5e63422934977f879537b4555e6eda3288",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rrbutani",
+        "repo": "nix-config",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "rahul-config": "rahul-config"
       }
     },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

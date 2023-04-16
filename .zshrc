@@ -52,7 +52,7 @@ function nixfind {
     nix-locate --color=always -t r -t x --top-level $@ |
         sd '/nix/store/[^/]+' '' | sort
 }
-alias nixsize='nix-tree $HOME/.config/nixpkgs#homeConfigurations.joseph.activationPackage'
+alias nixsize='nix-tree /nix/var/nix/profiles/per-user/$USER/home-manager'
 alias nixclean="nix-collect-garbage -d"
 function switch { home-manager switch --flake ~/.config/nixpkgs $@ |& nom; }
 alias sc=systemctl
