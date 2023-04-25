@@ -59,8 +59,11 @@ _prompt_preexec() {
 zle-line-init() {
     print -nu "$_tty_fd" '\e[5 q' # line cursor
     echoti smkx
-} && zle -N zle-line-init
-zle-line-finish() { echoti rmkx; } && zle -N zle-line-finish
+}
+zle-line-finish() { echoti rmkx; }
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+    zle -N zle-line-init && zle -N zle-line-finish
+fi
 
 local is_ssh_session="n"
 if [[ -n "$KITTY_PID" ]]; then

@@ -5,8 +5,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     rahul-config.url = "github:rrbutani/nix-config";
     rahul-config.inputs = {
       nixpkgs.follows = "nixpkgs";

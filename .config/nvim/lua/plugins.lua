@@ -30,7 +30,7 @@ local coq = require "coq"
 require("neodev").setup {}
 local lspconfig = require "lspconfig"
 -- TODO: clang-tidy with user config, more file ext's, semantic highlighting
-local servers = { "clangd", "pyright", "lua_ls", "nil_ls" }
+local servers = { "clangd", "lua_ls", "nil_ls" } -- TODO: pylyzer
 for _, s in ipairs(servers) do
     lspconfig[s].setup(coq.lsp_ensure_capabilities {})
 end
@@ -50,7 +50,7 @@ require("rust-tools").setup(coq.lsp_ensure_capabilities {
 
 -- non-lsp linters
 local lint = require "lint"
-lint.linters_by_ft = { sh = { "shellcheck" } }
+lint.linters_by_ft = { sh = { "shellcheck" }, python = { "ruff" } }
 local lint_group = vim.api.nvim_create_augroup("lint_group", {})
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
     group = lint_group,
