@@ -1,5 +1,3 @@
-path=($HOME/.cargo/bin $HOME/.local/bin $path)
-
 # Load other configs
 my_configs=(keybinds completion fuzzy history terminal)
 for f in $my_configs; do source $HOME/.config/zsh/$f.zsh; done
@@ -7,11 +5,12 @@ for f in $my_configs; do source $HOME/.config/zsh/$f.zsh; done
 eval "$(atuin init zsh --disable-up-arrow)" # History
 eval "$(zoxide init zsh --cmd j)"           # Dir jumper
 eval "$(starship init zsh)"                 # Prompt
-eval "$(direnv hook zsh)"                   # Env vars
-eval "$(any-nix-shell zsh --info-right)"
+eval "$(direnv hook zsh)"
+eval "$(nix-your-shell zsh)"
 
-unset __HM_SESS_VARS_SOURCED
-source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
+# TODO: remove when MercuryTechnologies/nix-your-shell adds this
+export __ETC_PROFILE_NIX_SOURCED=1
+
 source $HOME/.nix-profile/share/fzf/completion.zsh
 for f in zsh-syntax-highlighting zsh-autosuggestions; do
     source $HOME/.nix-profile/share/$f/$f.zsh
@@ -20,8 +19,8 @@ done
 # Shortcuts for tweaking dotfiles
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vimconfig='vi $HOME/.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
-alias zshconfig='vi $HOME/.zshrc $HOME/.config/zsh/*'
-alias nixconfig='vi $HOME/.config/nixpkgs/{home.nix,*}'
+alias zshconfig='vi $HOME/{.zshrc,.zshenv,.config/zsh/*}'
+alias nixconfig='vi $HOME/.config/nixpkgs/{home.nix,*.*,pkgs/*}'
 alias i3config='vi $HOME/.config/i3/{config,*}'
 
 # Misc.

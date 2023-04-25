@@ -1,4 +1,4 @@
--- NOTE: plugins are handled by nix, see ~/.config/nixpkgs/vim.nix
+-- NOTE: plugin fetching is handled by nix, see ~/.config/nixpkgs/vim.nix
 
 require "impatient" -- TODO: disable once upstreamed
 
@@ -22,7 +22,7 @@ o.shortmess:append "cI"
 -- TODO: searching for string that's not present requires prompt with this?
 -- o.cmdheight = 0
 
--- vim.lsp.set_log_level "debug"
+-- vim.lsp.set_log_level "debug" -- TODO: prettier lsp log viewer
 vim.diagnostic.config { virtual_text = false, severity_sort = true }
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,

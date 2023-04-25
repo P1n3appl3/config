@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: let
+{ pkgs, ... }: let
   nvim_config = {
     enable = true; viAlias = true; vimAlias = true;
     withPython3 = true; withRuby = false;
@@ -19,7 +19,13 @@
       comment-nvim
       nvim-autopairs
       neoformat # TODO: nvim-format and use lsp when available
-      nvim-lspconfig
+      (nvim-lspconfig.overrideAttrs (prev: {
+        src = pkgs.fetchFromGitHub {
+          owner = "neovim"; repo = "nvim-lspconfig";
+          rev = "591d5038552c6cdf6cfc595bc351ccdbb8e62045";
+          hash = "sha256-9O+6MM71gtmPyOE3U4/mf2DXGol8OyvOVucFs260jm8=";
+        };})
+      )
       nvim-lint
       fidget-nvim
       coq_nvim coq-artifacts coq-thirdparty
@@ -39,8 +45,7 @@
   vim-gn = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "vim-gn";
     src = pkgs.fetchFromGitHub {
-      owner = "kalcutter";
-      repo = "vim-gn";
+      owner = "kalcutter"; repo = "vim-gn";
       rev = "7dd8d21ee42ce8ab999e0326e2c131132a6be8b8";
       hash = "sha256-yEMUc5dnkOd1F0/BSPn6o6Z+C29MdFTRB6W/cqmF5bw=";
     };
@@ -48,8 +53,7 @@
   nvim-treesitter-playground = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "nvim-treesitter-playground";
     src = pkgs.fetchFromGitHub {
-      owner = "nvim-treesitter";
-      repo = "playground";
+      owner = "nvim-treesitter"; repo = "playground";
       rev = "4044b53c4d4fcd7a78eae20b8627f78ce7dc6f56";
       hash = "sha256-e8wqVyXfZ8qmURbCO/4pOVDSSHZEaRTGZLK5ZEh0AIY=";
     };
@@ -59,8 +63,7 @@
     std2 = python.pkgs.buildPythonPackage {
       name = "std2";
       src = pkgs.fetchFromGitHub {
-        owner = "ms-jpq";
-        repo = "std2";
+        owner = "ms-jpq"; repo = "std2";
         rev = "963cf22346620926c0bd64f628ff4d8141123db5";
         hash = "sha256-drW7eZKE/NmVpkZfiA7nRlgUeqNNDnKA9h1qVADDZ/s=";
       };
@@ -70,8 +73,7 @@
     pynvim_pp = python.pkgs.buildPythonPackage {
       name = "pynvim_pp";
       src = pkgs.fetchFromGitHub {
-        owner = "ms-jpq";
-        repo = "pynvim_pp";
+        owner = "ms-jpq"; repo = "pynvim_pp";
         rev = "456765f6dc8cef6df39ae3e61c79585258d38517";
         hash = "sha256-edDDzxR60ILFbv1CnYGxW/sJDMeRIFPjmTeiMRdvA3k=";
       };
