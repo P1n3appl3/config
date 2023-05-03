@@ -7,7 +7,10 @@ require("fidget").setup { text = { spinner = "dots" } }
 require("gitsigns").setup { keymaps = {}, current_line_blame_opts = { delay = 100 } }
 -- stylua: ignore
 require("nvim-treesitter.configs").setup {
-    highlight = { enable = true, additional_vim_regex_highlighting = false },
+    highlight = {
+        enable = true, disable = { "python" },
+        additional_vim_regex_highlighting = false,
+    },
     textobjects = { select = { enable = true,
         keymaps = {
             ["af"] = "@function.outer",  ["if"] = "@function.inner",
@@ -30,11 +33,17 @@ local coq = require "coq"
 require("neodev").setup {}
 local lspconfig = require "lspconfig"
 -- TODO: clang-tidy with user config, more file ext's, semantic highlighting
-local servers = { "clangd", "lua_ls", "nil_ls" } -- TODO: pylyzer
+local servers = { "clangd", "lua_ls", "nil_ls", "pylsp" }
 for _, s in ipairs(servers) do
     lspconfig[s].setup(coq.lsp_ensure_capabilities {})
 end
--- TODO: try wgsl_analyzer
+
+-- TODO: maybe use dmypy?
+-- lspconfig.pylsp.setup(
+--     coq.lsp_ensure_capabilities {
+--         settings = { pylsp = { plugins = { pylsp_my_py = { dmypy = true } } } },
+--     }
+-- )
 
 local fuchsia = vim.startswith(vim.loop.cwd() or "", "/mnt/fuchsia")
 local fx_clippy = { overrideCommand = { "fx", "clippy", "--all", "--raw" } }

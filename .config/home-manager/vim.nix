@@ -28,7 +28,7 @@
       )
       nvim-lint
       fidget-nvim
-      coq_nvim coq-artifacts coq-thirdparty
+      coq_nvim coq-artifacts coq-thirdparty # TODO: can't ls/edit snippets?
       (nvim-treesitter.withPlugins (p: with p; [
         bash c cpp python rust lua zig kdl json toml json json5 
         make ninja dot nix latex html css typescript javascript
@@ -39,9 +39,10 @@
       neodev-nvim
       rust-tools-nvim
       # TODO: imsnif/kdl.vim if it's better than treesitter
-      # TODO: mfussenger/nvim-dap
+      # TODO: mfussenger/nvim-dap with lldb for rust
     ];
   };
+
   vim-gn = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "vim-gn";
     src = pkgs.fetchFromGitHub {

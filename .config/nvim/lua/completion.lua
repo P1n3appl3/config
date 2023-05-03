@@ -1,3 +1,4 @@
+-- TODO: auto-focus first mark for snippets: https://github.com/ms-jpq/coq_nvim/issues/465
 vim.g.coq_settings = {
     auto_start = "shut-up",
     xdg = true,
@@ -13,7 +14,7 @@ vim.g.coq_settings = {
 }
 
 local npairs = require "nvim-autopairs"
-npairs.setup()
+npairs.setup { map_bs = false, map_cr = false }
 _G.Util = {}
 
 Util.CR = function()
@@ -35,21 +36,15 @@ Util.BS = function()
     end
 end
 
-vim.api.nvim_set_keymap(
-    "i",
-    "<esc>",
-    [[pumvisible() ? "<C-e><esc>" : "<esc>"]],
-    { expr = true, noremap = true }
-)
-vim.api.nvim_set_keymap(
-    "i",
-    "<tab>",
-    [[pumvisible() ? "<C-n>" : "<tab>"]],
-    { expr = true, noremap = true }
-)
-vim.api.nvim_set_keymap("i", "<s-tab>", "<C-p>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<CR>", "v:lua.Util.CR()", { expr = true, noremap = true })
-vim.api.nvim_set_keymap("i", "<BS>", "v:lua.Util.BS()", { expr = true, noremap = true })
+local function inoremap(lhs, rhs)
+    vim.api.nvim_set_keymap("i", lhs, rhs, { expr = true, noremap = true })
+end
+inoremap("<ESC>", [[pumvisible() ? "<C-e><ESC>" : "<ESC>"]])
+inoremap("<C-c>", [[pumvisible() ? "<C-e><C-c>" : "<C-c>"]])
+inoremap("<tab>", [[pumvisible() ? "<C-n>" : "<tab>"]])
+inoremap("<s-tab>", [[pumvisible() ? "<C-p>" : "<NOP>"]])
+inoremap("<CR>", "v:lua.Util.CR()")
+inoremap("<BS>", "v:lua.Util.BS()")
 
 require "coq_3p" {
     { src = "nvimlua", short_name = "nLUA" },

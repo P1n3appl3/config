@@ -15,12 +15,14 @@
     # System info
     ncdu duf du-dust htop lm_sensors bottom bandwhich usbtop procs powertop
     # Language tools
-    python3 mold bear lldb clang-tools_14 lld_14 nil bloaty taplo 
-    shfmt shellcheck stylua sumneko-lua-language-server black ruff
+    (python3.withPackages (ps: with ps; 
+      [ python-lsp-server pylsp-mypy black ])) ruff
+    nil bloaty taplo bear mold # lld_14 lldb clang-tools_14 
+    shfmt shellcheck stylua sumneko-lua-language-server
     # Rust
     rustup rust-analyzer sccache (lib.lowPrio measureme)
     cargo-edit cargo-expand cargo-outdated cargo-udeps cargo-watch
-    cargo-bloat cargo-llvm-lines cargo-flamegraph cargo-clone cargo-play
+    cargo-clone cargo-play cargo-bloat cargo-llvm-lines # cargo-flamegraph
     # Nix
     nix nix-output-monitor nix-tree nix-direnv cachix
   ];
