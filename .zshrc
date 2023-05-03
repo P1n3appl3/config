@@ -20,7 +20,7 @@ done
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vimconfig='vi $HOME/.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
 alias zshconfig='vi $HOME/{.zshrc,.zshenv,.config/zsh/*}'
-alias nixconfig='vi $HOME/.config/nixpkgs/{home.nix,*.*,pkgs/*}'
+alias nixconfig='vi $HOME/.config/home-manager/{home.nix,*.*,pkgs/*}'
 alias i3config='vi $HOME/.config/i3/{config,*}'
 
 # Misc.
@@ -46,6 +46,7 @@ function pacsize {
     paru -Qi | awk '/^Name/{name=$3} /^Installed Size/{print $4$5, name}' | sort -h
 }
 function pacclean { paru -Qtdq | paru -Rns -; }
+alias hm=home-manager
 alias nixlist='home-manager packages'
 function nixfind {
     nix-locate --color=always -t r -t x --top-level $@ |
@@ -53,6 +54,6 @@ function nixfind {
 }
 alias nixsize='nix-tree /nix/var/nix/profiles/per-user/$USER/home-manager'
 alias nixclean="nix-collect-garbage -d"
-function switch { home-manager switch --flake ~/.config/nixpkgs $@ |& nom; }
+function switch { home-manager switch $@ |& nom; }
 alias sc=systemctl
 alias music=ncmpcpp

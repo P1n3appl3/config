@@ -18,6 +18,11 @@
       impermanence.follows = "";
     };
   };
+  nixConfig = {
+    extra-substituters = "https://pineapple.cachix.org";
+    extra-trusted-public-keys =
+      "pineapple.cachix.org-1:FjFjdb26PFCZL09M2yHiPw1J+c1Ab9AbpfnFeTpzNQk=";
+  };
 
   outputs = { nixpkgs, home-manager, flake-utils,
               nix-index-database, rahul-config, self } @ inputs:
