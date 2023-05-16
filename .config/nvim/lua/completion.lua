@@ -45,7 +45,3 @@ inoremap("<tab>", [[pumvisible() ? "<C-n>" : "<tab>"]])
 inoremap("<s-tab>", [[pumvisible() ? "<C-p>" : "<NOP>"]])
 inoremap("<CR>", "v:lua.Util.CR()")
 inoremap("<BS>", "v:lua.Util.BS()")
-
-require "coq_3p" {
-    { src = "nvimlua", short_name = "nLUA" },
-}

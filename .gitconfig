@@ -23,8 +23,6 @@
     pr = prune -v
     l = log --pretty=format:'%C(yellow)%h %Cred%as %Cblue%<(20,trunc)%an%Cgreen%d %Creset%s'
     vi = "!vi() { git diff ${@:-HEAD^} --name-only | xargs nvim; } ; vi"
-[feature]
-    manyFiles = true
 [push]
     default = matching
 [pager]

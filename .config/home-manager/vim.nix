@@ -9,7 +9,6 @@
       auto-session
       nvim-osc52
       vim-fetch
-      impatient-nvim
       vim-startuptime
       plenary-nvim
       # Pretty
@@ -28,7 +27,7 @@
       )
       nvim-lint
       fidget-nvim
-      coq_nvim coq-artifacts coq-thirdparty # TODO: can't ls/edit snippets?
+      coq_nvim coq-artifacts # TODO: can't ls/edit snippets? try cmp?
       (nvim-treesitter.withPlugins (p: with p; [
         bash c cpp python rust lua zig kdl json toml json json5 
         make ninja dot nix latex html css typescript javascript
@@ -59,6 +58,7 @@
       hash = "sha256-e8wqVyXfZ8qmURbCO/4pOVDSSHZEaRTGZLK5ZEh0AIY=";
     };
   };
+  # TODO: remove when https://github.com/NixOS/nixpkgs/pull/223056 lands
   coq_nvim = let 
     python = pkgs.python3;
     std2 = python.pkgs.buildPythonPackage {

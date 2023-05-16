@@ -11,18 +11,18 @@
     # Utils
     fzf sysz ripgrep fd bat exa sd dogdns rm-improved ouch jq
     xh gh rbw hyperfine hexyl choose tokei git delta zellij rsync
-    git-heatmap git-absorb lowcharts so
+    barchart git-heatmap git-absorb lowcharts so zstd util-linux
     # System info
-    ncdu duf du-dust htop lm_sensors bottom bandwhich usbtop procs powertop
+    htop lm_sensors bottom bandwhich usbtop procs powertop
+    # Storage
+    smartmontools btrfs-progs compsize duperemove btdu duf ncdu du-dust
     # Language tools
-    (python3.withPackages (ps: with ps; 
-      [ python-lsp-server pylsp-mypy black ])) ruff
-    nil bloaty taplo bear mold # lld_14 lldb clang-tools_14 
+    nil bloaty taplo bear mold ruff black pyright # lld_14 lldb clang-tools_14
     shfmt shellcheck stylua sumneko-lua-language-server
     # Rust
-    rustup rust-analyzer sccache (lib.lowPrio measureme)
-    cargo-edit cargo-expand cargo-outdated cargo-udeps cargo-watch
-    cargo-clone cargo-play cargo-bloat cargo-llvm-lines # cargo-flamegraph
+    rustup sccache (lib.lowPrio measureme)
+    cargo-edit cargo-expand cargo-udeps cargo-watch cargo-clone
+    cargo-play cargo-bloat cargo-llvm-lines # cargo-flamegraph
     # Nix
     nix nix-output-monitor nix-tree nix-direnv cachix
   ];
