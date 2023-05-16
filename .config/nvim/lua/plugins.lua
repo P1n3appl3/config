@@ -27,25 +27,30 @@ FZF.setup {
     files = { fd_opts = "-Htf --mount --color always" },
     grep = { rg_opts = "-S. --no-heading --color always" },
 }
-local coq = require "coq"
+vim.g.startuptime_exe_path = 'nvim'
 
 -- language server configuration
-require("neodev").setup {}
 local lspconfig = require "lspconfig"
--- TODO: clang-tidy with user config, more file ext's, semantic highlighting
-local servers = { "clangd", "lua_ls", "nil_ls", "pylsp" }
-for _, s in ipairs(servers) do
-    lspconfig[s].setup(coq.lsp_ensure_capabilities {})
-end
+local coq = require "coq"
+local function server(name, cfg) lspconfig[name].setup(coq.lsp_ensure_capabilities(cfg)) end
 
--- TODO: maybe use dmypy?
--- lspconfig.pylsp.setup(
---     coq.lsp_ensure_capabilities {
---         settings = { pylsp = { plugins = { pylsp_my_py = { dmypy = true } } } },
---     }
--- )
+server "clangd"
+server "nil_ls"
+server("pyright", {
+    settings = { python = { analysis = { diagnosticMode = "openFilesOnly" } } },
+})
 
-local fuchsia = vim.startswith(vim.loop.cwd() or "", "/mnt/fuchsia")
+require("neodev").setup {}
+server("lua_ls", {
+    settings = {
+        Lua = {
+            diagnostics = { globals = { "vim" } },
+            telemetry = { enable = false },
+        },
+    },
+})
+
+local fuchsia = string.find(vim.loop.cwd() or "", "/fuchsia")
 local fx_clippy = { overrideCommand = { "fx", "clippy", "--all", "--raw" } }
 local ra_settings = {
     checkOnSave = fuchsia and fx_clippy or { command = "clippy" },

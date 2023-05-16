@@ -3,8 +3,9 @@ give-me-a-ping-vasily() { # One Ping Only...
     ping -qc1 -W1 $1 2>&1 | awk -F'/' 'END{ print (/^rtt/? "OK "$5" ms":"FAIL") }'
 }
 
-path_add() { ((!$path[(Ie)$1])) && path=($1 $path); }
+path_add() { remove=($1); path=($1 ${path:|remove}); }
 
+path_add $HOME/.nix-profile/bin
 path_add $HOME/.local/bin
 path_add $HOME/.cargo/bin
 

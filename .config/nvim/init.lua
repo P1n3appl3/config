@@ -1,6 +1,5 @@
 -- NOTE: plugin fetching is handled by nix, see ~/.config/nixpkgs/vim.nix
-
-require "impatient" -- TODO: disable once upstreamed
+vim.loader.enable()
 
 -- general options
 local o = vim.opt

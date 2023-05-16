@@ -17,31 +17,39 @@ format = "[$symbol]($style)"
 
 [directory]
 style = "bold white"
-# truncation_symbol = "…/"
 
 [hostname]
-format = "[$hostname]($style):"
+format = "📡 "
+# format = "[$hostname]($style):"
 
 [cmd_duration]
 format = "[$duration]($style) "
 
 [git_branch]
-symbol = " " # 🌱
+format = "[$symbol$branch(:$remote_branch)]($style) "
+symbol = " "
+
+[git_commit]
+disabled = true
+
+[git_state]
+cherry_pick = '🍒-PICKING'
+
+[git_metrics]
+disabled = true
 
 [git_status]
-style = "purple"
+style = "bold purple"
 conflicted = "😠"
-ahead = " $count"
-behind = "  $count"
-diverged = " $count  $count"
-stashed = "  "
-untracked = "" # for performance
-# untracked = "  $count"
-modified = "  $count"
-staged = "  $count"
-renamed = ""
-deleted = " $count"
+modified = "±"
+deleted = "-"
+untracked = "?"
 
 [nix_shell]
 format = '$symbol'
 symbol = "❄️"
+
+[env_var.multifuchsia]
+variable = 'MULTIFUCHSIA_ENTER_ENV'
+format = "[$env_value]($style) "
+style = 'white bold dimmed'
