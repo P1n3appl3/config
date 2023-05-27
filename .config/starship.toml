@@ -33,7 +33,7 @@ symbol = " "
 disabled = true
 
 [git_state]
-cherry_pick = '🍒-PICKING'
+cherry_pick = '🍒 PICKING'
 
 [git_metrics]
 disabled = true

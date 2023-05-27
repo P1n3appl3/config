@@ -4,13 +4,7 @@
     withPython3 = true; withRuby = false;
     plugins = with pkgs.vimPlugins; [
       # General
-      fzf-lua
-      hop-nvim
-      auto-session
-      nvim-osc52
-      vim-fetch
-      vim-startuptime
-      plenary-nvim
+      fzf-lua hop-nvim auto-session nvim-osc52 vim-fetch vim-startuptime plenary-nvim
       # Pretty
       lush-nvim nvim-colorizer-lua gitsigns-nvim nvim-web-devicons
       # Programming
@@ -18,13 +12,7 @@
       comment-nvim
       nvim-autopairs
       neoformat # TODO: nvim-format and use lsp when available
-      (nvim-lspconfig.overrideAttrs (prev: {
-        src = pkgs.fetchFromGitHub {
-          owner = "neovim"; repo = "nvim-lspconfig";
-          rev = "591d5038552c6cdf6cfc595bc351ccdbb8e62045";
-          hash = "sha256-9O+6MM71gtmPyOE3U4/mf2DXGol8OyvOVucFs260jm8=";
-        };})
-      )
+      nvim-lspconfig
       nvim-lint
       fidget-nvim
       coq_nvim coq-artifacts # TODO: can't ls/edit snippets? try cmp?
@@ -41,7 +29,14 @@
       # TODO: mfussenger/nvim-dap with lldb for rust
     ];
   };
-
+  # TODO: remove once nixpkgs updates
+  fzf-lua = pkgs.vimPlugins.fzf-lua.overrideAttrs (self: {
+    src = pkgs.fetchFromGitHub {
+      owner = "ibhagwan"; repo = self.pname;
+      rev = "bc5110738d44c16655cf1b23534343aaade855a2";
+      hash = "sha256-7QiUTTfCCfjnWDC9MxZOdU9zIQ24Xm9OgfHG8FoRDoI=";
+    };
+  });
   vim-gn = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "vim-gn";
     src = pkgs.fetchFromGitHub {
@@ -58,46 +53,4 @@
       hash = "sha256-e8wqVyXfZ8qmURbCO/4pOVDSSHZEaRTGZLK5ZEh0AIY=";
     };
   };
-  # TODO: remove when https://github.com/NixOS/nixpkgs/pull/223056 lands
-  coq_nvim = let 
-    python = pkgs.python3;
-    std2 = python.pkgs.buildPythonPackage {
-      name = "std2";
-      src = pkgs.fetchFromGitHub {
-        owner = "ms-jpq"; repo = "std2";
-        rev = "963cf22346620926c0bd64f628ff4d8141123db5";
-        hash = "sha256-drW7eZKE/NmVpkZfiA7nRlgUeqNNDnKA9h1qVADDZ/s=";
-      };
-      format = "pyproject";
-      nativeBuildInputs = [ python.pkgs.setuptools ];
-    };
-    pynvim_pp = python.pkgs.buildPythonPackage {
-      name = "pynvim_pp";
-      src = pkgs.fetchFromGitHub {
-        owner = "ms-jpq"; repo = "pynvim_pp";
-        rev = "456765f6dc8cef6df39ae3e61c79585258d38517";
-        hash = "sha256-edDDzxR60ILFbv1CnYGxW/sJDMeRIFPjmTeiMRdvA3k=";
-      };
-      format = "pyproject";
-      nativeBuildInputs = [ python.pkgs.setuptools ];
-      propagatedBuildInputs = [ python.pkgs.msgpack ];
-    };
-    pyWithDeps = python.withPackages ( p : with p; [ pyyaml std2 pynvim_pp ] );
-  in pkgs.vimPlugins.coq_nvim.overrideAttrs ( prev: {
-    postInstall = prev.postInstall + ''
-      mkdir $out/.vars/runtime/bin -p
-      # Don't check that python lives inside the venv, or that we used pip
-      substituteInPlace $out/coq/__main__.py \
-        --replace '_IN_VENV = _RT_PY == _EXEC_PATH' _IN_VENV=True \
-        --replace 'lock != _REQ' False
-      # Don't use xdg dir for python
-      substituteInPlace $out/lua/coq.lua --replace 'main(is_xdg)' 'main(false)'
-      # This is where it looks for python
-      ln -s ${pkgs.lib.getExe pyWithDeps} $out/.vars/runtime/bin/python3
-      # Check that our versions match
-      { grep ${std2.src.rev} requirements.txt -q &&
-      grep ${pynvim_pp.src.rev} requirements.txt -q; } ||
-      { echo -e "\e[48;5;9mupdate ur hashes guy\e[0m"; exit 314; }
-    '';
-  });
   in { programs.neovim = nvim_config; }

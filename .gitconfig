@@ -21,8 +21,10 @@
     fu = fetch upstream
     ls = ls-files
     pr = prune -v
-    l = log --pretty=format:'%C(yellow)%h %Cred%as %Cblue%<(20,trunc)%an%Cgreen%d %Creset%s'
+    l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%<(12,mtrunc)%an%Cgreen%d %Creset%<(60,trunc)%s'
     vi = "!vi() { git diff ${@:-HEAD^} --name-only | xargs nvim; } ; vi"
+[log]
+    date=format:%-m/%-d/%y
 [push]
     default = matching
 [pager]
