@@ -20,7 +20,7 @@ done
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vimconfig='vi $HOME/.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
 alias zshconfig='vi $HOME/{.zshrc,.zshenv,.config/zsh/*}'
-alias nixconfig='vi $HOME/.config/home-manager/{home.nix,**/*.*}'
+alias nixconfig='vi $HOME/.config/home-manager/{home.nix,**/*.nix}'
 alias i3config='vi $HOME/.config/i3/{config,*}'
 
 # Misc.
@@ -28,6 +28,9 @@ unsetopt flowcontrol
 setopt no_case_glob
 WORDCHARS='_.$<>'
 TIMEFMT=$'\nreal\t%*E s\nuser\t%*U s\nsys\t%*S s\ncpu\t%P\nmem\t%M MB\nfaults\t%F'
+export TIME="\nreal\t%e\nuser\t%U\nsys\t%S\ncpu\t%P\nmem\t%M\nfaults\t(%F+%R)\nswaps\t%W"
+# TODO: less termcap colors for man
+export MANPAGER='less -M +Gg'
 
 alias cat=bat
 alias dig=dog

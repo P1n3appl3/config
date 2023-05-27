@@ -3,6 +3,7 @@
   home.homeDirectory = "/home/joseph";
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
+  targets.genericLinux.enable = true;
 
   home.packages = with pkgs; [
     # Shell
@@ -12,6 +13,7 @@
     fzf sysz ripgrep fd bat exa sd dogdns rm-improved ouch jq
     xh gh rbw hyperfine hexyl choose tokei git delta zellij rsync
     barchart git-heatmap git-absorb lowcharts so zstd util-linux
+    trippy blahaj lolcat fortune cowsay
     # System info
     htop lm_sensors bottom bandwhich usbtop procs powertop
     # Storage
@@ -21,10 +23,10 @@
     shfmt shellcheck stylua sumneko-lua-language-server
     # Rust
     rustup sccache (lib.lowPrio measureme)
-    cargo-edit cargo-expand cargo-udeps cargo-watch cargo-clone
+    cargo-edit cargo-expand cargo-udeps cargo-watch cargo-clone-crate
     cargo-play cargo-bloat cargo-llvm-lines # cargo-flamegraph
     # Nix
-    nix nix-output-monitor nix-tree nix-direnv cachix
+    nix nix-output-monitor nix-tree nix-direnv cachix nurl
   ];
 
   imports = [
@@ -39,8 +41,8 @@
   ];
 
   nixpkgs.overlays = [ (final: prev: {
-    fzf = prev.fzf.overrideAttrs ( prev: { # patch out perl dep
-      postInstall = prev.postInstall + "rm $out/share/fzf/key-bindings.bash";
+    fzf = prev.fzf.overrideAttrs ( self: { # patch out perl dep
+      postInstall = self.postInstall + "rm $out/share/fzf/key-bindings.bash";
     });
   })];
 
