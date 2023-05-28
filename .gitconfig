@@ -7,22 +7,21 @@
     autocrlf = input
     pager = delta
 [alias]
-    a = add
     b = branch
     s = status
-    changed = diff --stat HEAD~1
     c = commit --verbose
     ca = commit -a --verbose
     cm = commit -m
     cam = commit -a -m
     d = diff
-    f = fetch
-    fo = fetch origin
-    fu = fetch upstream
+    f = fetch --all
     ls = ls-files
-    pr = prune -v
-    l = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%<(12,mtrunc)%an%Cgreen%d %Creset%<(60,trunc)%s'
+    ll = "!log() { GIT_PAGER='less -+X' git log \
+--pretty=format:\"%C(yellow)%h %Cred%ad %Cblue%<(14,mtrunc)%an%Cgreen%d \
+%Creset%<($((`tput cols` - 35)),trunc)%s\" $@; } ; log"
+    l = ll -n 20
     vi = "!vi() { git diff ${@:-HEAD^} --name-only | xargs nvim; } ; vi"
+    changed = diff --stat HEAD~1
 [log]
     date=format:%-m/%-d/%y
 [push]

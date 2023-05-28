@@ -6,8 +6,8 @@ give-me-a-ping-vasily() { # One Ping Only...
 path_add() { remove=($1); path=($1 ${path:|remove}); }
 
 path_add $HOME/.nix-profile/bin
-path_add $HOME/.local/bin
 path_add $HOME/.cargo/bin
+path_add $HOME/.local/bin
 
 unset __HM_SESS_VARS_SOURCED
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh

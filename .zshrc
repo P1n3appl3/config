@@ -27,10 +27,10 @@ alias i3config='vi $HOME/.config/i3/{config,*}'
 unsetopt flowcontrol
 setopt no_case_glob
 WORDCHARS='_.$<>'
-TIMEFMT=$'\nreal\t%*E s\nuser\t%*U s\nsys\t%*S s\ncpu\t%P\nmem\t%M MB\nfaults\t%F'
-export TIME="\nreal\t%e\nuser\t%U\nsys\t%S\ncpu\t%P\nmem\t%M\nfaults\t(%F+%R)\nswaps\t%W"
-# TODO: less termcap colors for man
-export MANPAGER='less -M +Gg'
+TIMEFMT=$'\nreal\t%E\ntime\t%U / %S\ncpu\t%P\nmem\t%M KB
+faults\t%F / %R\nwaits\t%c / %w'
+export TIME=$TIMEFMT
+export MANPAGER='less -M -j5 +Gg'
 
 alias cat=bat
 alias dig=dog
