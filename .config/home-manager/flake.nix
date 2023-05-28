@@ -17,6 +17,9 @@
       darwin.follows = "";
       impermanence.follows = "";
     };
+    vim-plugins.url = "path:./generated-vim";
+    vim-plugins.inputs.nixpkgs.follows = "nixpkgs";
+    vim-plugins.inputs.flake-utils.follows = "flake-utils";
   };
   nixConfig = {
     extra-substituters = "https://pineapple.cachix.org";
@@ -25,16 +28,14 @@
   };
 
   outputs = { nixpkgs, home-manager, flake-utils,
-              nix-index-database, rahul-config, self } @ inputs:
+              nix-index-database, rahul-config, vim-plugins, self } @ inputs:
   let 
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
   in
     (flake-utils.lib.eachDefaultSystem (system :
       let
         pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-      in {
-        legacyPackages.homeConfigurations.joseph = 
-          home-manager.lib.homeManagerConfiguration {
+        config = home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             modules = [ 
               ./home.nix
@@ -42,11 +43,18 @@
             ];
             extraSpecialArgs = { inherit inputs; };
           };
-
+      in {
+        legacyPackages.homeConfigurations.joseph = config;
         packages = listDir {of = ./pkgs; mapFunc = n: _: pkgs.${n};};
-
+        apps.generateVimPlugins = let
+          script = import ./foo.nix (config.config.myVimPlugins // {inherit pkgs;});
+        in
+          {type="app"; program=pkgs.lib.getExe (pkgs.writeScriptBin "echo" ''
+        cat ${script}
+        '');};
       }
-      )) // {
+      )) 
+      // {
         overlays.default = final: _: listDir
           {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};
     };
