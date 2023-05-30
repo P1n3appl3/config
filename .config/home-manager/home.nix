@@ -10,7 +10,7 @@
     fzf sysz ripgrep fd bat exa sd dogdns rm-improved ouch jq
     xh gh rbw hyperfine hexyl choose tokei git delta zellij rsync
     barchart git-heatmap git-absorb lowcharts so zstd util-linux
-    trippy blahaj lolcat fortune cowsay asciinema
+    trippy asciinema
     # TODO: git frontend like tig/gitui/lazygit
     # System info
     htop lm_sensors bottom bandwhich usbtop procs powertop
@@ -24,12 +24,13 @@
     cargo-edit cargo-expand cargo-udeps cargo-watch cargo-clone-crate
     cargo-play cargo-bloat cargo-llvm-lines
     # Nix
-    nix home-manager nix-output-monitor nix-tree nix-direnv cachix nurl
+    nix home-manager nix-output-monitor nix-tree nix-direnv cachix
+    # Fun
+    blahaj gay (lib.lowPrio lolcat) lolcat-rust lolcrab dotacat fortune cowsay
+    globe-cli neo tmatrix ascii-rain sl pipes tty-clock
   ];
 
   imports = [
-    ./vim.nix
-
     (let # use a minimal locale-archive without the full 200MB of locales
       a = lib.mkForce "${pkgs.glibcLocalesUtf8}/lib/locale/locale-archive";
     in {
@@ -44,6 +45,12 @@
       postInstall = self.postInstall + "rm $out/share/fzf/key-bindings.bash";
     });
   })];
+
+  programs.neovim = {
+    enable = true; viAlias = true; vimAlias = true;
+    withPython3 = true; withRuby = false;
+    plugins = with pkgs.vimPlugins; [ lazy-nvim ];
+  };
 
   # use the nixpkgs version from this flake for my nixpkgs channel (for things
   # like `nix-shell`) and registry (for things like `nix shell`)
