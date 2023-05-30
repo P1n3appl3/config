@@ -48,6 +48,7 @@ untracked = "?"
 [nix_shell]
 format = '$symbol'
 symbol = "❄️"
+heuristic = true
 
 [env_var.multifuchsia]
 variable = 'MULTIFUCHSIA_ENTER_ENV'

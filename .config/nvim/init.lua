@@ -1,7 +1,5 @@
--- NOTE: plugin fetching is handled by nix, see ~/.config/nixpkgs/vim.nix
-vim.loader.enable()
-
 -- general options
+vim.g.mapleader = " "
 local o = vim.opt
 o.gdefault = true
 o.ignorecase = true
@@ -18,7 +16,7 @@ o.mousemodel = "extend"
 o.scrolloff = 7
 o.wildignore = { "*.o", "*.obj", "*.pyc" }
 o.shortmess:append "cI"
--- TODO: searching for string that's not present requires prompt with this?
+-- https://github.com/neovim/neovim/issues/20380
 -- o.cmdheight = 0
 
 -- vim.lsp.set_log_level "debug" -- TODO: prettier lsp log viewer
@@ -29,10 +27,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 -- my other configs
-vim.cmd [[colorscheme custom]]
+require "plugins"
 require "pretty"
 require "completion"
-require "plugins"
 require "keybinds"
 
 -- debug
@@ -42,4 +39,3 @@ vim.cmd [[ function! SynGroup()
 endfun ]] -- TODO: if synID returns 0 call TSCaptureUnderCursor
 vim.api.nvim_create_user_command("SynGroup", "call SynGroup()", {})
 vim.api.nvim_create_user_command("Reload", "so $MYVIMRC", {})
-

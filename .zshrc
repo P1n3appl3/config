@@ -6,10 +6,6 @@ eval "$(atuin init zsh --disable-up-arrow)" # History
 eval "$(zoxide init zsh --cmd j)"           # Dir jumper
 eval "$(starship init zsh)"                 # Prompt
 eval "$(direnv hook zsh)"
-eval "$(nix-your-shell zsh)"
-
-# TODO: remove when MercuryTechnologies/nix-your-shell adds this
-export __ETC_PROFILE_NIX_SOURCED=1
 
 source $HOME/.nix-profile/share/fzf/completion.zsh
 for f in zsh-syntax-highlighting zsh-autosuggestions; do

@@ -1,0 +1,33 @@
+{
+    "workspace.library": [
+        "/nix/store/dg0pk709i2zjq1sxdmlfddad2npagzar-vimplugin-neodev.nvim-2023-04-03/types/stable",
+        "/nix/store/5djwn4a5qnz51qgmc1y7imsi7ww5d98h-neovim-unwrapped-0.8.3/share/nvim/runtime/lua",
+        "/nix/store/0bpp12np8zgs0rr4fah1zjs8j2cx544q-vimplugin-auto-session-2023-03-10/lua",
+        "/nix/store/ms93sa4yz2jy9jj2kczs6ksr9lylm6n5-vimplugin-comment.nvim-2023-03-10/lua",
+        "/nix/store/hr0y3jmyi8yxla6r64vswrl2618lwn4i-vimplugin-coq.thirdparty-2023-04-02/lua",
+        "/nix/store/8b0rm96pvmsd6gb6cwsh4sldkdrcymqf-vimplugin-coq_nvim-2023-04-02/lua",
+        "/nix/store/bxryc9v9r9y3hal0a8vsf9818ii5kj54-vimplugin-fidget.nvim-2023-03-27/lua",
+        "/nix/store/gi14z7z6156m1wx2a0g3hryr8dacf1xw-vimplugin-fzf-lua-2023-04-04/lua",
+        "/nix/store/6zygrsa4klpzi9ja8wc54bcllw0lgylp-luascm.1-gitsigns.nvim-2023-04-04/lua",
+        "/nix/store/wl0pgfg1cmff7ncl9xrgzp288k5psw7n-vimplugin-hop.nvim-2022-10-30/lua",
+        "/nix/store/981alc5nw0sjsryadsvf6arvcvgg2aji-vimplugin-impatient.nvim-2022-12-28/lua",
+        "/nix/store/wivyghpa1dzzw61lp8pp3zc1lp79smmf-luascm.1-lush.nvim-2023-04-02/lua",
+        "/nix/store/dg0pk709i2zjq1sxdmlfddad2npagzar-vimplugin-neodev.nvim-2023-04-03/lua",
+        "/nix/store/kchda0nz5qd1qqqd3f546byimlr5lvp7-vimplugin-nvim-autopairs-2023-03-26/lua",
+        "/nix/store/263ald82mw5nx2g2xfml6l9fds8ydzq2-vimplugin-nvim-colorizer.lua-2023-02-27/lua",
+        "/nix/store/bm9xd92j4li96jhdhgxkbf5m4llc17zz-vimplugin-nvim-lint-2023-04-03/lua",
+        "/nix/store/a4jasivf8md1d1ahhkyb4khi6yiwgl3c-vimplugin-nvim-lspconfig-2023-04-02/lua",
+        "/nix/store/cvwbn3v7syck4scgjvvjfrhl37zc7322-vimplugin-nvim-osc52-2023-03-03/lua",
+        "/nix/store/g2d4fj2lr4dcq4h1sj5ly27cwirnhxj8-vimplugin-nvim-surround-2023-04-02/lua",
+        "/nix/store/nal0g4c3cfadsvd3rmnavanqm5m8yqlm-vimplugin-nvim-treesitter-2023-04-04/lua",
+        "/nix/store/sk6i7v5k8dwzbfmbzb3ywxagg5zlk734-vimplugin-nvim-treesitter-context-2023-04-04/lua",
+        "/nix/store/7sgchr9hz81dlvvi97pmnjlxfzxf9i1x-vimplugin-nvim-treesitter-textobjects-2023-03-27/lua",
+        "/nix/store/0x8q5iaqs3wzn0zwkza4fyk6x466g1v7-vimplugin-nvim-web-devicons-2023-04-03/lua",
+        "/nix/store/40g2gvxdpg73j5rq6kdrcl9vxviivid4-luascm.1-plenary.nvim-2023-02-19/lua",
+        "/nix/store/bwi2w2fgx5gip3sav0n3485m5i35kgma-vimplugin-rust-tools.nvim-2023-02-20/lua",
+        "/nix/store/dhlnp8b2qi71szvi9k12gk0jx0kmdwkm-vimplugin-vim-startuptime-2023-02-01/lua",
+        "/nix/store/4qln3pchqybs4w3y445kmscdplm9dgvh-vimplugin-nvim-treesitter-playground/lua",
+        "/usr/local/google/home/josephry/.config/nvim/lua",
+        "${3rd}/luv/library"
+    ]
+}

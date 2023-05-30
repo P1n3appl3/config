@@ -1,4 +1,4 @@
 indent_type = "Spaces"
-column_width = 95
+column_width = 92
 no_call_parentheses = true
 collapse_simple_statement = "Always"

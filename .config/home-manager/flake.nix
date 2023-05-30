@@ -17,9 +17,6 @@
       darwin.follows = "";
       impermanence.follows = "";
     };
-    vim-plugins.url = "path:./generated-vim";
-    vim-plugins.inputs.nixpkgs.follows = "nixpkgs";
-    vim-plugins.inputs.flake-utils.follows = "flake-utils";
   };
   nixConfig = {
     extra-substituters = "https://pineapple.cachix.org";
@@ -28,7 +25,7 @@
   };
 
   outputs = { nixpkgs, home-manager, flake-utils,
-              nix-index-database, rahul-config, vim-plugins, self } @ inputs:
+              nix-index-database, rahul-config, self } @ inputs:
   let 
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
   in
@@ -46,12 +43,6 @@
       in {
         legacyPackages.homeConfigurations.joseph = config;
         packages = listDir {of = ./pkgs; mapFunc = n: _: pkgs.${n};};
-        apps.generateVimPlugins = let
-          script = import ./foo.nix (config.config.myVimPlugins // {inherit pkgs;});
-        in
-          {type="app"; program=pkgs.lib.getExe (pkgs.writeScriptBin "echo" ''
-        cat ${script}
-        '');};
       }
       )) 
       // {

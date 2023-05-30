@@ -1,6 +1,8 @@
 -- TODO: trailing whitespace and mixed indent alert (obviated by formatters?)
 
-require("colorizer").setup()
+vim.cmd [[colorscheme custom]]
+
+require("colorizer").setup { user_default_options = { names = false } }
 
 -- highlight on yank or lsp references
 local general = vim.api.nvim_create_augroup("general", {})
@@ -23,6 +25,7 @@ vim.api.nvim_create_autocmd(
 )
 
 -- status line
+
 local icons = {
     Hint = "",
     Info = "",
@@ -72,15 +75,19 @@ local function git()
     return "%#SignColumn# " .. table.concat(t, " ") .. " "
 end
 
-local function modcol() return vim.o.modified and "%#StatusLineModified#" or "%#Normal#" end
+local function modified() return vim.o.modified and "%#StatusLineModified#" or "%#Normal#" end
 
 local line_col = " %l:%-2c "
 local file = " %f "
 local fill = "%="
+local reset = "%*"
 
 StatusLine = {
     active = function()
-        return table.concat { readonly(), file, git(), modcol(), fill, lsp(), "%*", line_col }
+        return table.concat {
+            readonly(), file, git(), modified(),
+            fill, lsp(), reset, line_col,
+        }
     end,
     inactive = function() return table.concat { file, fill, line_col } end,
 }
