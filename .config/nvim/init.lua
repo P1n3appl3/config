@@ -1,5 +1,6 @@
 -- general options
 vim.g.mapleader = " "
+vim.g.loaded_perl_provider = 0
 local o = vim.opt
 o.gdefault = true
 o.ignorecase = true
@@ -26,16 +27,30 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     { signs = true, underline = true, update_in_insert = false }
 )
 
--- my other configs
+-- my config
+require "completion"
 require "plugins"
 require "pretty"
-require "completion"
 require "keybinds"
 
 -- debug
-vim.cmd [[ function! SynGroup()
-    let l:s = synID(line('.'), col('.'), 1)
-    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
-endfun ]] -- TODO: if synID returns 0 call TSCaptureUnderCursor
-vim.api.nvim_create_user_command("SynGroup", "call SynGroup()", {})
+vim.api.nvim_create_user_command("SynGroup", function()
+    local function findRoot(id, tree)
+        local transId = vim.fn.synIDtrans(id)
+        local name = vim.fn.synIDattr(id, "name")
+        table.insert(tree, name)
+        if id == transId then
+            if #tree > 0 then
+                print(table.concat(tree, " -> "))
+            else
+                vim.cmd "TSCaptureUnderCursor"
+            end
+        else
+            findRoot(transId, tree)
+        end
+    end
+
+    local id = vim.fn.synID(vim.fn.line ".", vim.fn.col ".", 0)
+    findRoot(id, {})
+end, {})
 vim.api.nvim_create_user_command("Reload", "so $MYVIMRC", {})

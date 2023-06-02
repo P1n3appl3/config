@@ -29,7 +29,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 -- TODO: alt+hjkl to navigate TS nodes (ctrl+alt to swap)
--- TODO: visual mode i/o to narrow/expand by TS nodes
 -- try ziontee113/SelectEase or ziontee113/syntax-tree-surfer
 
 local wk = require "which-key"
@@ -76,7 +75,7 @@ wk.register({
         b = { GITS.toggle_current_blame_line, "Blame" },
         n = { GITS.next_hunk, "Next Hunk" },
         N = { GITS.previous_hunk, "Prev Hunk" },
-        h = { GITS.show_hunk, "Show Hunk" },
+        h = { GITS.preview_hunk_inline, "Show Hunk" },
         s = { GITS.stage_hunk, "Stage Hunk" },
         u = { GITS.unstage_hunk, "Unstage Hunk" },
     },
@@ -91,7 +90,7 @@ wk.register({
     s = { FZF.spell_suggest, "Spelling" },
     l = { FZF.lines, "Search Lines" },
     h = { FZF.help_tags, "Help" },
-}, { prefix = "<leader>" })
+}, { prefix = "<space>" })
 
 local fzf_g = function(command)
     return function() FZF["lsp_" .. command] { jump_to_single_result = true } end
@@ -106,5 +105,4 @@ wk.register({
 
 wk.register({
     [","] = { ",", "Last match" },
-    ["="] = { ":Neoformat<CR>", "Format" },
-}, { noremap = true })
+}, { prefix = "," })

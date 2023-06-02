@@ -1,15 +1,15 @@
--- TODO: trailing whitespace and mixed indent alert (obviated by formatters?)
+-- TODO: trailing whitespace and mixed indent highlights (obviated by formatters?)
 
 vim.cmd [[colorscheme custom]]
 
-require("colorizer").setup { user_default_options = { names = false } }
-
--- highlight on yank or lsp references
+-- highlight on yank
 local general = vim.api.nvim_create_augroup("general", {})
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = general,
     callback = function() vim.highlight.on_yank { timeout = 150 } end,
 })
+
+-- highlight lsp references
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
     group = general,
     callback = function()
