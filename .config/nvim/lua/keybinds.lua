@@ -92,7 +92,7 @@ wk.register({
     h = { FZF.help_tags, "Help" },
 }, { prefix = "<space>" })
 
-local fzf_g = function(command)
+local function fzf_g(command)
     return function() FZF["lsp_" .. command] { jump_to_single_result = true } end
 end
 wk.register({

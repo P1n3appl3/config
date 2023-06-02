@@ -31,10 +31,8 @@ mkdir -p .ssh
 rbw config set email josephryan3.14@gmail.com
 rbw get ssh_private >.ssh/id_rsa
 rbw get ssh_public >.ssh/id_rsa.pub
-# TODO: replace xprofile with .config/environment.d once supported
 echo export OPENWEATHERMAP_API_KEY=$(rbw get openweathermap) \
     >>.xprofile
-# TODO: lastpass with attachment downloading michaelfbryan for gpg
 cat >>.xprofile <<EOF
 # export QT_QPA_PLATFORM=wayland
 # export MOZ_ENABLE_WAYLAND=1

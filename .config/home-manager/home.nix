@@ -29,8 +29,7 @@
   ];
 
   nixpkgs.overlays = [ (final: prev: {
-    # TODO: remove if https://github.com/junegunn/fzf/pull/3295 lands
-    fzf = prev.fzf.overrideAttrs ( self: { # patch out perl dep
+    fzf = prev.fzf.overrideAttrs ( self: { # TODO: remove once perl is gone
       postInstall = self.postInstall + "rm $out/share/fzf/key-bindings.bash";
     });
   })];
@@ -44,7 +43,7 @@
         bash c cpp python rust lua zig kdl json toml json json5 
         make ninja dot nix latex html css typescript javascript
       ]))
-      nvim-treesitter-textobjects
+      nvim-treesitter-textobjects nvim-treesitter-context
       coq_nvim coq-artifacts
     ];
   };

@@ -16,9 +16,9 @@
     d = diff
     f = fetch --all
     ls = ls-files
-    ll = "!log() { GIT_PAGER='less -+X' git log \
---pretty=format:\"%C(yellow)%h %Cred%ad %Cblue%<(14,mtrunc)%an%Cgreen%d \
-%Creset%<($((`tput cols` - 36)),trunc)%s\" $@; } ; log"
+    ll = "!log() { GIT_PAGER='less -+X' git log --pretty=\
+format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
+%Creset%<|(-1,trunc)%s\" $@; } ; log"
     l = ll -n 20
     vi = "!vi() { git diff ${@:-HEAD^} --name-only | xargs nvim; } ; vi"
     changed = diff --stat HEAD~1

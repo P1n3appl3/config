@@ -4,7 +4,7 @@ vim.g.coq_settings = {
     xdg = true,
     keymap = { recommended = false },
     display = {
-        icons = { mode = "short" }, -- TODO: pick better icons
+        icons = { mode = "short" },
         pum = {
             fast_close = false,
             kind_context = { "", "" },
