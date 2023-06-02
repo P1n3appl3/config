@@ -37,7 +37,7 @@ bindsym XF86AudioPlay $run mpc toggle
 bindsym XF86AudioNext $run mpc next
 bindsym Shift+Print $run ~/.config/scripts/screenshot.sh
 bindsym Print $run ~/.config/scripts/screenshot.sh s
-# TODO: color picker to clipboard
+# TODO: color dropper to clipboard
 
 # Run stuff
 bindsym $mod+r $run rofi -show drun

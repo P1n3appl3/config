@@ -1,8 +1,6 @@
 local lush = require "lush"
 local c = lush.hsl
--- use :SynGroup for debugging
--- :lua require('lush').export_to_buffer(require('my_colors'))
-
+-- use :Lushify and :Inspect for debugging
 -- stylua: ignore start
 local light0 = c "#fbf1c7"
 local light1 = c "#ebdbb2"
