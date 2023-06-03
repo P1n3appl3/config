@@ -1,152 +1,94 @@
-local nix_rtp = vim.api.nvim_list_runtime_paths()[1] .. "/pack/myNeovimPackages/start/"
-local function nix_plugin(name, extra)
-    local t = extra or {}
-    t.dir = nix_rtp .. name
-    return t
-end
+-- General
 
-local plugin_map = {
-    -- General
-
-    ["ibhagwan/fzf-lua"] = {
-        opts = {
-            preview_layout = "vertical",
-            preview_vertical = "up",
-            keymap = {
-                fzf = { ["ctrl-u"] = "half-page-up", ["ctrl-d"] = "half-page-down" },
-            },
-            files = { fd_opts = "-Htf --mount --color always" },
-            grep = { rg_opts = "-S. --no-heading --color always" },
-        },
+require("fzf-lua").setup {
+    preview_layout = "vertical",
+    preview_vertical = "up",
+    keymap = {
+        fzf = { ["ctrl-u"] = "half-page-up", ["ctrl-d"] = "half-page-down" },
     },
-    ["phaazon/hop.nvim"] = { opts = {}, keys = { "s", "S" } },
-    ["rmagatti/auto-session"] = {
-        opts = { auto_save_enabled = true, auto_restore_enabled = false },
-    },
-    ["dstein64/vim-startuptime"] = {
-        cmd = "StartupTime",
-        init = function() vim.g.startuptime_exe_path = "nvim" end,
-    },
-    ["folke/which-key.nvim"] = {
-        event = "VeryLazy",
-        init = function() vim.o.timeoutlen = 300 end,
-        opts = {
-            plugins = {
-                presets = { operators = false, motions = false, text_objects = false },
-            },
-            layout = { width = { max = 40 } },
-            triggers = { "g", "z", "<leader>", ",", "<c-w>", "<c-r>", '"', "'", "`" },
-        },
-    },
-    ["ojroques/nvim-osc52"] = {
-        init = function()
-            local function copy(lines, _) require("osc52").copy(table.concat(lines, "\n")) end
-            local function paste()
-                return { vim.fn.split(vim.fn.getreg "", "\n"), vim.fn.getregtype "" }
-            end
-            if vim.env.SSH_TTY then
-                vim.g.clipboard = {
-                    name = "osc52",
-                    copy = { ["+"] = copy, ["*"] = copy },
-                    paste = { ["+"] = paste, ["*"] = paste },
-                }
-            end
-        end,
-    },
-    "wsdjeg/vim-fetch",
-    "nvim-lua/plenary.nvim",
-
-    -- Appearance
-
-    "rktjmp/lush.nvim",
-    ["NvChad/nvim-colorizer.lua"] = { opts = { user_default_options = { names = false } } },
-    "nvim-tree/nvim-web-devicons",
-    ["lewis6991/gitsigns.nvim"] = {
-        opts = { keymaps = {}, current_line_blame_opts = { delay = 500 } },
-    },
-    ["stevearc/dressing.nvim"] = { event = "VeryLazy", opts = {} },
-    ["rcarriga/nvim-notify"] = {
-        -- TODO: click to dismiss
-        opts = { render = "compact", background_colour = "#000000" },
-        init = function() vim.notify = require "notify" end,
-    },
-    ["j-hui/fidget.nvim"] = { opts = { text = { spinner = "dots" } } },
-
-    -- Programming
-
-    ["kylechui/nvim-surround"] = { opts = {} },
-    ["numToStr/Comment.nvim"] = { opts = { mappings = false } },
-    ["windwp/nvim-autopairs"] = { opts = { map_bs = false, map_cr = false } },
-    -- TODO: nvim-format + use lsp when possible
-    ["sbdchd/neoformat"] = { keys = { { ",=", ":Neoformat<CR>", desc = "Format" } } },
-    -- TODO: mfussenger/nvim-dap with lldb for rust
-    "neovim/nvim-lspconfig",
-    ["mfussenegger/nvim-lint"] = {
-        ft = { "sh", "python" },
-        config = function()
-            local lint = require "lint"
-            lint.linters_by_ft = { sh = { "shellcheck" }, python = { "ruff" } }
-            local lint_group = vim.api.nvim_create_augroup("lint_group", {})
-            vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-                group = lint_group,
-                callback = function() lint.try_lint() end,
-            })
-        end,
-    },
-    ["LnL7/vim-nix"] = { ft = "nix" },
-    ["kalcutter/vim-gn"] = { ft = "gn" },
-    ["folke/neodev.nvim"] = { opts = {} },
-    ["simrat39/rust-tools.nvim"] = {
-        keys = { { "<space>i", ":RustToggleInlayHints<CR>", desc = "Inlay Hints" } },
-    },
-    -- stylua: ignore
-    nix_plugin("nvim-treesitter", { main = "nvim-treesitter.configs", opts = {
-        highlight = { enable = true,
-            disable = { "python" },
-            additional_vim_regex_highlighting = true,
-        },
-        textobjects = {
-            select = { enable = true,
-                keymaps = {
-                    ["af"] = "@function.outer", ["if"] = "@function.inner",
-                    ["aa"] = "@parameter.outer", ["ia"] = "@parameter.inner",
-                    ["as"] = "@statement.outer",
-                },
-            },
-        },
-        incremental_selection = { enable = true,
-            keymaps = {
-                init_selection = "<tab>",
-                node_incremental = "<tab>",
-                scope_incremental = "<CR>",
-                node_decremental = "<s-tab>",
-            },
-        },
-    }}),
-    nix_plugin "nvim-treesitter-textobjects",
-    nix_plugin(
-        "nvim-treesitter-context",
-        { opts = { patterns = { python = { "if", "elif" } } } }
-    ),
-    ["Wansmer/treesj"] = {
-        opts = { use_default_keymaps = false },
-        keys = { { "<space>j", ":TSJToggle<CR>", desc = "Toggle Join" } },
-    },
-    nix_plugin "coq_nvim",
-    nix_plugin "coq.artifacts",
+    files = { fd_opts = "-Htf --mount --color always" },
+    grep = { rg_opts = "-S. --no-heading --color always" },
 }
-
-local plugins = {}
-for k, v in pairs(plugin_map) do
-    if type(k) ~= "number" then v[1] = k end
-    table.insert(plugins, v)
+require("hop").setup {}
+require("auto-session").setup { auto_save_enabled = true, auto_restore_enabled = false }
+vim.g.startuptime_exe_path = "nvim"
+vim.o.timeoutlen = 300
+require("which-key").setup {
+    plugins = {
+        presets = { operators = false, motions = false, text_objects = false },
+    },
+    layout = { width = { max = 40 } },
+    triggers = { "g", "z", "<leader>", ",", "<c-w>", "<c-r>", '"', "'", "`" },
+}
+if vim.env.SSH_TTY then
+    local function copy(lines, _) require("osc52").copy(table.concat(lines, "\n")) end
+    local function paste()
+        return { vim.fn.split(vim.fn.getreg "", "\n"), vim.fn.getregtype "" }
+    end
+    vim.g.clipboard = {
+        name = "osc52",
+        copy = { ["+"] = copy, ["*"] = copy },
+        paste = { ["+"] = paste, ["*"] = paste },
+    }
 end
-require("lazy").setup(plugins, { performance = { reset_packpath = false } })
+
+-- Appearance
+
+require("colorizer").setup { user_default_options = { names = false } }
+require("gitsigns").setup { keymaps = {}, current_line_blame_opts = { delay = 500 } }
+require("dressing").setup {}
+-- TODO: click to dismiss
+local notify = require "notify"
+notify.setup { render = "compact", background_colour = "#000000" }
+vim.notify = notify
+require("fidget").setup { text = { spinner = "dots" } }
+
+-- Programming
+
+require("nvim-surround").setup {}
+require("Comment").setup { mappings = false }
+require("nvim-autopairs").setup { map_bs = false, map_cr = false }
+local lint = require "lint"
+lint.linters_by_ft = { sh = { "shellcheck" }, python = { "ruff" } }
+local lint_group = vim.api.nvim_create_augroup("lint_group", {})
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+    group = lint_group,
+    callback = function() lint.try_lint() end,
+})
+
+-- stylua: ignore
+require "nvim-treesitter.configs" .setup {
+    highlight = { enable = true,
+        disable = { "python" },
+        additional_vim_regex_highlighting = true,
+    },
+    textobjects = {
+        select = { enable = true,
+            keymaps = {
+                ["af"] = "@function.outer", ["if"] = "@function.inner",
+                ["aa"] = "@parameter.outer", ["ia"] = "@parameter.inner",
+                ["as"] = "@statement.outer",
+            },
+        },
+    },
+    incremental_selection = { enable = true,
+        keymaps = {
+            init_selection = "<tab>",
+            node_incremental = "<tab>",
+            scope_incremental = "<CR>",
+            node_decremental = "<s-tab>",
+        },
+    },
+}
+require("treesitter-context").setup { patterns = { python = { "if", "elif" } } }
+-- TODO: figure out why this takes 20ms
+require("treesj").setup { use_default_keymaps = false }
 
 -- language server configuration
 
-local lspconfig = require "lspconfig"
+require("neodev").setup {}
 local coq = require "coq"
+local lspconfig = require "lspconfig"
 local function server(name, cfg) lspconfig[name].setup(coq.lsp_ensure_capabilities(cfg)) end
 
 server "clangd"

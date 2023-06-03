@@ -1,3 +1,4 @@
+vim.loader.enable()
 vim.g.mapleader = " "
 vim.g.loaded_perl_provider = 0
 local o = vim.opt
@@ -31,3 +32,5 @@ require "completion"
 require "plugins"
 require "pretty"
 require "keybinds"
+
+vim.api.nvim_create_user_command("Reload", "so $MYVIMRC", {})

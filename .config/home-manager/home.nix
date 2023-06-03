@@ -1,7 +1,4 @@
-{ pkgs, inputs, lib, ... }: {
-  home.username = "joseph";
-  home.homeDirectory = "/home/joseph";
-  home.stateVersion = "22.11";
+{ pkgs, lib, inputs, user, ... }: {
   home.packages = with pkgs; [
     # Shell
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions
@@ -28,27 +25,8 @@
     blahaj gay lolcat fortune cowsay neo tmatrix ascii-rain sl pipes tty-clock
   ];
 
-  nixpkgs.overlays = [ (final: prev: {
-    fzf = prev.fzf.overrideAttrs ( self: { # TODO: remove once perl is gone
-      postInstall = self.postInstall + "rm $out/share/fzf/key-bindings.bash";
-    });
-  })];
-
-  programs.neovim = {
-    enable = true; viAlias = true; vimAlias = true;
-    withPython3 = true; withRuby = false;
-    plugins = with pkgs.vimPlugins; [ lazy-nvim
-      # these plugins have native deps, so they're managed by nix
-      (nvim-treesitter.withPlugins (p: with p; [
-        bash c cpp python rust lua zig kdl json toml json json5 
-        make ninja dot nix latex html css typescript javascript
-      ]))
-      nvim-treesitter-textobjects nvim-treesitter-context
-      coq_nvim coq-artifacts
-    ];
-  };
-
   imports = [
+    ./vim.nix
     (let # use a minimal locale-archive without the full 200MB of locales
       a = lib.mkForce "${pkgs.glibcLocalesUtf8}/lib/locale/locale-archive";
     in {
@@ -57,10 +35,18 @@
     })
   ];
 
+  nixpkgs.overlays = [ (final: prev: {
+    fzf = prev.fzf.overrideAttrs ( self: { # TODO: remove once perl is gone
+      postInstall = self.postInstall + "rm $out/share/fzf/key-bindings.bash";
+    });
+  })];
+
   # use the nixpkgs version from this flake for my nixpkgs channel (for things
   # like `nix-shell`) and registry (for things like `nix shell`)
   home.sessionVariables.NIX_PATH = "nixpkgs=${inputs.nixpkgs.outPath}";
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   targets.genericLinux.enable = true;
+  home.stateVersion = "22.11";
+  home.username = user; home.homeDirectory = "/home/${user}";
 }

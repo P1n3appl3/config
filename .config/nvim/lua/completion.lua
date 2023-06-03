@@ -15,8 +15,8 @@ vim.g.coq_settings = {
 
 _G.Util = {}
 
+local npairs = require "nvim-autopairs"
 Util.CR = function()
-    local npairs = require "nvim-autopairs"
     if vim.fn.pumvisible() ~= 0 then
         if vim.fn.complete_info({ "selected" }).selected ~= -1 then
             return npairs.esc "<C-y>"
@@ -28,7 +28,6 @@ Util.CR = function()
     end
 end
 Util.BS = function()
-    local npairs = require "nvim-autopairs"
     if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ "mode" }).mode == "eval" then
         return npairs.esc "<C-e>" .. npairs.autopairs_bs()
     else
