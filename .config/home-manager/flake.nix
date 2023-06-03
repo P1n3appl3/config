@@ -11,11 +11,9 @@
 
     rahul-config.url = "github:rrbutani/nix-config";
     rahul-config.inputs = {
-      nixpkgs.follows = "nixpkgs";
-      home-manager.follows = "home-manager";
-      ragenix.follows = "";
-      darwin.follows = "";
-      impermanence.follows = "";
+      nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
+      ragenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
+      nixos-hardware.follows = ""; flu.follows = "flake-utils";
     };
   };
   nixConfig = {
@@ -28,20 +26,21 @@
               nix-index-database, rahul-config, self } @ inputs:
   let 
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
+    user = "joseph";
   in
     (flake-utils.lib.eachDefaultSystem (system :
       let
         pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
         config = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [ 
-              ./home.nix
-              nix-index-database.hmModules.nix-index
-            ];
-            extraSpecialArgs = { inherit inputs; };
-          };
+          inherit pkgs;
+          modules = [ 
+            ./home.nix
+            nix-index-database.hmModules.nix-index
+          ];
+          extraSpecialArgs = { inherit inputs user; };
+        };
       in {
-        legacyPackages.homeConfigurations.joseph = config;
+        legacyPackages.homeConfigurations.${user} = config;
         packages = listDir {of = ./pkgs; mapFunc = n: _: pkgs.${n};};
       }
       )) 

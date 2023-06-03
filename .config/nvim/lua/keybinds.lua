@@ -88,8 +88,10 @@ wk.register({
     ["/"] = { FZF.search_history, "Search History" },
     ca = { FZF.lsp_code_actions, "Code Actions" },
     s = { FZF.spell_suggest, "Spelling" },
-    l = { FZF.lines, "Search Lines" },
     h = { FZF.help_tags, "Help" },
+    l = { FZF.lines, "Search Lines" },
+    i = { ":RustToggleInlayHints<CR>", "Inlay Hints" },
+    j = { require("treesj").toggle, "Toggle Join" },
 }, { prefix = "<space>" })
 
 local function fzf_g(command)
@@ -105,4 +107,5 @@ wk.register({
 
 wk.register({
     [","] = { ",", "Last match" },
+    ["="] = { ":Neoformat<CR>", "Format" },
 }, { prefix = "," })
