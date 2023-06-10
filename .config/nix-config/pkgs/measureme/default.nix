@@ -12,4 +12,5 @@
     outputHashes."analyzeme-9.2.0" = "sha256-YOZiux4ouWBToGFx0+fiqjcyrnSjwc+8Qfi2rLGT/18=";
   };
   postPatch = "ln -s ${./Cargo.lock} Cargo.lock";
+  postInstall = "mv $out/bin/flamegraph $out/bin/mm-flamegraph";
 }

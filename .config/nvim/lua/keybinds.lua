@@ -23,11 +23,7 @@ modemap("n", "<space>cl", "<Plug>(comment_toggle_linewise_current)")
 modemap("v", "<space>cl", "<Plug>(comment_toggle_linewise_visual)")
 modemap("v", "<space>cb", "<Plug>(comment_toggle_blockwise_visual)")
 vim.api.nvim_create_user_command("LspFormat", function() vim.lsp.buf.format() end, {})
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(_args)
-        map("K", ":lua vim.lsp.buf.hover()<CR>") -- TODO: defer to normal behavior
-    end,
-})
+map("K", require("hover").hover)
 -- TODO: alt+hjkl to navigate TS nodes (ctrl+alt to swap)
 -- try ziontee113/SelectEase or ziontee113/syntax-tree-surfer
 
@@ -72,7 +68,7 @@ wk.register({
     w = { "<C-W>", "+Window" },
     g = {
         name = "Git",
-        b = { GITS.toggle_current_blame_line, "Blame" },
+        b = { GITS.toggle_current_line_blame, "Blame" },
         n = { GITS.next_hunk, "Next Hunk" },
         N = { GITS.previous_hunk, "Prev Hunk" },
         h = { GITS.preview_hunk_inline, "Show Hunk" },
@@ -103,6 +99,7 @@ wk.register({
     r = { fzf_g "references", "References" },
     D = { fzf_g "declarations", "Declaration" },
     t = { fzf_g "typedefs", "Typedef" },
+    K = { require("hover").hover_select, "Hover" },
 }, { prefix = "g" })
 
 wk.register({

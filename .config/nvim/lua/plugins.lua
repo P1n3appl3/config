@@ -31,6 +31,15 @@ if vim.env.SSH_TTY then
         paste = { ["+"] = paste, ["*"] = paste },
     }
 end
+require("hover").setup {
+    init = function()
+        require "hover.providers.lsp"
+        require "hover.providers.man"
+    end,
+    preview_window = true,
+    title = false,
+    preview_opts = { border = "none" },
+}
 
 -- Appearance
 
@@ -42,6 +51,7 @@ local notify = require "notify"
 notify.setup { render = "compact", background_colour = "#000000" }
 vim.notify = notify
 require("fidget").setup { text = { spinner = "dots" } }
+require("trailing-whitespace").setup {}
 
 -- Programming
 
