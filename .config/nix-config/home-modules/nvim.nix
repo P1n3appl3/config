@@ -16,10 +16,14 @@
       vim-fetch
       vim-startuptime
       plenary-nvim
+      (gitPlugin "lewis6991" "hover.nvim" "7aed88b45b5f5a201a78b4393144fef9c88f37f7"
+        "sha256-Neb82orSyF/y00qDHYbTYm9rJK79yVBAAF7k7UcjcQg=")
     # Appearance
       lush-nvim
       nvim-colorizer-lua
       gitsigns-nvim
+      (gitPlugin "lukoshkin" "trailing-whitespace" "2d4aeb132973da15edbe0d093ce836563ee2aef1"
+        "sha256-2LVtLuf+DUuUain9UimKJu23RG3kDKAXhOOBbITpECs=")
       nvim-web-devicons
       dressing-nvim
       nvim-notify
@@ -33,7 +37,7 @@
       fidget-nvim
       coq_nvim coq-artifacts # TODO: can't ls/edit snippets? try cmp?
       (nvim-treesitter.withPlugins (p: with p; [
-        bash c cpp python rust lua zig kdl json toml json json5 
+        bash c cpp python rust lua zig kdl json toml json json5
         make ninja dot nix latex html css typescript javascript
       ]))
       nvim-treesitter-textobjects

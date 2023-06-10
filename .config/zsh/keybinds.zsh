@@ -12,7 +12,7 @@ bindkey '\e[3;5~' kill-word                  # ctrl+del
 bindkey '^H' backward-kill-word              # ctrl+backspace
 bindkey '\e[1;5D' backward-word              # ctrl+left
 bindkey '\e[1;5C' emacs-forward-word         # ctrl+right
-# TODO: define alt+{del,backspace,left,right} with different WORDCHARS
+# TODO: define shift/alt+{del,backspace,left,right} with different WORDCHARS
 bindkey ${terminfo[khome]} beginning-of-line # home
 bindkey ${terminfo[kend]} end-of-line        # end
 bindkey '\e[Z' reverse-menu-complete         # shift+tab

@@ -10,7 +10,7 @@ stdenvNoCC.mkDerivation rec {
   nativeBuildInputs = [ makeWrapper ];
   installPhase = ''
     mkdir -p $out/bin
-    cp $name $out/bin/$name 
+    cp $name $out/bin/$name
     wrapProgram $out/bin/$name \
       --suffix PATH : ${lib.makeBinPath [ git gnugrep barchart ]}
   '';
