@@ -34,3 +34,7 @@ require "pretty"
 require "keybinds"
 
 vim.api.nvim_create_user_command("Reload", "so $MYVIMRC", {})
+vim.cmd[[ " TODO: lua
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+]]

@@ -5,6 +5,7 @@
     lm_sensors
     sysz
   ];
+  # TODO: figure out nss for exa/htop, maybe use nsncd?
 
   # system xdg and other dirs
   targets.genericLinux.enable = true;

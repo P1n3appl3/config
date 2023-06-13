@@ -19,6 +19,7 @@ map("s", require("hop").hint_char2)
 map("S", require("hop").hint_words)
 
 -- misc
+modemap({"n", "v"}, "<C-i>", "<C-i>", { noremap = true }) -- don't group <C-i> and <tab> mappings
 modemap("n", "<space>cl", "<Plug>(comment_toggle_linewise_current)")
 modemap("v", "<space>cl", "<Plug>(comment_toggle_linewise_visual)")
 modemap("v", "<space>cb", "<Plug>(comment_toggle_blockwise_visual)")
@@ -80,6 +81,7 @@ wk.register({
     T = { FZF.lsp_workspace_symbols, "Workspace Symbols" },
     [";"] = { vim.lsp.buf.signature_help, "Signature Help" },
     [":"] = { FZF.command_history, "Command History" },
+    -- TODO: maybe use wilder.nvim palette
     ["<space>"] = { FZF.commands, "Commands" },
     ["/"] = { FZF.search_history, "Search History" },
     ca = { FZF.lsp_code_actions, "Code Actions" },
