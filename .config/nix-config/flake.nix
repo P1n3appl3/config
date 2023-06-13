@@ -26,26 +26,21 @@
               nix-index-database, rahul-config, self } @ inputs:
   let
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
-    homeConfig = system: module:
+    home = system: module:
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-        modules = [
-          ./home.nix
-          nix-index-database.hmModules.nix-index
-          module
-        ];
+        modules = [ ./home.nix nix-index-database.hmModules.nix-index module ];
         extraSpecialArgs = { inherit inputs; };
       };
   in
     {
       homeConfigurations = {
-        HAL = homeConfig "x86_64-linux" ./hosts/hal.nix;
-        # WOPR = homeConfig "x86_64-linux" ./hosts/wopr.nix;
-        # Cortana = homeConfig "aarch64-linux" ./hosts/cortana/home.nix;
-        atlas = homeConfig "x86_64-linux" ./hosts/atlas.nix;
-        clu = homeConfig "x86_64-linux" ./hosts/clu.nix;
-        rinzler = homeConfig "x86_64-linux" ./hosts/rinzler.nix;
-        crabapple = homeConfig "aarch64-darwin" ./hosts/crabapple.nix;
+        HAL       = home "x86_64-linux"   ./hosts/hal.nix;
+        ATLAS     = home "x86_64-linux"   ./hosts/atlas.nix;
+        # WOPR    = home "x86_64-linux"   ./hosts/wopr.nix;
+        clu       = home "x86_64-linux"   ./hosts/clu.nix;
+        rinzler   = home "x86_64-linux"   ./hosts/rinzler.nix;
+        crabapple = home "aarch64-darwin" ./hosts/crabapple.nix;
       };
       nixosConfigurations = {
         cortana = nixpkgs.lib.nixosSystem {
@@ -54,11 +49,8 @@
       };
       overlays.default = final: _: listDir
         {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};
-    } // (flake-utils.lib.eachDefaultSystem (system :
-      let
-        pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-      in {
-        packages = listDir {of = ./pkgs; mapFunc = n: _: pkgs.${n};};
-      }
-    ));
+    } // (flake-utils.lib.eachDefaultSystem (system : {
+      packages = listDir {of = ./pkgs; mapFunc = n: _:
+        (nixpkgs.legacyPackages.${system}.extend self.overlays.default).${n};};
+    }));
 }

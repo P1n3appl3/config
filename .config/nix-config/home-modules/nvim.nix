@@ -16,6 +16,8 @@
       vim-fetch
       vim-startuptime
       plenary-nvim
+      coq_nvim coq-artifacts # TODO: can't ls/edit snippets? try cmp?
+      # TODO: wilder.nvim lua equivalent, maybe cmp-commandline?
       (gitPlugin "lewis6991" "hover.nvim" "7aed88b45b5f5a201a78b4393144fef9c88f37f7"
         "sha256-Neb82orSyF/y00qDHYbTYm9rJK79yVBAAF7k7UcjcQg=")
     # Appearance
@@ -35,7 +37,6 @@
       nvim-lspconfig
       nvim-lint
       fidget-nvim
-      coq_nvim coq-artifacts # TODO: can't ls/edit snippets? try cmp?
       (nvim-treesitter.withPlugins (p: with p; [
         bash c cpp python rust lua zig kdl json toml json json5
         make ninja dot nix latex html css typescript javascript

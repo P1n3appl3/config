@@ -41,6 +41,6 @@ end
 inoremap("<ESC>", [[pumvisible() ? "<C-e><ESC>" : "<ESC>"]])
 inoremap("<C-c>", [[pumvisible() ? "<C-e><C-c>" : "<C-c>"]])
 inoremap("<tab>", [[pumvisible() ? "<C-n>" : "<tab>"]])
-inoremap("<s-tab>", [[pumvisible() ? "<C-p>" : "<NOP>"]])
+inoremap("<s-tab>", [[pumvisible() ? "<C-p>" : ""]])
 inoremap("<CR>", "v:lua.Util.CR()")
 inoremap("<BS>", "v:lua.Util.BS()")
