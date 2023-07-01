@@ -71,7 +71,7 @@ wk.register({
         name = "Git",
         b = { GITS.toggle_current_line_blame, "Blame" },
         n = { GITS.next_hunk, "Next Hunk" },
-        N = { GITS.previous_hunk, "Prev Hunk" },
+        N = { GITS.prev_hunk, "Prev Hunk" },
         h = { GITS.preview_hunk_inline, "Show Hunk" },
         s = { GITS.stage_hunk, "Stage Hunk" },
         u = { GITS.unstage_hunk, "Unstage Hunk" },

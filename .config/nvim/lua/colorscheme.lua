@@ -127,7 +127,7 @@ return lush(function()
         LspCodeLens { fg = gray },
         LspReferenceText { bg = dark1 },
         LspReferenceRead { LspReferenceText },
-        LspReferenceWrite { LspReferenceText },
+        LspReferenceWrite { bg = dark1.rotate(-10).saturate(10) },
 
         -- TODO: Add explicit treesitter groups
 
@@ -155,5 +155,8 @@ return lush(function()
 
         markdownCode { fg = blue },
         xmlTag { Special },
+
+        Folded { bg = dark2, fg = orange },
+        FoldColumn { Folded },
     }
 end)

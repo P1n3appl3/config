@@ -6,6 +6,7 @@
     # Utils
     fzf ripgrep fd bat exa sd dogdns rm-improved ouch jq xh rbw hyperfine
     hexyl choose tokei zellij rsync zstd lowcharts trippy asciinema page pv
+    datamash
     # System info
     htop bottom bandwhich procs smartmontools duf ncdu du-dust
     # Git

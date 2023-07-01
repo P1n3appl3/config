@@ -2,6 +2,16 @@
 
 vim.cmd [[colorscheme custom]]
 
+require("colorizer").setup { user_default_options = { names = false } }
+require("gitsigns").setup { current_line_blame_opts = { delay = 500 } }
+require("trailing-whitespace").setup {}
+-- TODO: click to dismiss: https://github.com/rcarriga/nvim-notify/issues/195
+local notify = require "notify"
+notify.setup { render = "compact", background_colour = "#000000" }
+vim.notify = notify
+require("fidget").setup { text = { spinner = "dots" } }
+require("dressing").setup {}
+
 -- highlight on yank
 local general = vim.api.nvim_create_augroup("general", {})
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -26,13 +36,7 @@ vim.api.nvim_create_autocmd(
 
 -- status line
 
-local icons = {
-    Hint = "",
-    Info = "",
-    Warn = "",
-    Error = "",
-}
-
+local icons = { Hint = "", Info = "", Warn = "", Error = "" }
 local sev = {
     Hint = vim.diagnostic.severity.HINT,
     Info = vim.diagnostic.severity.INFO,
@@ -44,9 +48,7 @@ for k, v in pairs(icons) do
     vim.fn.sign_define("DiagnosticSign" .. k, { text = v, texthl = "DiagnosticSign" .. k })
 end
 
-local function readonly()
-    return (vim.o.readonly or not vim.o.modifiable) and "🔒" or "" -- maybe ⛔ or 🚫
-end
+local function readonly() return (vim.o.readonly or not vim.o.modifiable) and "🔒" or "" end
 
 local function lsp()
     if vim.tbl_isempty(vim.lsp.get_active_clients { bufnr = 0 }) then return "" end
@@ -84,6 +86,7 @@ local reset = "%*"
 
 StatusLine = {
     active = function()
+        -- stylua: ignore
         return table.concat {
             readonly(), file, git(), modified(),
             fill, lsp(), reset, line_col,
