@@ -32,8 +32,7 @@
         modules = [ ./home.nix nix-index-database.hmModules.nix-index module ];
         extraSpecialArgs = { inherit inputs; };
       };
-  in
-    {
+  in {
       homeConfigurations = {
         HAL       = home "x86_64-linux"   ./hosts/hal.nix;
         ATLAS     = home "x86_64-linux"   ./hosts/atlas.nix;
@@ -49,8 +48,9 @@
       };
       overlays.default = final: _: listDir
         {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};
-    } // (flake-utils.lib.eachDefaultSystem (system : {
-      packages = listDir {of = ./pkgs; mapFunc = n: _:
-        (nixpkgs.legacyPackages.${system}.extend self.overlays.default).${n};};
-    }));
+    } // (flake-utils.lib.eachDefaultSystem (system :
+      let
+        pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
+      in { packages = listDir {of = ./pkgs; mapFunc = n: _: pkgs.${n};}; })
+    );
 }

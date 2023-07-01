@@ -41,18 +41,6 @@ require("hover").setup {
     preview_opts = { border = "none" },
 }
 
--- Appearance
-
-require("colorizer").setup { user_default_options = { names = false } }
-require("gitsigns").setup { keymaps = {}, current_line_blame_opts = { delay = 500 } }
-require("dressing").setup {}
--- TODO: click to dismiss
-local notify = require "notify"
-notify.setup { render = "compact", background_colour = "#000000" }
-vim.notify = notify
-require("fidget").setup { text = { spinner = "dots" } }
-require("trailing-whitespace").setup {}
-
 -- Programming
 
 require("nvim-surround").setup {}
@@ -67,7 +55,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 })
 
 -- stylua: ignore
-require "nvim-treesitter.configs" .setup {
+require "nvim-treesitter.configs".setup {
     highlight = { enable = true,
         disable = { "python" },
         additional_vim_regex_highlighting = true,
