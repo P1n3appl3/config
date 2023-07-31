@@ -31,7 +31,8 @@ if vim.env.SSH_TTY then
         paste = { ["+"] = paste, ["*"] = paste },
     }
 end
-require("hover").setup {
+local hover = require "hover"
+hover.setup {
     init = function()
         require "hover.providers.lsp"
         require "hover.providers.man"
@@ -45,7 +46,6 @@ require("hover").setup {
 
 require("nvim-surround").setup {}
 require("Comment").setup { mappings = false }
-require("nvim-autopairs").setup { map_bs = false, map_cr = false }
 local lint = require "lint"
 lint.linters_by_ft = { sh = { "shellcheck" }, python = { "ruff" } }
 local lint_group = vim.api.nvim_create_augroup("lint_group", {})
@@ -53,6 +53,19 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
     group = lint_group,
     callback = function() lint.try_lint() end,
 })
+local crates = require "crates"
+crates.setup { popup = { autofocus = true, show_version_date = true } }
+hover.register {
+    name = "Crates",
+    priority = 10000,
+    enabled = function()
+        return vim.fn.expand "%:t" == "Cargo.toml" and crates.popup_available()
+    end,
+    execute = function(done)
+        crates.show_popup()
+        done(nil)
+    end,
+}
 
 -- stylua: ignore
 require "nvim-treesitter.configs".setup {
@@ -79,15 +92,19 @@ require "nvim-treesitter.configs".setup {
     },
 }
 require("treesitter-context").setup { patterns = { python = { "if", "elif" } } }
--- TODO: figure out why this takes 20ms
+-- TODO: figure out why this takes so long
 require("treesj").setup { use_default_keymaps = false }
 
 -- language server configuration
 
 require("neodev").setup {}
-local coq = require "coq"
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require "lspconfig"
-local function server(name, cfg) lspconfig[name].setup(coq.lsp_ensure_capabilities(cfg)) end
+local function server(name, cfg)
+    lspconfig[name].setup(
+        vim.tbl_extend("error", cfg or {}, { capabilities = capabilities })
+    )
+end
 
 server "clangd"
 server "nil_ls"
@@ -102,8 +119,10 @@ local ra_settings = {
     checkOnSave = fuchsia and fx_clippy or { command = "clippy" },
     cachePriming = { enable = false },
     diagnostics = { disabled = { "unresolved-proc-macro" } },
+    completion = { callable = { snippets = "none" }, postfix = { enable = false } },
 }
-require("rust-tools").setup(coq.lsp_ensure_capabilities {
+require("rust-tools").setup {
+    capabilities = capabilities,
     tools = { inlay_hints = { auto = false } },
     server = { settings = { ["rust-analyzer"] = ra_settings } },
-})
+}

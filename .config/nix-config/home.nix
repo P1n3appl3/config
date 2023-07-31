@@ -12,7 +12,7 @@
     # Git
     git delta gh git-heatmap git-absorb lazygit
     # Nix
-    nix home-manager nix-output-monitor nix-tree nix-direnv cachix nil
+    nix home-manager nix-output-monitor nix-tree nix-direnv cachix nil comma
     # Scripting tools
     stylua sumneko-lua-language-server shfmt shellcheck
     # Fun

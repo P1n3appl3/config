@@ -5,6 +5,9 @@ _zle_load up-line-or-beginning-search
 _zle_load down-line-or-beginning-search
 bindkey ${terminfo[kcuu1]} up-line-or-beginning-search   # up
 bindkey ${terminfo[kcud1]} down-line-or-beginning-search # down
+bindkey '^J' up-line-or-beginning-search
+bindkey '^K' up-line-or-beginning-search
+bindkey '^L' emacs-forward-word
 _zle_load edit-command-line
 bindkey '\e[101;6u' edit-command-line        # ctrl+shift+e
 bindkey '\e[3~' delete-char                  # del
@@ -12,11 +15,12 @@ bindkey '\e[3;5~' kill-word                  # ctrl+del
 bindkey '^H' backward-kill-word              # ctrl+backspace
 bindkey '\e[1;5D' backward-word              # ctrl+left
 bindkey '\e[1;5C' emacs-forward-word         # ctrl+right
-# TODO: define shift/alt+{del,backspace,left,right} with different WORDCHARS
 bindkey ${terminfo[khome]} beginning-of-line # home
 bindkey ${terminfo[kend]} end-of-line        # end
 bindkey '\e[Z' reverse-menu-complete         # shift+tab
-bindkey -r '^J' '^T'
+_zle_load copy-earlier-word
+bindkey '^[.' copy-earlier-word
+# TODO: define shift/alt+{del,backspace,left,right} with different WORDCHARS
 
 # make "backwards-word" go to the end of the last word
 zle -N backward-word backward-word-end

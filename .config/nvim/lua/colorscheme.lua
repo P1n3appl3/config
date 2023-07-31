@@ -158,5 +158,44 @@ return lush(function()
 
         Folded { bg = dark2, fg = orange },
         FoldColumn { Folded },
+
+        SnippetPlaceholder { fg = light1, bg = dark1, gui = "italic" },
+        CmpItemAbbrDeprecated { fg = dark_blue.darken(30), gui = "strikethrough" },
+        CmpItemAbbrMatch { fg = blue, gui = "bold" },
+        CmpItemAbbrMatchFuzzy { fg = dark_blue, gui = "bold" },
+        CmpItemMenu { fg = dark_purple, gui = "italic" },
+
+        CmpItemKindField { fg = light1, bg = dark_red },
+        CmpItemKindProperty { CmpItemKindField },
+        CmpItemKindEvent { CmpItemKindField },
+
+        CmpItemKindFunction { fg = light1, bg = dark_purple },
+        CmpItemKindStruct { CmpItemKindFunction },
+        CmpItemKindClass { CmpItemKindFunction },
+        CmpItemKindModule { CmpItemKindFunction },
+        CmpItemKindOperator { CmpItemKindFunction },
+
+        CmpItemKindText { fg = light1, bg = dark_green },
+        CmpItemKindEnum { CmpItemKindText },
+        CmpItemKindKeyword { CmpItemKindText },
+
+        CmpItemKindInterface { fg = light1, bg = dark_aqua },
+        CmpItemKindColor { CmpItemKindInterface },
+        CmpItemKindTypeParameter { CmpItemKindInterface },
+
+        CmpItemKindVariable { fg = light1, bg = blue },
+        CmpItemKindFile { CmpItemKindVariable },
+
+        CmpItemKindMethod { fg = light1, bg = dark_blue },
+        CmpItemKindValue { CmpItemKindMethod },
+        CmpItemKindEnumMember { CmpItemKindMethod },
+
+        CmpItemKindConstant { fg = dark1, bg = yellow },
+        CmpItemKindConstructor { CmpItemKindConstant },
+        CmpItemKindReference { CmpItemKindConstant },
+
+        CmpItemKindUnit { fg = dark1, bg = dark_yellow },
+        CmpItemKindSnippet { CmpItemKindUnit },
+        CmpItemKindFolder { CmpItemKindUnit },
     }
 end)
