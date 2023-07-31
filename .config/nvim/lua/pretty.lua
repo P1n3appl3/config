@@ -1,6 +1,6 @@
 -- TODO: trailing whitespace and mixed indent highlights (obviated by formatters?)
 
-vim.cmd [[colorscheme custom]]
+vim.cmd [[ colorscheme custom ]]
 
 require("colorizer").setup { user_default_options = { names = false } }
 require("gitsigns").setup { current_line_blame_opts = { delay = 500 } }

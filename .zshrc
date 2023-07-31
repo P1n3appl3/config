@@ -1,6 +1,7 @@
 # Load other configs
 my_configs=(keybinds completion fuzzy history terminal)
 for f in $my_configs; do source $HOME/.config/zsh/$f.zsh; done
+local extra=$HOME/.config/zsh/extra.zsh; test -f $extra && source $extra
 
 eval "$(atuin init zsh --disable-up-arrow)" # History
 eval "$(zoxide init zsh --cmd j)"           # Dir jumper
@@ -34,7 +35,6 @@ alias l="exa --icons"
 alias ls="l -l"
 alias la="l -la"
 alias tree="l -T --git-ignore"
-function cd { echo "you aliased that to j silly…" && j $@; }
 alias o=xdg-open
 alias c=clear
 alias please=sudo
@@ -54,7 +54,7 @@ function nixfind {
 alias nixsize=nix-tree
 alias nixclean="nix-collect-garbage -d"
 function switch {
-    hm switch --flake ~/.config/nix-config#$(hostname -s) $@ |& nom
+    hm switch --flake $HOME/.config/nix-config#$(hostname -s) $@ |& nom
 }
 alias sc=systemctl
 alias music=ncmpcpp

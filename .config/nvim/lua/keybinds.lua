@@ -17,9 +17,29 @@ map("<C-j>", "<C-e>", { noremap = true })
 map("<C-k>", "<C-y>", { noremap = true })
 map("s", require("hop").hint_char2)
 map("S", require("hop").hint_words)
+local snippy = require "snippy"
+modemap({ "i", "n", "v" }, "<C-l>", function()
+    if snippy.can_jump(1) then
+        snippy.next()
+    else
+        print "No more snippets"
+    end
+end)
+modemap({ "i", "n", "v" }, "<C-h>", function()
+    if snippy.can_jump(-1) then
+        snippy.previous()
+    else
+        print "No more snippets"
+    end
+end)
+local alphabet = "abcdefghijklmnopqrstuvwxyz"
+for i = 1, #alphabet do
+    local c = alphabet:sub(i, i)
+    modemap("s", c, c)
+end
 
 -- misc
-modemap({"n", "v"}, "<C-i>", "<C-i>", { noremap = true }) -- don't group <C-i> and <tab> mappings
+modemap({ "n", "v" }, "<C-i>", "<C-i>", { noremap = true }) -- don't group <C-i> and <tab> mappings
 modemap("n", "<space>cl", "<Plug>(comment_toggle_linewise_current)")
 modemap("v", "<space>cl", "<Plug>(comment_toggle_linewise_visual)")
 modemap("v", "<space>cb", "<Plug>(comment_toggle_blockwise_visual)")
@@ -101,7 +121,7 @@ wk.register({
     r = { fzf_g "references", "References" },
     D = { fzf_g "declarations", "Declaration" },
     t = { fzf_g "typedefs", "Typedef" },
-    K = { require("hover").hover_select, "Hover" },
+    K = { require("hover").hover, "Hover" },
 }, { prefix = "g" })
 
 wk.register({

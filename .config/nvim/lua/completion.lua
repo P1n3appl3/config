@@ -1,46 +1,84 @@
--- TODO: auto-focus first mark for snippets: https://github.com/ms-jpq/coq_nvim/issues/465
-vim.g.coq_settings = {
-    auto_start = "shut-up",
-    xdg = true,
-    keymap = { recommended = false },
-    display = {
-        icons = { mode = "short" },
-        pum = {
-            fast_close = false,
-            kind_context = { "", "" },
-            source_context = { "", "" },
-        },
+local cmp = require "cmp"
+local snippy = require "snippy"
+snippy.setup { hl_group = "SnippetPlaceholder" }
+
+require("nvim-autopairs").setup {}
+local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
+cmp.setup {
+    snippet = { expand = function(args) snippy.expand_snippet(args.body) end },
+    performance = { max_view_entries = 20 },
+    sources = cmp.config.sources({ { name = "crates" } }, {
+        { name = "nvim_lsp_signature_help" },
+        { name = "nvim_lsp" },
+        { name = "snippy" },
+        { name = "buffer" }, -- TODO: set keyword_length and check large file perf
+        { name = "path" },
+    }),
+    preselect = cmp.PreselectMode.None,
+    formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, item)
+            if vim.tbl_contains({ "path" }, entry.source.name) then
+                local icon, hl_group =
+                    require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
+                if icon then
+                    item.kind = icon
+                    item.kind_hl_group = hl_group
+                    return item
+                end
+            end
+            item = require("lspkind").cmp_format {
+                mode = "symbol_text",
+                maxwidth = 30,
+                ellipsis_char = "…",
+            }(entry, item)
+            local strings = vim.split(item.kind, "%s", { trimempty = true })
+            item.kind = " " .. (strings[1] or "") .. " "
+            item.menu = "   (" .. (strings[2] or "") .. ")"
+            return item
+        end,
+    },
+    mapping = cmp.mapping.preset.insert {
+        ["<C-u>"] = cmp.mapping.scroll_docs(-8),
+        ["<C-d>"] = cmp.mapping.scroll_docs(8),
+        ["<C-e>"] = cmp.mapping.abort(),
+        ["<Esc>"] = cmp.mapping(function(fallback)
+            cmp.mapping.abort()
+            fallback()
+        end),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<CR>"] = cmp.mapping(function(fallback)
+            if cmp.visible() and cmp.get_active_entry() then
+                cmp.confirm { select = false }
+            else
+                fallback()
+            end
+        end, { "i" }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
+            if cmp.visible() then
+                cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
+            elseif
+                col ~= 0
+                and vim.api
+                        .nvim_buf_get_lines(0, line - 1, line, true)[1]
+                        :sub(col, col)
+                        :match "%s"
+                    == nil
+            then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end, { "i" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
+            else
+                fallback()
+            end
+        end, { "i" }),
     },
 }
-
-_G.Util = {}
-
-local npairs = require "nvim-autopairs"
-Util.CR = function()
-    if vim.fn.pumvisible() ~= 0 then
-        if vim.fn.complete_info({ "selected" }).selected ~= -1 then
-            return npairs.esc "<C-y>"
-        else
-            return npairs.esc "<C-e>" .. npairs.autopairs_cr()
-        end
-    else
-        return npairs.autopairs_cr()
-    end
-end
-Util.BS = function()
-    if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ "mode" }).mode == "eval" then
-        return npairs.esc "<C-e>" .. npairs.autopairs_bs()
-    else
-        return npairs.autopairs_bs()
-    end
-end
-
-local function inoremap(lhs, rhs)
-    vim.api.nvim_set_keymap("i", lhs, rhs, { expr = true, noremap = true })
-end
-inoremap("<ESC>", [[pumvisible() ? "<C-e><ESC>" : "<ESC>"]])
-inoremap("<C-c>", [[pumvisible() ? "<C-e><C-c>" : "<C-c>"]])
-inoremap("<tab>", [[pumvisible() ? "<C-n>" : "<tab>"]])
-inoremap("<s-tab>", [[pumvisible() ? "<C-p>" : ""]])
-inoremap("<CR>", "v:lua.Util.CR()")
-inoremap("<BS>", "v:lua.Util.BS()")

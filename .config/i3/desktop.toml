@@ -42,7 +42,7 @@ interval = 3
 idle = 50
 info = 70
 format = " $icon {$average}C "
-chip = "k10temp-pci-*"
+chip = "zenpower-pci-*"
 inputs = ["Tccd1"]
 
 [[block]]

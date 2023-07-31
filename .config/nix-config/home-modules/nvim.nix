@@ -16,10 +16,10 @@
       vim-fetch
       vim-startuptime
       plenary-nvim
-      coq_nvim coq-artifacts # TODO: can't ls/edit snippets? try cmp?
+      hover-nvim
+      nvim-cmp cmp-buffer cmp-path
+      # TODO: cmp-kitty and maybe cmp-under-comparator
       # TODO: nvim-ufo for folding
-      (gitPlugin "lewis6991" "hover.nvim" "7aed88b45b5f5a201a78b4393144fef9c88f37f7"
-        "sha256-Neb82orSyF/y00qDHYbTYm9rJK79yVBAAF7k7UcjcQg=")
     # Appearance
       lush-nvim
       nvim-colorizer-lua
@@ -27,6 +27,7 @@
       (gitPlugin "lukoshkin" "trailing-whitespace" "2d4aeb132973da15edbe0d093ce836563ee2aef1"
         "sha256-2LVtLuf+DUuUain9UimKJu23RG3kDKAXhOOBbITpECs=")
       nvim-web-devicons
+      lspkind-nvim
       # TODO: noice-nvim or wilder.nvim lua equivalent, maybe cmp-commandline?
       nvim-notify
       dressing-nvim
@@ -37,8 +38,10 @@
       nvim-surround
       comment-nvim
       nvim-autopairs
+      nvim-snippy cmp-snippy vim-snippets
       neoformat # TODO: nvim-format and use lsp when available
       nvim-lspconfig
+      cmp-nvim-lsp cmp-nvim-lsp-signature-help
       nvim-lint
       (nvim-treesitter.withPlugins (p: with p; [
         bash c cpp python rust lua zig kdl toml json json5 jq regex
@@ -46,15 +49,14 @@
         git_config git_rebase gitcommit gitignore markdown markdown_inline
         gdscript wgsl wgsl_bevy # TODO: typst, gn
       ]))
-      nvim-treesitter-textobjects
-      nvim-treesitter-context
+      nvim-treesitter-textobjects nvim-treesitter-context
       treesj
       vim-nix
       (gitPlugin "kalcutter" "vim-gn" "7dd8d21ee42ce8ab999e0326e2c131132a6be8b8"
         "sha256-yEMUc5dnkOd1F0/BSPn6o6Z+C29MdFTRB6W/cqmF5bw=")
       neodev-nvim
-      rust-tools-nvim
-      # TODO: nvim-dap
+      rust-tools-nvim crates-nvim
+      # TODO: nvim-dap + cmp-dap
     ];
   };
 in { config.programs.neovim = nvim_config; }
