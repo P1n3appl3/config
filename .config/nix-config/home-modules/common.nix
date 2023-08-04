@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, lib, ... }: {
   home.packages = with pkgs; [
     # Shell
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions
@@ -19,7 +19,10 @@
     blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain
   ];
 
-  imports = [ ./home-modules/nvim.nix ];
+  imports = [
+    ./nvim.nix
+    inputs.nix-index-database.hmModules.nix-index
+  ];
 
   nixpkgs.overlays = [ (final: prev: {
     fzf = prev.fzf.overrideAttrs ( self: { # TODO: remove once perl is gone
@@ -27,10 +30,15 @@
     });
   })];
 
-  # use the nixpkgs version from this flake for my nixpkgs channel (for things
-  # like `nix-shell`) and registry (for things like `nix shell`)
-  home.sessionVariables.NIX_PATH = "nixpkgs=${inputs.nixpkgs.outPath}";
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
-  home.stateVersion = "22.11";
+  home = {
+    username = lib.mkDefault "joseph";
+    homeDirectory = lib.mkDefault "/home/joseph";
+    stateVersion = "23.05";
+
+    # use the nixpkgs version from this flake for my nixpkgs channel (for things
+    # like `nix-shell`) and registry (for things like `nix shell`)
+    sessionVariables.NIX_PATH = "nixpkgs=${inputs.nixpkgs.outPath}";
+  };
 }

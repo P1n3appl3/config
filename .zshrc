@@ -17,7 +17,7 @@ done
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias vimconfig='vi $HOME/.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
 alias zshconfig='vi $HOME/{.zshrc,.zshenv,.config/zsh/*}'
-alias nixconfig='vi $HOME/.config/nix-config/{home.nix,**/*.nix}'
+alias nixconfig='vi $HOME/.config/nix-config/{home-modules/common.nix,**/*.nix}'
 alias i3config='vi $HOME/.config/i3/{config,*}'
 
 # Misc.

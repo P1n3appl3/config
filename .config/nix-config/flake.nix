@@ -15,6 +15,8 @@
       ragenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
       nixos-hardware.follows = ""; flu.follows = "flake-utils";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
   nixConfig = {
     extra-substituters = "https://pineapple.cachix.org";
@@ -22,13 +24,13 @@
       "pineapple.cachix.org-1:FjFjdb26PFCZL09M2yHiPw1J+c1Ab9AbpfnFeTpzNQk=";
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils,
-              nix-index-database, rahul-config, self } @ inputs:
+  outputs = { nixpkgs, home-manager, flake-utils, nix-index-database,
+              rahul-config, nixos-hardware, self } @ inputs:
   let
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
     home = system: module: home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-      modules = [ ./home.nix nix-index-database.hmModules.nix-index module ];
+      modules = [ ./home-modules/home.nix module ];
       extraSpecialArgs = { inherit inputs; };
     };
     machine = system: module: nixpkgs.lib.nixosSystem {
@@ -36,7 +38,7 @@
       specialArgs = {inherit inputs; };
       modules = [
         home-manager.nixosModules.home-manager
-        nix-index-database.hmModules.nix-index
+        { nixpkgs.overlays = [ self.overlays.default ] ; }
         module
       ];
     };
@@ -49,8 +51,8 @@
         crabapple = home "aarch64-darwin" ./hosts/crabapple.nix;
       };
       nixosConfigurations = {
-        Cortana = machine "aarch64-linux" ./hosts/cortana.nix;
-        testvm  = machine "x86_64-linux"  ./hosts/cortana.nix;
+        Cortana = machine "aarch64-linux" ./hosts/cortana/main.nix;
+        testvm  = machine "x86_64-linux"  ./hosts/testvm.nix;
       };
       overlays.default = final: _: listDir
         {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};
