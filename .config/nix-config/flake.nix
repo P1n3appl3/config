@@ -2,9 +2,12 @@
   description = "my home-manager config";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    flake-utils.url = "github:numtide/flake-utils";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -15,8 +18,6 @@
       ragenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
       nixos-hardware.follows = ""; flu.follows = "flake-utils";
     };
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
   nixConfig = {
     extra-substituters = "https://pineapple.cachix.org";
@@ -24,13 +25,13 @@
       "pineapple.cachix.org-1:FjFjdb26PFCZL09M2yHiPw1J+c1Ab9AbpfnFeTpzNQk=";
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, nix-index-database,
-              rahul-config, nixos-hardware, self } @ inputs:
+  outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware,
+              nix-index-database, rahul-config, self } @ inputs:
   let
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
     home = system: module: home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-      modules = [ ./home-modules/home.nix module ];
+      modules = [ ./home-modules/common.nix module ];
       extraSpecialArgs = { inherit inputs; };
     };
     machine = system: module: nixpkgs.lib.nixosSystem {

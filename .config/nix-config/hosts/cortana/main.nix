@@ -5,6 +5,7 @@
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
+  # TODO: why don't my overlays get applied to pkgs from home manager (e.g. fzf still has perl dep)
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
@@ -26,9 +27,11 @@
     enable = true;
     settings.PasswordAuthentication = false;
   };
-  # TODO: fail2ban or something to block the bots knocking on my door
+  # TODO: fail2ban/ban2bgp/heimdall to ban the bots
 
   environment.systemPackages = with pkgs; [
+    raspberrypi-eeprom
+    libraspberrypi
     acme-sh
   ];
 }

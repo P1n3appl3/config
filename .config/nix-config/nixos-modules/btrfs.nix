@@ -3,28 +3,34 @@
     hostname = config.networking.hostName;
   in {
     "/" = {
-      device = "/dev/disk/by-label/${hostname}";
+      label = hostname;
       fsType = "btrfs";
       options = [ "subvol=root" "compress=zstd" ];
     };
     "/nix" = {
-      device = "/dev/disk/by-label/${hostname}";
+      label = hostname;
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
     "/home" = {
-      device = "/dev/disk/by-label/${hostname}";
+      label = hostname;
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" ];
     };
     "/swap" = {
-      device = "/dev/disk/by-label/${hostname}";
+      label = hostname;
       fsType = "btrfs";
       options = [ "subvol=swap" "noatime" ];
     };
-    # TODO: make root ephemeral, see:
+    # TODO: use impermenance and make root ephemeral, see:
     # https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/ephemeral-btrfs.nix
     # https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html
+
+    # TODO: post processing to get useful output out of:
+    # sudo btrfs send --no-data -p /blank / | btrfs receive --dump
+    # maybe create a snapshot right after boot and then diff it upon shutdown,
+    # possibly saving a snapshot with whatever new files exist before they get
+    # wiped on the next reboot. btrfs subvolume find-new might be the thing
   };
   swapDevices = [{ device = "/swap/swapfile"; }];
 }
