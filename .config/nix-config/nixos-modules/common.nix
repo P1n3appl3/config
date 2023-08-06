@@ -1,4 +1,14 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
+  # TODO: figure out how it's possible that `nixfind rpi-eeprom-config`
+  # works in home-manager but not nixOS... shouldn't they both be using the
+  # exact same nixpkgs from the flake input? i don't have channels enabled in
+  # nixOS by accident or something right? maybe it's because I have both the
+  # home-manager module AND nixos module for nix-index-database enabled at the
+  # same time. if that's the case I could try conditioning the import of the
+  # home-manager module on NOT having a nixos config available which I think
+  # is possible since hm modules can take a nixos config as an argument.
+  imports = [ inputs.nix-index-database.nixosModules.nix-index ];
+
   users.users.joseph = {
     isNormalUser = true;
     extraGroups = [ "joseph" "wheel" ];
@@ -7,9 +17,19 @@
     shell = pkgs.zsh;
   };
 
-  environment.enableAllTerminfo = true;
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+    zsh.enableCompletion = false;
+    command-not-found.enable = false;
+  };
+
+  nix.settings.trusted-users = [ "root" "@wheel" ];
   time.timeZone = "America/Los_Angeles";
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
   system.stateVersion = "23.05";
+
+  # TODO: why does `nom` not textwrap correctly when using sudo? prob more
+  # sudo-environment related than terminfo
+  environment.enableAllTerminfo = true;
+  environment.systemPackages = with pkgs; [ at file psmisc ];
 }

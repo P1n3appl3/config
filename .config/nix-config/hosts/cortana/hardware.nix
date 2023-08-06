@@ -2,18 +2,20 @@
   imports = [ ../../nixos-modules/btrfs.nix ];
 
   boot = {
-    loader.grub.enable = false;
-    loader.generic-extlinux-compatible.enable = true;
+    loader = {
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
     initrd = {
       supportedFilesystems = [ "btrfs" ];
-      availableKernelModules = [ "xhci_pci" ]; # TODO: check if "usb_storage" or "usbhid" are required
+      availableKernelModules = [ "xhci_pci" "usb_storage" "usbhid" ];
     };
   };
 
   nixpkgs.hostPlatform = "aarch64-linux";
   powerManagement.cpuFreqGovernor = "ondemand";
 
-  filesystems = {
+  fileSystems = {
     "/boot" = {
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
@@ -22,7 +24,7 @@
     "/mnt" = {
       device = "/dev/disk/by-label/pi-usb";
       fsType = "ext4";
-      # TODO: usb that doesn't block booting
+      options = [ "nofail" ];
     };
   };
 }
