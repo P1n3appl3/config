@@ -46,6 +46,8 @@ hover.setup {
 
 require("nvim-surround").setup {}
 require("Comment").setup { mappings = false }
+local comment = require "Comment.ft"
+comment.beancount = ";%s" -- TODO: set in treesitter or upstream?
 local lint = require "lint"
 lint.linters_by_ft = { sh = { "shellcheck" }, python = { "ruff" } }
 local lint_group = vim.api.nvim_create_augroup("lint_group", {})
@@ -112,6 +114,10 @@ server("pyright", {
     settings = { python = { analysis = { diagnosticMode = "openFilesOnly" } } },
 })
 server("lua_ls", { settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
+server(
+    "beancount",
+    { init_options = { journal_file = vim.env.HOME .. "/money/journal.beancount" } }
+)
 
 local fuchsia = string.find(vim.loop.cwd() or "", "/fuchsia")
 local fx_clippy = { overrideCommand = { "fx", "clippy", "--all", "--raw" } }

@@ -46,8 +46,9 @@ deleted = "-"
 untracked = "?"
 
 [nix_shell]
-format = '$symbol'
-symbol = "❄️"
+format = '$symbol '
+# symbol = "❄️"
+symbol = "🧊"
 heuristic = true
 
 [env_var.multifuchsia]

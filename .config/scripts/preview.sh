@@ -6,9 +6,9 @@ category=${mime%%/*}
 kind=${mime##*/}
 
 if [ "$kind" = symlink ]; then
-    exa -l --no-user --no-permissions --no-time --no-filesize "$f"
+    eza -l --no-user --no-permissions --no-time --no-filesize "$f"
 elif [ "$category" = inode ]; then
-    exa --icons "$f"
+    eza --icons "$f"
 elif [ "$category" = image ]; then
     columns=$(tput cols)
     columns=$((columns / 2))
