@@ -40,7 +40,7 @@ _fzf_compgen_dir() { fd -H --mount -td . "$1"; }
 _fzf_comprun() {
     local command=$1 && shift
     case "$command" in
-    j) fzf --preview "exa --icons {}" "$@" ;;
+    j) fzf --preview "eza --icons {}" "$@" ;;
     export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
     ssh) fzf --preview 'give-me-a-ping-vasily {}; dog --color=always {}' "$@" ;;
     *) fzf "$@" ;;

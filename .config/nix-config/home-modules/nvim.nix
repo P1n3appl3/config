@@ -17,7 +17,7 @@
       vim-startuptime
       plenary-nvim
       hover-nvim
-      nvim-cmp cmp-buffer cmp-path
+      nvim-cmp cmp-buffer cmp-path # cmp-beancount
       # TODO: cmp-kitty and maybe cmp-under-comparator
       # TODO: nvim-ufo for folding
     # Appearance
@@ -47,7 +47,7 @@
         bash c cpp python rust lua zig kdl toml json json5 jq regex
         make ninja dot nix html css typescript javascript query
         git_config git_rebase gitcommit gitignore markdown markdown_inline
-        gdscript wgsl wgsl_bevy # TODO: typst, gn
+        gdscript wgsl wgsl_bevy beancount # TODO: typst, gn
       ]))
       nvim-treesitter-textobjects nvim-treesitter-context
       treesj

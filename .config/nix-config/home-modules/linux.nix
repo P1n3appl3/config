@@ -4,8 +4,10 @@
     usbtop
     lm_sensors
     sysz
+    # TODO: fix
+    # fio-plot
   ];
-  # TODO: figure out nss for exa/htop, maybe use nsncd?
+  # TODO: figure out nss for eza/htop, maybe use nsncd?
 
   # system xdg and other dirs
   targets.genericLinux.enable = true;

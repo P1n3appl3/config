@@ -3,23 +3,29 @@
     hostname = config.networking.hostName;
   in {
     "/" = {
-      label = hostname;
-      fsType = "btrfs";
+      label = hostname; fsType = "btrfs";
       options = [ "subvol=root" "compress=zstd" ];
     };
     "/nix" = {
-      label = hostname;
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime" ];
+      label = hostname; fsType = "btrfs";
+      options = [ "subvol=nix" "noatime" "compress=zstd" ];
     };
     "/home" = {
-      label = hostname;
-      fsType = "btrfs";
+      label = hostname; fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" ];
     };
+    "/var/log" = {
+      label = hostname; fsType = "btrfs";
+      options = [ "subvol=log" "compress=zstd" ];
+      neededForBoot = true;
+    };
+    "/persist" = {
+      label = hostname; fsType = "btrfs";
+      options = [ "subvol=persist" "compress=zstd" ];
+      neededForBoot = true;
+    };
     "/swap" = {
-      label = hostname;
-      fsType = "btrfs";
+      label = hostname; fsType = "btrfs";
       options = [ "subvol=swap" "noatime" ];
     };
     # TODO: use impermenance and make root ephemeral, see:

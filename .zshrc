@@ -14,12 +14,15 @@ for f in zsh-syntax-highlighting zsh-autosuggestions; do
     source $HOME/.nix-profile/share/$f/$f.zsh
 done
 
+# TODO: command-not-found, edit distance, nix-index, maybe pacman
+
 # Shortcuts for tweaking dotfiles
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias vimconfig='vi $HOME/.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
-alias zshconfig='vi $HOME/{.zshrc,.zshenv,.config/zsh/*}'
-alias nixconfig='vi $HOME/.config/nix-config/{home-modules/common.nix,**/*.nix}'
-alias i3config='vi $HOME/.config/i3/{config,*}'
+function mkconfig { eval "function ${1}config { vi $HOME/$2 ${@:3}; }"; }
+mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
+mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
+mkconfig nix '{flake.nix,garnix.yaml,.config/nix-config/**/*.nix}'
+mkconfig i3 '.config/i3/{config,*}'
 
 # Misc.
 unsetopt flowcontrol
@@ -31,7 +34,7 @@ export TIME=$TIMEFMT
 export MANPAGER='less -M -j5 +Gg'
 
 alias cat=bat
-alias l="exa --icons" alias ls="l -l" alias la="l -la"
+alias l="eza --icons --time-style relative" alias ls="l -l" alias la="l -la"
 alias tree="l -T --git-ignore"
 alias o=xdg-open
 alias c=clear
@@ -57,7 +60,7 @@ function switch {
         sudo true # to prompt for password and not get piped to nom
         cmd="sudo -n nixos-rebuild"
     } || cmd=hm
-    eval $cmd switch --flake $HOME/.config/nix-config#$(hostname -s) $@ |& nom
+    eval $cmd switch --flake $HOME#$(hostname -s) $@ |& nom
 }
 alias sc=systemctl
 alias music=ncmpcpp

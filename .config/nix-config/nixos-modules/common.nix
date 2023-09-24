@@ -1,13 +1,17 @@
-{pkgs, inputs, ...}: {
-  # TODO: figure out how it's possible that `nixfind rpi-eeprom-config`
-  # works in home-manager but not nixOS... shouldn't they both be using the
-  # exact same nixpkgs from the flake input? i don't have channels enabled in
-  # nixOS by accident or something right? maybe it's because I have both the
-  # home-manager module AND nixos module for nix-index-database enabled at the
-  # same time. if that's the case I could try conditioning the import of the
-  # home-manager module on NOT having a nixos config available which I think
-  # is possible since hm modules can take a nixos config as an argument.
-  imports = [ inputs.nix-index-database.nixosModules.nix-index ];
+{pkgs, inputs, myOverlays, ...}: {
+  imports = [
+    { nixpkgs.overlays = myOverlays; }
+    # TODO: figure out how it's possible that `nixfind rpi-eeprom-config`
+    # works in home-manager but not NixOS... shouldn't they both be using the
+    # exact same nixpkgs from the flake input? i don't have channels enabled in
+    # NixOS by accident or something right? maybe it's because I have both the
+    # home-manager module AND nixos module for nix-index-database enabled at the
+    # same time. if that's the case I could try conditioning the import of the
+    # home-manager module on NOT having a nixos config available which I think
+    # is possible since hm modules can take a nixos config as an argument.
+    inputs.nix-index-database.nixosModules.nix-index
+    inputs.home-manager.nixosModules.home-manager
+  ];
 
   users.users.joseph = {
     isNormalUser = true;
@@ -23,13 +27,21 @@
     command-not-found.enable = false;
   };
 
-  nix.settings.trusted-users = [ "root" "@wheel" ];
+  nix.settings = {
+    trusted-users = [ "root" "@wheel" ];
+    # substituters = [ "https://cache.garnix.io" "https://pineapple.cachix.org" ];
+    # trusted-public-keys = [
+    #   "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+    #   "pineapple.cachix.org-1:FjFjdb26PFCZL09M2yHiPw1J+c1Ab9AbpfnFeTpzNQk="
+    # ];
+  };
+  nix.extraOptions = "experimental-features = nix-command flakes";
   time.timeZone = "America/Los_Angeles";
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
   system.stateVersion = "23.05";
 
   # TODO: why does `nom` not textwrap correctly when using sudo? prob more
   # sudo-environment related than terminfo
-  environment.enableAllTerminfo = true;
-  environment.systemPackages = with pkgs; [ at file psmisc ];
+  security.sudo.extraConfig = ''Defaults env_keep += "path"'';
+  environment.systemPackages = with pkgs; [ at file psmisc kitty.terminfo ];
 }
