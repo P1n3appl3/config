@@ -22,36 +22,36 @@
               nix-index-database, rahul-config, self } @ inputs:
   let
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
-    myOverlays = [ self.overlays.default (import .config/nix-config/overlays.nix) ];
+    myOverlays = [ self.overlays.default (import ./overlays.nix) ];
 
     home = system: hostModule: home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = { inherit inputs myOverlays; };
       pkgs = nixpkgs.legacyPackages.${system};
-      modules = [ .config/nix-config/home-modules/common.nix hostModule ];
+      modules = [ ./home-modules/common.nix hostModule ];
     };
 
     machine = system: hostModule: nixpkgs.lib.nixosSystem {
       inherit system;
       specialArgs = {inherit inputs myOverlays; };
-      modules = [ ./.config/nix-config/nixos-modules/common.nix hostModule ];
+      modules = [ ././nixos-modules/common.nix hostModule ];
     };
   in {
     homeConfigurations = {
-      HAL       = home "x86_64-linux"   .config/nix-config/hosts/hal.nix;
-      ATLAS     = home "x86_64-linux"   .config/nix-config/hosts/atlas.nix;
-      clu       = home "x86_64-linux"   .config/nix-config/hosts/clu.nix;
-      rinzler   = home "x86_64-linux"   .config/nix-config/hosts/rinzler.nix;
-      crabapple = home "aarch64-darwin" .config/nix-config/hosts/crabapple.nix;
+      HAL       = home "x86_64-linux"   ./hosts/hal.nix;
+      ATLAS     = home "x86_64-linux"   ./hosts/atlas.nix;
+      clu       = home "x86_64-linux"   ./hosts/clu.nix;
+      rinzler   = home "x86_64-linux"   ./hosts/rinzler.nix;
+      crabapple = home "aarch64-darwin" ./hosts/crabapple.nix;
     };
     nixosConfigurations = {
-      Cortana = machine "aarch64-linux" .config/nix-config/hosts/cortana/main.nix;
-      testvm  = machine "x86_64-linux"  .config/nix-config/hosts/testvm.nix;
+      Cortana = machine "aarch64-linux" ./hosts/cortana/main.nix;
+      testvm  = machine "x86_64-linux"  ./hosts/testvm.nix;
     };
     overlays.default = final: _: listDir
-      {of = .config/nix-config/pkgs; mapFunc = _: p: final.callPackage p {};};
+      {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};
   } // (flake-utils.lib.eachDefaultSystem (system :
     let
       pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-    in { packages = listDir {of = .config/nix-config/pkgs; mapFunc = n: _: pkgs.${n};}; })
+    in { packages = listDir {of = ./pkgs; mapFunc = n: _: pkgs.${n};}; })
   );
 }

@@ -85,7 +85,7 @@ rate-mirrors --save /etc/pacman.d/mirrorlist arch
 paru -S "${dev[@]}"
 
 # get config files
-curl -L https://raw.github.com/P1n3appl3/config/master/.config/scripts/setup.sh | sh
+curl -L https://raw.github.com/P1n3appl3/config/main/.config/scripts/setup.sh | sh
 
 paru -S "${desktop[@]}"
 paru -S "${games[@]}"
