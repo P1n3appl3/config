@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
     hash = "sha256-yYZpEevwPppMe9FOZGt5vDkhaeu3zhd2xZycGnT85jI=";
   };
   nativeBuildInputs = [ ncurses ];
-  buildPhase = "gcc rain.c -o rain -lncurses";
+  buildPhase = "cc rain.c -o rain -lncurses";
   installPhase = ''
     mkdir -p $out/bin
     cp rain $out/bin
