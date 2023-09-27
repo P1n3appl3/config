@@ -1,5 +1,5 @@
 { pkgs, ... }: let
-  gitPlugin = owner: repo: rev: hash: pkgs.vimUtils.buildVimPluginFrom2Nix {
+  ghPlugin = owner: repo: rev: hash: pkgs.vimUtils.buildVimPluginFrom2Nix {
     pname = "${repo}"; version = rev;
     src = pkgs.fetchFromGitHub { inherit owner repo rev hash; };
   };
@@ -24,7 +24,7 @@
       lush-nvim
       nvim-colorizer-lua
       gitsigns-nvim
-      (gitPlugin "lukoshkin" "trailing-whitespace" "2d4aeb132973da15edbe0d093ce836563ee2aef1"
+      (ghPlugin "lukoshkin" "trailing-whitespace" "2d4aeb132973da15edbe0d093ce836563ee2aef1"
         "sha256-2LVtLuf+DUuUain9UimKJu23RG3kDKAXhOOBbITpECs=")
       nvim-web-devicons
       lspkind-nvim
@@ -32,7 +32,7 @@
       nvim-notify
       dressing-nvim
       # TODO: use nixpkgs version of fidget once updated, or switch to noice
-      (gitPlugin "j-hui" "fidget.nvim" "0ba1e16d07627532b6cae915cc992ecac249fb97"
+      (ghPlugin "j-hui" "fidget.nvim" "0ba1e16d07627532b6cae915cc992ecac249fb97"
       "sha256-rmJgfrEr/PYBq0S7j3tzRZvxi7PMMaAo0k528miXOQc=")
     # Programming
       nvim-surround
@@ -52,8 +52,10 @@
       nvim-treesitter-textobjects nvim-treesitter-context
       treesj
       vim-nix
-      (gitPlugin "kalcutter" "vim-gn" "7dd8d21ee42ce8ab999e0326e2c131132a6be8b8"
+      (ghPlugin "kalcutter" "vim-gn" "7dd8d21ee42ce8ab999e0326e2c131132a6be8b8"
         "sha256-yEMUc5dnkOd1F0/BSPn6o6Z+C29MdFTRB6W/cqmF5bw=")
+      (ghPlugin "fladson" "vim-kitty" "891475671feebc4bf0f29f0a0987067913a81686"
+        "sha256-eQa1bEapY06ImpDva5+i0WQxQK3AYdHhM1FTXwNc/HU=")
       neodev-nvim
       rust-tools-nvim crates-nvim
       # TODO: nvim-dap + cmp-dap

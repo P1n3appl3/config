@@ -1,10 +1,9 @@
-{ pkgs, inputs, ... } : {
+{ pkgs, inputs, config, ... } : {
   imports = [
     ./hardware.nix
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
-  # TODO: why don't my overlays get applied to pkgs from home manager (e.g. fzf still has perl dep)
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
@@ -17,16 +16,32 @@
     };
   };
 
-  networking = {
-    hostName = "Cortana";
-    firewall.allowedTCPPorts = [ 22 ];
+  networking.hostName = "Cortana";
+  networking.firewall.allowedTCPPorts = [ 80 443 8080 ];
+  services = {
+    openssh = {
+      enable = true; ports = [ 69 ];
+      settings.PasswordAuthentication = false;
+    };
+    endlessh-go = {
+      enable = true; port = 22; openFirewall = true;
+      prometheus.enable = true;
+      extraOptions = [ "-alsologtostderr"]; # TODO: troubleshoot "-geoip_supplier ip-api"
+    };
+    grafana = {
+      enable = true; settings = {
+        server = {
+          http_addr = "127.0.0.1";
+          http_port = 8080;
+          domain = "traffic.pineapple.computer";
+        };
+      };
+    };
+    nginx = {enable = true; recommendedProxySettings = true; };
+    nginx.virtualHosts.${config.services.grafana.settings.server.domain} = {
+      locations."/" = { proxyPass = "http://127.0.0.1:8080"; proxyWebsockets = true; };
+    };
   };
-
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-  };
-  # TODO: fail2ban/ban2bgp/heimdall to ban the bots
 
   environment.systemPackages = with pkgs; [
     raspberrypi-eeprom

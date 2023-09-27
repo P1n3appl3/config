@@ -33,6 +33,18 @@ faults\t%F / %R\nwaits\t%c / %w'
 export TIME=$TIMEFMT
 export MANPAGER='less -M -j5 +Gg'
 
+# TODO: remove when https://github.com/direnv/direnv/issues/68 lands
+copy_function() {
+    test -n "$(declare -f "$1")" || return
+    eval "${_/$1/$2}"
+}
+copy_function _direnv_hook _direnv_hook__old
+_direnv_hook() {
+    _direnv_hook__old "$@" 2> >(awk '{if (length >= 10) \
+        { sub("^direnv: export.*", "direnv: export "NF" environment variables")}}1')
+    wait
+}
+
 alias cat=bat
 alias l="eza --icons --time-style relative" alias ls="l -l" alias la="l -la"
 alias tree="l -T --git-ignore"
@@ -54,7 +66,7 @@ function nixfind {
         sd '/nix/store/[^/\x1b]+' '' | sort
 }
 alias nixsize=nix-tree
-alias nixclean="nix-collect-garbage -d"
+function nixclean { nix-collect-garbage -d && sudo $(which nix-collect-garbage) -d; }
 function switch {
     command -v nixos-rebuild >/dev/null && {
         sudo true # to prompt for password and not get piped to nom
@@ -64,3 +76,7 @@ function switch {
 }
 alias sc=systemctl
 alias music=ncmpcpp
+function fontcheck {
+    FC_DEBUG=4 pango-view -q -t $1 --font=${2:-sans} |&
+        rg -or '$1' 'family: "([^"]+)"' | tail -1
+}

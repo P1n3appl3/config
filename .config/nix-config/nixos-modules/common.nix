@@ -1,15 +1,6 @@
-{pkgs, inputs, myOverlays, ...}: {
+{pkgs, inputs, lib, myOverlays, ...}: {
   imports = [
     { nixpkgs.overlays = myOverlays; }
-    # TODO: figure out how it's possible that `nixfind rpi-eeprom-config`
-    # works in home-manager but not NixOS... shouldn't they both be using the
-    # exact same nixpkgs from the flake input? i definitely don't have channels
-    # enabled in NixOS. maybe it's because I have both the home-manager module
-    # AND nixos module for nix-index-database enabled at the same time. if
-    # that's the case I could try conditioning the import of the home-manager
-    # module on NOT having a nixos config available which I think is possible
-    # since hm modules can take a nixos config as an argument.
-    # inputs.nix-index-database.nixosModules.nix-index
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -32,7 +23,7 @@
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';
   nix.settings.trusted-users = [ "root" "@wheel" ];
   nix.extraOptions = "experimental-features = nix-command flakes";
-  time.timeZone = "America/Los_Angeles";
+  time.timeZone = lib.mkDefault "America/Los_Angeles";
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
   system.stateVersion = "23.05";
 }

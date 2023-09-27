@@ -13,6 +13,7 @@
     git delta gh git-heatmap git-absorb lazygit
     # Nix
     nix home-manager nix-output-monitor nix-tree nix-direnv cachix nil comma
+    hydra-check
     # Scripting tools
     stylua sumneko-lua-language-server shfmt shellcheck
     # Fun
@@ -29,8 +30,6 @@
     username = lib.mkDefault "joseph";
     homeDirectory = lib.mkDefault "/home/joseph";
     stateVersion = "23.05";
-
-    # use the nixpkgs version from this flake for my nixpkgs channel
     sessionVariables.NIX_PATH = "nixpkgs=${inputs.nixpkgs.outPath}";
   };
   nix.registry.nixpkgs.flake = inputs.nixpkgs;

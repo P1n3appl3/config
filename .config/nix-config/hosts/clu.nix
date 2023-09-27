@@ -6,5 +6,6 @@
   imports = [
     ../home-modules/linux.nix
     ../home-modules/dev.nix
+    ../home-modules/fonts.nix
   ];
 }
