@@ -21,7 +21,7 @@ alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 function mkconfig { eval "function ${1}config { vi $HOME/$2 ${@:3}; }"; }
 mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
 mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
-mkconfig nix '.config/nix-config/{home-modules/common.nix,**/*.nix}'
+mkconfig nix '{flake.nix,.config/nix-config/{home-modules/common.nix,**/*.nix}}'
 mkconfig i3 '.config/i3/{config,*}'
 
 # Misc.
@@ -72,7 +72,9 @@ function switch {
         sudo true # to prompt for password and not get piped to nom
         cmd="sudo -n nixos-rebuild"
     } || cmd=hm
-    eval $cmd switch --flake $HOME/.config/nix-config#$(hostname -s) $@ |& nom
+    export FACADE_DIR=~/.cache/nix-config
+    .config/nix-config/shadow.bash
+    eval $cmd switch --flake git+file://$HOME/.cache/nix-config#$(hostname -s) $@ |& nom
 }
 alias sc=systemctl
 alias music=ncmpcpp

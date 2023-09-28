@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, myOverlays, ... }: {
+{ pkgs, inputs, lib, config, myOverlays, ... }: {
   home.packages = with pkgs; [
     # Shell
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions
@@ -12,6 +12,7 @@
     # Git
     git delta gh git-heatmap git-absorb lazygit
     # Nix
+    # TODO: nom FE0E -> FE0F for emojis
     nix home-manager nix-output-monitor nix-tree nix-direnv cachix nil comma
     hydra-check
     # Scripting tools
@@ -26,11 +27,18 @@
     ./nvim.nix
   ];
 
-  home = {
+  home = rec {
     username = lib.mkDefault "joseph";
     homeDirectory = lib.mkDefault "/home/joseph";
     stateVersion = "23.05";
     sessionVariables.NIX_PATH = "nixpkgs=${inputs.nixpkgs.outPath}";
+    sessionVariables.FACADE_DIR = homeDirectory + "/.cache/nix-config";
   };
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix.registry = {
+    nixpkgs.flake = inputs.nixpkgs;
+    config = {
+      type = "git+file";
+      to = config.home.sessionVariables.FACADE_DIR;
+    };
+  };
 }
