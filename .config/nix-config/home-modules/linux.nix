@@ -4,8 +4,7 @@
     usbtop
     lm_sensors
     sysz
-    # TODO: fix
-    # fio-plot
+    # TODO: debug fio-plot
   ];
   # TODO: figure out nss for eza/htop, maybe use nsncd?
 
