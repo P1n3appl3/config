@@ -1,5 +1,5 @@
 { pkgs, ... }: let
-  ghPlugin = owner: repo: rev: hash: pkgs.vimUtils.buildVimPluginFrom2Nix {
+  ghPlugin = owner: repo: rev: hash: pkgs.vimUtils.buildVimPlugin {
     pname = "${repo}"; version = rev;
     src = pkgs.fetchFromGitHub { inherit owner repo rev hash; };
   };

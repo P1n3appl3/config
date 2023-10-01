@@ -15,7 +15,7 @@ dynamic_width = true
 hide_when_empty = true
 buttons = ["prev", "play", "next"]
 format = "{title}"
-theme_overrides = {"info_bg" = "#282828"}
+theme_overrides = { "info_bg" = "#282828" }
 
 [[block]]
 block = "weather"
@@ -32,7 +32,7 @@ format_singular = "1"
 format_up_to_date = ""
 critical_updates_regex = "linux"
 aur_command = "paru -Qua"
-theme_overrides = {"info_bg" = "#282828"}
+theme_overrides = { "info_bg" = "#282828" }
 
 [[block]]
 block = "memory"
