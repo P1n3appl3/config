@@ -5,5 +5,6 @@
     cargo-bloat cargo-binutils twiggy bloaty
     ruff black pyright
     beancount-language-server
+    fio-plot
   ];
 }

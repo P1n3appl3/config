@@ -4,15 +4,13 @@
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
     fzf ripgrep fd bat eza sd dogdns rm-improved ouch jq xh rbw hyperfine
-    hexyl choose tokei zellij rsync zstd lowcharts trippy asciinema page pv
-    datamash ascii
+    hexyl choose tokei zellij rsync zstd lowcharts trippy page pv datamash ascii
     # System info
-    htop bottom bandwhich procs smartmontools duf ncdu du-dust
+    htop bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Git
     git delta gh git-heatmap git-absorb lazygit
     # Nix
-    # TODO: nom FE0E -> FE0F for emojis
-    nix home-manager nix-output-monitor nix-tree cachix nil comma hydra-check
+    nix home-manager nix-output-monitor nix-tree nil comma hydra-check
     # Scripting tools
     stylua sumneko-lua-language-server shfmt shellcheck
     # Fun
@@ -31,8 +29,8 @@
 
   nix.registry = {
     nixpkgs.flake = inputs.nixpkgs;
-    # TODO: can i refer to "self" somehow as a flake?
-    # config.to = config.home.sessionVariables.CONF_DIR;
+    config.to.type = "git";
+    config.to.url = "file://" + config.home.sessionVariables.CONF_DIR;
   };
 
   home = {
@@ -43,20 +41,11 @@
       NIX_PATH = "nixpkgs=${inputs.nixpkgs.outPath}";
       CONF_DIR = lib.mkDefault (config.home.homeDirectory + "/config");
     };
-
-    activation.symlinkDotfiles = lib.hm.dag.entryAfter ["writeBoundary"] ''
-      _conf_dir=${config.home.sessionVariables.CONF_DIR}
-      echo conf dir $_conf_dir
-      $DRY_RUN_CMD shopt -s dotglob
-      for f in $_conf_dir/dotfiles/**/*; do
-        if [ -f "$f" ]; then
-          f=$(realpath --relative-to $_conf_dir/dotfiles $f)
-          echo haha $f
-          $DRY_RUN_CMD mkdir -p $VERBOSE_ARG $HOME/$(dirname $f)
-          $DRY_RUN_CMD ln -sf $VERBOSE_ARG $_conf_dir/dotfiles/$f $HOME/$f
-        fi
-      done
-      $DRY_RUN_CMD shopt -u dotglob
-    '';
+    file = builtins.listToAttrs (map (path:
+      let f = lib.strings.removePrefix (inputs.self + "/dotfiles/") (toString path);
+      in {
+        name = f ; value = {source = config.lib.file.mkOutOfStoreSymlink
+          (config.home.sessionVariables.CONF_DIR + "/dotfiles/" + f);};
+      }) (lib.filesystem.listFilesRecursive ../dotfiles));
   };
 }

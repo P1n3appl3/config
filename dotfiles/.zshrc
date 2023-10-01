@@ -17,11 +17,14 @@ done
 # TODO: command-not-found, edit distance, nix-index, maybe pacman
 
 # Shortcuts for tweaking dotfiles
-alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-function mkconfig { eval "function ${1}config { vi $HOME/$2 ${@:3}; }"; }
+alias config='git -C $CONF_DIR'
+alias reload='unset __HM_SESS_VARS_SOURCED; exec zsh'
+function mkconfig {
+    eval "function ${1}config { cd $CONF_DIR; vi $CONF_DIR/dotfiles/$2 ${@:3}; cd -}"
+}
 mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
 mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
-mkconfig nix '{flake.nix,.config/nix-config/{home-modules/common.nix,**/*.nix}}'
+mkconfig nix '../{home-modules/common.nix,**/*.nix}'
 mkconfig i3 '.config/i3/{config,*}'
 
 # Misc.
@@ -72,9 +75,7 @@ function switch {
         sudo true # to prompt for password and not get piped to nom
         cmd="sudo -n nixos-rebuild"
     } || cmd=hm
-    export FACADE_DIR=~/.cache/nix-config
-    .config/nix-config/shadow.bash
-    eval $cmd switch --flake git+file://$HOME/.cache/nix-config#$(hostname -s) $@ |& nom
+    eval $cmd switch --flake config#$(hostname -s) $@ |& nom
 }
 alias sc=systemctl
 alias music=ncmpcpp

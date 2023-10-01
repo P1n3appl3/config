@@ -1,7 +1,5 @@
 { pkgs, python3, fetchPypi }:
 
-# TODO: fix this package, not sure why I'm seeing `FileExistsError` for the
-# scripts, maybe I'm holding `buildPythonApplication` wrong
 python3.pkgs.buildPythonApplication rec {
   pname = "fio-plot";
   version = "1.1.7";
@@ -15,5 +13,10 @@ python3.pkgs.buildPythonApplication rec {
     numpy matplotlib pillow pyparsing
   ];
   # pyan3 is only used for internal documentation
-  postPatch = "substituteInPlace ./setup.py --replace \"'pyan3', \" ''";
+  # I'm not sure why the "scripts" part breaks things but removing it seems to work
+  postPatch = ''
+      substituteInPlace ./setup.py --replace "'pyan3', " ""
+      substituteInPlace ./setup.py --replace \
+        "scripts=['bin/fio-plot', 'bin/bench-fio']," ""
+    '';
 }

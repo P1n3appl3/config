@@ -45,7 +45,6 @@
     };
     nixosConfigurations = {
       Cortana = machine "aarch64-linux" ./hosts/cortana/main.nix;
-      testvm  = machine "x86_64-linux"  ./hosts/testvm.nix;
     };
     overlays.default = final: _: listDir
       {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};

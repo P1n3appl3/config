@@ -1,5 +1,3 @@
--- TODO: trailing whitespace and mixed indent highlights (obviated by formatters?)
-
 vim.cmd [[ colorscheme custom ]]
 
 require("colorizer").setup { user_default_options = { names = false } }
