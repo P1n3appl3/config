@@ -18,6 +18,7 @@
       nixos-hardware.follows = ""; flu.follows = "flake-utils";
     };
   };
+  # TODO: export home/nixos modules separately from hosts
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware,
               nix-index-database, rahul-config, self } @ inputs:
   let

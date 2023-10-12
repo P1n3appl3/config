@@ -26,16 +26,6 @@ sudo hostnamectl hostname "$host"
 
 mkdir Documents Downloads Games Images Images/screenshots Music Videos test
 
-# secrets + env
-mkdir -p .ssh
-rbw config set email josephryan3.14@gmail.com
-rbw get ssh_private >.ssh/id_rsa
-rbw get ssh_public >.ssh/id_rsa.pub
-chmod 700 .ssh
-chmod 644 .ssh/id_rsa.pub
-chmod 600 .ssh/id_rsa
-echo export OPENWEATHERMAP_API_KEY=$(rbw get openweathermap) \
-    >>.xprofile
 cat >>.xprofile <<EOF
 # export QT_QPA_PLATFORM=wayland
 # export MOZ_ENABLE_WAYLAND=1
@@ -83,10 +73,6 @@ sudo chown joseph /etc/pacman.d/mirrorlist
 rate-mirrors --save /etc/pacman.d/mirrorlist arch
 
 paru -S "${dev[@]}"
-
-# get config files
-curl -L https://raw.github.com/P1n3appl3/config/main/.config/scripts/setup.sh | sh
-
 paru -S "${desktop[@]}"
 paru -S "${games[@]}"
 paru -S "${tools[@]}"

@@ -1,10 +1,17 @@
 { pkgs, inputs, lib, config, myOverlays, ... }: {
+  imports = [
+    { nixpkgs.overlays = myOverlays; }
+    inputs.nix-index-database.hmModules.nix-index
+    ./nvim.nix
+  ];
+
   home.packages = with pkgs; [
     # Shell
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
     fzf ripgrep fd bat eza sd dogdns rm-improved ouch jq xh rbw hyperfine
-    hexyl choose tokei zellij rsync zstd lowcharts trippy page pv datamash ascii
+    hexyl choose tokei zellij rsync zstd lowcharts trippy page pv datamash
+    ascii element
     # System info
     htop bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Git
@@ -12,7 +19,7 @@
     # Nix
     nix home-manager nix-output-monitor nix-tree nil comma hydra-check
     # Scripting tools
-    stylua sumneko-lua-language-server shfmt shellcheck
+    stylua sumneko-lua-language-server shfmt shellcheck mawk
     # Fun
     blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain
   ];
@@ -20,12 +27,6 @@
   programs = {
     direnv = { enable = true; nix-direnv.enable = true; };
   };
-
-  imports = [
-    { nixpkgs.overlays = myOverlays; }
-    inputs.nix-index-database.hmModules.nix-index
-    ./nvim.nix
-  ];
 
   nix.registry = {
     nixpkgs.flake = inputs.nixpkgs;

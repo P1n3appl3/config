@@ -131,6 +131,8 @@ return lush(function()
 
         -- TODO: Add explicit treesitter groups
 
+        TrailingWhitespace { bg = "PaleVioletRed" },
+
         RedSign { fg = red, gui = "reverse" },
         OrangeSign { fg = orange, gui = "reverse" },
         YellowSign { fg = yellow, gui = "reverse" },
