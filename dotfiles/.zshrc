@@ -1,20 +1,9 @@
 # Load other configs
-my_configs=(keybinds completion fuzzy history terminal)
+my_configs=(keybinds plugins completion fuzzy history terminal)
 for f in $my_configs; do source $HOME/.config/zsh/$f.zsh; done
 local extra=$HOME/.config/zsh/extra.zsh
 test -f $extra && source $extra
 
-eval "$(atuin init zsh --disable-up-arrow)" # History
-eval "$(zoxide init zsh --cmd j)"           # Dir jumper
-eval "$(starship init zsh)"                 # Prompt
-eval "$(direnv hook zsh)"
-
-source $HOME/.nix-profile/share/fzf/completion.zsh
-for f in zsh-syntax-highlighting zsh-autosuggestions; do
-    source $HOME/.nix-profile/share/$f/$f.zsh
-done
-
-# TODO: command-not-found, edit distance, nix-index, maybe pacman
 
 # Shortcuts for tweaking dotfiles
 alias config='git -C $CONF_DIR'
@@ -35,18 +24,7 @@ TIMEFMT=$'\nreal\t%E\ntime\t%U / %S\ncpu\t%P\nmem\t%M KB
 faults\t%F / %R\nwaits\t%c / %w'
 export TIME=$TIMEFMT
 export MANPAGER='less -M -j5 +Gg'
-
-# TODO: remove when https://github.com/direnv/direnv/issues/68 lands
-copy_function() {
-    test -n "$(declare -f "$1")" || return
-    eval "${_/$1/$2}"
-}
-copy_function _direnv_hook _direnv_hook__old
-_direnv_hook() {
-    _direnv_hook__old "$@" 2> >(awk '{if (length >= 10) \
-        { sub("^direnv: export.*", "direnv: export "NF" environment variables")}}1')
-    wait
-}
+unalias run-help && autoload -Uz run-help && alias help=run-help
 
 alias cat=bat
 alias l="eza --icons --time-style relative" alias ls="l -l" alias la="l -la"
@@ -65,7 +43,7 @@ function pacclean { paru -Qtdq | paru -Rns -; }
 alias hm=home-manager
 alias nixlist='hm packages'
 function nixfind {
-    nix-locate --color=always -t r -t x --top-level $@ |
+    nix-locate --color=always -rt r -t x -t s --top-level $@ |
         sd '/nix/store/[^/\x1b]+' '' | sort
 }
 alias nixsize=nix-tree
@@ -83,3 +61,5 @@ function fontcheck {
     FC_DEBUG=4 pango-view -q -t $1 --font=${2:-sans} |&
         rg -or '$1' 'family: "([^"]+)"' | tail -1
 }
+function path { echo $path | sd ' ' '\n'; }
+PATH=$(printf "%s" "$PATH" | mawk -v RS=: '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')

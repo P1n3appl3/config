@@ -1,7 +1,9 @@
 { pkgs, ... }: {
   fonts.fontconfig.enable = true;
+  gtk.font.name = "Noto";
+
   home.packages = with pkgs; [
-    # TODO: look into opentype options and/or other fonts
+    # TODO: look into opentype options with opentype.dev or other fonts:
     # dejavu victor menlo/meslo fira hack hasklig isoveka
     # jetbrains mononoki ubuntu (and check chat thread from work)
     source-code-pro
@@ -11,7 +13,10 @@
     noto-fonts-emoji
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     comic-neue
+
+    fontfor
   ];
+
   # TODO: possibly grab this out of osConfig after making a nixos font module
   xdg.configFile."fontconfig/fonts.conf".text = ''
 <?xml version="1.0" encoding="utf-8"?>

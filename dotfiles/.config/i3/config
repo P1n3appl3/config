@@ -29,26 +29,21 @@ $run dunst
 # Media keys
 bindsym XF86MonBrightnessUp $run light -A 5
 bindsym XF86MonBrightnessDown $run light -U 5
-bindsym XF86AudioRaiseVolume $run pamixer -i 5
-bindsym XF86AudioLowerVolume $run pamixer -d 5
-bindsym XF86AudioMute $run pamixer -t
-bindsym XF86AudioPrev $run mpc prev
-bindsym XF86AudioPlay $run mpc toggle
-bindsym XF86AudioNext $run mpc next
-bindsym Shift+Print $run ~/.config/scripts/screenshot.sh
-bindsym Print $run ~/.config/scripts/screenshot.sh s
-# TODO: color dropper to clipboard
+bindsym Shift+Print $run $CONF_DIR/scripts/screenshot.sh
+bindsym Print $run $CONF_DIR/scripts/screenshot.sh s
+# TODO: color dropper to clipboard with magnifying glass
 
 # Run stuff
 bindsym $mod+r $run rofi -show drun
 bindsym $mod+Return $run kitty -1
 bindsym $mod+slash $run rofi -show window
 bindsym $mod+v $run CM_LAUNCHER=rofi CM_HISTLENGTH=20 clipmenu
-bindsym $mod+m $run ~/.config/scripts/song.sh play
-bindsym $mod+Shift+m $run ~/.config/scripts/song.sh
+bindsym $mod+m $run $CONF_DIR/scripts/song.sh play
+bindsym $mod+Shift+m $run $CONF_DIR/scripts/song.sh
 bindsym $mod+u $run rofimoji
-bindsym $mod+q $run rofi -show calc -no-sort \
-    -calc-command "xclip -selection c <<< {result}'"
+# TODO: improve cpc to the point that it's a viable replacement
+bindsym $mod+q $run rofi -show calc -modi calc -no-sort -calc-command-history \
+    -calc-command "echo -n '{result}' | xclip -selection c"
 bindsym $mod+n $run dunstctl close
 bindsym $mod+Shift+n $run dunstctl history-pop
 
@@ -61,6 +56,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+a focus child
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+r reload
+# TODO: save/restore layout for reboots
 
 # Window layout
 bindsym $mod+t layout tabbed

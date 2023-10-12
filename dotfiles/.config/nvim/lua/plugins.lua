@@ -48,25 +48,27 @@ require("nvim-surround").setup {}
 require("Comment").setup { mappings = false }
 local comment = require "Comment.ft"
 comment.beancount = ";%s" -- TODO: set in treesitter or upstream?
-local lint = require "lint"
-lint.linters_by_ft = { sh = { "shellcheck" }, python = { "ruff" } }
-local lint_group = vim.api.nvim_create_augroup("lint_group", {})
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
-    group = lint_group,
-    callback = function() lint.try_lint() end,
-})
+-- TODO: maybe add workaround to fzf-lua if null-ls breaks it
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Compatibility-with-other-plugins
+local null_ls = require "null-ls"
+local ca = null_ls.builtins.code_actions
+local diag = null_ls.builtins.diagnostics
+null_ls.setup {
+    sources = { ca.gitsigns, ca.shellcheck, diag.shellcheck, diag.ruff, diag.vale },
+}
 local crates = require "crates"
-crates.setup { popup = { autofocus = true, show_version_date = true } }
+crates.setup {
+    popup = { autofocus = true, show_version_date = true },
+    null_ls = { enabled = true, name = "crates.nvim" },
+}
 hover.register {
     name = "Crates",
     priority = 10000,
     enabled = function()
         return vim.fn.expand "%:t" == "Cargo.toml" and crates.popup_available()
     end,
-    execute = function(done)
-        crates.show_popup()
-        done(nil)
-    end,
+    -- stylua: ignore
+    execute = function(done) crates.show_popup(); done(nil) end,
 }
 
 -- stylua: ignore
@@ -97,7 +99,7 @@ require("treesitter-context").setup { patterns = { python = { "if", "elif" } } }
 -- TODO: figure out why this takes so long
 require("treesj").setup { use_default_keymaps = false }
 
--- language server configuration
+-- Language server configuration
 
 require("neodev").setup {}
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -110,6 +112,7 @@ end
 
 server "clangd"
 server "nil_ls"
+server "asm_lsp"
 server("pyright", {
     settings = { python = { analysis = { diagnosticMode = "openFilesOnly" } } },
 })

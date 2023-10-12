@@ -94,7 +94,7 @@ wk.register({
         N = { GITS.prev_hunk, "Prev Hunk" },
         h = { GITS.preview_hunk_inline, "Show Hunk" },
         s = { GITS.stage_hunk, "Stage Hunk" },
-        u = { GITS.unstage_hunk, "Unstage Hunk" },
+        u = { GITS.undo_stage_hunk, "Undo Stage Hunk" },
     },
     G = { FZF.git_status, "Git Status" },
     t = { FZF.lsp_document_symbols, "Symbols" },

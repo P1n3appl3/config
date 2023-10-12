@@ -16,13 +16,17 @@
     };
   };
 
+  # TODO: rust-motd + cats
+
   networking.hostName = "Cortana";
   networking.firewall.allowedTCPPorts = [ 80 443 8080 ];
+  # TODO: add atuin and set bash/zsh to use mine
   services = {
     openssh = {
       enable = true; ports = [ 69 ];
       settings.PasswordAuthentication = false;
     };
+    # hook up fail2ban: https://demu.red/blog/2019/04/endlessh-html-scoreboard/
     endlessh-go = {
       enable = true; port = 22; openFirewall = true;
       prometheus.enable = true;

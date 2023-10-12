@@ -1,13 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # example usage:
 # fx bazel cquery "allpaths(//build/bazel/examples/hello_rust:pkg.component, //build/bazel/examples/hello_rust:src/main.rs)" --output=graph | idot
-
 
 font=mono
 fgcolor=gray87 # closest to #DDDDDD which kitty's default foreground
 
 dot -Tsvg -Nstyle=rounded -Gbgcolor=black -Ncolor=$fgcolor -Nfontcolor=$fgcolor \
-    -Ecolor=$fgcolor -Efontcolor=$fgcolor -Gfontname=$font -Nfontname=$font -Efontname=$font | 
-    tee /tmp/graph.svg | 
+    -Ecolor=$fgcolor -Efontcolor=$fgcolor \
+    -Gfontname=$font -Nfontname=$font -Efontname=$font |
+    tee /tmp/graph.svg |
     kitty +kitten icat --align left # replace with some sort of sixel image output if not using kitty

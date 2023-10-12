@@ -1,5 +1,5 @@
 # vim:ft=cfg
-# fio ~/.config/scripts/diskbench.fio --directory ~/test/benchmark
+# fio $CONF_DIR/scripts/diskbench.fio --directory ~/test/benchmark
 #   --output-format=json --output disk.json
 [global]
 direct=1
