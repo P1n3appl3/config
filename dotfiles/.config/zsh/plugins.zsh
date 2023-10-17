@@ -1,7 +1,5 @@
 # TODO: fix https://github.com/crossterm-rs/crossterm/issues/685 so ctrl+backspace
 # works in atuin: https://github.com/atuinsh/atuin/issues/941
-# TODO: use https://gist.github.com/tyalie/7e13cfe2ec62d99fa341a07ed12ef7c0
-# for up-arrow incremental search, see about autosuggestions?
 eval "$(atuin init zsh --disable-up-arrow)" # History
 eval "$(zoxide init zsh --cmd j)"           # Dir jumper
 eval "$(starship init zsh)"                 # Prompt

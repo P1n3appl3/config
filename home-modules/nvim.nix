@@ -16,7 +16,6 @@
       vim-fetch
       vim-startuptime
       plenary-nvim
-      hover-nvim
       nvim-cmp cmp-buffer cmp-path # cmp-beancount
       # TODO: cmp-kitty and maybe cmp-under-comparator
       # TODO: nvim-ufo for folding
@@ -31,17 +30,16 @@
       dressing-nvim
       # TODO: use nixpkgs version of fidget once updated, or switch to noice
       (gh "j-hui" "fidget.nvim" "0ba1e16d07627532b6cae915cc992ecac249fb97"
-      "sha256-rmJgfrEr/PYBq0S7j3tzRZvxi7PMMaAo0k528miXOQc=")
+        "sha256-rmJgfrEr/PYBq0S7j3tzRZvxi7PMMaAo0k528miXOQc=")
     # Programming
       nvim-surround
       comment-nvim
       nvim-autopairs
       nvim-snippy cmp-snippy vim-snippets
-      neoformat # TODO: nvim-format and use lsp when available
+      neoformat # TODO: swap for formatter.nvim or conform.nvim once it reaches parity
       nvim-lspconfig
       cmp-nvim-lsp cmp-nvim-lsp-signature-help
       nvim-lint
-      null-ls-nvim # TODO: migrate to none-ls once crates.nvim updates
       (nvim-treesitter.withPlugins (p: with p; [
         bash c cpp python rust lua zig kdl toml json json5 jq regex
         make ninja dot nix html css typescript javascript query
@@ -58,6 +56,7 @@
       neodev-nvim
       rust-tools-nvim crates-nvim
       # TODO: nvim-dap + cmp-dap
+      # https://davelage.com/posts/nvim-dap-getting-started/
     ];
   };
 in { config.programs.neovim = nvim_config; }

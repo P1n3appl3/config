@@ -33,7 +33,7 @@ modemap({ "i", "n", "v" }, "<C-h>", function()
     end
 end)
 local alphabet = "abcdefghijklmnopqrstuvwxyz"
-for i = 1, #alphabet do
+for i = 1, #alphabet do -- select mode: unmap all letters
     local c = alphabet:sub(i, i)
     modemap("s", c, c)
 end
@@ -43,8 +43,47 @@ modemap({ "n", "v" }, "<C-i>", "<C-i>", { noremap = true }) -- don't group <C-i>
 modemap("n", "<space>cl", "<Plug>(comment_toggle_linewise_current)")
 modemap("v", "<space>cl", "<Plug>(comment_toggle_linewise_visual)")
 modemap("v", "<space>cb", "<Plug>(comment_toggle_blockwise_visual)")
-vim.api.nvim_create_user_command("LspFormat", function() vim.lsp.buf.format() end, {})
-map("K", require("hover").hover)
+local format = function()
+    local c = vim.lsp.get_active_clients()[1]
+    if c and c.supports_method "textDocument/formatting" then
+        local t = vim.api.nvim_buf_get_changedtick(0)
+        local name = "Language Server"
+        if c.name ~= "" then name = c.name end
+        vim.lsp.buf.format()
+        if t ~= vim.api.nvim_buf_get_changedtick(0) then
+            print(name .. ": formatted buffer")
+        else -- TODO: file upstream bug to tell if lsp formatter failed vs noop'd
+            print(name .. ": no changes made")
+        end
+    else
+        vim.cmd [[ Neoformat ]]
+    end
+end
+
+local sev = vim.diagnostic.severity
+local sev_names = { "ERROR", "WARN", "INFO", "HINT" }
+local current_severity = sev.HINT
+local change_min_severity = function(new_min)
+    local s = (new_min + 3) % 4 + 1 -- wrap around
+    current_severity = s
+    print("Minimum severity: " .. sev_names[s])
+    local temp = { severity = { min = s } }
+    vim.diagnostic.config { signs = temp, underline = temp }
+end
+local increase_min_severity = function() change_min_severity(current_severity - 1) end
+local decrease_min_severity = function() change_min_severity(current_severity + 1) end
+
+local diagnostics_active = true
+local toggle_diagnostics = function()
+    diagnostics_active = not diagnostics_active
+    local d = vim.diagnostic
+    -- stylua: ignore
+    if diagnostics_active then d.show() else d.hide() end
+end
+
+-- TODO: remove once https://github.com/neovim/neovim/pull/24331 works
+map("K", vim.lsp.buf.hover)
+
 -- TODO: alt+hjkl to navigate TS nodes (ctrl+alt to swap)
 -- try ziontee113/SelectEase or ziontee113/syntax-tree-surfer
 
@@ -78,9 +117,11 @@ wk.register({
         e = { vim.diagnostic.open_float, "Details" },
         n = { vim.diagnostic.goto_next, "Next" },
         N = { vim.diagnostic.goto_prev, "Prev" },
-        l = { FZF.lsp_document_diagnostics, "List" },
-        L = { FZF.lsp_workspace_diagnostics, "List All" },
-        -- TODO: next diagnostic severity awareness, toggle low severity
+        l = { FZF.diagnostics_document, "List" },
+        L = { FZF.diagnostics_workspace, "List All" },
+        t = { toggle_diagnostics, "Toggle" },
+        s = { increase_min_severity, "Less Noise" },
+        S = { decrease_min_severity, "More Noise" },
     },
     d = { ":bd<CR>", "Close Buffer" },
     ["<tab>"] = { ":b#<CR>", "Last Buffer" },
@@ -121,10 +162,9 @@ wk.register({
     r = { fzf_g "references", "References" },
     D = { fzf_g "declarations", "Declaration" },
     t = { fzf_g "typedefs", "Typedef" },
-    K = { require("hover").hover, "Hover" },
 }, { prefix = "g" })
 
 wk.register({
     [","] = { ",", "Last match" },
-    ["="] = { ":Neoformat<CR>", "Format" },
+    ["="] = { format, "Format" },
 }, { prefix = "," })
