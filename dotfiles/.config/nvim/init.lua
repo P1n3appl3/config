@@ -24,18 +24,13 @@ o.shortmess:append "cI"
 -- TODO: find an equivalent to vim's :set wrap smoothscroll
 
 -- vim.lsp.set_log_level "debug" -- TODO: prettier lsp log viewer
-vim.diagnostic.config { virtual_text = false, severity_sort = true }
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    -- TODO: control min diagnostic level
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    { signs = true, underline = true, update_in_insert = false }
-)
 
 require "completion"
 require "plugins"
 require "pretty"
 require "keybinds"
 
+vim.diagnostic.config { virtual_text = false, severity_sort = true }
 vim.api.nvim_create_user_command("Reload", "so $MYVIMRC", {})
 vim.api.nvim_create_user_command("Dismiss", require("notify").dismiss, {})
 vim.cmd [[ " TODO: lua

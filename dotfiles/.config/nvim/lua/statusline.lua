@@ -1,10 +1,6 @@
 local icons = { Hint = "", Info = "", Warn = "", Error = "" }
-local sev = {
-    Hint = vim.diagnostic.severity.HINT,
-    Info = vim.diagnostic.severity.INFO,
-    Warn = vim.diagnostic.severity.WARN,
-    Error = vim.diagnostic.severity.ERROR,
-}
+local ls = vim.diagnostic.severity
+local sev = { Hint = ls.ERROR, Info = ls.WARN, Warn = ls.INFO, Error = ls.HINT }
 
 for k, v in pairs(icons) do
     vim.fn.sign_define("DiagnosticSign" .. k, { text = v, texthl = "DiagnosticSign" .. k })

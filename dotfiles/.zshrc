@@ -4,7 +4,6 @@ for f in $my_configs; do source $HOME/.config/zsh/$f.zsh; done
 local extra=$HOME/.config/zsh/extra.zsh
 test -f $extra && source $extra
 
-
 # Shortcuts for tweaking dotfiles
 alias config='git -C $CONF_DIR'
 alias reload='unset __HM_SESS_VARS_SOURCED; exec zsh'
@@ -19,7 +18,6 @@ mkconfig i3 '.config/i3/{config,*}'
 # Misc.
 unsetopt flowcontrol
 setopt no_case_glob
-WORDCHARS='_.$<>'
 TIMEFMT=$'\nreal\t%E\ntime\t%U / %S\ncpu\t%P\nmem\t%M KB
 faults\t%F / %R\nwaits\t%c / %w'
 export TIME=$TIMEFMT

@@ -31,16 +31,6 @@ if vim.env.SSH_TTY then
         paste = { ["+"] = paste, ["*"] = paste },
     }
 end
-local hover = require "hover"
-hover.setup {
-    init = function()
-        require "hover.providers.lsp"
-        require "hover.providers.man"
-    end,
-    preview_window = true,
-    title = false,
-    preview_opts = { border = "none" },
-}
 
 -- Programming
 
@@ -48,28 +38,14 @@ require("nvim-surround").setup {}
 require("Comment").setup { mappings = false }
 local comment = require "Comment.ft"
 comment.beancount = ";%s" -- TODO: set in treesitter or upstream?
--- TODO: maybe add workaround to fzf-lua if null-ls breaks it
--- https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Compatibility-with-other-plugins
-local null_ls = require "null-ls"
-local ca = null_ls.builtins.code_actions
-local diag = null_ls.builtins.diagnostics
-null_ls.setup {
-    sources = { ca.gitsigns, ca.shellcheck, diag.shellcheck, diag.ruff, diag.vale },
-}
-local crates = require "crates"
-crates.setup {
-    popup = { autofocus = true, show_version_date = true },
-    null_ls = { enabled = true, name = "crates.nvim" },
-}
-hover.register {
-    name = "Crates",
-    priority = 10000,
-    enabled = function()
-        return vim.fn.expand "%:t" == "Cargo.toml" and crates.popup_available()
-    end,
-    -- stylua: ignore
-    execute = function(done) crates.show_popup(); done(nil) end,
-}
+
+local lint = require "lint"
+lint.linters_by_ft = { sh = { "shellcheck" }, python = { "ruff" } }
+local lint_group = vim.api.nvim_create_augroup("lint_group", {})
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+    group = lint_group,
+    callback = function() lint.try_lint() end,
+})
 
 -- stylua: ignore
 require "nvim-treesitter.configs".setup {
