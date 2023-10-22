@@ -1,43 +1,8 @@
--- General
-
-require("fzf-lua").setup {
-    preview_layout = "vertical",
-    preview_vertical = "up",
-    keymap = {
-        fzf = { ["ctrl-u"] = "half-page-up", ["ctrl-d"] = "half-page-down" },
-    },
-    files = { fd_opts = "-Htf --mount --color always" },
-    grep = { rg_opts = "-S. --no-heading --color always" },
-}
-require("hop").setup {}
-require("auto-session").setup { auto_save_enabled = true, auto_restore_enabled = false }
-vim.g.startuptime_exe_path = "nvim"
-vim.o.timeoutlen = 300
-require("which-key").setup {
-    plugins = {
-        presets = { operators = false, motions = false, text_objects = false },
-    },
-    layout = { width = { max = 40 } },
-    triggers = { "g", "z", "<leader>", ",", "<c-w>", "<c-r>", '"', "'", "`" },
-}
-if vim.env.SSH_TTY then
-    local function copy(lines, _) require("osc52").copy(table.concat(lines, "\n")) end
-    local function paste()
-        return { vim.fn.split(vim.fn.getreg "", "\n"), vim.fn.getregtype "" }
-    end
-    vim.g.clipboard = {
-        name = "osc52",
-        copy = { ["+"] = copy, ["*"] = copy },
-        paste = { ["+"] = paste, ["*"] = paste },
-    }
-end
-
--- Programming
-
-require("nvim-surround").setup {}
 require("Comment").setup { mappings = false }
 local comment = require "Comment.ft"
 comment.beancount = ";%s" -- TODO: set in treesitter or upstream?
+
+require("nvim-surround").setup {}
 
 local lint = require "lint"
 lint.linters_by_ft = { sh = { "shellcheck" }, python = { "ruff" } }
@@ -48,21 +13,20 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
 })
 
 -- stylua: ignore
-require "nvim-treesitter.configs".setup {
-    highlight = { enable = true,
+require("nvim-treesitter.configs").setup {
+    highlight = {
+        enable = true,
         disable = { "python" },
         additional_vim_regex_highlighting = true,
     },
-    textobjects = {
-        select = { enable = true,
-            keymaps = {
-                ["af"] = "@function.outer", ["if"] = "@function.inner",
-                ["aa"] = "@parameter.outer", ["ia"] = "@parameter.inner",
-                ["as"] = "@statement.outer",
-            },
-        },
-    },
-    incremental_selection = { enable = true,
+    textobjects = { select = { enable = true,
+        keymaps = {
+            ["af"] = "@function.outer", ["if"] = "@function.inner",
+            ["aa"] = "@parameter.outer", ["ia"] = "@parameter.inner",
+            ["as"] = "@statement.outer",
+    }}},
+    incremental_selection = {
+        enable = true,
         keymaps = {
             init_selection = "<tab>",
             node_incremental = "<tab>",
@@ -72,8 +36,6 @@ require "nvim-treesitter.configs".setup {
     },
 }
 require("treesitter-context").setup { patterns = { python = { "if", "elif" } } }
--- TODO: figure out why this takes so long
-require("treesj").setup { use_default_keymaps = false }
 
 -- Language server configuration
 
@@ -92,7 +54,13 @@ server "asm_lsp"
 server("pyright", {
     settings = { python = { analysis = { diagnosticMode = "openFilesOnly" } } },
 })
-server("lua_ls", { settings = { Lua = { diagnostics = { globals = { "vim" } } } } })
+server("lua_ls", {
+    settings = { Lua = { diagnostics = { globals = { "vim" } } } },
+    on_attach = function(client)
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+    end,
+})
 server(
     "beancount",
     { init_options = { journal_file = vim.env.HOME .. "/money/journal.beancount" } }

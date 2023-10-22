@@ -1,6 +1,14 @@
 local cmp = require "cmp"
 local snippy = require "snippy"
 snippy.setup { hl_group = "SnippetPlaceholder" }
+-- stylua: ignore start
+vim.keymap.set({ "i", "n", "v" }, "<C-l>", function()
+    if snippy.can_jump(1) then snippy.next() else print "No more snippets" end
+end)
+vim.keymap.set({ "i", "n", "v" }, "<C-h>", function()
+    if snippy.can_jump(-1) then snippy.previous() else print "No more snippets" end
+end)
+-- stylua: ignore end
 
 require("nvim-autopairs").setup {}
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
@@ -9,13 +17,13 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 cmp.setup {
     snippet = { expand = function(args) snippy.expand_snippet(args.body) end },
     performance = { max_view_entries = 20 },
-    sources = cmp.config.sources({ { name = "crates" } }, {
+    sources = cmp.config.sources {
         { name = "nvim_lsp_signature_help" },
         { name = "nvim_lsp" },
         { name = "snippy" },
         { name = "buffer" }, -- TODO: set keyword_length and check large file perf
         { name = "path" },
-    }),
+    },
     preselect = cmp.PreselectMode.None,
     formatting = {
         fields = { "kind", "abbr", "menu" },

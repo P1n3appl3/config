@@ -7,5 +7,6 @@
     beancount-language-server
     # TODO: create nix package for asm-lsp and add goto def
     nasm asmfmt nasmfmt # TODO: add neoformat for nasmfmt
+    (nurl.override { mercurial=null; })
   ];
 }

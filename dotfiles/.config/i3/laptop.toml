@@ -67,7 +67,7 @@ block = "notify"
 [[block]]
 block = "sound"
 step_width = 1
-on_click = "killall pavucontrol || pavucontrol &"
+on_click = "pkill -f pavucontrol || pavucontrol &"
 
 [[block]]
 block = "time"

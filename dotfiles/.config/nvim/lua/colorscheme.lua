@@ -76,7 +76,7 @@ return lush(function()
         SpecialKey { fg = light4 },
         StatusLine { fg = light4, gui = "bold,reverse" },
         StatusLineNC { bg = dark2 },
-        StatusLineModified { bg = dark_purple.darken(50) },
+        StatusLineModified { fg = yellow, bg = dark_purple.darken(50), gui = "bold" },
         TabLineSel { bg = dark2 },
         TabLine {},
         TabLineFill {},

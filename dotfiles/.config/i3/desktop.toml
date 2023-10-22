@@ -51,7 +51,7 @@ block = "notify"
 [[block]]
 block = "sound"
 step_width = 1
-click = [{ cmd = "killall pavucontrol || pavucontrol &", button = "left" }]
+click = [{ cmd = "pkill -f pavucontrol || pavucontrol &", button = "left" }]
 
 [[block]]
 block = "time"

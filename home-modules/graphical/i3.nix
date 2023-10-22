@@ -5,15 +5,16 @@ in {
 
   home.packages = with pkgs; [
     i3 i3status-rust
-    xclip clipmenu maim
+    xclip clipmenu maim xcolor
     rofimoji libqalculate
-    light
+    brightnessctl
     oneko
     dunst
     # kitty # TODO: nixgl?
     pavucontrol
     imv mpv ffmpeg
-    firefox
+    # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
+    (firefox.override { cfg.speechSynthesisSupport = false; })
     # TODO: krisp see https://github.com/NixOS/nixpkgs/issues/195512
     (discord.override { withOpenASAR = true; withVencord = true; })
     telegram-desktop caprine-bin signal-desktop
@@ -21,7 +22,7 @@ in {
     (calibre.override { speechd=null; }) # TODO: does it actually need qt-webengine?
     marble
     # TODO: pick a file browser
-    rizin # cutter # TODO: try these
+    # rizin cutter # TODO: try these
     # TODO: evince or zathura
     # obs-studio inkscape kdenlive blender obsidian
   ];
@@ -97,7 +98,7 @@ in {
   home.pointerCursor = {
     gtk.enable = true; x11.enable = true;
     name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors; # TODO: no way this takes half a gig...
+    package = pkgs.bibata-modern-classic;
     size = 28;
   };
 
