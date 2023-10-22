@@ -17,6 +17,7 @@ git+file:///home/joseph/config
     └───x86_64-linux
         ├───ascii-rain: pretty terminal rain animation
         ├───barchart: draw barcharts in the terminal
+        ├───bibata-modern-classic: mouse cursor theme
         ├───cargo-clone-crate: better cargo clone command
         ├───fio-plot: disk benchmarking tool
         ├───git-heatmap: view change frequency of git repo

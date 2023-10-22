@@ -4,6 +4,7 @@
     usbtop
     lm_sensors
     sysz
+    element
   ];
   # TODO: figure out nss for eza/htop, maybe use nsncd?
 

@@ -27,11 +27,12 @@ $run setxkbmap -option caps:escape
 $run dunst
 
 # Media keys
-bindsym XF86MonBrightnessUp $run light -A 5
-bindsym XF86MonBrightnessDown $run light -U 5
+bindsym XF86MonBrightnessUp $run brightnessctl -q s '+5%'
+bindsym XF86MonBrightnessDown $run brightnessctl -q s '5%-'
 bindsym Shift+Print $run $CONF_DIR/scripts/screenshot.sh
 bindsym Print $run $CONF_DIR/scripts/screenshot.sh s
-# TODO: color dropper to clipboard with magnifying glass
+# TODO: debug https://github.com/Soft/xcolor/blob/969d6525c4568a2fafd321fcd72a95481c5f3c7b/src/location.rs#L32
+bindsym $mod+c $run xcolor -s -P 200 2>/tmp/blah.txt
 
 # Run stuff
 bindsym $mod+r $run rofi -show drun

@@ -1,6 +1,6 @@
 local icons = { Hint = "", Info = "", Warn = "", Error = "" }
 local ls = vim.diagnostic.severity
-local sev = { Hint = ls.ERROR, Info = ls.WARN, Warn = ls.INFO, Error = ls.HINT }
+local sev = { Hint = ls.HINT, Info = ls.INFO, Warn = ls.WARN, Error = ls.ERROR }
 
 for k, v in pairs(icons) do
     vim.fn.sign_define("DiagnosticSign" .. k, { text = v, texthl = "DiagnosticSign" .. k })
@@ -8,8 +8,7 @@ end
 
 local function readonly() return (vim.o.readonly or not vim.o.modifiable) and "🔒" or "" end
 
-local function lsp()
-    if vim.tbl_isempty(vim.lsp.get_active_clients { bufnr = 0 }) then return "" end
+local function diagnostics()
     local levels = {
         Hint = "%%#AquaSign#",
         Info = "%%#BlueSign#",
@@ -35,7 +34,19 @@ local function git()
     return "%#SignColumn# " .. table.concat(t, " ") .. " "
 end
 
-local function modified() return vim.o.modified and "%#StatusLineModified#" or "%#Normal#" end
+local function modified() return vim.o.modified and "%#StatusLineModified#" or "%#MoreMsg#" end
+
+vim.opt.showmode = false
+-- stylua: ignore
+local modes = {
+    i = "Insert", s = "Select", c = "Command", t = "Terminal",
+    v = "Visual", V = "Visual (line)", [""] = "Visual (block)",
+}
+local function mode()
+    local m = vim.api.nvim_get_mode().mode
+    if m == "n" then return "" end
+    return " " .. (modes[m] ~= nil and modes[m] or m)
+end
 
 local line_col = " %l:%-2c "
 local file = " %f "
@@ -46,8 +57,8 @@ StatusLine = {
     active = function()
         -- stylua: ignore
         return table.concat {
-            readonly(), file, git(), modified(),
-            fill, lsp(), reset, line_col,
+            readonly(), file, git(), modified(), mode(),
+            fill, diagnostics(), reset, line_col,
         }
     end,
     inactive = function() return table.concat { file, fill, line_col } end,

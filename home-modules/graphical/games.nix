@@ -19,5 +19,6 @@
     #   might need https://github.com/danielfullmer/nixos-nvidia-vgpu
     #   and or https://github.com/DualCoder/vgpu_unlock
     # - sabaki sgf viewer
+    # - shattered-pixel-dungeon or maybe just steam version
   ];
 }
