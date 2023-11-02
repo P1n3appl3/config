@@ -28,6 +28,7 @@ local dark_aqua   = c "#689d6a"
 local orange      = c "#fe8019"
 local dark_orange = c "#d65d0e"
 -- stylua: ignore end
+local light_red = red.lighten(30).de(30)
 
 vim.g.terminal_color_0 = dark0.hex
 vim.g.terminal_color_8 = gray.hex
@@ -47,7 +48,8 @@ vim.g.terminal_color_7 = light4.hex
 vim.g.terminal_color_15 = light1.hex
 
 ---@diagnostic disable: undefined-global
-return lush(function()
+return lush(function(functions)
+    local sym = functions.sym
     return {
         Normal { fg = light1, bg = dark0 },
         Comment { fg = gray, gui = "italic" },
@@ -87,24 +89,20 @@ return lush(function()
         Italic { gui = "italic" },
         Error { fg = red, gui = "bold,underline" },
         Todo { fg = light0, gui = "bold,italic" },
+        Folded { bg = dark2, fg = orange },
+        FoldColumn { Folded },
 
         String { fg = green },
-        Constant { fg = purple },
-        -- Character Number Boolean Float
+        Constant { fg = purple }, -- Character Number Boolean Float
         Identifier { fg = blue },
         Function { fg = green, gui = "bold" },
-        -- Function { Normal }, -- (use while tweaking)
-        Statement { fg = red },
-        -- Conditional Repeat Label Keyword Exception
+        Statement { fg = red }, -- Conditional Repeat Label Keyword Exception
         Operator { Normal },
-        PreProc { fg = aqua },
-        -- Include Define Macro Precondit
-        Type { fg = yellow },
-        -- Typedef
+        PreProc { fg = aqua }, -- Include Define Macro Precondit
+        Type { fg = yellow }, -- Typedef
         StorageClass { fg = orange },
         Structure { fg = aqua },
-        Special { fg = orange },
-        -- Delimiter SpecialComment
+        Special { fg = orange }, -- Delimiter SpecialComment
         SpecialChar { fg = red },
         Tag { fg = aqua, gui = "bold" },
         Debug { fg = red },
@@ -128,10 +126,37 @@ return lush(function()
         LspReferenceText { bg = dark1 },
         LspReferenceRead { LspReferenceText },
         LspReferenceWrite { bg = dark1.rotate(-10).saturate(10) },
+        LspSignatureActiveParameter { gui = "bold" },
 
         -- TODO: Add explicit treesitter groups
 
-        TrailingWhitespace { bg = "PaleVioletRed" },
+        sym "@lsp.type.text" { Normal },
+        sym "@lsp.type.string" { String },
+        sym "@lsp.type.pol" { Identifier },
+        sym "@lsp.type.number" { Constant },
+        sym "@lsp.type.bool" { Constant },
+        sym "@lsp.type.keyword" { Statement },
+        sym "@lsp.type.delim" { Special },
+        sym "@lsp.type.punct" { Special },
+        sym "@lsp.type.operator" { Special },
+        sym "@lsp.type.heading" { Special },
+        sym "@lsp.type.escape" { Special },
+        sym "@lsp.type.raw" { Comment },
+        sym "@lsp.type.event" { gui = "bold" },
+
+        sym "@lsp.type.selfKeyword" { Statement },
+        sym "@lsp.type.formatSpecifier" { Special },
+        sym "@lsp.type.unresolvedReference" { LspReferenceWrite },
+        sym "@lsp.type.builtinType" { Type },
+        sym "@lsp.type.attributeBracket" { Special },
+        sym "@lsp.type.derive" { Type },
+        sym "@lsp.type.generic" { Identifier },
+        sym "@lsp.type.interface" { fg = purple },
+        -- sym "@lsp.type" { bg = "light_red" }, -- unknown group
+
+        -- Plugin defined and custom groups
+
+        TrailingWhitespace { fg = light_red, gui = "reverse" },
 
         RedSign { fg = red, gui = "reverse" },
         OrangeSign { fg = orange, gui = "reverse" },
@@ -147,7 +172,7 @@ return lush(function()
 
         DiffAdd { fg = green.lighten(30).de(30), gui = "reverse" },
         DiffChange { bg = dark2 },
-        DiffDelete { fg = red.lighten(30).de(30), gui = "reverse" },
+        DiffDelete { fg = light_red, gui = "reverse" },
         DiffText { YellowSign },
 
         GitSignsAdd { SignColumn, fg = green },
@@ -157,9 +182,6 @@ return lush(function()
 
         markdownCode { fg = blue },
         xmlTag { Special },
-
-        Folded { bg = dark2, fg = orange },
-        FoldColumn { Folded },
 
         SnippetPlaceholder { fg = light1, bg = dark1, gui = "italic" },
         CmpItemAbbrDeprecated { fg = dark_blue.darken(30), gui = "strikethrough" },

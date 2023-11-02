@@ -11,6 +11,10 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixgl.url = "github:guibou/nixGL";
+    nixgl.inputs.flake-utils.follows = "flake-utils";
+    nixgl.inputs.nixpkgs.follows = "nixpkgs";
+
     rahul-config.url = "github:rrbutani/nix-config";
     rahul-config.inputs = {
       nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
@@ -20,10 +24,10 @@
   };
   # TODO: export home/nixos modules separately from hosts
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware,
-              nix-index-database, rahul-config, self } @ inputs:
+              nix-index-database, nixgl, rahul-config, self } @ inputs:
   let
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
-    myOverlays = [ self.overlays.default (import ./overlays.nix) ];
+    myOverlays = [ self.overlays.default nixgl.overlay (import ./overlays.nix) ];
 
     home = system: hostModule: home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = { inherit inputs myOverlays; };

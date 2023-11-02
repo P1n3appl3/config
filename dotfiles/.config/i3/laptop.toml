@@ -1,7 +1,11 @@
-icons = "awesome"
+[icons]
+icons = "awesome5"
+[icons.overrides]
+volume_muted = "\uf466" # TODO: remove once nerdfont stops clobbering awesome
+cpu = "\uf0e4"
 
 [theme]
-name = "gruvbox-dark"
+theme = "gruvbox-dark"
 [theme.overrides]
 separator = "|"
 separator_fg = "#aaaaaa"
@@ -9,39 +13,25 @@ separator_bg = "#282828"
 
 [[block]]
 block = "music"
-player = "mpd"
-max_width = 80
-dynamic_width = true
-hide_when_empty = true
-buttons = ["prev", "play", "next"]
-format = "{title}"
+icons_format = " {icon} "
+format = " $icon {$combo.str(max_w:35) $prev$play$next |}"
 theme_overrides = { "info_bg" = "#282828" }
 
 [[block]]
 block = "weather"
-format = "{temp}"
+format = " $icon {$temp}F "
 autolocate = true
-service = { name = "openweathermap", units = "imperial", place = "Sunnyvale" }
-
-[[block]]
-block = "pacman"
-interval = 86400
-icons_format = " 📦 "
-format = "{both}"
-format_singular = "1"
-format_up_to_date = ""
-critical_updates_regex = "linux"
-aur_command = "paru -Qua"
-theme_overrides = { "info_bg" = "#282828" }
+autolocate_interval = "once"
+service = { name = "openweathermap", units = "imperial" }
 
 [[block]]
 block = "memory"
-format_mem = "{mem_used_percents:1}"
-format_swap = "{swap_used_percents:1}"
+format = " $icon $mem_used_percents "
+format_alt = " $icon_swap $swap_used_percents "
 
 [[block]]
 block = "cpu"
-format = "{utilization}"
+format = " $icon $utilization "
 interval = 3
 
 [[block]]
@@ -49,9 +39,7 @@ block = "temperature"
 interval = 3
 idle = 50
 info = 70
-collapsed = false
-icons_format = " {icon}"
-format = "{max}C"
+format = " $icon {$average}C "
 
 [[block]]
 block = "backlight"
@@ -67,11 +55,11 @@ block = "notify"
 [[block]]
 block = "sound"
 step_width = 1
-on_click = "pkill -f pavucontrol || pavucontrol &"
+# TODO: debug why killing it stopped working
+click = [{ cmd = "pkill -f pavucontrol || pavucontrol &", button = "left" }]
 
 [[block]]
 block = "time"
-icons_format = " "
-format = "%-I:%M%P"
-interval = 60
-on_click = "notify-send $(date +%D)"
+format = " $timestamp.datetime(f:'%-I:%M%P') "
+interval = 3
+click = [{ button = "left", cmd = "notify-send $(date +%D)" }]

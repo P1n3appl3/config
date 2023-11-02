@@ -46,7 +46,7 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
     navigate = true
 [diff]
     colorMoved = default
-[merge]
+[merge] # TODO: GNOME meld or improve my nvimdiff setup
     tool = nvimdiff
     conflictstyle = zdiff3
 [mergetool]

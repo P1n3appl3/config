@@ -20,5 +20,6 @@
     #   and or https://github.com/DualCoder/vgpu_unlock
     # - sabaki sgf viewer
     # - shattered-pixel-dungeon or maybe just steam version
+    # - ruffle or that other one I used on windows for flash stuff
   ];
 }
