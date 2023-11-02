@@ -25,8 +25,6 @@ o.shortmess:append "cI"
 -- o.cmdheight = 0 when https://github.com/neovim/neovim/issues/22478 happens
 -- TODO: find an equivalent to vim's :set wrap smoothscroll
 
--- vim.lsp.set_log_level "debug" -- TODO: prettier lsp log viewer
-
 require "util"
 require "plugins"
 require "pretty"

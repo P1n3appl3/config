@@ -13,4 +13,6 @@
   xsetroot -solid "#483157"
   export DESKTOP_SESSION="gnome"
   '';
+
+  home.keyboard.options = [ "altwin:swap_alt_win" ];
 }

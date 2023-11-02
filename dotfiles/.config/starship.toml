@@ -49,7 +49,7 @@ untracked = "?"
 format = '$symbol '
 # symbol = "❄️"
 symbol = "🧊"
-heuristic = true
+# heuristic broken with kitty https://github.com/NixOS/nix/issues/3862
 
 [env_var.multifuchsia]
 variable = 'MULTIFUCHSIA_ENTER_ENV'

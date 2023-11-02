@@ -1,3 +1,6 @@
+-- TODO: try https://github.com/catppuccin/nvim or
+-- https://github.com/ellisonleao/gruvbox.nvim
+-- with my statusline highlights and maybe subsetting?
 vim.cmd [[ colorscheme custom ]]
 
 require("colorizer").setup { user_default_options = { names = false } }

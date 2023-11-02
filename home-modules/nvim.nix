@@ -39,8 +39,9 @@
         bash c cpp python rust lua zig kdl toml json json5 jq regex
         make ninja dot nix html css typescript javascript query
         git_config git_rebase gitcommit gitignore markdown markdown_inline
-        gdscript wgsl wgsl_bevy beancount # TODO: typst, gn
-      ]))
+        gdscript wgsl wgsl_bevy beancount rasi nasm # TODO: gn
+        # TODO: try https://github.com/frozolotl/tree-sitter-typst
+      ] ++ [ pkgs.tree-sitter-grammars.tree-sitter-typst ]))
       nvim-treesitter-textobjects nvim-treesitter-context
       vim-nix
       (gh "kalcutter" "vim-gn" "7dd8d21ee42ce8ab999e0326e2c131132a6be8b8"

@@ -15,7 +15,6 @@ separator_bg = "#282828"
 [[block]]
 block = "weather"
 format = " $icon {$temp}F "
-autolocate = true
 service = { name = "openweathermap", units = "imperial", place = "Sunnyvale" }
 
 [[block]]

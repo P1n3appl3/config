@@ -12,7 +12,6 @@ separator_bg = "#282828"
 
 [[block]]
 block = "music"
-player = "mpd"
 icons_format = " {icon} "
 format = " $icon $title.str(max_w:35) $prev$play$next"
 theme_overrides = { "info_bg" = "#282828" }
