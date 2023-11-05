@@ -1,6 +1,6 @@
 { pkgs, ... }: let
   gh = owner: repo: rev: hash: pkgs.vimUtils.buildVimPlugin {
-    pname = "${repo}"; version = rev;
+    pname = repo; version = rev;
     src = pkgs.fetchFromGitHub { inherit owner repo rev hash; };
   };
   nvim_config = {
@@ -39,7 +39,9 @@
         bash c cpp python rust lua zig kdl toml json json5 jq regex
         make ninja dot nix html css typescript javascript query
         git_config git_rebase gitcommit gitignore markdown markdown_inline
-        gdscript wgsl wgsl_bevy beancount rasi nasm # TODO: gn
+        gdscript wgsl wgsl_bevy beancount rasi
+        # TODO: write gn grammar
+        # TODO: fix nasm grammar
         # TODO: try https://github.com/frozolotl/tree-sitter-typst
       ] ++ [ pkgs.tree-sitter-grammars.tree-sitter-typst ]))
       nvim-treesitter-textobjects nvim-treesitter-context

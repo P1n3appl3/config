@@ -21,13 +21,15 @@
       ragenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
       nixos-hardware.follows = ""; flu.follows = "flake-utils";
     };
+
+    typst-lsp = { flake = false; url = "github:nvarner/typst-lsp/v0.11.0"; };
   };
   # TODO: export home/nixos modules separately from hosts
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware,
-              nix-index-database, nixgl, rahul-config, self } @ inputs:
+              nix-index-database, nixgl, rahul-config, typst-lsp, self } @ inputs:
   let
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
-    myOverlays = [ self.overlays.default nixgl.overlay (import ./overlays.nix) ];
+    myOverlays = [ self.overlays.default nixgl.overlay (import ./overlays.nix inputs) ];
 
     home = system: hostModule: home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = { inherit inputs myOverlays; };

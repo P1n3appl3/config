@@ -1,21 +1,25 @@
-{pkgs, ...}: let
+{pkgs, lib, ...}: let
   iconTheme = { package = pkgs.papirus-icon-theme; name = "Papirus-Dark"; };
-  nixGL = pkg: let bins = "${pkg}/bin"; in
-    pkgs.buildEnv {
-      name = "nixGL-${pkg.name}";
-      paths = [ pkg ] ++ (map
-        (bin: pkgs.hiPrio (
-          pkgs.writeShellScriptBin bin ''
-            exec -a "$0" "${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel" "${bins}/${bin}" "$@"
-          ''))
-        (builtins.attrNames (builtins.readDir bins)));
+  # TODO: condition on not being in NixOS (where graphics drivers should Just Work)
+  # TODO: maybe upstream a module to nixGL?
+  nixGL = pkg: pkgs.buildEnv rec {
+    name = "nixGL-${pkg.name}";
+    paths = [ pkg ] ++ [(pkgs.hiPrio (
+      pkgs.runCommand name {} ''
+        mkdir -p $out/bin
+        for bin in "${lib.getBin pkg}"/bin/*; do
+          echo > $out/bin/"$(basename "$bin")" \
+          "exec -a \"\$0\" ${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel \"$bin\" \"\$@\""
+        done;
+        chmod +x "$out"/bin/*
+      ''))];
     };
 in {
   imports = [ ./fonts.nix ];
 
   home.packages = with pkgs; [
     i3 i3status-rust
-    xclip clipmenu maim xcolor
+    xclip maim xcolor
     (rofi.override { plugins = [ rofi-calc ]; }) rofimoji libqalculate
     dunst
     oneko
@@ -26,17 +30,14 @@ in {
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (wrapMpv mpv-unwrapped { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
     ffmpeg (nixGL imv) vlc
-    # TODO: vlc save position+https://gpodder.github.io/docs/extensions/mprislistener.html
     gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
     (nixGL (firefox.override { cfg.speechSynthesisSupport = false; }))
     # TODO: krisp see https://github.com/NixOS/nixpkgs/issues/195512
-    (discord.override { withOpenASAR = true; withVencord = true; })
-    # TODO: figure out why fractal-next misses the cache
-    (nixGL telegram-desktop) (nixGL caprine-bin) signal-desktop fractal
+    # (nixGL (discord.override { withOpenASAR = true; withVencord = true; }))
+    discord
+    (nixGL telegram-desktop) (nixGL caprine-bin) signal-desktop fractal-next
     (nixGL (calibre.override { speechd=null; }))
-    # TODO: build from HEAD to get https://git.pwmt.org/pwmt/zathura/-/merge_requests/80
-    # until they cut a new release
     zathura # TODO: set up mime types
     obsidian # TODO: config and editor support
     # TODO: package butter for backups
@@ -47,17 +48,12 @@ in {
   ];
 
   nixpkgs.config.allowUnfree = true; # discord...
-  programs = {
-    # TODO: gnome-resources
-  };
 
-  # TODO: how to combine?
-  # systemd.user.services.clipmenu.Service.Environment =
-  #  (lib.mkAfter ["CM_SELECTIONS=clipboard"]);
+  systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
   services = {
     clipmenu.enable = true;
     udiskie.enable = true;
-    syncthing = { enable = true; tray.enable = true; };
+    syncthing = { enable = true; tray.enable = true; }; # TODO: fix tray
     network-manager-applet.enable = true;
     # TODO: make reverse scrolling vary based on touchpad,
     # check mute mouse binding and volume keys

@@ -40,6 +40,7 @@ function pacsize {
 function pacclean { paru -Qtdq | paru -Rns -; }
 alias hm=home-manager
 alias nixlist='hm packages'
+# TODO: why no color anymore?
 function nixfind {
     nix-locate --color=always -rt r -t x -t s --top-level $@ |
         sd '/nix/store/[^/\x1b]+' '' | sort

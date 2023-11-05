@@ -8,18 +8,17 @@
       mpdIntegration = { enableStats = true; enableUpdate = true; };
       settings = {
         directory = config.xdg.userDirs.music;
-        plugins = [ "acousticbrainz" "badfiles" "chroma" "convert" "deezer"
-          "duplicates" "edit" "embedart" "fetchart" "fromfilename" "fuzzy" "info"
-          "keyfinder" "lyrics" "mbsync" "missing" "mpdstats" "mpdupdate" "replaygain"
-          "scrub" "spotify"
+        plugins = [ "badfiles" "chroma" "convert" "deezer" "duplicates" "edit"
+          "embedart" "fetchart" "fromfilename" "fuzzy" "info" "keyfinder" "lyrics"
+          "mbsync" "missing" "mpdstats" "mpdupdate" "replaygain" "scrub" "spotify"
         ];
         art_filename = "albumart";
         fetchart = { max_width = 1080; sources = "*"; };
         import.move = true;
         keyfinder = { auto = true; bin = "${pkgs.keyfinder-cli}/bin/keyfinder-cli"; };
         lyrics.auto = true;
-        replaygain = { auto = true; backed = "ffmpeg"; };
-        # TODO: "convert" settings max quality
+        replaygain = { auto = true; backend = "ffmpeg"; };
+        # TODO: "convert" set max quality
       };
     };
     ncmpcpp = {
