@@ -12,13 +12,13 @@
     fzf ripgrep fd bat eza sd dogdns rm-improved ouch jq xh rbw hyperfine
     hexyl choose tokei zellij rsync zstd lowcharts trippy page pv datamash
     ascii
-    felix-fm xplr joshuto # TODO: pick one
+    xplr joshuto # TODO: pick one
     # System info
     htop bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Git
     git delta gh git-heatmap git-absorb lazygit
     # Nix
-    nix home-manager nix-output-monitor nix-tree nil comma hydra-check
+    nix home-manager nix-output-monitor nix-tree nil comma
     # Scripting tools
     stylua sumneko-lua-language-server shfmt shellcheck mawk
     # Fun

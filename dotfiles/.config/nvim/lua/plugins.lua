@@ -51,18 +51,24 @@ end
 -- vim.lsp.set_log_level "debug" -- TODO: prettier lsp log viewer
 server "clangd"
 server "nil_ls"
-server "asm_lsp"
 
+vim.g.neoformat_nasm_nasmfmt = { exe = "nasmfmt", replace = 1 }
+vim.g.neoformat_enabled_nasm = { "nasmfmt" }
+server("asm_lsp", { filetypes = { "nasm" } })
+
+vim.filetype.add { extension = { typ = "typst", nasm = "nasm" } }
 -- TODO: get treesitter highlights.scm for typst working
-vim.filetype.add { extension = { typ = "typst" } }
 -- TODO: typstfmt not running through lsp
 vim.g.neoformat_typst_typstfmt = { exe = "typstfmt", replace = 1 }
 vim.g.neoformat_enabled_typst = { "typstfmt" }
 server("typst_lsp", { settings = { experimentalFormatterMode = "on" } })
 
+vim.g.neoformat_python_ruff = { exe = "ruff", args = { "format" }, replace = 1 }
+vim.g.neoformat_enabled_python = { "ruff" }
 server("pyright", {
     settings = { python = { analysis = { diagnosticMode = "openFilesOnly" } } },
 })
+
 server("lua_ls", {
     settings = { Lua = { diagnostics = { globals = { "vim" } } } },
     on_attach = function(client)

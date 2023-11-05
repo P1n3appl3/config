@@ -26,14 +26,12 @@ o.shortmess:append "cI"
 -- TODO: find an equivalent to vim's :set wrap smoothscroll
 
 require "util"
-require "plugins"
 require "pretty"
 require "statusline"
+require "plugins"
+require "completion"
 require "keybinds"
-vim.api.nvim_create_autocmd(
-    { "InsertEnter" },
-    { callback = function() require "completion" end, once = true }
-)
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "markdown", "gitcommit" },
     callback = function() vim.opt.spell = true end,
