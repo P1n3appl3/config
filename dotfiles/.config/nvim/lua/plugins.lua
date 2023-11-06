@@ -12,12 +12,21 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
     callback = function() lint.try_lint() end,
 })
 
+require("obsidian").setup {
+    workspaces = { { name = "notes", path = "~/Documents/notes" } },
+    completion = { nvim_cmp = "true" },
+    templates = { subdir = "templates" },
+    daily_notes = { folder = "diary", template = "diary.md" },
+    disable_frontmatter = true,
+}
+
+
 -- stylua: ignore
 require("nvim-treesitter.configs").setup {
     highlight = {
         enable = true,
         disable = { "python" },
-        additional_vim_regex_highlighting = true,
+        additional_vim_regex_highlighting = { "markdown" },
     },
     textobjects = { select = { enable = true,
         keymaps = {

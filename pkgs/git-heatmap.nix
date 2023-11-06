@@ -1,4 +1,4 @@
-{fetchFromGitHub, lib, makeWrapper, stdenvNoCC, barchart, git, gnugrep} :
+{fetchFromGitHub, lib, makeWrapper, stdenvNoCC, barchart, git, gnugrep}:
 stdenvNoCC.mkDerivation rec {
   name = "git-heatmap";
   src = fetchFromGitHub {

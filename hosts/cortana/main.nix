@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... } : {
+{ pkgs, inputs, config, ... }: {
   imports = [
     ./hardware.nix
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
@@ -28,7 +28,10 @@
   # TODO: add atuin sync server and set bash/zsh to use mine
   # TODO: add gpodder and configure desktop client and antenna to use it
   # TODO: add recipe sage or tandoor recipes and move ours over
-  # TODO: add syncthing discovery server
+  # TODO: add syncthing introducer with static config and fallback relay or just MxN
+  #  and prometheus metrics hookup!
+  # TODO: https://jade.fyi/blog/docs-tricks-and-gnus/
+  # TODO: friends.nix (authorizedkeys)
   services = {
     openssh = {
       enable = true; ports = [ 69 ];

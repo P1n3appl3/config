@@ -13,6 +13,8 @@
       vim-fetch
       vim-startuptime
       plenary-nvim
+      (gh "epwalsh" "obsidian.nvim" "3473038b3c8a62fb14bf2b2f7df30b736fb05299"
+        "sha256-Z/RKL1qdrC1uQbvAJ/hlqX2slLWB1XbXRqP1smYhEdY=")
       # TODO: nvim-ufo for folding
     # Appearance
       lush-nvim

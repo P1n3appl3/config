@@ -1,6 +1,6 @@
 {pkgs, lib, ...}: let
   iconTheme = { package = pkgs.papirus-icon-theme; name = "Papirus-Dark"; };
-  # TODO: condition on not being in NixOS (where graphics drivers should Just Work)
+  # TODO: condition with hasAttr osConfig on inputs and lib.id
   # TODO: maybe upstream a module to nixGL?
   nixGL = pkg: pkgs.buildEnv rec {
     name = "nixGL-${pkg.name}";
@@ -31,16 +31,17 @@ in {
     (nixGL (wrapMpv mpv-unwrapped { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
     ffmpeg (nixGL imv) vlc
     gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
+    zathura # TODO: set up mime types
+    (nixGL obsidian)
+    # butter # TODO: meson buildRustPackage??? maybe swap with btrbk
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
     (nixGL (firefox.override { cfg.speechSynthesisSupport = false; }))
     # TODO: krisp see https://github.com/NixOS/nixpkgs/issues/195512
     # (nixGL (discord.override { withOpenASAR = true; withVencord = true; }))
     discord
-    (nixGL telegram-desktop) (nixGL caprine-bin) signal-desktop fractal-next
+    (nixGL telegram-desktop) (nixGL caprine-bin) signal-desktop
+    fractal-next nheko # TODO: pick one
     (nixGL (calibre.override { speechd=null; }))
-    zathura # TODO: set up mime types
-    obsidian # TODO: config and editor support
-    # TODO: package butter for backups
     # obs-studio inkscape kdenlive blender godot lmms audacity krita, maybe in "media"
     # rizin cutter # TODO: try these
     nixgl.nixGLIntel nixgl.nixVulkanIntel
