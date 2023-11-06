@@ -40,7 +40,6 @@ function pacsize {
 function pacclean { paru -Qtdq | paru -Rns -; }
 alias hm=home-manager
 alias nixlist='hm packages'
-# TODO: why no color anymore?
 function nixfind {
     nix-locate --color=always -rt r -t x -t s --top-level $@ |
         sd '/nix/store/[^/\x1b]+' '' | sort
@@ -61,4 +60,5 @@ function fontcheck {
         rg -or '$1' 'family: "([^"]+)"' | tail -1
 }
 function path { echo $path | sd ' ' '\n'; }
+function note { cd $HOME/Documents/notes; vi -c ObsidianToday; }
 PATH=$(printf "%s" "$PATH" | mawk -v RS=: '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')

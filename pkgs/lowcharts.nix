@@ -1,4 +1,4 @@
-{fetchFromGitHub, rustPlatform} : rustPlatform.buildRustPackage rec {
+{fetchFromGitHub, rustPlatform}: rustPlatform.buildRustPackage rec {
   pname = "lowcharts";
   version = "v0.5.8";
   src = fetchFromGitHub {

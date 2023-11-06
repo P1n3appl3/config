@@ -1,4 +1,4 @@
-{ fetchzip, stdenvNoCC } : stdenvNoCC.mkDerivation {
+{ fetchzip, stdenvNoCC }: stdenvNoCC.mkDerivation {
   name = "bibata-modern-classic";
   src = fetchzip {
     url = "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.4/Bibata-Modern-Classic.tar.xz";

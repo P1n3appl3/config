@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   fonts.fontconfig.enable = true;
-  gtk.font.name = "Noto";
+  gtk.font = { name = "Noto"; size = 12; };
 
   home.packages = with pkgs; [
     # TODO: look into opentype options with opentype.dev or other fonts:

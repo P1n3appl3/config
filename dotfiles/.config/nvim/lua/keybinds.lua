@@ -158,6 +158,7 @@ wk.register({
         h = { GITS.preview_hunk_inline, "Show Hunk" },
         s = { GITS.stage_hunk, "Stage Hunk" },
         u = { GITS.undo_stage_hunk, "Undo Stage Hunk" },
+        r = { GITS.reset_hunk, "Reset Hunk" },
     },
     G = { RUNFZF "git_status", "Git Status" },
     t = { RUNFZF "lsp_document_symbols", "Symbols" },

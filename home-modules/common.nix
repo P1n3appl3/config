@@ -1,6 +1,7 @@
 { pkgs, inputs, lib, config, myOverlays, ... }: {
   imports = [
     { nixpkgs.overlays = myOverlays; }
+    # TODO: ask rahul about that sqlite guy
     inputs.nix-index-database.hmModules.nix-index
     ./nvim.nix
   ];

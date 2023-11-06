@@ -150,8 +150,7 @@
         "nixgl": "nixgl",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "rahul-config": "rahul-config",
-        "typst-lsp": "typst-lsp"
+        "rahul-config": "rahul-config"
       }
     },
     "systems": {
@@ -166,23 +165,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "typst-lsp": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1698818174,
-        "narHash": "sha256-L0d+fDCLxU/XHC99VlIcZdiO3RohtWfoRnUPGIHodcc=",
-        "owner": "nvarner",
-        "repo": "typst-lsp",
-        "rev": "cc7bad9bd9764bfea783f2fab415cb3061fd8bff",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvarner",
-        "ref": "v0.11.0",
-        "repo": "typst-lsp",
         "type": "github"
       }
     }

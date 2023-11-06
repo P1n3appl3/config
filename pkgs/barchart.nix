@@ -1,4 +1,4 @@
-{fetchFromGitHub, rustPlatform} : rustPlatform.buildRustPackage rec {
+{fetchFromGitHub, rustPlatform}: rustPlatform.buildRustPackage rec {
   pname = "barchart";
   version = "0.2.0";
   src = fetchFromGitHub {

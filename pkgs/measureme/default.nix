@@ -1,4 +1,4 @@
-{fetchFromGitHub, rustPlatform} : rustPlatform.buildRustPackage rec {
+{fetchFromGitHub, rustPlatform}: rustPlatform.buildRustPackage rec {
   pname = "measureme";
   version = "10.1.1";
   src = fetchFromGitHub {
