@@ -16,6 +16,7 @@
       desktop = home;
       templates = home + "/.templates";
       publicShare = null;
+      pictures = home + "/Images";
     };
   };
   i18n.glibcLocales = pkgs.glibcLocalesUtf8;

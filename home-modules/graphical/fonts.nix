@@ -23,25 +23,31 @@
 <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
 <fontconfig>
     <alias> <family>serif</family> <prefer>
+        <family>Noto Sans Symbols</family>
+        <family>Noto Sans Symbols 2</family>
         <family>Noto Color Emoji</family>
         <family>Symbols Nerd Font</family>
         <family>Noto Serif</family>
+        <family>Noto Sans Math</family>
         <family>Noto Serif CJK JP</family>
     </prefer> </alias>
     <alias> <family>sans-serif</family> <prefer>
+        <family>Noto Sans Symbols</family>
+        <family>Noto Sans Symbols 2</family>
         <family>Noto Color Emoji</family>
         <family>Symbols Nerd Font</family>
         <family>Noto Sans</family>
         <family>Noto Sans Math</family>
-        <family>Noto Sans Symbols</family>
-        <family>Noto Sans Symbols 2</family>
         <family>Noto Sans CJK JP</family>
     </prefer> </alias>
     <alias> <family>monospace</family> <prefer>
+        <family>Noto Sans Symbols</family>
+        <family>Noto Sans Symbols 2</family>
         <family>Noto Color Emoji</family>
         <family>Symbols Nerd Font</family>
         <family>Source Code Pro</family>
         <family>Noto Sans Mono CJK JP</family>
+        <family>Noto Sans Math</family>
     </prefer> </alias>
     <alias> <family>cursive</family> <prefer>
         <family>Noto Color Emoji</family>

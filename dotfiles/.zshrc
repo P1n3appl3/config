@@ -47,11 +47,12 @@ function nixfind {
 alias nixsize=nix-tree
 function nixclean { nix-collect-garbage -d && sudo $(which nix-collect-garbage) -d; }
 function switch {
-    command -v nixos-rebuild >/dev/null && {
+    if command -v nixos-rebuild >/dev/null; then
         sudo true # to prompt for password and not get piped to nom
-        cmd="sudo -n nixos-rebuild"
-    } || cmd=hm
-    eval $cmd switch --flake config#$(hostname -s) $@ |& nom
+        sudo -n nixos-rebuild |& nom
+    else
+        hm switch --flake config#$(hostname -s) $@
+    fi
 }
 alias sc=systemctl
 alias music=ncmpcpp
@@ -60,5 +61,4 @@ function fontcheck {
         rg -or '$1' 'family: "([^"]+)"' | tail -1
 }
 function path { echo $path | sd ' ' '\n'; }
-function note { cd $HOME/Documents/notes; vi -c ObsidianToday; }
 PATH=$(printf "%s" "$PATH" | mawk -v RS=: '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')
