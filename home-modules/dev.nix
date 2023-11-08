@@ -9,5 +9,7 @@
     nasm asmfmt nasmfmt
     (nurl.override { mercurial=null; })
     typst typst-lsp typst-fmt
+    j
+    # TODO: test rust-rpxy
   ];
 }

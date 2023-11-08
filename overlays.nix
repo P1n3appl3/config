@@ -1,11 +1,12 @@
 inputs: final: prev: let
+  # TODO: this seems to have stopped working?
   warnIfUpdated = (p: vOld: vNew: final.lib.warnIf (p.version != vOld)
-    "nixpkgs updated ${p.name}, go remove your overlay" vNew);
+    "nixpkgs updated ${p.name or p.pname}, go remove your overlay" vNew);
 in {
-  fzf = prev.fzf.overrideAttrs ( self: {
-    postInstall = self.postInstall + ''
-        rm $out/share/fzf/key-bindings.bash # TODO: remove once perl is gone
-        rm $out/share/nvim/site/plugin/fzf.vim
+  fzf = prev.fzf.overrideAttrs ( old: {
+    postInstall = old.postInstall + ''
+      rm $out/share/fzf/key-bindings.bash # TODO: remove once perl is gone
+      rm $out/share/nvim/site/plugin/fzf.vim
       '';
   });
 
@@ -25,20 +26,6 @@ in {
     });
   }));
 
-  typst-lsp = (prev.typst-lsp.overrideAttrs (old: rec {
-    src = builtins.getFlake
-      "github:nvarner/typst-lsp/cc7bad9bd9764bfea783f2fab415cb3061fd8bff";
-    version = warnIfUpdated old "0.10.1" src.shortRev;
-    cargoDeps = final.rustPlatform.importCargoLock {
-      lockFile = "${src}/Cargo.lock";
-      outputHashes = {
-        "typst-0.9.0" = "sha256-LwRB/AQE8TZZyHEQ7kKB10itzEgYjg4R/k+YFqmutDc=";
-        "typst-syntax-0.7.0" = "sha256-yrtOmlFAKOqAmhCP7n0HQCOQpU3DWyms5foCdUb9QTg=";
-        "typstfmt_lib-0.2.6" = "sha256-UUVbnxIj7kQVpZvSbbB11i6wAvdTnXVk5cNSNoGBeRM=";
-      };
-    };
-  }));
-
   sd = (prev.sd.overrideAttrs (old: rec {
     # TODO: any way of avoiding IFD other than making it a flake=false flake input?
     # src = builtins.getFlake
@@ -52,6 +39,23 @@ in {
     cargoDeps = final.rustPlatform.importCargoLock { lockFile = "${src}/Cargo.lock"; };
   }));
 
-  # TODO: nom switch FE0E -> FE0F in output for emojis
+  nix-output-monitor = prev.nix-output-monitor.overrideAttrs (old: {
+    version = warnIfUpdated old "2.0.0.7" "patched"; # thanks rebecca!
+    patches = (old.patches or []) ++ [ (final.fetchpatch {
+          url = "https://github.com/maralorn/nix-output-monitor/pull/121.diff";
+          hash = "sha256-kAG40QsG+lWCQfTKDqn4kz1Y6/x5P3p0Zc44H1QA/JQ=";
+        })
+      ];
+  });
+
+  home-manager = prev.home-manager.overrideAttrs (old: {
+    postInstall = ''
+      substituteInPlace $out/bin/home-manager --replace "nix build" "nom build"
+    '';
+  });
+
+  # TODO: do the same for nixos-rebuild with nix-build:
+  # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/nixos-rebuild/nixos-rebuild.sh
+
   # TODO: eza mins/secs
 }

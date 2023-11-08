@@ -36,9 +36,7 @@ in {
     # butter # TODO: meson buildRustPackage??? maybe swap with btrbk
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
     (nixGL (firefox.override { cfg.speechSynthesisSupport = false; }))
-    # TODO: krisp see https://github.com/NixOS/nixpkgs/issues/195512
-    # (nixGL (discord.override { withOpenASAR = true; withVencord = true; }))
-    discord
+    discord # TODO: check krisp see https://github.com/NixOS/nixpkgs/issues/195512
     (nixGL telegram-desktop) (nixGL caprine-bin) signal-desktop
     fractal-next nheko # TODO: pick one
     (nixGL (calibre.override { speechd=null; }))
@@ -115,8 +113,8 @@ in {
   qt = { enable = true;
     platformTheme = "gtk";
     style = {
-      package = pkgs.arc-kde-theme;
-      name = "Arc"; # TODO: debug. this didn't seem to work with dolphin
+      name = "gtk2"; # TODO: debug why stuff like syncthingtray and dolphin are bad
+      package = pkgs.qt6Packages.qt6gtk2;
     };
   };
 
