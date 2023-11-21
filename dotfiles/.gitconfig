@@ -6,6 +6,7 @@
 	excludesfile = ~/.gitignore
     autocrlf = input
     pager = delta
+# TODO: ssh key commit signing
 [alias]
     b = branch
     s = status

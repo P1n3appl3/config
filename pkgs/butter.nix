@@ -1,5 +1,6 @@
-{fetchFromGitHub, rustPlatform, pkg-config,
-  meson, gtk4, libadwaita, btrfs-progs, polkit, libclang }:
+{lib, fetchFromGitHub, rustPlatform, pkg-config, meson, python3,
+  gtk4, libadwaita, btrfs-progs, polkit, clang, libclang }:
+  # TODO: https://github.com/zhangyuannie/butter/blob/main/BUILDING.md
 rustPlatform.buildRustPackage {
   pname = "butter";
   version = "2023-11-05";
@@ -10,6 +11,11 @@ rustPlatform.buildRustPackage {
     hash = "sha256-soIDnbIHDU++wot43hpmvs+CQHX/X6DdLuq+8W3VWic=";
   };
   cargoHash = "sha256-ksNZfurMtDJd+GynuGnVVO/m8VrAZWmKJ6vcxSVV6cY=";
-  nativeBuildInputs = [ meson pkg-config ];
-  buildInputs = [ btrfs-progs gtk4 libadwaita polkit.dev libclang.lib ];
+  nativeBuildInputs = [ meson pkg-config python3 ];
+  buildInputs = [ btrfs-progs gtk4 libadwaita polkit ];
+  LIBCLANG_PATH = "${libclang.lib}/lib";
+  BINDGEN_EXTRA_CLANG_ARGS =
+    "-isystem ${libclang.lib}/lib/clang/${lib.getVersion clang}/include \
+    -isystem ${btrfs-progs}/include";
+
 }

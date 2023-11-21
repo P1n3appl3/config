@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   fonts.fontconfig.enable = true;
-  gtk.font = { name = "Noto"; size = 12; };
+  # TODO: verify that this is using noto
+  gtk.font = { name = "Sans"; size = lib.mkDefault 12; };
 
   home.packages = with pkgs; [
     # TODO: look into opentype options with opentype.dev or other fonts:

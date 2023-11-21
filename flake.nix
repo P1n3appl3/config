@@ -22,9 +22,10 @@
       nixos-hardware.follows = ""; flu.follows = "flake-utils";
     };
   };
-  # TODO: export home/nixos modules separately from hosts
-  outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware,
-              nix-index-database, nixgl, rahul-config, self } @ inputs:
+  # TODO: export home/nixos modules separately from hosts, see:
+  # https://github.com/Misterio77/nix-starter-configs/blob/main/standard/flake.nix
+  outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware, nix-index-database,
+              nixgl, rahul-config, self } @ inputs:
   let
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
     myOverlays = [ self.overlays.default nixgl.overlay (import ./overlays.nix inputs) ];
@@ -50,6 +51,7 @@
     };
     nixosConfigurations = {
       Cortana = machine "aarch64-linux" ./hosts/cortana/main.nix;
+      WOPR    = machine "x86_64-linux"  ./hosts/wopr/main.nix;
     };
     overlays.default = final: _: listDir
       {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};

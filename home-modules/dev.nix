@@ -7,9 +7,9 @@
     beancount-language-server
     # TODO: create nix package for asm-lsp and add goto def
     nasm asmfmt nasmfmt
-    (nurl.override { mercurial=null; })
+    (nurl.override { mercurial=null; }) # TODO: https://github.com/nix-community/nix-init
     typst typst-lsp typst-fmt
-    j
+    # j # TODO: debug (llvm update?)
     # TODO: test rust-rpxy
   ];
 }

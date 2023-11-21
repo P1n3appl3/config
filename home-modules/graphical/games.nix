@@ -1,12 +1,14 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     steam
-    osu-lazer-bin # TODO: open tablet driver?
+    osu-lazer-bin # TODO: open tablet driver? try mania
     clonehero
     ludusavi # TODO: check which games aren't covered
-    snes9x-gtk
-    dolphin-emu
+    # TODO: desmume or other ds, gba, nes, n64, 3ds, switch
+    dolphin-emu snes9x-gtk
     nethack
+    openttd
+    itch
     # TODO: lots
     # - eggnogg / +
     # - slippi + kernel module + skins? https://github.com/djanatyn/ssbm-nix
@@ -22,5 +24,7 @@
     # - shattered-pixel-dungeon or maybe just steam version
     # - ruffle or that other one I used on windows for flash stuff
     # - https://github.com/fufexan/nix-gaming pipewire low latency for osu-lazer
+    # - https://github.com/egasimus/rabbits
+    # - lutris league, sc remastered/2, hearthstone, overwatch
   ];
 }

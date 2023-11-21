@@ -1,6 +1,6 @@
 {pkgs, inputs, lib, myOverlays, ...}: {
   imports = [
-    { nixpkgs.overlays = myOverlays; }
+    { nixpkgs.overlays = myOverlays; nixpkgs.config.allowUnfree = true; }
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -18,8 +18,10 @@
     command-not-found.enable = false;
   };
 
+  home-manager = { useGlobalPkgs = true; useUserPackages = true; };
   environment.systemPackages = with pkgs; [ at file psmisc kitty.terminfo ];
 
+  console.useXkbConfig = true;
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';
   nix.settings.trusted-users = [ "root" "@wheel" ];
   nix.extraOptions = "experimental-features = nix-command flakes";

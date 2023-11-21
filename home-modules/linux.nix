@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     util-linux
     usbtop
+    powertop tlp # TODO: powertop kitty terminfo and tlp locales
     lm_sensors
     sysz
     element
@@ -16,7 +17,11 @@
       desktop = home;
       templates = home + "/.templates";
       publicShare = null;
-      pictures = home + "/Images";
+      # TODO: eza use the right icons for these
+      documents = home + "/documents";
+      download = home + "/downloads";
+      music = home + "/music";
+      pictures = home + "/images";
     };
   };
   i18n.glibcLocales = pkgs.glibcLocalesUtf8;
