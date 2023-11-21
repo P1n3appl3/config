@@ -1,7 +1,7 @@
 inputs: final: prev: let
   # TODO: this seems to have stopped working?
   warnIfUpdated = (p: vOld: vNew: final.lib.warnIf (p.version != vOld)
-    "nixpkgs updated ${p.name or p.pname}, go remove your overlay" vNew);
+    "nixpkgs updated ${p.name or p.pname}, might want to check your override" vNew);
 in {
   fzf = prev.fzf.overrideAttrs ( old: {
     postInstall = old.postInstall + ''
@@ -26,36 +26,18 @@ in {
     });
   }));
 
-  sd = (prev.sd.overrideAttrs (old: rec {
-    # TODO: any way of avoiding IFD other than making it a flake=false flake input?
-    # src = builtins.getFlake
-    #   "github:chmln/sd/commit/cb015f749070e424d82e7f35fcad801cd4a5cbc7";
-    src = final.fetchFromGitHub {
-      owner = "chmln"; repo = "sd";
-      rev = "cb015f749070e424d82e7f35fcad801cd4a5cbc7";
-      hash = "sha256-6HfZnqNbZzEyj6Nnnp+XDdO7s1Iny3Tc29icjhZwp+M=";
-    };
-    version = warnIfUpdated old "0.7.6" "1.0-beta";
-    cargoDeps = final.rustPlatform.importCargoLock { lockFile = "${src}/Cargo.lock"; };
-  }));
-
-  nix-output-monitor = prev.nix-output-monitor.overrideAttrs (old: {
-    version = warnIfUpdated old "2.0.0.7" "patched"; # thanks rebecca!
-    patches = (old.patches or []) ++ [ (final.fetchpatch {
-          url = "https://github.com/maralorn/nix-output-monitor/pull/121.diff";
-          hash = "sha256-kAG40QsG+lWCQfTKDqn4kz1Y6/x5P3p0Zc44H1QA/JQ=";
-        })
-      ];
-  });
-
   home-manager = prev.home-manager.overrideAttrs (old: {
     postInstall = ''
       substituteInPlace $out/bin/home-manager --replace "nix build" "nom build"
     '';
   });
 
-  # TODO: do the same for nixos-rebuild with nix-build:
-  # https://github.com/NixOS/nixpkgs/blob/master/pkgs/os-specific/linux/nixos-rebuild/nixos-rebuild.sh
+  nixos-rebuild = prev.nixos-rebuild.overrideAttrs (old: {
+    postInstall = old.postInstall + ''
+    substituteInPlace $out/bin/nixos-rebuild --replace \
+      'nix "''${flakeFlags[@]}" build' 'nom "''${flakeFlags[@]}" build'
+    '';
+  });
 
   # TODO: eza mins/secs
 }

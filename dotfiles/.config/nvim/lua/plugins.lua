@@ -46,6 +46,7 @@ local function server(name, cfg)
 end
 
 -- vim.lsp.set_log_level "debug" -- TODO: prettier lsp log viewer
+-- https://github.com/neovim/neovim/issues/16807
 server "clangd"
 server "nil_ls"
 

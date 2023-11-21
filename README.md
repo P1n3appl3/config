@@ -2,7 +2,6 @@ I use [Home Manager](https://nixos.wiki/wiki/Home_Manager) and [NixOS](https://n
 
 ```
 config 🍍 nix flake show
-git+file:///home/joseph/config
 ├───homeConfigurations
 │   ├───ATLAS: steamdeck
 │   ├───HAL:   main desktop
@@ -10,20 +9,22 @@ git+file:///home/joseph/config
 │   ├───crabapple: $work mac
 │   └───rinzler:   $work desktop
 ├───nixosConfigurations
-│   └───Cortana: my trusty RPi4B
+│   ├───Cortana: my trusty RPi4B home server
+│   └───WOPR:    framework laptop 13" (AMD 7640U)
 ├───overlays
 │   └───default: Nixpkgs overlay with my packages and overrides
 └───packages
-    └───x86_64-linux
-        ├───ascii-rain: pretty terminal rain animation
-        ├───barchart: draw barcharts in the terminal
-        ├───bibata-modern-classic: mouse cursor theme
-        ├───cargo-clone-crate: better cargo clone command
-        ├───fio-plot: disk benchmarking tool
-        ├───git-heatmap: view change frequency of git repo
-        ├───lowcharts: draw plots and histograms in the terminal
-        └───measureme: rust compiler self profiling tools
-    ...
+    ├───ascii-rain: pretty terminal rain animation
+    ├───barchart: draw barcharts in the terminal
+    ├───bibata-modern-classic: mouse cursor theme
+    ├───butter: ui for btrfs subvolume snapshot history
+    ├───cargo-clone-crate: better cargo clone command
+    ├───fio-plot: disk benchmarking tool
+    ├───git-heatmap: view change frequency of git repo
+    ├───lowcharts: draw plots and histograms in the terminal
+    ├───measureme: rust compiler self profiling tools
+    ├───rust-rpxy: simple reverse proxy
+    └───syncthing-gtk: ui+tray-menu for syncthing
 ```
 
 I [used to](https://github.com/P1n3appl3/config/tree/cd6d498014) use this as a [bare git repo](https://www.atlassian.com/git/tutorials/dotfiles). If you're not sold on nix/home-manager I think it's still a pretty ideal way to manage your dotfiles. Now when my home-manager activation script runs, it symlinks everything in the [dotfiles dir](dotfiles) into `$HOME` so that you can edit most config files without having to run `switch`.
