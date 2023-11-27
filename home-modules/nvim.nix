@@ -3,7 +3,7 @@
     pname = repo; version = rev;
     src = pkgs.fetchFromGitHub { inherit owner repo rev hash; };
   };
-  nvim_config = {
+  nvim-config = {
     enable = true; viAlias = true; vimAlias = true;
     withPython3 = true; withRuby = false;
     plugins = with pkgs.vimPlugins; [
@@ -39,17 +39,47 @@
         bash c cpp python rust lua zig kdl toml json json5 jq regex
         make ninja dot nix html css typescript javascript query
         git_config git_rebase gitcommit gitignore markdown markdown_inline
-        gdscript wgsl wgsl_bevy beancount rasi
+        gdscript wgsl wgsl_bevy beancount rasi yuck
         # TODO: write gn grammar
         # TODO: fix nasm grammar
+      ] ++ [
+        # TODO: fix highlighting by automating the linking of queries:
+        # /nix/store/*-tree-sitter-foo-grammar/queries/foo -> ~/.config/nvim/queries
+        # or figure out how to register custom with nvim-treesitter
         # TODO: try https://github.com/frozolotl/tree-sitter-typst
-      ] ++ [ pkgs.tree-sitter-grammars.tree-sitter-typst ]))
+        pkgs.tree-sitter-grammars.tree-sitter-typst
+        (pkgs.tree-sitter.buildGrammar rec {
+          version = "v1.1.0"; language = "hypr";
+          src = pkgs.fetchFromGitHub {
+            owner = "luckasRanarison"; repo = "tree-sitter-hypr"; rev = version;
+            hash = "sha256-P3ZiIurixNdBqKJrsmFibmScnwD0pjhljLo4L8BLtws=";
+          };
+        })
+        # TODO: fix buildGrammar hanging link
+        # (pkgs.vimUtils.buildVimPlugin (let
+        #   version = "v1.1.0";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "luckasRanarison"; repo = "tree-sitter-hypr"; rev = version;
+        #     hash = "sha256-P3ZiIurixNdBqKJrsmFibmScnwD0pjhljLo4L8BLtws=";
+        #   };
+        #   grammar = pkgs.tree-sitter.buildGrammar {
+        #     inherit version src; language = "hypr";# generate = true;
+        #   };
+        # in {
+        #   inherit src version; pname = "tree-sitter-hypr";
+        #   preInstall = let install = ''
+        #     vim.treesitter.language.require_language(\"hypr\", \"${grammar}/parser\")
+        #   '';
+        #   in ''echo "${install}" >> ./plugin/init.lua'';
+        # }))
+      ]))
       nvim-treesitter-textobjects nvim-treesitter-context
       vim-nix
       (gh "kalcutter" "vim-gn" "7dd8d21ee42ce8ab999e0326e2c131132a6be8b8"
         "sha256-yEMUc5dnkOd1F0/BSPn6o6Z+C29MdFTRB6W/cqmF5bw=")
       (gh "fladson" "vim-kitty" "891475671feebc4bf0f29f0a0987067913a81686"
         "sha256-eQa1bEapY06ImpDva5+i0WQxQK3AYdHhM1FTXwNc/HU=")
+      # TODO: try parinfer-rust with lisp or yuck
       neodev-nvim
       rust-tools-nvim
       nvim-autopairs
@@ -67,4 +97,4 @@
       treesj
     ];
   };
-in { config.programs.neovim = nvim_config; }
+in { config.programs.neovim = nvim-config; }

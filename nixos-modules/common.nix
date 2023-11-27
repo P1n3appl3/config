@@ -1,4 +1,4 @@
-{pkgs, inputs, lib, myOverlays, ...}: {
+{pkgs, inputs, lib, config, myOverlays, ...}: {
   imports = [
     { nixpkgs.overlays = myOverlays; nixpkgs.config.allowUnfree = true; }
     inputs.home-manager.nixosModules.home-manager
@@ -19,7 +19,14 @@
   };
 
   home-manager = { useGlobalPkgs = true; useUserPackages = true; };
-  environment.systemPackages = with pkgs; [ at file psmisc kitty.terminfo ];
+  environment.systemPackages = with pkgs; [
+    uutils-coreutils-noprefix
+    at
+    file
+    psmisc
+    config.boot.kernelPackages.perf
+    kitty.terminfo
+  ];
 
   console.useXkbConfig = true;
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';

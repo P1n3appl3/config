@@ -1,4 +1,4 @@
-I use [Home Manager](https://nixos.wiki/wiki/Home_Manager) and [NixOS](https://nixos.org) to manage my configuration declaratively and fetch all the packages I need for my editor/shell/etc. This repo is a [flake](https://nixos.wiki/wiki/Flakes) that defines configurations for each of my machines, as well as some software I've packaged because they weren't in [Nixpkgs](https://search.nixos.org/packages):
+I use [NixOS](https://nixos.org) and/or [Home Manager](https://nixos.wiki/wiki/Home_Manager) to manage my configuration declaratively and fetch all the packages I need on the computers I use. This repo is a [flake](https://nixos.wiki/wiki/Flakes) that defines configurations for each of my machines, as well as some software I've packaged because they weren't in [Nixpkgs](https://search.nixos.org/packages):
 
 ```
 config 🍍 nix flake show
@@ -22,7 +22,6 @@ config 🍍 nix flake show
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
-    ├───measureme: rust compiler self profiling tools
     ├───rust-rpxy: simple reverse proxy
     └───syncthing-gtk: ui+tray-menu for syncthing
 ```

@@ -11,8 +11,8 @@
     # Shell
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
-    fzf ripgrep fd bat eza sd dogdns rm-improved ouch jq xh rbw hyperfine
-    hexyl choose tokei zellij rsync zstd lowcharts trippy page pv datamash
+    fzf ripgrep fd bat eza sd dogdns ouch jaq xh rbw hyperfine hexyl choose
+    tokei zellij rsync zstd lowcharts trippy page pv datamash
     ascii
     xplr joshuto # TODO: pick one
     # System info

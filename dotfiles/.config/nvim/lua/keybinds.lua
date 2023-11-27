@@ -45,7 +45,8 @@ modemap("x", "<space>cb", visual_com "blockwise")
 -- prevent aliasing of <C-i> and <tab> mappings
 modemap({ "n", "v" }, "<C-i>", "<C-i>", { noremap = true })
 local format = function()
-    for _, c in pairs(vim.lsp.get_active_clients()) do
+    local bufnr = vim.api.nvim_get_current_buf()
+    for _, c in pairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
         if c.supports_method "textDocument/formatting" then
             local t = vim.api.nvim_buf_get_changedtick(0)
             local name = "Language Server"

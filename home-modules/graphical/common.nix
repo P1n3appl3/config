@@ -1,7 +1,7 @@
 {pkgs, lib, ...} @ inputs: let
   iconTheme = { package = pkgs.papirus-icon-theme; name = "Papirus-Dark"; };
   # TODO: maybe upstream a module to nixGL?
-  nixGL = if builtins.hasAttr "osConfig" inputs then lib.id else
+  nixGL = if inputs ? osConfig then lib.id else
     pkg: pkgs.buildEnv rec {
       name = "nixGL-${pkg.name}";
       paths = [ pkg ] ++ [(pkgs.hiPrio (
@@ -19,23 +19,24 @@ in {
 
   home.packages = with pkgs; [
     brightnessctl
-    pavucontrol
+    pavucontrol playerctl pamixer
     rofimoji
     libqalculate qalculate-gtk
     # TODO: remove wezterm fonts https://github.com/wez/wezterm/blob/main/README-DISTRO-MAINTAINER.md#un-bundling-vendored-fonts
-    (nixGL kitty) wezterm # TODO: try wezterm multiplexing
+    (nixGL kitty) wezterm rio # TODO: try wezterm multiplexing
     gnome.nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (wrapMpv mpv-unwrapped { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
     ffmpeg (nixGL imv) vlc
     gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
-    zathura # TODO: set up mime types
+    zathura
     (nixGL obsidian)
     # butter # TODO: meson buildRustPackage??? maybe https://github.com/digint/btrbk
     # is actually what i want
     # TODO: www.marginalia.nu or ddg default search engine, set profile to
     # automate setting up my userchrome css, sync stylus if it isn't already
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
+    # TODO: check that touchpad smooth scroll works
     (nixGL (firefox.override { cfg.speechSynthesisSupport = false; }))
     # TODO: gtk4cord or webcord
     discord # TODO: check krisp see https://github.com/NixOS/nixpkgs/issues/195512
@@ -43,7 +44,8 @@ in {
     fractal-next nheko # TODO: pick one
     (nixGL (calibre.override { speechd=null; }))
     # obs-studio inkscape kdenlive blender godot lmms non audacity krita, maybe in "media"
-    # rizin cutter # TODO: try these
+    imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
+    mepo # TODO: try
     # TODO: syncthing-gtk
     # TODO: https://gitlab.freedesktop.org/rncbc/qpwgraph
     nixgl.nixGLIntel # nixgl.nixVulkanIntel # TODO: debug (llvm update?)
@@ -82,7 +84,11 @@ in {
         size = "compact"; tweaks = [ "rimless" ];
       };
     };
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; gtk-error-bell = 0; };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+      gtk-error-bell = 0;
+      gtk-decoration-layout = "appmenu:none";
+    };
   };
 
   # TODO: see if xdg-desktop-portal/GTK_USE_PORTAL is needed
@@ -99,6 +105,6 @@ in {
 
   xdg.configFile."Kvantum/kvantum.kvconfig".source =
     (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
-      General.theme = "Catppuccin-Mocha-Mauve";
+      General.theme = "Catppuccin-Mocha-Pink";
     };
 }

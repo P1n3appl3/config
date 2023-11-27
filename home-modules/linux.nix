@@ -23,6 +23,14 @@
       music = home + "/music";
       pictures = home + "/images";
     };
+    mimeApps = { enable = true;
+      # TODO: test if these work and add others
+      # defaultApplications = {
+      #   "application/pdf" = "zathura.desktop";
+      #   "text/html" = "firefox.desktop";
+      # };
+      # TODO: remove associations for wine, add associations for osu/slp/etc.
+    };
   };
   i18n.glibcLocales = pkgs.glibcLocalesUtf8;
 }
