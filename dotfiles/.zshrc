@@ -13,6 +13,7 @@ mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
 mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
 mkconfig nix '../{home-modules/common.nix,**/*.nix}'
 mkconfig i3 '.config/i3/{config,*}'
+mkconfig hypr '.config/hypr/{hyprland.conf,*.conf}'
 
 # Misc.
 unsetopt flowcontrol

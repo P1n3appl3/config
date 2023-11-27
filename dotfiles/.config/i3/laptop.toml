@@ -17,13 +17,12 @@ icons_format = " {icon} "
 format = " $icon {$combo.str(max_w:35) $prev$play$next |}"
 theme_overrides = { "info_bg" = "#282828" }
 
-# TODO: night icons
-# [[block]]
-# block = "weather"
-# format = " $icon {$temp}F "
-# autolocate = true
-# autolocate_interval = "once"
-# service = { name = "openweathermap", units = "imperial" }
+[[block]]
+block = "weather"
+format = " $icon {$temp}F "
+autolocate = true
+autolocate_interval = "once"
+service = { name = "openweathermap", units = "imperial" }
 
 [[block]]
 block = "memory"

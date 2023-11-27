@@ -1,4 +1,4 @@
-{ pkgs, stdenvNoCC, meson, ninja,
+{ pkgs, lib, stdenvNoCC, meson, ninja,
   python3, libnotify, librsvg, killall, gtk3, libappindicator-gtk3,
   substituteAll, syncthing, wrapGAppsHook, gnome, gobject-introspection,
   gsettings-desktop-schemas , pango, gdk-pixbuf, atk }:
@@ -13,6 +13,7 @@ stdenvNoCC.mkDerivation rec {
     rev = "3358e2d86af6f11b1f03ee9cd00bfc1abea2d214";
     sha256 = "sha256-TImMUAyktsxEfxsMNZdZSa4YcmOyIru5I4SkqRlAO58=";
   };
+  meta.platforms = lib.platforms.linux;
 
   configurePhase = ''
     mkdir _build

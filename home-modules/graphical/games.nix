@@ -10,7 +10,7 @@
     openttd
     itch
     # TODO: lots
-    # - eggnogg / +
+    # - eggnogg / + (+ is on itch so just test that one)
     # - slippi + kernel module + skins? https://github.com/djanatyn/ssbm-nix
     # - https://github.com/rrbutani/HSDLib and xdelta for modding
     # - everest for celeste, r2modman for ror2, the ftl mod manager, etc.
@@ -26,5 +26,7 @@
     # - https://github.com/fufexan/nix-gaming pipewire low latency for osu-lazer
     # - https://github.com/egasimus/rabbits
     # - lutris league, sc remastered/2, hearthstone, overwatch
+    # https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/lol-acfix.nix
+    # - gunz the duel
   ];
 }

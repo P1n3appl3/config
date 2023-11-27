@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    rustup sccache mold measureme taplo
+    rustup sccache mold taplo
     cargo-edit cargo-expand cargo-udeps cargo-clone-crate cargo-audit
     cargo-bloat cargo-binutils twiggy bloaty
     ruff pyright
