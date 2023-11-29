@@ -5,5 +5,4 @@
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
-  # TODO: do i want powerManagement.powerTop.enable = true; (autotune every boot)
 }

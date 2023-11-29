@@ -14,7 +14,4 @@
   postPatch = ''
     ln -s ${./Cargo.lock} Cargo.lock
   '';
-
-  # TODO: debug h3 submodule not getting checked out
-  # TODO: debug nix-shell Cargo.lock missing
 }

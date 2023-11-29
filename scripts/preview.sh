@@ -14,10 +14,6 @@ elif [ "$category" = image ]; then
     columns=$((columns / 2))
     identify -format '%wx%h\n' "$f"
     chafa -s $columns -f symbols "$f"
-    # TODO: get this working... file transfer mode should be fine because it's
-    # out of band so it wont just get echo'd into fzf's preview terminal window
-    # https://github.com/kovidgoyal/kitty/issues/2238
-    # kitten icat --transfer-mode file --place 20x20@40x40 --clear "$f"
 elif [ "$category" = text ]; then
     bat -p --color=always "$f" 2>/dev/null
 else

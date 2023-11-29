@@ -85,19 +85,12 @@ local toggle_diagnostics = function()
     if diagnostics_active then d.show() else d.hide() end
 end
 
--- TODO: remove once https://github.com/neovim/neovim/pull/24331 works
 map("K", vim.lsp.buf.hover)
-
--- TODO: alt+hjkl to navigate TS nodes (ctrl+alt to swap)
--- try ziontee113/SelectEase or ziontee113/syntax-tree-surfer
 
 G.lazy_load("fzf-lua", {
     preview_layout = "vertical",
     preview_vertical = "up",
-    keymap = {
-        -- TODO: ctrl+backspace
-        fzf = { ["ctrl-u"] = "half-page-up", ["ctrl-d"] = "half-page-down" },
-    },
+    keymap = { fzf = { ["ctrl-u"] = "half-page-up", ["ctrl-d"] = "half-page-down" } },
     files = { fd_opts = "-Htf --mount --color always" },
     grep = { rg_opts = "-S. --no-heading --color always" },
 })
@@ -149,7 +142,6 @@ wk.register({
     d = { ":bd<CR>", "Close Buffer" },
     ["<tab>"] = { ":b#<CR>", "Last Buffer" },
     b = { RUNFZF "buffers", "Buffers" },
-    -- TODO: alias https://github.com/folke/which-key.nvim/issues/160
     w = { "<C-W>", "+Window" },
     g = {
         name = "Git",
@@ -166,7 +158,6 @@ wk.register({
     T = { RUNFZF "lsp_workspace_symbols", "Workspace Symbols" },
     [";"] = { vim.lsp.buf.signature_help, "Signature Help" },
     [":"] = { RUNFZF "command_history", "Command History" },
-    -- TODO: maybe use wilder.nvim palette
     ["<space>"] = { RUNFZF "commands", "Commands" },
     ["/"] = { RUNFZF "search_history", "Search History" },
     ca = { RUNFZF "lsp_code_actions", "Code Actions" },

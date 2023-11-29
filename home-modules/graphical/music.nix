@@ -1,10 +1,9 @@
 {pkgs, config, ...}: {
   home.packages = with pkgs; [ sox mediainfo mpc-cli ytmdl ];
 
-  # TODO: try music-player (rust) and better tagging for beets
   programs = {
     beets = {
-      enable = true; package = pkgs.beets-unstable; # TODO: maybe override for plugins
+      enable = true; package = pkgs.beets-unstable;
       mpdIntegration = { enableStats = true; enableUpdate = true; };
       settings = {
         directory = config.xdg.userDirs.music;
@@ -18,7 +17,6 @@
         keyfinder = { auto = true; bin = "${pkgs.keyfinder-cli}/bin/keyfinder-cli"; };
         lyrics.auto = true;
         replaygain = { auto = true; backend = "ffmpeg"; };
-        # TODO: "convert" set max quality
       };
     };
     ncmpcpp = {
@@ -51,7 +49,6 @@
   };
 
   services = {
-    # TODO: check media keys
     mpdris2 = { enable = true; multimediaKeys = true; };
     mpd = {
       enable = true; extraConfig = ''

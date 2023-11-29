@@ -1,7 +1,8 @@
 unalias run-help && autoload -Uz run-help && alias help=run-help
 
 alias cat=bat
-alias l="eza --icons --time-style relative" alias ls="l -l" alias la="l -la"
+alias l="eza --icons --time-style relative --color-scale all --group-directories-first"
+alias ls="l -l" alias la="l -la"
 alias tree="l -T --git-ignore"
 alias o=xdg-open
 alias c=clear
@@ -32,10 +33,9 @@ function nixfind {
 alias nixsize=nix-tree
 function nixclean { nix-collect-garbage -d && sudo $(which nix-collect-garbage) -d; }
 function switch {
-    if command -v nixos-rebuild >/dev/null; then
-        sudo true # to prompt for password and not get piped to nom
-        sudo -n nixos-rebuild |& nom
-    else
-        hm switch --flake config#$(hostname -s) $@
-    fi
+    command -v nixos-rebuild >/dev/null && {
+        sudo true
+        cmd="sudo -n nixos-rebuild"
+    } || cmd=hm
+    eval $cmd switch --flake config#$(hostname -s) $@
 }

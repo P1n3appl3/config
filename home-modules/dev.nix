@@ -5,11 +5,9 @@
     cargo-bloat cargo-binutils twiggy bloaty
     ruff pyright
     beancount-language-server
-    # TODO: create nix package for asm-lsp and add goto def
     nasm asmfmt nasmfmt
-    (nurl.override { mercurial=null; }) # TODO: https://github.com/nix-community/nix-init
+    nurl nix-init
     typst typst-lsp typst-fmt
-    # j # TODO: debug (llvm update?)
-    # TODO: test rust-rpxy
+    # j
   ];
 }

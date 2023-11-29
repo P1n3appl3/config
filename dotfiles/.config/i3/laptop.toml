@@ -1,7 +1,7 @@
 [icons]
 icons = "awesome5"
 [icons.overrides]
-volume_muted = "\uf466" # TODO: remove once nerdfont stops clobbering awesome
+volume_muted = "\uf466"
 cpu = "\uf0e4"
 
 [theme]
@@ -55,7 +55,6 @@ block = "notify"
 [[block]]
 block = "sound"
 step_width = 1
-# TODO: debug why killing it stopped working
 click = [{ cmd = "pkill -f pavucontrol || pavucontrol &", button = "left" }]
 
 [[block]]

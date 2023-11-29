@@ -4,8 +4,6 @@ in {
   home.packages = with pkgs; [
     i3 i3status-rust
     xclip maim xcolor
-    # TODO: fuzzy select browser tab and focus it, maybe just firefox extension
-    # like ctrl+shift+a in chrome
     (rofi.override { plugins = [ rofi-calc ]; })
     dunst
     oneko

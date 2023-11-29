@@ -18,6 +18,7 @@ config 🍍 nix flake show
     ├───barchart: draw barcharts in the terminal
     ├───bibata-modern-classic: mouse cursor theme
     ├───butter: ui for btrfs subvolume snapshot history
+    ├───cpc: calculator and unit converter
     ├───cargo-clone-crate: better cargo clone command
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo

@@ -22,8 +22,6 @@
       nixos-hardware.follows = ""; flu.follows = "flake-utils";
     };
   };
-  # TODO: export home/nixos modules separately from hosts, see:
-  # https://github.com/Misterio77/nix-starter-configs/blob/main/standard/flake.nix
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware, nix-index-database,
               nixgl, rahul-config, self } @ inputs:
   let
@@ -49,10 +47,12 @@
       rinzler   = home "x86_64-linux"   ./hosts/rinzler.nix;
       crabapple = home "aarch64-darwin" ./hosts/crabapple.nix;
     };
+
     nixosConfigurations = {
       Cortana = machine "aarch64-linux" ./hosts/cortana/main.nix;
       WOPR    = machine "x86_64-linux"  ./hosts/wopr/main.nix;
     };
+
     overlays.default = final: _: listDir
       {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};
   } // (flake-utils.lib.eachDefaultSystem (system: let

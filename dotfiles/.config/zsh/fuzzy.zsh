@@ -5,11 +5,7 @@ export FZF_DEFAULT_OPTS="--reverse --bind=ctrl-z:ignore
  --bind shift-up:preview-page-up --bind shift-down:preview-page-down
  --bind ctrl-d:half-page-down --bind ctrl-u:half-page-up"
 export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir j ji tree"
-# TODO: bind ctrl-backspace (instead of alt) to delete last word
-# https://github.com/junegunn/fzf/issues/2057
 
-# TODO: https://github.com/junegunn/fzf/issues/3159#issuecomment-1424575660
-# something like --bind 'backward-eof:reload(__fzf "$(pwd)/.." $2)'
 __fzf() {
     setopt localoptions pipefail
     local item

@@ -11,7 +11,8 @@ bindkey '^J' up-line-or-beginning-search
 bindkey '^K' up-line-or-beginning-search
 bindkey '^L' emacs-forward-word
 _zle_load edit-command-line
-bindkey '\e[101;6u' edit-command-line        # ctrl+shift+e
+bindkey '^E' edit-command-line
+bindkey '^Z' end-of-line
 bindkey '\e[3~' delete-char                  # del
 bindkey '\e[3;5~' kill-word                  # ctrl+del
 bindkey '^H' backward-kill-word              # ctrl+backspace
@@ -35,7 +36,3 @@ bindkey '\e[1;3D' vi-backward-blank-word  # alt+left
 bindkey '\e[1;3C' vi-forward-blank-word   # alt+right
 _zle_bind '\e[1;2D' backward-small-word   # shift+left
 _zle_bind '\e[1;2C' forward-small-word    # shift+right
-
-# TODO: use https://gist.github.com/tyalie/7e13cfe2ec62d99fa341a07ed12ef7c0
-# for up-arrow incremental search, see about autosuggestions?
-# maybe shift or ctrl up while leaving normal up as vanilla zsh history?

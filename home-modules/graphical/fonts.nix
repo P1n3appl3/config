@@ -1,12 +1,8 @@
 { pkgs, lib, ... }: {
   fonts.fontconfig.enable = true;
-  # TODO: verify that this is using noto
   gtk.font = { name = "Sans"; size = lib.mkDefault 12; };
 
   home.packages = with pkgs; [
-    # TODO: look into opentype options with opentype.dev or other fonts:
-    # dejavu victor menlo/meslo fira hack hasklig isoveka
-    # jetbrains mononoki ubuntu (and check chat thread from work)
     source-code-pro
     noto-fonts
     noto-fonts-cjk-sans
@@ -18,7 +14,6 @@
     fontfor
   ];
 
-  # TODO: possibly grab this out of osConfig after making a nixos font module
   xdg.configFile."fontconfig/fonts.conf".text = ''
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">

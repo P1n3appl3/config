@@ -1,6 +1,5 @@
 {lib, fetchFromGitHub, rustPlatform, pkg-config, meson, python3,
   gtk4, libadwaita, btrfs-progs, polkit, clang, libclang }:
-  # TODO: https://github.com/zhangyuannie/butter/blob/main/BUILDING.md
 rustPlatform.buildRustPackage {
   pname = "butter";
   version = "2023-11-05";

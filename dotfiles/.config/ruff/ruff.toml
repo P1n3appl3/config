@@ -1,5 +1,3 @@
-# TODO: replace with human-readable names once that's supported:
-# https://github.com/charliermarsh/ruff/issues/1773
 ignore = [
   "E741", # "ambiguous-variable-name",
   "F402", # "import-shadowed-by-loop-var",

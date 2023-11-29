@@ -1,6 +1,6 @@
 require("Comment").setup { mappings = false }
 local comment = require "Comment.ft"
-comment.beancount = ";%s" -- TODO: set in treesitter or upstream?
+comment.beancount = ";%s"
 
 require("nvim-surround").setup {}
 
@@ -45,8 +45,7 @@ local function server(name, cfg)
     )
 end
 
--- vim.lsp.set_log_level "debug" -- TODO: prettier lsp log viewer
--- https://github.com/neovim/neovim/issues/16807
+-- vim.lsp.set_log_level "debug"
 server "clangd"
 server "nil_ls"
 
@@ -54,9 +53,6 @@ vim.g.neoformat_nasm_nasmfmt = { exe = "nasmfmt", replace = 1 }
 vim.g.neoformat_enabled_nasm = { "nasmfmt" }
 server("asm_lsp", { filetypes = { "nasm" } })
 
-vim.filetype.add { extension = { typ = "typst", nasm = "nasm" } }
--- TODO: get treesitter highlights.scm for typst working
--- TODO: typstfmt not running through lsp
 vim.g.neoformat_typst_typstfmt = { exe = "typstfmt", replace = 1 }
 vim.g.neoformat_enabled_typst = { "typstfmt" }
 server("typst_lsp", { settings = { experimentalFormatterMode = "on" } })
