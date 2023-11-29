@@ -6,7 +6,6 @@
 	excludesfile = ~/.gitignore
     autocrlf = input
     pager = delta
-# TODO: ssh key commit signing
 [alias]
     b = branch
     s = status
@@ -47,13 +46,13 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
     navigate = true
 [diff]
     colorMoved = default
-[merge] # TODO: GNOME meld or improve my nvimdiff setup
+[merge]
     tool = nvimdiff
     conflictstyle = zdiff3
 [mergetool]
     keepBackup = false
     prompt = true
-[mergetool "nvimdiff"] # TODO: fugitive? or just some key bindings?
+[mergetool "nvimdiff"]
     layout = "LOCAL,BASE,REMOTE / MERGED + BASE,LOCAL + \
         BASE,REMOTE + (LOCAL/BASE/REMOTE),MERGED"
 [http]

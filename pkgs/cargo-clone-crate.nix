@@ -13,7 +13,7 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ openssl ] ++ lib.optionals stdenv.isDarwin [ darwin.Security ];
-  # TODO: not sure whether I need these
+  # not sure whether I need these...
   OPENSSL_NO_VENDOR = true;
   OPENSSL_LIB_DIR = "${lib.getLib openssl}/lib";
   OPENSSL_INCLUDE_DIR = "${openssl.dev}/include";

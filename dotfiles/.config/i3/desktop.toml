@@ -1,7 +1,7 @@
 [icons]
 icons = "awesome5"
 [icons.overrides]
-volume_muted = "\uf466" # TODO: remove once nerdfont stops clobbering awesome
+volume_muted = "\uf466"
 cpu = "\uf0e4"
 update = "📦"
 

@@ -1,11 +1,7 @@
--- TODO: try https://github.com/catppuccin/nvim or
--- https://github.com/ellisonleao/gruvbox.nvim
--- with my statusline highlights and maybe subsetting?
 vim.cmd [[ colorscheme custom ]]
 
 require("colorizer").setup { user_default_options = { names = false } }
 require("gitsigns").setup { current_line_blame_opts = { delay = 500 } }
--- TODO: click to dismiss: https://github.com/rcarriga/nvim-notify/issues/195
 vim.api.nvim_create_user_command("Dismiss", require("notify").dismiss, {})
 local notify = require "notify"
 notify.setup { render = "compact", background_colour = "#000000" }

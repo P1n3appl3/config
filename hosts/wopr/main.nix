@@ -10,8 +10,6 @@
       alsa.enable = true; pulse.enable = true; jack.enable = true;
     };
     localtimed.enable = true;
-    # TODO: sleep states, suspend to ram, hibernate, lid close and idle timeout
-    # upower = { enable = true; criticalPowerAction = "Hibernate"; };
   };
 
   home-manager = {
@@ -24,7 +22,6 @@
       ../../home-modules/graphical/common.nix
       ../../home-modules/graphical/hyprland.nix
       ../../home-modules/graphical/music.nix
-      # TODO: check if this works in hyprland
       { home.keyboard.options = [ "altwin:swap_alt_win" ]; }
     ];
   };
@@ -33,6 +30,6 @@
     framework-tool
   ];
 
-  services.getty.autologinUser = "joseph"; # TODO: exec hyprland in login sequence
+  services.getty.autologinUser = "joseph";
   networking.hostName = "WOPR";
 }

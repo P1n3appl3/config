@@ -1,8 +1,5 @@
 {pkgs, inputs, lib, config, myOverlays, ...}: {
-  imports = [
-    { nixpkgs.overlays = myOverlays; nixpkgs.config.allowUnfree = true; }
-    inputs.home-manager.nixosModules.home-manager
-  ];
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   users.users.joseph = {
     isNormalUser = true;
@@ -28,8 +25,9 @@
     kitty.terminfo
   ];
 
-  console.useXkbConfig = true;
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';
+  console.useXkbConfig = true;
+  nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
   nix.settings.trusted-users = [ "root" "@wheel" ];
   nix.extraOptions = "experimental-features = nix-command flakes";
   time.timeZone = lib.mkDefault "America/Los_Angeles";

@@ -111,8 +111,6 @@ return lush(function(functions)
         DiagnosticWarn { fg = yellow },
         DiagnosticInfo { fg = blue },
         DiagnosticHint { fg = aqua },
-        -- TODO: figure out undercurl/dotted/dashed interaction
-        -- https://github.com/neovim/neovim/issues/22371
         DiagnosticUnderlineError { sp = red, gui = "undercurl" },
         DiagnosticUnderlineWarn { sp = yellow, gui = "underdashed" },
         DiagnosticUnderlineInfo { sp = blue, gui = "underdotted" },
@@ -127,8 +125,6 @@ return lush(function(functions)
         LspReferenceRead { LspReferenceText },
         LspReferenceWrite { bg = dark1.rotate(-10).saturate(10) },
         LspSignatureActiveParameter { gui = "bold" },
-
-        -- TODO: Add explicit treesitter groups
 
         sym "@lsp.type.text" { Normal },
         sym "@lsp.type.string" { String },

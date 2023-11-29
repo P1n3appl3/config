@@ -1,6 +1,5 @@
 {pkgs, lib, ...} @ inputs: let
   iconTheme = { package = pkgs.papirus-icon-theme; name = "Papirus-Dark"; };
-  # TODO: maybe upstream a module to nixGL?
   nixGL = if inputs ? osConfig then lib.id else
     pkg: pkgs.buildEnv rec {
       name = "nixGL-${pkg.name}";
@@ -22,8 +21,7 @@ in {
     pavucontrol playerctl pamixer
     rofimoji
     libqalculate qalculate-gtk
-    # TODO: remove wezterm fonts https://github.com/wez/wezterm/blob/main/README-DISTRO-MAINTAINER.md#un-bundling-vendored-fonts
-    (nixGL kitty) wezterm rio # TODO: try wezterm multiplexing
+    (nixGL kitty) wezterm rio
     gnome.nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (wrapMpv mpv-unwrapped { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
@@ -31,7 +29,7 @@ in {
     gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
     (nixGL obsidian)
-    # butter # TODO: meson buildRustPackage??? maybe https://github.com/digint/btrbk
+    # butter and/or maybe https://github.com/digint/btrbk
     # is actually what i want
     # TODO: www.marginalia.nu or ddg default search engine, set profile to
     # automate setting up my userchrome css, sync stylus if it isn't already
@@ -66,7 +64,7 @@ in {
     pointerCursor = {
       gtk.enable = true; x11.enable = true;
       name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-modern-classic; # TODO: try qogir, catppuccin, and graphite
+      package = pkgs.bibata-modern-classic;
       size = lib.mkDefault 28;
     };
   };
@@ -93,7 +91,6 @@ in {
 
   # TODO: see if xdg-desktop-portal/GTK_USE_PORTAL is needed
 
-  # TODO: maybe just grab catppuccin-kvantum settings from sioodmy's config
   qt = { enable = true;
     platformTheme = "qtct";
     style = {

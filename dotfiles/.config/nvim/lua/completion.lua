@@ -21,7 +21,7 @@ cmp.setup {
         { name = "nvim_lsp_signature_help" },
         { name = "nvim_lsp" },
         { name = "snippy" },
-        { name = "buffer" }, -- TODO: set keyword_length and check large file perf
+        { name = "buffer" },
         { name = "path" },
     },
     preselect = cmp.PreselectMode.None,

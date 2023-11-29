@@ -22,8 +22,6 @@ o.mousemodel = "extend"
 o.scrolloff = 7
 o.wildignore = { "*.o", "*.obj", "*.pyc" }
 o.shortmess:append "cI"
--- o.cmdheight = 0 when https://github.com/neovim/neovim/issues/22478 happens
--- TODO: find an equivalent to vim's :set wrap smoothscroll
 
 require "util"
 require "pretty"
@@ -32,9 +30,15 @@ require "plugins"
 require "completion"
 require "keybinds"
 
+vim.filetype.add { extension = { typ = "typst", nasm = "nasm" } }
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "markdown", "gitcommit" },
-    callback = function() vim.opt.spell = true end,
+    callback = function()
+        o.spell = true
+        o.shiftwidth = 2
+        o.conceallevel = 2
+    end,
 })
 
 MyFoldText = function()
