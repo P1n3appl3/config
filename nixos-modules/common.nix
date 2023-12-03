@@ -32,5 +32,5 @@
   nix.extraOptions = "experimental-features = nix-command flakes";
   time.timeZone = lib.mkDefault "America/Los_Angeles";
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

@@ -103,6 +103,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 
 ## Other
 
+* rust share target dir with [targo](https://github.com/sunshowers/targo)
 * powertop handle kitty terminfo
 * tlp fix locale issue
 * ruff use human readable config names [once that's an option](https://github.com/charliermarsh/ruff/issues/1773)
@@ -124,6 +125,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * my `warnIfUpdated` util function seems broken, though I could have sworn it worked at one point. I might be missing something about how evaluation caching works (I've noticed that other home-manager warnings only show up a single time after I `nix flake update` )
 * pull out into redistributable home-manager module
 * profile flake eval time, see [this thread](https://discourse.nixos.org/t/nix-flamegraph-or-profiling-tool/33333)
+* use flake registry to make local devshells update to my system config's pinned nixpkgs version
 
 ## NixOS stuff
 * use impermanence and make root ephemeral, see [example](https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/ephemeral-btrfs.nix) and [guide](https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html).
@@ -197,9 +199,28 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 
 ## Hosts
 
-#### Cortana
+### Cortana
 
-#### WOPR
+* rust-motd + cats
+* add dnsmasq addblock and [prometheus exporter](https://github.com/google/dnsmasq_exporter) for pretty dashboard
+* [ad block](https://www.imaginaryrobots.net/posts/2022-01-26-full-network-adblocking-with-dnsmasq/)
+* add rust rpxy for all the following, add prometheus output for grafana ([looks like they want that too](https://github.com/junkurihara/rust-rpxy/blob/9123ef71a2da473f7c47ca5a21f1a787fca6c540/TODO.md?plain=1#L20))
+* add atuin sync server and set bash/zsh to use mine
+* add gpodder and configure desktop client and antenna to use it
+* add recipe sage/tandoor/kitchenowl recipes and move ours over
+* add syncthing introducer with static config and fallback relay or just MxN
+* rometheus metrics hookup!
+* [host some docs](https://jade.fyi/blog/docs-tricks-and-gnus/) with nice css
+* friends.nix (authorizedkeys)
+* [service dashboard](https://status.catgirl.cloud/)
+* [ntfy](https://ntfy.sh/) push notifs for service status events
+* git frontend, either something like mitxela's or tea or [soft serve](https://github.com/charmbracelet/soft-serve)
+* endlessh
+  * [hook up fail2ban](https://demu.red/blog/2019/04/endlessh-html-scoreboard/)
+  * troubleshoot `-geoip_supplier ip-api`
+  * use [local geoip database](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)
+
+### WOPR
 
 * do i want `powerManagement.powerTop.enable = true;` (autotune every boot)
 * subvols for: `.cache`, `.cargo`, `dev`
@@ -218,6 +239,6 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * set caps=esc and super<->alt in hyprland if the home-manager/nixos ones don't apply
 * do ^ in the tty (check that `i18n.consoleUseXkbConfig` is working)
 
-#### clu
+### clu
 
 - Natural scroll on by default

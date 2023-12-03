@@ -12,6 +12,7 @@
     # Utils
     fzf ripgrep fd bat eza sd dogdns ouch jaq xh rbw hyperfine hexyl choose
     tokei zellij rsync zstd lowcharts trippy page pv datamash ascii numbat
+    pinentry
     # System info
     htop bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Git
@@ -30,17 +31,16 @@
 
   nix.registry = {
     nixpkgs.flake = inputs.nixpkgs;
-    config.to.type = "git";
-    config.to.url = "file://" + config.home.sessionVariables.CONF_DIR;
+    config.to = { type = "git"; url = "file://" + config.home.sessionVariables.CONF_DIR; };
   };
 
   home = {
     username = lib.mkDefault "joseph";
     homeDirectory = lib.mkDefault "/home/joseph";
-    stateVersion = "23.05";
+    stateVersion = "23.11";
 
     sessionVariables = {
-      NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
+      NIX_PATH = "nixpkgs=flake:nixpkgs";
       CONF_DIR = lib.mkDefault (config.home.homeDirectory + "/config");
     };
 

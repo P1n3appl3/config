@@ -26,6 +26,10 @@
     ];
   };
 
+  # xdg.portal = { enable = true;
+  #   config = TODO
+  # }
+
   environment.systemPackages = with pkgs; [
     framework-tool
   ];

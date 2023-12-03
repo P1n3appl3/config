@@ -8,3 +8,4 @@ builds:
   exclude:
     - packages.aarch64-darwin.syncthing-gtk
     - packages.*.butter
+    - packages.*.rust-rpxy
