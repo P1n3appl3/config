@@ -86,7 +86,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 
 ## Theme
 
-Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, though a lot of stuff is still vaguely gruvbox
+Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, though a lot of stuff is still vaguely gruvbox. This [darcula config](https://github.com/addy419/configurations/blob/master/modules/colorschemes/dracula.nix) is a good reference of stuff that can be themed.
 
 * fix [rounded corner issue](https://github.com/catppuccin/gtk/issues/129)
 * rofi
@@ -123,13 +123,14 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * export home/nixos modules separately from hosts, use a layout like [misterio's starter config](https://github.com/Misterio77/nix-starter-configs/blob/main/standard/flake.nix)
 * my `warnIfUpdated` util function seems broken, though I could have sworn it worked at one point. I might be missing something about how evaluation caching works (I've noticed that other home-manager warnings only show up a single time after I `nix flake update` )
 * pull out into redistributable home-manager module
+* profile flake eval time, see [this thread](https://discourse.nixos.org/t/nix-flamegraph-or-profiling-tool/33333)
 
 ## NixOS stuff
 * use impermanence and make root ephemeral, see [example](https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/ephemeral-btrfs.nix) and [guide](https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html).
 * post processing to get useful output out of: `sudo btrfs send --no-data -p /blank / | btrfs receive --dump`
 * maybe create a snapshot right after boot and then diff it upon shutdown, possibly saving a snapshot with whatever new files exist before they get wiped on the next reboot. btrfs subvolume find-new might be the thing
 * `fd . / --mount -tf` is also maybe enough?
-* consider whether impermanence is even worth the hassle if it's just for root, do I want to try using it in `$HOME` too? seems like more trouble than it's worth at the moment
+* consider whether impermanence is even worth the hassle if it's just for root, do I want to try using it in `$HOME` too? seems like more trouble than it's worth at the moment...
 
 ## little tools/scripts/patches I should write
 
@@ -148,29 +149,15 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * pokedex neofetch on shell startup
 * cat motd
 * prettier lsp log viewer for nvim (see [issue](https://github.com/neovim/neovim/issues/16807))
-* improve [cpc](https://github.com/probablykasper/cpc) to the point where it's as nice as qalc
-  * default to 6-8 decimal places, maybe responsive based on size of integer component
-  * set default unit for kinds of quantity (for example J or calorie for energy)
-  * bare unit count as "1 \<unit\>"
-  * currency
-    * for an official source, the [united states treasury data](https://fiscaldata.treasury.gov/datasets/treasury-reporting-rates-exchange/treasury-reporting-rates-of-exchange) (published quarterly) has a nice api, we can do something like `xh "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/rates_of_exchange?sort=-record_date&filter=record_date:gte:$(date --date '-3 months' +%F)"`
-    * I wish we could simply filter to "latest rate for each currency", but I don't see an option for it
-    * transparently read from cache or download when a currency is parsed and store a cached copy in a nice to read format with some expiry (daily?)
-    * still need a list of abbreviations aka ISO 4217 codes (NGN), unambiguous shortened names (yen/yuan), and symbols (₹), which can probably be maintained manually and mapped to the `country_currency_desc` field to match it with the treasury exchange rates.
-    * the federal reserve has [more frequently updated rates](https://www.federalreserve.gov/releases/h10/current/) but for fewer (24) countries.
-    * for a possibly less US-centric option the IMF also has [exchange rate data](https://www.imf.org/external/np/fin/data/rms_rep.aspx) for 38 currencies updated daily.
-  * help/manpage with list of units/functions/constants
-  * abbreviated units for output: square centimeters -> cm²
-  * interactive cli
-    * simpler version: `p='🧮 >'; echo -n $p; while read -r l; do cpc $l; echo -en "\n$p" ; done`
-    * `\ueb64` ( ) from nerdfonts is a nice prompt character
-    * readline wrapper gives you history and such: `rlwrap -S "> " -H "${XDG_CACHE_HOME-$HOME/.cache}/cpc-history.txt" xargs -I{} sh -c "echo '';cpc '{}';echo ''"`
-    * [rustyline](https://github.com/kkawakam/rustyline) should be pretty easy to integrate
-    * completions for constants/functions/units
-    * pretty errors like ariadne
-    * preview the answer with ghost text (assuming it's not too expensive to run per-keypress)
-  * support for precise rationals and pretty-printing answers as proper fractions
+* numbat
+  * implement `-> fraction` with [this functionality](https://github.com/sharkdp/numbat/issues/202)
+  * get oC and oF working
+  * -> hex/octal/binary
+  * k for thousands
+  * currency fetch cache window
   * write rofi script
+  * support for precise rationals and pretty-printing answers as proper fractions
+  * set default unit for kinds of quantity (for example J or calorie for energy)
 * fuzzy select browser tab and focus it, maybe just firefox extension improving ctrl+shift+a
   * order by history of focus by default
 * package asm-lsp and add goto def functionality
@@ -193,7 +180,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 - [100r](https://github.com/egasimus/rabbits)
 - lutris [league](https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/lol-acfix.nix), sc remastered/2, hearthstone, overwatch (see [battle.net](https://nixos.wiki/wiki/Battle.net))
 - gunz the duel
-- desmume or other ds emu, gba, nes, n64, 3ds, switch
+- desmume or other ds emu, gba, nes, n64 (simple64), 3ds, switch
 - itch check wine setup
 - ludosavi check which games aren't covered, set up periodic backups
 
@@ -223,7 +210,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
   * flicker pattern upon plugging in and/or do gradient while charging
 * startup
   1. systemdboot (decrease picker time to 1 or 2 seconds)
-  2. auto-login (should be working)
+  2. auto-login (should be working already)
   3. start hyprland (in check tty in shell login)
   4. [start portal and update systemd env](https://wiki.hyprland.org/FAQ/#some-of-my-apps-take-a-really-long-time-to-open)
   5. [launch stuff like wallpaper](https://github.com/Gl00ria/dotfiles/blob/main/dot_hyprland/.config/hypr/autostart)

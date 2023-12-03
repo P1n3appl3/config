@@ -1,8 +1,8 @@
 { config, ... }: {
   fileSystems = let
-    hostname = config.networking.hostName;
     subvol = name: opts: {
-      label = hostname; fsType = "btrfs"; options = [ "subvol=${name}" ] ++ opts;
+      label = config.networking.hostName; fsType = "btrfs";
+      options = [ "subvol=${name}" ] ++ opts;
     };
   in {
     "/" = subvol "root" [ "compress=zstd" ];
@@ -16,4 +16,6 @@
   };
 
   swapDevices = [{ device = "/swap/swapfile"; }];
+
+  services.btrfs.autoScrub = { enable = true; fileSystems = [ "/" ]; };
 }

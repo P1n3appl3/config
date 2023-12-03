@@ -17,5 +17,7 @@ target
 .vscode*
 .node-gyp
 .rustup
-.cargo
+.cargo/registry
+.cargo/git
 DriveFS
+go
