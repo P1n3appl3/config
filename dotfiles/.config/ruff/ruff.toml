@@ -2,4 +2,5 @@ ignore = [
   "E741", # "ambiguous-variable-name",
   "F402", # "import-shadowed-by-loop-var",
   "E501", # "line-too-long",
+  "E731", # "lambda-assignment",
 ]

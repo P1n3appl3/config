@@ -169,7 +169,7 @@ wk.register({
 }, { prefix = "<space>" })
 
 local function fzf_g(command)
-    return function() G.lazy("fzf-lua", "lsp_" .. command, { jump_to_single_result = true }) end
+    return G.lazy("fzf-lua", "lsp_" .. command, { jump_to_single_result = true })
 end
 wk.register({
     d = { fzf_g "definitions", "Definition" },

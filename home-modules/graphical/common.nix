@@ -26,6 +26,7 @@ in {
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (wrapMpv mpv-unwrapped { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
     ffmpeg (nixGL imv) vlc
+    vial # TODO: check if I need via too
     gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
     (nixGL obsidian)

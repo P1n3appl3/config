@@ -9,4 +9,8 @@ rustflags = ["-Z", "threads=8"]
 linker = "clang"
 rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 
-# TODO: try cranelift
+[unstable]
+codegen-backend = true
+
+[profile.dev]
+codegen-backend = "cranelift"
