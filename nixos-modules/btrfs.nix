@@ -10,9 +10,6 @@
     "/home" = subvol "home" [ "compress=zstd" ];
     "/var/log" = subvol "log" [ "compress=zstd" ];
     "/swap" = subvol "swap" [ "noatime" ];
-    "/persist" = (subvol "persist" [ "compress=zstd" ]) // {
-      neededForBoot = true;
-    };
   };
 
   swapDevices = [{ device = "/swap/swapfile"; }];

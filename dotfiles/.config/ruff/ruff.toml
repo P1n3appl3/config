@@ -3,4 +3,5 @@ ignore = [
   "F402", # "import-shadowed-by-loop-var",
   "E501", # "line-too-long",
   "E731", # "lambda-assignment",
+  "E401", # "multiple-imports-on-one-line",
 ]

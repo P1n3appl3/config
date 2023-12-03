@@ -45,14 +45,5 @@ in {
       }) ];
   });
 
-  nix-output-monitor = prev.nix-output-monitor.overrideAttrs (old: {
-    src = final.fetchFromGitHub {
-      owner = "maralorn"; repo = "nix-output-monitor";
-      rev = "v2.1.1";
-      hash = "sha256-NBEvJMeYNFf9Z6b/iKQP3Bv8E5gURZNA7ed/5k9vL8w=";
-    };
-    version = warnIfUpdated old "2.0.0.7" "2.1.1";
-  });
-
   nurl = prev.nurl.override { mercurial=null; };
 }
