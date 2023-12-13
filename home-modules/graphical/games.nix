@@ -1,12 +1,17 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     steam
+    itch
+    ludusavi
+
     osu-lazer-bin
     clonehero # make ~/.clonehero subvolume
-    ludusavi
-    dolphin-emu snes9x-gtk
+
     nethack
     openttd
-    itch
+    space-cadet-pinball
+    openspades
+
+    dolphin-emu snes9x-gtk
   ];
 }

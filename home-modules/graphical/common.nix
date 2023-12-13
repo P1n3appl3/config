@@ -16,6 +16,9 @@
 in {
   imports = [ ./fonts.nix ];
 
+  # TODO: remove when obsidian updates to a supported version
+  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
+
   home.packages = with pkgs; [
     brightnessctl
     pavucontrol playerctl pamixer
@@ -36,13 +39,18 @@ in {
     # automate setting up my userchrome css, sync stylus if it isn't already
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
     # TODO: check that touchpad smooth scroll works
+    # TODO: bitwarden popup floating window
+    # TODO: vaapi hardware decode
     (nixGL (firefox.override { cfg.speechSynthesisSupport = false; }))
     # TODO: gtk4cord or webcord
     discord # TODO: check krisp see https://github.com/NixOS/nixpkgs/issues/195512
     (nixGL telegram-desktop) (nixGL caprine-bin) signal-desktop
     fractal-next nheko # TODO: pick one
-    (nixGL (calibre.override { speechd=null; }))
-    # obs-studio inkscape kdenlive blender godot lmms non audacity krita, maybe in "media"
+    praat friture # TODO: try this for voice training
+    # maybe make a "media" module
+    # obs-studio inkscape kdenlive blender godot lmms non audacity krita,
+    # (nixGL (calibre.override { speechd=null; }))
+    # libresprite/acesprite-unfree
     imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
     mepo # TODO: try
     # TODO: syncthing-gtk
@@ -53,15 +61,16 @@ in {
 
   services = {
     udiskie.enable = true;
+    # TODO: configure to use Cortana
     syncthing = { enable = true; tray.enable = true; }; # TODO: use syncthing-gtk for tray
-    network-manager-applet.enable = true;
+    network-manager-applet.enable = true; # TODO: greyed out available networks?
     # TODO: make reverse scrolling vary based on touchpad,
     # check mute mouse binding and volume keys
     pasystray = { enable = true; extraOptions = ["-grSi" "5" "-N" "none" "-N" "new"]; };
   };
 
   home = {
-    keyboard.options = [ "caps:escape" ]; # TODO: check if this works in hyprland too
+    keyboard.options = [ "caps:escape" "shift:both_capslock"]; # TODO: check if this works in hyprland too
     pointerCursor = {
       gtk.enable = true; x11.enable = true;
       name = "Bibata-Modern-Classic";

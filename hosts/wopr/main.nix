@@ -29,11 +29,15 @@
   # xdg.portal = { enable = true;
   #   config = TODO
   # }
+  # TODO: remove when obsidian updates
+  # TODO: why do i have to mirror the home-manager config here?
+  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
   environment.systemPackages = with pkgs; [
     framework-tool
+    firmware-updater firmware-manager # TODO: pick one
   ];
 
   services.getty.autologinUser = "joseph";
-  networking.hostName = "WOPR";
+  networking = { hostName = "WOPR"; networkmanager.enable = true; };
 }

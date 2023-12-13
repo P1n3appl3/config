@@ -15,18 +15,19 @@
     command-not-found.enable = false;
   };
 
-  home-manager = { useGlobalPkgs = true; useUserPackages = true; };
   environment.systemPackages = with pkgs; [
     uutils-coreutils-noprefix
     at
     file
     psmisc
+    usbutils
     config.boot.kernelPackages.perf
     kitty.terminfo
   ];
 
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';
   console.useXkbConfig = true;
+  home-manager.useGlobalPkgs = true;
   nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
   nix.settings.trusted-users = [ "root" "@wheel" ];
   nix.extraOptions = "experimental-features = nix-command flakes";
