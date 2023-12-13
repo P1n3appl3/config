@@ -7,6 +7,8 @@ in {
     (rofi.override { plugins = [ rofi-calc ]; })
     dunst
     oneko
+    xorg.xeyes xorg.xkill
+    xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
   ];
 
   systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];

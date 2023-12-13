@@ -78,11 +78,15 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * look into opentype options with opentype.dev or other fonts:
     * dejavu victor menlo/meslo fira hack hasklig isoveka jetbrains mononoki ubuntu berkely (and check chat thread from work for others)
   * use the nixos fontconfig options and grabbing the resulting xml osConfig for home-manager instead of hand-writing the whole thing
+  * try numderline
 * music
   * try clerk or rofi-mpd instead of song.sh
   * try music-player (rust) and better tagging for beets
   * beets set max quality with "convert" plugin
   * check that media keys got auto-bound by mpdris2
+* performance
+  * use powertop/turbostat/eventstat/pidstat/smemstat/powerstat/power-calibrate to see the difference with hyprland vs sway and eww vs i3status-rs
+* oneko/xsnow/xeyes/xkill/xmascot
 
 ## Theme
 
@@ -114,6 +118,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * try xplr/joshuto
 * htop static hm config with param for number of cores
 * j don't create dir in `$HOME`, also grab an older version while it's broken (i think due to the llvm 16 bump?)
+* typst-lsp broken
 
 ## Nix stuff
 
@@ -160,6 +165,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
   * write rofi script
   * support for precise rationals and pretty-printing answers as proper fractions
   * set default unit for kinds of quantity (for example J or calorie for energy)
+  * look into symbolic algebra
 * fuzzy select browser tab and focus it, maybe just firefox extension improving ctrl+shift+a
   * order by history of focus by default
 * package asm-lsp and add goto def functionality
@@ -167,24 +173,24 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 
 ## Games
 
-- slippi + kernel module + skins? see [ssbm-nix](https://github.com/djanatyn/ssbm-nix)
-- [hsdlib](https://github.com/rrbutani/HSDLib) and xdelta for modding
-- everest for celeste, r2modman for ror2, the ftl mod manager, etc.
-- use flatpak for fightcade
-- minecraft + mods, maybe use [nix-minecraft](https://github.com/Infinidoge/nix-minecraft)
-- eggnogg / + (+ is on itch so just test that one)
-- looking glass hooked up to dual boot partition
-  might need [this](https://github.com/danielfullmer/nixos-nvidia-vgpu) for nvidia (and also [this](https://github.com/DualCoder/vgpu_unlock))
-- sabaki sgf viewer
-- shattered-pixel-dungeon or maybe just steam version
-- ruffle or that other one I used on windows for flash stuff
-- osu-lazer try low latency pipewire from [nix-gaming](https://github.com/fufexan/nix-gaming) and open tablet driver
-- [100r](https://github.com/egasimus/rabbits)
-- lutris [league](https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/lol-acfix.nix), sc remastered/2, hearthstone, overwatch (see [battle.net](https://nixos.wiki/wiki/Battle.net))
-- gunz the duel
-- desmume or other ds emu, gba, nes, n64 (simple64), 3ds, switch
-- itch check wine setup
-- ludosavi check which games aren't covered, set up periodic backups
+* slippi + kernel module + skins? see [ssbm-nix](https://github.com/djanatyn/ssbm-nix)
+* [hsdlib](https://github.com/rrbutani/HSDLib) and xdelta for modding
+* everest for celeste, r2modman for ror2, the ftl mod manager, etc.
+* use flatpak for fightcade
+* minecraft + mods, maybe use [nix-minecraft](https://github.com/Infinidoge/nix-minecraft)
+* eggnogg / + (+ is on itch so just test that one)
+* looking glass hooked up to dual boot partition
+* might need [this](https://github.com/danielfullmer/nixos-nvidia-vgpu) for nvidia (and also [this](https://github.com/DualCoder/vgpu_unlock))
+* sabaki sgf viewer
+* shattered-pixel-dungeon or maybe just steam version
+* ruffle or that other one I used on windows for flash stuff
+* osu-lazer try low latency pipewire from [nix-gaming](https://github.com/fufexan/nix-gaming) and open tablet driver
+* [100r](https://github.com/egasimus/rabbits)
+* lutris [league](https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/lol-acfix.nix), sc remastered/2, hearthstone, overwatch (see [battle.net](https://nixos.wiki/wiki/Battle.net))
+* gunz the duel
+* desmume or other ds emu, gba, nes, n64 (simple64), 3ds, switch
+* itch check wine setup
+* ludosavi check which games aren't covered, set up periodic backups
 
 ## `pkgs/`
 
@@ -219,17 +225,20 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
   * [hook up fail2ban](https://demu.red/blog/2019/04/endlessh-html-scoreboard/)
   * troubleshoot `-geoip_supplier ip-api`
   * use [local geoip database](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)
+* static site
+  * consistent banner with nav and no name
 
 ### WOPR
 
 * do i want `powerManagement.powerTop.enable = true;` (autotune every boot)
-* subvols for: `.cache`, `.cargo`, `dev`
+* subvols for: `.cache`, `.cargo`, `dev`, steam, maybe all of `games` or just slippi replays
 * sleep states, suspend to ram, hibernate, lid close and idle timeout
   * `services.upower = { enable = true; criticalPowerAction = "Hibernate"; };`
 * fw-ectool
   * lights! need to see how fast I can alternate and how wide the gamut is
   * flicker pattern upon plugging in and/or do gradient while charging
-* startup
+* pick interface name wlan0
+* startup (check time with systemd-analyze)
   1. systemdboot (decrease picker time to 1 or 2 seconds)
   2. auto-login (should be working already)
   3. start hyprland (in check tty in shell login)
@@ -241,4 +250,11 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 
 ### clu
 
-- Natural scroll on by default
+* Natural scroll on by default
+* [caps lock disk indicator](https://github.com/MeanEYE/Disk-Indicator)
+
+### HAL
+
+* use [looking-glass](https://looking-glass.io/)(see [comments](https://news.ycombinator.com/item?id=28817981)) or [ovmf](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF), or just directly use [vfio](https://b1nzy.com/blog/vfio.html)
+  * boot existing windows partition as a vm
+  * either splitting gpu or somehow disabling it for the current WM session

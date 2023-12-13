@@ -18,7 +18,7 @@ in {
   nixos-rebuild = prev.nixos-rebuild.overrideAttrs (old: {
     postInstall = old.postInstall + ''
     substituteInPlace $out/bin/nixos-rebuild --replace \
-      'nix "''${flakeFlags[@]}" build' 'nom "''${flakeFlags[@]}" build'
+      'nix "''${flakeFlags[@]}" build' 'nom build'
     '';
   });
 
@@ -43,6 +43,7 @@ in {
       url = "https://github.com/eza-community/eza/compare/main...P1n3appl3:eza:main.diff";
       hash = "sha256-TZnwIM8S4c0WeJtLEG1tFoKhqgMcE9top1S7Z7s9LeA=";
       }) ];
+    doCheck = false;
   });
 
   nurl = prev.nurl.override { mercurial=null; };

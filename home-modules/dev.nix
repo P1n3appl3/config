@@ -7,7 +7,7 @@
     beancount-language-server
     nasm asmfmt nasmfmt
     nurl nix-init
-    typst typst-lsp typst-fmt
+    typst typst-fmt # typst-lsp
     # j
   ];
 }
