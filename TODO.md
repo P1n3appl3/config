@@ -86,7 +86,12 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * check that media keys got auto-bound by mpdris2
 * performance
   * use powertop/turbostat/eventstat/pidstat/smemstat/powerstat/power-calibrate to see the difference with hyprland vs sway and eww vs i3status-rs
+  * eww widget to show current power draw (and graph?), and select between governors
 * oneko/xsnow/xeyes/xkill/xmascot
+  * for oneko, see [shimeji](https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#shimeji)
+* firefox
+  * onetab replacement, go to obsidian
+  * [tune smooth scroll params](https://www.reddit.com/r/firefox/comments/13gdu1k/comment/jk3rhm9)
 
 ## Theme
 
@@ -119,6 +124,9 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * htop static hm config with param for number of cores
 * j don't create dir in `$HOME`, also grab an older version while it's broken (i think due to the llvm 16 bump?)
 * typst-lsp broken
+* rbw [broken](https://github.com/doy/rbw/issues/145)
+* mod+o use rofi file completion starting from ~ and xdg-open
+* usbtop needs pcap settings
 
 ## Nix stuff
 
@@ -138,6 +146,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * maybe create a snapshot right after boot and then diff it upon shutdown, possibly saving a snapshot with whatever new files exist before they get wiped on the next reboot. btrfs subvolume find-new might be the thing
 * `fd . / --mount -tf` is also maybe enough?
 * consider whether impermanence is even worth the hassle if it's just for root, do I want to try using it in `$HOME` too? seems like more trouble than it's worth at the moment...
+* make sure zsh gets completions and bash completions (fwupdmgr) from system packages
 
 ## little tools/scripts/patches I should write
 
@@ -170,6 +179,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
   * order by history of focus by default
 * package asm-lsp and add goto def functionality
   * maybe improve the data scraping bit too
+* btm add scrolling dots for active task like btop
 
 ## Games
 
@@ -191,6 +201,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * desmume or other ds emu, gba, nes, n64 (simple64), 3ds, switch
 * itch check wine setup
 * ludosavi check which games aren't covered, set up periodic backups
+* rhythm doctor and that one from itch.io, check that it works while floating
 
 ## `pkgs/`
 
@@ -215,6 +226,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * add gpodder and configure desktop client and antenna to use it
 * add recipe sage/tandoor/kitchenowl recipes and move ours over
 * add syncthing introducer with static config and fallback relay or just MxN
+* add vaultwarden server and hook up phone/browsers
 * rometheus metrics hookup!
 * [host some docs](https://jade.fyi/blog/docs-tricks-and-gnus/) with nice css
 * friends.nix (authorizedkeys)
@@ -234,19 +246,30 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * subvols for: `.cache`, `.cargo`, `dev`, steam, maybe all of `games` or just slippi replays
 * sleep states, suspend to ram, hibernate, lid close and idle timeout
   * `services.upower = { enable = true; criticalPowerAction = "Hibernate"; };`
+  * services.logind power button hibernate, lid close suspend->hibernate with delay
 * fw-ectool
   * lights! need to see how fast I can alternate and how wide the gamut is
   * flicker pattern upon plugging in and/or do gradient while charging
 * pick interface name wlan0
 * startup (check time with systemd-analyze)
   1. systemdboot (decrease picker time to 1 or 2 seconds)
-  2. auto-login (should be working already)
-  3. start hyprland (in check tty in shell login)
+  2. auto-login ([only on tty1](https://gist.github.com/caadar/7884b1bf16cb1fc2c7cde33d329ae37f))
+  3. start hyprland (check tty in shell login)
   4. [start portal and update systemd env](https://wiki.hyprland.org/FAQ/#some-of-my-apps-take-a-really-long-time-to-open)
   5. [launch stuff like wallpaper](https://github.com/Gl00ria/dotfiles/blob/main/dot_hyprland/.config/hypr/autostart)
   6. run waylock/swaylock
 * set caps=esc and super<->alt in hyprland if the home-manager/nixos ones don't apply
 * do ^ in the tty (check that `i18n.consoleUseXkbConfig` is working)
+* nixos-rebuild can't see user level flake registry (maybe beccause sudo?)
+* dbus-tool or qdbus talk to geoclue
+* disable middle-click paste
+* howett.net fnlock light to capslock
+  * bind caps to esc or ctrl when held
+  * swap alt/win
+  * right ctrl -> fn
+  * key repeat for brightness keys
+* no completion for systemd units
+* [low latency audio](https://github.com/Aylur/dotfiles/blob/main/nixos/audio.nix)
 
 ### clu
 

@@ -22,6 +22,7 @@ in {
   home.packages = with pkgs; [
     brightnessctl
     pavucontrol playerctl pamixer
+    xdg-utils # TODO: try handlr-regex
     rofimoji
     libqalculate qalculate-gtk
     (nixGL kitty) wezterm rio
@@ -48,15 +49,18 @@ in {
     fractal-next nheko # TODO: pick one
     praat friture # TODO: try this for voice training
     # maybe make a "media" module
-    # obs-studio inkscape kdenlive blender godot lmms non audacity krita,
+    # obs-studio inkscape kdenlive blender godot lmms non tenacity (or audacity) krita
     # (nixGL (calibre.override { speechd=null; }))
     # libresprite/acesprite-unfree
     imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
     mepo # TODO: try
+    # dbus-tool
     # TODO: syncthing-gtk
     # TODO: https://gitlab.freedesktop.org/rncbc/qpwgraph
     nixgl.nixGLIntel # nixgl.nixVulkanIntel # TODO: debug (llvm update?)
     glxinfo vulkan-tools
+    firmware-updater gnome-firmware firmware-manager # TODO: pick one
+    graphviz
   ];
 
   services = {

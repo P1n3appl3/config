@@ -4,13 +4,29 @@
     inputs.nixos-hardware.nixosModules.framework-13-7040-amd
   ];
 
+  environment.systemPackages = with pkgs; [
+    framework-tool
+  ];
+
+  programs = {
+    hyprland.enable = true;
+  };
+
   services = {
     pipewire = {
       enable = true; wireplumber.enable = true;
       alsa.enable = true; pulse.enable = true; jack.enable = true;
     };
-    localtimed.enable = true;
+    automatic-timezoned.enable = true;
+    getty = { autologinUser = "joseph"; greetingLine = "\l"; helpLine = "owo"; };
+    # I don't use xorg, so these are just for the tty
+    # TODO: set these some other way? either console.keymap or interceptor
+    xserver.xkb.options = "altwin:swap_alt_win,caps:escape,shift:both_capslock";
   };
+
+  # TODO: remove when obsidian updates
+  # TODO: why do i have to mirror the home-manager config here?
+  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
 
   home-manager = {
     extraSpecialArgs = { inherit inputs myOverlays; };
@@ -22,22 +38,8 @@
       ../../home-modules/graphical/common.nix
       ../../home-modules/graphical/hyprland.nix
       ../../home-modules/graphical/music.nix
-      { home.keyboard.options = [ "altwin:swap_alt_win" ]; }
     ];
   };
 
-  # xdg.portal = { enable = true;
-  #   config = TODO
-  # }
-  # TODO: remove when obsidian updates
-  # TODO: why do i have to mirror the home-manager config here?
-  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
-
-  environment.systemPackages = with pkgs; [
-    framework-tool
-    firmware-updater firmware-manager # TODO: pick one
-  ];
-
-  services.getty.autologinUser = "joseph";
   networking = { hostName = "WOPR"; networkmanager.enable = true; };
 }
