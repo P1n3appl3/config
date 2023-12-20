@@ -19,6 +19,7 @@ config 🍍 nix flake show
     ├───bibata-modern-classic: mouse cursor theme
     ├───butter: ui for btrfs subvolume snapshot history
     ├───cargo-clone-crate: better cargo clone command
+    ├───dbus-tool: manually interact with dbus endpoints
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal

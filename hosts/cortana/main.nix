@@ -4,17 +4,12 @@
     inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
-  home-manager = {
-    extraSpecialArgs = { inherit inputs myOverlays; };
-    users.joseph.imports = [
-      ../../home-modules/common.nix
-      ../../home-modules/linux.nix
-      ../../home-modules/btrfs.nix
-    ];
-  };
+  environment.systemPackages = with pkgs; [
+    raspberrypi-eeprom
+    libraspberrypi
+    acme-sh
+  ];
 
-  networking.hostName = "Cortana";
-  networking.firewall.allowedTCPPorts = [ 80 443 8080 ];
   services = {
     openssh = {
       enable = true; ports = [ 69 ];
@@ -40,9 +35,17 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    raspberrypi-eeprom
-    libraspberrypi
-    acme-sh
-  ];
+  home-manager = {
+    extraSpecialArgs = { inherit inputs myOverlays; };
+    users.joseph.imports = [
+      ../../home-modules/common.nix
+      ../../home-modules/linux.nix
+      ../../home-modules/btrfs.nix
+    ];
+  };
+
+  time.timeZone = "America/Los_Angeles";
+
+  networking.hostName = "Cortana";
+  networking.firewall.allowedTCPPorts = [ 80 443 8080 ]; # 22 and 69 auto-enabled
 }

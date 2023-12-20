@@ -1,4 +1,4 @@
-{pkgs, inputs, lib, config, myOverlays, ...}: {
+{pkgs, inputs, config, myOverlays, ...}: {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   users.users.joseph = {
@@ -29,9 +29,15 @@
   console.useXkbConfig = true;
   home-manager.useGlobalPkgs = true;
   nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
-  nix.settings.trusted-users = [ "root" "@wheel" ];
-  nix.extraOptions = "experimental-features = nix-command flakes";
-  time.timeZone = lib.mkDefault "America/Los_Angeles";
+  nix = {
+    settings.trusted-users = [ "root" "@wheel" ];
+    extraOptions = "experimental-features = nix-command flakes";
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+      # TODO: dedup to a shared nixos/home module
+      config.to = { type = "git"; url = "file:///home/joseph/config"; };
+    };
+  };
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
   system.stateVersion = "23.11";
 }
