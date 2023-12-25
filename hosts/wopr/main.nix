@@ -18,10 +18,11 @@
       alsa.enable = true; pulse.enable = true; jack.enable = true;
     };
     automatic-timezoned.enable = true;
-    getty = { autologinUser = "joseph"; greetingLine = "\l"; helpLine = "owo"; };
+    getty = { autologinUser = "joseph"; greetingLine = ''\l''; helpLine = "owo"; };
     # I don't use xorg, so these are just for the tty
     # TODO: set these some other way? either console.keymap or interceptor
     xserver.xkb.options = "altwin:swap_alt_win,caps:escape,shift:both_capslock";
+    upower.enable = true;
   };
 
   # TODO: remove when obsidian updates

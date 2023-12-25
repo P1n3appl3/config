@@ -85,13 +85,15 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * beets set max quality with "convert" plugin
   * check that media keys got auto-bound by mpdris2
 * performance
-  * use powertop/turbostat/eventstat/pidstat/smemstat/powerstat/power-calibrate to see the difference with hyprland vs sway and eww vs i3status-rs
-  * eww widget to show current power draw (and graph?), and select between governors
+  * use powertop/turbostat/eventstat/pidstat/smemstat/powerstat/power-calibrate to see the difference with hyprland vs sway and ironbar vs i3status-rs
+  * ironbar widget to show current power draw (and graph?), and select between governors
 * oneko/xsnow/xeyes/xkill/xmascot
   * for oneko, see [shimeji](https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#shimeji)
 * firefox
   * onetab replacement, go to obsidian
   * [tune smooth scroll params](https://www.reddit.com/r/firefox/comments/13gdu1k/comment/jk3rhm9)
+* ironbar circular dials
+* ironbar icons not picking up home-manager icons, maybe gtk_data_dirs related?
 
 ## Theme
 
@@ -105,8 +107,9 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * firefox homepage and/or userstyles
 * cursor maybe? also try qogir and graphite
 * i3/i3status
-* hyprland/eww
+* hyprland/ironbar
 * nvim
+* [obsidian](https://github.com/catppuccin/obsidian)
 * kitty/wezterm/rio
   * does terminal emulator cover most stuff, or will eza/htop/etc. need additional config?
 

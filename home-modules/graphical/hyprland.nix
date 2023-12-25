@@ -1,15 +1,14 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # TODO: hyprfocus or hyprdim
-    # TODO: hyprgrass, or default gestures if it's analog
-    # TODO: satty/watershot/flakeshot for annotating screenshots
-    # TODO: wl-screenrec config (make sure hardware encode is working)
+    # TODO: try hyprfocus and hyprdim
     wev wl-clipboard slurp grim hyprpicker # TODO: make sure screenshots work
+    # TODO: wl-screenrec config (make sure hardware encode is working)
+    # TODO: try satty or watershot
     # TODO: try yofi/wofi/fuzzel
     # TODO: try plugins: rbw/pa source+sink/mpd/systemd/wifi
     (rofi-wayland.override { plugins = [ rofi-calc ]; })
-    ironbar eww-wayland # TODO: configure, try hybridbar/custom
-    wpaperd # TODO: configure, try swww/waypaper
+    ironbar # TODO: configure, try hybridbar/custom
+    wpaperd swww # TODO: choose
     # TODO: swayosd
     swaynotificationcenter # TODO: try this/dunst/mako/fnott
     swayidle # TODO: try sleepwatcher-rs
@@ -25,7 +24,7 @@
     cliphist.enable = true;
   };
 
-  # start graphical-session and tray targets beccause other hm modules depend on them
+  # need to start graphical-session and tray targets beccause other hm modules depend on them
   systemd.user.targets = {
     hyprland-session.Unit = {
       Description = "Hyprland compositor session";
@@ -39,5 +38,7 @@
       Requires = [ "graphical-session-pre.target" ];
     };
   };
+
+  home.sessionVariables.NIXOS_OZONE_WL = "1"; # TODO: see if GTK_USE_PORTAL is needed
 }
 

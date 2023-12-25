@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -xo pipefail
+set -o pipefail
 
 img_dir="${XDG_PICTURES_DIR-$HOME/images}"
 img_path="${img_dir}/latest_screenshot.png"
