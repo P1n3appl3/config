@@ -61,6 +61,7 @@ in {
     glxinfo vulkan-tools
     firmware-updater gnome-firmware firmware-manager # TODO: pick one
     graphviz
+    libnotify
   ];
 
   services = {
@@ -73,14 +74,25 @@ in {
     pasystray = { enable = true; extraOptions = ["-grSi" "5" "-N" "none" "-N" "new"]; };
   };
 
-  home = {
-    keyboard.options = [ "caps:escape" "shift:both_capslock"]; # TODO: check if this works in hyprland too
-    pointerCursor = {
-      gtk.enable = true; x11.enable = true;
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-modern-classic;
-      size = lib.mkDefault 28;
+  systemd.user.services = {
+    polkit-agent-kde = {
+      Unit = {
+        Description = "Polkit agent from KDE";
+        PartOf = "graphical-session.target";
+        After = "graphical-session.target";
+      };
+      Service = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+        Restart = "on-failure"; RestartSec = 1; TimeoutStopSec = 10;
+      };
     };
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true; x11.enable = true;
+    name = "Bibata-Modern-Classic"; package = pkgs.bibata-modern-classic;
+    size = lib.mkDefault 28;
   };
 
   dconf.settings = { "org.gnome.desktop.interface" = { color-scheme = "prefer-dark"; }; };
@@ -102,8 +114,6 @@ in {
       gtk-decoration-layout = "appmenu:none";
     };
   };
-
-  # TODO: see if xdg-desktop-portal/GTK_USE_PORTAL is needed
 
   qt = { enable = true;
     platformTheme = "qtct";

@@ -1,0 +1,9 @@
+@define-color color_bg #2d2d2d;
+
+.popup-clock .calendar-clock {
+    font-size: 24pt;
+}
+/* .workspaces .item { */
+/*     color: red; */
+/* TODO: downsize button margins */
+/* } */

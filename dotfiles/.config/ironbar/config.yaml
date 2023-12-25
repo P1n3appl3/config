@@ -1,0 +1,49 @@
+# anchor_to_edges: true
+icon_theme: Papirus-Dark
+position: top
+height: 30
+
+start:
+- type: workspaces
+  all_monitors: false
+  name_map:
+    '1': 
+    '2': 
+    '3': 
+    '4': 
+    '5': 𝛌
+    '6': 󰭹
+    '7': 
+    '11': 
+    '12': 
+- type: tray
+
+middle:
+- type: launcher
+- type: music
+  # music_dir: ~/Music # TODO: try mpd mode
+  player_type: mpris
+  truncate:
+    max_length: 50
+    mode: end
+
+end:
+- type: sys_info
+  format:
+  -  {cpu_percent}% | # TODO: sensor name  {temp_c:k10temp-pci}°C # TODO: gpu_percent
+  -  {memory_used} / {memory_total} GB ({memory_percent}%) # TODO: click to swap to swap
+  - 󰋊 {disk_used:/} / {disk_total:/} GB ({disk_percent:/}%)
+  - 󰀂 {net_down:wlan0} / {net_up:wlan0} Mbps
+  interval:
+    cpu: 1
+    disks: 300
+    memory: 30
+    networks: 3
+    temps: 5
+# end:
+#   - type: "upower"
+#     format: "{percentage}%"
+- type: upower
+- type: clock
+  format: "%l:%M%P"
+  format_popup: "%m/%d/%Y"
