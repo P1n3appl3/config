@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Hibernate
+Keywords=power;sleep
+Type=Application
+Categories=System
+Exec=systemctl hibernate
+Icon=system-hibernate

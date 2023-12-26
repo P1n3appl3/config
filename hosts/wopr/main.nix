@@ -6,6 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     framework-tool
+    amdgpu_top
   ];
 
   programs = {
@@ -18,6 +19,7 @@
       alsa.enable = true; pulse.enable = true; jack.enable = true;
     };
     automatic-timezoned.enable = true;
+    # TODO: get rid of the help line too
     getty = { autologinUser = "joseph"; greetingLine = ''\l''; helpLine = "owo"; };
     # I don't use xorg, so these are just for the tty
     # TODO: set these some other way? either console.keymap or interceptor

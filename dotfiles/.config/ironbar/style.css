@@ -2,7 +2,14 @@
 
 .popup-clock .calendar-clock {
     font-size: 24pt;
+    /* TODO: debug hotreloading */
+    color: #0000ff;
 }
+
+.workspaces .item .icon {
+    background-color: #ff0000;
+}
+
 /* .workspaces .item { */
 /*     color: red; */
 /* TODO: downsize button margins */

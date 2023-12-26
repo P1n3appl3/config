@@ -31,12 +31,10 @@ end:
 - type: sys_info
   format:
   -  {cpu_percent}% | # TODO: sensor name  {temp_c:k10temp-pci}°C # TODO: gpu_percent
-  -  {memory_used} / {memory_total} GB ({memory_percent}%) # TODO: click to swap to swap
-  - 󰋊 {disk_used:/} / {disk_total:/} GB ({disk_percent:/}%)
+  -  {memory_percent}% | # TODO: click to swap to swap
   - 󰀂 {net_down:wlan0} / {net_up:wlan0} Mbps
   interval:
     cpu: 1
-    disks: 300
     memory: 30
     networks: 3
     temps: 5
@@ -47,3 +45,5 @@ end:
 - type: clock
   format: "%l:%M%P"
   format_popup: "%m/%d/%Y"
+
+# TODO: notif button toggle panel and show dnd/count with swaync-client -s
