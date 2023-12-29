@@ -53,10 +53,15 @@
       WOPR    = machine "x86_64-linux"  ./hosts/wopr/main.nix;
     };
 
+    templates = {
+      shell = { path = ./templates/shell; description = "minimal shell for new projects"; };
+      home  = { path = ./templates/home;  description = "wee woo"; };
+    };
+
     overlays.default = final: _: listDir
       {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};
-  } // (flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-    in { packages = listDir {of = ./pkgs; mapFunc = n: _: pkgs.${n};}; })
-  );
+    } // (flake-utils.lib.eachDefaultSystem (system: let
+        pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
+      in { packages = listDir {of = ./pkgs; mapFunc = n: _: pkgs.${n};}; })
+    );
 }
