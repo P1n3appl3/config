@@ -13,6 +13,9 @@ config 🍍 nix flake show
 │   └───WOPR:    framework laptop 13" (AMD 7640U)
 ├───overlays
 │   └───default: Nixpkgs overlay with my packages and overrides
+├───templates
+│   ├───shell: minimal shell for new projects
+│   └───josh:  weewoo
 └───packages
     ├───ascii-rain: pretty terminal rain animation
     ├───barchart: draw barcharts in the terminal

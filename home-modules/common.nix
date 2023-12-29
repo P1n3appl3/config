@@ -34,6 +34,8 @@
     config.to = { type = "git"; url = "file://" + config.home.sessionVariables.CONF_DIR; };
   };
 
+  systemd.user.startServices = "sd-switch";
+
   home = {
     username = lib.mkDefault "joseph";
     homeDirectory = lib.mkDefault "/home/joseph";

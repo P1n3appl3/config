@@ -103,11 +103,11 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * rofi
 * qt (kvantum) seems broken currently, see sioodmy's config
 * imhex
-* nvim
 * firefox homepage and/or userstyles
 * cursor maybe? also try qogir and graphite
 * i3/i3status
 * hyprland/ironbar
+* swaync
 * nvim
 * [obsidian](https://github.com/catppuccin/obsidian)
 * kitty/wezterm/rio
