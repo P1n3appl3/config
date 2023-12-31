@@ -3,8 +3,7 @@
 
   programs = {
     beets = {
-      # TODO: reenable when https://github.com/NixOS/nixpkgs/issues/273907 is resolved
-      enable = false; package = pkgs.beets-unstable;
+      enable = true; package = pkgs.beets-unstable;
       mpdIntegration = { enableStats = true; enableUpdate = true; };
       settings = {
         directory = config.xdg.userDirs.music;

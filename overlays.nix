@@ -45,6 +45,4 @@ in {
       }) ];
     doCheck = false;
   });
-
-  nurl = prev.nurl.override { mercurial=null; };
 }
