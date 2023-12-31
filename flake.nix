@@ -19,7 +19,8 @@
     rahul-config.inputs = {
       nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
       ragenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
-      nixos-hardware.follows = ""; flu.follows = "flake-utils";
+      nixos-hardware.follows = ""; flake-utils.follows = "flake-utils";
+      nix-index-database.follows = "nix-index-database";
     };
   };
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware, nix-index-database,

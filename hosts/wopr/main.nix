@@ -42,8 +42,12 @@
       ../../home-modules/graphical/common.nix
       ../../home-modules/graphical/hyprland.nix
       ../../home-modules/graphical/music.nix
+      ../../home-modules/graphical/games.nix
     ];
   };
+
+  # TODO: put in games module dependent on osConfig
+  programs.steam.enable = true;
 
   networking = { hostName = "WOPR"; networkmanager.enable = true; };
 }

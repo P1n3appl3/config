@@ -14,9 +14,11 @@ start:
     '5': 𝛌
     '6': 󰭹
     '7': 
+    '8': 
+    '9': 
+    '10': 
     '11': 
-    '12': 
-- type: tray
+    '12': 󰎈
 
 middle:
 - type: launcher
@@ -45,5 +47,6 @@ end:
 - type: clock
   format: "%l:%M%P"
   format_popup: "%m/%d/%Y"
+- type: tray
 
 # TODO: notif button toggle panel and show dnd/count with swaync-client -s
