@@ -25,6 +25,7 @@
       defaultApplications = {
         "application/pdf" = "zathura.desktop";
         "text/html" = "firefox.desktop";
+        "x-scheme-handler/tg" = "org.telegram.desktop";
       };
     };
   };
