@@ -84,6 +84,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * try music-player (rust) and better tagging for beets
   * beets set max quality with "convert" plugin
   * check that media keys got auto-bound by mpdris2
+  * re-add ytmdl once [it's fixed](https://github.com/NixOS/nixpkgs/issues/278376)
 * performance
   * use powertop/turbostat/eventstat/pidstat/smemstat/powerstat/power-calibrate to see the difference with hyprland vs sway and ironbar vs i3status-rs
   * ironbar widget to show current power draw (and graph?), and select between governors
@@ -205,6 +206,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * itch check wine setup
 * ludosavi check which games aren't covered, set up periodic backups
 * rhythm doctor and that one from itch.io, check that it works while floating
+* asciiportal
 
 ## `pkgs/`
 
