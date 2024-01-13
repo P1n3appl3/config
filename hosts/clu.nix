@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, ... }: {
   home = {
     username = "josephry"; homeDirectory = "/home/josephry";
   };
@@ -15,4 +15,5 @@
   '';
 
   home.keyboard.options = [ "altwin:swap_alt_win" ];
+  xdg.mimeApps.defaultApplications."text/html" = lib.mkForce "chrome.desktop";
 }
