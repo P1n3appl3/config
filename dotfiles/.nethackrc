@@ -1,0 +1,1 @@
+OPTIONS=windowtype:curses, cursesgraphivs, symset:curses, perm_invent, mouse_support, splash_screen, color, guicolor

@@ -5,8 +5,9 @@
     ludusavi
 
     osu-lazer-bin
-    clonehero # make ~/.clonehero subvolume
+    clonehero # make ~/.clonehero point to games subvol
 
+    ttyper
     nethack
     openttd
     space-cadet-pinball

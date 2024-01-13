@@ -8,9 +8,19 @@
     element
   ];
 
+  programs.ssh = { enable = true;
+    serverAliveInterval = 30;
+    controlPersist = "15h";
+    controlMaster = "auto";
+    matchBlocks = {
+      "pineapple.computer josephis.gay josephryan.me Cortana Cortana.local Cortana.lan" = {
+        hostname = "%h"; user = "joseph"; port = 69;
+      };
+    };
+  };
+
   targets.genericLinux.enable = true;
-  xdg = {
-    enable = true; mime.enable = true;
+  xdg = { enable = true;
     userDirs = let home = config.home.homeDirectory; in {
       enable = true;
       desktop = home;
@@ -21,6 +31,8 @@
       music = home + "/music";
       pictures = home + "/images";
     };
+
+    mime.enable = true;
     mimeApps = { enable = true;
       defaultApplications = {
         "application/pdf" = "zathura.desktop";
@@ -29,5 +41,6 @@
       };
     };
   };
+
   i18n.glibcLocales = pkgs.glibcLocalesUtf8;
 }
