@@ -1,17 +1,24 @@
 {fetchFromGitHub, rustPlatform}: rustPlatform.buildRustPackage rec {
   pname = "rust-rpxy";
-  version = "2023-11-17";
+  version = "2024-01-14";
 
-  src = fetchFromGitHub {
+  src = (fetchFromGitHub {
     owner = "junkurihara";
     repo = pname;
-    rev = "f3e8f8445fae19e42f7fe39f93301227ebb764d6";
-    hash = "sha256-gLaTHqiUSubfmdR5NjW3wBsV0qpXZuykfvh2YkG97mk=";
+    rev = "f38eb97d86f2ab594d0f0238114821480d108d0b";
+    hash = "sha256-33enM6NnhQGYsZ2UHTazQr5AG/wL3TmXfMku7dzKiF0=";
     fetchSubmodules = true;
-  };
+  }).overrideAttrs (_: {
+    # https://github.com/NixOS/nixpkgs/issues/195117#issuecomment-1410398050
+    GIT_CONFIG_COUNT = 1;
+    GIT_CONFIG_KEY_0 = "url.https://github.com/.insteadOf";
+    GIT_CONFIG_VALUE_0 = "git@github.com:";
+  }) ;
 
   cargoLock.lockFile = ./Cargo.lock;
   postPatch = ''
     ln -s ${./Cargo.lock} Cargo.lock
   '';
+
+  meta.mainProgram = "rpxy";
 }
