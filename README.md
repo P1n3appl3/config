@@ -11,6 +11,8 @@ config 🍍 nix flake show
 ├───nixosConfigurations
 │   ├───Cortana: my trusty RPi4B home server
 │   └───WOPR:    framework laptop 13" (AMD 7640U)
+├───nixosModules
+│   └───rust-rpxy: config and service for reverse proxy
 ├───overlays
 │   └───default: Nixpkgs overlay with my packages and overrides
 ├───templates

@@ -4,8 +4,8 @@
     homeDirectory = "/usr/local/google/home/josephry";
   };
   imports = [
-    ../home-modules/linux.nix
-    ../home-modules/btrfs.nix
-    ../home-modules/dev.nix
+    ../mixins/home-manager/linux.nix
+    ../mixins/home-manager/btrfs.nix
+    ../mixins/home-manager/dev.nix
   ];
 }

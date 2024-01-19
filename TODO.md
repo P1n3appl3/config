@@ -127,9 +127,9 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * htop static hm config with param for number of cores
 * j don't create dir in `$HOME`, also grab an older version while it's broken (i think due to the llvm 16 bump?)
 * typst-lsp broken
-* rbw [broken](https://github.com/doy/rbw/issues/145)
 * mod+o use rofi file completion starting from ~ and xdg-open
 * usbtop needs pcap settings
+* fontfor broken
 
 ## Nix stuff
 
@@ -212,10 +212,6 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
   * follow the [upstream instructions](https://github.com/zhangyuannie/butter/blob/main/BUILDING.md). Does the fact that they drive the rust build with meson/ninja mean that I can't use the usual nixpkgs rust infrastructure?
   * ensure that systemd timers it creates actually get triggered, is the service user or system level?
   * remove garnix exclude once it's working
-* `rust-rpxy`
-  * debug h3 submodule not getting checked out
-  * debug `Cargo.lock` being missing when attempting to build manually with `nix develop`/`nix-shell`
-  * remove garnix exclude once it's working
 
 ## Hosts
 
@@ -224,24 +220,29 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * rust-motd + cats
 * add dnsmasq addblock and [prometheus exporter](https://github.com/google/dnsmasq_exporter) for pretty dashboard
 * [ad block](https://www.imaginaryrobots.net/posts/2022-01-26-full-network-adblocking-with-dnsmasq/)
-* add rust rpxy for all the following, add prometheus output for grafana ([looks like they want that too](https://github.com/junkurihara/rust-rpxy/blob/9123ef71a2da473f7c47ca5a21f1a787fca6c540/TODO.md?plain=1#L20))
+* add rust-rpxy config for all the following, add prometheus output for grafana ([looks like they want that too](https://github.com/junkurihara/rust-rpxy/blob/9123ef71a2da473f7c47ca5a21f1a787fca6c540/TODO.md?plain=1#L20))
 * add atuin sync server and set bash/zsh to use mine
 * add gpodder and configure desktop client and antenna to use it
 * add recipe sage/tandoor/kitchenowl recipes and move ours over
 * add syncthing introducer with static config and fallback relay or just MxN
+  * prometheus metrics hookup!
 * add vaultwarden server and hook up phone/browsers
-* rometheus metrics hookup!
 * [host some docs](https://jade.fyi/blog/docs-tricks-and-gnus/) with nice css
+  * home manager manual like mipmip's, but autoupdating
 * friends.nix (authorizedkeys)
-* [service dashboard](https://status.catgirl.cloud/)
+* [service dashboard](https://status.catgirl.cloud/) with uptime kuma
+  * maybe send telegram message when stuff goes down
 * [ntfy](https://ntfy.sh/) push notifs for service status events
 * git frontend, either something like mitxela's or tea or [soft serve](https://github.com/charmbracelet/soft-serve)
 * endlessh
   * [hook up fail2ban](https://demu.red/blog/2019/04/endlessh-html-scoreboard/)
   * troubleshoot `-geoip_supplier ip-api`
   * use [local geoip database](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data)
-* static site
+  * hook up to grafana
+* static site with sws
   * consistent banner with nav and no name
+  * pull out rss reader
+  * [hook up to grafana](https://github.com/static-web-server/static-web-server/pull/296)
 
 ### WOPR
 

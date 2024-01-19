@@ -11,7 +11,7 @@
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     comic-neue
 
-    fontfor
+    # fontfor
   ];
 
   xdg.configFile."fontconfig/fonts.conf".text = ''
