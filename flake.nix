@@ -1,68 +1,73 @@
 {
-  description = "my NixOS and home-manager config";
+  description = "nix configs for my computers";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
-    flake-utils.url = "github:numtide/flake-utils";
-
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
+    nixpkgs.url            = "github:NixOS/nixpkgs/nixos-unstable";
+    nixos-hardware.url     = "github:NixOS/nixos-hardware";
+    flake-utils.url        = "github:numtide/flake-utils";
+    home-manager.url       = "github:nix-community/home-manager";
+    nixgl.url              = "github:guibou/nixGL";
     nix-index-database.url = "github:Mic92/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    rahul-config.url       = "github:rrbutani/nix-config";
 
-    nixgl.url = "github:guibou/nixGL";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.inputs.flake-utils.follows = "flake-utils";
     nixgl.inputs.nixpkgs.follows = "nixpkgs";
-
-    rahul-config.url = "github:rrbutani/nix-config";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     rahul-config.inputs = {
-      nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
-      ragenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
-      nixos-hardware.follows = ""; flake-utils.follows = "flake-utils";
-      nix-index-database.follows = "nix-index-database";
+      nixpkgs.follows = "nixpkgs"; home-manager.follows = "";
+      nix-index-database.follows = ""; ragenix.follows = ""; darwin.follows = "";
+      impermanence.follows = ""; nixos-hardware.follows = "";
     };
   };
-  outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware, nix-index-database,
-              nixgl, rahul-config, self } @ inputs:
+  outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware,
+    nix-index-database, nixgl, rahul-config, self } @ inputs:
   let
     listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
-    myOverlays = [ self.overlays.default nixgl.overlay (import ./overlays.nix inputs) ];
+    myOverlays = [
+      self.overlays.default
+      nixgl.overlay
+      (import ./overlays.nix inputs)
+    ];
 
-    home = system: hostModule: home-manager.lib.homeManagerConfiguration {
+    home = system: module: home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = { inherit inputs myOverlays; };
       pkgs = nixpkgs.legacyPackages.${system};
-      modules = [ ./home-modules/common.nix hostModule ];
+      modules = [ ./mixins/home-manager/common.nix module ] ++
+        builtins.attrValues self.outputs.homeModules;
     };
 
-    machine = system: hostModule: nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = {inherit inputs myOverlays; };
-      modules = [ ./nixos-modules/common.nix hostModule ];
+    machine = system: module: nixpkgs.lib.nixosSystem {
+      inherit system; specialArgs = {inherit inputs myOverlays; };
+      modules = [ ./mixins/nixos/common.nix module ] ++
+        builtins.attrValues self.outputs.nixosModules;
     };
   in {
     homeConfigurations = {
-      HAL       = home "x86_64-linux"   ./hosts/hal.nix;
-      ATLAS     = home "x86_64-linux"   ./hosts/atlas.nix;
-      clu       = home "x86_64-linux"   ./hosts/clu.nix;
-      rinzler   = home "x86_64-linux"   ./hosts/rinzler.nix;
-      crabapple = home "aarch64-darwin" ./hosts/crabapple.nix;
+      HAL       = home "x86_64-linux"   ./machines/hal.nix;
+      ATLAS     = home "x86_64-linux"   ./machines/atlas.nix;
+      clu       = home "x86_64-linux"   ./machines/clu.nix;
+      rinzler   = home "x86_64-linux"   ./machines/rinzler.nix;
+      crabapple = home "aarch64-darwin" ./machines/crabapple.nix;
     };
 
     nixosConfigurations = {
-      Cortana = machine "aarch64-linux" ./hosts/cortana/main.nix;
-      WOPR    = machine "x86_64-linux"  ./hosts/wopr/main.nix;
+      Cortana = machine "aarch64-linux" ./machines/cortana/main.nix;
+      WOPR    = machine "x86_64-linux"  ./machines/wopr/main.nix;
     };
+
+    homeModules = {};
+    nixosModules = listDir { of = ./modules/nixos; mapFunc = _: import; };
 
     templates = {
       shell = { path = ./templates/shell; description = "minimal shell for new projects"; };
       home  = { path = ./templates/home;  description = "wee woo"; };
     };
 
-    overlays.default = final: _: listDir
-      {of = ./pkgs; mapFunc = _: p: final.callPackage p {};};
-    } // (flake-utils.lib.eachDefaultSystem (system: let
-        pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-      in { packages = listDir {of = ./pkgs; mapFunc = n: _: pkgs.${n};}; })
-    );
+    overlays.default = final: _: listDir {
+      of = ./pkgs; mapFunc = _: p: final.callPackage p {};
+    };
+  } // (flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
+    in { packages = listDir { of = ./pkgs; mapFunc = p: _: pkgs.${p}; }; })
+  );
 }

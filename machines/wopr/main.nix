@@ -35,14 +35,14 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs myOverlays; };
     users.joseph.imports = [
-      ../../home-modules/common.nix
-      ../../home-modules/linux.nix
-      ../../home-modules/btrfs.nix
-      ../../home-modules/dev.nix
-      ../../home-modules/graphical/common.nix
-      ../../home-modules/graphical/hyprland.nix
-      ../../home-modules/graphical/music.nix
-      ../../home-modules/graphical/games.nix
+      ../../mixins/home-manager/common.nix
+      ../../mixins/home-manager/linux.nix
+      ../../mixins/home-manager/btrfs.nix
+      ../../mixins/home-manager/dev.nix
+      ../../mixins/home-manager/graphical/common.nix
+      ../../mixins/home-manager/graphical/hyprland.nix
+      ../../mixins/home-manager/graphical/music.nix
+      ../../mixins/home-manager/graphical/games.nix
     ];
   };
 

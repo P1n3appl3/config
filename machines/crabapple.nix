@@ -3,5 +3,5 @@
     username = "josephry";
     homeDirectory = "/Users/josephry";
   };
-  imports = [ ../home-modules/dev.nix ];
+  imports = [ ../mixins/home-manager/dev.nix ];
 }

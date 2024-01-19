@@ -3,11 +3,11 @@
     username = "josephry"; homeDirectory = "/home/josephry";
   };
   imports = [
-    ../home-modules/linux.nix
-    ../home-modules/dev.nix
-    ../home-modules/graphical/common.nix
-    ../home-modules/graphical/i3.nix
-    ../home-modules/graphical/music.nix
+    ../mixins/home-manager/linux.nix
+    ../mixins/home-manager/dev.nix
+    ../mixins/home-manager/graphical/common.nix
+    ../mixins/home-manager/graphical/i3.nix
+    ../mixins/home-manager/graphical/music.nix
   ];
   xsession.initExtra = ''
   xsetroot -solid "#483157"

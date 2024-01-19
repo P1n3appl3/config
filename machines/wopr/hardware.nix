@@ -1,5 +1,5 @@
 {
-  imports = [ ../../nixos-modules/btrfs.nix ];
+  imports = [ ../../mixins/nixos/btrfs.nix ];
 
   services = {
     fwupd.enable = true;

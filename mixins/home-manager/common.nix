@@ -12,7 +12,7 @@
     # Utils
     fzf ripgrep fd bat eza sd dogdns ouch jq xh rbw hyperfine hexyl choose
     tokei zellij rsync zstd lowcharts trippy page pv datamash ascii numbat
-    pinentry sshping sshx
+    pinentry sshping
     # System info
     htop bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Git
@@ -34,7 +34,7 @@
     config.to = { type = "git"; url = "file://" + config.home.sessionVariables.CONF_DIR; };
   };
 
-  systemd.user.startServices = "sd-switch";
+  systemd.user.startServices = "sd-switch"; # start/stop services to match config
 
   home = {
     username = lib.mkDefault "joseph";
@@ -51,6 +51,6 @@
       in {
         name = f ; value = {source = config.lib.file.mkOutOfStoreSymlink
           (config.home.sessionVariables.CONF_DIR + "/dotfiles/" + f);};
-      }) (lib.filesystem.listFilesRecursive ../dotfiles));
+      }) (lib.filesystem.listFilesRecursive ../../dotfiles));
   };
 }
