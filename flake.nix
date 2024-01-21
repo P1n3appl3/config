@@ -58,11 +58,6 @@
     homeModules = {};
     nixosModules = listDir { of = ./modules/nixos; mapFunc = _: import; };
 
-    templates = {
-      shell = { path = ./templates/shell; description = "minimal shell for new projects"; };
-      home  = { path = ./templates/home;  description = "wee woo"; };
-    };
-
     overlays.default = final: _: listDir {
       of = ./pkgs; mapFunc = _: p: final.callPackage p {};
     };

@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }: let
   cfg = config.services.rust-rpxy;
   toml = pkgs.formats.toml {};
-  configFilePath = toml.generate "config.toml" cfg.configuration;
+  configFilePath = toml.generate "config.toml" cfg.config;
 in {
   options.services.rust-rpxy = {
     enable = lib.mkEnableOption (lib.mdDoc "Rust Reverse Proxy");
-    configuration = lib.mkOption {
+    config = lib.mkOption {
       default = { }; # TODO, add default and specific options
       type = toml.type;
       description = lib.mdDoc ''
