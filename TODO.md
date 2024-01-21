@@ -125,7 +125,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
   * use an actual difftool like nvimdiff/fugitive/gnome meld/etc.
 * nss doesn't work for stuff like `htop` and `eza` in home-manager on my work computer, running the system's version of `nscd` seems to fix it but that service keeps going down.
 * try xplr/joshuto
-* htop static hm config with param for number of cores
+* htop config param for number of cores, add io screen once [this](https://github.com/nix-community/home-manager/pull/3846) gets merged
 * j don't create dir in `$HOME`, also grab an older version while it's broken (i think due to the llvm 16 bump?)
 * typst-lsp broken
 * mod+o use rofi file completion starting from ~ and xdg-open
@@ -192,7 +192,6 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * everest for celeste, r2modman for ror2, the ftl mod manager, etc.
 * use flatpak for fightcade
 * minecraft + mods, maybe use [nix-minecraft](https://github.com/Infinidoge/nix-minecraft)
-* eggnogg / + (+ is on itch so just test that one)
 * looking glass hooked up to dual boot partition
 * might need [this](https://github.com/danielfullmer/nixos-nvidia-vgpu) for nvidia (and also [this](https://github.com/DualCoder/vgpu_unlock))
 * sabaki sgf viewer
@@ -202,7 +201,6 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * [100r](https://github.com/egasimus/rabbits)
 * lutris [league](https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/lol-acfix.nix), sc remastered/2, hearthstone, overwatch (see [battle.net](https://nixos.wiki/wiki/Battle.net))
 * gunz the duel
-* desmume or other ds emu, gba, nes, n64 (simple64), 3ds, switch
 * itch check wine setup
 * ludosavi check which games aren't covered, set up periodic backups
 * rhythm doctor and that one from itch.io, check that it works while floating

@@ -20,12 +20,12 @@
       extraConfig = ''
         HandlePowerKey=suspend-then-hibernate
         IdleAction=suspend-then-hibernate
-        IdleActionSec=5m
+        IdleActionSec=10m
       '';
       powerKey = "hibernate";
     };
   };
-  systemd.sleep.extraConfig = "HibernateDelaySec=2h";
+  systemd.sleep.extraConfig = "HibernateDelaySec=4h";
 
   # TODO: reenable once I check that it doesn't mess with tlp
   # powerManagement.powertop.enable = true;

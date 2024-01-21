@@ -2,6 +2,7 @@
   imports = [
     inputs.nix-index-database.hmModules.nix-index
     ./nvim.nix
+    ./htop.nix
     (if builtins.hasAttr "osConfig" args then {} else
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
   ];
