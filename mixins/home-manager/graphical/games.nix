@@ -13,6 +13,7 @@
     space-cadet-pinball
     openspades
 
-    dolphin-emu snes9x-gtk
+    punes snes9x-gtk mupen64plus dolphin-emu yuzu-mainline # simple64
+    sameboy mgba melonDS citra-nightly
   ];
 }

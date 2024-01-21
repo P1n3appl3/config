@@ -1,4 +1,4 @@
-I use [NixOS](https://nixos.org) and/or [Home Manager](https://nixos.wiki/wiki/Home_Manager) to manage my configuration declaratively and fetch all the packages I need on the computers I use. This repo is a [flake](https://nixos.wiki/wiki/Flakes) that defines configurations for each of my machines, as well as some software I've packaged because they weren't in [Nixpkgs](https://search.nixos.org/packages):
+I use [NixOS](https://nixos.org) and/or [Home Manager](https://nixos.wiki/wiki/Home_Manager) to declaratively manage my computers. This repo is a [flake](https://nixos.wiki/wiki/Flakes) that defines configurations for each of my machines, as well as some software I've packaged because they weren't in [Nixpkgs](https://search.nixos.org/packages):
 
 ```
 config 🍍 nix flake show
@@ -7,18 +7,15 @@ config 🍍 nix flake show
 │   ├───HAL:   main desktop
 │   ├───clu:       $work laptop
 │   ├───crabapple: $work mac
-│   └───rinzler:   $work desktop
+│   ╰───rinzler:   $work desktop
 ├───nixosConfigurations
 │   ├───Cortana: my trusty RPi4B home server
-│   └───WOPR:    framework laptop 13" (AMD 7640U)
+│   ╰───WOPR:    framework laptop 13" (AMD 7640U)
 ├───nixosModules
-│   └───rust-rpxy: config and service for reverse proxy
+│   ╰───rust-rpxy: config and service for reverse proxy
 ├───overlays
-│   └───default: Nixpkgs overlay with my packages and overrides
-├───templates
-│   ├───shell: minimal shell for new projects
-│   └───josh:  weewoo
-└───packages
+│   ╰───default: Nixpkgs overlay with my packages and overrides
+╰───packages
     ├───ascii-rain: pretty terminal rain animation
     ├───barchart: draw barcharts in the terminal
     ├───bibata-modern-classic: mouse cursor theme
@@ -28,8 +25,10 @@ config 🍍 nix flake show
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
+    ├───j-bin: the j programming language
     ├───rust-rpxy: simple reverse proxy
-    └───syncthing-gtk: ui+tray-menu for syncthing
+    ├───simple64: nintendo 64 emulator
+    ╰───syncthing-gtk: ui+tray-menu for syncthing
 ```
 
 I [used to](https://github.com/P1n3appl3/config/tree/cd6d498014) use this as a [bare git repo](https://www.atlassian.com/git/tutorials/dotfiles). If you're not sold on nix/home-manager I think it's still a pretty ideal way to manage your dotfiles. Now when my home-manager activation script runs, it symlinks everything in the [dotfiles dir](dotfiles) into `$HOME` so that you can edit most config files without having to run `switch`.
