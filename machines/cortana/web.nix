@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ pkgs, ... }: {
   networking.firewall = {
     allowedTCPPorts = [
       22 69 # ssh
@@ -6,24 +6,26 @@
       8080 8443 # testing
       22000 # syncthing
     ];
-    allowedUDPPorts = [ 22000 21027 ]; # syncthing discovery
+    allowedUDPPorts = [ 22000 21027 ]; # syncthing + discovery
   };
 
   services = {
     openssh = {
       enable = true; ports = [ 69 ];
       settings.PasswordAuthentication = false;
+      # TODO: watch /run/utmp and export to prometheus, or just read ssh log?
     };
 
     endlessh-go = {
       enable = true; port = 22;
-      prometheus = { enable = true; port = 9001; };
+      prometheus = { enable = true; port = 9100; };
       extraOptions = [ "-alsologtostderr"];
     };
 
     rust-rpxy = { enable = true;
       config = let
-        tls = let acme_dir = "/var/lib/acme/pineapple.computer/"; in {
+        acme_dir = "/var/lib/acme/pineapple.computer/";
+        tls = {
           https_redirection = true;
           tls_cert_path = acme_dir + "fullchain.pem";
           tls_cert_key_path = acme_dir + "key.pem";
@@ -31,16 +33,17 @@
         proxy = port: [{ upstream = [{ location = "localhost:" + toString port; }]; }];
         app = name: port: { inherit tls; server_name = name; reverse_proxy = proxy port; };
       in {
-        listen_port = 8080;
-        listen_port_tls = 8443;
+        listen_port = 80;
+        listen_port_tls = 443;
         listen_ipv6 = true;
-        apps.localhost = {
+        apps = {
           static    = app        "pineapple.computer" 9000;
           grafana   = app "status.pineapple.computer" 9001;
           atuin     = app  "atuin.pineapple.computer" 9002;
           syncthing = app   "sync.pineapple.computer" 9003;
           uptime    = app "uptime.pineapple.computer" 9004;
         };
+        experimental.h3 = {};
       };
     };
 
@@ -69,9 +72,10 @@
     syncthing = let home = "/home/joseph/"; in { enable = true;
       # port 8384 by default, /metrics for prometheus
       guiAddress = "127.0.0.1:9003";
-      user = "myusername";
+      # user = "joseph";
       # dataDir = home + "Documents";
       # configDir = home + ".config/syncthing";
+      # TODO: maybe hardcode id here if possible so it doesn't change if i swap devices
       overrideDevices = true; overrideFolders = true;
       settings = {
         devices = {
@@ -89,10 +93,13 @@
             path = home + "music/library";
             devices = [ "WOPR" "dragon" "clu" ];
           };
+          "screenshots" = {
+            path = home + "Images/screenshots";
+            devices = [ "WOPR" "clu" ];
+          };
+          # "backgrounds" = { };
           # "roms" = { };
           # "recipes" = { };
-          # "screenshots" = { };
-          # "backgrounds" = { };
         };
       };
     };
@@ -107,14 +114,30 @@
       dnsProvider = "porkbun";
       renewInterval = "weekly";
       email = "josephryan3.14@gmail.com";
-      extraDomainNames = [ "*.pineapple.computer"
-        "josephis.gay" "*.josephis.gay"
-        "josephryan.me" "*.josephryan.me"
+      extraDomainNames = [
+        "josephis.gay" "josephryan.me"
+        "*.pineapple.computer" "*.josephis.gay" "*.josephryan.me"
       ];
+      environmentFile = builtins.toFile "envFile" "LEGO_DISABLE_CNAME_SUPPORT=true";
       credentialFiles = {
         "PORKBUN_API_KEY_FILE" = "/media/porkbun_api_key";
         "PORKBUN_SECRET_API_KEY_FILE" = "/media/porkbun_secret_key";
       };
     };
+  };
+
+  systemd.services.convert-pem = let
+    parent = [ "acme-pineapple.computer.service" ];
+    acme_dir = "/var/lib/acme/pineapple.computer";
+  in { enable = true;
+    description = "Convert LetsEncrypt private key from PKCS1 to PKCS8";
+    unitConfig = { Type = "oneshot"; };
+    serviceConfig = {
+      ExecStart = ''${pkgs.openssl}/bin/openssl pkcs8 -topk8 -nocrypt \
+        -in ${acme_dir}/key.pem -inform PEM \
+        -out ${acme_dir}/key-pkcs8.pem -outform PEM'';
+    };
+    after = parent;
+    wantedBy = parent;
   };
 }
