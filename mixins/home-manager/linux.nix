@@ -1,6 +1,8 @@
 { pkgs, config, ... }: {
   home.packages = with pkgs; [
     util-linux
+    moreutils
+    lsof
     usbtop
     powertop tlp
     lm_sensors
