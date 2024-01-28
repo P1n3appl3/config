@@ -1,6 +1,7 @@
 [user]
     name = Joseph Ryan
     email = josephryan3.14@gmail.com
+	signingkey = ~/.ssh/id_ed25519.pub
 [core]
     editor = nvim
 	excludesfile = ~/.gitignore
@@ -20,32 +21,28 @@
 format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
 %Creset%<|(-1,trunc)%s\" $@; } ; log"
     l = ll -n 20
-    vi = "!vi() { git diff ${@:-HEAD^} --diff-filter=d \
---name-only | xargs nvim; } ; vi"
+    vi = "!vi() { git diff ${@:-HEAD^} --diff-filter=d --name-only | xargs nvim; } ; vi"
     changed = diff --stat HEAD~1
 [log]
     date=format:%m/%d/%y
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
 [push]
     default = matching
 [pager]
     branch = false
-[filter "lfs"]
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
 [branch]
     autosetuprebase = always
 [submodule]
     recurse = true
-[init]
-    defaultBranch = main
+[diff]
+    colorMoved = default
 [interactive]
     diffFilter = delta --color-only
 [delta]
     navigate = true
-[diff]
-    colorMoved = default
 [merge]
     tool = nvimdiff
     conflictstyle = zdiff3

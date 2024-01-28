@@ -49,7 +49,9 @@ in {
     fractal-next nheko # TODO: pick one
     praat friture # TODO: try this for voice training
     # maybe make a "media" module
-    # obs-studio inkscape kdenlive blender godot lmms non tenacity (or audacity) krita
+    # obs-studio kdenlive blender godot
+    # non lmms tenacity (or audacity)
+    # inkscape krita pinta
     # (nixGL (calibre.override { speechd=null; }))
     # libresprite/acesprite-unfree
     imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these

@@ -199,12 +199,15 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * ruffle or that other one I used on windows for flash stuff
 * osu-lazer try low latency pipewire from [nix-gaming](https://github.com/fufexan/nix-gaming) and open tablet driver
 * [100r](https://github.com/egasimus/rabbits)
-* lutris [league](https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/lol-acfix.nix), sc remastered/2, hearthstone, overwatch (see [battle.net](https://nixos.wiki/wiki/Battle.net))
+* lutris sc remastered/2, hearthstone, overwatch (see [battle.net](https://nixos.wiki/wiki/Battle.net))
 * gunz the duel
 * itch check wine setup
 * ludosavi check which games aren't covered, set up periodic backups
 * rhythm doctor and that one from itch.io, check that it works while floating
 * asciiportal
+* OG elite or more modern remake in the spirit of it
+* pokefinder + timer and assorted tools
+* hoyle boardgames + fantastic contraption
 
 ## `pkgs/`
 

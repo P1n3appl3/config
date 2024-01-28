@@ -1,12 +1,4 @@
 { pkgs, inputs, lib, config, myOverlays, ... } @ args: {
-  imports = [
-    inputs.nix-index-database.hmModules.nix-index
-    ./nvim.nix
-    ./htop.nix
-    (if builtins.hasAttr "osConfig" args then {} else
-      { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
-  ];
-
   home.packages = with pkgs; [
     # Shell
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
@@ -29,6 +21,14 @@
   programs = {
     direnv = { enable = true; nix-direnv.enable = true; };
   };
+
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index
+    ./nvim.nix
+    ./htop.nix
+    (if builtins.hasAttr "osConfig" args then {} else
+      { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
+  ];
 
   nix.registry = {
     nixpkgs.flake = inputs.nixpkgs;
