@@ -3,7 +3,7 @@
     username = "deck"; homeDirectory = "/home/deck";
   };
   imports = [
-    ../mixins/home-manager/linux.nix
-    ../mixins/home-manager/btrfs.nix
+    ../mixins/home/linux.nix
+    ../mixins/home/btrfs.nix
   ];
 }

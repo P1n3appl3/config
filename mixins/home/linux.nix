@@ -14,6 +14,7 @@
     serverAliveInterval = 30;
     controlPersist = "15h";
     controlMaster = "auto";
+    includes = [ "extra-config" ];
     matchBlocks = {
       "pineapple.computer josephis.gay josephryan.me Cortana Cortana.local Cortana.lan" = {
         hostname = "%h"; user = "joseph"; port = 69;

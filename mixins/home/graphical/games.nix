@@ -5,7 +5,7 @@
     ludusavi
 
     osu-lazer-bin
-    clonehero # make ~/.clonehero point to games subvol
+    clonehero # TODO: make ~/.clonehero point to games subvol
 
     ttyper
     nethack
@@ -14,6 +14,6 @@
     openspades
 
     punes snes9x-gtk mupen64plus dolphin-emu yuzu-mainline # simple64
-    sameboy mgba melonDS citra-nightly
+    sameboy mgba melonDS
   ];
 }

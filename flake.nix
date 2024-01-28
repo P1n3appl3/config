@@ -32,7 +32,7 @@
     home = system: module: home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = { inherit inputs myOverlays; };
       pkgs = nixpkgs.legacyPackages.${system};
-      modules = [ ./mixins/home-manager/common.nix module ] ++
+      modules = [ ./mixins/home/common.nix module ] ++
         builtins.attrValues self.outputs.homeModules;
     };
 

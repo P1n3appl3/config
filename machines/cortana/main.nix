@@ -13,9 +13,9 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs myOverlays; };
     users.joseph.imports = [
-      ../../mixins/home-manager/common.nix
-      ../../mixins/home-manager/linux.nix
-      ../../mixins/home-manager/btrfs.nix
+      ../../mixins/home/common.nix
+      ../../mixins/home/linux.nix
+      ../../mixins/home/btrfs.nix
     ];
   };
 
