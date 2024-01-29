@@ -1,0 +1,45 @@
+/* Making the tab bar more compact */
+:root {
+  --tab-min-height: 20px !important;
+  --inline-tab-padding: 2px !important;
+  --tab-block-margin: 0px !important;
+}
+
+.toolbar-items, .tabbrowser-tab {
+  max-height: 34px !important;
+}
+
+/* Disable tab scrolling */
+.tabbrowser-tab {
+  min-width: initial !important;
+  overflow: hidden !important;
+}
+
+/* Unloaded tabs */
+.tabbrowser-tab[pending] {
+  font-style: italic;
+  filter: brightness(0.75);
+  .tab-icon-image {
+    filter: blur(.5px);
+  }
+}
+
+/* Tabs with media playing */
+#tabbrowser-tabs .tabbrowser-tab:is([soundplaying]) .tab-background:not([selected]) {
+    background-color: #f5424282;
+    transition: background-color 500ms ease;
+}
+
+/* Shadow realm for elements I don't like */
+.titlebar-placeholder[type="pre-tabs"],
+.titlebar-placeholder[type="post-tabs"],
+.tab-close-button,
+.tabs-newtab-button,
+#new-tab-button,
+#alltabs-button,
+#star-button-box,
+#reader-mode-button,
+#pageAction-urlbar-tab-stash_condordes_net
+{
+  display: none;
+}
