@@ -1,4 +1,5 @@
-{fetchFromGitHub, rustPlatform}: rustPlatform.buildRustPackage rec {
+{lib, stdenv, darwin, fetchFromGitHub, rustPlatform}:
+rustPlatform.buildRustPackage rec {
   pname = "rust-rpxy";
   version = "2024-01-14";
 
@@ -14,6 +15,8 @@
     GIT_CONFIG_KEY_0 = "url.https://github.com/.insteadOf";
     GIT_CONFIG_VALUE_0 = "git@github.com:";
   });
+
+  buildInputs = lib.optionals stdenv.isDarwin [ darwin.Security ];
 
   cargoLock.lockFile = ./Cargo.lock;
   postPatch = ''

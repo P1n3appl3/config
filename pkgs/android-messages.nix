@@ -12,4 +12,6 @@ stdenv.mkDerivation rec {
     rev = "v${version}";
     hash = "sha256-M6cLfp+higAUBaM7saUeQVK/C9MiiBoP2dzcHQ4Ao5c=";
   };
+
+  meta.broken = true;
 }

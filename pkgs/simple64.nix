@@ -7,4 +7,6 @@
     rev = "v2023.11.02";
     hash = "sha256-EsXnxnIqGukDbWQhjuHsorQ/Ws0+6gmRKR63O8H9ViA=";
   };
+
+  meta.broken = true;
 }

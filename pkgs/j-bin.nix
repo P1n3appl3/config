@@ -32,5 +32,6 @@ stdenv.mkDerivation rec {
     homepage = "https://studio-link.com";
     description = "Voip transfer";
     platforms = platforms.linux;
+    broken = true;
   };
 }

@@ -22,7 +22,8 @@
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware,
     nix-index-database, nixgl, rahul-config, self } @ inputs:
   let
-    listDir = rahul-config.lib.util.list-dir {inherit (nixpkgs) lib;};
+    inherit (nixpkgs) lib;
+    listDir = rahul-config.lib.util.list-dir {inherit lib;};
     myOverlays = [
       self.overlays.default
       nixgl.overlay
@@ -36,7 +37,7 @@
         builtins.attrValues self.outputs.homeModules;
     };
 
-    machine = system: module: nixpkgs.lib.nixosSystem {
+    machine = system: module: lib.nixosSystem {
       inherit system; specialArgs = {inherit inputs myOverlays; };
       modules = [ ./mixins/nixos/common.nix module ] ++
         builtins.attrValues self.outputs.nixosModules;
@@ -63,6 +64,12 @@
     };
   } // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-    in { packages = listDir { of = ./pkgs; mapFunc = p: _: pkgs.${p}; }; })
+    in with lib; {
+      packages = pipe ./pkgs [
+        (dir: listDir { of = dir; mapFunc = p: _: pkgs.${p}; })
+        (filterAttrs (_: meta.availableOn pkgs.hostPlatform))
+        (filterAttrs (_: p: !(p.meta.broken or false)))
+      ];
+    })
   );
 }

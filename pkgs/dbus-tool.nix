@@ -9,4 +9,5 @@ stdenv.mkDerivation rec {
   };
   nativeBuildInputs = [ autoconf gnum4 ];
   buildInputs = [ libxml2 ]; # need to package ultrabus
+  meta.broken = true;
 }
