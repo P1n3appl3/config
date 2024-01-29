@@ -16,5 +16,5 @@ rustPlatform.buildRustPackage {
   BINDGEN_EXTRA_CLANG_ARGS =
     "-isystem ${libclang.lib}/lib/clang/${lib.getVersion clang}/include \
     -isystem ${btrfs-progs}/include";
-
+  meta.broken = true;
 }
