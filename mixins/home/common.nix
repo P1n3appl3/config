@@ -5,7 +5,7 @@
     # Utils
     fzf ripgrep fd bat eza sd dogdns ouch jq xh rbw hyperfine hexyl choose
     tokei zellij rsync zstd lowcharts trippy page pv datamash ascii numbat
-    pinentry sshping
+    pinentry sshping mdcat
     # System info
     htop bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Git
