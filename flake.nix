@@ -14,16 +14,19 @@
     nixgl.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     rahul-config.inputs = {
-      nixpkgs.follows = "nixpkgs"; home-manager.follows = "";
-      nix-index-database.follows = ""; ragenix.follows = ""; darwin.follows = "";
-      impermanence.follows = ""; nixos-hardware.follows = "";
+      nixpkgs.follows = "nixpkgs"; nixos-hardware.follows = "nixos-hardware";
+      flake-utils.follows = "flake-utils";
+      home-manager.follows = "home-manager";
+      nix-index-database.follows = "nix-index-database";
+      agenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
+      ragenix.follows = "";
     };
   };
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware,
     nix-index-database, nixgl, rahul-config, self } @ inputs:
   let
     inherit (nixpkgs) lib;
-    listDir = rahul-config.lib.util.list-dir {inherit lib;};
+    listDir = rahul-config.lib.util.list-dir;
     myOverlays = [
       self.overlays.default
       nixgl.overlay
