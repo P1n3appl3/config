@@ -4,16 +4,17 @@
   gsettings-desktop-schemas , pango, gdk-pixbuf, atk }:
 
 stdenvNoCC.mkDerivation rec {
-  version = "0.9.4.6-beta";
+  version = "unstable-2023-07-28";
   pname = "syncthing-gtk";
 
   src = pkgs.fetchFromGitHub {
     owner = "syncthing-gtk";
     repo = "syncthing-gtk";
     rev = "3358e2d86af6f11b1f03ee9cd00bfc1abea2d214";
-    sha256 = "sha256-TImMUAyktsxEfxsMNZdZSa4YcmOyIru5I4SkqRlAO58=";
+    sha256 = "17rv80csk9444fwvn8mjcdr1ibj9b6bka30vgx2crdm41i88r2ac";
   };
   meta.platforms = lib.platforms.linux;
+  meta.broken = true;
 
   configurePhase = ''
     mkdir _build

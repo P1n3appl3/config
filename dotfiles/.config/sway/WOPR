@@ -1,6 +1,19 @@
-font pango:monospace 12
-$run dex -ae i3
-$run xsetroot -solid "#333333"
+# vim:ft=swayconfig
+font pango:monospace 15
+
+input type:touchpad {
+    natural_scroll true
+    tap enabled
+}
+
+input type:keyboard {
+    xkb_options "altwin:swap_alt_win,caps:escape"
+}
+
+output eDP-1 {
+  resolution 2256x1504
+  scale 1
+}
 
 bar {
     position top

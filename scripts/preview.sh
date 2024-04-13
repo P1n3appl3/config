@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# fzf previewer
+
 f="$1"
 mime=$(file -b --mime-type "$f")
 category=${mime%%/*}

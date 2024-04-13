@@ -75,16 +75,14 @@ server(
     { init_options = { journal_file = vim.env.HOME .. "/money/journal.beancount" } }
 )
 
-local fuchsia = string.find(vim.loop.cwd() or "", "/fuchsia")
-local fx_clippy = { overrideCommand = { "fx", "clippy", "--all", "--raw" } }
 local ra_settings = {
-    checkOnSave = fuchsia and fx_clippy or { command = "clippy" },
+    checkOnSave = { command = "clippy" },
     cachePriming = { enable = false },
     diagnostics = { disabled = { "unresolved-proc-macro" } },
     completion = { callable = { snippets = "none" }, postfix = { enable = false } },
 }
-require("rust-tools").setup {
+vim.g.rustaceanvim = {
     capabilities = capabilities,
     tools = { inlay_hints = { auto = false } },
-    server = { settings = { ["rust-analyzer"] = ra_settings } },
+    server = { default_settings = { ["rust-analyzer"] = ra_settings } },
 }

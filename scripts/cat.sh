@@ -46,7 +46,7 @@ cat
 cat <<'cat'
             meow
   ／l、
-（ﾟ､ ｡７
+（ﾟ､｡ ７
   l、ﾞ~ヽ
   じしf_,)ノ
 cat

@@ -1,3 +1,5 @@
+invert_scrolling = true
+
 [icons]
 icons = "awesome5"
 [icons.overrides]
@@ -51,6 +53,7 @@ block = "battery"
 
 [[block]]
 block = "notify"
+driver = "swaync"
 
 [[block]]
 block = "sound"

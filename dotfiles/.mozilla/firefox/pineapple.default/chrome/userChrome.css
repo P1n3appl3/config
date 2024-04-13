@@ -35,7 +35,9 @@
 .titlebar-placeholder[type="post-tabs"],
 .tab-close-button,
 .tabs-newtab-button,
-#new-tab-button,
+.titlebar-spacer,
+.titlebar-buttonbox, /* max/min/close buttons */
+#tabs-newtab-button,
 #alltabs-button,
 #star-button-box,
 #reader-mode-button,

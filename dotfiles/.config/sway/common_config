@@ -1,0 +1,113 @@
+# vim:ft=swayconfig
+font pango:monospace 12
+
+set $mod Mod4
+floating_modifier $mod normal
+workspace_auto_back_and_forth yes
+focus_follows_mouse no
+focus_on_window_activation focus
+hide_edge_borders smart
+default_border pixel 1
+primary_selection disabled
+
+for_window [class="Pavucontrol"] floating enable
+for_window [title=".*Syncthing Tray"] floating enable
+
+output "*" {
+    adaptive_sync on
+    bg #34358d solid_color
+}
+
+# TODO: swayidle
+
+bindsym $mod+Return exec kitty -1
+bindsym $mod+Shift+r reload
+
+bindsym $mod+r exec rofi -show drun
+bindsym $mod+slash exec rofi -show window
+# TODO: package cliphist contrib dir to use cliphist-rofi-img
+bindsym $mod+v exec cliphist list | rofi -dmenu | cliphist decode | wl-copy
+bindsym $mod+m exec $CONF_DIR/scripts/song.sh play
+bindsym $mod+Shift+m exec $CONF_DIR/scripts/song.sh
+bindsym $mod+u exec rofimoji
+bindsym $mod+q exec rofi -show calc -modi calc -no-sort -calc-command-history \
+    -calc-command "echo -n '{result}' | wl-copy"
+bindsym $mod+n exec swaync-client -t
+bindsym $mod+Shift+n exec swaync-client -C
+bindsym $mod+c exec hyprpicker -a
+
+bindsym XF86AudioRaiseVolume exec pamixer -i 5
+bindsym XF86AudioLowerVolume exec pamixer -d 5
+bindsym XF86MonBrightnessUp exec brightnessctl -q s '+5%'
+bindsym XF86MonBrightnessDown exec brightnessctl -q s '5%-'
+bindsym Print exec $CONF_DIR/scripts/screenshot.sh s
+bindsym Shift+Print exec $CONF_DIR/scripts/screenshot.sh
+
+bindsym $mod+Shift+q kill
+bindsym $mod+s layout toggle split
+bindsym $mod+Shift+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+t split h, layout tabbed
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+bindsym $mod+backslash split h
+bindsym $mod+minus split v
+bindsym $mod+f fullscreen
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+
+set $wsT "0:󰋑"
+set $ws0 "1:󰖟"
+set $ws1 "2:󰀳"
+set $ws2 "3:"
+set $ws3 "4:λ"
+set $ws4 "5:"
+set $ws5 "6:"
+set $ws6 "7:"
+set $ws7 "8:"
+set $ws8 "9:"
+set $ws9 "10:"
+set $ws10 "11:"
+set $left h
+set $down j
+set $up k
+set $right l
+
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
+bindsym $mod+$right focus right
+bindsym $mod+Shift+$left  move left
+bindsym $mod+Shift+$down  move down
+bindsym $mod+Shift+$up    move up
+bindsym $mod+Shift+$right move right
+# bindsym $mod+Tab scratchpad show
+# bindsym $mod+Shift+Tab move scratchpad
+bindsym $mod+Tab workspace $wsT
+bindsym $mod+Grave workspace $ws0
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Shift+Tab move container to workspace $wsT
+bindsym $mod+Shift+Grave move container to workspace $ws0
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+include "~/.config/sway/`hostname -s`"
+
+exec swaymsg -t subscribe '["shutdown"]' && systemctl --user stop sway-session.target

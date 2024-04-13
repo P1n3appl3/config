@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   networking.firewall = {
     allowedTCPPorts = [
       22 69 # ssh
@@ -69,10 +69,10 @@
       openRegistration = true; # TODO: how to add my user statically?
     };
 
-    syncthing = let home = "/home/joseph/"; in { enable = true;
+    syncthing = let home = config.users.users.julia.home; in { enable = true;
       # port 8384 by default, /metrics for prometheus
       guiAddress = "127.0.0.1:9003";
-      # user = "joseph";
+      # user = "julia";
       # dataDir = home + "Documents";
       # configDir = home + ".config/syncthing";
       # TODO: maybe hardcode id here if possible so it doesn't change if i swap devices

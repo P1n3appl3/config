@@ -6,7 +6,7 @@ vim.api.nvim_create_user_command("Dismiss", require("notify").dismiss, {})
 local notify = require "notify"
 notify.setup { render = "compact", background_colour = "#000000" }
 vim.notify = notify
-require("fidget").setup { text = { spinner = "dots" } }
+require("fidget").setup {}
 require("dressing").setup {}
 
 local pretty = vim.api.nvim_create_augroup("pretty", {})

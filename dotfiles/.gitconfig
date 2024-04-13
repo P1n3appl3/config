@@ -1,5 +1,5 @@
 [user]
-    name = Joseph Ryan
+    name = pineapple
     email = josephryan3.14@gmail.com
 	signingkey = ~/.ssh/id_ed25519.pub
 [core]
@@ -43,6 +43,8 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
     diffFilter = delta --color-only
 [delta]
     navigate = true
+[http]
+    cookiefile = ~/.gitcookies
 [merge]
     tool = nvimdiff
     conflictstyle = zdiff3
@@ -52,5 +54,3 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
 [mergetool "nvimdiff"]
     layout = "LOCAL,BASE,REMOTE / MERGED + BASE,LOCAL + \
         BASE,REMOTE + (LOCAL/BASE/REMOTE),MERGED"
-[http]
-    cookiefile = ~/.gitcookies

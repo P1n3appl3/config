@@ -5,7 +5,7 @@
     # Utils
     fzf ripgrep fd bat eza sd dogdns ouch jq xh rbw hyperfine hexyl choose
     tokei zellij rsync zstd lowcharts trippy page pv datamash ascii numbat
-    pinentry sshping mdcat
+    pinentry sshping mdcat magic-wormhole-rs netscanner
     # System info
     htop bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Git
@@ -38,8 +38,8 @@
   systemd.user.startServices = "sd-switch"; # start/stop services to match config
 
   home = {
-    username = lib.mkDefault "joseph";
-    homeDirectory = lib.mkDefault "/home/joseph";
+    username = lib.mkDefault "julia";
+    homeDirectory = lib.mkDefault "/home/julia";
     stateVersion = "23.11";
 
     sessionVariables = {
