@@ -4,9 +4,9 @@
     ./friends.nix
   ];
 
-  users.users.joseph = {
+  users.users.julia = {
     isNormalUser = true;
-    extraGroups = [ "joseph" "wheel" ];
+    extraGroups = [ "julia" "wheel" ];
     initialPassword = "changethis";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCatP3klEjfQPSiJNUc3FRDdz927BG1IzektpouzOZR"
@@ -24,6 +24,7 @@
     uutils-coreutils-noprefix
     at
     file
+    zip unzip
     psmisc
     usbutils
     config.boot.kernelPackages.perf
@@ -40,7 +41,7 @@
     registry = {
       nixpkgs.flake = inputs.nixpkgs;
       # TODO: dedup to a shared nixos/home module
-      config.to = { type = "git"; url = "file:///home/joseph/config"; };
+      config.to = { type = "git"; url = "file:///home/julia/config"; };
     };
   };
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];

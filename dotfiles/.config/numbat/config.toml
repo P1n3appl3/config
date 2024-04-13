@@ -1,6 +1,6 @@
 intro-banner = "off"
-prompt = " >"
+prompt = " > "
 pretty-print = "auto"
 
 [exchange-rates]
-fetching-policy = "on-first-use"
+fetching-policy = "on-startup"

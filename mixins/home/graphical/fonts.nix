@@ -10,8 +10,6 @@
     noto-fonts-emoji
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     comic-neue
-
-    # fontfor
   ];
 
   xdg.configFile."fontconfig/fonts.conf".text = ''

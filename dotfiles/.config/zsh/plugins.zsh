@@ -1,8 +1,8 @@
 eval "$(atuin init zsh --disable-up-arrow)" # History
 eval "$(zoxide init zsh --cmd j)"           # Dir jumper
 eval "$(starship init zsh)"                 # Prompt
+eval "$(fzf --zsh | sed -n '/^### completion.zsh/,$p')" # FZF completions
 
-source $HOME/.nix-profile/share/fzf/completion.zsh
 for f in zsh-syntax-highlighting zsh-autosuggestions; do
     source $HOME/.nix-profile/share/$f/$f.zsh
 done

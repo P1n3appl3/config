@@ -42,6 +42,3 @@ _fzf_comprun() {
     *) fzf "$@" ;;
     esac
 }
-
-_fzf_complete_paru() { _fzf_complete -m -n1 -- "$@" < <(paru -Pc); }
-_fzf_complete_paru_post() { awk '{print $1}'; }

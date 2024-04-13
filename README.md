@@ -19,13 +19,12 @@ config 🍍 nix flake show
     ├───ascii-rain: pretty terminal rain animation
     ├───barchart: draw barcharts in the terminal
     ├───bibata-modern-classic: mouse cursor theme
-    ├───butter: ui for btrfs subvolume snapshot history
     ├───cargo-clone-crate: better cargo clone command
-    ├───dbus-tool: manually interact with dbus endpoints
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
-    ├───j-bin: the j programming language
+    ├───mons: celeste mod manager
+    ├───netscanner: inspect network interfaces and traffic
     ├───rust-rpxy: simple reverse proxy
     ├───simple64: nintendo 64 emulator
     ╰───syncthing-gtk: ui+tray-menu for syncthing

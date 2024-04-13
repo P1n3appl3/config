@@ -16,8 +16,8 @@
     controlMaster = "auto";
     includes = [ "extra-config" ];
     matchBlocks = {
-      "pineapple.computer josephis.gay josephryan.me Cortana Cortana.local Cortana.lan" = {
-        hostname = "%h"; user = "joseph"; port = 69;
+      "pineapple.computer julia.blue Cortana Cortana.local Cortana.lan" = {
+        hostname = "%h"; user = "julia"; port = 69;
       };
     };
   };
@@ -40,6 +40,8 @@
       defaultApplications = {
         "application/pdf" = "zathura.desktop";
         "text/html" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
         "x-scheme-handler/tg" = "org.telegram.desktop";
       };
     };

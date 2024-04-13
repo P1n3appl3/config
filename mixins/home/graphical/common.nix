@@ -16,16 +16,13 @@
 in {
   imports = [ ./fonts.nix ];
 
-  # TODO: remove when obsidian updates to a supported version
-  nixpkgs.config.permittedInsecurePackages = [ "electron-25.9.0" ];
-
   home.packages = with pkgs; [
     brightnessctl
     pavucontrol playerctl pamixer
     xdg-utils # TODO: try handlr-regex
     rofimoji
     libqalculate qalculate-gtk
-    (nixGL kitty) wezterm rio
+    (nixGL kitty) wezterm rio alacritty
     gnome.nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (wrapMpv mpv-unwrapped { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
@@ -34,29 +31,27 @@ in {
     gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
     (nixGL obsidian)
-    # butter and/or maybe https://github.com/digint/btrbk
-    # is actually what i want
+    buttermanager # maybe https://github.com/digint/btrbk is actually what i want
     # TODO: www.marginalia.nu or ddg default search engine, set profile to
     # automate setting up my userchrome css, sync stylus if it isn't already
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
-    # TODO: check that touchpad smooth scroll works
     # TODO: bitwarden popup floating window
     # TODO: vaapi hardware decode
     (nixGL (firefox.override { cfg.speechSynthesisSupport = false; }))
     # TODO: gtk4cord or webcord
-    discord # TODO: check krisp see https://github.com/NixOS/nixpkgs/issues/195512
+    # TODO: check krisp see https://github.com/NixOS/nixpkgs/issues/195512
+    vesktop
     (nixGL telegram-desktop) (nixGL caprine-bin) signal-desktop
     fractal-next nheko # TODO: pick one
     praat friture # TODO: try this for voice training
     # maybe make a "media" module
     # obs-studio kdenlive blender godot
-    # non lmms tenacity (or audacity)
+    # non lmms ardour tenacity (or audacity)
     # inkscape krita pinta
     # (nixGL (calibre.override { speechd=null; }))
     # libresprite/acesprite-unfree
     imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
     mepo # TODO: try
-    # dbus-tool
     # TODO: syncthing-gtk
     # TODO: https://gitlab.freedesktop.org/rncbc/qpwgraph
     nixgl.nixGLIntel # nixgl.nixVulkanIntel # TODO: debug (llvm update?)
@@ -64,6 +59,7 @@ in {
     firmware-updater gnome-firmware firmware-manager # TODO: pick one
     graphviz
     libnotify
+    warp
   ];
 
   services = {
@@ -90,6 +86,8 @@ in {
       };
     };
   };
+
+  home.keyboard.options = [ "caps:escape" "shift:both_capslock" ];
 
   home.pointerCursor = {
     gtk.enable = true; x11.enable = true;

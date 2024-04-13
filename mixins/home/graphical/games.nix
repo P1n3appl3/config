@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     steam
-    itch
+    # itch # TODO: reenable when butler is fixed
     ludusavi
 
     osu-lazer-bin
@@ -12,8 +12,11 @@
     openttd
     space-cadet-pinball
     openspades
+    golly
 
-    punes snes9x-gtk mupen64plus dolphin-emu yuzu-mainline # simple64
+    punes mupen64plus dolphin-emu # snes9x-gtk simple64
     sameboy mgba melonDS
+
+    r2mod_cli mons
   ];
 }

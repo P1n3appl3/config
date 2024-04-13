@@ -32,7 +32,12 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+        memtest86.enable = true;
+        consoleMode = "1";
+      };
       efi.canTouchEfiVariables = true;
     };
     # offset from btrfs inspect-internal map-swapfile -r /swap/swapfile

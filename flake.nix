@@ -18,8 +18,8 @@
       flake-utils.follows = "flake-utils";
       home-manager.follows = "home-manager";
       nix-index-database.follows = "nix-index-database";
-      agenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
-      ragenix.follows = "";
+      agenix.follows = ""; ragenix.follows = "";
+      darwin.follows = ""; impermanence.follows = "";
     };
   };
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware,
@@ -41,7 +41,7 @@
     };
 
     machine = system: module: lib.nixosSystem {
-      inherit system; specialArgs = {inherit inputs myOverlays; };
+      inherit system; specialArgs = { inherit inputs myOverlays; };
       modules = [ ./mixins/nixos/common.nix module ] ++
         builtins.attrValues self.outputs.nixosModules;
     };

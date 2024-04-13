@@ -1,0 +1,24 @@
+# vim:ft=swayconfig
+input type:touchpad {
+    # natural_scroll true
+}
+
+input type:keyboard {
+    xkb_options altwin:swap_alt_win,caps:escape,shift:both_capslock
+}
+
+output eDP-1 {
+  resolution 3840x2160
+  scale 2
+}
+
+bar {
+    position top
+    status_command i3status-rs ~/.config/i3status-rs/laptop.toml
+    strip_workspace_numbers yes
+    colors {
+        statusline #00ff00
+        background #676767
+        inactive_workspace #323232 #323232 #5c5c5c
+    }
+}

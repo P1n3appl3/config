@@ -1,16 +1,15 @@
-# vim: ft=conf
 font pango:monospace 12
 
 set $mod Mod4
 set $run exec --no-startup-id
-set $wsT "0:Tab"
-set $ws0 "1:"
-set $ws1 "2:"
+set $wsT "0:󰋑"
+set $ws0 "1:󰖟"
+set $ws1 "2:󰀳"
 set $ws2 "3:"
 set $ws3 "4:λ"
 set $ws4 "5:"
 set $ws5 "6:"
-set $ws6 "7:6"
+set $ws6 "7:"
 set $ws7 "8:"
 set $ws8 "9:"
 set $ws9 "10:"

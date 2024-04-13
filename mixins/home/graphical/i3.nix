@@ -11,8 +11,6 @@ in {
     xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
   ];
 
-  home.keyboard.options = [ "caps:escape" "shift:both_capslock" ];
-
   systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
   services = {
     clipmenu.enable = true;

@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   home = {
     username = "josephry"; homeDirectory = "/home/josephry";
   };
@@ -6,14 +6,15 @@
     ../mixins/home/linux.nix
     ../mixins/home/dev.nix
     ../mixins/home/graphical/common.nix
-    ../mixins/home/graphical/i3.nix
+    ../mixins/home/graphical/sway.nix
     ../mixins/home/graphical/music.nix
   ];
-  xsession.initExtra = ''
-  xsetroot -solid "#483157"
-  export DESKTOP_SESSION="gnome"
-  '';
 
+  home.packages = with pkgs; [ pastel ];
   home.keyboard.options = [ "altwin:swap_alt_win" ];
-  xdg.mimeApps.defaultApplications."text/html" = lib.mkForce "chrome.desktop";
+  xdg.mimeApps.defaultApplications =
+    let chrome = lib.mkForce "chrome.desktop"; in {
+    "text/html" = chrome;
+    "x-scheme-handler/https" = chrome;
+  };
 }

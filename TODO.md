@@ -95,6 +95,8 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * [tune smooth scroll params](https://www.reddit.com/r/firefox/comments/13gdu1k/comment/jk3rhm9)
 * ironbar circular dials
 * ironbar icons not picking up home-manager icons, maybe gtk_data_dirs related?
+* bar weather widget, [open meteo](https://open-meteo.com) + [free geo ip](https://freegeoip.io/)
+* wluma brightness
 
 ## Theme
 
@@ -106,13 +108,15 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * imhex
 * firefox homepage and/or userstyles
 * cursor maybe? also try qogir and graphite
-* i3/i3status
+* sway/i3status-rs
 * hyprland/ironbar
 * swaync
 * nvim
 * [obsidian](https://github.com/catppuccin/obsidian)
-* kitty/wezterm/rio
+* kitty/wezterm/rio/alacritty
   * does terminal emulator cover most stuff, or will eza/htop/etc. need additional config?
+* [tty](https://github.com/catppuccin/tty)
+* [systemd](https://github.com/systemd/systemd/blob/ae9fd433d6e245677e6e916a3461be462362e7b8/meson_options.txt#L477)
 
 ## Other
 
@@ -121,35 +125,26 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * tlp fix locale issue
 * ruff use human readable config names [once that's an option](https://github.com/charliermarsh/ruff/issues/1773)
 * git
-  * ssh key commit signing
   * use an actual difftool like nvimdiff/fugitive/gnome meld/etc.
+  * try difftastic inline mode instead of delta
 * nss doesn't work for stuff like `htop` and `eza` in home-manager on my work computer, running the system's version of `nscd` seems to fix it but that service keeps going down.
 * try xplr/joshuto
 * htop config param for number of cores, add io screen once [this](https://github.com/nix-community/home-manager/pull/3846) gets merged
-* j don't create dir in `$HOME`, also grab an older version while it's broken (i think due to the llvm 16 bump?)
-* typst-lsp broken
-* mod+o use rofi file completion starting from ~ and xdg-open
+* j don't create `j9.x-user` in `$HOME`
+* mod+o use rofi file completion starting from ~ with xdg-open
 * usbtop needs pcap settings
-* fontfor broken
 
 ## Nix stuff
 
-* don't expose packages if `meta.platforms != system`, currently I use excludes in `garnix.yaml` for this
 * Upstream the nixGL wrapper I use
 * add a custom livedisk flake output
 * add a vm flake output
-* export home/nixos modules separately from hosts, use a layout like [misterio's starter config](https://github.com/Misterio77/nix-starter-configs/blob/main/standard/flake.nix)
 * my `warnIfUpdated` util function seems broken, though I could have sworn it worked at one point. I might be missing something about how evaluation caching works (I've noticed that other home-manager warnings only show up a single time after I `nix flake update` )
-* pull out into redistributable home-manager module
 * profile flake eval time, see [this thread](https://discourse.nixos.org/t/nix-flamegraph-or-profiling-tool/33333)
 * use flake registry to make local devshells update to my system config's pinned nixpkgs version
 
 ## NixOS stuff
-* use impermanence and make root ephemeral, see [example](https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/optional/ephemeral-btrfs.nix) and [guide](https://mt-caret.github.io/blog/posts/2020-06-29-optin-state.html).
-* post processing to get useful output out of: `sudo btrfs send --no-data -p /blank / | btrfs receive --dump`
-* maybe create a snapshot right after boot and then diff it upon shutdown, possibly saving a snapshot with whatever new files exist before they get wiped on the next reboot. btrfs subvolume find-new might be the thing
-* `fd . / --mount -tf` is also maybe enough?
-* consider whether impermanence is even worth the hassle if it's just for root, do I want to try using it in `$HOME` too? seems like more trouble than it's worth at the moment...
+
 * make sure zsh gets completions and bash completions (fwupdmgr) from system packages
 
 ## little tools/scripts/patches I should write
@@ -189,6 +184,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 
 * slippi + kernel module + skins? see [ssbm-nix](https://github.com/djanatyn/ssbm-nix)
 * [hsdlib](https://github.com/rrbutani/HSDLib) and xdelta for modding
+* input-integrity
 * everest for celeste, r2modman for ror2, the ftl mod manager, etc.
 * use flatpak for fightcade
 * minecraft + mods, maybe use [nix-minecraft](https://github.com/Infinidoge/nix-minecraft)
@@ -211,10 +207,8 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 
 ## `pkgs/`
 
-* `butter`
-  * follow the [upstream instructions](https://github.com/zhangyuannie/butter/blob/main/BUILDING.md). Does the fact that they drive the rust build with meson/ninja mean that I can't use the usual nixpkgs rust infrastructure?
-  * ensure that systemd timers it creates actually get triggered, is the service user or system level?
-  * remove garnix exclude once it's working
+* `android-messages`
+  * find a good example of packaging an electron app in nixpkgs and copy it
 
 ## Hosts
 
@@ -261,11 +255,11 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * startup (check time with systemd-analyze)
   1. systemdboot (decrease picker time to 1 or 2 seconds)
   2. auto-login ([only on tty1](https://gist.github.com/caadar/7884b1bf16cb1fc2c7cde33d329ae37f))
-  3. start hyprland (check tty in shell login)
+  3. start wm (check tty in shell login)
   4. [start portal and update systemd env](https://wiki.hyprland.org/FAQ/#some-of-my-apps-take-a-really-long-time-to-open)
   5. [launch stuff like wallpaper](https://github.com/Gl00ria/dotfiles/blob/main/dot_hyprland/.config/hypr/autostart)
   6. run waylock/swaylock
-* set caps=esc and super<->alt in hyprland if the home-manager/nixos ones don't apply
+* set caps=esc and super<->alt in wm if the home-manager/nixos ones don't apply
 * do ^ in the tty (check that `i18n.consoleUseXkbConfig` is working)
 * nixos-rebuild can't see user level flake registry (maybe beccause sudo?)
 * dbus-tool or qdbus talk to geoclue

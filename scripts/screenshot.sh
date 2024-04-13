@@ -11,7 +11,7 @@ linkmove() {
 }
 
 if [ "$XDG_SESSION_TYPE" == "wayland" ]; then
-    { if [ $# = 0 ]; then slurp | grim -g- -; else grim -; fi; } |
+    { if [ $# = 1 ]; then slurp | grim -g- -; else grim -; fi; } |
         tee $tmp_path | wl-copy -t image/png
 else
     maim -u"$1" |

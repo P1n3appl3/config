@@ -30,7 +30,7 @@ require "plugins"
 require "completion"
 require "keybinds"
 
-vim.filetype.add { extension = { typ = "typst", nasm = "nasm" } }
+vim.filetype.add { extension = { typ = "typst", nasm = "nasm", nbt = "numbat" } }
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "markdown", "gitcommit" },
