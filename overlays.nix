@@ -28,4 +28,12 @@ inputs: final: prev: {
         sha256 = "sha256-SS+PTWA1UTsluts9Qtv+q3LJ22PTRUZ+usOB0aqz3Rk=";
       }) ];
   });
+
+  # TODO: remove when they do a new release
+  wpaperd = final.callPackage "${ final.fetchFromGitHub {
+      owner = "danyspin97"; repo = "wpaperd";
+      rev = "cd9eb31377da0029e6abfbf6e7f433476f50007e";
+      hash = "sha256-5KB1lcGoKzslMduNFiFFEOzpkv//uDTynPSrrxa7mVw=";
+    }
+  }/nix" { };
 }

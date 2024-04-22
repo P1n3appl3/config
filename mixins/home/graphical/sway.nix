@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   wayland.windowManager.sway = {
    # TODO: change exec line to "systemd-cat -p sway ${pkgs.sway}/bin/sway"
     enable = true;
@@ -19,15 +19,23 @@
     # TODO: try plugins: rbw/pa source+sink/mpd/systemd/wifi
     (rofi-wayland.override { plugins = [ rofi-calc ]; })
     i3status-rust ironbar # TODO: configure, try hybridbar/custom
-    wpaperd swww # TODO: choose
     # TODO: swayosd
     swaynotificationcenter # TODO: try this/dunst/mako/fnott
     swayidle # TODO: try sleepwatcher-rs
     # TODO: swaylock/waylock/gtklock
-    # TODO: polkit-kde-agent?
     # TODO: qtwayland?
     # TODO: oneko wayland port and/or https://github.com/Ibrahim2750mi/linux-goose
   ];
+
+  programs = {
+    wpaperd = { enable = true;
+      settings.default = {
+        path = config.xdg.userDirs.pictures + "/wallpapers";
+        apply-shadow = true;
+        duration = "30m";
+      };
+    };
+  };
 
   services = {
     cliphist.enable = true;
