@@ -22,7 +22,7 @@ in {
     xdg-utils # TODO: try handlr-regex
     rofimoji
     libqalculate qalculate-gtk
-    (nixGL kitty) wezterm rio alacritty
+    wezterm rio alacritty
     gnome.nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (wrapMpv mpv-unwrapped { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
@@ -33,15 +33,12 @@ in {
     (nixGL obsidian)
     buttermanager # maybe https://github.com/digint/btrbk is actually what i want
     # TODO: www.marginalia.nu or ddg default search engine, set profile to
-    # automate setting up my userchrome css, sync stylus if it isn't already
+    # automate setting up my userchrome css, sync userstyles
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
     # TODO: bitwarden popup floating window
     # TODO: vaapi hardware decode
     (nixGL (firefox.override { cfg.speechSynthesisSupport = false; }))
-    # TODO: gtk4cord or webcord
-    # TODO: check krisp see https://github.com/NixOS/nixpkgs/issues/195512
-    vesktop
-    (nixGL telegram-desktop) (nixGL caprine-bin) signal-desktop
+    (nixGL telegram-desktop) (nixGL caprine-bin) vesktop signal-desktop
     fractal-next nheko # TODO: pick one
     praat friture # TODO: try this for voice training
     # maybe make a "media" module
@@ -61,6 +58,16 @@ in {
     libnotify
     warp
   ];
+
+  programs = {
+    kitty = { enable = true;
+      package = (nixGL pkgs.kitty);
+      settings = {
+        font_size = lib.mkDefault 12;
+        include = "~/.config/kitty/common.conf";
+      };
+    };
+  };
 
   services = {
     udiskie.enable = true;

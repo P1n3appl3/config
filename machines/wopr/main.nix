@@ -13,6 +13,12 @@
     unrar-free
   ];
 
+  programs = {
+    dconf.enable = true;
+    # TODO: put in games module dependent on osConfig
+    steam.enable = true;
+  };
+
   services = {
     pipewire = {
       enable = true; wireplumber.enable = true;
@@ -27,9 +33,12 @@
     upower.enable = true;
   };
 
+  networking = { hostName = "WOPR"; networkmanager.enable = true; };
+
   home-manager = {
     extraSpecialArgs = { inherit inputs myOverlays; };
     users.julia.imports = [
+      { programs.kitty.settings.font_size = 15; }
       ../../mixins/home/common.nix
       ../../mixins/home/linux.nix
       ../../mixins/home/btrfs.nix
@@ -40,12 +49,4 @@
       ../../mixins/home/graphical/games.nix
     ];
   };
-
-  programs = {
-    # TODO: put in games module dependent on osConfig
-    steam.enable = true;
-    dconf.enable = true;
-  };
-
-  networking = { hostName = "WOPR"; networkmanager.enable = true; };
 }

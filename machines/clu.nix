@@ -15,6 +15,7 @@
   xdg.mimeApps.defaultApplications =
     let chrome = lib.mkForce "chrome.desktop"; in {
     "text/html" = chrome;
+    "x-scheme-handler/http" = chrome;
     "x-scheme-handler/https" = chrome;
   };
 }

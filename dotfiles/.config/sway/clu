@@ -1,6 +1,8 @@
 # vim:ft=swayconfig
+font pango:monospace 11
+
 input type:touchpad {
-    # natural_scroll true
+    natural_scroll true
 }
 
 input type:keyboard {
@@ -17,8 +19,12 @@ bar {
     status_command i3status-rs ~/.config/i3status-rs/laptop.toml
     strip_workspace_numbers yes
     colors {
-        statusline #00ff00
-        background #676767
-        inactive_workspace #323232 #323232 #5c5c5c
+        separator #666666
+        background #282828
+        statusline #dddddd
+        focused_workspace #0088CC #0088CC #ffffff
+        active_workspace #333333 #333333 #ffffff
+        inactive_workspace #333333 #333333 #888888
+        urgent_workspace #2f343a #900000 #ffffff
     }
 }

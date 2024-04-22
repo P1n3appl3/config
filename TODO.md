@@ -179,6 +179,7 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * package asm-lsp and add goto def functionality
   * maybe improve the data scraping bit too
 * btm add scrolling dots for active task like btop
+* 1 glyph font or noto-color-emoji patch to change the calendar date to my bday
 
 ## Games
 
