@@ -10,7 +10,9 @@
     ../mixins/home/graphical/music.nix
   ];
 
-  home.packages = with pkgs; [ pastel ];
+  home.packages = with pkgs; [
+    pastel
+  ];
   home.keyboard.options = [ "altwin:swap_alt_win" ];
   xdg.mimeApps.defaultApplications =
     let chrome = lib.mkForce "chrome.desktop"; in {

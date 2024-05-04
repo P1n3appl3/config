@@ -27,9 +27,7 @@ function nixfind {
 alias nixsize=nix-tree
 function nixclean { nix-collect-garbage -d && sudo $(which nix-collect-garbage) -d; }
 function switch {
-    command -v nixos-rebuild >/dev/null && {
-        sudo true
-        cmd="sudo -n nixos-rebuild"
-    } || cmd=hm
-    eval $cmd switch --flake config#$(hostname -s) $@
+    command -v nixos-rebuild >/dev/null && { cmd=os; } || cmd=home
+    eval nh $cmd switch -ac $(hostname -s) $CONF_DIR $@
 }
+alias update="switch -u"

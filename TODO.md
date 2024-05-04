@@ -13,7 +13,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 ```
   * maybe shift or ctrl up for ^ while leaving normal up as vanilla zsh history?
 * get/write a `command-not-found`
-* remove direnv `copy_function` workaround once [this](https://github.com/direnv/direnv/issues/68) lands
+* direnv set verbosity option [once it lands](https://github.com/direnv/direnv/pull/1231)
 * fzf
   * bind ctrl-backspace (instead of alt) to delete last word (see [issue](https://github.com/junegunn/fzf/issues/2057))
   * navigate up a directory (see [comment](https://github.com/junegunn/fzf/issues/3159#issuecomment-1424575660). something like `--bind 'backward-eof:reload(__fzf "$(pwd)/.." $2)'`
@@ -155,12 +155,14 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
   * Should be possible given that it's being automated [here](https://github.com/EdenEast/nyx/pull/101) by [this action](https://github.com/EdenEast/nyx/blob/main/.github/workflows/pr.yml).
     * put it in `system.activationScripts.diff`
         * do the same for `home.activation.diff` unless under nixos
+  * possibly add to `nh` which just uses `nvd`
 * Ask rahul about the sqlite thing (possibly the one mentioned [here](https://github.com/NixOS/nixos-channel-scripts/issues/45)) as a potential alternative to nix-locate. I'd really like to have a search experience on the command line that's as good as the online one:
   * prioritization and filtering on pname/binary/description/files in package/etc.
   * show packageSets
   * link to source definition in nixpkgs (the one in my nix store if possible? that won't have git history though... maybe point it at a local nixpkgs checkout if it exists and otherwise link to github)
   * extra info such as NAR size, closure size, diff of closure with current system if that's doable, version, last updated date, etc.
   * the [command-not-found rust rewrite](https://github.com/nix-community/nix-index/pull/227) could be a good example
+  * maybe just make PR to `nh search`, it seems closest to what I want
 * pokedex neofetch on shell startup
 * cat motd
 * prettier lsp log viewer for nvim (see [issue](https://github.com/neovim/neovim/issues/16807))

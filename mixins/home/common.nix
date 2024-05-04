@@ -7,11 +7,11 @@
     tokei zellij rsync zstd lowcharts trippy page pv datamash ascii numbat
     pinentry sshping mdcat magic-wormhole-rs netscanner
     # System info
-    htop bottom bandwhich trippy procs smartmontools duf ncdu du-dust
+    bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Git
     git git-lfs delta gh git-heatmap git-absorb lazygit
     # Nix
-    nix home-manager nix-output-monitor nix-tree nil comma
+    nix home-manager nh nix-output-monitor nix-tree nil comma
     # Scripting tools
     stylua sumneko-lua-language-server shfmt shellcheck mawk
     # Fun
@@ -19,15 +19,15 @@
   ];
 
   programs = {
-    direnv = { enable = true; nix-direnv.enable = true; };
+    direnv = { enable = true; nix-direnv.enable = true; config.global.hide_env_diff = true; };
   };
 
   imports = [
-    inputs.nix-index-database.hmModules.nix-index
     ./nvim.nix
     ./htop.nix
     (if builtins.hasAttr "osConfig" args then {} else
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
+    inputs.nix-index-database.hmModules.nix-index
   ];
 
   nix.registry = {

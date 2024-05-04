@@ -34,7 +34,7 @@ require("nvim-treesitter.configs").setup {
 }
 require("treesitter-context").setup { patterns = { python = { "if", "elif" } } }
 
--- Language server configuration
+-- Language specific configuration
 
 require("neodev").setup {}
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -57,7 +57,8 @@ vim.g.neoformat_typst_typstfmt = { exe = "typstfmt", replace = 1 }
 vim.g.neoformat_enabled_typst = { "typstfmt" }
 server("typst_lsp", { settings = { experimentalFormatterMode = "on" } })
 
-vim.g.neoformat_python_ruff = { exe = "ruff", args = { "format" }, replace = 1 }
+vim.g.neoformat_enabled_javascript = { "biome" }
+
 vim.g.neoformat_enabled_python = { "ruff" }
 server("pyright", {
     settings = { python = { analysis = { diagnosticMode = "openFilesOnly" } } },

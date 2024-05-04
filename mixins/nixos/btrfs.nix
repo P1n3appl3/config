@@ -5,11 +5,11 @@
       options = [ "subvol=${name}" ] ++ opts;
     };
   in {
-    "/" = subvol "root" [ "compress=zstd" ];
-    "/nix" = subvol "nix" [ "compress=zstd" "noatime" ];
-    "/home" = subvol "home" [ "compress=zstd" ];
-    "/var/log" = subvol "log" [ "compress=zstd" ];
-    "/swap" = subvol "swap" [ "noatime" ];
+    "/"        = subvol "root" [ "compress=zstd" ];
+    "/nix"     = subvol "nix"  [ "compress=zstd" "noatime" ];
+    "/home"    = subvol "home" [ "compress=zstd" ];
+    "/swap"    = subvol "swap" [ "noatime" ];
+    "/var/log" = subvol "log"  [ ];
   };
 
   swapDevices = [{ device = "/swap/swapfile"; }];

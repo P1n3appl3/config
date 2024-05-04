@@ -24,7 +24,6 @@ config 🍍 nix flake show
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
     ├───mons: celeste mod manager
-    ├───netscanner: inspect network interfaces and traffic
     ├───rust-rpxy: simple reverse proxy
     ├───simple64: nintendo 64 emulator
     ╰───syncthing-gtk: ui+tray-menu for syncthing

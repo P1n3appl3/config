@@ -9,5 +9,6 @@
     nurl nix-init
     typst typst-fmt typst-lsp
     j
+    biome
   ];
 }
