@@ -50,10 +50,10 @@ block = "notify"
 [[block]]
 block = "sound"
 step_width = 1
-click = [{ cmd = "pkill -f pavucontrol || pavucontrol &", button = "left" }]
+click = [{ button = "left", cmd = "pkill -f pavucontrol || pavucontrol &" }]
 
 [[block]]
 block = "time"
 format = " $timestamp.datetime(f:'%-I:%M%P') "
 interval = 3
-click = [{ button = "left", cmd = "notify-send $(date +%D)" }]
+click = [{ button = "left", cmd = "notify-send -i calendar -a date $(date +%D)" }]

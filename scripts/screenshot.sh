@@ -18,4 +18,4 @@ else
         tee $tmp_path | xclip -selection clipboard -t image/png
 fi &&
     linkmove "$tmp_path" "$img_dir/screenshots/$(date +%s).png" "$img_path" &&
-    notify-send -u low 'screenshot taken'
+    notify-send -u low -a screenshot -i monitor -h int:transient:1 'screenshot taken'

@@ -72,34 +72,19 @@
     syncthing = let home = config.users.users.julia.home; in { enable = true;
       # port 8384 by default, /metrics for prometheus
       guiAddress = "127.0.0.1:9003";
-      # user = "julia";
-      # dataDir = home + "Documents";
-      # configDir = home + ".config/syncthing";
-      # TODO: maybe hardcode id here if possible so it doesn't change if i swap devices
-      overrideDevices = true; overrideFolders = true;
+      overrideDevices = true; overrideFolders = true; localAnnounceEnabled = true;
       settings = {
         devices = {
-          # "HAL".id = "TODO";
-            "WOPR".id = "N7B4EPQ-B3PLQIZ-NZIGIEC-CDOIZ3B-MLMUIIO-M5SGMJC-JTVRMB3-SUVIVQI";
-             "clu".id = "KK6IRAU-W7HRIGO-TJL7PNN-DRQCLID-4BBPHPH-IRY5TJY-G372KO6-F527XAB";
-          "dragon".id = "5WZIGDB-A5E2YCO-VRHUCI7-6O2GPWN-3J6ONPW-IVBHUE5-VM5JHF2-J2277A2";
+           # HAL.id = "TODO";
+            WOPR.id = "N7B4EPQ-B3PLQIZ-NZIGIEC-CDOIZ3B-MLMUIIO-M5SGMJC-JTVRMB3-SUVIVQI";
+             clu.id = "KK6IRAU-W7HRIGO-TJL7PNN-DRQCLID-4BBPHPH-IRY5TJY-G372KO6-F527XAB";
+          dragon.id = "5WZIGDB-A5E2YCO-VRHUCI7-6O2GPWN-3J6ONPW-IVBHUE5-VM5JHF2-J2277A2";
         };
         folders = {
-          "notes" = {
-            path = home + "notes";
-            devices = [ "WOPR" "dragon" "clu" ];
-          };
-          "music" = {
-            path = home + "music/library";
-            devices = [ "WOPR" "dragon" "clu" ];
-          };
-          "screenshots" = {
-            path = home + "Images/screenshots";
-            devices = [ "WOPR" "clu" ];
-          };
-          # "backgrounds" = { };
-          # "roms" = { };
-          # "recipes" = { };
+                notes.devices = [ "WOPR" "dragon" "clu" ];
+                music.devices = [ "WOPR" "dragon" "clu" ];
+              recipes.devices = [ "WOPR" "dragon" ];
+          screenshots.devices = [ "WOPR" ];
         };
       };
     };

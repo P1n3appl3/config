@@ -10,7 +10,7 @@ hide_edge_borders smart
 default_border pixel 1
 primary_selection disabled
 
-for_window [class="Pavucontrol"] floating enable
+for_window [app_id="pavucontrol"] floating enable
 for_window [title=".*Syncthing Tray"] floating enable
 
 # TODO: swayidle
