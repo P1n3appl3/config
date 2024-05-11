@@ -2,7 +2,6 @@
 
 * atuin
   * fix [crossterm bug](https://github.com/crossterm-rs/crossterm/issues/685) so `ctrl+backspace` [works](https://github.com/atuinsh/atuin/issues/941)
-  * reverse order like fzf's UI
   * use my own sync server on Cortana
   * feed zsh_autosuggest from atuin (references: [\[1\]](https://gist.github.com/tyalie/7e13cfe2ec62d99fa341a07ed12ef7c0) [\[2\]](https://pastebin.com/RXxU6rT4) [\[3\]](https://github.com/atuinsh/atuin/issues/68#issuecomment-1582815247)):
 ``` sh
@@ -64,7 +63,10 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 
 ## Desktop Environment
 
-* fix i3status-rs no longer toggling pavucontrol on click
+* audioselect
+  * wayland support so it's positioned under your cursor
+  * monitors for the inputs and outputs, maybe as button background?
+  * single volume sliders for input and output
 * save/restore layouts for restarts and/or just have good auto-opens on startup
 * fix xcolor not working when launched by i3, seems to fail around [here](https://github.com/Soft/xcolor/blob/969d6525c4568a2fafd321fcd72a95481c5f3c7b/src/location.rs#L32)
 * test if mime default apps are working and add others
@@ -84,23 +86,21 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * try music-player (rust) and better tagging for beets
   * beets set max quality with "convert" plugin
   * check that media keys got auto-bound by mpdris2
-  * re-add ytmdl once [it's fixed](https://github.com/NixOS/nixpkgs/issues/278376)
 * performance
   * use powertop/turbostat/eventstat/pidstat/smemstat/powerstat/power-calibrate to see the difference with hyprland vs sway and ironbar vs i3status-rs
   * ironbar widget to show current power draw (and graph?), and select between governors
 * oneko/xsnow/xeyes/xkill/xmascot
   * for oneko, see [shimeji](https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#shimeji)
 * firefox
-  * onetab replacement, go to obsidian
   * [tune smooth scroll params](https://www.reddit.com/r/firefox/comments/13gdu1k/comment/jk3rhm9)
 * ironbar circular dials
 * ironbar icons not picking up home-manager icons, maybe gtk_data_dirs related?
 * bar weather widget, [open meteo](https://open-meteo.com) + [free geo ip](https://freegeoip.io/)
-* wluma brightness
+* wluma [home-manager module](https://github.com/nix-community/home-manager/issues/2420)
 
 ## Theme
 
-Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, though a lot of stuff is still vaguely gruvbox. This [darcula config](https://github.com/addy419/configurations/blob/master/modules/colorschemes/dracula.nix) is a good reference of stuff that can be themed.
+Currently I'm trying out using catppuccin mocha everywhere I can manage, though a lot of stuff is still vaguely gruvbox. This [darcula config](https://github.com/addy419/configurations/blob/master/modules/colorschemes/dracula.nix) is a good reference of stuff that can be themed. There's also [a separate flake](https://github.com/catppuccin/nix) that pre-configures stuff for catppuccin specifically.
 
 * fix [rounded corner issue](https://github.com/catppuccin/gtk/issues/129)
 * rofi
@@ -136,16 +136,14 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 
 ## Nix stuff
 
-* Upstream the nixGL wrapper I use
+* Upstream the nixGL wrapper I use (or use the upstream one they decide on)
 * add a custom livedisk flake output
 * add a vm flake output
 * my `warnIfUpdated` util function seems broken, though I could have sworn it worked at one point. I might be missing something about how evaluation caching works (I've noticed that other home-manager warnings only show up a single time after I `nix flake update` )
 * profile flake eval time, see [this thread](https://discourse.nixos.org/t/nix-flamegraph-or-profiling-tool/33333)
-* use flake registry to make local devshells update to my system config's pinned nixpkgs version
+* grab the patches for flake schemas
 
 ## NixOS stuff
-
-* make sure zsh gets completions and bash completions (fwupdmgr) from system packages
 
 ## little tools/scripts/patches I should write
 
@@ -229,7 +227,6 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 * add vaultwarden server and hook up phone/browsers
 * [host some docs](https://jade.fyi/blog/docs-tricks-and-gnus/) with nice css
   * home manager manual like mipmip's, but autoupdating
-* friends.nix (authorizedkeys)
 * [service dashboard](https://status.catgirl.cloud/) with uptime kuma
   * maybe send telegram message when stuff goes down
 * [ntfy](https://ntfy.sh/) push notifs for service status events
@@ -246,33 +243,19 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 
 ### WOPR
 
-* do i want `powerManagement.powerTop.enable = true;` (autotune every boot)
 * subvols for: `.cache`, `.cargo`, `dev`, steam, maybe all of `games` or just slippi replays
+* do i want `powerManagement.powerTop.enable = true;` (autotune every boot)
 * sleep states, suspend to ram, hibernate, lid close and idle timeout
   * `services.upower = { enable = true; criticalPowerAction = "Hibernate"; };`
   * services.logind power button hibernate, lid close suspend->hibernate with delay
 * fw-ectool
   * lights! need to see how fast I can alternate and how wide the gamut is
   * flicker pattern upon plugging in and/or do gradient while charging
-* pick interface name wlan0
-* startup (check time with systemd-analyze)
-  1. systemdboot (decrease picker time to 1 or 2 seconds)
-  2. auto-login ([only on tty1](https://gist.github.com/caadar/7884b1bf16cb1fc2c7cde33d329ae37f))
-  3. start wm (check tty in shell login)
-  4. [start portal and update systemd env](https://wiki.hyprland.org/FAQ/#some-of-my-apps-take-a-really-long-time-to-open)
-  5. [launch stuff like wallpaper](https://github.com/Gl00ria/dotfiles/blob/main/dot_hyprland/.config/hypr/autostart)
-  6. run waylock/swaylock
-* set caps=esc and super<->alt in wm if the home-manager/nixos ones don't apply
-* do ^ in the tty (check that `i18n.consoleUseXkbConfig` is working)
-* nixos-rebuild can't see user level flake registry (maybe beccause sudo?)
 * dbus-tool or qdbus talk to geoclue
 * disable middle-click paste
 * howett.net fnlock light to capslock
-  * bind caps to esc or ctrl when held
-  * swap alt/win
+  * bind caps to ctrl when held
   * right ctrl -> fn
-  * key repeat for brightness keys
-* no completion for systemd units
 * [low latency audio](https://github.com/Aylur/dotfiles/blob/main/nixos/audio.nix)
 
 ### clu
@@ -282,6 +265,6 @@ Currently I'm trying out using catppuccin-mocha-pink everywhere I can manage, th
 
 ### HAL
 
-* use [looking-glass](https://looking-glass.io/)(see [comments](https://news.ycombinator.com/item?id=28817981)) or [ovmf](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF), or just directly use [vfio](https://b1nzy.com/blog/vfio.html)
+* try [looking-glass](https://looking-glass.io/)(see [comments](https://news.ycombinator.com/item?id=28817981)) or [ovmf](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF), or just directly use [vfio](https://b1nzy.com/blog/vfio.html)
   * boot existing windows partition as a vm
   * either splitting gpu or somehow disabling it for the current WM session

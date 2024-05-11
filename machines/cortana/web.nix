@@ -1,4 +1,6 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }: let
+  acme_dir = "/var/lib/acme/pineapple.computer/";
+in {
   networking.firewall = {
     allowedTCPPorts = [
       22 69 # ssh
@@ -24,7 +26,6 @@
 
     rust-rpxy = { enable = true;
       config = let
-        acme_dir = "/var/lib/acme/pineapple.computer/";
         tls = {
           https_redirection = true;
           tls_cert_path = acme_dir + "fullchain.pem";
@@ -69,10 +70,11 @@
       openRegistration = true; # TODO: how to add my user statically?
     };
 
-    syncthing = let home = config.users.users.julia.home; in { enable = true;
+    syncthing = { enable = true;
       # port 8384 by default, /metrics for prometheus
       guiAddress = "127.0.0.1:9003";
-      overrideDevices = true; overrideFolders = true; localAnnounceEnabled = true;
+      overrideDevices = true; overrideFolders = true;
+      settings.options.localAnnounceEnabled = true;
       settings = {
         devices = {
            # HAL.id = "TODO";
@@ -80,18 +82,23 @@
              clu.id = "KK6IRAU-W7HRIGO-TJL7PNN-DRQCLID-4BBPHPH-IRY5TJY-G372KO6-F527XAB";
           dragon.id = "5WZIGDB-A5E2YCO-VRHUCI7-6O2GPWN-3J6ONPW-IVBHUE5-VM5JHF2-J2277A2";
         };
-        folders = {
-                notes.devices = [ "WOPR" "dragon" "clu" ];
-                music.devices = [ "WOPR" "dragon" "clu" ];
-              recipes.devices = [ "WOPR" "dragon" ];
-          screenshots.devices = [ "WOPR" ];
-        };
+        folders = (builtins.mapAttrs (n: d: { path = "~/${n}"; devices = d; }) {
+                notes = [ "WOPR" "dragon" "clu" ];
+                music = [ "WOPR" "dragon" "clu" ];
+              recipes = [ "WOPR" "dragon" ];
+          screenshots = [ "WOPR" ];
+        });
       };
     };
 
     uptime-kuma = { enable = true;
       settings.PORT = "9004";
     };
+  };
+
+  age.secrets = {
+    porkbun-api.file = ../../secrets/porkbun-api.age;
+    porkbun-secret.file = ../../secrets/porkbun-secret.age;
   };
 
   security.acme = { acceptTerms = true;
@@ -105,24 +112,36 @@
       ];
       environmentFile = builtins.toFile "envFile" "LEGO_DISABLE_CNAME_SUPPORT=true";
       credentialFiles = {
-        "PORKBUN_API_KEY_FILE" = "/media/porkbun_api_key";
-        "PORKBUN_SECRET_API_KEY_FILE" = "/media/porkbun_secret_key";
+        "PORKBUN_API_KEY_FILE" = config.age.secrets.porkbun-api.path;
+        "PORKBUN_SECRET_API_KEY_FILE" = config.age.secrets.porkbun-secret.path;
       };
     };
   };
 
-  systemd.services.convert-pem = let
-    parent = [ "acme-pineapple.computer.service" ];
-    acme_dir = "/var/lib/acme/pineapple.computer";
-  in { enable = true;
-    description = "Convert LetsEncrypt private key from PKCS1 to PKCS8";
-    unitConfig = { Type = "oneshot"; };
-    serviceConfig = {
-      ExecStart = ''${pkgs.openssl}/bin/openssl pkcs8 -topk8 -nocrypt \
-        -in ${acme_dir}/key.pem -inform PEM \
-        -out ${acme_dir}/key-pkcs8.pem -outform PEM'';
+  systemd.services = {
+    convert-pem = let parent = [ "acme-pineapple.computer.service" ]; in {
+      enable = true;
+      description = "Convert LetsEncrypt private key from PKCS1 to PKCS8";
+      unitConfig = { Type = "oneshot"; };
+      serviceConfig = {
+        ExecStart = ''${pkgs.openssl}/bin/openssl pkcs8 -topk8 -nocrypt \
+          -in ${acme_dir}/key.pem -inform PEM \
+          -out ${acme_dir}/key-pkcs8.pem -outform PEM'';
+      };
+      after = parent; wantedBy = parent;
     };
-    after = parent;
-    wantedBy = parent;
+
+    ddns = {
+      path = with pkgs; [ xh jq ];
+      startAt = "*/6:00";
+      script = ''
+        endpoint=https://api.porkbun.com/api/json/v3
+        edit=dns/editByNameType/pineapple.computer/A
+        api=apikey=`<${config.age.secrets.porkbun-api.path}`
+        secret=secretapikey=`<${config.age.secrets.porkbun-secret.path}`
+        ip=`xh post $endpoint/ping $api $secret | jq .yourIp -r`
+        xh post $endpoint/$edit $api $secret content=$ip ttl=21600 | jq .status -r
+      '';
+    };
   };
 }

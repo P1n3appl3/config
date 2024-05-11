@@ -1,10 +1,7 @@
-{pkgs, ...}: let
-  iconTheme = { package = pkgs.papirus-icon-theme; name = "Papirus-Dark"; };
-in {
+{ pkgs, config, ... }: {
   home.packages = with pkgs; [
-    i3 i3status-rust
+    i3
     xclip maim xcolor
-    (rofi.override { plugins = [ rofi-calc ]; })
     dunst
     oneko
     xorg.xeyes xorg.xkill
@@ -15,7 +12,7 @@ in {
   services = {
     clipmenu.enable = true;
     dunst = { enable = true;
-      inherit iconTheme;
+      inherit (config.gtk) iconTheme;
       settings = {
         global = {
           monitor = 1;

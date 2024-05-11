@@ -1,4 +1,4 @@
-{lib, stdenv, fetchFromGitHub, rustPlatform, pkg-config, openssl, darwin}:
+{ lib, fetchFromGitHub, rustPlatform, pkg-config, openssl }:
 rustPlatform.buildRustPackage rec {
   name = "cargo-clone-crate";
   version = "unstable-2024-04-05";
@@ -13,8 +13,7 @@ rustPlatform.buildRustPackage rec {
   doCheck = false; # tests try to reach crates.io which fails in the sandbox
 
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ openssl ] ++ lib.optionals stdenv.isDarwin [
-    darwin.Security
-    darwin.SystemConfiguration
-  ];
+  buildInputs = [ openssl ];
+
+  meta.platforms = lib.platforms.linux;
 }

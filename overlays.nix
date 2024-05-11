@@ -8,10 +8,6 @@ inputs: final: prev: {
   });
 
   # TODO: remove when they do a new release
-  wpaperd = final.callPackage "${ final.fetchFromGitHub {
-      owner = "danyspin97"; repo = "wpaperd";
-      rev = "cd9eb31377da0029e6abfbf6e7f433476f50007e";
-      hash = "sha256-5KB1lcGoKzslMduNFiFFEOzpkv//uDTynPSrrxa7mVw=";
-    }
-  }/nix" { };
+  wpaperd = builtins.getFlake
+    "github:danyspin97/wpaperd?rev=204b1c550ad6bfa9f2b855de4666c3495d204420";
 }

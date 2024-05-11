@@ -16,6 +16,7 @@ config 🍍 nix flake show
 ├───overlays
 │   ╰───default: Nixpkgs overlay with my packages and overrides
 ╰───packages
+    ├───audio-select: pulse-audio device selector
     ├───ascii-rain: pretty terminal rain animation
     ├───barchart: draw barcharts in the terminal
     ├───bibata-modern-classic: mouse cursor theme
@@ -25,8 +26,7 @@ config 🍍 nix flake show
     ├───lowcharts: draw plots and histograms in the terminal
     ├───mons: celeste mod manager
     ├───rust-rpxy: simple reverse proxy
-    ├───simple64: nintendo 64 emulator
-    ╰───syncthing-gtk: ui+tray-menu for syncthing
+    ╰───simple64: nintendo 64 emulator
 ```
 
 I [used to](https://github.com/P1n3appl3/config/tree/cd6d498014) use this as a [bare git repo](https://www.atlassian.com/git/tutorials/dotfiles). If you're not sold on nix/home-manager I think it's still a pretty ideal way to manage your dotfiles. Now when my home-manager activation script runs, it symlinks everything in the [dotfiles dir](dotfiles) into `$HOME` so that you can edit most config files without having to run `switch`.

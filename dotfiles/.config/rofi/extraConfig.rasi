@@ -1,6 +1,5 @@
 // vim:ft=rasi
 configuration {
-    font: "mono 16";
     icon-theme: "Papirus-Dark";
     show-icons: true;
     scroll-method: 1;
@@ -18,4 +17,12 @@ configuration {
     kb-page-prev: "Control+u";
     kb-page-next: "Control+d";
 }
-@theme "theme"
+
+* {
+    font: "sans 16";
+}
+
+window {
+    width: calc(40% max 600);
+    height: calc(40% max 360);
+}

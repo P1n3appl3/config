@@ -1,5 +1,5 @@
-{pkgs, config, ...}: {
-  home.packages = with pkgs; [ sox mediainfo mpc-cli ];
+{ pkgs, config, ... }: {
+  home.packages = with pkgs; [ sox mediainfo mpc-cli ytmdl ];
 
   programs = {
     beets = {
@@ -49,7 +49,7 @@
   };
 
   services = {
-    mpdris2 = { enable = true; multimediaKeys = true; };
+    mpdris2.enable = true;
     mpd = {
       enable = true; extraConfig = ''
         replaygain      "album"

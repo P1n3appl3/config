@@ -7,24 +7,24 @@ volume_muted = "\uf466"
 cpu = "\uf0e4"
 
 [theme]
-theme = "gruvbox-dark"
+theme = "ctp-mocha"
 [theme.overrides]
 separator = "|"
-separator_fg = "#aaaaaa"
-separator_bg = "#282828"
+separator_fg = "#cdd6f4"
+separator_bg = "#313244"
 
 [[block]]
 block = "music"
 icons_format = " {icon} "
 format = " $icon {$combo.str(max_w:35) $prev$play$next |}"
-theme_overrides = { "info_bg" = "#282828" }
 
 [[block]]
 block = "weather"
-format = " $icon {$temp}F "
+format = " $icon $temp "
+format_alt = " $icon_ffin $temp {({$temp_fmin}-{$temp_fmax}) |}"
 autolocate = true
 autolocate_interval = "once"
-service = { name = "openweathermap", units = "imperial" }
+service = { name = "openweathermap", units = "imperial", forecast_hours = 24 }
 
 [[block]]
 block = "memory"
@@ -33,15 +33,18 @@ format_alt = " $icon_swap $swap_used_percents "
 
 [[block]]
 block = "cpu"
-format = " $icon $utilization "
+format = " $icon{ $boost|} "
+format_alt = " $icon$utilization{ $boost|} "
 interval = 3
 
 [[block]]
 block = "temperature"
 interval = 3
-idle = 50
-info = 70
-format = " $icon {$average}C "
+idle = 70
+info = 80
+warning = 90
+format = " $icon "
+format_alt = " $icon {$average}C "
 
 [[block]]
 block = "backlight"
@@ -58,7 +61,7 @@ driver = "swaync"
 [[block]]
 block = "sound"
 step_width = 1
-click = [{ button = "left", cmd = "pkill -f pavucontrol || pavucontrol &" }]
+click = [{ button = "left", cmd = "audio-select" }]
 
 [[block]]
 block = "time"

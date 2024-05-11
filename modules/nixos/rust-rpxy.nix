@@ -20,7 +20,7 @@ in {
     systemd.services.rust-rpxy = {
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
-        ExecStart = [ "${pkgs.rust-rpxy}/bin/rpxy --config ${configFilePath}" ];
+        ExecStart = [ "${lib.getExe pkgs.rust-rpxy} --config ${configFilePath}" ];
       };
     };
   };
