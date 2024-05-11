@@ -1,6 +1,8 @@
-{pkgs, inputs, config, myOverlays, ...}: {
+{ pkgs, inputs, config, myOverlays, ... }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.ragenix.nixosModules.default
+    inputs.catppuccin.nixosModules.catppuccin
     ./friends.nix
   ];
 
@@ -15,9 +17,12 @@
   users.defaultUserShell = pkgs.zsh;
 
   programs = {
-    zsh.enable = true;
-    zsh.enableCompletion = false;
+    zsh = { enable = true; enableCompletion = false; };
     command-not-found.enable = false;
+  };
+
+  services = {
+    atd.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -31,6 +36,7 @@
     kitty.terminfo
   ];
 
+  catppuccin = { enable = true; flavour = "mocha"; };
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';
   console.useXkbConfig = true;
   home-manager.useGlobalPkgs = true;

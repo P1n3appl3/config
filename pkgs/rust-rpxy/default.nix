@@ -1,4 +1,4 @@
-{lib, stdenv, darwin, fetchFromGitHub, rustPlatform}:
+{ lib, stdenv, darwin, fetchFromGitHub, rustPlatform }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-rpxy";
   version = "2024-01-14";

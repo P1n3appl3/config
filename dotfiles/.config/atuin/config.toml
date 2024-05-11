@@ -1,4 +1,7 @@
 dialect = "us"
 style = "compact"
-inline_height = 25
+invert = true
+inline_height = 20
+show_tabs = false
+show_help = false
 sync_frequency = "12h"

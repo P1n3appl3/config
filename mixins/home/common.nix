@@ -11,7 +11,7 @@
     # Git
     git git-lfs delta gh git-heatmap git-absorb lazygit
     # Nix
-    nix home-manager nh nix-output-monitor nix-tree nil comma
+    nix home-manager nh nix-output-monitor nix-tree nil comma ragenix
     # Scripting tools
     stylua sumneko-lua-language-server shfmt shellcheck mawk
     # Fun
@@ -28,6 +28,7 @@
     (if builtins.hasAttr "osConfig" args then {} else
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
     inputs.nix-index-database.hmModules.nix-index
+    inputs.ragenix.homeManagerModules.default
   ];
 
   nix.registry = {

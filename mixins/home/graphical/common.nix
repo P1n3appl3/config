@@ -1,5 +1,4 @@
-{pkgs, lib, ...} @ inputs: let
-  iconTheme = { package = pkgs.papirus-icon-theme; name = "Papirus-Dark"; };
+{ pkgs, lib, config, ... } @ inputs: let
   nixGL = if inputs ? osConfig then lib.id else
     pkg: pkgs.buildEnv rec {
       name = "nixGL-${pkg.name}";
@@ -14,11 +13,17 @@
           ''))];
     };
 in {
-  imports = [ ./fonts.nix ];
+  imports = [ ./fonts.nix ./theme.nix ];
+
+  age.secrets = {
+    weather.file = ../../../secrets/weather.age;
+  };
 
   home.packages = with pkgs; [
+    (writeShellScriptBin "i3status-rs"
+      "`<${config.age.secrets.weather.path}` exec ${lib.getExe i3status-rust}")
     brightnessctl
-    pavucontrol playerctl pamixer
+    pavucontrol playerctl pamixer audio-select
     xdg-utils # TODO: try handlr-regex
     rofimoji
     libqalculate qalculate-gtk
@@ -31,7 +36,7 @@ in {
     gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
     (nixGL obsidian)
-    buttermanager # maybe https://github.com/digint/btrbk is actually what i want
+    # maybe https://github.com/digint/btrbk or buttermanager
     # TODO: www.marginalia.nu or ddg default search engine, set profile to
     # automate setting up my userchrome css, sync userstyles
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
@@ -41,12 +46,6 @@ in {
     (nixGL telegram-desktop) (nixGL caprine-bin) vesktop signal-desktop
     fractal-next nheko # TODO: pick one
     praat friture # TODO: try this for voice training
-    # maybe make a "media" module
-    # obs-studio kdenlive blender godot
-    # non lmms ardour tenacity (or audacity)
-    # inkscape krita pinta
-    # (nixGL (calibre.override { speechd=null; }))
-    # libresprite/acesprite-unfree
     imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
     mepo # TODO: try
     # TODO: syncthing-gtk
@@ -67,12 +66,20 @@ in {
         include = "~/.config/kitty/common.conf";
       };
     };
+    # TODO: try yofi/wofi/fuzzel
+    # TODO: try plugins: rbw/pa source+sink/mpd/systemd/wifi
+    rofi = {
+      enable = true;
+      catppuccin.enable = true;
+      plugins = [ pkgs.rofi-calc ];
+    };
   };
+
+  home.file."${config.programs.rofi.configPath}".text = ''@import "extraConfig"'';
 
   services = {
     udiskie.enable = true;
-    # TODO: configure to use Cortana
-    syncthing = { enable = true; tray.enable = true; }; # TODO: use syncthing-gtk for tray
+    syncthing = { enable = true; tray.enable = true; };
     network-manager-applet.enable = true; # TODO: greyed out available networks?
     # TODO: make reverse scrolling vary based on touchpad,
     # check mute mouse binding and volume keys
@@ -95,44 +102,4 @@ in {
   };
 
   home.keyboard.options = [ "caps:escape" "shift:both_capslock" ];
-
-  home.pointerCursor = {
-    gtk.enable = true; x11.enable = true;
-    name = "Bibata-Modern-Classic"; package = pkgs.bibata-modern-classic;
-    size = lib.mkDefault 28;
-  };
-
-  dconf.settings = { "org.gnome.desktop.interface" = { color-scheme = "prefer-dark"; }; };
-
-  gtk = { enable = true;
-    inherit iconTheme;
-    # TODO: debug https://github.com/catppuccin/gtk/issues/129
-    # TODO: try colloid and graphite
-    theme = {
-      name = "Catppuccin-Mocha-Compact-Pink-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        variant = "mocha"; accents = [ "pink" "lavender" "sapphire" ];
-        size = "compact"; tweaks = [ "rimless" ];
-      };
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-      gtk-error-bell = 0;
-      gtk-decoration-layout = "appmenu:none";
-    };
-  };
-
-  qt = { enable = true;
-    platformTheme = "qtct";
-    style = {
-      name = "kvantum"; # TODO: debug why stuff like syncthingtray and dolphin are bad
-      # https://www.reddit.com/r/kde/comments/urug5v/guide_to_a_consistent_application_style_in_plasma/
-      package = (pkgs.catppuccin-kvantum.override { accent = "Pink"; variant = "Mocha"; });
-    };
-  };
-
-  xdg.configFile."Kvantum/kvantum.kvconfig".source =
-    (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
-      General.theme = "Catppuccin-Mocha-Pink";
-    };
 }

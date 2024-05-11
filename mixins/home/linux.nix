@@ -45,6 +45,8 @@
         "x-scheme-handler/tg" = "org.telegram.desktop";
       };
     };
+    # don't warn when an app modified the file
+    configFile."mimeapps.list".force = true;
   };
 
   i18n.glibcLocales = pkgs.glibcLocalesUtf8;

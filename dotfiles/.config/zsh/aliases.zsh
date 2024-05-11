@@ -27,7 +27,7 @@ function nixfind {
 alias nixsize=nix-tree
 function nixclean { nix-collect-garbage -d && sudo $(which nix-collect-garbage) -d; }
 function switch {
-    command -v nixos-rebuild >/dev/null && { cmd=os; } || cmd=home
-    eval nh $cmd switch -ac $(hostname -s) $CONF_DIR $@
+    command -v nixos-rebuild >/dev/null && { cmd="os switch -H"; } || cmd="home switch -c"
+    eval nh $cmd $(hostname -s) -a $CONF_DIR $@
 }
 alias update="switch -u"

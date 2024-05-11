@@ -14,9 +14,6 @@ for_window [app_id="pavucontrol"] floating enable
 for_window [title=".*Syncthing Tray"] floating enable
 
 # TODO: swayidle
-# TODO: systemd services for these
-exec swaync
-exec wpaperd -d
 
 bindsym $mod+Return exec kitty -1
 bindsym $mod+Shift+r reload
@@ -31,11 +28,17 @@ bindsym $mod+u exec rofimoji
 bindsym $mod+q exec rofi -show calc -modi calc -no-sort -calc-command-history \
     -calc-command "echo -n '{result}' | wl-copy"
 bindsym $mod+n exec swaync-client -t
-bindsym $mod+Shift+n exec swaync-client -C
+bindsym $mod+Ctrl+n exec swaync-client -d
+bindsym $mod+Shift+n exec "swaync-client -C; swaync-client -cp"
 bindsym $mod+c exec hyprpicker -a
 
+# TODO: XF86AudioMedia lock and f9 media key external display settings
 bindsym XF86AudioRaiseVolume exec pamixer -i 5
 bindsym XF86AudioLowerVolume exec pamixer -d 5
+bindsym XF86AudioMute exec pamixer -t
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86MonBrightnessUp exec brightnessctl -q s '+5%'
 bindsym XF86MonBrightnessDown exec brightnessctl -q s '5%-'
 bindsym Print exec $CONF_DIR/scripts/screenshot.sh s
@@ -105,6 +108,29 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
+set $accent $blue
+set $urgent $maroon
+# target                 border    bg        text   indicator border
+client.focused           $accent   $accent   $base  $accent   $overlay0
+client.focused_inactive  $overlay0 $overlay0 $base  $accent   $overlay0
+client.unfocused         $base     $base     $text  $accent   $overlay0
+client.urgent            $urgent   $urgent   $base  $urgent   $urgent
+client.background        $base
+
+bar {
+  id main
+  position top
+  strip_workspace_numbers yes
+  colors {
+    background         $surface0
+    statusline         $surface0
+    focused_workspace  $accent   $accent   $base
+    active_workspace   $surface0 $surface0 $accent
+    inactive_workspace $surface0 $surface0 $text
+    urgent_workspace   $urgent   $urgent   $base
+  }
+}
 
 include "~/.config/sway/`hostname -s`"
 
