@@ -11,8 +11,8 @@
       hash = "sha256-QysXc0R+3HxjrdWWklrw9r8wq9gKuIRsZrMK3vh4sC0=";
     };
   };
-  nvim-config = {
-    enable = true; viAlias = true; vimAlias = true;
+  nvim-config = { enable = true;
+    viAlias = true; vimAlias = true;
     withPython3 = true; withRuby = false;
     plugins = with pkgs.vimPlugins; [
     # General

@@ -39,12 +39,19 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
     recurse = true
 [diff]
     colorMoved = default
+[diff "age"]
+    textconv = "rage -di ~/.ssh/id_ed25519"
+[diff "image"]
+    textconv = "exiftool -ImageSize -FileSize -FileType -TimeCreated -CreatorTool -Duration -FileModifyDate"
+    cachetextconv = true
 [interactive]
     diffFilter = delta --color-only
 [delta]
     navigate = true
 [http]
     cookiefile = ~/.gitcookies
+[init]
+    defaultBranch = "main"
 [merge]
     tool = nvimdiff
     conflictstyle = zdiff3

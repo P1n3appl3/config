@@ -2,8 +2,8 @@
   home.packages = with pkgs; [ sox mediainfo mpc-cli ytmdl ];
 
   programs = {
-    beets = {
-      enable = true; package = pkgs.beets-unstable;
+    beets = { enable = true;
+      package = pkgs.beets-unstable;
       mpdIntegration = { enableStats = true; enableUpdate = true; };
       settings = {
         directory = config.xdg.userDirs.music;
@@ -19,8 +19,8 @@
         replaygain = { auto = true; backend = "ffmpeg"; };
       };
     };
-    ncmpcpp = {
-      enable = true; settings = {
+    ncmpcpp = { enable = true;
+      settings = {
         mouse_list_scroll_whole_page = "yes";
         lines_scrolled = "1";
         message_delay_time = "2";
@@ -50,8 +50,8 @@
 
   services = {
     mpdris2.enable = true;
-    mpd = {
-      enable = true; extraConfig = ''
+    mpd = { enable = true;
+      extraConfig = ''
         replaygain      "album"
         metadata_to_use "artist,album,title,track,name,genre,date,composer,performer"
         audio_output {

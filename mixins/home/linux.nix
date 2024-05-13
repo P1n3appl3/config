@@ -14,6 +14,7 @@
     serverAliveInterval = 30;
     controlPersist = "15h";
     controlMaster = "auto";
+    compression = true;
     includes = [ "extra-config" ];
     matchBlocks = {
       "pineapple.computer julia.blue Cortana Cortana.local Cortana.lan" = {
@@ -33,6 +34,7 @@
       download = home + "/downloads";
       music = home + "/music";
       pictures = home + "/images";
+      videos = home + "/videos";
     };
 
     mime.enable = true;
