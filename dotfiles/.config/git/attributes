@@ -1,0 +1,8 @@
+*.age   diff=age
+*.png   diff=image
+*.apng  diff=image
+*.webp  diff=image
+*.jpg   diff=image
+*.gif   diff=image
+*.bmp   diff=image
+*.svg   diff=image

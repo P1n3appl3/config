@@ -20,9 +20,9 @@
   };
 
   services = {
-    pipewire = {
-      enable = true; wireplumber.enable = true;
-      alsa.enable = true; pulse.enable = true; jack.enable = true;
+    pipewire = { enable = true;
+      wireplumber.enable = true; alsa.enable = true;
+      pulse.enable = true; jack.enable = true;
     };
     automatic-timezoned.enable = true;
     # TODO: helpLine replace instead of merging

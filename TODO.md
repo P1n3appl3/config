@@ -127,6 +127,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage, though 
 * git
   * use an actual difftool like nvimdiff/fugitive/gnome meld/etc.
   * try difftastic inline mode instead of delta
+  * image/pdf/kicad/etc. differs, like [this](https://github.com/ewanmellor/git-diff-image)
 * nss doesn't work for stuff like `htop` and `eza` in home-manager on my work computer, running the system's version of `nscd` seems to fix it but that service keeps going down.
 * try xplr/joshuto
 * htop config param for number of cores, add io screen once [this](https://github.com/nix-community/home-manager/pull/3846) gets merged

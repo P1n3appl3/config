@@ -3,23 +3,23 @@
 in {
   networking.firewall = {
     allowedTCPPorts = [
-      22 69 # ssh
-      80 443 # http(s)
+      22 69     # ssh
+      80 443    # http(s)
       8080 8443 # testing
-      22000 # syncthing
+      22000     # syncthing
     ];
     allowedUDPPorts = [ 22000 21027 ]; # syncthing + discovery
   };
 
   services = {
-    openssh = {
-      enable = true; ports = [ 69 ];
+    openssh = { enable = true;
+      ports = [ 69 ];
       settings.PasswordAuthentication = false;
       # TODO: watch /run/utmp and export to prometheus, or just read ssh log?
     };
 
-    endlessh-go = {
-      enable = true; port = 22;
+    endlessh-go = { enable = true;
+      port = 22;
       prometheus = { enable = true; port = 9100; };
       extraOptions = [ "-alsologtostderr"];
     };
@@ -54,8 +54,8 @@ in {
       configuration.general = { health = true; directory-listing = true; };
     };
 
-    grafana = {
-      enable = true; settings = {
+    grafana = { enable = true;
+      settings = {
         server = {
           http_addr = "127.0.0.1";
           http_port = 9001;
@@ -120,7 +120,6 @@ in {
 
   systemd.services = {
     convert-pem = let parent = [ "acme-pineapple.computer.service" ]; in {
-      enable = true;
       description = "Convert LetsEncrypt private key from PKCS1 to PKCS8";
       unitConfig = { Type = "oneshot"; };
       serviceConfig = {
@@ -132,6 +131,7 @@ in {
     };
 
     ddns = {
+      description = "Update porkbun DNS entry to point to this computer";
       path = with pkgs; [ xh jq ];
       startAt = "*/6:00";
       script = ''

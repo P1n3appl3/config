@@ -1,19 +1,21 @@
-{ lib, fetchFromGitHub, rustPlatform, pkg-config, openssl }:
+{ lib, rustPlatform, fetchFromGitHub, pkg-config, openssl, stdenv, darwin }:
 rustPlatform.buildRustPackage rec {
-  name = "cargo-clone-crate";
-  version = "unstable-2024-04-05";
-
+  pname = "cargo-clone-crate";
+  version = "unstable-2024-04-19";
   src = fetchFromGitHub {
     owner = "ehuss";
-    repo = name;
-    rev = "76b7b9e5f0ff948045d4b42b8b3d94971e78fd19";
-    hash = "sha256-IwSV9+tEGlbc6m1kxxaEuc+mxVoF8wcUxmsNnNGQrW4=";
+    repo = pname;
+    rev = "857711f6e8897741e99be3d5a691c5f5303d949f";
+    hash = "sha256-YZt6w8BIJKr1AWWzqhvF7GK1s9DL1+jJefbdWpEE5hA=";
   };
-  cargoHash = "sha256-wbYzc/reZa/hWX5FpRg2N2oKMe9ixf5tj2ikjEqBvVc=";
-  doCheck = false; # tests try to reach crates.io which fails in the sandbox
+  cargoHash = "sha256-fUhhfYZmzEX8gm3M8SbEeHssLYkSJB3KyFnMZM9jvcY=";
 
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ openssl ];
+  buildInputs = [
+    openssl
+  ] ++ lib.optionals stdenv.isDarwin [
+    darwin.apple_sdk.frameworks.Security
+  ];
 
-  meta.platforms = lib.platforms.linux;
+  doCheck = false; # it tries to run `git clone` in tests
 }

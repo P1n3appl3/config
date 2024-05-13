@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, myOverlays, ... }: {
+{ pkgs, lib, inputs, config, myOverlays, ... }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.ragenix.nixosModules.default
@@ -36,6 +36,7 @@
     kitty.terminfo
   ];
 
+  age.ageBin = lib.getExe pkgs.rage;
   catppuccin = { enable = true; flavour = "mocha"; };
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';
   console.useXkbConfig = true;
