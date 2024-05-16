@@ -4,7 +4,7 @@
     xclip maim xcolor
     dunst
     oneko
-    xorg.xeyes xorg.xkill
+    xorg.xkill
     xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
   ];
 

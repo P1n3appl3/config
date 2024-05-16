@@ -1,5 +1,8 @@
-{
-  imports = [ ../../mixins/nixos/btrfs.nix ];
+{ inputs, ...}: {
+  imports = [
+    ../../mixins/nixos/btrfs.nix
+    inputs.nixos-hardware.nixosModules.raspberry-pi-4
+  ];
 
   boot = {
     loader = {

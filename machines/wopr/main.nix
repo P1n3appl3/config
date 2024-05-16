@@ -1,12 +1,9 @@
-{ pkgs, inputs, myOverlays, ... }: {
+{ pkgs, lib, inputs, myOverlays, ... }: {
   imports = [
     ./hardware.nix
-    inputs.nixos-hardware.nixosModules.framework-13-7040-amd
   ];
 
   environment.systemPackages = with pkgs; [
-    framework-tool
-    amdgpu_top
     clang
     littlefs-fuse
     google-chrome
@@ -25,8 +22,11 @@
       pulse.enable = true; jack.enable = true;
     };
     automatic-timezoned.enable = true;
-    # TODO: helpLine replace instead of merging
-    getty = { autologinUser = "julia"; greetingLine = ''\l''; helpLine = "♥"; };
+    getty = {
+      autologinUser = "julia";
+      greetingLine = ''\l'';
+      helpLine = lib.mkForce "♥";
+    };
     # I don't use xorg, so these are just for the tty
     # TODO: set these some other way? either console.keymap or interceptor
     xserver.xkb.options = "altwin:swap_alt_win,caps:escape,shift:both_capslock";
@@ -34,6 +34,8 @@
   };
 
   networking = { hostName = "WOPR"; networkmanager.enable = true; };
+
+  security.pam.services.swaylock = {};
 
   home-manager = {
     extraSpecialArgs = { inherit inputs myOverlays; };

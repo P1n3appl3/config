@@ -23,6 +23,7 @@
 
   services = {
     atd.enable = true;
+    nixseparatedebuginfod.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

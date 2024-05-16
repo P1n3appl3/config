@@ -1,9 +1,11 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    obs-studio kdenlive blender godot_4
+    obs-studio kdenlive
+    godot_4
+    blender
+    inkscape krita pinta aseprite
     non lmms ardour audacity # (or tenacity)
-    inkscape krita pinta
-    (calibre.override { speechd=null; })
-    aseprite
+    logisim-evolution kicad-small
+    calibre
   ];
 }

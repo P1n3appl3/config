@@ -14,8 +14,6 @@ for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="audio-select"] border pixel 1
 for_window [title=".*Syncthing Tray"] floating enable
 
-# TODO: swayidle
-
 bindsym $mod+Return exec kitty -1
 bindsym $mod+Shift+r reload
 
@@ -33,13 +31,14 @@ bindsym $mod+Ctrl+n exec swaync-client -d
 bindsym $mod+Shift+n exec "swaync-client -C; swaync-client -cp"
 bindsym $mod+c exec hyprpicker -a
 
-# TODO: XF86AudioMedia lock and f9 media key external display settings
+# TODO: f9 media key external display settings
+bindsym XF86AudioMedia exec loginctl lock-session
+bindsym XF86AudioMute        exec pamixer -t
 bindsym XF86AudioRaiseVolume exec pamixer -i 5
 bindsym XF86AudioLowerVolume exec pamixer -d 5
-bindsym XF86AudioMute exec pamixer -t
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86MonBrightnessUp exec brightnessctl -q s '+5%'
 bindsym XF86MonBrightnessDown exec brightnessctl -q s '5%-'
 bindsym Print exec $CONF_DIR/scripts/screenshot.sh s
@@ -61,8 +60,8 @@ bindsym $mod+Shift+space floating toggle
 set $wsT "0:󰋑"
 set $ws0 "1:󰖟"
 set $ws1 "2:󰀳"
-set $ws2 "3:"
-set $ws3 "4:λ"
+set $ws2 "3:"
+set $ws3 "4:"
 set $ws4 "5:"
 set $ws5 "6:"
 set $ws6 "7:"
@@ -83,8 +82,9 @@ bindsym $mod+Shift+$left  move left
 bindsym $mod+Shift+$down  move down
 bindsym $mod+Shift+$up    move up
 bindsym $mod+Shift+$right move right
-# bindsym $mod+Tab scratchpad show
-# bindsym $mod+Shift+Tab move scratchpad
+# TODO: docs say you can combine these with a plus
+bindgesture swipe:up+down: workspace back_and_forth
+bindgesture hold:4 workspace back_and_forth
 bindsym $mod+Tab workspace $wsT
 bindsym $mod+Grave workspace $ws0
 bindsym $mod+1 workspace $ws1
@@ -122,6 +122,7 @@ client.background        $base
 bar {
   id main
   position top
+  status_command i3status-rs
   strip_workspace_numbers yes
   colors {
     background         $surface0
@@ -131,6 +132,10 @@ bar {
     inactive_workspace $surface0 $surface0 $text
     urgent_workspace   $urgent   $urgent   $base
   }
+  bindsym button4 nop
+  bindsym button5 nop
+  bindsym button6 nop
+  bindsym button7 nop
 }
 
 include "~/.config/sway/`hostname -s`"
