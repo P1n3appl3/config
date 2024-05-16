@@ -67,6 +67,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * wayland support so it's positioned under your cursor
   * monitors for the inputs and outputs, maybe as button background?
   * single volume sliders for input and output
+* audioselect clone for power profiles on the battery block
 * save/restore layouts for restarts and/or just have good auto-opens on startup
 * fix xcolor not working when launched by i3, seems to fail around [here](https://github.com/Soft/xcolor/blob/969d6525c4568a2fafd321fcd72a95481c5f3c7b/src/location.rs#L32)
 * test if mime default apps are working and add others
@@ -87,7 +88,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * beets set max quality with "convert" plugin
   * check that media keys got auto-bound by mpdris2
 * performance
-  * use powertop/turbostat/eventstat/pidstat/smemstat/powerstat/power-calibrate to see the difference with hyprland vs sway and ironbar vs i3status-rs
+  * use powertop/turbostat/eventstat/pidstat/smemstat/powerstat/power-calibrate to see the difference with different bar poll rate and wm
   * ironbar widget to show current power draw (and graph?), and select between governors
 * oneko/xsnow/xeyes/xkill/xmascot
   * for oneko, see [shimeji](https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#shimeji)
@@ -97,25 +98,22 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * ironbar icons not picking up home-manager icons, maybe gtk_data_dirs related?
 * bar weather widget, [open meteo](https://open-meteo.com) + [free geo ip](https://freegeoip.io/)
 * wluma [home-manager module](https://github.com/nix-community/home-manager/issues/2420)
+* set --ozone-platform-hint=auto for caprine and other electron apps
+* debug logisim(/evolution) blank window on launch
 
 ## Theme
 
-Currently I'm trying out using catppuccin mocha everywhere I can manage, though a lot of stuff is still vaguely gruvbox. This [darcula config](https://github.com/addy419/configurations/blob/master/modules/colorschemes/dracula.nix) is a good reference of stuff that can be themed. There's also [a separate flake](https://github.com/catppuccin/nix) that pre-configures stuff for catppuccin specifically.
+Currently I'm trying out using catppuccin mocha everywhere I can manage. This [darcula config](https://github.com/addy419/configurations/blob/master/modules/colorschemes/dracula.nix) is a good reference of stuff that can be themed. There's also [a separate flake](https://github.com/catppuccin/nix) that pre-configures stuff for catppuccin specifically.
 
 * fix [rounded corner issue](https://github.com/catppuccin/gtk/issues/129)
-* rofi
-* qt (kvantum) seems broken currently, see sioodmy's config
 * imhex
 * firefox homepage and/or userstyles
 * cursor maybe? also try qogir and graphite
-* sway/i3status-rs
-* hyprland/ironbar
 * swaync
 * nvim
 * [obsidian](https://github.com/catppuccin/obsidian)
 * kitty/wezterm/rio/alacritty
   * does terminal emulator cover most stuff, or will eza/htop/etc. need additional config?
-* [tty](https://github.com/catppuccin/tty)
 * [systemd](https://github.com/systemd/systemd/blob/ae9fd433d6e245677e6e916a3461be462362e7b8/meson_options.txt#L477)
 
 ## Other
@@ -140,9 +138,10 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage, though 
 * Upstream the nixGL wrapper I use (or use the upstream one they decide on)
 * add a custom livedisk flake output
 * add a vm flake output
-* my `warnIfUpdated` util function seems broken, though I could have sworn it worked at one point. I might be missing something about how evaluation caching works (I've noticed that other home-manager warnings only show up a single time after I `nix flake update` )
+* my `warnIfUpdated` util function seems broken, though I could have sworn it worked at one point. I might be missing something about how evaluation caching works (I've noticed that other home-manager warnings only show up a single time after I `nix flake update`)
 * profile flake eval time, see [this thread](https://discourse.nixos.org/t/nix-flamegraph-or-profiling-tool/33333)
 * grab the patches for flake schemas
+* get debug symbols for nix packages. try debugging sway config parsing
 
 ## NixOS stuff
 
@@ -209,9 +208,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage, though 
 
 ## `pkgs/`
 
-* `android-messages`
-  * find a good example of packaging an electron app in nixpkgs and copy it
-
 ## Hosts
 
 ### Cortana
@@ -227,7 +223,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage, though 
   * prometheus metrics hookup!
 * add vaultwarden server and hook up phone/browsers
 * [host some docs](https://jade.fyi/blog/docs-tricks-and-gnus/) with nice css
-  * home manager manual like mipmip's, but autoupdating
+  * and/or something like <https://becca.ooo/unicode> for other topics
 * [service dashboard](https://status.catgirl.cloud/) with uptime kuma
   * maybe send telegram message when stuff goes down
 * [ntfy](https://ntfy.sh/) push notifs for service status events
@@ -252,12 +248,14 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage, though 
 * fw-ectool
   * lights! need to see how fast I can alternate and how wide the gamut is
   * flicker pattern upon plugging in and/or do gradient while charging
-* dbus-tool or qdbus talk to geoclue
+* d-spy/bustle/dbus-tool/qdbus talk to geoclue
 * disable middle-click paste
 * howett.net fnlock light to capslock
   * bind caps to ctrl when held
   * right ctrl -> fn
 * [low latency audio](https://github.com/Aylur/dotfiles/blob/main/nixos/audio.nix)
+* [only autologin on tty1](https://github.com/NixOS/nixpkgs/issues/81552)
+* measure power draw in s2idle, as well as peak and idle
 
 ### clu
 

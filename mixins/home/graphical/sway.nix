@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, lib, config, ... }: {
   wayland.windowManager.sway = { enable = true;
    # TODO: change exec line to "systemd-cat -p sway ${pkgs.sway}/bin/sway"
     catppuccin.enable = true;
@@ -23,9 +23,11 @@
     libsForQt5.qt5.qtwayland
     wluma
     # TODO: oneko wayland port and/or https://github.com/Ibrahim2750mi/linux-goose
+    wpaperd # TODO: add to home-manager service so wpaperctl is in PATH
   ];
 
   programs = {
+    rofi.package = pkgs.rofi-wayland;
     wpaperd = { enable = true;
       settings.default = {
         path = config.xdg.userDirs.pictures + "/wallpapers";
@@ -33,12 +35,31 @@
         duration = "30m";
       };
     };
-    rofi.package = pkgs.rofi-wayland;
+    swaylock = { enable = true;
+      catppuccin.enable = true;
+      package = pkgs.swaylock-effects;
+      settings = {
+        daemonize = true; screenshot = true; clock = true; indicator = true;
+        ignore-empty-password = true; show-failed-attempts = true;
+        inside-color = lib.mkForce "1e1e2eaa"; effect-blur = "7x5";
+      };
+    };
   };
 
   services = {
+    swayidle = { enable = true;
+      events = [
+        { event = "before-sleep"; command = "playerctl pause"; }
+        { event = "before-sleep"; command = "swaylock"; }
+        { event = "lock"; command = "swaylock"; }
+      ];
+      timeouts = let screen = state: "swaymsg 'output * dpms ${state}'"; in [
+        { timeout = 120; command = screen "off"; resumeCommand = screen "on"; }
+      ];
+    };
     cliphist.enable = true;
-    swaync.enable = true;
+    swaync.enable = true; # TODO: ctp
+    swayosd.enable = true; # TODO: ctp
   };
 
   systemd.user.services = {

@@ -2,7 +2,6 @@
   imports = [
     ./hardware.nix
     ./web.nix
-    inputs.nixos-hardware.nixosModules.raspberry-pi-4
   ];
 
   environment.systemPackages = with pkgs; [

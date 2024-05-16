@@ -1,20 +1,15 @@
-{
-  imports = [ ../../mixins/nixos/btrfs.nix ];
+{ pkgs, inputs, ... }: {
+  imports = [
+    ../../mixins/nixos/btrfs.nix
+    inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+  ];
+
+  environment.systemPackages = with pkgs; [
+    amdgpu_top
+  ];
 
   services = {
     fwupd.enable = true;
-    # from https://www.worldofbs.com/nixos-framework, TODO: tweak
-    tlp = { enable = true;
-      settings = {
-        CPU_BOOST_ON_BAT = 0;
-        CPU_SCALING_GOVERNOR_ON_BATTERY = "powersave";
-        START_CHARGE_THRESH_BAT0 = 90;
-        STOP_CHARGE_THRESH_BAT0 = 97;
-        RUNTIME_PM_ON_BAT = "auto";
-      };
-    };
-    # TODO: figure out why this is on/conflicts with tlp
-    power-profiles-daemon.enable = false;
     logind = {
       lidSwitch = "suspend-then-hibernate";
       extraConfig = ''
@@ -26,9 +21,6 @@
     };
   };
   systemd.sleep.extraConfig = "HibernateDelaySec=4h";
-
-  # TODO: reenable once I check that it doesn't mess with tlp
-  # powerManagement.powertop.enable = true;
 
   boot = {
     loader = {
@@ -45,10 +37,9 @@
   };
 
   hardware = {
-    enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = true;
+    bluetooth = { enable = true; powerOnBoot = false; };
+    enableRedistributableFirmware = true; # enables microcode updates
   };
-
   networking.usePredictableInterfaceNames = false; # I like wlan0
 
   fileSystems = {

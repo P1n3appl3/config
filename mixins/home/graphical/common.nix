@@ -26,7 +26,8 @@ in {
     brightnessctl
     pavucontrol playerctl pamixer audio-select
     xdg-utils # TODO: try handlr-regex
-    rofimoji
+    xorg.xeyes
+    rofimoji # TODO: put in rofi plugins section
     libqalculate qalculate-gtk
     wezterm rio alacritty
     gnome.nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
@@ -44,9 +45,9 @@ in {
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
     # TODO: bitwarden popup floating window
     # TODO: vaapi hardware decode
-    (nixGL (firefox.override { cfg.speechSynthesisSupport = false; }))
+    (nixGL firefox)
     (nixGL telegram-desktop) (nixGL caprine-bin) vesktop signal-desktop
-    fractal-next nheko # TODO: pick one
+    android-messages fractal-next nheko # TODO: pick one
     praat friture # TODO: try this for voice training
     imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
     mepo # TODO: try

@@ -16,6 +16,7 @@ config 🍍 nix flake show
 ├───overlays
 │   ╰───default: Nixpkgs overlay with my packages and overrides
 ╰───packages
+    ├───android-messages: desktop messages client
     ├───audio-select: pulse-audio device selector
     ├───ascii-rain: pretty terminal rain animation
     ├───barchart: draw barcharts in the terminal
