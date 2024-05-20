@@ -13,7 +13,6 @@
     logind = {
       lidSwitch = "suspend-then-hibernate";
       extraConfig = ''
-        HandlePowerKey=suspend-then-hibernate
         IdleAction=suspend-then-hibernate
         IdleActionSec=10m
       '';

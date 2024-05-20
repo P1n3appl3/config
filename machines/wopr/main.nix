@@ -4,7 +4,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    clang
     littlefs-fuse
     google-chrome
     unrar-free

@@ -9,3 +9,4 @@ compile_commands.json
 *.d
 result
 .rustfmt.toml
+.direnv

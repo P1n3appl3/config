@@ -4,7 +4,7 @@
     godot_4
     blender
     inkscape krita pinta aseprite
-    non lmms ardour audacity # (or tenacity)
+    furnace non lmms ardour audacity # (or tenacity)
     logisim-evolution kicad-small
     calibre
   ];

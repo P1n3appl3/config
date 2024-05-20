@@ -82,8 +82,8 @@ bindsym $mod+Shift+$left  move left
 bindsym $mod+Shift+$down  move down
 bindsym $mod+Shift+$up    move up
 bindsym $mod+Shift+$right move right
-# TODO: docs say you can combine these with a plus
-bindgesture swipe:up+down: workspace back_and_forth
+bindgesture swipe:up workspace back_and_forth
+bindgesture swipe:down workspace back_and_forth
 bindgesture hold:4 workspace back_and_forth
 bindsym $mod+Tab workspace $wsT
 bindsym $mod+Grave workspace $ws0
