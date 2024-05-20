@@ -20,5 +20,6 @@ target
 .cargo/registry
 .cargo/git
 .cargo/target
-DriveFS
 go
+.direnv
+.git

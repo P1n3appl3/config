@@ -80,7 +80,7 @@ in {
            # HAL.id = "TODO";
             WOPR.id = "N7B4EPQ-B3PLQIZ-NZIGIEC-CDOIZ3B-MLMUIIO-M5SGMJC-JTVRMB3-SUVIVQI";
              clu.id = "KK6IRAU-W7HRIGO-TJL7PNN-DRQCLID-4BBPHPH-IRY5TJY-G372KO6-F527XAB";
-          dragon.id = "5WZIGDB-A5E2YCO-VRHUCI7-6O2GPWN-3J6ONPW-IVBHUE5-VM5JHF2-J2277A2";
+          dragon.id = "6TN3KGX-JU2KQEA-B6VKVCK-AJFAWQG-W2CLE5Q-2WYDPEN-YV3YKXU-HJV6UQL";
         };
         folders = (builtins.mapAttrs (n: d: { path = "~/${n}"; devices = d; }) {
                 notes = [ "WOPR" "dragon" "clu" ];
@@ -94,6 +94,12 @@ in {
     uptime-kuma = { enable = true;
       settings.PORT = "9004";
     };
+
+    porkbun-ddns = { enable = true;
+      secret-key = config.age.secrets.porkbun-secret.path;
+      api-key = config.age.secrets.porkbun-api.path;
+      domains = [ "pineapple.computer" "julia.blue" ];
+    };
   };
 
   age.secrets = {
@@ -106,10 +112,7 @@ in {
       dnsProvider = "porkbun";
       renewInterval = "weekly";
       email = "josephryan3.14@gmail.com";
-      extraDomainNames = [
-        "josephis.gay" "josephryan.me"
-        "*.pineapple.computer" "*.josephis.gay" "*.josephryan.me"
-      ];
+      extraDomainNames = [ "*.pineapple.computer" "julia.blue" "*.julia.blue" ];
       environmentFile = builtins.toFile "envFile" "LEGO_DISABLE_CNAME_SUPPORT=true";
       credentialFiles = {
         "PORKBUN_API_KEY_FILE" = config.age.secrets.porkbun-api.path;
@@ -128,20 +131,6 @@ in {
           -out ${acme_dir}/key-pkcs8.pem -outform PEM'';
       };
       after = parent; wantedBy = parent;
-    };
-
-    ddns = {
-      description = "Update porkbun DNS entry to point to this computer";
-      path = with pkgs; [ xh jq ];
-      startAt = "*/6:00";
-      script = ''
-        endpoint=https://api.porkbun.com/api/json/v3
-        edit=dns/editByNameType/pineapple.computer/A
-        api=apikey=`<${config.age.secrets.porkbun-api.path}`
-        secret=secretapikey=`<${config.age.secrets.porkbun-secret.path}`
-        ip=`xh post $endpoint/ping $api $secret | jq .yourIp -r`
-        xh post $endpoint/$edit $api $secret content=$ip ttl=21600 | jq .status -r
-      '';
     };
   };
 }

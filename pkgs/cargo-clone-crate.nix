@@ -18,4 +18,5 @@ rustPlatform.buildRustPackage rec {
   ];
 
   doCheck = false; # it tries to run `git clone` in tests
+  meta.broken = stdenv.isDarwin; # see https://garnix.io/build/3Bwz1mY0
 }

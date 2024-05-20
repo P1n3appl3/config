@@ -1,6 +1,7 @@
 { pkgs, lib, config, ... }: {
   wayland.windowManager.sway = { enable = true;
    # TODO: change exec line to "systemd-cat -p sway ${pkgs.sway}/bin/sway"
+   # TODO: wrapper features?
     catppuccin.enable = true;
     systemd.xdgAutostart = true;
     extraSessionCommands = ''

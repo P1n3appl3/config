@@ -84,7 +84,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * try numderline
 * music
   * try clerk or rofi-mpd instead of song.sh
-  * try music-player (rust) and better tagging for beets
+  * try music-player (rust) or [this](https://github.com/Martchus/tageditor) and better tagging for beets
   * beets set max quality with "convert" plugin
   * check that media keys got auto-bound by mpdris2
 * performance
