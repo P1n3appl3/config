@@ -1,5 +1,4 @@
 { pkgs, lib, ... }: {
-  fonts.fontconfig.enable = true;
   gtk.font = { name = "Sans"; size = lib.mkDefault 12; };
 
   home.packages = with pkgs; [
@@ -12,43 +11,54 @@
     comic-neue
   ];
 
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts = {
+      serif = [
+        "Noto Sans Symbols"
+        "Noto Sans Symbols 2"
+        "Noto Color Emoji"
+        "Symbols Nerd Font"
+        "Noto Serif"
+        "Noto Sans Math"
+        "Noto Serif CJK JP"
+      ];
+      sansSerif = [
+        "Noto Sans Symbols"
+        "Noto Sans Symbols 2"
+        "Noto Color Emoji"
+        "Symbols Nerd Font"
+        "Noto Sans"
+        "Noto Sans Math"
+        "Noto Sans CJK JP"
+      ];
+      monospace = [
+        "Noto Sans Symbols"
+        "Noto Sans Symbols 2"
+        "Noto Color Emoji"
+        "Symbols Nerd Font"
+        "Source Code Pro"
+        "Noto Sans Mono CJK JP"
+        "Noto Sans Math"
+
+      ];
+      emoji = [
+        "Noto Color Emoji"
+      ];
+      # TODO: cursive comic-neue
+    };
+  };
+
   xdg.configFile."fontconfig/fonts.conf".text = ''
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
 <fontconfig>
-    <alias> <family>serif</family> <prefer>
-        <family>Noto Sans Symbols</family>
-        <family>Noto Sans Symbols 2</family>
-        <family>Noto Color Emoji</family>
-        <family>Symbols Nerd Font</family>
-        <family>Noto Serif</family>
-        <family>Noto Sans Math</family>
-        <family>Noto Serif CJK JP</family>
-    </prefer> </alias>
-    <alias> <family>sans-serif</family> <prefer>
-        <family>Noto Sans Symbols</family>
-        <family>Noto Sans Symbols 2</family>
-        <family>Noto Color Emoji</family>
-        <family>Symbols Nerd Font</family>
-        <family>Noto Sans</family>
-        <family>Noto Sans Math</family>
-        <family>Noto Sans CJK JP</family>
-    </prefer> </alias>
-    <alias> <family>monospace</family> <prefer>
-        <family>Noto Sans Symbols</family>
-        <family>Noto Sans Symbols 2</family>
-        <family>Noto Color Emoji</family>
-        <family>Symbols Nerd Font</family>
-        <family>Source Code Pro</family>
-        <family>Noto Sans Mono CJK JP</family>
-        <family>Noto Sans Math</family>
-    </prefer> </alias>
-    <alias> <family>cursive</family> <prefer>
+<alias> <family>cursive</family> <prefer>
         <family>Noto Color Emoji</family>
         <family>Symbols Nerd Font</family>
         <family>Comic Neue</family>
     </prefer> </alias>
-    <match>
+  <match>
         <test name="family"> <string>monospace</string> </test>
         <edit mode="prepend" name="family"> <string>Noto Color Emoji</string> </edit>
     </match>

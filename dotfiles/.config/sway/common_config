@@ -120,10 +120,12 @@ client.unfocused         $base     $base     $text  $accent   $overlay0
 client.urgent            $urgent   $urgent   $base  $urgent   $urgent
 client.background        $base
 
+output * bg $base solid_color
+
 bar {
   id main
   position top
-  status_command i3status-rs
+  status_command ~/.nix-profile/bin/i3status-rs # TODO: fix path on work computers
   strip_workspace_numbers yes
   colors {
     background         $surface0
