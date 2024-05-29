@@ -75,4 +75,12 @@
       ];
     })
   );
+
+  nixConfig = {
+    extra-substituters = [ "https://cache.garnix.io" "https://pineapple.cachix.org" ];
+    extra-trusted-public-keys = [
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      "pineapple.cachix.org-1:FjFjdb26PFCZL09M2yHiPw1J+c1Ab9AbpfnFeTpzNQk="
+    ];
+  };
 }

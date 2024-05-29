@@ -1,7 +1,7 @@
 {
   home = {
-    username = "josephry";
-    homeDirectory = "/Users/josephry";
+    username = "pineapple";
+    homeDirectory = "/Users/pineapple";
   };
-  imports = [ ../mixins/home/dev.nix ];
+  imports = [ ];
 }

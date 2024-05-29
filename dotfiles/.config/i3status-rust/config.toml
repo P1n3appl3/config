@@ -72,7 +72,10 @@ driver = "swaync"
 [[block]]
 block = "sound"
 step_width = 1
-click = [{ button = "left", cmd = "audio-select" }]
+click = [
+  { button = "left", cmd = "audio-select" },
+  { button = "middle", cmd = "pavucontrol" },
+]
 
 [[block]]
 block = "time"

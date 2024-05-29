@@ -11,7 +11,6 @@
 
   programs = {
     dconf.enable = true;
-    # TODO: put in games module dependent on osConfig
     steam.enable = true;
   };
 

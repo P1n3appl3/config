@@ -9,7 +9,7 @@ config 🍍 nix flake show
 │   ├───crabapple: $work mac
 │   ╰───rinzler:   $work desktop
 ├───nixosConfigurations
-│   ├───Cortana: my trusty RPi4B home server
+│   ├───Cortana: raspberry pi 4B
 │   ╰───WOPR:    framework laptop 13" (AMD 7640U)
 ├───nixosModules
 │   ╰───rust-rpxy: config and service for reverse proxy

@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home = {
-    username = "josephry";
-    homeDirectory = "/usr/local/google/home/josephry";
+    username = "pineapple";
+    homeDirectory = "/usr/local/google/home/pineapple";
   };
 
   home.packages = with pkgs; [ git-gr ];

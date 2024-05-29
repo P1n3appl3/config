@@ -1,12 +1,8 @@
+# vim:ft=gitconfig
 [user]
-    name = pineapple
-    email = josephryan3.14@gmail.com
+    name = Julia Ryan
+    email = p1n3appl3@users.noreply.github.com
 	signingkey = ~/.ssh/id_ed25519.pub
-[core]
-    editor = nvim
-	excludesfile = ~/.gitignore
-    autocrlf = input
-    pager = delta
 [alias]
     b = branch
     s = status
@@ -23,20 +19,6 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
     l = ll -n 20
     vi = "!vi() { git diff ${@:-HEAD^} --diff-filter=d --name-only | xargs nvim; } ; vi"
     changed = diff --stat HEAD~1
-[log]
-    date=format:%m/%d/%y
-[gpg]
-	format = ssh
-[commit]
-	gpgsign = true
-[push]
-    default = matching
-[pager]
-    branch = false
-[branch]
-    autosetuprebase = always
-[submodule]
-    recurse = true
 [diff]
     colorMoved = default
 [diff "age"]
@@ -44,14 +26,6 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
 [diff "image"]
     textconv = "exiftool -ImageSize -FileSize -FileType -TimeCreated -CreatorTool -Duration -FileModifyDate"
     cachetextconv = true
-[interactive]
-    diffFilter = delta --color-only
-[delta]
-    navigate = true
-[http]
-    cookiefile = ~/.gitcookies
-[init]
-    defaultBranch = "main"
 [merge]
     tool = nvimdiff
     conflictstyle = zdiff3
