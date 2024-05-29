@@ -1,0 +1,10 @@
+[
+  {
+    "command": "previous_chat",
+    "keys": "ctrl+u"
+  },
+  {
+    "command": "next_chat",
+    "keys": "ctrl+d"
+  }
+]

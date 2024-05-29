@@ -1,0 +1,7 @@
+# vim:ft=swayconfig
+font pango:monospace 14
+
+output DP-3 {
+  resolution 3840x2160
+  scale 1
+}

@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   home = {
     username = "pineapple"; homeDirectory = "/home/pineapple";
   };
@@ -9,6 +9,15 @@
     ../mixins/home/graphical/sway.nix
     ../mixins/home/graphical/music.nix
   ];
+
+  home.packages = with pkgs; [
+    pastel
+  ];
+
+  programs.kitty.settings.font_size = 14;
+
+  services.syncthing.enable = lib.mkForce false;
+  services.syncthing.tray.enable = lib.mkForce false;
 
   xdg.mimeApps.defaultApplications =
     let chrome = lib.mkForce "chrome.desktop"; in {
