@@ -1,5 +1,5 @@
 # Load other configs
-my_configs=(keybinds completion plugins fuzzy history terminal aliases)
+my_configs=(keybinds completion plugins fuzzy history terminal theme aliases)
 for f in $my_configs; do source $HOME/.config/zsh/$f.zsh; done
 local extra=$HOME/.config/zsh/extra.zsh && test -f $extra && source $extra
 
@@ -9,11 +9,11 @@ alias reload='unset __HM_SESS_VARS_SOURCED; exec zsh'
 function mkconfig {
     eval "function ${1}config { cd $CONF_DIR; vi $CONF_DIR/dotfiles/$2 ${@:3}; cd -}"
 }
-mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.{vim,lua}}'
+mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.lua}'
 mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
 mkconfig nix '../{mixins/home/common.nix,**/*.nix}'
 mkconfig sway '.config/{sway/{common_config,`hostname -s`},i3status-rust/*}'
-mkconfig git '.config/git/{config,ignore,*}'
+mkconfig git '.config/git/{extraConfig,ignore,*}'
 
 # Misc.
 unsetopt flowcontrol

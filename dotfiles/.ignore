@@ -22,4 +22,4 @@ target
 .cargo/target
 go
 .direnv
-.git
+.wine

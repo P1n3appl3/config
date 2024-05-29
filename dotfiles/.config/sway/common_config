@@ -32,6 +32,7 @@ bindsym $mod+Shift+n exec "swaync-client -C; swaync-client -cp"
 bindsym $mod+c exec hyprpicker -a
 
 # TODO: f9 media key external display settings
+# TODO: debug lock-session not working
 bindsym XF86AudioMedia exec loginctl lock-session
 bindsym XF86AudioMute        exec pamixer -t
 bindsym XF86AudioRaiseVolume exec pamixer -i 5

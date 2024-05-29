@@ -53,7 +53,7 @@ in {
     mepo # TODO: try
     # TODO: syncthing-gtk
     # TODO: https://gitlab.freedesktop.org/rncbc/qpwgraph
-    nixgl.nixGLIntel # nixgl.nixVulkanIntel # TODO: debug (llvm update?)
+    nixgl.nixGLIntel # nixgl.nixVulkanIntel
     glxinfo vulkan-tools
     firmware-updater gnome-firmware firmware-manager # TODO: pick one
     graphviz

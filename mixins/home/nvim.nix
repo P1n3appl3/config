@@ -22,7 +22,7 @@
       vim-startuptime
       plenary-nvim
     # Appearance
-      lush-nvim
+      catppuccin-nvim
       nvim-colorizer-lua
       gitsigns-nvim
       nvim-web-devicons
@@ -30,8 +30,11 @@
       dressing-nvim
       nvim-notify
       fidget-nvim
+    # Fun
       (gh "Eandrju" "cellular-automaton.nvim" "b7d056dab963b5d3f2c560d92937cb51db61cb5b"
         "sha256-szbd6m7hH7NFI0UzjWF83xkpSJeUWCbn9c+O8F8S/Fg=")
+      (gh "rktjmp" "playtime.nvim" "ab7d232c02341bff8479f532feec5730f8c33770"
+        "sha256-gwftZrPQw9JRWed5FUSWMEHLVGo9n26HdiPrZceiQlQ=")
     # Programming
       nvim-surround
       comment-nvim
@@ -39,18 +42,17 @@
       nvim-lspconfig
       nvim-lint
       (nvim-treesitter.withPlugins (p: with p; [
-        bash c cpp python rust lua zig kdl toml json json5 jq regex
-        make ninja dot nix html css typescript javascript query
-        git_config git_rebase gitcommit gitignore markdown markdown_inline
-        gdscript wgsl wgsl_bevy beancount rasi yuck vimdoc
+        bash c cpp python rust lua zig kdl toml ini json json5 jq regex query
+        make ninja dot nix html css scss typescript javascript markdown markdown-inline
+        git-config git-rebase gitcommit gitignore udev passwd
+        gdscript gdshader glsl wgsl wgsl-bevy hlsl
+        typst beancount rasi yuck vim vimdoc forth asm nasm
+        gn # TODO: replace with mine
       ] ++ [
-        pkgs.tree-sitter-grammars.tree-sitter-typst
         numbat-grammar
       ]))
       nvim-treesitter-textobjects nvim-treesitter-context
       vim-nix
-      (gh "kalcutter" "vim-gn" "7dd8d21ee42ce8ab999e0326e2c131132a6be8b8"
-        "sha256-yEMUc5dnkOd1F0/BSPn6o6Z+C29MdFTRB6W/cqmF5bw=")
       neodev-nvim
       rustaceanvim
       nvim-autopairs
@@ -65,9 +67,11 @@
     ];
   };
 in {
-  config.programs.neovim = nvim-config;
-  config.xdg.configFile = {
+  programs.neovim = nvim-config;
+  xdg.configFile = {
     "nvim/queries/numbat".source = "${numbat-grammar}/queries";
-    "nvim/queries/typst".source = "${pkgs.tree-sitter-grammars.tree-sitter-typst}/queries";
   };
+  home.packages = [
+    pkgs.page
+  ];
 }

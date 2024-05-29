@@ -7,7 +7,7 @@ input type:touchpad {
 }
 
 input type:keyboard {
-    xkb_options "altwin:swap_alt_win,caps:escape"
+    xkb_options altwin:swap_alt_win,caps:escape,shift:both_capslock
 }
 
 output eDP-1 {

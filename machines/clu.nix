@@ -1,6 +1,6 @@
-{ lib, pkgs, ... }: {
+{ lib, ... }: {
   home = {
-    username = "josephry"; homeDirectory = "/home/josephry";
+    username = "pineapple"; homeDirectory = "/home/pineapple";
   };
   imports = [
     ../mixins/home/linux.nix
@@ -10,10 +10,6 @@
     ../mixins/home/graphical/music.nix
   ];
 
-  home.packages = with pkgs; [
-    pastel
-  ];
-  home.keyboard.options = [ "altwin:swap_alt_win" ];
   xdg.mimeApps.defaultApplications =
     let chrome = lib.mkForce "chrome.desktop"; in {
     "text/html" = chrome;

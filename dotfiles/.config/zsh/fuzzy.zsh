@@ -1,9 +1,13 @@
-export FZF_DEFAULT_OPTS="--reverse --bind=ctrl-z:ignore
- --preview-window=down --height=60% --inline-info
- --bind 'ctrl-p:change-preview-window(hidden|down)'
- --bind ctrl-r:first --bind alt-up:first --bind alt-down:last
- --bind shift-up:preview-page-up --bind shift-down:preview-page-down
- --bind ctrl-d:half-page-down --bind ctrl-u:half-page-up"
+export FZF_DEFAULT_OPTS="--reverse --bind=ctrl-z:ignore \
+  --preview-window=down --height=60% --inline-info \
+  --bind 'ctrl-p:change-preview-window(hidden|down)' \
+  --bind ctrl-r:first --bind alt-up:first --bind alt-down:last \
+  --bind shift-up:preview-page-up --bind shift-down:preview-page-down \
+  --bind ctrl-d:half-page-down --bind ctrl-u:half-page-up \
+  --color=bg+:#313244,spinner:#f5e0dc,header:#f38ba8 \
+  --color=fg:#cdd6f4,fg+:#cdd6f4,info:#cba6f7,pointer:#f5e0dc \
+  --color=marker:#f5e0dc,prompt:#cba6f7,hl:#f38ba8,hl+:#f38ba8 \
+ "
 export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir j ji tree"
 
 __fzf() {

@@ -3,28 +3,29 @@
     # Shell
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
-    fzf ripgrep fd bat eza sd dogdns ouch jq xh rbw hyperfine hexyl choose
-    tokei zellij rsync zstd lowcharts trippy page pv datamash ascii numbat
-    pinentry sshping mdcat magic-wormhole-rs netscanner rage exiftool get-keys
+    fzf ripgrep fd bat eza sd dogdns ouch jq xh rbw pinentry hyperfine hexyl choose
+    tokei zellij rsync zstd lowcharts trippy pv datamash ascii numbat sshping
+    mdcat magic-wormhole-rs netscanner rage exiftool get-keys vivid
     # System info
     bottom bandwhich trippy procs smartmontools duf ncdu du-dust
-    # Git
-    git git-lfs delta gh git-heatmap git-absorb lazygit
     # Nix
     nix home-manager nh nix-output-monitor nix-tree nil comma ragenix
     # Scripting tools
     stylua sumneko-lua-language-server shfmt shellcheck mawk
     # Fun
-    blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain
+    blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain pastel
   ];
 
   programs = {
-    direnv = { enable = true; nix-direnv.enable = true; config.global.hide_env_diff = true; };
+    bat = { enable = true; catppuccin.enable = true; };
+    direnv = { enable = true;
+      nix-direnv.enable = true;
+      config.global.hide_env_diff = true;
+    };
   };
 
   imports = [
-    ./nvim.nix
-    ./htop.nix
+    ./git.nix ./nvim.nix ./htop.nix
     (if builtins.hasAttr "osConfig" args then {} else
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
     inputs.nix-index-database.hmModules.nix-index

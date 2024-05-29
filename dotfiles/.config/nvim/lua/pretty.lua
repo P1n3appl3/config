@@ -1,4 +1,28 @@
-vim.cmd [[ colorscheme custom ]]
+require("catppuccin").setup {
+    flavour = "mocha",
+    -- stylua: ignore
+    integrations = {
+        fidget = true, hop = true, notify = true,
+        treesitter = true, which_key = true,
+    },
+    custom_highlights = function(c)
+        return {
+            StatusLine = { fg = c.base, bg = c.blue, bold = true },
+            StatusLineModified = { fg = c.base, bg = c.mauve, bold = true },
+            SignColumn = { bg = c.surface0 },
+            GitSignsAdd = { fg = c.green, bg = c.surface0 },
+            GitSignsChange = { fg = c.yellow, bg = c.surface0 },
+            GitSignsDelete = { fg = c.red, bg = c.surface0 },
+            DiagnosticSignError = { fg = c.red, bg = c.surface0 },
+            DiagnosticSignWarn = { fg = c.yellow, bg = c.surface0 },
+            DiagnosticSignInfo = { fg = c.sky, bg = c.surface0 },
+            DiagnosticSignHint = { fg = c.teal, bg = c.surface0 },
+            TrailingWhitespace = { fg = c.maroon, reverse = true },
+        }
+    end,
+}
+
+vim.cmd [[ colorscheme catppuccin ]]
 
 require("colorizer").setup { user_default_options = { names = false } }
 require("gitsigns").setup { current_line_blame_opts = { delay = 500 } }
@@ -6,7 +30,7 @@ vim.api.nvim_create_user_command("Dismiss", require("notify").dismiss, {})
 local notify = require "notify"
 notify.setup { render = "compact", background_colour = "#000000" }
 vim.notify = notify
-require("fidget").setup {}
+require("fidget").setup { notification = { window = { winblend = 0 } } }
 require("dressing").setup {}
 
 local pretty = vim.api.nvim_create_augroup("pretty", {})
@@ -19,7 +43,7 @@ autocmd("TextYankPost", function() vim.highlight.on_yank { timeout = 150 } end)
 
 -- highlight lsp references
 autocmd({ "CursorHold", "CursorHoldI" }, function()
-    for _, c in pairs(vim.lsp.get_active_clients()) do
+    for _, c in pairs(vim.lsp.get_clients()) do
         if c.supports_method "textDocument/documentHighlight" then
             vim.lsp.buf.document_highlight()
         end

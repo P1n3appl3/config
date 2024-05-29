@@ -41,7 +41,7 @@
     ageBin = lib.getExe pkgs.rage;
     identityPaths = [ "/home/julia/.ssh/id_ed25519" ];
   };
-  catppuccin = { enable = true; flavour = "mocha"; };
+  catppuccin = { enable = true; flavor = "mocha"; };
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';
   console.useXkbConfig = true;
   home-manager.useGlobalPkgs = true;

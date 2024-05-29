@@ -10,10 +10,10 @@ local function readonly() return (vim.o.readonly or not vim.o.modifiable) and "ð
 
 local function diagnostics()
     local levels = {
-        Hint = "%%#AquaSign#",
-        Info = "%%#BlueSign#",
-        Warn = "%%#OrangeSign#",
-        Error = "%%#RedSign#",
+        Hint = "%%#DiagnosticSignHint#",
+        Info = "%%#DiagnosticSignInfo#",
+        Warn = "%%#DiagnosticSignWarn#",
+        Error = "%%#DiagnosticSignError#",
     }
     local t = {}
     for l, s in pairs(levels) do

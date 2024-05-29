@@ -28,7 +28,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * try wilder.nvim or noice (which can also replace fidget) instead of fzf command palette
 * [click to dismiss notifs](https://github.com/rcarriga/nvim-notify/issues/195)
 * treesitter highlight groups
-* try [catppuccin](https://github.com/catppuccin/nvim) or [gruvbox](https://github.com/ellisonleao/gruvbox.nvim)
+* try [gruvbox](https://github.com/ellisonleao/gruvbox.nvim)
   * add my statusline highlights
   * see if subsetting helps perf
 * add beancount commentstring in treesitter or upstream
@@ -107,14 +107,11 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 
 * fix [rounded corner issue](https://github.com/catppuccin/gtk/issues/129)
 * imhex
+* aseprite
 * firefox homepage and/or userstyles
-* cursor maybe? also try qogir and graphite
 * swaync
-* nvim
 * [obsidian](https://github.com/catppuccin/obsidian)
-* kitty/wezterm/rio/alacritty
-  * does terminal emulator cover most stuff, or will eza/htop/etc. need additional config?
-* [systemd](https://github.com/systemd/systemd/blob/ae9fd433d6e245677e6e916a3461be462362e7b8/meson_options.txt#L477)
+* [systemd-boot](https://github.com/systemd/systemd/blob/ae9fd433d6e245677e6e916a3461be462362e7b8/meson_options.txt#L477)
 
 ## Other
 

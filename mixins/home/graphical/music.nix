@@ -49,8 +49,8 @@
   };
 
   services = {
-    mpdris2.enable = true;
     mpd = { enable = true;
+      musicDirectory = "${config.xdg.userDirs.music}/library";
       extraConfig = ''
         replaygain      "album"
         metadata_to_use "artist,album,title,track,name,genre,date,composer,performer"
@@ -59,5 +59,7 @@
             name "Pipewire Sound Server"
         }'';
     };
+    mpd-mpris.enable = true;
+    mpd-discord-rpc.enable = true;
   };
 }
