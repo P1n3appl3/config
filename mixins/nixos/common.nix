@@ -19,6 +19,7 @@
   programs = {
     zsh = { enable = true; enableCompletion = false; };
     command-not-found.enable = false;
+    appimage.binfmt = true;
   };
 
   services = {
@@ -49,12 +50,9 @@
   nix = {
     settings.trusted-users = [ "root" "@wheel" ];
     extraOptions = "experimental-features = nix-command flakes";
-    registry = {
-      nixpkgs.flake = inputs.nixpkgs;
-      # TODO: dedup to a shared nixos/home module
-      config.to = { type = "git"; url = "file:///home/julia/config"; };
-    };
+    # TODO: dedup to a shared nixos/home module
+    registry.config.to = { type = "git"; url = "file:///home/julia/config"; };
   };
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
 }

@@ -15,27 +15,27 @@
     enable = true;
     defaultFonts = {
       serif = [
+        "Noto Color Emoji"
         "Noto Sans Symbols"
         "Noto Sans Symbols 2"
-        "Noto Color Emoji"
         "Symbols Nerd Font"
         "Noto Serif"
         "Noto Sans Math"
         "Noto Serif CJK JP"
       ];
       sansSerif = [
+        "Noto Color Emoji"
         "Noto Sans Symbols"
         "Noto Sans Symbols 2"
-        "Noto Color Emoji"
         "Symbols Nerd Font"
         "Noto Sans"
         "Noto Sans Math"
         "Noto Sans CJK JP"
       ];
       monospace = [
+        "Noto Color Emoji"
         "Noto Sans Symbols"
         "Noto Sans Symbols 2"
-        "Noto Color Emoji"
         "Symbols Nerd Font"
         "Source Code Pro"
         "Noto Sans Mono CJK JP"
@@ -57,11 +57,7 @@
         <family>Noto Color Emoji</family>
         <family>Symbols Nerd Font</family>
         <family>Comic Neue</family>
-    </prefer> </alias>
-  <match>
-        <test name="family"> <string>monospace</string> </test>
-        <edit mode="prepend" name="family"> <string>Noto Color Emoji</string> </edit>
-    </match>
+</prefer> </alias>
 </fontconfig>
 '';
 }

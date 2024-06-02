@@ -10,7 +10,7 @@
       generic-extlinux-compatible.enable = true;
     };
     initrd = {
-      supportedFilesystems = [ "btrfs" ];
+      supportedFilesystems.btrfs = true;
       availableKernelModules = [ "xhci_pci" "usb_storage" "usbhid" ];
     };
     extraModprobeConfig = ''

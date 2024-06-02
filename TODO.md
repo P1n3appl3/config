@@ -52,6 +52,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 
 ## Terminal emulator
 
+* fix kitty terminfo on work computers
 * fix kitty bold/italic [autodetection](https://github.com/kovidgoyal/kitty/blob/master/kitty/fonts/fontconfig.py) for SourceCodePro
 * better scrollback pager for kitty
   * try using `page`
@@ -234,6 +235,8 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
   * consistent banner with nav and no name
   * pull out rss reader
   * [hook up to grafana](https://github.com/static-web-server/static-web-server/pull/296)
+* wastebin
+  * clear daily?
 
 ### WOPR
 
