@@ -19,10 +19,10 @@ configuration {
 }
 
 * {
-    font: "sans 16";
+    font: "sans 14";
 }
 
 window {
-    width: calc(40% max 600);
-    height: calc(40% max 360);
+    width: calc(50% max 600);
+    height: calc(50% max 360);
 }

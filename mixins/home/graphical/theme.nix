@@ -1,9 +1,4 @@
-{ pkgs, lib, inputs, ... }: {
-  imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
-
-  # TODO: try lavender/sapphire/blue/sky
-  catppuccin = { flavor = "mocha"; accent = "blue"; };
-
+{ pkgs, lib, ... }: {
   home.packages = with pkgs; [
     kdePackages.qtstyleplugin-kvantum
   ];

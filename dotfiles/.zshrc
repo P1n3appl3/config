@@ -7,11 +7,11 @@ local extra=$HOME/.config/zsh/extra.zsh && test -f $extra && source $extra
 alias config='git -C $CONF_DIR'
 alias reload='unset __HM_SESS_VARS_SOURCED; exec zsh'
 function mkconfig {
-    eval "function ${1}config { cd $CONF_DIR; vi $CONF_DIR/dotfiles/$2 ${@:3}; cd -}"
+    eval "function ${1}config { pushd -q $CONF_DIR; vi dotfiles/$2 ${@:3}; popd -q -}"
 }
 mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.lua}'
 mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
-mkconfig nix '../{mixins/home/common.nix,**/*.nix}'
+mkconfig nix '../mixins/home/common.nix' '**/*.nix'
 mkconfig sway '.config/{sway/{common_config,`hostname -s`},i3status-rust/*}'
 mkconfig git '.config/git/{extraConfig,ignore,*}'
 
@@ -21,5 +21,4 @@ setopt no_case_glob
 TIMEFMT=$'\nreal\t%E\ntime\t%U / %S\ncpu\t%P\nmem\t%M KB\nfaults\t%F / %R\nwaits\t%c / %w'
 export TIME=$TIMEFMT
 export MANPAGER='less -M -j5 +Gg'
-function path { echo $path | sd ' ' '\n'; }
 PATH=$(printf "%s" "$PATH" | mawk -v RS=: '!a[$1]++ { if (NR > 1) printf RS; printf $1 }')

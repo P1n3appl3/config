@@ -7,7 +7,7 @@ in {
       Simple Dynamic DNS client for porkbun that points domains at your current ip
     '';
     domains = lib.mkOption {
-      type = types.listOf types.string;
+      type = types.listOf types.str;
       description = "A list of domain names to update the DNS entries for";
     };
     api-key = lib.mkOption {
@@ -23,7 +23,7 @@ in {
     };
     frequency = lib.mkOption {
       default = "*/6:00";
-      type = types.string;
+      type = types.str;
       description = lib.mdDoc ''
         How often to run update the DNS records, specified as a [systemd calendar expression](https://www.freedesktop.org/software/systemd/man/latest/systemd.time.html#Calendar%20Events)
       '';

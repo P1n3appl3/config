@@ -60,6 +60,6 @@
         }'';
     };
     mpd-mpris.enable = true;
-    mpd-discord-rpc.enable = true;
+    # mpd-discord-rpc.enable = true; # TODO: debug spinning a core (looking for discord?)
   };
 }

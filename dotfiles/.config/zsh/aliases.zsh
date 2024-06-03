@@ -1,5 +1,6 @@
 unalias run-help && autoload -Uz run-help && alias help=run-help
 
+function path { echo $path | sd ' ' '\n'; }
 alias cat=bat
 alias l="eza --icons --time-style relative --color-scale all --group-directories-first"
 alias ls="l -l" alias la="l -la"
