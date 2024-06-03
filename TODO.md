@@ -52,7 +52,6 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 
 ## Terminal emulator
 
-* fix kitty terminfo on work computers
 * fix kitty bold/italic [autodetection](https://github.com/kovidgoyal/kitty/blob/master/kitty/fonts/fontconfig.py) for SourceCodePro
 * better scrollback pager for kitty
   * try using `page`
@@ -61,6 +60,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * [remove wezterm bundled fonts](https://github.com/wez/wezterm/blob/main/README-DISTRO-MAINTAINER.md#un-bundling-vendored-fonts)
 * try wezterm multiplexing
 * try rio
+* try kitty-img
 
 ## Desktop Environment
 

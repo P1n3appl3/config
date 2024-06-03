@@ -1,7 +1,10 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    pastel
-  ];
+  home = {
+    homeDirectory = "/usr/local/google/home/pineapple";
+    packages = with pkgs; [
+      pastel
+    ];
+  };
 
   programs.kitty.settings.font_size = 14;
 

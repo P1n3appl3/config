@@ -1,14 +1,12 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     steam
-    # itch # TODO: reenable when butler is fixed
+    lutris # use this for itch
     ludusavi
 
     osu-lazer-bin
     clonehero # TODO: make ~/.clonehero point to games subvol
 
-    ttyper
-    nethack
     openttd
     space-cadet-pinball
     openspades

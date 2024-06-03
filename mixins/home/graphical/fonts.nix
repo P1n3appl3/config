@@ -15,7 +15,6 @@
     enable = true;
     defaultFonts = {
       serif = [
-        "Noto Color Emoji"
         "Noto Sans Symbols"
         "Noto Sans Symbols 2"
         "Symbols Nerd Font"
@@ -24,7 +23,6 @@
         "Noto Serif CJK JP"
       ];
       sansSerif = [
-        "Noto Color Emoji"
         "Noto Sans Symbols"
         "Noto Sans Symbols 2"
         "Symbols Nerd Font"
@@ -33,7 +31,6 @@
         "Noto Sans CJK JP"
       ];
       monospace = [
-        "Noto Color Emoji"
         "Noto Sans Symbols"
         "Noto Sans Symbols 2"
         "Symbols Nerd Font"

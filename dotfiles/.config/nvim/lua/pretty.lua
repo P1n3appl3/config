@@ -5,6 +5,9 @@ require("catppuccin").setup {
         fidget = true, hop = true, notify = true,
         treesitter = true, which_key = true,
     },
+    color_overrides = {
+        -- mocha = { base = "#000000", mantle = "#000000", crust = "#000000" },
+    },
     custom_highlights = function(c)
         return {
             StatusLine = { fg = c.base, bg = c.blue, bold = true },

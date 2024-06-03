@@ -3,9 +3,9 @@
     # Shell
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
-    fzf ripgrep fd bat eza sd dogdns ouch jq xh rbw pinentry hyperfine hexyl choose
+    fzf ripgrep fd eza sd dogdns ouch jq xh rbw pinentry hyperfine hexyl choose
     tokei zellij rsync zstd lowcharts trippy pv datamash ascii numbat sshping
-    mdcat magic-wormhole-rs netscanner rage exiftool get-keys vivid
+    mdcat magic-wormhole-rs netscanner rage exiftool get-keys vivid pipe-rename
     # System info
     bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Nix
@@ -14,6 +14,7 @@
     stylua sumneko-lua-language-server shfmt shellcheck mawk
     # Fun
     blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain pastel
+    ttyper nethack
   ];
 
   programs = {
@@ -30,7 +31,10 @@
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
     inputs.nix-index-database.hmModules.nix-index
     inputs.ragenix.homeManagerModules.default
+    inputs.catppuccin.homeManagerModules.catppuccin
   ];
+
+  catppuccin = { flavor = "mocha"; accent = "blue"; }; # TODO: lavender/sapphire/blue/sky
 
   nix.registry = {
     nixpkgs.flake = inputs.nixpkgs;

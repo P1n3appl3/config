@@ -1,10 +1,11 @@
-{ lib, pkgs, ... }: {
-  home.homeDirectory = lib.mkForce "/usr/local/google/home/pineapple";
-
-  home.packages = with pkgs; [
-    git-gr
-    gn
-  ];
+{ pkgs, ... }: {
+  home = {
+    homeDirectory = "/usr/local/google/home/pineapple";
+    packages = with pkgs; [
+      git-gr
+      gn
+    ];
+  };
 
   imports = [
     ../mixins/home/linux.nix

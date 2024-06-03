@@ -1,13 +1,8 @@
 { lib, ... }: {
-  home = {
-    username = "pineapple"; homeDirectory = "/home/pineapple";
-  };
-
-  services.syncthing.enable = lib.mkForce false;
-  services.syncthing.tray.enable = lib.mkForce false;
+  home.username = "pineapple";
 
   xdg.mimeApps.defaultApplications =
-    let chrome = lib.mkForce "chrome.desktop"; in {
+    let chrome = lib.mkForce "google-chrome.desktop"; in {
     "text/html" = chrome;
     "x-scheme-handler/http" = chrome;
     "x-scheme-handler/https" = chrome;

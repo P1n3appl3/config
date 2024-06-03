@@ -19,12 +19,16 @@
   programs = {
     zsh = { enable = true; enableCompletion = false; };
     command-not-found.enable = false;
-    appimage.binfmt = true;
   };
 
   services = {
     atd.enable = true;
     nixseparatedebuginfod.enable = true;
+    getty = {
+      autologinUser = "julia";
+      greetingLine = ''\l'';
+      helpLine = lib.mkForce "♥";
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -45,13 +49,19 @@
   catppuccin = { enable = true; flavor = "mocha"; };
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';
   console.useXkbConfig = true;
-  home-manager.useGlobalPkgs = true;
+  home-manager = {
+    useGlobalPkgs = true;
+    extraSpecialArgs = { inherit inputs myOverlays; };
+  };
   nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
   nix = {
-    settings.trusted-users = [ "root" "@wheel" ];
-    extraOptions = "experimental-features = nix-command flakes";
-    # TODO: dedup to a shared nixos/home module
-    registry.config.to = { type = "git"; url = "file:///home/julia/config"; };
+    settings = {
+      trusted-users = [ "root" "@wheel" ];
+      extra-experimental-features = [ "nix-command" "flakes" ];
+    };
+    registry.config.to = { type = "git";
+      url = "file://" + config.home-manager.users.julia.home.sessionVariables.CONF_DIR;
+    };
   };
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
   system.stateVersion = "24.05";

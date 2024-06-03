@@ -23,6 +23,7 @@
       darwin.follows = ""; impermanence.follows = "";
     };
   };
+
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware, ragenix,
     nix-index-database, nixgl, rahul-config, catppuccin, self } @ inputs:
   let
@@ -47,7 +48,6 @@
     };
   in {
     homeConfigurations = {
-      HAL       = home "x86_64-linux"   ./machines/hal.nix;
       ATLAS     = home "x86_64-linux"   ./machines/atlas.nix;
       clu       = home "x86_64-linux"   ./machines/clu.nix;
       rinzler   = home "x86_64-linux"   ./machines/rinzler.nix;
@@ -57,6 +57,7 @@
     nixosConfigurations = {
       Cortana = machine "aarch64-linux" ./machines/cortana/main.nix;
       WOPR    = machine "x86_64-linux"  ./machines/wopr/main.nix;
+      ISO     = machine "x86_64-linux"  ./machines/iso.nix;
     };
 
     homeModules = {};

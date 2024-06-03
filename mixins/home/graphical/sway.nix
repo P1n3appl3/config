@@ -15,11 +15,7 @@
     wev wl-clipboard slurp grim hyprpicker wlprop
     # TODO: wl-screenrec config (make sure hardware encode is working)
     # TODO: try satty or watershot
-    # TODO: try ironbar/hybridbar/custom
-    # TODO: swayosd
     swaynotificationcenter # TODO: try dunst/mako/fnott
-    swayidle # TODO: try sleepwatcher-rs
-    # TODO: swaylock/waylock/gtklock
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
     wluma
@@ -36,7 +32,7 @@
         duration = "30m";
       };
     };
-    swaylock = { enable = true;
+    swaylock = { enable = true; # TODO: try gtklock
       catppuccin.enable = true;
       package = pkgs.swaylock-effects;
       settings = {

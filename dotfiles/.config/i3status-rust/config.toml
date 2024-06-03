@@ -61,7 +61,7 @@ missing_format = ""
 
 [[block]]
 block = "battery"
-format = " $icon $power "
+format = " $icon $percentage {$power |}"
 interval = 5
 missing_format = ""
 
