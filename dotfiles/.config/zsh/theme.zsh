@@ -1,6 +1,6 @@
 export LS_COLORS="$(vivid generate catppuccin-mocha)"
 LS_COLORS+=":*README.*=0;4;38;2;249;226;175"
-LS_COLORS+=":flake.nix=0;1;38;2;249;226;175"
+LS_COLORS+=":*flake.nix=0;1;38;2;249;226;175"
 # TODO: permissions/size/mtime
 export EZA_COLORS="uu=0;38;2;245;194;231"
 

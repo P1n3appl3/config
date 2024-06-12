@@ -14,13 +14,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
-    ragenix.inputs.nixpkgs.follows = "nixpkgs";
+    ragenix.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
     rahul-config.inputs = {
       nixpkgs.follows = "nixpkgs"; nixos-hardware.follows = "nixos-hardware";
-      home-manager.follows = "home-manager";
+      home-manager.follows = "home-manager"; flake-utils.follows = "flake-utils";
       nix-index-database.follows = "nix-index-database";
-      agenix.follows = ""; ragenix.follows = "";
-      darwin.follows = ""; impermanence.follows = "";
+      agenix.follows = ""; ragenix.follows = ""; darwin.follows = "";
+      impermanence.follows = "";
     };
   };
 

@@ -7,6 +7,8 @@
     ];
   };
 
+  programs.kitty.settings.font_size = 14;
+
   imports = [
     ../mixins/home/linux.nix
     ../mixins/home/btrfs.nix

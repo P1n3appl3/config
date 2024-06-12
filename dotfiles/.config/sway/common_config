@@ -22,8 +22,8 @@ bindsym $mod+r exec rofi -show drun
 bindsym $mod+slash exec rofi -show window
 # TODO: package cliphist contrib dir to use cliphist-rofi-img
 bindsym $mod+v exec cliphist list | rofi -dmenu | cliphist decode | wl-copy
-bindsym $mod+m exec $CONF_DIR/scripts/song.sh play
-bindsym $mod+Shift+m exec $CONF_DIR/scripts/song.sh
+bindsym $mod+m exec song play
+bindsym $mod+Shift+m exec song
 bindsym $mod+u exec rofimoji
 bindsym $mod+q exec rofi -show calc -modi calc -no-sort -calc-command-history \
     -calc-command "echo -n '{result}' | wl-copy"
@@ -43,8 +43,8 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86MonBrightnessUp exec brightnessctl -q s '+5%'
 bindsym XF86MonBrightnessDown exec brightnessctl -q s '5%-'
-bindsym Print exec $CONF_DIR/scripts/screenshot.sh s
-bindsym Shift+Print exec $CONF_DIR/scripts/screenshot.sh
+bindsym Print exec screenshot s
+bindsym Shift+Print exec screenshot
 
 bindsym $mod+Shift+q kill
 bindsym $mod+s layout toggle split
@@ -146,6 +146,6 @@ bar {
   bindsym button7 nop
 }
 
-include "~/.config/sway/`hostname -s`"
+include "`hostname -s`"
 
 exec swaymsg -t subscribe '["shutdown"]' && systemctl --user stop sway-session.target

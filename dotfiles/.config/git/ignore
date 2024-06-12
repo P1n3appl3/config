@@ -1,5 +1,6 @@
 tags
 compile_commands.json
+rust-analyzer.json
 .git
 .vim
 *~

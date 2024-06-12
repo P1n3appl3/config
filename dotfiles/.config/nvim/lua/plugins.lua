@@ -71,19 +71,24 @@ server("lua_ls", {
         client.server_capabilities.documentRangeFormattingProvider = false
     end,
 })
-server(
-    "beancount",
-    { init_options = { journal_file = vim.env.HOME .. "/money/journal.beancount" } }
-)
 
 local ra_settings = {
-    checkOnSave = { command = "clippy" },
     cachePriming = { enable = false },
     diagnostics = { disabled = { "unresolved-proc-macro" } },
     completion = { callable = { snippets = "none" }, postfix = { enable = false } },
 }
+local ra_log = vim.fn.tempname() .. '-rust-analyzer.log'
 vim.g.rustaceanvim = {
     capabilities = capabilities,
     tools = { inlay_hints = { auto = false } },
-    server = { default_settings = { ["rust-analyzer"] = ra_settings } },
+    server = {
+        default_settings = { ["rust-analyzer"] = ra_settings },
+        logfile = ra_log,
+        cmd = function()
+            local fuchsia = string.find(vim.loop.cwd() or "", "fuchsia")
+            local fx_ra = "/mnt/fuchsia/prebuilt/third_party/rust-analyzer/rust-analyzer"
+            local binary = fuchsia and fx_ra or "rust-analyzer"
+            return { binary, "--log-file", ra_log }
+        end,
+    },
 }

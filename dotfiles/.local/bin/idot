@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+font="${font-mono}"
+fgcolor=gray87
+
+dot -Tsvg -Nstyle=rounded -Gbgcolor=black -Ncolor=$fgcolor -Nfontcolor=$fgcolor \
+    -Ecolor=$fgcolor -Efontcolor=$fgcolor \
+    -Gfontname="$font" -Nfontname="$font" -Efontname="$font" "$@" |
+    tee /tmp/graph.svg |
+    kitty +kitten icat --align left
+# replace with some sort of sixel image output if not using kitty
