@@ -1,11 +1,11 @@
-{ pkgs, ... }: {
+{
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
   ];
 
   home-manager.users.julia.imports = [
-    { programs.kitty.settings.font_size = 15; }
+    # { programs.kitty.settings.font_size = 15; }
     ../../mixins/home/common.nix
     ../../mixins/home/linux.nix
     ../../mixins/home/btrfs.nix
@@ -17,10 +17,6 @@
     ../../mixins/home/graphical/media.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    littlefs-fuse
-  ];
-
   programs = {
     steam.enable = true;
     appimage = { enable = true; binfmt = true; };
@@ -28,9 +24,9 @@
 
   services = {
     flatpak.enable = true;
-    automatic-timezoned.enable = true;
-    upower.enable = true;
+    openssh.enable = true;
   };
 
-  networking = { hostName = "WOPR"; networkmanager.enable = true; };
+  networking.hostName = "HAL";
+  time.timeZone = "America/Los_Angeles";
 }
