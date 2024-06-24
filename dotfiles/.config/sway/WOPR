@@ -1,6 +1,8 @@
 # vim:ft=swayconfig
 font pango:monospace 15
 
+bar main height 30
+
 input type:touchpad {
     natural_scroll true
     tap enabled

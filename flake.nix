@@ -57,6 +57,7 @@
     nixosConfigurations = {
       Cortana = machine "aarch64-linux" ./machines/cortana/main.nix;
       WOPR    = machine "x86_64-linux"  ./machines/wopr/main.nix;
+      HAL     = machine "x86_64-linux"  ./machines/hal/main.nix;
       ISO     = machine "x86_64-linux"  ./machines/iso.nix;
     };
 

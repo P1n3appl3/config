@@ -46,7 +46,7 @@ modemap("x", "<space>cb", visual_com "blockwise")
 modemap({ "n", "v" }, "<C-i>", "<C-i>", { noremap = true })
 local format = function()
     local bufnr = vim.api.nvim_get_current_buf()
-    for _, c in pairs(vim.lsp.get_active_clients { bufnr = bufnr }) do
+    for _, c in pairs(vim.lsp.get_clients { bufnr = bufnr }) do
         if c.supports_method "textDocument/formatting" then
             local t = vim.api.nvim_buf_get_changedtick(0)
             local name = "Language Server"

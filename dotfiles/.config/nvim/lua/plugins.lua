@@ -1,6 +1,7 @@
 require("Comment").setup { mappings = false }
 local comment = require "Comment.ft"
 comment.beancount = ";%s"
+comment.gn = "#%s"
 
 require("nvim-surround").setup {}
 
@@ -77,7 +78,7 @@ local ra_settings = {
     diagnostics = { disabled = { "unresolved-proc-macro" } },
     completion = { callable = { snippets = "none" }, postfix = { enable = false } },
 }
-local ra_log = vim.fn.tempname() .. '-rust-analyzer.log'
+local ra_log = vim.fn.tempname() .. "-rust-analyzer.log"
 vim.g.rustaceanvim = {
     capabilities = capabilities,
     tools = { inlay_hints = { auto = false } },

@@ -5,7 +5,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    amdgpu_top
+    nvtopPackages.amd amdgpu_top
   ];
 
   services = {
@@ -46,4 +46,6 @@
   fileSystems = {
     "/boot" = { label = "boot"; fsType = "vfat"; };
   };
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 }
