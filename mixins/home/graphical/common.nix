@@ -80,7 +80,9 @@ in {
 
   services = {
     udiskie.enable = true;
-    syncthing = { enable = true; tray.enable = true; };
+    syncthing = { enable = true;
+      tray = { enable = true; command = "syncthingtray --wait"; };
+    };
     network-manager-applet.enable = true; # TODO: greyed out available networks?
     # TODO: make reverse scrolling vary based on touchpad,
     # check mute mouse binding and volume keys

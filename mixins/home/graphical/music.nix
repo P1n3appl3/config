@@ -52,6 +52,7 @@
     mpd = { enable = true;
       musicDirectory = "${config.xdg.userDirs.music}/library";
       extraConfig = ''
+        auto_update "yes"
         replaygain      "album"
         metadata_to_use "artist,album,title,track,name,genre,date,composer,performer"
         audio_output {

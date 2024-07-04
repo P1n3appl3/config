@@ -1,0 +1,166 @@
+font pango:monospace 11
+
+set $mod Mod4
+set $run exec --no-startup-id
+set $wsT "0:󰋑"
+set $ws0 "1:󰖟"
+set $ws1 "2:󰀳"
+set $ws2 "3:"
+set $ws3 "4:"
+set $ws4 "5:"
+set $ws5 "6:"
+set $ws6 "7:"
+set $ws7 "8:"
+set $ws8 "9:"
+set $ws9 "10:"
+set $ws10 "11:"
+
+floating_modifier $mod
+workspace_auto_back_and_forth yes
+focus_follows_mouse no
+focus_on_window_activation focus
+hide_edge_borders vertical
+for_window [class="Pavucontrol"] floating enable
+default_border pixel 1
+
+# Media keys
+bindsym XF86MonBrightnessUp $run brightnessctl -q s '+5%'
+bindsym XF86MonBrightnessDown $run brightnessctl -q s '5%-'
+bindsym Shift+Print $run ~/.local/bin/screenshot
+bindsym Print $run ~/.local/bin/screenshot s
+bindsym $mod+c $run xcolor -s -P 200 2>/tmp/xcolor.txt
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Run stuff
+bindsym $mod+r $run rofi -show drun
+bindsym $mod+Return $run kitty -1
+bindsym $mod+slash $run rofi -show window
+bindsym $mod+v $run CM_LAUNCHER=rofi CM_HISTLENGTH=20 clipmenu
+bindsym $mod+m $run ~/.local/bin/song play
+bindsym $mod+Shift+m $run ~/.local/bin/song
+bindsym $mod+u $run rofimoji
+bindsym $mod+q $run rofi -show calc -modi calc -no-sort -calc-command-history \
+    -calc-command "echo -n '{result}' | xclip -selection c"
+bindsym $mod+n $run dunstctl close
+bindsym $mod+Shift+n $run dunstctl history-pop
+
+# General window management
+bindsym $mod+f fullscreen toggle
+bindsym $mod+b border toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+a focus child
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+r reload
+
+# Window layout
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+t split h, layout tabbed
+bindsym $mod+Shift+s layout stacking
+bindsym $mod+s layout toggle split
+bindsym $mod+backslash split h
+bindsym $mod+minus split v
+
+# Switch focused window
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move workspace to other monitor
+bindsym $mod+Control+Shift+h move workspace to output left
+bindsym $mod+Control+Shift+l move workspace to output right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Switch to workspace
+bindsym $mod+Tab workspace $wsT
+bindsym $mod+grave workspace $ws0
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+Tab move container to workspace $wsT
+bindsym $mod+Shift+grave move container to workspace $ws0
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+set $rosewater #f5e0dc
+set $flamingo #f2cdcd
+set $pink #f5c2e7
+set $mauve #cba6f7
+set $red #f38ba8
+set $maroon #eba0ac
+set $peach #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $teal #94e2d5
+set $sky #89dceb
+set $sapphire #74c7ec
+set $blue #89b4fa
+set $lavender #b4befe
+set $text #cdd6f4
+set $subtext1 #bac2de
+set $subtext0 #a6adc8
+set $overlay2 #9399b2
+set $overlay1 #7f849c
+set $overlay0 #6c7086
+set $surface2 #585b70
+set $surface1 #45475a
+set $surface0 #313244
+set $base #1e1e2e
+set $mantle #181825
+set $crust #11111b
+
+set $accent #89b4fa
+set $urgent #eba0ac
+# target                 border    bg        text   indicator border
+client.focused           $accent   $accent   $base  $accent   $accent
+client.focused_inactive  $overlay0 $overlay0 $base  $accent   $overlay0
+client.unfocused         $base     $base     $text  $accent   $overlay0
+client.urgent            $urgent   $urgent   $base  $urgent   $urgent
+client.background        $base
+
+exec_always xsetroot -solid $base
+
+bar {
+    height 28
+    position top
+    status_command i3status-rs
+    strip_workspace_numbers yes
+    colors {
+      background         $surface0
+      statusline         $surface0
+      focused_workspace  $accent   $accent   $base
+      active_workspace   $surface0 $surface0 $accent
+      inactive_workspace $surface0 $surface0 $text
+      urgent_workspace   $urgent   $urgent   $base
+    }
+    bindsym button4 nop
+    bindsym button5 nop
+    bindsym button6 nop
+    bindsym button7 nop
+}

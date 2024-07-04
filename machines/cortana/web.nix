@@ -77,16 +77,16 @@ in {
       settings.options.localAnnounceEnabled = true;
       settings = {
         devices = {
-           # HAL.id = "TODO";
+             HAL.id = "ON6QDIA-Q76YZPP-2QDT5KI-DOJVPXS-6757LVB-P2FKJAS-LOMDKIW-JT36XQ6";
             WOPR.id = "N7B4EPQ-B3PLQIZ-NZIGIEC-CDOIZ3B-MLMUIIO-M5SGMJC-JTVRMB3-SUVIVQI";
              clu.id = "KK6IRAU-W7HRIGO-TJL7PNN-DRQCLID-4BBPHPH-IRY5TJY-G372KO6-F527XAB";
           dragon.id = "6TN3KGX-JU2KQEA-B6VKVCK-AJFAWQG-W2CLE5Q-2WYDPEN-YV3YKXU-HJV6UQL";
         };
         folders = (builtins.mapAttrs (n: d: { path = "~/${n}"; devices = d; }) {
-                notes = [ "WOPR" "dragon" "clu" ];
-                music = [ "WOPR" "dragon" "clu" ];
-              recipes = [ "WOPR" "dragon" ];
-          screenshots = [ "WOPR" ];
+                notes = [ "HAL" "WOPR" "dragon" "clu" ];
+                music = [ "HAL" "WOPR" "dragon" "clu" ];
+              recipes = [ "HAL" "WOPR" "dragon" ];
+          screenshots = [ "HAL" "WOPR" ];
         });
       };
     };

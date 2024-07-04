@@ -84,6 +84,8 @@ bindsym $mod+Shift+$left  move left
 bindsym $mod+Shift+$down  move down
 bindsym $mod+Shift+$up    move up
 bindsym $mod+Shift+$right move right
+bindsym $mod+Ctrl+Shift+$left  move workspace to output left
+bindsym $mod+Ctrl+Shift+$right move workspace to output right
 bindgesture swipe:up workspace back_and_forth
 bindgesture swipe:down workspace back_and_forth
 bindgesture hold:4 workspace back_and_forth

@@ -15,6 +15,8 @@
     punes mupen64plus dolphin-emu # snes9x-gtk simple64
     sameboy mgba melonDS
 
-    r2mod_cli mons
+    slipstream # ftl mods
+    r2mod_cli # risk of rain 2 mods
+    mons # celeste mods
   ];
 }

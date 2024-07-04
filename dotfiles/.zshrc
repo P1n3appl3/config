@@ -12,6 +12,7 @@ function mkconfig {
 mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.lua}'
 mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
 mkconfig nix '../mixins/home/common.nix' '**/*.nix'
+mkconfig i3 '.config/{i3/config,i3status-rust/*}'
 mkconfig sway '.config/{sway/{common_config,`hostname -s`},i3status-rust/*}'
 mkconfig git '.config/git/{extraConfig,ignore,*}'
 
