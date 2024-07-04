@@ -31,6 +31,8 @@
     useDHCP = true;
   };
 
+  services.xserver.videoDrivers = [ "nvidia" ];
+
   fileSystems = {
     "/boot" = { label = "boot"; fsType = "vfat"; };
     "/media/alt" = { label = "alt"; fsType = "btrfs"; options = [ "compress=zstd" ]; };

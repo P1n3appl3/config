@@ -10,6 +10,7 @@
     nixgl.url              = "github:guibou/nixGL";
     rahul-config.url       = "github:rrbutani/nix-config";
     catppuccin.url         = "github:catppuccin/nix";
+    slippi.url             = "github:lytedev/slippi-nix";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -22,10 +23,11 @@
       agenix.follows = ""; ragenix.follows = ""; darwin.follows = "";
       impermanence.follows = "";
     };
+    slippi.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware, ragenix,
-    nix-index-database, nixgl, rahul-config, catppuccin, self } @ inputs:
+    nix-index-database, nixgl, rahul-config, catppuccin, slippi, self } @ inputs:
   let
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
