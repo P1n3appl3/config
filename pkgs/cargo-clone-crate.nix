@@ -11,11 +11,7 @@ rustPlatform.buildRustPackage rec {
   cargoHash = "sha256-fUhhfYZmzEX8gm3M8SbEeHssLYkSJB3KyFnMZM9jvcY=";
 
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [
-    openssl
-  ] ++ lib.optionals stdenv.isDarwin [
-    darwin.apple_sdk.frameworks.Security
-  ];
+  buildInputs = [ openssl ] ++ lib.optionals stdenv.isDarwin [ darwin.Security ];
 
   doCheck = false; # it tries to run `git clone` in tests
   meta.broken = stdenv.isDarwin; # see https://garnix.io/build/3Bwz1mY0

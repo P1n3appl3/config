@@ -36,7 +36,6 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * typstfmt not running through lsp
   * get treesitter highlights.scm working
 * add alias for `<space> w -> <C-w>` in which-key (see [issue](https://github.com/folke/which-key.nvim/issues/160))
-* check if `K` default bind works for lsp ([should have landed?](https://github.com/neovim/neovim/pull/24331 )) and remove my bind for it
 * try nvim-ufo for folding
 * remove cellular-automata custom plugin definition once [it lands upstream](https://github.com/NixOS/nixpkgs/pull/260973)
 * replace neoformat with swap for formatter.nvim or conform.nvim once they reach parity
@@ -44,7 +43,6 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * fix treesitter highlighting by automating the linking of queries: `/nix/store/*-tree-sitter-foo-grammar/queries/foo -> ~/.config/nvim/queries`
   * or figure out how to register custom with nvim-treesitter
   * try [tree-sitter-typst](https://github.com/frozolotl/tree-sitter-typst)
-  * fix buildGrammar hanging link when trying to use the hypr grammar/vimplugin
 * try parinfer-rust with lisp or yuck
 * try cmp-kitty and maybe cmp-under-comparator
 * nvim-dap + cmp-dap (see [guide](https://davelage.com/posts/nvim-dap-getting-started))
@@ -240,7 +238,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 
 ### WOPR
 
-* subvols for: `.cache`, `.cargo`, `dev`, steam, maybe all of `games` or just slippi replays
 * do i want `powerManagement.powerTop.enable = true;` (autotune every boot)
 * sleep states, suspend to ram, hibernate, lid close and idle timeout
   * `services.upower = { enable = true; criticalPowerAction = "Hibernate"; };`
@@ -253,7 +250,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * howett.net fnlock light to capslock
   * bind caps to ctrl when held
   * right ctrl -> fn
-* [low latency audio](https://github.com/Aylur/dotfiles/blob/main/nixos/audio.nix)
 * [only autologin on tty1](https://github.com/NixOS/nixpkgs/issues/81552)
 * measure power draw in s2idle, as well as peak and idle
 
@@ -264,6 +260,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 
 ### HAL
 
+* [low latency audio](https://github.com/Aylur/dotfiles/blob/main/nixos/audio.nix)
 * try [looking-glass](https://looking-glass.io/)(see [comments](https://news.ycombinator.com/item?id=28817981)) or [ovmf](https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF), or just directly use [vfio](https://b1nzy.com/blog/vfio.html)
   * boot existing windows partition as a vm
   * either splitting gpu or somehow disabling it for the current WM session
