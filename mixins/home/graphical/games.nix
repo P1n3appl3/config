@@ -1,7 +1,8 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     steam
-    lutris # use this for itch
+    itch
+    lutris
     ludusavi
 
     osu-lazer-bin

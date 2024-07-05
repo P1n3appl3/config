@@ -85,8 +85,6 @@ local toggle_diagnostics = function()
     if diagnostics_active then d.show() else d.hide() end
 end
 
-map("K", vim.lsp.buf.hover)
-
 G.lazy_load("fzf-lua", {
     preview_layout = "vertical",
     preview_vertical = "up",

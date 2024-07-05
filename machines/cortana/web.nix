@@ -38,8 +38,8 @@ in {
         listen_port_tls = 443;
         listen_ipv6 = true;
         apps = {
-          static    = app        "pineapple.computer" 9000;
-          grafana   = app "status.pineapple.computer" 9001;
+          static    = app                "julia.blue" 9000;
+          grafana   = app        "pineapple.computer" 9001;
           atuin     = app  "atuin.pineapple.computer" 9002;
           syncthing = app   "sync.pineapple.computer" 9003;
           uptime    = app "uptime.pineapple.computer" 9004;
@@ -78,7 +78,7 @@ in {
       settings = {
         devices = {
              HAL.id = "ON6QDIA-Q76YZPP-2QDT5KI-DOJVPXS-6757LVB-P2FKJAS-LOMDKIW-JT36XQ6";
-            WOPR.id = "N7B4EPQ-B3PLQIZ-NZIGIEC-CDOIZ3B-MLMUIIO-M5SGMJC-JTVRMB3-SUVIVQI";
+            WOPR.id = "R6XKQSK-3XE7J2H-LSELK56-HVO6PTF-5PX2HZP-775JTZO-ETP2BR3-5QZ6YAF";
              clu.id = "KK6IRAU-W7HRIGO-TJL7PNN-DRQCLID-4BBPHPH-IRY5TJY-G372KO6-F527XAB";
           dragon.id = "6TN3KGX-JU2KQEA-B6VKVCK-AJFAWQG-W2CLE5Q-2WYDPEN-YV3YKXU-HJV6UQL";
         };
