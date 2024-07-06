@@ -7,6 +7,7 @@ in {
       80 443    # http(s)
       8080 8443 # testing
       22000     # syncthing
+      9000 9001 9002 9003 9004 # testing
     ];
     allowedUDPPorts = [ 22000 21027 ]; # syncthing + discovery
   };
@@ -29,7 +30,7 @@ in {
         tls = {
           https_redirection = true;
           tls_cert_path = acme_dir + "fullchain.pem";
-          tls_cert_key_path = acme_dir + "key.pem";
+          tls_cert_key_path = acme_dir + "key-pkcs8.pem";
         };
         proxy = port: [{ upstream = [{ location = "localhost:" + toString port; }]; }];
         app = name: port: { inherit tls; server_name = name; reverse_proxy = proxy port; };
@@ -44,7 +45,6 @@ in {
           syncthing = app   "sync.pineapple.computer" 9003;
           uptime    = app "uptime.pineapple.computer" 9004;
         };
-        experimental.h3 = {};
       };
     };
 
@@ -79,7 +79,7 @@ in {
         devices = {
              HAL.id = "ON6QDIA-Q76YZPP-2QDT5KI-DOJVPXS-6757LVB-P2FKJAS-LOMDKIW-JT36XQ6";
             WOPR.id = "R6XKQSK-3XE7J2H-LSELK56-HVO6PTF-5PX2HZP-775JTZO-ETP2BR3-5QZ6YAF";
-             clu.id = "KK6IRAU-W7HRIGO-TJL7PNN-DRQCLID-4BBPHPH-IRY5TJY-G372KO6-F527XAB";
+             clu.id = "SWCGUR7-XGZPXSF-NIZ6QRI-IIFZQQG-LLSONJH-226S3Y6-IPYP4MX-SUWBRQ7";
           dragon.id = "6TN3KGX-JU2KQEA-B6VKVCK-AJFAWQG-W2CLE5Q-2WYDPEN-YV3YKXU-HJV6UQL";
         };
         folders = (builtins.mapAttrs (n: d: { path = "~/${n}"; devices = d; }) {
@@ -124,13 +124,26 @@ in {
   systemd.services = {
     convert-pem = let parent = [ "acme-pineapple.computer.service" ]; in {
       description = "Convert LetsEncrypt private key from PKCS1 to PKCS8";
-      unitConfig = { Type = "oneshot"; };
+      unitConfig.Type = "oneshot";
       serviceConfig = {
         ExecStart = ''${pkgs.openssl}/bin/openssl pkcs8 -topk8 -nocrypt \
           -in ${acme_dir}/key.pem -inform PEM \
           -out ${acme_dir}/key-pkcs8.pem -outform PEM'';
       };
       after = parent; wantedBy = parent;
+    };
+
+    rssfetch = let
+      blogs = builtins.toFile "blogs.json" (builtins.toJSON (import ./blogs.nix));
+    in {
+      description = "Update https://julia.blue/read";
+      startAt = "01,13:00"; # twice a day
+      path = with pkgs; [ rssfetch jq ];
+      script = ''
+        ln -sf ${blogs} /media/static/blogs.json
+        rssfetch <(jq '.[]' ${blogs} -c) |
+          jq -sc '. |= sort_by(.date) | reverse' > /media/static/posts.json
+      '';
     };
   };
 }
