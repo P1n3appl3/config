@@ -22,7 +22,7 @@ in {
       description = lib.mdDoc ''The [Time to Live](https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/) for new DNS records in seconds'';
     };
     frequency = lib.mkOption {
-      default = "*/6:00";
+      default = "00/6:00";
       type = types.str;
       description = lib.mdDoc ''
         How often to run update the DNS records, specified as a [systemd calendar expression](https://www.freedesktop.org/software/systemd/man/latest/systemd.time.html#Calendar%20Events)

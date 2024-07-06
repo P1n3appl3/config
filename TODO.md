@@ -209,8 +209,8 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 ### Cortana
 
 * rust-motd + cats
-* add dnsmasq addblock and [prometheus exporter](https://github.com/google/dnsmasq_exporter) for pretty dashboard
-* [ad block](https://www.imaginaryrobots.net/posts/2022-01-26-full-network-adblocking-with-dnsmasq/)
+* add dnsmasq adblock and [prometheus exporter](https://github.com/google/dnsmasq_exporter) for pretty dashboard
+  * [dnsmasq info](https://www.imaginaryrobots.net/posts/2022-01-26-full-network-adblocking-with-dnsmasq/)
 * add rust-rpxy config for all the following, add prometheus output for grafana ([looks like they want that too](https://github.com/junkurihara/rust-rpxy/blob/9123ef71a2da473f7c47ca5a21f1a787fca6c540/TODO.md?plain=1#L20))
 * add atuin sync server and set bash/zsh to use mine
 * add gpodder and configure desktop client and antenna to use it
@@ -223,7 +223,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * [service dashboard](https://status.catgirl.cloud/) with uptime kuma
   * maybe send telegram message when stuff goes down
 * [ntfy](https://ntfy.sh/) push notifs for service status events
-* git frontend, either something like mitxela's or tea or [soft serve](https://github.com/charmbracelet/soft-serve)
 * endlessh
   * [hook up fail2ban](https://demu.red/blog/2019/04/endlessh-html-scoreboard/)
   * troubleshoot `-geoip_supplier ip-api`
@@ -235,6 +234,15 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
   * [hook up to grafana](https://github.com/static-web-server/static-web-server/pull/296)
 * wastebin
   * clear daily?
+* detect/handle redir from telegram/hn/etc.
+* punycode pineapple emoji subdomain (or just all subdomains like 📈 for grafana)
+* git frontend, either something like mitxela's or tea or
+  * static list/log/tree view like mitexla
+    * include total space in UI
+  * [soft serve](https://github.com/charmbracelet/soft-serve)
+  * http://codemadness.org/stagit.html
+  * check ssh vs http vs git protocol
+
 
 ### WOPR
 

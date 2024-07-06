@@ -30,7 +30,7 @@ in {
     rofimoji # TODO: put in rofi plugins section
     libqalculate qalculate-gtk
     wezterm rio alacritty
-    gnome.nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
+    nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
     ffmpeg (nixGL imv) vlc

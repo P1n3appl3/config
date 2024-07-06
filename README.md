@@ -13,6 +13,7 @@ config 🍍 nix flake show
 │   ├───HAL:     main desktop
 │   ╰───ISO:     bootable image for bootstrapping
 ├───nixosModules
+│   ├───porkbun-ddns: update ip for porkbun dns entries
 │   ╰───rust-rpxy: config and service for reverse proxy
 ├───overlays
 │   ╰───default: Nixpkgs overlay with my packages and overrides
@@ -27,6 +28,7 @@ config 🍍 nix flake show
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
     ├───mons: celeste mod manager
+    ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
     ╰───simple64: nintendo 64 emulator
 ```
