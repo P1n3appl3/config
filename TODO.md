@@ -1,7 +1,6 @@
 ## Shell
 
 * atuin
-  * fix [crossterm bug](https://github.com/crossterm-rs/crossterm/issues/685) so `ctrl+backspace` [works](https://github.com/atuinsh/atuin/issues/941)
   * use my own sync server on Cortana
   * feed zsh_autosuggest from atuin (references: [\[1\]](https://gist.github.com/tyalie/7e13cfe2ec62d99fa341a07ed12ef7c0) [\[2\]](https://pastebin.com/RXxU6rT4) [\[3\]](https://github.com/atuinsh/atuin/issues/68#issuecomment-1582815247)):
 ``` sh
@@ -76,6 +75,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * try `kitten icat --transfer-mode file --place 20x20@40x40 --clear "$f"`
 * screenshot.sh remove wayland support if using a dedicated tool, and write/yoink slop shader for blur in i3
 * fonts
+  * fix monospace font not applying in firefox
   * verify that gtk is using noto with some simple gtk app and the inspector
   * look into opentype options with opentype.dev or other fonts:
     * dejavu victor menlo/meslo fira hack hasklig isoveka jetbrains mononoki ubuntu berkely (and check chat thread from work for others)
@@ -116,7 +116,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 
 * rust share target dir with [targo](https://github.com/sunshowers/targo)
 * powertop handle kitty terminfo
-* tlp fix locale issue
 * ruff use human readable config names [once that's an option](https://github.com/charliermarsh/ruff/issues/1773)
 * git
   * use an actual difftool like nvimdiff/fugitive/gnome meld/etc.
@@ -201,6 +200,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * OG elite or more modern remake in the spirit of it
 * pokefinder + timer and assorted tools
 * hoyle boardgames + fantastic contraption
+* apotris
 
 ## `pkgs/`
 
@@ -253,6 +253,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * fw-ectool
   * lights! need to see how fast I can alternate and how wide the gamut is
   * flicker pattern upon plugging in and/or do gradient while charging
+  * [pattern](https://community.frame.work/t/reprogramming-the-leds-for-the-holidays/12906)
 * d-spy/bustle/dbus-tool/qdbus talk to geoclue
 * disable middle-click paste
 * howett.net fnlock light to capslock
@@ -260,6 +261,8 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
   * right ctrl -> fn
 * [only autologin on tty1](https://github.com/NixOS/nixpkgs/issues/81552)
 * measure power draw in s2idle, as well as peak and idle
+* screen brightness keys and swayosd or similar for showing brightness
+* debug fprintd enroll not working
 
 ### clu
 

@@ -13,7 +13,7 @@ config 🍍 nix flake show
 │   ├───HAL:     main desktop
 │   ╰───ISO:     bootable image for bootstrapping
 ├───nixosModules
-│   ├───porkbun-ddns: update ip for porkbun dns entries
+│   ├───porkbun-ddns: update ip for porkbun DNS entries
 │   ╰───rust-rpxy: config and service for reverse proxy
 ├───overlays
 │   ╰───default: Nixpkgs overlay with my packages and overrides
