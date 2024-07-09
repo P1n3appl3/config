@@ -24,7 +24,7 @@
 ["TWiR"              "this-week-in-rust.org"               "/rss.xml"]
 ["Jorge Aparicio"    "http://blog.japaric.io"              "/index.xml"]
 ["Rust Blog"         "blog.rust-lang.org"                  "/feed.xml"]
-["Bryan Cantrill"    "bcantrill.dtrace.org/"               "/feed"]
+["Bryan Cantrill"    "bcantrill.dtrace.org"                "/feed"]
 ["Red Blob Games"    "www.redblobgames.com"                "/blog/posts.xml"]
 ["Brendan Gregg"     "www.brendangregg.com/blog"           "/rss.xml"]
 ["Graydon"           "graydon2.dreamwidth.org"             "/data/rss"]
@@ -101,6 +101,7 @@
 ["Justine Tunney"    "justine.lol"                         "/rss.xml"]
 ["Eevee"             "eev.ee/blog"                         "https://eev.ee/feeds/blog.atom.xml"]
 ["Ashley Williams"   "medium.com/@ag_dubs"                 "https://medium.com/feed/@ag_dubs"]
+["Ludicity"          "https://ludic.mataroa.blog"          "/rss"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]
@@ -126,6 +127,7 @@
 # TODO: feed missing?
 # ["myrrlyn"           "myrrlyn.net"                         "/blog/feed.rss"]
 
+# use https://github.com/Siriusmart/feedscraper for:
 # TODO: iximeow.net
 # TODO: tmpout.sh
 ])

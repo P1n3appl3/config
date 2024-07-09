@@ -25,6 +25,8 @@ in {
       extraOptions = [ "-alsologtostderr"];
     };
 
+    # TODO: prometheus export with tracing opentelemetry
+    # TODO: custom http 503 error page
     rust-rpxy = { enable = true;
       config = let
         tls = {
@@ -48,10 +50,16 @@ in {
       };
     };
 
+    # TODO: prometheus
+    # https://github.com/static-web-server/static-web-server/pull/306
     static-web-server = { enable = true;
       root = "/media/static";
       listen = "[::]:9000";
-      configuration.general = { health = true; directory-listing = true; };
+      configuration.general = {
+        health = true;
+        directory-listing = true;
+        compression-static = true;
+      };
     };
 
     grafana = { enable = true;
@@ -62,6 +70,19 @@ in {
           domain = "traffic.pineapple.computer";
         };
       };
+    };
+
+    # TODO: add btrfs
+    prometheus = {
+      exporters.node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        port = 9101;
+      };
+      scrapeConfigs = [{
+        job_name = "prometheus";
+        static_configs = [{ targets = [ "localhost:9100" "localhost:9101" ]; }];
+      }];
     };
 
     atuin = { enable = true;
@@ -91,6 +112,7 @@ in {
       };
     };
 
+    # TODO: replace with grafana page
     uptime-kuma = { enable = true;
       settings.PORT = "9004";
     };
@@ -138,11 +160,15 @@ in {
     in {
       description = "Update https://julia.blue/read";
       startAt = "01,13:00"; # twice a day
-      path = with pkgs; [ rssfetch jq ];
-      script = ''
+      path = with pkgs; [ rssfetch jq zstd gzip ];
+      script = let out = "/media/static/posts.json"; in ''
         ln -sf ${blogs} /media/static/blogs.json
         rssfetch <(jq '.[]' ${blogs} -c) |
-          jq -sc '. |= sort_by(.date) | reverse' > /media/static/posts.json
+          jq -sc '. |= sort_by(.date) | reverse' > ${out}
+        zstd ${blogs} -f -10
+        zstd ${out}   -f -10
+        gzip -c ${blogs} > ${blogs}.gz
+        gzip -c   ${out} >   ${out}.gz
       '';
     };
   };
