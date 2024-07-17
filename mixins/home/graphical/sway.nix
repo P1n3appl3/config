@@ -67,7 +67,7 @@
         After = "graphical-session.target";
       };
       Service = {
-        Type = "simple"; Restart = "on-failure";
+        Restart = "on-failure";
         ExecStart = "${pkgs.wpaperd}/bin/wpaperd -d";
       };
     };

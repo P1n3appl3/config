@@ -6,6 +6,8 @@
     ];
   };
 
+  dev.compilers = false;
+
   imports = [
     ../mixins/home/linux.nix
     ../mixins/home/dev.nix
