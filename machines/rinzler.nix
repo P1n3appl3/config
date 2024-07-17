@@ -9,6 +9,12 @@
 
   programs.kitty.settings.font_size = 14;
 
+  dev.compilers = false;
+
+  services.shpool = { enable = true;
+    config.prompt_prefix = "";
+  };
+
   imports = [
     ../mixins/home/linux.nix
     ../mixins/home/btrfs.nix

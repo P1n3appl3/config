@@ -12,9 +12,11 @@ config 🍍 nix flake show
 │   ├───WOPR:    framework laptop 13" (AMD 7640U)
 │   ├───HAL:     main desktop
 │   ╰───ISO:     bootable image for bootstrapping
+├───homeModules
+│   ╰───shpool: shell persistence daemon
 ├───nixosModules
 │   ├───porkbun-ddns: update ip for porkbun DNS entries
-│   ╰───rust-rpxy: config and service for reverse proxy
+│   ╰───rust-rpxy:    config and service for reverse proxy
 ├───overlays
 │   ╰───default: Nixpkgs overlay with my packages and overrides
 ╰───packages
@@ -30,7 +32,7 @@ config 🍍 nix flake show
     ├───mons: celeste mod manager
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
-    ╰───simple64: nintendo 64 emulator
+    ╰───shpool: shell persistence tool
 ```
 
 I [used to](https://github.com/P1n3appl3/config/tree/cd6d498014) use this as a [bare git repo](https://www.atlassian.com/git/tutorials/dotfiles). If you're not sold on nix/home-manager I think it's still a pretty ideal way to manage your dotfiles. Now when my home-manager activation script runs, it symlinks everything in the [dotfiles dir](dotfiles) into `$HOME` so that you can edit most config files without having to run `switch`.

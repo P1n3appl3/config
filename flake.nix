@@ -63,7 +63,7 @@
       ISO     = machine "x86_64-linux"  ./machines/iso.nix;
     };
 
-    homeModules = {};
+    homeModules  = listDir { of = ./modules/home;  mapFunc = _: import; };
     nixosModules = listDir { of = ./modules/nixos; mapFunc = _: import; };
 
     overlays.default = final: _: listDir {
