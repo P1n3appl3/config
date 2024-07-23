@@ -29,7 +29,7 @@ in {
     xorg.xeyes
     rofimoji # TODO: put in rofi plugins section
     libqalculate qalculate-gtk
-    wezterm rio alacritty
+    (nixGL wezterm)
     nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
@@ -45,7 +45,7 @@ in {
     # TODO: bitwarden popup floating window
     # TODO: vaapi hardware decode
     (nixGL firefox)
-    (nixGL telegram-desktop) (nixGL caprine-bin) vesktop signal-desktop
+    (nixGL telegram-desktop) (nixGL caprine-bin) (nixGL vesktop) signal-desktop
     android-messages fractal-next nheko # TODO: pick one
     praat friture # TODO: try this for voice training
     imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these

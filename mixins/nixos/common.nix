@@ -13,6 +13,7 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCatP3klEjfQPSiJNUc3FRDdz927BG1IzektpouzOZR"
     ];
+    linger = true;
   };
   users.defaultUserShell = pkgs.zsh;
 

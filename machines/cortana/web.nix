@@ -161,13 +161,16 @@ in {
       description = "Update https://julia.blue/read";
       startAt = "01,13:00"; # twice a day
       path = with pkgs; [ rssfetch jq zstd gzip ];
-      script = let out = "/media/static/posts.json"; in ''
-        ln -sf ${blogs} /media/static/blogs.json
+      script = let
+        out = "/media/static/posts.json";
+        blogs_out = "/media/static/blogs.json";
+      in ''
+        ln -sf ${blogs} ${blogs_out}
         rssfetch <(jq '.[]' ${blogs} -c) |
           jq -sc '. |= sort_by(.date) | reverse' > ${out}
-        zstd ${blogs} -f -10
+        zstd ${blogs} -f -10 -o ${blogs_out}.zst
         zstd ${out}   -f -10
-        gzip -c ${blogs} > ${blogs}.gz
+        gzip -c ${blogs} > ${blogs_out}.gz
         gzip -c   ${out} >   ${out}.gz
       '';
     };

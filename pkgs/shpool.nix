@@ -13,7 +13,7 @@
   buildInputs = [ linux-pam ];
   doCheck = false; # attach test fails
 
-  cargoHash = "sha256-K1ovw9ivOsdo77qjuFUkipd2OawvABgY9fxDR5mMRdU=";
+  cargoHash = "sha256-Xb/ohGzgXR8B6Zfd2pUqgpxK6WQnk2xF4bbCyz1g2os=";
 
   meta.platforms = lib.platforms.linux;
 }

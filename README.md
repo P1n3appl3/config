@@ -29,7 +29,6 @@ config 🍍 nix flake show
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
-    ├───mons: celeste mod manager
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
     ╰───shpool: shell persistence tool

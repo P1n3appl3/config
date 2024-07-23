@@ -56,7 +56,6 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * see [related issue](https://github.com/kovidgoyal/kitty/issues/719#issuecomment-952039731) and [nvim plugin](https://github.com/mikesmithgh/kitty-scrollback.nvim)
 * [remove wezterm bundled fonts](https://github.com/wez/wezterm/blob/main/README-DISTRO-MAINTAINER.md#un-bundling-vendored-fonts)
 * try wezterm multiplexing
-* try rio
 * try kitty-img
 
 ## Desktop Environment
@@ -115,7 +114,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 ## Other
 
 * rust share target dir with [targo](https://github.com/sunshowers/targo)
-* powertop handle kitty terminfo
 * ruff use human readable config names [once that's an option](https://github.com/charliermarsh/ruff/issues/1773)
 * git
   * use an actual difftool like nvimdiff/fugitive/gnome meld/etc.
