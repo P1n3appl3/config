@@ -17,7 +17,7 @@
     compression = true;
     includes = [ "extra-config" ];
     matchBlocks = {
-      "pineapple.computer julia.blue Cortana Cortana.local Cortana.lan" = {
+      "pineapple.computer julia.blue Cortana Cortana.lan HAL HAL.lan" = {
         hostname = "%h"; user = "julia"; port = 69;
       };
     };

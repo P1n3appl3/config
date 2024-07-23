@@ -6,6 +6,7 @@
     fzf ripgrep fd eza sd dogdns ouch jq xh rbw pinentry hyperfine hexyl choose
     tokei zellij rsync zstd lowcharts trippy pv datamash ascii numbat sshping
     mdcat magic-wormhole-rs netscanner rage exiftool get-keys vivid pipe-rename
+    csvlens
     # System info
     bottom bandwhich trippy procs smartmontools duf ncdu du-dust
     # Nix

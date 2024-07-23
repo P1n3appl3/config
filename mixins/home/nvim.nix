@@ -30,6 +30,8 @@
       dressing-nvim
       nvim-notify
       fidget-nvim
+      (gh "typicode" "bg.nvim" "61e1150dd5900eaf73700e4776088c2131585f99"
+        "sha256-qzBp5h9AkJWQ3X7TSwxX881klDXojefeH0Qn/prJ/78=")
     # Fun
       (gh "Eandrju" "cellular-automaton.nvim" "b7d056dab963b5d3f2c560d92937cb51db61cb5b"
         "sha256-szbd6m7hH7NFI0UzjWF83xkpSJeUWCbn9c+O8F8S/Fg=")

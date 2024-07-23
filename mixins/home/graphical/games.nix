@@ -18,6 +18,6 @@
 
     slipstream # ftl mods
     r2mod_cli # risk of rain 2 mods
-    mons # celeste mods
+    everest-mons # celeste mods
   ];
 }

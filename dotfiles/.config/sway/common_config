@@ -15,7 +15,7 @@ for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="audio-select"] border pixel 1
 for_window [title=".*Syncthing Tray"] floating enable
 
-bindsym $mod+Return exec kitty -1
+bindsym $mod+Return exec wezterm -e
 bindsym $mod+Shift+r reload
 
 bindsym $mod+r exec rofi -show drun
