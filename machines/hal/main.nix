@@ -46,18 +46,13 @@
 
       xsession = { enable = true; windowManager.command = "i3"; };
       programs.kitty.settings.font_size = 10;
-      slippi.launcher = { enable = true;
+      slippi-launcher = { enable = true;
         isoPath = "/media/alt/games/ROMs/Gamecube/Animelee [GALE01]/game.iso";
         rootSlpPath = "/media/alt/games/melee/replays";
         useMonthlySubfolders = true;
         launchMeleeOnPlay = false;
+        enableJukebox = false;
       };
-      # xsession.windowManager.i3 = {
-      #   enable = true;
-      #   package = pkgs.i3-gaps;
-      #   enableDefault = false;
-      #   extraConfigEarly = "include ~/.config/i3/common_config";
-      # };
     })
     ../../mixins/home/common.nix
     ../../mixins/home/linux.nix
@@ -73,6 +68,8 @@
   programs = {
     steam.enable = true;
     appimage = { enable = true; binfmt = true; };
+    nix-ld.enable = true;
+    m-overlay.enable = true;
   };
 
   services = {

@@ -106,7 +106,7 @@ in {
   xdg.portal = { enable = true;
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-wlr ];
-    config.common.default = "*"; # TODO: set per-interface portal
+    config.common.default = "gtk"; # TODO: set per-interface portal
   };
 
   home.keyboard.options = [ "caps:escape" "shift:both_capslock" ];

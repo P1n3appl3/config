@@ -39,11 +39,11 @@
 
     mime.enable = true;
     mimeApps = { enable = true;
-      defaultApplications = {
+      defaultApplications = let ff = "firefox.desktop"; in {
         "application/pdf" = "zathura.desktop";
-        "text/html" = "firefox.desktop";
-        "x-scheme-handler/http" = "firefox.desktop";
-        "x-scheme-handler/https" = "firefox.desktop";
+        "text/html" = ff;
+        "x-scheme-handler/http" = ff;
+        "x-scheme-handler/https" = ff;
         "x-scheme-handler/tg" = "org.telegram.desktop";
       };
     };
