@@ -145,6 +145,8 @@ client.urgent            $urgent   $urgent   $base  $urgent   $urgent
 client.background        $base
 
 exec_always xsetroot -solid $base
+exec_always systemctl --user import-environment PATH && \
+            systemctl --user restart xdg-desktop-portal.service
 
 bar {
     height 28

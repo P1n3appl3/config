@@ -103,7 +103,6 @@ wk.setup {
         presets = { operators = false, motions = false, text_objects = false },
     },
     layout = { width = { max = 40 } },
-    triggers = { "g", "z", "<leader>", ",", "<c-w>", "<c-r>", '"', "'", "`" },
     icons = { rules = false },
 }
 

@@ -3,7 +3,10 @@
    # TODO: change exec line to "systemd-cat -p sway ${pkgs.sway}/bin/sway"
    # TODO: wrapper features?
     catppuccin.enable = true;
-    systemd.xdgAutostart = true;
+    systemd = {
+      xdgAutostart = true;
+      variables = [ "--all" ]; # TODO: check if importing PATH for xdg-desktop-portal is working
+    };
     extraSessionCommands = ''
       export NIXOS_OZONE_WL="1";
     '';

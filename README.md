@@ -15,6 +15,7 @@ config 🍍 nix flake show
 ├───homeModules
 │   ╰───shpool: shell persistence daemon
 ├───nixosModules
+│   ├───m-overlay:    security wrapper for input viewer
 │   ├───porkbun-ddns: update ip for porkbun DNS entries
 │   ╰───rust-rpxy:    config and service for reverse proxy
 ├───overlays
@@ -29,6 +30,7 @@ config 🍍 nix flake show
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
+│   ├───m-overlay: gamecube input visualizer for dolphin
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
     ╰───shpool: shell persistence tool
