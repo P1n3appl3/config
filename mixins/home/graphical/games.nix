@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     steam
-    itch
+    itch wine64
     lutris
     ludusavi
 
