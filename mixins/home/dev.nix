@@ -14,6 +14,6 @@
       typst typst-fmt typst-lsp
       biome
       j ]
-    (lib.mkIf config.dev.compilers  [ rustup mold clang clang-tools nasm ])
+    (lib.mkIf config.dev.compilers  [ rustup mold-wrapped clang clang-tools nasm ])
   ];
 }

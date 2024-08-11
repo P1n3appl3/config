@@ -9,11 +9,12 @@
   programs.dconf.enable = true;
 
   services = {
+    udisks2 = { enable = true; mountOnMedia = true; };
     pipewire = { enable = true;
       wireplumber.enable = true; alsa.enable = true;
       pulse.enable = true; jack.enable = true;
     };
-    # I don't use xorg, so these are just for the tty
+    # I don't use xorg everywhere, so sometimes these are just for the tty
     # TODO: set these some other way, either console.keymap or interceptor
     xserver.xkb.options = "altwin:swap_alt_win,caps:escape,shift:both_capslock";
   };

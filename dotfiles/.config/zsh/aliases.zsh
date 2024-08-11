@@ -11,6 +11,7 @@ alias sudo="sudo " # trailing space for alias expansion
 alias please="sudo "
 alias fuck=killall
 function note { cd ~/documents/notes && vi todo/TODO.md **/*.md && cd -; }
+alias wine32="WINEPREFIX=$HOME/.wine32 wine"
 
 alias sc=systemctl
 alias music=ncmpcpp

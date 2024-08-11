@@ -14,11 +14,13 @@
         oneko
         xorg.xeyes xorg.xkill
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
+        vscode
       ];
 
       systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
       services = {
         clipmenu.enable = true;
+        udiskie.settings.device_config = [ { device_file = "/dev/sda"; ignore = true; } ];
         dunst = { enable = true;
           inherit iconTheme;
           settings = {
@@ -82,11 +84,10 @@
     displayManager.defaultSession = "none+i3";
     flatpak.enable = true;
     openssh.enable = true;
-    udev.extraRules = ''
-        SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"
-        SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="102b", MODE="0666"
-    '';
+    # udev.packages = [ pkgs.input-integrity ];
   };
+
+  users.users.julia.extraGroups = [ "dialout" ];
 
   environment.pathsToLink = [ "/libexec" ];
 

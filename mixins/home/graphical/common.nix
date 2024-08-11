@@ -58,6 +58,7 @@ in {
     graphviz
     libnotify
     warp
+    udiskie
   ];
 
   programs = {
