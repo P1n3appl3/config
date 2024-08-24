@@ -85,6 +85,10 @@ local toggle_diagnostics = function()
     if diagnostics_active then d.show() else d.hide() end
 end
 
+local toggle_inlay_hints = function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end
+
 G.lazy_load("fzf-lua", {
     preview_layout = "vertical",
     preview_vertical = "up",
@@ -154,7 +158,7 @@ wk.add {
     { "<space>s", RUNFZF "spell_suggest", desc = "Spelling" },
     { "<space>h", RUNFZF "help_tags", desc = "Help" },
     { "<space>l", RUNFZF "lines", desc = "Search Lines" },
-    { "<space>i", ":RustToggleInlayHints<CR>", desc = "Inlay Hints" },
+    { "<space>i", toggle_inlay_hints, desc = "Inlay Hints" },
     { "<space>j", G.lazy("treesj", "toggle"), desc = "Split / Join" },
 
     { "<space>d", ":bd<CR>", desc = "Close Buffer" },
