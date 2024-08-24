@@ -101,7 +101,8 @@
 ["Justine Tunney"    "justine.lol"                         "/rss.xml"]
 ["Eevee"             "eev.ee/blog"                         "https://eev.ee/feeds/blog.atom.xml"]
 ["Ashley Williams"   "medium.com/@ag_dubs"                 "https://medium.com/feed/@ag_dubs"]
-["Ludicity"          "https://ludic.mataroa.blog"          "/rss"]
+["Ludicity"          "ludic.mataroa.blog"                  "/rss"]
+["Chevy Ray"         "chevyray.dev/rss.xml"                "/rss.xml"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]

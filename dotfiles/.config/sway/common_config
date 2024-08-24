@@ -132,7 +132,7 @@ bar {
   id main
   position top
   height 28
-  status_command ~/.nix-profile/bin/i3status-rs # TODO: fix path on work computers
+  status_command i3status-rs
   strip_workspace_numbers yes
   colors {
     background         $surface0

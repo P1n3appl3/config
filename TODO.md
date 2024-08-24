@@ -199,6 +199,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * pokefinder + timer and assorted tools
 * hoyle boardgames + fantastic contraption
 * apotris
+* airshipper
 
 ## `pkgs/`
 

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+url=https://www.cs.cmu.edu/afs/cs.cmu.edu/project/fgdata/OldFiles/Recorder.app/utterances/Type1/harvsents.txt
+f=${XDG_CACHE_HOME-$HOME/.cache}/harvard-sentences.txt
+[ ! -f "$f" ] && echo "downloading..." && curl -Ss $url | sd '\.\s*$' '' >"$f"
+
+function sentence {
+    sentence=$(awk 'NR % 11 != 1' "$f" | sd '^\W*\d+\. ' '' | awk "NR == $1")
+    echo -e "\e[1;3m$sentence\e[0m   \e[2;5m$2\e[0m"
+}
+function list {
+    echo -e "\e[1;4mList $(($1 + 1))\e[0m"
+    n=$(($1 * 11 + 1))
+    awk "$n<NR&&NR<($n+11)" "$f" | blahaj
+}
+
+if [[ -z "$1" || $1 == sentence ]]; then
+    n=$((RANDOM % 720))
+    id="$(((n - 1) / 10 + 1))#$(((n + 9) % 10 + 1))"
+    sentence $n $id
+else
+    id=$1
+    if [[ $1 =~ ([[:digit:]]+)\#([[:digit:]]+) ]]; then
+        l="${BASH_REMATCH[1]}"
+        n="${BASH_REMATCH[2]}"
+        if ((72 < l || l < 1)); then
+            echo "please choose a list number from 1 to 72" && exit 1
+        fi
+        if ((10 < n || n < 1)); then
+            echo "please choose a sentence number from 1 to 10" && exit 1
+        fi
+        sentence $(((l - 1) * 10 + n)) "$id"
+    elif [[ $1 =~ [[:digit:]] ]]; then
+        if ((72 < id || id < 1)); then
+            echo "please choose a list number from 1 to 72" && exit 1
+        fi
+        list $((id - 1))
+    elif [[ $1 = list ]]; then
+        list $((RANDOM % 72))
+    else
+        echo "'$1' isn't valid, give a list number, or a sentence number like: '25#3'"
+        echo "you can also pass 'sentence' or 'list' to get a random one"
+    fi
+fi
