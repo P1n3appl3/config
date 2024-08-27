@@ -103,6 +103,7 @@
 ["Ashley Williams"   "medium.com/@ag_dubs"                 "https://medium.com/feed/@ag_dubs"]
 ["Ludicity"          "ludic.mataroa.blog"                  "/rss"]
 ["Chevy Ray"         "chevyray.dev/rss.xml"                "/rss.xml"]
+["myrrlyn"           "myrrlyn.net/blog"                    "/atom.xml"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]
@@ -125,8 +126,8 @@
 # TODO: debug missing feed root, maybe WP generators are bad?
 # ["Organic Donut"     "organicdonut.com"                    "/feed"]
 
-# TODO: feed missing?
-# ["myrrlyn"           "myrrlyn.net"                         "/blog/feed.rss"]
+# mmmmm maybe
+# ["Drew DeVault"      "drewdevault.com"                     "/blog/index.xml"]
 
 # use https://github.com/Siriusmart/feedscraper for:
 # TODO: iximeow.net

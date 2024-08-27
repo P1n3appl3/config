@@ -13,7 +13,6 @@
 
   gtk = { enable = true;
     iconTheme = { package = pkgs.papirus-icon-theme; name = "Papirus-Dark"; };
-    catppuccin = { enable = true; size = "compact"; tweaks = [ "rimless" ]; };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
       gtk-error-bell = 0;
