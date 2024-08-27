@@ -17,6 +17,9 @@
       options usbcore quirks=0bda:9210:u
       options usb-storage quirks=0bda:9210:u
       '';
+
+    # https://artemis.sh/2023/06/06/cross-compile-nixos-for-great-good.html
+    binfmt.emulatedSystems = [ "x86_64-linux" ];
   };
 
   nixpkgs.hostPlatform = "aarch64-linux";

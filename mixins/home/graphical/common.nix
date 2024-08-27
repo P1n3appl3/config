@@ -46,7 +46,7 @@ in {
     # TODO: vaapi hardware decode
     (nixGL firefox)
     (nixGL telegram-desktop) (nixGL caprine-bin) (nixGL vesktop) signal-desktop
-    android-messages fractal-next nheko # TODO: pick one
+    android-messages fractal-next # TODO: try nheko
     praat friture # TODO: try this for voice training
     imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
     mepo # TODO: try

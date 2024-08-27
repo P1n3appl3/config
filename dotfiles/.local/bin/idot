@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eo pipefail
+
 font="${font-mono}"
 fgcolor=gray87
 
