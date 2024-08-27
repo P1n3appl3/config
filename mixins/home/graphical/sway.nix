@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, ... } @ inputs: {
   wayland.windowManager.sway = { enable = true;
    # TODO: change exec line to "systemd-cat -p sway ${pkgs.sway}/bin/sway"
    # TODO: wrapper features?
@@ -23,7 +23,6 @@
     libsForQt5.qt5.qtwayland
     wluma
     # TODO: oneko wayland port and/or https://github.com/Ibrahim2750mi/linux-goose
-    wpaperd # TODO: add to home-manager service so wpaperctl is in PATH
   ];
 
   programs = {
@@ -35,13 +34,13 @@
         duration = "30m";
       };
     };
-    swaylock = { enable = true; # TODO: try gtklock
+    swaylock = { enable = true;
       catppuccin.enable = true;
-      package = pkgs.swaylock-effects;
+      package = if inputs ? osConfig then pkgs.swaylock else pkgs.hello;
       settings = {
-        daemonize = true; screenshot = true; clock = true; indicator = true;
+        daemonize = true; scaling = "fill"; image = "~/images/lockscreen";
         ignore-empty-password = true; show-failed-attempts = true;
-        inside-color = lib.mkForce "1e1e2eaa"; effect-blur = "7x5";
+        inside-color = lib.mkForce "1e1e2eaa";
       };
     };
   };
@@ -54,6 +53,7 @@
         { event = "lock"; command = "swaylock"; }
       ];
       timeouts = let screen = state: "swaymsg 'output * dpms ${state}'"; in [
+        { timeout = 110; command = "swaylock"; }
         { timeout = 120; command = screen "off"; resumeCommand = screen "on"; }
       ];
     };
@@ -69,10 +69,29 @@
         PartOf = "graphical-session.target";
         After = "graphical-session.target";
       };
+      Install.WantedBy = [ "graphical-session.target" ];
       Service = {
         Restart = "on-failure";
-        ExecStart = "${pkgs.wpaperd}/bin/wpaperd -d";
+        ExecStart = "${lib.getExe pkgs.wpaperd} -d";
       };
+    };
+
+    change-lockscreen = let script = pkgs.writeShellScript "change-lockscreen" ''
+      set -ex
+      images="''${XDG_PICTURES_DIR-$HOME/images}"
+      new=$(${lib.getExe pkgs.fd} . "$images/wallpapers" -Ltf | shuf -n1)
+      ln -sf "$new" "$images/lockscreen"
+    ''; in {
+      Unit.Description = "Swap my lockscreen background";
+      Service = { Type = "oneshot"; ExecStart = "${script}"; };
+    };
+  };
+
+  systemd.user.timers = {
+    change-lockscreen = {
+      Unit.Description = "Swap my lockscreen background";
+      Timer = { OnCalendar = "daily"; Persistent = true; };
+      Install.WantedBy = [ "timers.target" ];
     };
   };
 }
