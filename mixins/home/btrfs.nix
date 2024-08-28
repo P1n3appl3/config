@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     btrfs-progs
-    compsize
+    # compsize # TODO: re-enable when fixed
     duperemove
     btdu
   ];

@@ -11,6 +11,7 @@
     rahul-config.url       = "github:rrbutani/nix-config";
     catppuccin.url         = "github:catppuccin/nix";
     slippi.url             = "github:lytedev/slippi-nix";
+    obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
@@ -24,16 +25,17 @@
       impermanence.follows = "";
     };
     slippi.inputs.nixpkgs.follows = "nixpkgs";
+    obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, nixos-hardware, ragenix,
-    nix-index-database, nixgl, rahul-config, catppuccin, slippi, self } @ inputs:
+  outputs = { nixpkgs, home-manager, flake-utils, ragenix, nixgl, rahul-config,
+              obs-gamepad, self, ... } @ inputs:
   let
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
     myOverlays = [
       self.overlays.default nixgl.overlays.default ragenix.overlays.default
-      (import ./overlays.nix inputs)
+      obs-gamepad.overlays.default (import ./overlays.nix inputs)
     ];
 
     home = system: module: home-manager.lib.homeManagerConfiguration {
