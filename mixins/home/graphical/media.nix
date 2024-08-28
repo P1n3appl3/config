@@ -16,6 +16,7 @@
       plugins = with pkgs.obs-studio-plugins; [
         obs-vkcapture
         obs-livesplit-one # TODO: see if it works and i can delete mine
+        obs-gamepad
       ];
     };
   };
