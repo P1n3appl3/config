@@ -30,7 +30,7 @@ config 🍍 nix flake show
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
-│   ├───m-overlay: gamecube input visualizer for dolphin
+    ├───m-overlay: gamecube input visualizer for dolphin
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
     ╰───shpool: shell persistence tool
