@@ -36,5 +36,8 @@ stdenvNoCC.mkDerivation (final: {
       --add-flags ${final.src}/source
   '';
 
-  meta.mainProgram = final.pname;
+  meta = {
+    mainProgram = final.pname;
+    platforms = lib.platforms.linux;
+  };
 })

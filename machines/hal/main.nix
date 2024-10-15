@@ -15,6 +15,7 @@
         xorg.xeyes xorg.xkill
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
         vscode
+        melee-quick-mod
       ];
 
       systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
@@ -80,11 +81,21 @@
       screenSection = ''
         Option "metamodes" "DP-4: 1920x1080_144 +2560+0 {rotation=left}, DP-2: 2560x1440_144 +0+480"
       '';
+      # TODO: test and point this at the lockscreen symlink
+      # also add 2nd monitor
+      # also try ly
+      displayManager.lightdm.greeters.gtk.extraConfig = ''
+      background = "~/images/wallpapers/waneella_landscape/'053_Birds and Lanterns.webp"
+    '';
     };
     displayManager.defaultSession = "none+i3";
     flatpak.enable = true;
     openssh.enable = true;
     # udev.packages = [ pkgs.input-integrity ];
+    udev.extraRules = ''
+      SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"
+      SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="102b", MODE="0666"
+    '';
   };
 
   environment.pathsToLink = [ "/libexec" ];
