@@ -1,6 +1,6 @@
 [build]
-rustflags = ["-Z", "threads=8"]
 target-dir = ".cache/cargo"
+rustflags = ["-Z", "threads=0"]
 
 [target.x86_64-unknown-linux-gnu]
 linker = "clang"

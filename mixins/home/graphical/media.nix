@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     kdenlive
+    yt-dlp
     godot_4
     blender
     inkscape krita pinta aseprite

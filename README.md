@@ -27,12 +27,14 @@ config 🍍 nix flake show
     ├───barchart: draw barcharts in the terminal
     ├───bibata-modern-classic: mouse cursor theme
     ├───cargo-clone-crate: better cargo clone command
+    ├───dl: get the latest downloaded file
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
     ├───m-overlay: gamecube input visualizer for dolphin
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
+    ├───s2yt: spotify to youtube music transfer tool
     ╰───shpool: shell persistence tool
 ```
 
@@ -42,7 +44,7 @@ I [used to](https://github.com/P1n3appl3/config/tree/cd6d498014) use this as a [
 
 <div align="center"><a href="https://garnix.io"><img alt="built with garnix" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2FP1n3appl3%2Fconfig"></a></div>
 
-I learned a lot from trawling through other peoples configs, here's some cool ones to check out:
+I learned a lot from trawling through other peoples configs, here are some cool ones to check out:
 
 - <https://github.com/Misterio77/nix-config>
 - <https://github.com/rrbutani/nix-config>

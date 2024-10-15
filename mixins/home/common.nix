@@ -4,11 +4,11 @@
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
     fzf ripgrep fd eza sd dogdns ouch jq xh rbw pinentry-curses hyperfine hexyl choose
-    tokei zellij rsync zstd lowcharts trippy pv datamash ascii numbat sshping
+    tokei zellij rsync zstd lowcharts pv datamash ascii numbat sshping
     mdcat magic-wormhole-rs netscanner rage exiftool get-keys vivid pipe-rename
-    csvlens
+    csvlens pup
     # System info
-    bottom bandwhich trippy procs smartmontools duf ncdu du-dust
+    bottom procs smartmontools duf ncdu du-dust
     # Nix
     nix home-manager nh nix-output-monitor nix-tree nil comma ragenix
     # Scripting tools

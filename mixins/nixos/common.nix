@@ -20,6 +20,8 @@
   programs = {
     zsh = { enable = true; enableCompletion = false; };
     command-not-found.enable = false;
+    bandwhich.enable = true;
+    trippy.enable = true;
   };
 
   services = {

@@ -1,5 +1,5 @@
 { pkgs, config, ... }: {
-  home.packages = with pkgs; [ sox mediainfo mpc-cli ytmdl ];
+  home.packages = with pkgs; [ sox mediainfo mpc-cli ]; # ytmdl spotdl
 
   programs = {
     beets = { enable = true;

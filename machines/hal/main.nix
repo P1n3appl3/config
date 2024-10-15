@@ -87,8 +87,6 @@
     # udev.packages = [ pkgs.input-integrity ];
   };
 
-  users.users.julia.extraGroups = [ "dialout" ];
-
   environment.pathsToLink = [ "/libexec" ];
 
   networking.hostName = "HAL";

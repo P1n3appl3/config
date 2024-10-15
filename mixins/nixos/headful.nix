@@ -10,6 +10,7 @@
 
   services = {
     udisks2 = { enable = true; mountOnMedia = true; };
+    gvfs.enable = true;
     pipewire = { enable = true;
       wireplumber.enable = true; alsa.enable = true;
       pulse.enable = true; jack.enable = true;
@@ -22,4 +23,6 @@
   # only needed for flatpak, home-manager controls wlr/gtk portals for sway
   # and this is maybe possible to dedup with the home-manager settings
   xdg.portal = { enable = true; wlr.enable = true; config.common.default = "*"; };
+
+  users.users.julia.extraGroups = [ "dialout" "netdev" ];
 }

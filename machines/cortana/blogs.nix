@@ -104,6 +104,8 @@
 ["Ludicity"          "ludic.mataroa.blog"                  "/rss"]
 ["Chevy Ray"         "chevyray.dev/rss.xml"                "/rss.xml"]
 ["myrrlyn"           "myrrlyn.net/blog"                    "/atom.xml"]
+["Julien"            "oneirical.github.io"                 "/feed.xml"]
+["hikari"            "hikari.noyu.me"                      "/blog"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]
