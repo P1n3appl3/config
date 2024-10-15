@@ -37,6 +37,7 @@ in {
     vial # TODO: check if I need via too
     # gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
+    (nixGL zed-editor)
     (nixGL obsidian)
     # maybe https://github.com/digint/btrbk or buttermanager
     # TODO: www.marginalia.nu or ddg default search engine, set profile to
@@ -101,6 +102,16 @@ in {
         ExecStart = "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
         Restart = "on-failure"; RestartSec = 1; TimeoutStopSec = 10;
       };
+    };
+
+    change-lockscreen = let script = pkgs.writeShellScript "change-lockscreen" ''
+      set -ex
+      images="''${XDG_PICTURES_DIR-$HOME/images}"
+      new=$(${lib.getExe pkgs.fd} . "$images/wallpapers" -Ltf | shuf -n1)
+      ln -sf "$new" "$images/lockscreen"
+    ''; in {
+      Unit.Description = "Swap my lockscreen background";
+      Service = { Type = "oneshot"; ExecStart = "${script}"; };
     };
   };
 

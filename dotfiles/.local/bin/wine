@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+WINEPREFIX=${WINEPREFIX-~/.wine64} wine64 "$@"

@@ -48,6 +48,15 @@ local function mode()
     return " " .. (modes[m] ~= nil and modes[m] or m)
 end
 
+G.bongo_state = 1
+local bongo = { "󺳥 󺳦 ", "󺳧 󺳦 ", "󺳥 󺳨 ", "󺳧 󺳨 " }
+-- local bongo = { "󺳥󺳦", "󺳧󺳦", "󺳥󺳨", "󺳧󺳨" }
+local cat = function() return " " .. bongo[G.bongo_state] .. "%*" end
+vim.on_key(function(_key, _typed)
+    G.bongo_state = (G.bongo_state - 1) % 3 + 2
+    vim.cmd [[ let &stl=&stl ]]
+end)
+
 local line_col = " %l:%-2c "
 local file = " %f "
 local fill = "%="
@@ -57,8 +66,8 @@ StatusLine = {
     active = function()
         -- stylua: ignore
         return table.concat {
-            readonly(), file, git(), modified(), mode(),
-            fill, diagnostics(), reset, line_col,
+            readonly(), file, git(), -- modified(), # mode(),
+            fill, cat(), diagnostics(), reset, line_col,
         }
     end,
     inactive = function() return table.concat { file, fill, line_col } end,

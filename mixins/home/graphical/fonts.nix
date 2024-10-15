@@ -9,6 +9,7 @@
     noto-fonts-emoji
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     comic-neue
+    bongocat-font
   ];
 
   fonts.fontconfig = {
@@ -37,10 +38,11 @@
         "Source Code Pro"
         "Noto Sans Mono CJK JP"
         "Noto Sans Math"
-
+        "bongocat"
       ];
       emoji = [
         "Noto Color Emoji"
+        "bongocat"
       ];
       # TODO: cursive comic-neue
     };
