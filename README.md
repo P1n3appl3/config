@@ -32,6 +32,7 @@ config 🍍 nix flake show
     ├───git-heatmap: view change frequency of git repo
     ├───lowcharts: draw plots and histograms in the terminal
     ├───m-overlay: gamecube input visualizer for dolphin
+    ├───melee-quick-mod: ssbm texture patcher
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
     ├───s2yt: spotify to youtube music transfer tool

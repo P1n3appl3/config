@@ -24,6 +24,7 @@
   hardware = {
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
+    nvidia.open = false;
   };
 
   networking = {
