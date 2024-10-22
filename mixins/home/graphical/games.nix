@@ -10,6 +10,7 @@
     osu-lazer-bin
     clonehero # TODO: make ~/.clonehero point to games subvol
 
+    apotris
     openttd
     space-cadet-pinball
     openspades
