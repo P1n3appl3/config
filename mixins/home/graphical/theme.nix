@@ -24,7 +24,7 @@
     platformTheme.name = "qtct";
     style = {
       name = "kvantum"; # TODO: debug why stuff like syncthingtray and dolphin are bad
-      package = (pkgs.catppuccin-kvantum.override { accent = "Blue"; variant = "Mocha"; });
+      package = (pkgs.catppuccin-kvantum.override { accent = "blue"; variant = "mocha"; });
     };
   };
 

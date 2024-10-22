@@ -4,12 +4,12 @@
     yt-dlp
     godot_4
     blender
-    inkscape krita pinta aseprite
+    inkscape krita pinta oculante aseprite
     furnace lmms ardour audacity # (or tenacity)
     non
     logisim-evolution
     kicad-small
-    calibre
+    # calibre # TODO: re-enable when fixed
   ];
 
   programs = {

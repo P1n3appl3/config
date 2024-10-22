@@ -43,6 +43,7 @@
     usbutils
     config.boot.kernelPackages.perf
     kitty.terminfo
+    cntr
   ];
 
   age = {

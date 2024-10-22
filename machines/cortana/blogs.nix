@@ -106,6 +106,8 @@
 ["myrrlyn"           "myrrlyn.net/blog"                    "/atom.xml"]
 ["Julien"            "oneirical.github.io"                 "/feed.xml"]
 ["hikari"            "hikari.noyu.me"                      "/blog"]
+["nora"              "noratrieb.dev"                       "/blog/index.xml"]
+["Jonathan"          "donsz.nl"                            "/rss.xml"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]

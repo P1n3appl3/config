@@ -3,16 +3,17 @@
     # Shell
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
-    fzf ripgrep fd eza sd dogdns ouch jq xh rbw pinentry-curses hyperfine hexyl choose
-    tokei zellij rsync zstd lowcharts pv datamash ascii numbat sshping
-    mdcat magic-wormhole-rs netscanner rage exiftool get-keys vivid pipe-rename
-    pup # csvlens
+    fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine hexyl
+    tokei zellij rsync zstd pv ascii sshping mdcat magic-wormhole-rs netscanner rage
+    exiftool get-keys vivid pipe-rename
+    # Munge
+    jq pup choose datamash numbat lowcharts d-rs mawk csvlens
     # System info
     bottom procs smartmontools duf ncdu du-dust
     # Nix
     nix home-manager nh nix-output-monitor nix-tree nil comma ragenix
     # Scripting tools
-    stylua sumneko-lua-language-server shfmt shellcheck mawk
+    stylua sumneko-lua-language-server shfmt shellcheck
     # Fun
     blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain pastel
     ttyper nethack

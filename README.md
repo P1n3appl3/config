@@ -22,11 +22,13 @@ config 🍍 nix flake show
 │   ╰───default: Nixpkgs overlay with my packages and overrides
 ╰───packages
     ├───android-messages: desktop messages client
+    ├───apotris: block stacking game
     ├───audio-select: pulse-audio device selector
     ├───ascii-rain: pretty terminal rain animation
     ├───barchart: draw barcharts in the terminal
     ├───bibata-modern-classic: mouse cursor theme
     ├───cargo-clone-crate: better cargo clone command
+    ├───d-rs: stream processing utilities
     ├───dl: get the latest downloaded file
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
