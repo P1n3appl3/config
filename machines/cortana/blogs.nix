@@ -108,6 +108,7 @@
 ["hikari"            "hikari.noyu.me"                      "/blog"]
 ["nora"              "noratrieb.dev"                       "/blog/index.xml"]
 ["Jonathan"          "donsz.nl"                            "/rss.xml"]
+["rebecca"           "becca.ooo"                           "/rss.xml"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]
@@ -134,6 +135,6 @@
 # ["Drew DeVault"      "drewdevault.com"                     "/blog/index.xml"]
 
 # use https://github.com/Siriusmart/feedscraper for:
-# TODO: iximeow.net
+# TODO: blog.iximeow.net
 # TODO: tmpout.sh
 ])

@@ -22,5 +22,7 @@
   pythonImportsCheck = [
     "spotify2ytmusic"
   ];
+
+  meta.platforms = [ "x86_64-linux" "aarch64-darwin" ];
 }
 

@@ -37,4 +37,7 @@
     (text "PressureStallCPUSome")
     (text "PressureStallIOSome")
   ]);
+
+  # TODO: remove when https://github.com/nix-community/home-manager/pull/5553 lands
+  xdg.configFile."htop/htoprc".force = true;
 }

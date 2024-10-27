@@ -19,4 +19,13 @@ inputs: final: prev: {
       hash = "sha256-PV1i+n/lGK85To2PJfbwHIbm+XHHTxE3XCEX9rvupAE=";
     };
   };
+
+  # TODO: tray still not working?
+  sway = prev.sway.overrideAttrs (old: {
+    patches = (old.patches or []) ++ [ (final.fetchpatch {
+        url = "https://github.com/swaywm/sway/pull/8405.patch";
+        hash = "sha256-poblUEaeytBD8xqfiW0lRWaJ12RZ1meLGjZPl7JBrOo=";
+      })
+    ];
+  });
 }

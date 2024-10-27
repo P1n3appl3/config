@@ -24,7 +24,10 @@
       agenix.follows = ""; ragenix.follows = ""; darwin.follows = "";
       impermanence.follows = "";
     };
-    slippi.inputs.nixpkgs.follows = "nixpkgs";
+    slippi.inputs = {
+      nixpkgs.follows = "nixpkgs";
+      home-manager.follows = "home-manager";
+    } ;
     obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -55,7 +58,7 @@
       ATLAS     = home "x86_64-linux"   ./machines/atlas.nix;
       clu       = home "x86_64-linux"   ./machines/clu.nix;
       rinzler   = home "x86_64-linux"   ./machines/rinzler.nix;
-      crabapple = home "aarch64-darwin" ./machines/crabapple.nix;
+      # crabapple = home "aarch64-darwin" ./machines/crabapple.nix;
     };
 
     nixosConfigurations = {

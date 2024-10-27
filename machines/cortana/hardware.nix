@@ -20,6 +20,7 @@
 
     # https://artemis.sh/2023/06/06/cross-compile-nixos-for-great-good.html
     binfmt.emulatedSystems = [ "x86_64-linux" ];
+    kernelParams = [ "psi=1" ];
   };
 
   nixpkgs.hostPlatform = "aarch64-linux";

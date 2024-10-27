@@ -5,4 +5,5 @@ in builtins.listToAttrs
   "weather.age"
   "porkbun-secret.age"
   "porkbun-api.age"
+  "nix-conf.age"
 ])
