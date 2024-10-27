@@ -5,7 +5,7 @@
     # Utils
     fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine hexyl
     tokei zellij rsync zstd pv ascii sshping mdcat magic-wormhole-rs netscanner rage
-    exiftool get-keys vivid pipe-rename
+    exiftool get-keys vivid pipe-rename static-web-server
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens
     # System info
@@ -44,7 +44,13 @@
   };
 
   systemd.user.startServices = "sd-switch"; # start/stop services to match config
-  age.package = pkgs.rage;
+  age = {
+    package = pkgs.rage;
+    secrets.nix-conf = {
+      file = ../../secrets/nix-conf.age;
+      path = "${config.home.homeDirectory}/.config/nix/extra.conf";
+    };
+  };
 
   home = {
     username = lib.mkDefault "julia";

@@ -27,7 +27,7 @@
         "/nix/store/bwi2w2fgx5gip3sav0n3485m5i35kgma-vimplugin-rust-tools.nvim-2023-02-20/lua",
         "/nix/store/dhlnp8b2qi71szvi9k12gk0jx0kmdwkm-vimplugin-vim-startuptime-2023-02-01/lua",
         "/nix/store/4qln3pchqybs4w3y445kmscdplm9dgvh-vimplugin-nvim-treesitter-playground/lua",
-        "/usr/local/google/home/josephry/.config/nvim/lua",
+        "~/.config/nvim/lua",
         "${3rd}/luv/library"
     ]
 }

@@ -1,17 +1,5 @@
 { pkgs, lib, config, ... } @ inputs: let
-  nixGL = if inputs ? osConfig then lib.id else
-    pkg: pkgs.buildEnv rec {
-      name = "nixGL-${pkg.name}";
-      paths = [ pkg ] ++ [(pkgs.hiPrio (
-        pkgs.runCommand name {} ''
-          mkdir -p $out/bin
-          for bin in "${lib.getBin pkg}"/bin/*; do
-            echo > $out/bin/"$(basename "$bin")" \
-            "exec -a \"\$0\" ${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel \"$bin\" \"\$@\""
-          done;
-          chmod +x "$out"/bin/*
-          ''))];
-    };
+  nixGL = config.lib.nixGL.wrap;
 in {
   imports = [ ./fonts.nix ./theme.nix ];
 
@@ -44,7 +32,7 @@ in {
     # automate setting up my userchrome css, sync userstyles
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
     # TODO: bitwarden popup floating window
-    # TODO: vaapi hardware decode
+    # TODO: vaapi hardware decode, and nightly for webgpu
     (nixGL firefox)
     (nixGL telegram-desktop) (nixGL caprine-bin) (nixGL vesktop) signal-desktop
     android-messages fractal-next # TODO: try nheko
@@ -119,6 +107,10 @@ in {
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-wlr ];
     config.common.default = "gtk"; # TODO: set per-interface portal
+  };
+
+  nixGL = lib.optionalAttrs (inputs ? osConfig) {
+    packages = inputs.inputs.nixgl.packages;
   };
 
   home.keyboard.options = [ "caps:escape" "shift:both_capslock" ];

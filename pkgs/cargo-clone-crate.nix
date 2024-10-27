@@ -14,5 +14,5 @@ rustPlatform.buildRustPackage rec {
   buildInputs = [ openssl ] ++ lib.optionals stdenv.isDarwin [ darwin.Security ];
 
   doCheck = false; # it tries to run `git clone` in tests
-  meta.broken = stdenv.isDarwin; # see https://garnix.io/build/3Bwz1mY0
+  meta.broken = stdenv.isDarwin; # TODO: add mac deps, see https://garnix.io/build/3Bwz1mY0
 }

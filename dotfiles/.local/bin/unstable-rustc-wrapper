@@ -1,0 +1,6 @@
+#!/bin/sh
+if "$1" -V | grep -q nightly; then
+    "$@" -Zthreads=0
+else
+    "$@"
+fi

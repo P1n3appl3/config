@@ -4,13 +4,13 @@
     google-chrome
     glib
     unrar-free
+    jmtpfs
   ];
 
   programs.dconf.enable = true;
 
   services = {
     udisks2 = { enable = true; mountOnMedia = true; };
-    gvfs.enable = true;
     pipewire = { enable = true;
       wireplumber.enable = true; alsa.enable = true;
       pulse.enable = true; jack.enable = true;

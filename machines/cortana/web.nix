@@ -40,6 +40,7 @@ in {
         listen_port = 80;
         listen_port_tls = 443;
         listen_ipv6 = true;
+        default_app = "julia.blue";
         apps = {
           static    = app                "julia.blue" 9000;
           grafana   = app        "pineapple.computer" 9001;
@@ -133,7 +134,7 @@ in {
     certs."pineapple.computer" = {
       dnsProvider = "porkbun";
       renewInterval = "weekly";
-      email = "josephryan3.14@gmail.com";
+      email = "juliaryan3.14@gmail.com";
       extraDomainNames = [ "*.pineapple.computer" "julia.blue" "*.julia.blue" ];
       environmentFile = builtins.toFile "envFile" "LEGO_DISABLE_CNAME_SUPPORT=true";
       credentialFiles = {
