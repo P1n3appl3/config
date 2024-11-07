@@ -1,4 +1,5 @@
 invert_scrolling = true
+error_format = " "
 
 [icons]
 icons = "awesome6"
@@ -64,6 +65,18 @@ block = "battery"
 format = " $icon $percentage {$power |}"
 interval = 5
 missing_format = ""
+
+[[block]]
+block = "custom"
+persistent = true
+# TODO: why does this need a subshell?
+command = 'dbus-monitor --system --profile "path=/net/hadess/PowerProfiles,member=PropertiesChanged" 2>/dev/null | xargs -I{} sh -c "powerprofilesctl get | sed \"s/per.*/󰓅/;s/bal.*/󰾅/;s/.*sav.*/󰾆/\""'
+# TODO: rotate or show menu?
+click = [
+  { button = "left", cmd = "powerprofilesctl set performance" },
+  { button = "middle", cmd = "powerprofilesctl set balanced" },
+  { button = "right", cmd = "powerprofilesctl set power-saver" },
+]
 
 [[block]]
 block = "notify"

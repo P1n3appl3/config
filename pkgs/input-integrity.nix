@@ -1,3 +1,8 @@
+# TODO: icon from https://www.google.com/s2/favicons?sz=64&domain_url=input-integrity.com
+# TODO: maybe need to manually run https://github.com/NixOS/patchelf instead of using the
+# hook due to an ordering issue
+# context here: https://github.com/dotnet/core/blob/main/Documentation/self-contained-linux-apps.md
+
 { lib, stdenvNoCC, fetchurl, makeWrapper, autoPatchelfHook,
   libz, stdenv, fontconfig, icu, xorg }:
 stdenvNoCC.mkDerivation (finalAttrs: {
@@ -63,5 +68,3 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     # broken = true;
   };
 })
-
-# TODO: icon from https://www.google.com/s2/favicons?sz=64&domain_url=input-integrity.com

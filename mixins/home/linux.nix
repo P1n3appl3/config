@@ -4,7 +4,7 @@
     moreutils
     lsof
     usbtop
-    powertop tlp
+    powertop
     lm_sensors
     sysz
     element
