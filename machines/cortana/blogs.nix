@@ -77,7 +77,7 @@
 ["ridiculousfish"    "ridiculousfish.com"                  "/blog/atom.xml"]
 ["Quil"              "robotlolita.me"                      "/atom.xml"]
 ["Raph Levien"       "raphlinus.github.io"                 "/feed.xml"]
-["Tyler Mandry"      "tmandry.gitlab.io"                   "/blog/index.xml"]
+["Tyler Mandry"      "tmandry.gitlab.io/blog"              "/index.xml"]
 ["David Lemire"      "lemire.me/blog"                      "/feed"]
 ["Gankra"            "gankra.github.io"                    "/blah/rss.xml"]
 ["Jane"              "yaah.dev"                            "/feed.xml"]
@@ -109,6 +109,7 @@
 ["nora"              "noratrieb.dev"                       "/blog/index.xml"]
 ["Jonathan"          "donsz.nl"                            "/rss.xml"]
 ["rebecca"           "becca.ooo"                           "/rss.xml"]
+["Ella"              "ectcetera.net/blog"                  "/atom.xml"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]

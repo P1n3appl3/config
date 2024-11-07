@@ -48,6 +48,8 @@ in {
     libnotify
     warp
     udiskie
+    glib.bin # gio/gsettings/gdbus
+    d-spy
   ];
 
   programs = {
