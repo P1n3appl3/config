@@ -12,7 +12,7 @@
     };
   };
   nvim-config = { enable = true;
-    viAlias = true; vimAlias = true;
+    viAlias = true; vimAlias = false;
     withPython3 = true; withRuby = false;
     plugins = with pkgs.vimPlugins; [
     # General

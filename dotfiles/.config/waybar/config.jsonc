@@ -1,0 +1,203 @@
+{
+	"reload_style_on_change": true,
+	"modules-left": ["tray", "custom/prev", "custom/next", "mpris"],
+	"modules-center": ["sway/workspaces"],
+	"modules-right": [
+		"custom/weather",
+		"cpu",
+		"memory",
+		"custom/memory",
+		"temperature",
+		"backlight",
+		"battery",
+		"power-profiles-daemon",
+		"custom/notify",
+		"pulseaudio",
+		"clock"
+	],
+	"sway/workspaces": {
+		"format": "{name}",
+		"disable-scroll": true,
+		"disable-auto-back-and-forth": true
+	},
+	"mpris": {
+		"format": "{status_icon}  {dynamic} {player_icon}",
+		"format-paused": "{status_icon}  <i>{dynamic}</i> {player_icon}",
+		"format-stopped": "{status_icon} {player_icon}",
+		"dynamic-order": ["title", "artist"],
+		"dynamic-separator": " - ",
+		"player-icons": {
+			"default": " ",
+			"mpv": "",
+			"mpd": "",
+			"firefox": "󰈹",
+			"chromium": ""
+		},
+		"status-icons": {
+			"paused": "",
+			"playing": "",
+			"stopped": ""
+		},
+		"on-click-right": "playerctld shift",
+		"on-click-middle": "playerctld unshift"
+		// "ignored-players": ["chromium"]
+	},
+	"tray": {
+		"icon-size": 20,
+		"spacing": 2
+	},
+	// TODO: lowercase am/pm and no leading zero on hour
+	"clock": {
+		"format": "{:%I:%M%p}",
+		"format-alt": "{:%Y-%m-%d}",
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"calendar": {
+			"mode": "month",
+			"mode-mon-col": 4,
+			"weeks-pos": "right",
+			"on-scroll": 1,
+			"format": {
+				"months": "<span color='#f5e0dc'><b>{}</b></span>",
+				"days": "<span color='#89dceb'><b>{}</b></span>",
+				"weeks": "<span color='#f5c2e7'><b>W{}</b></span>",
+				"weekdays": "<span color='#fab387'><b>{}</b></span>",
+				"today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions": {
+			"on-click-right": "mode"
+		}
+	},
+	"cpu": {
+		// "format": " {usage}%",
+		"format": " {icon}",
+		"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+		// "format": "{icon}",
+		// "format-icons": ["󰝦", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
+		"interval": 2,
+		"on-click": "kitty -1 htop"
+	},
+	"memory": {
+		// "format": " {}%",
+		"format": " {icon}",
+		// "format": "{icon}",
+		"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+		// "format-icons": ["󰝦", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
+		"interval": 10,
+		"tooltip-format": "RAM: {used:0.1f}G {percentage}%\nswap: {swapUsed:0.1f}G {swapPercentage}%",
+		"on-click": "kitty -1 btop"
+	},
+	"temperature": {
+		// "thermal-zone": 2,
+		// "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+		"critical-threshold": 85,
+		// "format": "{icon} {temperatureC}°C",
+		// "format-icons": ["", "", ""],
+        "format": " {icon}",
+		"format-icons": [" ", " ", "▁", "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+		// "tooltip": false,
+		// "format": "{icon}",
+		// "format-icons": ["󰝦", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
+		"interval": 5
+	},
+	"backlight": {
+		"device": "intel_backlight",
+		"format": "{icon} {percent}%",
+		"format-icons": ["󰌶", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
+		// "format": "󰛨 {icon}",
+		// "format-icons": ["󰝦", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥"],
+		"on-scroll-up": "brightnessctl -q s '+1%'",
+		"on-scroll-down": "brightnessctl -q s '1%-'",
+		"on-click": "brightnessctl -q s '+25%'",
+		"on-click-right": "brightnessctl -q s '25%-'",
+		"on-click-middle": "brightnessctl -q s '50%'",
+		"reverse-scrolling": true,
+		"tooltip": false
+	},
+	"battery": {
+		"states": {
+			"good": 91,
+			"normal": 90,
+			"warning": 30,
+			"critical": 10
+		},
+		"format": "{icon} {capacity}%",
+		"format-full": "{icon}",
+		"format-charging": "󰂄 {capacity}%",
+		"format-plugged": " {capacity}%",
+		"tooltip-format": "{power:.0f}W draw\n{timeTo}\n{cycles} cycles, {health}% health",
+		"format-good": "󰁹",
+		"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+		"interval": 10
+	},
+	"power-profiles-daemon": {
+		"format": "{icon}",
+		"tooltip-format": "{profile}",
+		"tooltip": true,
+		"format-icons": {
+			"default": "󰓅",
+			"performance": "󰓅",
+			"balanced": "󰾅",
+			"power-saver": "󰾆"
+		}
+	},
+	"pulseaudio": {
+		"reverse-scrolling": true,
+		"scroll-step": 0.25,
+		"format": "{icon} {volume}%{format_source}",
+		"format-bluetooth": "{icon} {volume}% {format_source}",
+		"format-bluetooth-muted": " {icon}{format_source}",
+		"format-muted": " {format_source}",
+		"format-source": "",
+		"format-source-muted": " ",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"default": ["", "", "", "", ""]
+		},
+		"on-click": "audio-select",
+		"on-click-right": "pamixer -t",
+		"on-click-middle": "pavucontrol"
+	},
+	"custom/notify": {
+		"escape": true,
+		"exec": "swaync-client -swb",
+		"exec-if": "which swaync-client",
+		"format": "{icon}",
+		"format-icons": {
+			"dnd-inhibited-none": " <sup></sup>",
+			"dnd-inhibited-notification": "<span foreground='#cba6f7'><sup></sup></span>",
+			"dnd-none": " ",
+			"dnd-notification": " <span foreground='#cba6f7'><sup></sup></span>",
+			"inhibited-none": "<sup>󰜺</sup>",
+			"inhibited-notification": "󰵙<span foreground='#cba6f7'><sup></sup></span>",
+			"notification": " <span foreground='#cba6f7'><sup></sup></span>",
+			"none": " "
+		},
+		"on-click": "sleep 0.1 && swaync-client -t -sw",
+		"on-click-right": "swaync-client -d",
+		"on-click-middle": "swaync-client -C -cp",
+		"return-type": "json",
+		"tooltip": "{} notifs"
+	},
+	"custom/next": {
+		"format": " ",
+		"tooltip": false,
+		"on-click": "playerctl next"
+	},
+	"custom/prev": {
+		"format": " ",
+		"tooltip": false,
+		"on-click": "playerctl previous"
+	},
+	"custom/weather": {
+		"format": "{}°",
+		"tooltip": true,
+		"interval": 600,
+		"exec": "wttrbar --fahrenheit --hide-conditions -m --ampm",
+		"return-type": "json"
+	}
+}

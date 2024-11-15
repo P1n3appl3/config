@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    gh git-heatmap # git-absorb jujutsu git-branchless
+    git-lfs gh git-heatmap # git-absorb jujutsu git-branchless
   ];
 
   programs = {

@@ -37,7 +37,7 @@ in {
     (nixGL telegram-desktop) (nixGL caprine-bin) (nixGL vesktop) signal-desktop
     android-messages fractal-next # TODO: try nheko
     praat friture # TODO: try this for voice training
-    imhex # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
+    (nixGL imhex) # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
     mepo # TODO: try
     # TODO: syncthing-gtk
     # TODO: https://gitlab.freedesktop.org/rncbc/qpwgraph
@@ -78,7 +78,9 @@ in {
     network-manager-applet.enable = true; # TODO: greyed out available networks?
     # TODO: make reverse scrolling vary based on touchpad,
     # check mute mouse binding and volume keys
-    pasystray = { enable = true; extraOptions = ["-grSi" "5" "-N" "none" "-N" "new"]; };
+    pasystray = { enable = true;
+      extraOptions = ["-grSi" "1" "-N" "none" "-N" "new" "-m" "100"];
+    };
   };
 
   systemd.user.services = {
@@ -111,7 +113,7 @@ in {
     config.common.default = "gtk"; # TODO: set per-interface portal
   };
 
-  nixGL = lib.optionalAttrs (inputs ? osConfig) {
+  nixGL = lib.optionalAttrs (!(inputs ? osConfig)) {
     packages = inputs.inputs.nixgl.packages;
   };
 

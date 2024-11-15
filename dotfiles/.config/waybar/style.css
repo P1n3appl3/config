@@ -1,0 +1,137 @@
+@import "catppuccin.css";
+
+* {
+    font-family: "Noto Sans";
+    font-size: 15px;
+}
+
+window#waybar {
+    color: @lavender;
+    background-color: @base;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    border: none;
+    border-radius: 16px;
+}
+
+#pulseaudio.muted, #custom-notify.dnd-none, #custom-notify.dnd-notification {
+    background-color: @overlay0;
+    color: @base;
+}
+
+#pulseaudio:hover,
+#backlight:hover,
+#power-profiles-daemon:hover,
+#custom-next:hover,
+#custom-prev:hover,
+#custom-notify:hover {
+    background-color: @surface2;
+}
+
+#workspaces button {
+    padding: 0 5px;
+}
+
+#workspaces button:hover {
+    background: @surface1;
+}
+
+#workspaces button.focused {
+    background-color: @lavender;
+    color: @base;
+}
+
+#workspaces button.urgent {
+    background-color: @maroon;
+    color: @base;
+}
+
+#mpris:hover {
+    background: @surface0;
+}
+
+#tray {
+    padding-left: 2px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @maroon;
+}
+
+#battery.warning {
+    background-color: @yellow;
+    color: @base;
+}
+
+@keyframes blink {
+    to {
+        background-color: @base;
+        color: @red;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: @text;
+    animation-name: blink;
+    animation-duration: 4.0s;
+    /* steps() instead of linear to limit cpu usage */
+    animation-timing-function: steps(20);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#temperature.critical {
+    background-color: @red;
+    color: @base;
+}
+
+#mpris,
+#power-profiles-daemon,
+#custom-weather {
+    padding: 0 10px;
+}
+
+#custom-prev, #custom-next,
+#clock,
+#cpu, #memory, #temperature, #backlight, #battery, #custom-notify, #pulseaudio, #custom-weather {
+    padding: 0 4px;
+    font-family: "Noto Sans Mono"
+}
+
+#temperature, #backlight, #battery {
+    padding: 0 8px;
+}
+
+#pulseaudio {
+    padding-left: 8px;
+}
+
+#custom-notify {
+    padding-right: 8px;
+}
+
+#custom-prev {
+    margin-left: 16px;
+}
+
+tooltip label {
+  color: white;
+}
+
+tooltip {
+  background: rgba(43, 48, 59, 0.8);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}

@@ -12,6 +12,8 @@ alias please="sudo "
 alias fuck=killall
 function note { cd ~/documents/notes && vi todo/TODO.md **/*.md && cd -; }
 alias wine32="WINEPREFIX=$HOME/.wine32 wine"
+alias send="wormhole-rs tx"
+alias receive="wormhole-rs rx"
 
 alias sc=systemctl
 alias music=ncmpcpp
