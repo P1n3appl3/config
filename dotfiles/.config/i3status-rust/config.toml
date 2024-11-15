@@ -80,7 +80,7 @@ click = [
 
 [[block]]
 block = "notify"
-driver = "swaync"
+driver = "dunst"
 
 [[block]]
 block = "sound"

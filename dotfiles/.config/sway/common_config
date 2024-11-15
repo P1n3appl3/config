@@ -36,6 +36,7 @@ bindsym $mod+c exec hyprpicker -a
 # TODO: debug lock-session not working
 bindsym XF86AudioMedia exec loginctl lock-session
 bindsym XF86AudioMute        exec pamixer -t
+bindsym XF86AudioMicMute     exec pamixer -t --default-source
 bindsym XF86AudioRaiseVolume exec pamixer -i 5
 bindsym XF86AudioLowerVolume exec pamixer -d 5
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -127,26 +128,6 @@ output * bg $base solid_color
 
 titlebar_border_thickness 0
 titlebar_padding 5 0
-
-bar {
-  id main
-  position top
-  height 28
-  status_command i3status-rs
-  strip_workspace_numbers yes
-  colors {
-    background         $surface0
-    statusline         $surface0
-    focused_workspace  $accent   $accent   $base
-    active_workspace   $surface0 $surface0 $accent
-    inactive_workspace $surface0 $surface0 $text
-    urgent_workspace   $urgent   $urgent   $base
-  }
-  bindsym button4 nop
-  bindsym button5 nop
-  bindsym button6 nop
-  bindsym button7 nop
-}
 
 include "`hostname -s`"
 

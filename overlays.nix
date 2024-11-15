@@ -20,11 +20,10 @@ inputs: final: prev: {
     };
   };
 
-  # TODO: tray still not working?
   sway = prev.sway.overrideAttrs (old: {
     patches = (old.patches or []) ++ [ (final.fetchpatch {
-        url = "https://github.com/swaywm/sway/pull/8405.patch";
-        hash = "sha256-poblUEaeytBD8xqfiW0lRWaJ12RZ1meLGjZPl7JBrOo=";
+        url = "https://catgirl.ai/log/sway-spy/spy.patch";
+        hash = "sha256-CKGohz5eRMpMsorXh4G8eON3YmWjDW+WlXs2Pg3qIp8=";
       })
     ];
   });

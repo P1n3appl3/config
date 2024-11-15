@@ -22,11 +22,16 @@
     qt6.qtwayland
     libsForQt5.qt5.qtwayland
     wluma
+    wttrbar
     # TODO: oneko wayland port and/or https://github.com/Ibrahim2750mi/linux-goose
   ];
 
   programs = {
     rofi.package = pkgs.rofi-wayland;
+    waybar = { enable = true;
+      catppuccin = { enable = true; mode = "createLink"; };
+      systemd.enable = true;
+    };
     wpaperd = { enable = true;
       settings.default = {
         path = config.xdg.userDirs.pictures + "/wallpapers";

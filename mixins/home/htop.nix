@@ -5,7 +5,7 @@
       PID STARTTIME M_SHARE M_RESIDENT M_SIZE PERCENT_CPU TIME COMM
     ];
 
-    delay = 10;
+    delay = 20;
 
     highlight_base_name = 1;
     highlight_megabytes = 1;
