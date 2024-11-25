@@ -8,8 +8,10 @@
     furnace lmms ardour audacity # (or tenacity)
     non
     logisim-evolution
-    kicad-small
-    # calibre # TODO: re-enable when fixed
+
+    # TODO: re-enable when fixed
+    # kicad-small
+    # calibre
   ];
 
   programs = {

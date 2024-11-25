@@ -58,7 +58,6 @@
       ATLAS     = home "x86_64-linux"   ./machines/atlas.nix;
       clu       = home "x86_64-linux"   ./machines/clu.nix;
       rinzler   = home "x86_64-linux"   ./machines/rinzler.nix;
-      # crabapple = home "aarch64-darwin" ./machines/crabapple.nix;
     };
 
     nixosConfigurations = {

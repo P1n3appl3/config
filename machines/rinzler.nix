@@ -7,10 +7,6 @@
     ];
   };
 
-  services.shpool = { enable = true;
-    config.prompt_prefix = "";
-  };
-
   imports = [
     ../mixins/home/linux.nix
     ../mixins/home/btrfs.nix

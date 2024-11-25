@@ -49,14 +49,11 @@ end
 -- vim.lsp.set_log_level "debug"
 server "clangd"
 server "nil_ls"
+server("tinymist", { settings = { exportPdf = "onSave" }, single_file_support = true })
 
 vim.g.neoformat_nasm_nasmfmt = { exe = "nasmfmt", replace = 1 }
 vim.g.neoformat_enabled_nasm = { "nasmfmt" }
 server("asm_lsp", { filetypes = { "nasm" } })
-
-vim.g.neoformat_typst_typstfmt = { exe = "typstfmt", replace = 1 }
-vim.g.neoformat_enabled_typst = { "typstfmt" }
-server("typst_lsp", { settings = { experimentalFormatterMode = "on" } })
 
 vim.g.neoformat_enabled_javascript = { "biome" }
 

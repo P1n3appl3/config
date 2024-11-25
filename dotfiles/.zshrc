@@ -9,11 +9,11 @@ alias reload='unset __HM_SESS_VARS_SOURCED; exec zsh'
 function mkconfig {
     eval "function ${1}config { pushd -q $CONF_DIR; vi dotfiles/$2 ${@:3}; popd -q }"
 }
-mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.lua}'
+mkconfig vim '.config/nvim/{init.lua,*.lua,*/*.lua,*/*.vim(N)}'
 mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
 mkconfig nix '../mixins/home/common.nix' '**/*.nix'
 mkconfig i3 '.config/{i3/config,i3status-rust/config.toml}'
-mkconfig sway '.config/{sway/{common_config,`hostname -s`},waybar/{config.jsonc,style.css}}'
+mkconfig sway '.config/{sway/{common_config,`hostname -s`},waybar/{config.jsonc,*.css}}'
 mkconfig git '.config/git/{extraConfig,ignore,*}'
 
 # Misc.

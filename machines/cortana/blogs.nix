@@ -24,7 +24,7 @@
 ["TWiR"               "this-week-in-rust.org"               "/rss.xml"]
 ["Jorge Aparicio"     "http://blog.japaric.io"              "/index.xml"]
 ["Rust Blog"          "blog.rust-lang.org"                  "/feed.xml"]
-["Bryan Cantrill"     "bcantrill.dtrace.org"                "/feed"]
+["Bryan Cantrill"     "bcantrill.dtrace.org"                "/index.xml"]
 ["Red Blob Games"     "www.redblobgames.com"                "/blog/posts.xml"]
 ["Brendan Gregg"      "www.brendangregg.com/blog"           "/rss.xml"]
 ["Graydon"            "graydon2.dreamwidth.org"             "/data/rss"]
@@ -60,7 +60,7 @@
 ["Waffle"             "blog.ihatereality.space"             "/rss.xml"]
 ["Travis Downs"       "travisdowns.github.io"               "/feed.xml"]
 ["Mara"               "blog.m-ou.se"                        "/index.xml"]
-["Guillaume Gomez"    "guillaume-gomez.fr"                  "/atom"]
+["Guillaume Gomez"    "blog.guillaume-gomez.fr"             "/atom"]
 ["Gary Bernhardt"     "www.destroyallsoftware.com"          "/blog/index.xml"]
 ["Remzi A-D"          "http://from-a-to-remzi.blogspot.com" "/feeds/posts/default"]
 ["Cliff Biffle"       "cliffle.com"                         "/rss.xml"]
@@ -102,9 +102,9 @@
 ["Eevee"              "eev.ee/blog"                         "https://eev.ee/feeds/blog.atom.xml"]
 ["Ashley Williams"    "medium.com/@ag_dubs"                 "https://medium.com/feed/@ag_dubs"]
 ["Ludicity"           "ludic.mataroa.blog"                  "/rss"]
-["Chevy Ray"          "chevyray.dev/rss.xml"                "/rss.xml"]
+["Chevy Ray"          "chevyray.dev"                        "/rss.xml"]
 ["myrrlyn"            "myrrlyn.net/blog"                    "/atom.xml"]
-["Julien"             "oneirical.github.io"                 "/feed.xml"]
+["Julien"             "oneirical.github.io"                 "/atom.xml"]
 ["hikari"             "hikari.noyu.me"                      "/blog"]
 ["nora"               "noratrieb.dev"                       "/blog/index.xml"]
 ["Jonathan"           "donsz.nl"                            "/rss.xml"]
@@ -112,6 +112,8 @@
 ["Ella"               "ectcetera.net/blog"                  "/atom.xml"]
 ["ash"                "catgirl.ai"                          "/log/atom.xml"]
 ["Alejandra González" "blog.goose.love"                     "/index.xml"]
+# TODO: send ally a feed to stick on her server
+["dropbear"           "dropbear.sh"                         "https://julia.blue/allyrss.xml"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]

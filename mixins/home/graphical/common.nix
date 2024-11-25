@@ -35,7 +35,8 @@ in {
     # TODO: vaapi hardware decode, and nightly for webgpu
     (nixGL firefox)
     (nixGL telegram-desktop) (nixGL caprine-bin) (nixGL vesktop) signal-desktop
-    android-messages fractal-next # TODO: try nheko
+    android-messages
+    fractal element-desktop iamb # fluffychat cinny nheko # TODO: pick
     praat friture # TODO: try this for voice training
     (nixGL imhex) # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
     mepo # TODO: try
