@@ -6,12 +6,12 @@
 
   config.home.packages = with pkgs; lib.mkMerge [
     [ taplo cargo-edit cargo-expand cargo-clone-crate cargo-udeps cargo-audit
-      cargo-modules cargo-feature cargo-bloat cargo-binutils twiggy bloaty
+      cargo-modules cargo-bloat cargo-binutils twiggy bloaty # cargo-feature
       ruff pyright
       beancount-language-server
       asmfmt nasmfmt
       nurl nix-init
-      typst typst-fmt typst-lsp
+      typst tinymist typstyle
       biome
       j ]
     (lib.mkIf config.dev.compilers  [ rustup mold-wrapped clang clang-tools nasm ])

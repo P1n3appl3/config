@@ -28,9 +28,9 @@
 
   programs = {
     rofi.package = pkgs.rofi-wayland;
-    waybar = { enable = true;
-      catppuccin = { enable = true; mode = "createLink"; };
-      systemd.enable = true;
+    waybar = {
+      enable = true; catppuccin.enable = true; systemd.enable = true;
+      style = ''@import "common.css";'';
     };
     wpaperd = { enable = true;
       settings.default = {

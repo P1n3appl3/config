@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     steam
     itch wine64
+    heroic
     lutris
     ludusavi
 

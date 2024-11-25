@@ -3,6 +3,7 @@
     pname = repo; version = rev;
     src = pkgs.fetchFromGitHub { inherit owner repo rev hash; };
   };
+
   numbat-grammar = pkgs.tree-sitter.buildGrammar {
     version = "2024-03-19"; language = "numbat";
     src = pkgs.fetchFromGitHub {
@@ -11,6 +12,7 @@
       hash = "sha256-QysXc0R+3HxjrdWWklrw9r8wq9gKuIRsZrMK3vh4sC0=";
     };
   };
+
   nvim-config = { enable = true;
     viAlias = true; vimAlias = false;
     withPython3 = true; withRuby = false;
@@ -72,8 +74,11 @@ in {
   programs.neovim = nvim-config;
   xdg.configFile = {
     "nvim/queries/numbat".source = "${numbat-grammar}/queries";
+    # "nvim/syntax/vasm.vim".source = pkgs.fetchGit {
+    #   owner = "porglezomp";
+    #   repo = "690bb0f75883dc69350174b576ad643f";
+    #   rev = "fd0f08a6b45187123d9af450307f7836fc35bd4d";
+    # } + "/hovalaag.vim";
   };
-  home.packages = [
-    pkgs.page
-  ];
+  home.packages = with pkgs; [ page ];
 }

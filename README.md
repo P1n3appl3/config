@@ -5,15 +5,12 @@ config 🍍 nix flake show
 ├───homeConfigurations
 │   ├───ATLAS: steamdeck
 │   ├───clu:       $work laptop
-│   ├───crabapple: $work mac
 │   ╰───rinzler:   $work desktop
 ├───nixosConfigurations
 │   ├───Cortana: raspberry pi 4B
 │   ├───WOPR:    framework laptop 13" (AMD 7640U)
 │   ├───HAL:     main desktop
 │   ╰───ISO:     bootable image for bootstrapping
-├───homeModules
-│   ╰───shpool: shell persistence daemon
 ├───nixosModules
 │   ├───m-overlay:    security wrapper for input viewer
 │   ├───porkbun-ddns: update ip for porkbun DNS entries
@@ -37,9 +34,9 @@ config 🍍 nix flake show
     ├───melee-quick-mod: ssbm texture patcher
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
-    ├───s2yt: spotify to youtube music transfer tool
-    ╰───shpool: shell persistence tool
+    ╰───s2yt: spotify to youtube music transfer tool
 ```
+
 
 I [used to](https://github.com/P1n3appl3/config/tree/cd6d498014) use this as a [bare git repo](https://www.atlassian.com/git/tutorials/dotfiles). If you're not sold on nix/home-manager I think it's still a pretty ideal way to manage your dotfiles. Now when my home-manager activation script runs, it symlinks everything in the [dotfiles dir](dotfiles) into `$HOME` so that you can edit most config files without having to run `switch`.
 

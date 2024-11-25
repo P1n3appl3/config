@@ -3,7 +3,6 @@
     homeDirectory = "/usr/local/google/home/pineapple";
     packages = with pkgs; [
       blesh
-      pastel
       power-profiles-daemon
     ];
   };

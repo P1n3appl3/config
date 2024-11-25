@@ -7,6 +7,11 @@
   home-manager.users.julia.imports = [
     {
       programs.kitty.settings.font_size = 15;
+      programs.waybar.style = ''
+        * {
+            font-size: 22px;
+        }
+      '';
       slippi-launcher = { enable = true;
         isoPath = "/home/julia/games/roms/Gamecube/Melee [GALE01]/game.iso";
         rootSlpPath = "/home/julia/games/melee/replays";

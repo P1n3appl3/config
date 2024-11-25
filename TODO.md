@@ -46,6 +46,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * try cmp-kitty and maybe cmp-under-comparator
 * nvim-dap + cmp-dap (see [guide](https://davelage.com/posts/nvim-dap-getting-started))
 * any excuse to use [perfanno.nvim](https://github.com/t-troebst/perfanno.nvim) and [compiler-explorer](https://github.com/krady21/compiler-explorer.nvim) or [godbolt.nvim](https://github.com/p00f/godbolt.nvim) would be lovely
+* treesj nix language turn attr-path into separate attrset within binding
 
 ## Terminal emulator
 
@@ -98,6 +99,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * wluma [home-manager module](https://github.com/nix-community/home-manager/issues/2420)
 * set --ozone-platform-hint=auto for caprine and other electron apps
 * debug logisim(/evolution) blank window on launch
+* i3status-rs weather hide if no location (or error emoji instead of message+color)
 
 ## Theme
 
