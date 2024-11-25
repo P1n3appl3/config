@@ -16,6 +16,7 @@
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
         vscode
         melee-quick-mod
+        slpz
       ];
 
       systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];

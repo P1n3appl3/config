@@ -25,6 +25,10 @@
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
     nvidia.open = false;
+    opentabletdriver = {
+      enable = true;
+      blacklistedKernelModules = [ "wacom" ];
+    };
   };
 
   networking = {

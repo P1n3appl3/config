@@ -34,7 +34,8 @@ config 🍍 nix flake show
     ├───melee-quick-mod: ssbm texture patcher
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
-    ╰───s2yt: spotify to youtube music transfer tool
+    ├───s2yt: spotify to youtube music transfer tool
+    ╰───slpz: compress slippi replays
 ```
 
 
