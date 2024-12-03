@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, lib, config, ... }: {
   home.packages = with pkgs; [
     util-linux
     moreutils
@@ -8,6 +8,8 @@
     lm_sensors
     sysz
     element
+  ] ++ lib.optionals pkgs.stdenv.isx86_64 [
+    lurk
   ];
 
   programs.ssh = { enable = true;

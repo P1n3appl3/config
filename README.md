@@ -20,8 +20,8 @@ config 🍍 nix flake show
 ╰───packages
     ├───android-messages: desktop messages client
     ├───apotris: block stacking game
-    ├───audio-select: pulse-audio device selector
     ├───ascii-rain: pretty terminal rain animation
+    ├───audio-select: pulse-audio device selector
     ├───barchart: draw barcharts in the terminal
     ├───bibata-modern-classic: mouse cursor theme
     ├───cargo-clone-crate: better cargo clone command
@@ -29,6 +29,7 @@ config 🍍 nix flake show
     ├───dl: get the latest downloaded file
     ├───fio-plot: disk benchmarking tool
     ├───git-heatmap: view change frequency of git repo
+    ├───hovalaag: assembly programming game
     ├───lowcharts: draw plots and histograms in the terminal
     ├───m-overlay: gamecube input visualizer for dolphin
     ├───melee-quick-mod: ssbm texture patcher

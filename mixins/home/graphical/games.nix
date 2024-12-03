@@ -15,7 +15,8 @@
     openttd
     space-cadet-pinball
     openspades
-    # golly
+    hovalaag
+    golly
 
     punes mupen64plus dolphin-emu # snes9x-gtk simple64
     sameboy mgba melonDS
