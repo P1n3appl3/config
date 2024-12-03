@@ -24,10 +24,16 @@
     wluma
     wttrbar
     # TODO: oneko wayland port and/or https://github.com/Ibrahim2750mi/linux-goose
+    # see https://catgirl.ai/log/sway-spy and https://codeberg.org/ext0l/openbonzi
   ];
 
   programs = {
-    rofi.package = pkgs.rofi-wayland;
+    rofi = {
+      package = pkgs.rofi-wayland;
+      plugins = lib.mkForce (with pkgs; [
+        (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
+      ]);
+    };
     waybar = {
       enable = true; catppuccin.enable = true; systemd.enable = true;
       style = ''@import "common.css";'';

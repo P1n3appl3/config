@@ -74,11 +74,10 @@ in {
   programs.neovim = nvim-config;
   xdg.configFile = {
     "nvim/queries/numbat".source = "${numbat-grammar}/queries";
-    # "nvim/syntax/vasm.vim".source = pkgs.fetchGit {
-    #   owner = "porglezomp";
-    #   repo = "690bb0f75883dc69350174b576ad643f";
-    #   rev = "fd0f08a6b45187123d9af450307f7836fc35bd4d";
-    # } + "/hovalaag.vim";
+    "nvim/syntax/vasm.vim".source = pkgs.fetchzip {
+      url = "https://gist.github.com/porglezomp/690bb0f75883dc69350174b576ad643f/archive/fd0f08a6b45187123d9af450307f7836fc35bd4d.zip";
+      hash = "sha256-0q028/gsHWPw2t9LUDf/Okg0ac127pONu3BGd9LjDNI=";
+    } + "/hovalaag.vim";
   };
   home.packages = with pkgs; [ page ];
 }
