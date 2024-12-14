@@ -9,6 +9,9 @@
     noto-fonts-emoji
     nerd-fonts.symbols-only
     comic-neue
+    inter
+    mononoki
+    pango.bin
   ];
 
   fonts.fontconfig = {
@@ -33,7 +36,7 @@
       monospace = [
         "Noto Sans Symbols"
         "Noto Sans Symbols 2"
-        "Symbols Nerd Font"
+        "Symbols Nerd Font Mono"
         "Source Code Pro"
         "Noto Sans Mono CJK JP"
         "Noto Sans Math"
@@ -41,19 +44,6 @@
       emoji = [
         "Noto Color Emoji"
       ];
-      # TODO: cursive comic-neue
     };
   };
-
-  xdg.configFile."fontconfig/fonts.conf".text = ''
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
-<fontconfig>
-<alias> <family>cursive</family> <prefer>
-        <family>Noto Color Emoji</family>
-        <family>Symbols Nerd Font</family>
-        <family>Comic Neue</family>
-</prefer> </alias>
-</fontconfig>
-'';
 }

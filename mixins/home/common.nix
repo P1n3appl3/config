@@ -5,7 +5,7 @@
     # Utils
     fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine hexyl
     tokei zellij rsync zstd pv sshping mdcat magic-wormhole-rs netscanner rage
-    exiftool get-keys vivid pipe-rename static-web-server
+    exiftool resvg get-keys vivid pipe-rename static-web-server
     ascii unicode-paracode pastel # sequin (when rahul packages)
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens
@@ -17,7 +17,7 @@
     stylua sumneko-lua-language-server shfmt shellcheck
     # Fun
     blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain pastel
-    ttyper nethack
+    ttyper nethack fence
   ];
 
   programs = {
@@ -37,7 +37,7 @@
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
-  catppuccin = { flavor = "mocha"; accent = "blue"; }; # TODO: lavender/sapphire/blue/sky
+  catppuccin = { flavor = "mocha"; accent = "blue"; };
 
   nix.registry = {
     nixpkgs.flake = inputs.nixpkgs;

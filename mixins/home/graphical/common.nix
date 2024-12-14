@@ -51,6 +51,7 @@ in {
     udiskie
     glib.bin # gio/gsettings/gdbus
     d-spy
+    i3-nvim-nav
   ];
 
   programs = {

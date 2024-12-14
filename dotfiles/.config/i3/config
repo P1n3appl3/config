@@ -65,10 +65,10 @@ bindsym $mod+backslash split h
 bindsym $mod+minus split v
 
 # Switch focused window
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+$left  exec --no-startup-id easy-i3-neovim-nav focus left
+bindsym $mod+$down  exec --no-startup-id easy-i3-neovim-nav focus down
+bindsym $mod+$up    exec --no-startup-id easy-i3-neovim-nav focus up
+bindsym $mod+$right exec --no-startup-id easy-i3-neovim-nav focus right
 
 # Move workspace to other monitor
 bindsym $mod+Control+Shift+h move workspace to output left

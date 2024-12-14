@@ -43,7 +43,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * or figure out how to register custom with nvim-treesitter
   * try [tree-sitter-typst](https://github.com/frozolotl/tree-sitter-typst)
 * try parinfer-rust with lisp or yuck
-* try cmp-kitty and maybe cmp-under-comparator
+* try cmp-kitty/cmp-wezterm
 * nvim-dap + cmp-dap (see [guide](https://davelage.com/posts/nvim-dap-getting-started))
 * any excuse to use [perfanno.nvim](https://github.com/t-troebst/perfanno.nvim) and [compiler-explorer](https://github.com/krady21/compiler-explorer.nvim) or [godbolt.nvim](https://github.com/p00f/godbolt.nvim) would be lovely
 * treesj nix language turn attr-path into separate attrset within binding
@@ -81,6 +81,8 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
     * dejavu victor menlo/meslo fira hack hasklig isoveka jetbrains mononoki ubuntu berkely (and check chat thread from work for others)
   * use the nixos fontconfig options and grabbing the resulting xml osConfig for home-manager instead of hand-writing the whole thing
   * try numderline
+  * set up comic-neue for primary cursive font
+  * try inter for sans serif
 * music
   * try clerk or rofi-mpd instead of song.sh
   * try music-player (rust) or [this](https://github.com/Martchus/tageditor) and better tagging for beets

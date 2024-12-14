@@ -1,9 +1,11 @@
+vim.cmd [[highlight Blinking guifg=#cba6f8 start=<esc>[5m stop=<esc>[0m]]
+
 require("catppuccin").setup {
     flavour = "mocha",
     -- stylua: ignore
     integrations = {
         fidget = true, hop = true, notify = true,
-        treesitter = true, which_key = true,
+        treesitter = true, which_key = true, nvim_surround = true
     },
     color_overrides = {
         -- mocha = { base = "#000000", mantle = "#000000", crust = "#000000" },
@@ -12,6 +14,7 @@ require("catppuccin").setup {
         return {
             StatusLine = { fg = c.base, bg = c.blue, bold = true },
             StatusLineModified = { fg = c.base, bg = c.mauve, bold = true },
+
             SignColumn = { bg = c.surface0 },
             GitSignsAdd = { fg = c.green, bg = c.surface0 },
             GitSignsChange = { fg = c.yellow, bg = c.surface0 },
@@ -20,13 +23,29 @@ require("catppuccin").setup {
             DiagnosticSignWarn = { fg = c.yellow, bg = c.surface0 },
             DiagnosticSignInfo = { fg = c.sky, bg = c.surface0 },
             DiagnosticSignHint = { fg = c.teal, bg = c.surface0 },
+            DapBreakpoint = { fg = c.red, bg = c.surface0 },
+            DapBreakpointCondition = { fg = c.yellow, bg = c.surface0 },
+            DapBreakpointRejected = { fg = c.mauve, bg = c.surface0 },
+            DapLogPoint = { fg = c.sky, bg = c.surface0 },
+            DapStopped = { fg = c.maroon, bg = c.surface0 },
+
             TrailingWhitespace = { fg = c.maroon, reverse = true },
+            ["@punctuation.arrow.rust"] = { fg = c.lavender, bold = true },
+            ["@punctuation.fat-arrow.rust"] = { fg = c.mauve },
         }
     end,
 }
 
-vim.cmd [[ colorscheme catppuccin ]]
+vim.cmd [[colorscheme catppuccin]]
 
+MyFoldText = function()
+    -- stylua: ignore
+    return vim.fn.getline(vim.v.foldstart) .. "    ("
+        .. (vim.v.foldend - vim.v.foldstart) .. " lines) "
+end
+vim.opt.foldtext = "v:lua.MyFoldText()"
+
+require("image").setup()
 require("colorizer").setup { user_default_options = { names = false } }
 require("gitsigns").setup { current_line_blame_opts = { delay = 500 } }
 vim.api.nvim_create_user_command("Dismiss", require("notify").dismiss, {})

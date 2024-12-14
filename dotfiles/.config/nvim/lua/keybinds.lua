@@ -1,4 +1,5 @@
 local modemap = vim.keymap.set
+local prompt = vim.fn.input
 local function map(lhs, rhs, opt) modemap("", lhs, rhs, opt) end
 
 -- search/replace
@@ -61,7 +62,7 @@ local format = function()
             return
         end
     end
-    vim.cmd [[ Neoformat ]]
+    vim.cmd [[Neoformat]]
 end
 
 local sev = vim.diagnostic.severity
@@ -110,6 +111,7 @@ wk.setup {
     icons = { rules = false },
 }
 
+local dap = require "dap"
 wk.add {
     { "<space>q", group = "Quit/Quickfix" },
     { "<space>qq", ":qa<CR>", desc = "Quit" },
@@ -148,6 +150,24 @@ wk.add {
     { "<space>gr", GITS.reset_hunk, desc = "Reset Hunk" },
     { "<space>G", RUNFZF "git_status", desc = "Git Status" },
 
+    { "<space>a", group = "Debug" },
+    { "<space>ad", dap.run_last, desc = "Run Last" },
+    { "<space>ab", dap.toggle_breakpoint, desc = "Toggle Breakpoint" },
+    -- stylua: ignore
+    { "<space>aB", desc = "Set conditional breakpoint",
+        function() dap.set_breakpoint(prompt "Breakpoint condition: ") end },
+    -- stylua: ignore
+    { "<space>al", desc = "Set logpoint",
+        function() dap.set_breakpoint(nil, nil, prompt "Log point message: ") end },
+    { "<space>a<space>", RUNFZF "dap_commands", desc = "Commands" },
+    { "<space>ac", dap.continue, desc = "Continue" },
+    { "<space>an", dap.step_over, desc = "Step Over" },
+    { "<space>as", dap.step_over, desc = "Step In" },
+    { "<space>af", dap.step_over, desc = "Step Out" },
+    { "<space>ar", dap.repl.toggle, desc = "Toggle Repl" },
+    { "<space>aS", require("dap-python").debug_selection, desc = "Debug Selection" },
+    { "<space>aq", dap.terminate, desc = "Close Session" },
+
     { "<space>t", RUNFZF "lsp_document_symbols", desc = "Symbols" },
     { "<space>T", RUNFZF "lsp_workspace_symbols", desc = "Workspace Symbols" },
     { "<space>;", vim.lsp.buf.signature_help, desc = "Signature Help" },
@@ -157,6 +177,7 @@ wk.add {
     { "<space>ca", RUNFZF "lsp_code_actions", desc = "Code Actions" },
     { "<space>s", RUNFZF "spell_suggest", desc = "Spelling" },
     { "<space>h", RUNFZF "help_tags", desc = "Help" },
+    { "<space>H", RUNFZF "highlights", desc = "Highlight" },
     { "<space>l", RUNFZF "lines", desc = "Search Lines" },
     { "<space>i", toggle_inlay_hints, desc = "Inlay Hints" },
     { "<space>j", G.lazy("treesj", "toggle"), desc = "Split / Join" },

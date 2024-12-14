@@ -5,8 +5,10 @@
     godot_4
     blender
     inkscape krita pinta oculante aseprite
-    furnace lmms ardour audacity # (or tenacity)
-    non
+    helio-workstation
+    furnace
+    non lmms ardour
+    audacity # (or tenacity)
     logisim-evolution
 
     # TODO: re-enable when fixed

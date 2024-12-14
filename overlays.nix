@@ -7,10 +7,6 @@ inputs: final: prev: {
     doCheck = false;
   });
 
-  # TODO: remove when they do a new release
-  wpaperd = prev.wpaperd.overrideAttrs { src = builtins.getFlake
-    "github:danyspin97/wpaperd?rev=204b1c550ad6bfa9f2b855de4666c3495d204420"; };
-
   m-overlay = prev.m-overlay.overrideAttrs {
     version = "2024-08-26";
     src = final.fetchFromGitHub {
