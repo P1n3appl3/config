@@ -23,6 +23,7 @@
       vim-fetch
       vim-startuptime
       plenary-nvim
+      bigfile-nvim
     # Appearance
       catppuccin-nvim
       nvim-colorizer-lua
@@ -34,6 +35,8 @@
       fidget-nvim
       (gh "typicode" "bg.nvim" "61e1150dd5900eaf73700e4776088c2131585f99"
         "sha256-qzBp5h9AkJWQ3X7TSwxX881klDXojefeH0Qn/prJ/78=")
+      (gh "3rd" "image.nvim" "b3e1af829a56bb038e5f81bf97798a2950064b62"
+        "sha256-QtlVZvKaZHI91SUUA0fToOx6JHMZTkQPPm3Ibivqpdk=")
     # Fun
       (gh "Eandrju" "cellular-automaton.nvim" "b7d056dab963b5d3f2c560d92937cb51db61cb5b"
         "sha256-szbd6m7hH7NFI0UzjWF83xkpSJeUWCbn9c+O8F8S/Fg=")
@@ -64,11 +67,16 @@
       nvim-snippy cmp-snippy vim-snippets
       cmp-buffer cmp-path # cmp-beancount
       cmp-nvim-lsp cmp-nvim-lsp-signature-help
+      nvim-dap nvim-dap-ui nvim-dap-virtual-text cmp-dap
+      nvim-dap-python nvim-dap-rr
     ] ++ map (p: { plugin = p; optional = true; }) [ # lazy loaded plugins
       fzf-lua
       hop-nvim
       treesj
     ];
+
+    # used by image.nvim
+    extraPackages = [ pkgs.imagemagick ]; extraLuaPackages = ps: [ ps.magick ];
   };
 in {
   programs.neovim = nvim-config;

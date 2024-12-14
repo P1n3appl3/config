@@ -12,7 +12,7 @@ upscaling_method = nearest_neighbour
 n = next
 <Shift+K> = prev
 p = prev
-<Shift+X> = exec rip "$imv_current_file"; close
+<Shift+X> = exec mv "$imv_current_file" /tmp; close
 
 <i> = zoom 10
 <equal> = zoom 10

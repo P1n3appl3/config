@@ -5,16 +5,21 @@
   };
 
   config.home.packages = with pkgs; lib.mkMerge [ [
-    taplo cargo-edit cargo-expand cargo-clone-crate cargo-udeps cargo-audit
-    cargo-modules cargo-bloat cargo-binutils cargo-mommy # cargo-feature
+    cargo-edit cargo-expand cargo-clone-crate cargo-udeps cargo-audit
+    cargo-modules cargo-bloat cargo-binutils cargo-mommy cargo-feature
+    taplo
+    # term-rustdoc
+
     twiggy bloaty
-    ruff pyright
+    gdb rr lldb vscode-extensions.vadimcn.vscode-lldb.adapter
+    ruff pyright (python3.withPackages (p: with p; [ debugpy ]))
     beancount-language-server
     asmfmt nasmfmt
     nurl nix-init
     typst tinymist typstyle
     biome
-    j ] (lib.mkIf config.dev.compilers
+    j
+  ] (lib.mkIf config.dev.compilers
       [ rustup mold-wrapped clang clang-tools nasm ])
   ];
 }

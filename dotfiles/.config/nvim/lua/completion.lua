@@ -15,6 +15,10 @@ local cmp_autopairs = require "nvim-autopairs.completion.cmp"
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 cmp.setup {
+    enabled = function()
+        return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+            or require("cmp_dap").is_dap_buffer()
+    end,
     snippet = { expand = function(args) snippy.expand_snippet(args.body) end },
     performance = { max_view_entries = 20 },
     sources = cmp.config.sources {
@@ -90,3 +94,7 @@ cmp.setup {
         end, { "i" }),
     },
 }
+
+cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+    sources = { { name = "dap" } },
+})

@@ -77,10 +77,10 @@ set $down j
 set $up k
 set $right l
 
-bindsym $mod+$left  focus left
-bindsym $mod+$down  focus down
-bindsym $mod+$up    focus up
-bindsym $mod+$right focus right
+bindsym $mod+$left  exec easy-i3-neovim-nav focus left
+bindsym $mod+$down  exec easy-i3-neovim-nav focus down
+bindsym $mod+$up    exec easy-i3-neovim-nav focus up
+bindsym $mod+$right exec easy-i3-neovim-nav focus right
 bindsym $mod+Shift+$left  move left
 bindsym $mod+Shift+$down  move down
 bindsym $mod+Shift+$up    move up

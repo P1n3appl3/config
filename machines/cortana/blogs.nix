@@ -112,8 +112,8 @@
 ["Ella"               "ectcetera.net/blog"                  "/atom.xml"]
 ["ash"                "catgirl.ai"                          "/log/atom.xml"]
 ["Alejandra González" "blog.goose.love"                     "/index.xml"]
-# TODO: send ally a feed to stick on her server
 ["dropbear"           "dropbear.sh"                         "https://julia.blue/allyrss.xml"]
+["Luna"               "moonbase.lgbt"                       "/blog/atom.xml"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]

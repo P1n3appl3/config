@@ -1,6 +1,7 @@
 local w = require "wezterm"
 local a = w.action
 local c = {
+    front_end = "WebGpu",
     default_prog = { "zsh" },
     font = w.font "Source Code Pro",
     font_rules = {

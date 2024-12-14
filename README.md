@@ -28,15 +28,18 @@ config 🍍 nix flake show
     ├───d-rs: stream processing utilities
     ├───dl: get the latest downloaded file
     ├───fio-plot: disk benchmarking tool
+    ├───fence: chess board visualizer
     ├───git-heatmap: view change frequency of git repo
     ├───hovalaag: assembly programming game
+    ├───i3-nvim-nav: move between windows with the same keybind
     ├───lowcharts: draw plots and histograms in the terminal
     ├───m-overlay: gamecube input visualizer for dolphin
     ├───melee-quick-mod: ssbm texture patcher
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
     ├───s2yt: spotify to youtube music transfer tool
-    ╰───slpz: compress slippi replays
+    ├───slpz: compress slippi replays
+    ╰───term-rustdoc: tui docs browser
 ```
 
 
