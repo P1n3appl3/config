@@ -7,6 +7,7 @@
     tokei zellij rsync zstd pv sshping mdcat magic-wormhole-rs netscanner rage
     exiftool resvg get-keys vivid pipe-rename static-web-server
     ascii unicode-paracode pastel # sequin (when rahul packages)
+    micro helix
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens
     # System info
@@ -16,8 +17,8 @@
     # Scripting tools
     stylua sumneko-lua-language-server shfmt shellcheck
     # Fun
-    blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain pastel
-    ttyper nethack fence
+    blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain pastel tab
+    ttyper nethack
   ];
 
   programs = {
