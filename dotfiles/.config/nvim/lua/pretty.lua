@@ -1,5 +1,3 @@
-vim.cmd [[highlight Blinking guifg=#cba6f8 start=<esc>[5m stop=<esc>[0m]]
-
 require("catppuccin").setup {
     flavour = "mocha",
     -- stylua: ignore
@@ -30,8 +28,6 @@ require("catppuccin").setup {
             DapStopped = { fg = c.maroon, bg = c.surface0 },
 
             TrailingWhitespace = { fg = c.maroon, reverse = true },
-            ["@punctuation.arrow.rust"] = { fg = c.lavender, bold = true },
-            ["@punctuation.fat-arrow.rust"] = { fg = c.mauve },
         }
     end,
 }

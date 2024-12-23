@@ -18,6 +18,7 @@ for_window [title=".*Syncthing Tray"] floating enable
 bindsym $mod+Return exec kitty -1
 bindsym $mod+Shift+r reload
 
+# blur enable
 bindsym $mod+r exec rofi -show drun
 bindsym $mod+slash exec rofi -show window
 # TODO: package cliphist contrib dir to use cliphist-rofi-img
@@ -77,10 +78,10 @@ set $down j
 set $up k
 set $right l
 
-bindsym $mod+$left  exec easy-i3-neovim-nav focus left
-bindsym $mod+$down  exec easy-i3-neovim-nav focus down
-bindsym $mod+$up    exec easy-i3-neovim-nav focus up
-bindsym $mod+$right exec easy-i3-neovim-nav focus right
+bindsym $mod+$left  focus left
+bindsym $mod+$down  focus down
+bindsym $mod+$up    focus up
+bindsym $mod+$right focus right
 bindsym $mod+Shift+$left  move left
 bindsym $mod+Shift+$down  move down
 bindsym $mod+Shift+$up    move up

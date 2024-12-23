@@ -12,6 +12,7 @@
     '';
     extraConfigEarly = "include ~/.config/sway/common_config";
     config = null;
+    # package = pkgs.swayfx;
   };
 
   home.packages = with pkgs; [

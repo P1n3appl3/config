@@ -1,1 +1,16 @@
-OPTIONS=windowtype:curses, cursesgraphivs, symset:curses, perm_invent, mouse_support, splash_screen, color, guicolor
+OPTIONS=windowtype:curses, symset:curses, mouse_support, color, guicolor
+OPTIONS=splash_screen, perm_invent
+
+OPTIONS=autopickup, pickup_types:$?!/="+
+AUTOPICKUP_EXCEPTION=">worthless piece of"
+AUTOPICKUP_EXCEPTION="<magic lamp"
+AUTOPICKUP_EXCEPTION="<wand of wishing"
+AUTOPICKUP_EXCEPTION="<wand of death"
+AUTOPICKUP_EXCEPTION="<wand of polymorph"
+
+AUTOPICKUP_EXCEPTION="> corpse"
+AUTOPICKUP_EXCEPTION="<lichen corpse"
+AUTOPICKUP_EXCEPTION="<lizard corpse"
+AUTOPICKUP_EXCEPTION="<newt corpse"
+AUTOPICKUP_EXCEPTION="<floating eye corpse"
+AUTOPICKUP_EXCEPTION="<wraith corpse"

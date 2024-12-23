@@ -46,12 +46,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
-vim.cmd [[ " set title for i3-easy-neovim-nav
-call serverstart(tempname())
-let &titlestring.="vi %F -- [" . v:servername . "]"
-set title
-]]
-
 require("osc52").setup { silent = true, trim = true, max_length = 2 ^ 16 }
 if vim.env.SSH_TTY then
     local function copy(lines, _) require("osc52").copy(table.concat(lines, "\n")) end

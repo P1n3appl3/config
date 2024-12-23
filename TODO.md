@@ -260,7 +260,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * d-spy/bustle/dbus-tool/qdbus talk to geoclue
 * disable middle-click paste
 * howett.net fnlock light to capslock
-  * bind caps to ctrl when held
+  * bind caps to ctrl when held: https://gitlab.com/interception/linux/plugins/caps2esc
   * right ctrl -> fn
 * [only autologin on tty1](https://github.com/NixOS/nixpkgs/issues/81552)
 * measure power draw in s2idle, as well as peak and idle

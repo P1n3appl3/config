@@ -166,6 +166,8 @@ wk.add {
     { "<space>af", dap.step_over, desc = "Step Out" },
     { "<space>ar", dap.repl.toggle, desc = "Toggle Repl" },
     { "<space>aS", require("dap-python").debug_selection, desc = "Debug Selection" },
+    { "<space>a<return>", dap.terminate, desc = "Choose Config" },
+    { "<space>ai", ":DapVirtualTextToggle<CR>", desc = "Toggle Virtual Text" },
     { "<space>aq", dap.terminate, desc = "Close Session" },
 
     { "<space>t", RUNFZF "lsp_document_symbols", desc = "Symbols" },
