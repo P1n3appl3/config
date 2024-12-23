@@ -2,6 +2,7 @@
   description = "nix configs for my computers";
   inputs = {
     nixpkgs.url            = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url     = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager.url       = "github:nix-community/home-manager";
     flake-utils.url        = "github:numtide/flake-utils";
     nixos-hardware.url     = "github:NixOS/nixos-hardware";
@@ -25,9 +26,12 @@
       impermanence.follows = "";
     };
     slippi.inputs = {
-      nixpkgs.follows = "nixpkgs";
-      home-manager.follows = "home-manager";
-    } ;
+      nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
+      git-hooks.follows = "";
+    };
+    catppuccin.inputs = {
+      nixpkgs.follows = "nixpkgs"; nixpkgs-stable.follows = "nixpkgs-stable";
+    };
     obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
   };
 

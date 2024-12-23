@@ -38,22 +38,16 @@ server("lua_ls", {
 
 local ra_settings = {
     cachePriming = { enable = false },
-    diagnostics = { disabled = { "unresolved-proc-macro" } },
+    diagnostics = { disabled = {
+        "unresolved-proc-macro",
+        "inactive-code"
+    } },
     completion = { callable = { snippets = "none" }, postfix = { enable = false } },
-    cargo = { cfgs = { miri = "null" } },
+    cargo = { cfgs = { miri = "true" } },
 }
 local ra_log = vim.fn.tempname() .. "-rust-analyzer.log"
 vim.g.rustaceanvim = {
     capabilities = capabilities,
     tools = { inlay_hints = { auto = false } },
-    server = {
-        default_settings = { ["rust-analyzer"] = ra_settings },
-        logfile = ra_log,
-        cmd = function()
-            local fuchsia = string.find(vim.loop.cwd() or "", "fuchsia")
-            local fx_ra = "/mnt/fuchsia/prebuilt/third_party/rust-analyzer/rust-analyzer"
-            local binary = fuchsia and fx_ra or "rust-analyzer"
-            return { binary, "--log-file", ra_log }
-        end,
-    },
+    server = { default_settings = { ["rust-analyzer"] = ra_settings }, logfile = ra_log },
 }
