@@ -3,9 +3,7 @@ I use [NixOS](https://nixos.org) and/or [Home Manager](https://nixos.wiki/wiki/H
 ```
 config 🍍 nix flake show
 ├───homeConfigurations
-│   ├───ATLAS: steamdeck
-│   ├───clu:       $work laptop
-│   ╰───rinzler:   $work desktop
+│   ╰───ATLAS: steamdeck
 ├───nixosConfigurations
 │   ├───Cortana: raspberry pi 4B
 │   ├───WOPR:    framework laptop 13" (AMD 7640U)

@@ -53,10 +53,7 @@
   catppuccin = { enable = true; flavor = "mocha"; };
   security.sudo.extraConfig = ''Defaults env_keep += "path"'';
   console.useXkbConfig = true;
-  home-manager = {
-    useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs myOverlays; };
-  };
+  home-manager.useGlobalPkgs = true;
   nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
   nix = {
     settings = {

@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... } @ inputs: let
+{ pkgs, lib, config, pkgs-stable, ... } @ inputs: let
   nixGL = config.lib.nixGL.wrap;
 in {
   imports = [ ./fonts.nix ./theme.nix ];
@@ -37,7 +37,7 @@ in {
     (nixGL telegram-desktop) (nixGL caprine-bin) (nixGL vesktop) signal-desktop
     android-messages
     fractal element-desktop iamb # fluffychat cinny nheko # TODO: pick
-    praat friture # TODO: try this for voice training
+    pkgs-stable.friture # praat # TODO: try this for voice training
     (nixGL imhex) # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
     mepo # TODO: try
     # TODO: syncthing-gtk
@@ -63,10 +63,7 @@ in {
     };
     # TODO: try yofi/wofi/fuzzel
     # TODO: try plugins: rbw/pa source+sink/mpd/systemd/wifi
-    rofi = { enable = true;
-      catppuccin.enable = true;
-      plugins = [ pkgs.rofi-calc ];
-    };
+    rofi = { enable = true; plugins = [ pkgs.rofi-calc ]; };
   };
 
   home.file."${config.programs.rofi.configPath}".text = ''@import "extraConfig"'';

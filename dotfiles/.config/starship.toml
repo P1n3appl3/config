@@ -53,11 +53,6 @@ format = '$symbol '
 symbol = "🧊"
 # heuristic broken with kitty https://github.com/NixOS/nix/issues/3862
 
-[env_var.multifuchsia]
-variable = 'MULTIFUCHSIA_ENTER_ENV'
-format = "[$env_value]($style) "
-style = 'white bold dimmed'
-
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
