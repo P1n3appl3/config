@@ -22,7 +22,7 @@
   ];
 
   programs = {
-    bat = { enable = true; catppuccin.enable = true; };
+    bat = { enable = true;  };
     direnv = { enable = true;
       nix-direnv.enable = true;
       config.global.hide_env_diff = true;
@@ -38,7 +38,11 @@
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
-  catppuccin = { flavor = "mocha"; accent = "blue"; };
+  catppuccin = {
+    flavor = "mocha"; accent = "blue";
+    bat.enable = true; rofi.enable = true;
+    sway.enable = true; waybar.enable = true; swaylock.enable = true;
+  };
 
   nix.registry = {
     nixpkgs.flake = inputs.nixpkgs;

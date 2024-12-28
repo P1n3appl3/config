@@ -35,8 +35,8 @@
     obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, flake-utils, ragenix, nixgl, rahul-config,
-              obs-gamepad, self, ... } @ inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, flake-utils, ragenix,
+              nixgl, rahul-config, obs-gamepad, self, ... } @ inputs:
   let
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
@@ -44,24 +44,27 @@
       self.overlays.default nixgl.overlays.default ragenix.overlays.default
       obs-gamepad.overlays.default (import ./overlays.nix inputs)
     ];
+    special = system: {
+      pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+      inherit myOverlays inputs;
+    };
 
     home = system: module: home-manager.lib.homeManagerConfiguration {
-      extraSpecialArgs = { inherit inputs myOverlays; };
       pkgs = nixpkgs.legacyPackages.${system};
-      modules = [ ./mixins/home/common.nix module ]; # ++
-        # builtins.attrValues self.outputs.homeModules;
+      extraSpecialArgs = special system;
+      modules = [ ./mixins/home/common.nix module ];
     };
 
     machine = system: module: lib.nixosSystem {
-      inherit system; specialArgs = { inherit inputs myOverlays; };
-      modules = [ ./mixins/nixos/common.nix module ] ++
-        builtins.attrValues self.outputs.nixosModules;
+      inherit system; specialArgs = special system;
+      modules = [
+        ./mixins/nixos/common.nix module
+        { home-manager.extraSpecialArgs = special system; }
+      ] ++ builtins.attrValues self.outputs.nixosModules;
     };
   in {
     homeConfigurations = {
       ATLAS     = home "x86_64-linux"   ./machines/atlas.nix;
-      clu       = home "x86_64-linux"   ./machines/clu.nix;
-      rinzler   = home "x86_64-linux"   ./machines/rinzler.nix;
     };
 
     nixosConfigurations = {

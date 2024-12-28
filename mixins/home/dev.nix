@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... } @ args: {
+{ pkgs, pkgs-stable, lib, config, ... } @ args: {
   options.dev.compilers = lib.mkOption {
     type = lib.types.bool; description = "Add compilers to home packages";
     default = builtins.hasAttr "osConfig" args;
@@ -19,8 +19,8 @@
     nurl nix-init
     typst tinymist typstyle
     biome
-    j
   ] (lib.mkIf config.dev.compilers
       [ rustup mold-wrapped clang clang-tools nasm ])
+      (with pkgs-stable; [])
   ];
 }

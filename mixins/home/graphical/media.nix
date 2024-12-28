@@ -7,7 +7,7 @@
     inkscape krita pinta oculante aseprite
     helio-workstation
     furnace
-    non lmms ardour
+    # non lmms ardour
     audacity # (or tenacity)
     logisim-evolution
 

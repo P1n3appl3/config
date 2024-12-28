@@ -16,11 +16,11 @@ inputs: final: prev: {
     };
   };
 
-  sway = prev.sway.overrideAttrs (old: {
-    patches = (old.patches or []) ++ [ (final.fetchpatch {
-        url = "https://catgirl.ai/log/sway-spy/spy.patch";
-        hash = "sha256-CKGohz5eRMpMsorXh4G8eON3YmWjDW+WlXs2Pg3qIp8=";
-      })
-    ];
-  });
+  # sway = prev.sway.overrideAttrs (old: {
+  #   patches = (old.patches or []) ++ [ (final.fetchpatch {
+  #       url = "https://catgirl.ai/log/sway-spy/spy.patch";
+  #       hash = "sha256-CKGohz5eRMpMsorXh4G8eON3YmWjDW+WlXs2Pg3qIp8=";
+  #     })
+  #   ];
+  # });
 }

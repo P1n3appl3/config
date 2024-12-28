@@ -2,7 +2,6 @@
   wayland.windowManager.sway = { enable = true;
    # TODO: change exec line to "systemd-cat -p sway ${pkgs.sway}/bin/sway"
    # TODO: wrapper features?
-    catppuccin.enable = true;
     systemd = {
       xdgAutostart = true;
       variables = [ "--all" ]; # TODO: check if importing PATH for xdg-desktop-portal is working
@@ -36,7 +35,7 @@
       ]);
     };
     waybar = {
-      enable = true; catppuccin.enable = true; systemd.enable = true;
+      enable = true; systemd.enable = true;
       style = ''@import "common.css";'';
     };
     wpaperd = { enable = true;
@@ -47,7 +46,6 @@
       };
     };
     swaylock = { enable = true;
-      catppuccin.enable = true;
       package = if inputs ? osConfig then pkgs.swaylock else pkgs.hello;
       settings = {
         daemonize = true; scaling = "fill"; image = "~/images/lockscreen";

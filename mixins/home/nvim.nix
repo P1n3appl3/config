@@ -2,6 +2,7 @@
   gh = owner: repo: rev: hash: pkgs.vimUtils.buildVimPlugin {
     pname = repo; version = rev;
     src = pkgs.fetchFromGitHub { inherit owner repo rev hash; };
+    doCheck = false;
   };
 
   numbat-grammar = pkgs.tree-sitter.buildGrammar {
@@ -35,11 +36,11 @@
       fidget-nvim
       (gh "typicode" "bg.nvim" "61e1150dd5900eaf73700e4776088c2131585f99"
         "sha256-qzBp5h9AkJWQ3X7TSwxX881klDXojefeH0Qn/prJ/78=")
-      (gh "3rd" "image.nvim" "b3e1af829a56bb038e5f81bf97798a2950064b62"
-        "sha256-QtlVZvKaZHI91SUUA0fToOx6JHMZTkQPPm3Ibivqpdk=")
+      (gh "3rd" "image.nvim" "b991fc7f845bc6ab40c6ec00b39750dcd5190010"
+        "sha256-Sjbmf4BmjkjAorT3tojbC7JivJagFamAVgzwcCipa8k=")
     # Fun
-      (gh "Eandrju" "cellular-automaton.nvim" "b7d056dab963b5d3f2c560d92937cb51db61cb5b"
-        "sha256-szbd6m7hH7NFI0UzjWF83xkpSJeUWCbn9c+O8F8S/Fg=")
+      (gh "Eandrju" "cellular-automaton.nvim" "11aea08aa084f9d523b0142c2cd9441b8ede09ed"
+        "sha256-nIv7ISRk0+yWd1lGEwAV6u1U7EFQj/T9F8pU6O0Wf0s=")
       (gh "rktjmp" "playtime.nvim" "ab7d232c02341bff8479f532feec5730f8c33770"
         "sha256-gwftZrPQw9JRWed5FUSWMEHLVGo9n26HdiPrZceiQlQ=")
     # Programming
