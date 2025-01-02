@@ -13,7 +13,7 @@
 
     twiggy bloaty
     gdb rr lldb vscode-extensions.vadimcn.vscode-lldb.adapter
-    ruff pyright (python3.withPackages (p: with p; [ debugpy ]))
+    uv ruff pyright (python3.withPackages (p: with p; [ debugpy ]))
     beancount-language-server
     asmfmt nasmfmt
     nurl nix-init

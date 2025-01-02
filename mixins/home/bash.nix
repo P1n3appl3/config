@@ -1,4 +1,8 @@
 { pkgs, ... }: {
+  home.packages = with pkgs; [
+    blesh
+  ];
+
   programs = {
     # TODO: show ally
     vim = { enable = true;

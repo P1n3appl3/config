@@ -15,7 +15,7 @@ __fzf() {
     local item
     fd -H --mount --color=always --type $1 |
         fzf --multi --height=80% --ansi \
-            --preview ".config/zsh/preview.sh {}" \
+            --preview "~/.config/zsh/preview.sh {}" \
             --bind "ctrl-/:reload(fd . / --mount -t$1)" \
             --bind "ctrl-h:reload(fd . ~ -H --mount -t$1)" \
             --bind "ctrl-w:reload(fd --mount -t$1)" |

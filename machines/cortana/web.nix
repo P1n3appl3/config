@@ -101,12 +101,11 @@ in {
         devices = {
              HAL.id = "ON6QDIA-Q76YZPP-2QDT5KI-DOJVPXS-6757LVB-P2FKJAS-LOMDKIW-JT36XQ6";
             WOPR.id = "R6XKQSK-3XE7J2H-LSELK56-HVO6PTF-5PX2HZP-775JTZO-ETP2BR3-5QZ6YAF";
-             clu.id = "SWCGUR7-XGZPXSF-NIZ6QRI-IIFZQQG-LLSONJH-226S3Y6-IPYP4MX-SUWBRQ7";
           dragon.id = "6TN3KGX-JU2KQEA-B6VKVCK-AJFAWQG-W2CLE5Q-2WYDPEN-YV3YKXU-HJV6UQL";
         };
         folders = (builtins.mapAttrs (n: d: { path = "~/${n}"; devices = d; }) {
-                notes = [ "HAL" "WOPR" "dragon" "clu" ];
-                music = [ "HAL" "WOPR" "dragon" "clu" ];
+                notes = [ "HAL" "WOPR" "dragon" ];
+                music = [ "HAL" "WOPR" "dragon" ];
               recipes = [ "HAL" "WOPR" "dragon" ];
           screenshots = [ "HAL" "WOPR" ];
         });

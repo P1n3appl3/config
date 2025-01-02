@@ -14,6 +14,7 @@ function note { cd ~/documents/notes && vi todo/TODO.md **/*.md && cd -; }
 alias wine32="WINEPREFIX=$HOME/.wine32 wine"
 alias send="wormhole-rs tx"
 alias receive="wormhole-rs rx"
+alias getsong="ytmdl --dont-transcode --download-archive ~/.cache/ytmdl/archive"
 
 alias sc=systemctl
 alias music=ncmpcpp

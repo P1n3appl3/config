@@ -4,9 +4,16 @@
     ../../mixins/nixos/headful.nix
   ];
 
+  age.secrets = {
+    weather.file = ../../../secrets/weather.age;
+  };
+
   home-manager.users.julia.imports = [
     (let iconTheme = { package = pkgs.papirus-icon-theme; name = "Papirus-Dark"; }; in {
       home.packages = with pkgs; [
+        (writeShellScriptBin "i3status-rs" ''
+          OPENWEATHERMAP_API_KEY=`<${config.age.secrets.weather.path}` \
+          exec ${lib.getExe i3status-rust} $@'')
         i3
         xclip maim xcolor
         (rofi.override { plugins = [ rofi-calc ]; })
