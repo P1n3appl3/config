@@ -3,21 +3,13 @@
 in {
   imports = [ ./fonts.nix ./theme.nix ];
 
-  age.secrets = {
-    weather.file = ../../../secrets/weather.age;
-  };
-
   home.packages = with pkgs; [
-    (writeShellScriptBin "i3status-rs" ''
-      OPENWEATHERMAP_API_KEY=`<${config.age.secrets.weather.path}` \
-      exec ${lib.getExe i3status-rust} $@'')
     brightnessctl
     pavucontrol playerctl pamixer audio-select
     xdg-utils # TODO: try handlr-regex
     xorg.xeyes
     rofimoji # TODO: put in rofi plugins section
     libqalculate qalculate-gtk
-    (nixGL wezterm)
     nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
@@ -54,6 +46,18 @@ in {
   ];
 
   programs = {
+    ghostty = { enable = true;
+      package = (nixGL pkgs.ghostty);
+      installVimSyntax = true;
+      settings = {
+        font-size = lib.mkDefault 12;
+        config-file = "common";
+      };
+    };
+    wezterm = { enable = true;
+      package = (nixGL pkgs.wezterm);
+      extraConfig = "return require 'config'";
+    };
     kitty = { enable = true;
       package = (nixGL pkgs.kitty);
       settings = {

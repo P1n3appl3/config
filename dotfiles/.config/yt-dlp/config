@@ -1,0 +1,2 @@
+--cookies-from-browser firefox
+--alias  get-audio,-A "-f bestaudio --extract-audio --add-metadata"

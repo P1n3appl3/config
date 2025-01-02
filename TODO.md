@@ -112,7 +112,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * aseprite
 * firefox homepage and/or userstyles
 * swaync
-* [obsidian](https://github.com/catppuccin/obsidian)
 * [systemd-boot](https://github.com/systemd/systemd/blob/ae9fd433d6e245677e6e916a3461be462362e7b8/meson_options.txt#L477)
 
 ## Other
@@ -128,6 +127,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * htop config param for number of cores, add io screen once [this](https://github.com/nix-community/home-manager/pull/3846) gets merged
 * j don't create `j9.x-user` in `$HOME`
 * mod+o use rofi file completion starting from ~ with xdg-open
+* mod+k rofi kaomoji
 * usbtop needs pcap settings
 
 ## Nix stuff

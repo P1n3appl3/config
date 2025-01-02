@@ -1,0 +1,19 @@
+# Artist --> Song Artist
+# Album  --> Song Album Name
+# Title  --> Song Name
+# Genre  --> Song Genre
+# TrackNumber --> Song Number in the album
+# ReleaseDate --> Song Release date
+SONG_DIR = "~/music/import"
+#
+# Supported values are 320 and 192
+#QUALITY = "320"
+#
+# itunes, spotify, gaana, deezer, lastfm, musicbrainz, saavn.
+#METADATA_PROVIDERS = "itunes, spotify, gaana"
+#
+# mp3, m4a, opus
+DEFAULT_FORMAT = "opus"
+#
+# exit, skip, manual
+#ON_META_ERROR = "exit"

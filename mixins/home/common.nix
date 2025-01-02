@@ -6,7 +6,7 @@
     fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine hexyl
     tokei zellij rsync zstd pv sshping mdcat magic-wormhole-rs netscanner rage
     exiftool resvg get-keys vivid pipe-rename static-web-server
-    ascii unicode-paracode pastel # sequin (when rahul packages)
+    ascii unicode-paracode sequin pastel
     micro helix
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens
@@ -22,7 +22,7 @@
   ];
 
   programs = {
-    bat = { enable = true;  };
+    bat = { enable = true; };
     direnv = { enable = true;
       nix-direnv.enable = true;
       config.global.hide_env_diff = true;
@@ -40,8 +40,8 @@
 
   catppuccin = {
     flavor = "mocha"; accent = "blue";
-    bat.enable = true; rofi.enable = true;
-    sway.enable = true; waybar.enable = true; swaylock.enable = true;
+    bat.enable = true; cava.enable = true; helix.enable = true; btop.enable = true;
+    # TODO: fzf/zellij/zsh-syntax-highlighting
   };
 
   nix.registry = {

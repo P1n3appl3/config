@@ -1,9 +1,11 @@
 # This is mostly taken from kitty's shell integration docs. The subset of
-# features used here should work with most reasonably modern terminal emulators:
+# features used here should work with wezterm and ghostty as well:
 # - OSC133 prompt awareness
 # - changing window title to current dir/host/command
 # - changing cursor shape to line in the line editor
 # https://sw.kovidgoyal.net/kitty/shell-integration/#how-it-works
+# https://wezfurlong.org/wezterm/shell-integration.html
+# https://ghostty.org/docs/features/shell-integration
 
 typeset -gi _tty_fd
 {

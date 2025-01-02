@@ -20,16 +20,20 @@
     };
   };
 
+  catppuccin = {
+    sway.enable = true; waybar.enable = true; swaylock.enable = true;
+    rofi.enable = true;
+    kvantum.enable = true;
+    zathura.enable = true; imv.enable = true;
+    zed.enable = true; obs.enable = true;
+  };
+
   qt = { enable = true;
-    platformTheme.name = "qtct";
+    platformTheme.name = "kvantum";
     style = {
       name = "kvantum"; # TODO: debug why stuff like syncthingtray and dolphin are bad
       package = (pkgs.catppuccin-kvantum.override { accent = "blue"; variant = "mocha"; });
     };
+    # kde.settings."Kvantum/kvantum.kvconfig".General.theme = "Catppuccin-Mocha-Blue";
   };
-
-  xdg.configFile."Kvantum/kvantum.kvconfig".source =
-    (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
-      General.Theme = "Catppuccin-Mocha-Blue";
-    };
 }
