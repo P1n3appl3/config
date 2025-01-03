@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   imports = [
     ./hardware.nix
     ./web.nix
@@ -14,6 +14,8 @@
     raspberrypi-eeprom
     libraspberrypi
   ];
+
+  catppuccin.enable = lib.mkForce false;
 
   time.timeZone = "America/Los_Angeles";
   networking.hostName = "Cortana";

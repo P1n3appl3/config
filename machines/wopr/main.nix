@@ -7,6 +7,7 @@
   home-manager.users.julia.imports = [
     {
       programs.kitty.settings.font_size = 15;
+      gtk.font.size = 15;
       programs.waybar.style = ''
         * {
             font-size: 22px;

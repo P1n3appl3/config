@@ -200,7 +200,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * rhythm doctor and that one from itch.io, check that it works while floating
 * asciiportal
 * OG elite or more modern remake in the spirit of it
-* pokefinder + timer and assorted tools
 * hoyle boardgames + fantastic contraption
 * apotris
 * airshipper

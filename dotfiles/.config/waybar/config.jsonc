@@ -39,7 +39,8 @@
 			"stopped": ""
 		},
 		"on-click-right": "playerctld shift",
-		"on-click-middle": "playerctld unshift"
+		"on-click-middle": "playerctld unshift",
+		"max-length": 50
 		// "ignored-players": ["chromium"]
 	},
 	"tray": {

@@ -142,4 +142,7 @@
 # use https://github.com/Siriusmart/feedscraper for:
 # TODO: blog.iximeow.net
 # TODO: tmpout.sh
+
+# remove once it stops updating/i'm finished reading
+["toxic yuri" "amawashigroup.wordpress.com" "/feed"]
 ])
