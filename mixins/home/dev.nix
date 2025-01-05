@@ -11,6 +11,8 @@
   };
 
   config.home.packages = with pkgs; lib.mkMerge [ [
+    onefetch
+
     cargo-edit cargo-expand cargo-clone-crate cargo-udeps cargo-audit
     cargo-modules cargo-bloat cargo-binutils cargo-mommy cargo-feature
     cargo-show-asm

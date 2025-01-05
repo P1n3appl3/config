@@ -15,6 +15,5 @@
     description = "Compresses and decompresses Slippi replay (slp) files very quickly";
     homepage = "https://github.com/AlexanderHarrison/slpz";
     license = lib.licenses.asl20;
-    mainProgram = "slpz";
   };
 }

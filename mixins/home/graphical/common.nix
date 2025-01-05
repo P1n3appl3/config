@@ -43,6 +43,7 @@ in {
     udiskie
     glib.bin # gio/gsettings/gdbus
     d-spy
+    glkitty
   ];
 
   programs = {

@@ -73,8 +73,9 @@ c.keys = {
     { key = "PageUp", action = a.ScrollToPrompt(-1) },
     { key = "PageDown", action = a.ScrollToPrompt(1) },
     { mods = m, key = "Space", action = a.QuickSelect },
-    { mods = m, key = "~", action = a.ShowDebugOverlay },
     { mods = m, key = "h", action = a.EmitEvent "view-history-in-pager" },
+    { mods = m, key = "~", action = a.ShowDebugOverlay },
+    { mods = 'ALT', key = "r", action = a.ShowLauncher },
 }
 
 local l = { streak = 1, button = "Left" }
