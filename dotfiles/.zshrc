@@ -14,6 +14,7 @@ mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
 mkconfig nix '../mixins/home/common.nix' '**/*.nix'
 mkconfig i3 '.config/{i3/config,i3status-rust/config.toml}'
 mkconfig sway '.config/{sway/{common_config,`hostname -s`},waybar/{config.jsonc,*.css}}'
+mkconfig wez '.config/wezterm/{config.lua,*.lua}'
 mkconfig git '.config/git/{extraConfig,ignore,*}'
 
 # Misc.

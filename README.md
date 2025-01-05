@@ -29,6 +29,7 @@ config 🍍 nix flake show
     ├───fio-plot: disk benchmarking tool
     ├───fence: chess board visualizer
     ├───git-heatmap: view change frequency of git repo
+    ├───glkitty: gears demo in the terminal
     ├───hovalaag: assembly programming game
     ├───lowcharts: draw plots and histograms in the terminal
     ├───m-overlay: gamecube input visualizer for dolphin

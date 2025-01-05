@@ -7,7 +7,7 @@
       variables = [ "--all" ]; # TODO: check if importing PATH for xdg-desktop-portal is working
     };
     extraSessionCommands = ''
-      export NIXOS_OZONE_WL="1";
+      export NIXOS_OZONE_WL=1
     '';
     extraConfigEarly = "include ~/.config/sway/common_config";
     config = null;
@@ -73,6 +73,7 @@
   };
 
   systemd.user.services = {
+    # TODO: remove when https://github.com/nix-community/home-manager/pull/6249 lands
     wpaperd = {
       Unit = {
         Description = "Wallpaper daemon";
@@ -80,10 +81,7 @@
         After = "graphical-session.target";
       };
       Install.WantedBy = [ "graphical-session.target" ];
-      Service = {
-        Restart = "on-failure";
-        ExecStart = "${lib.getExe pkgs.wpaperd} -d";
-      };
+      Service.ExecStart = "${lib.getExe pkgs.wpaperd}";
     };
   };
 

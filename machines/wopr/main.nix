@@ -13,6 +13,9 @@
             font-size: 22px;
         }
       '';
+      wayland.windowManager.sway.extraSessionCommands = ''
+        export QT_SCALE_FACTOR=1.5
+      '';
       slippi-launcher = { enable = true;
         isoPath = "/home/julia/games/roms/Gamecube/Melee [GALE01]/game.iso";
         rootSlpPath = "/home/julia/games/melee/replays";
