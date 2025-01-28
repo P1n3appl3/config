@@ -1,0 +1,51 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "ctrl-h": "workspace::Previous",
+      // "ctrl-l": "workspace::Next",
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-k": null,
+      "alt-l": "workspace::ActivateNextPane",
+      "alt-h": "workspace::ActivatePreviousPane",
+      "tab": "editor::SelectLargerSyntaxNode",
+      "shift-tab": "editor::SelectSmallerSyntaxNode"
+    }
+  },
+  {
+    "context": "showing_context_menu || showing_code_actions || showing_completions",
+    "bindings": {
+      "ctrl-k": "editor::ContextMenuPrev",
+      "ctrl-j": "editor::ContextMenuNext",
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrev"
+    }
+  },
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space r g": "project_search::ToggleFocus",
+      // "space f f": "project_search::ToggleFocus",
+      "space F": "file_finder::Toggle",
+      "space p": "file_finder::Toggle",
+      "space f s": "workspace::Save",
+      "space c a": "editor::ToggleCodeActions",
+      "space r n": "editor::Rename",
+      "space b": "tab_switcher::Toggle",
+      "space tab": ["tab_switcher::Toggle", { "select_last": true }],
+      "space d": "pane::CloseActiveItem",
+      "space c l": ["editor::ToggleComments", { "advance_downwards": false }],
+      //"space c a": ["editor::ToggleComments"],
+      "space space": "command_palette::Toggle",
+      "space w": ["workspace::SendKeystrokes", "ctrl-w"],
+      "space t": "outline::Toggle",
+      "space T": "outline_panel::ToggleFocus",
+      "ctrl-/": "search::ToggleReplace",
+      ", =": "editor::Format"
+    }
+  }
+]

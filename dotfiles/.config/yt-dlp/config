@@ -1,2 +1,3 @@
 --cookies-from-browser firefox
+--output '%(title)s.%(ext)s'
 --alias  get-audio,-A "-f bestaudio --extract-audio --add-metadata"

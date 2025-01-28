@@ -1,7 +1,7 @@
 { pkgs, config, ... }: {
   home.packages = with pkgs; [
     mpc-cli
-    rmpc mmtc music-player
+    rmpc mmtc # music-player
 
     sox
     mediainfo

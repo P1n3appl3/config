@@ -3,9 +3,9 @@ local prompt = vim.fn.input
 local function map(lhs, rhs, opt) modemap("", lhs, rhs, opt) end
 
 -- search/replace
-modemap("n", ",/", ":nohl<CR>", { silent = true })
 modemap("n", "<C-/>", ":%s/")
 modemap("v", "<C-/>", ":s/")
+modemap("n", "<Esc>", ":nohl<CR>", { silent = true })
 
 -- system clipboard
 map("<C-y>", '"+y')

@@ -14,6 +14,8 @@ primary_selection disabled
 for_window [app_id="pavucontrol"] floating enable
 for_window [app_id="audio-select"] border pixel 1
 for_window [title=".*Syncthing Tray"] floating enable
+for_window [title="EonTimer"] floating enable
+for_window [app_id="Mullvad VPN"] floating enable
 
 bindsym $mod+Return exec kitty -1
 bindsym $mod+Shift+r reload

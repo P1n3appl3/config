@@ -16,6 +16,18 @@ inputs: final: prev: {
     };
   };
 
+  pokefinder = prev.pokefinder.overrideAttrs {
+    version = "4.2.1";
+    src = final.fetchFromGitHub {
+      owner = "Admiral-Fish";
+      repo = "PokeFinder";
+      rev = "v4.2.1";
+      sha256 = "sha256-wjHqox0Vxc73/UTcE7LSo/cG9o4eOqkcjTIW99BxsAc=";
+      fetchSubmodules = true;
+    };
+    patches = [];
+  };
+
   # sway = prev.sway.overrideAttrs (old: {
   #   patches = (old.patches or []) ++ [ (final.fetchpatch {
   #       url = "https://catgirl.ai/log/sway-spy/spy.patch";

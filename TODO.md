@@ -15,6 +15,8 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * fzf
   * bind ctrl-backspace (instead of alt) to delete last word (see [issue](https://github.com/junegunn/fzf/issues/2057))
   * navigate up a directory (see [comment](https://github.com/junegunn/fzf/issues/3159#issuecomment-1424575660). something like `--bind 'backward-eof:reload(__fzf "$(pwd)/.." $2)'`
+* starship tty ascii
+* inputrc for bash
 
 ## Editor
 
@@ -47,10 +49,13 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * nvim-dap + cmp-dap (see [guide](https://davelage.com/posts/nvim-dap-getting-started))
 * any excuse to use [perfanno.nvim](https://github.com/t-troebst/perfanno.nvim) and [compiler-explorer](https://github.com/krady21/compiler-explorer.nvim) or [godbolt.nvim](https://github.com/p00f/godbolt.nvim) would be lovely
 * treesj nix language turn attr-path into separate attrset within binding
+* lsp.type.unresolvedReference.rust -> greyed out a bit or italic or something, can i mess with existing fg color
+* check that gitgutter + lsp signs + dap signs is working in tandem
 
 ## Terminal emulator
 
 * fix kitty bold/italic [autodetection](https://github.com/kovidgoyal/kitty/blob/master/kitty/fonts/fontconfig.py) for SourceCodePro
+* [kitty icon](https://github.com/igrmk/whiskers)
 * better scrollback pager for kitty
   * try using `page`
   * maybe just write to /tmp and open
@@ -102,6 +107,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * set --ozone-platform-hint=auto for caprine and other electron apps
 * debug logisim(/evolution) blank window on launch
 * i3status-rs weather hide if no location (or error emoji instead of message+color)
+* [.desktop file finder](https://unix.stackexchange.com/questions/344188/list-all-desktop-files-that-appears-in-application-menu)
 
 ## Theme
 
@@ -129,6 +135,8 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * mod+o use rofi file completion starting from ~ with xdg-open
 * mod+k rofi kaomoji
 * usbtop needs pcap settings
+* add /etc/host entry for syncthing (localhost:8383)
+* declarative syncthing for all devices, get private key from phone and stick all keys in ragenix
 
 ## Nix stuff
 
@@ -206,6 +214,10 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 
 ## `pkgs/`
 
+## Other
+
+* btrfs rule to not compress db files
+
 ## Hosts
 
 ### Cortana
@@ -244,6 +256,8 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
   * [soft serve](https://github.com/charmbracelet/soft-serve)
   * http://codemadness.org/stagit.html
   * check ssh vs http vs git protocol
+* [debug usb reconnection](https://www.linuxquestions.org/questions/linux-general-1/rescan-for-usb-devices-754916/)
+* no reverse dns lookup for ssh
 
 
 ### WOPR
@@ -261,15 +275,11 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * howett.net fnlock light to capslock
   * bind caps to ctrl when held: https://gitlab.com/interception/linux/plugins/caps2esc
   * right ctrl -> fn
+* [caps lock disk indicator](https://github.com/MeanEYE/Disk-Indicator)
 * [only autologin on tty1](https://github.com/NixOS/nixpkgs/issues/81552)
-* measure power draw in s2idle, as well as peak and idle
+* measure power draw in s2idle, as well as peak and idle (see [here](https://gitlab.freedesktop.org/drm/amd/-/blob/master/scripts/amd_s2idle.py))
 * screen brightness keys and swayosd or similar for showing brightness
 * debug fprintd enroll not working
-
-### clu
-
-* Natural scroll on by default
-* [caps lock disk indicator](https://github.com/MeanEYE/Disk-Indicator)
 
 ### HAL
 

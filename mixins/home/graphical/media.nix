@@ -14,6 +14,8 @@
     # TODO: re-enable when fixed
     # kicad-small
     # calibre
+
+    easyabc # TODO: transcribe lotus in this
   ];
 
   programs = {
