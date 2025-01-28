@@ -29,9 +29,7 @@
       nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
       git-hooks.follows = "";
     };
-    catppuccin.inputs = {
-      nixpkgs.follows = "nixpkgs"; nixpkgs-stable.follows = "nixpkgs-stable";
-    };
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
     obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
   };
 

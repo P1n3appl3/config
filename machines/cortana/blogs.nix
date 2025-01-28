@@ -1,3 +1,6 @@
+# https://getrssfeed.com
+# ... or https://pypi.org/project/feed-seeker
+# ... or https://www.jvt.me/posts/2022/06/19/cli-feed-discovery
 (map (l: { title=builtins.head l; feed=builtins.elemAt l 2;
   url=let s=builtins.elemAt l 1;in if builtins.substring 0 4 s == "http"
   then s else "https://" + s; }) [
@@ -41,7 +44,7 @@
 ["Coding Horror"      "blog.codinghorror.com"               "/rss"]
 ["Jynn"               "jyn.dev"                             "/atom.xml"]
 ["the6p4c"            "the6p4c.github.io"                   "/posts.xml"]
-["David Koloski"      "davidkoloski.me"                     "/atom.xml"]
+["David Koloski"      "david.kolo.ski"                      "/atom.xml"]
 ["Tom7"               "http://tom7.org"                     "/f/a/weblog/rss/1"]
 ["Tristan Hume"       "thume.ca"                            "/atom.xml"]
 ["Bodil Stokke"       "bodil.lol"                           "/atom.xml"]
@@ -99,7 +102,7 @@
 ["Alona"              "alona.page"                          "/index.xml"]
 ["MaskRay"            "maskray.me"                          "/blog/atom.xml"]
 ["Justine Tunney"     "justine.lol"                         "/rss.xml"]
-["Eevee"              "eev.ee/blog"                         "https://eev.ee/feeds/blog.atom.xml"]
+["Eevee"              "eev.ee/blog"                         "https://eev.ee/feeds/atom.xml"]
 ["Ashley Williams"    "medium.com/@ag_dubs"                 "https://medium.com/feed/@ag_dubs"]
 ["Ludicity"           "ludic.mataroa.blog"                  "/rss"]
 ["Chevy Ray"          "chevyray.dev"                        "/rss.xml"]
@@ -114,6 +117,9 @@
 ["Alejandra González" "blog.goose.love"                     "/index.xml"]
 ["dropbear"           "dropbear.sh"                         "https://julia.blue/allyrss.xml"]
 ["Luna"               "moonbase.lgbt"                       "/blog/atom.xml"]
+["Charlotte"          "char.lt"                             "/blog.rss"]
+["mbuffett"           "mbuffett.com"                        "posts/index.xml"]
+["Saron Yitbarek"     "notadesigner.io"                     "https://rss.beehiiv.com/feeds/uyO6uKaqK0.xml"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]
@@ -142,6 +148,7 @@
 # use https://github.com/Siriusmart/feedscraper for:
 # TODO: blog.iximeow.net
 # TODO: tmpout.sh
+# ["nan.fyi"            "nan.fyi"                             "???"]
 
 # remove once it stops updating/i'm finished reading
 ["toxic yuri" "amawashigroup.wordpress.com" "/feed"]

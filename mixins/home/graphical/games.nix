@@ -23,6 +23,7 @@
     sameboy mgba melonDS
 
     pokefinder eontimer
+    pokemmo-installer
 
     slipstream # ftl mods
     r2mod_cli # risk of rain 2 mods

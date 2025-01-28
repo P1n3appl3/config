@@ -18,6 +18,10 @@ in {
     # gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
     (nixGL zed-editor)
+      nodejs # TODO: figure out why bundled node isn't working
+      package-version-server
+      cargotom
+      typescript
     (nixGL obsidian)
     # maybe https://github.com/digint/btrbk or buttermanager
     # TODO: www.marginalia.nu or ddg default search engine, set profile to
@@ -44,6 +48,7 @@ in {
     glib.bin # gio/gsettings/gdbus
     d-spy
     glkitty
+    transmission_4-gtk
   ];
 
   programs = {
@@ -66,7 +71,7 @@ in {
         include = "~/.config/kitty/common.conf";
       };
     };
-    # TODO: try yofi/wofi/fuzzel
+    # TODO: try anyrun
     # TODO: try plugins: rbw/pa source+sink/mpd/systemd/wifi
     rofi = { enable = true; plugins = [ pkgs.rofi-calc ]; };
   };

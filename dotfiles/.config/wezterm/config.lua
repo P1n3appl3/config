@@ -24,9 +24,7 @@ local c = {
 }
 
 local h = w.hostname()
-if h == "clu" then c.font_size = 12 end
-
--- TODO: b/ hyperlinks
+if h == "WOPR" then c.font_size = 15 end
 
 local function get_zone_around_cursor(pane)
     local cursor = pane:get_cursor_position()
@@ -75,7 +73,7 @@ c.keys = {
     { mods = m, key = "Space", action = a.QuickSelect },
     { mods = m, key = "h", action = a.EmitEvent "view-history-in-pager" },
     { mods = m, key = "~", action = a.ShowDebugOverlay },
-    { mods = 'ALT', key = "r", action = a.ShowLauncher },
+    { mods = "ALT", key = "r", action = a.ShowLauncher },
 }
 
 local l = { streak = 1, button = "Left" }

@@ -107,6 +107,7 @@ in {
                 notes = [ "HAL" "WOPR" "dragon" ];
                 music = [ "HAL" "WOPR" "dragon" ];
               recipes = [ "HAL" "WOPR" "dragon" ];
+             torrents = [ "HAL" "WOPR" "dragon" ];
           screenshots = [ "HAL" "WOPR" ];
         });
       };

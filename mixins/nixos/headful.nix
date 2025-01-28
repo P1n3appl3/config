@@ -10,6 +10,7 @@
   programs.dconf.enable = true;
 
   services = {
+    mullvad-vpn = { enable = true; package = pkgs.mullvad-vpn; };
     udisks2 = { enable = true; mountOnMedia = true; };
     pipewire = { enable = true;
       wireplumber.enable = true; alsa.enable = true;
