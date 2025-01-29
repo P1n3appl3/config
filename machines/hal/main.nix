@@ -1,11 +1,11 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, config, self, ... }: {
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
   ];
 
   age.secrets = {
-    weather.file = ../../../secrets/weather.age;
+    weather.file = ../../secrets/weather.age;
   };
 
   home-manager.users.julia.imports = [
@@ -60,9 +60,6 @@
       slippi-launcher = { enable = true;
         isoPath = "/media/alt/games/ROMs/Gamecube/Animelee [GALE01]/game.iso";
         rootSlpPath = "/media/alt/games/melee/replays";
-        useMonthlySubfolders = true;
-        launchMeleeOnPlay = false;
-        enableJukebox = false;
       };
     })
     ../../mixins/home/common.nix
@@ -73,8 +70,7 @@
     ../../mixins/home/graphical/music.nix
     ../../mixins/home/graphical/games.nix
     ../../mixins/home/graphical/media.nix
-    inputs.slippi.homeManagerModules.default
-  ];
+  ] ++ builtins.attrValues self.outputs.homeModules;
 
   programs = {
     steam.enable = true;

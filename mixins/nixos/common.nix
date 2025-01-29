@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, config, myOverlays, ... }: {
+{ pkgs, lib, inputs, config, myOverlays, self, ... }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.ragenix.nixosModules.default
@@ -50,10 +50,10 @@
     ageBin = lib.getExe pkgs.rage;
     identityPaths = [ "/home/julia/.ssh/id_ed25519" ];
   };
-  catppuccin = { enable = true; flavor = "mocha"; };
-  security.sudo.extraConfig = ''Defaults env_keep += "path"'';
-  console.useXkbConfig = true;
   home-manager.useGlobalPkgs = true;
+  security.sudo.extraConfig = ''Defaults env_keep += "path"'';
+  catppuccin = { enable = true; flavor = "mocha"; };
+  console.useXkbConfig = true;
   nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
   nix = {
     settings = {

@@ -44,13 +44,14 @@
     ];
     special = system: {
       pkgs-stable = nixpkgs-stable.legacyPackages.${system};
-      inherit myOverlays inputs;
+      inherit myOverlays inputs self;
     };
 
     home = system: module: home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
       extraSpecialArgs = special system;
-      modules = [ ./mixins/home/common.nix module ];
+      modules = [ ./mixins/home/common.nix module ] ++
+        builtins.attrValues self.outputs.homeModules;
     };
 
     machine = system: module: lib.nixosSystem {
@@ -72,7 +73,7 @@
       ISO     = machine "x86_64-linux"  ./machines/iso.nix;
     };
 
-    # homeModules  = listDir { of = ./modules/home;  mapFunc = _: import; };
+    homeModules  = listDir { of = ./modules/home;  mapFunc = _: import; };
     nixosModules = listDir { of = ./modules/nixos; mapFunc = _: import; };
 
     overlays.default = final: _: listDir {

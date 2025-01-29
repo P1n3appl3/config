@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, self, ... }: {
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
@@ -19,9 +19,6 @@
       slippi-launcher = { enable = true;
         isoPath = "/home/julia/games/roms/Gamecube/Melee [GALE01]/game.iso";
         rootSlpPath = "/home/julia/games/melee/replays";
-        useMonthlySubfolders = true;
-        launchMeleeOnPlay = false;
-        enableJukebox = false;
       };
     }
     ../../mixins/home/common.nix
@@ -33,8 +30,7 @@
     ../../mixins/home/graphical/music.nix
     ../../mixins/home/graphical/games.nix
     ../../mixins/home/graphical/media.nix
-    inputs.slippi.homeManagerModules.default
-  ];
+  ] ++ builtins.attrValues self.outputs.homeModules;
 
   environment.systemPackages = with pkgs; [
     littlefs-fuse
