@@ -328,7 +328,8 @@
         "obs-gamepad": "obs-gamepad",
         "ragenix": "ragenix",
         "rahul-config": "rahul-config",
-        "slippi": "slippi"
+        "slippi": "slippi",
+        "zed": "zed"
       }
     },
     "rust-overlay": {
@@ -436,6 +437,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "zed": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738130523,
+        "narHash": "sha256-KbMGYQ6LDx3ijznPPIWIlnaMNKC/b7u7f07V4XWMjMk=",
+        "owner": "zed-industries",
+        "repo": "zed",
+        "rev": "16004d4c6a4f1ecd3a68ad43438583f19d5edd4d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zed-industries",
+        "repo": "zed",
         "type": "github"
       }
     }

@@ -60,6 +60,7 @@
       slippi-launcher = { enable = true;
         isoPath = "/media/alt/games/ROMs/Gamecube/Animelee [GALE01]/game.iso";
         rootSlpPath = "/media/alt/games/melee/replays";
+        netplayHash = "sha256-iFBOwF0QNLFV88NEI998SmWhyse4gw5IfQf5hua8J64=";
       };
     })
     ../../mixins/home/common.nix

@@ -1,4 +1,5 @@
 inputs: final: prev: {
+  zed = prev.zed.overrideAttrs { src = inputs.zed; };
   eza = prev.eza.overrideAttrs (old: {
     patches = (old.patches or []) ++ [ (final.fetchpatch {
       url = "https://github.com/eza-community/eza/compare/main...P1n3appl3:eza:main.diff";

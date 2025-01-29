@@ -13,8 +13,8 @@
     logisim-evolution
 
     # TODO: re-enable when fixed
-    # kicad-small
-    # calibre
+    kicad-small
+    calibre
 
     # TODO: transcribe lotus:
     # pkgs-stable.easyabc abctool

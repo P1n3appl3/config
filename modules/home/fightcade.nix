@@ -41,14 +41,14 @@
   quark = (pkgs.makeDesktopItem {
     name = "fcade-quark";
     desktopName = "Fightcade Replay";
-    exec = "bash -c 'cd ${cfg.path}/emulator && env LD_LIBRARY_PATH=${libs} ./fcade'";
+    exec = ''bash -c "cd ${cfg.path}/emulator && env LD_LIBRARY_PATH=${libs} ./fcade"'';
     mimeTypes = [ "x-scheme-handler/fcade" ];
     type = "Application";
   });
   desktop = (pkgs.makeDesktopItem {
     name = "fightcade";
     desktopName = "Fightcade";
-    exec = "bash -c 'cd ${cfg.path} && env LD_LIBRARY_PATH=${libs} ./fc2-electron/fc2-electron'";
+    exec = ''bash -c "cd ${cfg.path} && env LD_LIBRARY_PATH=${libs} ./fc2-electron/fc2-electron"'';
     icon = "${cfg.path}/fc2-electron/resources/app/icon.png";
     comment = "Fightcade";
     type = "Application";
