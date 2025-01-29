@@ -13,6 +13,7 @@
     catppuccin.url         = "github:catppuccin/nix";
     slippi.url             = "github:lytedev/slippi-nix";
     obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
+    zed            = { url = "github:zed-industries/zed"; flake = false; };
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";

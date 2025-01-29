@@ -30,7 +30,7 @@
     everest-mons # celeste mods
   ];
 
-  programs.fightcade = { enable = true; path = lib.mkDefault "~/games/Fightcade"; };
+  programs.fightcade = { enable = true; path = lib.mkDefault "/home/julia/games/Fightcade"; };
 
   slippi-launcher = {
     useMonthlySubfolders = true;
