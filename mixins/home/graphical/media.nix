@@ -1,9 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-stable, ... }: {
   home.packages = with pkgs; [
     kdenlive
     yt-dlp
     godot_4
     blender
+    # TODO: graphite
     inkscape krita pinta oculante aseprite
     helio-workstation
     furnace
@@ -15,7 +16,8 @@
     # kicad-small
     # calibre
 
-    easyabc # TODO: transcribe lotus in this
+    # TODO: transcribe lotus:
+    # pkgs-stable.easyabc abctool
   ];
 
   programs = {

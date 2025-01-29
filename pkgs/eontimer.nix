@@ -1,4 +1,5 @@
-{ lib, python3, fetchFromGitHub, makeDesktopItem, writeShellScript, ... }: let
+{ lib, python3, fetchFromGitHub,
+  makeDesktopItem, copyDesktopItems, writeShellScript, ... }: let
   wrapper = writeShellScript "eontimer-wrapper" ''
     export QT_QPA_PLATFORM=xcb
     exec @out@/bin/EonTimer
@@ -42,6 +43,7 @@ in python3.pkgs.buildPythonApplication rec {
 
   nativeBuildInputs = [
     python3.pkgs.pyinstaller
+    copyDesktopItems
   ];
 
   buildPhase = ''
@@ -64,18 +66,9 @@ in python3.pkgs.buildPythonApplication rec {
     runHook postInstall
   '';
 
-  postInstall = ''
-    install -Dm755 -t $out/share/applications ${
-         makeDesktopItem {
-           name = "eontimer";
-           desktopName = "EonTimer";
-           comment = "Start EonTimer";
-           exec = "eontimer";
-         }
-       }/share/applications/eontimer.desktop
-  '';
-
-
+  desktopItems = [
+    (makeDesktopItem { name = pname; desktopName = "EonTimer"; exec = pname; })
+  ];
 
   meta = {
     description = "Pokémon RNG Timer";

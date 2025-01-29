@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, inputs, ... }: {
   home.packages = with pkgs; [
     steam
     itch wine64
@@ -29,4 +29,14 @@
     r2mod_cli # risk of rain 2 mods
     everest-mons # celeste mods
   ];
+
+  programs.fightcade = { enable = true; path = lib.mkDefault "~/games/Fightcade"; };
+
+  slippi-launcher = {
+    useMonthlySubfolders = true;
+    launchMeleeOnPlay = false;
+    enableJukebox = false;
+  };
+
+  imports = [ inputs.slippi.homeManagerModules.default ];
 }
