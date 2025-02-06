@@ -62,6 +62,7 @@
     username = lib.mkDefault "julia";
     homeDirectory = lib.mkDefault "/home/julia";
     stateVersion = "23.11";
+    preferXdgDirectories = true;
 
     sessionVariables = {
       NIX_PATH = "nixpkgs=flake:nixpkgs";

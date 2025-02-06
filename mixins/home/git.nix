@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    git-lfs git-heatmap # git-absorb jujutsu git-branchless
+    git-lfs # git-absorb jujutsu git-branchless
+    git-heatmap git-undeadname
     gh
     onefetch
   ];
