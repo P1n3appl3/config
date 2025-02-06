@@ -9,4 +9,9 @@
   };
 
   cargoHash = "sha256-HshEkDJ6Hj9vyHKYEYji/EJVfnUe6F/F3ALCY1kGyUI=";
+
+  meta = {
+    description = "Jana's tool to get the latest download";
+    homepage = "https://github.com/jdonszelmann/dl";
+  };
 }

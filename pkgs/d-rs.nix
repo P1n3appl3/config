@@ -19,4 +19,9 @@ rustPlatform.buildRustPackage {
   '';
 
   cargoHash = "sha256-BJ+nqhPSgCTDDok+G3zeuuJdadHnFeZLUbyNf6Xj3HQ=";
+
+  meta = {
+    description = "Jana's data-munging multitool";
+    homepage = "https://github.com/jdonszelmann/d-rs";
+  };
 }

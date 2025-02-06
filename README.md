@@ -9,10 +9,12 @@ config 🍍 nix flake show
 │   ├───WOPR:    framework laptop 13" (AMD 7640U)
 │   ├───HAL:     main desktop
 │   ╰───ISO:     bootable image for bootstrapping
+├───homeModules
+│   ╰───fightcade: wrapper to play retro fighting games
 ├───nixosModules
 │   ├───m-overlay:    security wrapper for input viewer
 │   ├───porkbun-ddns: update ip for porkbun DNS entries
-│   ╰───rust-rpxy:    config and service for reverse proxy
+│   ╰───rust-rpxy:    reverse proxy service
 ├───overlays
 │   ╰───default: Nixpkgs overlay with my packages and overrides
 ╰───packages
