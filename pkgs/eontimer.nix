@@ -1,4 +1,4 @@
-{ lib, python3, fetchFromGitHub,
+{ stdenv, lib, python3, fetchFromGitHub,
   makeDesktopItem, copyDesktopItems, writeShellScript, ... }: let
   wrapper = writeShellScript "eontimer-wrapper" ''
     export QT_QPA_PLATFORM=xcb
@@ -74,6 +74,7 @@ in python3.pkgs.buildPythonApplication rec {
     description = "Pokémon RNG Timer";
     homepage = "https://github.com/DasAmpharos/EonTimer";
     license = lib.licenses.mit;
+    broken = stdenv.isDarwin;
   };
 }
 

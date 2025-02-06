@@ -1,5 +1,10 @@
 [
   {
+    "bindings": {
+      "alt-s": "vim::Sneak",
+    }
+  },
+  {
     "context": "Workspace",
     "bindings": {
       // "ctrl-h": "workspace::Previous",
@@ -13,7 +18,7 @@
       "alt-l": "workspace::ActivateNextPane",
       "alt-h": "workspace::ActivatePreviousPane",
       "tab": "editor::SelectLargerSyntaxNode",
-      "shift-tab": "editor::SelectSmallerSyntaxNode"
+      "shift-tab": "editor::SelectSmallerSyntaxNode",
     }
   },
   {
@@ -28,6 +33,8 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
+      "g j": ["vim::Down", { "displayLines": true }],
+      "g k": ["vim::Up", { "displayLines": true }],
       "space r g": "project_search::ToggleFocus",
       // "space f f": "project_search::ToggleFocus",
       "space F": "file_finder::Toggle",

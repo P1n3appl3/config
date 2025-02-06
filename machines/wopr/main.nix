@@ -39,6 +39,7 @@
   programs = {
     steam.enable = true;
     appimage = { enable = true; binfmt = true; };
+    ydotool.enable = true;
   };
 
   services = {

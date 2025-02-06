@@ -45,5 +45,6 @@
   meta = {
     description = "Port of the OpenGL gears demo to kitty terminal graphics protocol";
     homepage = "https://github.com/michaeljclark/glkitty";
+    broken = stdenv.isDarwin;
   };
 }

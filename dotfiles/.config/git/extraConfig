@@ -19,6 +19,7 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
     l = ll -n 20
     vi = "!vi() { git diff ${@:-HEAD^} --diff-filter=d --name-only | xargs nvim; } ; vi"
     changed = diff --stat HEAD~1
+    undeadname = "!undeadname() { git -c rebase.instructionFormat='%s%nexec GIT_COMMITTER_DATE=\"%cD\" GIT_AUTHOR_DATE=\"%aD\" git commit --amend --no-edit --reset-author' rebase -f --root } ; undeadname"
 [diff]
     colorMoved = default
 [diff "age"]

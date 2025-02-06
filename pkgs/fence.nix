@@ -1,4 +1,4 @@
-{ lib, rustPlatform, fetchFromGitea }: rustPlatform.buildRustPackage rec {
+{ stdenv, lib, rustPlatform, fetchFromGitea }: rustPlatform.buildRustPackage rec {
   pname = "fence";
   version = "1.0.0";
 
@@ -17,5 +17,6 @@
     description = "TUI program to print chess boards";
     homepage = "https://codeberg.org/tiffany/fence";
     licenses = [ lib.licenses.gpl3Only ];
+    broken = stdenv.isAarch64;
   };
 }
