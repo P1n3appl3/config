@@ -29,6 +29,7 @@
     nurl nix-init
     typst tinymist typstyle
     biome
+    posting
   ]
 
   (lib.mkIf config.dev.compilers
