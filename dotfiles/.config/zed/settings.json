@@ -22,15 +22,9 @@
   "indent_guides": { "enabled": false },
   "languages": {
     "Rust": {},
-    "Nix": {
-      "language_servers": ["nil", "!nixd"]
-    },
-    "Markdown": {
-      "soft_wrap": "preferred_line_length"
-    },
-    "JavaScript": {
-        "tab_size": 4,
-    }
+    "Nix": { "tab_size": 2, "language_servers": ["nil", "!nixd"] },
+    "Markdown": { "soft_wrap": "preferred_line_length" },
+    "JavaScript": { "tab_size": 4 }
   },
   "format_on_save": "off",
   "features": {

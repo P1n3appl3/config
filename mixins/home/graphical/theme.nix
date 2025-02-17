@@ -1,6 +1,7 @@
 { pkgs, lib, ... }: {
   home.packages = with pkgs; [
     kdePackages.qtstyleplugin-kvantum
+    adwaita-qt
   ];
 
   home.pointerCursor = {
@@ -31,7 +32,7 @@
   qt = { enable = true;
     platformTheme.name = "kvantum";
     style = {
-      name = "kvantum"; # TODO: debug why stuff like syncthingtray and dolphin are bad
+      name = "kvantum"; # TODO: debug why stuff like puddletag doesn't see it
       package = (pkgs.catppuccin-kvantum.override { accent = "blue"; variant = "mocha"; });
     };
     # kde.settings."Kvantum/kvantum.kvconfig".General.theme = "Catppuccin-Mocha-Blue";

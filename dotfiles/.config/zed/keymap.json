@@ -2,6 +2,7 @@
   {
     "bindings": {
       "alt-s": "vim::Sneak",
+      "ctrl-.": "zed::OpenKeymap"
     }
   },
   {
@@ -16,9 +17,7 @@
     "bindings": {
       "ctrl-k": null,
       "alt-l": "workspace::ActivateNextPane",
-      "alt-h": "workspace::ActivatePreviousPane",
-      "tab": "editor::SelectLargerSyntaxNode",
-      "shift-tab": "editor::SelectSmallerSyntaxNode",
+      "alt-h": "workspace::ActivatePreviousPane"
     }
   },
   {
@@ -35,24 +34,53 @@
     "bindings": {
       "g j": ["vim::Down", { "displayLines": true }],
       "g k": ["vim::Up", { "displayLines": true }],
-      "space r g": "project_search::ToggleFocus",
+      "space r g": "project_search::SearchInNew",
+
       // "space f f": "project_search::ToggleFocus",
       "space F": "file_finder::Toggle",
-      "space p": "file_finder::Toggle",
       "space f s": "workspace::Save",
-      "space c a": "editor::ToggleCodeActions",
-      "space r n": "editor::Rename",
+
+      "space p": "file_finder::Toggle",
       "space b": "tab_switcher::Toggle",
-      "space tab": ["tab_switcher::Toggle", { "select_last": true }],
       "space d": "pane::CloseActiveItem",
+      "space tab": ["tab_switcher::Toggle", { "select_last": true }],
+
+      "space r n": "editor::Rename",
+      "space c a": "editor::ToggleCodeActions",
       "space c l": ["editor::ToggleComments", { "advance_downwards": false }],
-      //"space c a": ["editor::ToggleComments"],
+
       "space space": "command_palette::Toggle",
       "space w": ["workspace::SendKeystrokes", "ctrl-w"],
+
       "space t": "outline::Toggle",
       "space T": "outline_panel::ToggleFocus",
+
+      "space e l": "diagnostics::Deploy",
+      "space e e": "diagnostics::ToggleWarnings",
+      "space e n": "editor::GoToDiagnostic",
+      "space e N": "editor::GoToPrevDiagnostic",
+
+      "space g h": "editor::ToggleHunkDiff",
+      "space g n": "editor::GoToHunk",
+      "space g N": "editor::GoToPrevHunk",
+      "space g r": "editor::RevertSelectedHunks",
+      "space g R": "editor::RevertFile",
+
       "ctrl-/": "search::ToggleReplace",
-      ", =": "editor::Format"
+      ", =": "editor::Format",
+      // "tab": "editor::SelectLargerSyntaxNode",
+      // "shift-tab": "editor::SelectSmallerSyntaxNode"
+      "g r": "editor::FindAllReferences", // zed specific
     }
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      // "shift-y": ["workspace::SendKeystrokes", "y $"] // Use neovim's yank behavior: yank to end of line.
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {}
   }
 ]

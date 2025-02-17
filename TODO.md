@@ -222,7 +222,8 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 
 ### Cortana
 
-* rust-motd + cats
+* rust-motd + cats/pokedex
+* [ntfy](https://ntfy.sh) push notifs for service status events
 * add dnsmasq adblock and [prometheus exporter](https://github.com/google/dnsmasq_exporter) for pretty dashboard
   * [dnsmasq info](https://www.imaginaryrobots.net/posts/2022-01-26-full-network-adblocking-with-dnsmasq/)
 * add rust-rpxy config for all the following, add prometheus output for grafana ([looks like they want that too](https://github.com/junkurihara/rust-rpxy/blob/9123ef71a2da473f7c47ca5a21f1a787fca6c540/TODO.md?plain=1#L20))
@@ -236,7 +237,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
   * and/or something like <https://becca.ooo/unicode> for other topics
 * [service dashboard](https://status.catgirl.cloud/) with uptime kuma
   * maybe send telegram message when stuff goes down
-* [ntfy](https://ntfy.sh/) push notifs for service status events
 * endlessh
   * [hook up fail2ban](https://demu.red/blog/2019/04/endlessh-html-scoreboard/)
   * troubleshoot `-geoip_supplier ip-api`
