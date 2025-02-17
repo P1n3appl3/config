@@ -4,6 +4,7 @@ font pango:monospace 15
 input type:touchpad {
     natural_scroll true
     tap enabled
+    drag_lock disabled
 }
 
 input type:keyboard {

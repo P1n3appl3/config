@@ -30,8 +30,9 @@ in {
     # TODO: bitwarden popup floating window
     # TODO: vaapi hardware decode, and nightly for webgpu
     (nixGL firefox)
-    (nixGL telegram-desktop) (nixGL caprine-bin) (nixGL vesktop) signal-desktop
-    android-messages
+
+    (nixGL telegram-desktop) (nixGL vesktop) signal-desktop
+    (nixGL caprine-bin) slack android-messages
     fractal element-desktop iamb # fluffychat cinny nheko # TODO: pick
     pkgs-stable.friture # praat # TODO: try this for voice training
     (nixGL imhex) # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
