@@ -43,9 +43,9 @@ config 🍍 nix flake show
     ├───s2yt: spotify to youtube music transfer tool
     ├───slpz: compress slippi replays
     ├───tab: command line music tabs
-    ╰───term-rustdoc: tui docs browser
+    ├───term-rustdoc: tui docs browser
+    ╰───zeco: zellij remote multiplayer
 ```
-
 
 I [used to](https://github.com/P1n3appl3/config/tree/cd6d498014) use this as a [bare git repo](https://www.atlassian.com/git/tutorials/dotfiles). If you're not sold on nix/home-manager I think it's still a pretty ideal way to manage your dotfiles. Now when my home-manager activation script runs, it symlinks everything in the [dotfiles dir](dotfiles) into `$HOME` so that you can edit most config files without having to run `switch`.
 

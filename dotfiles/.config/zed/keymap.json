@@ -1,7 +1,6 @@
 [
   {
     "bindings": {
-      "alt-s": "vim::Sneak",
       "ctrl-.": "zed::OpenKeymap"
     }
   },
@@ -30,25 +29,31 @@
     }
   },
   {
-    "context": "Pane",
+    "context": "Pane && !(vim_mode == insert)",
     "bindings": {
-      "space d": "pane::CloseActiveItem"
+      // "space d": "pane::CloseActiveItem" // TODO: not working (happens in insert)
     }
   },
   {
     "context": "VimControl && !menu",
     "bindings": {
-      "g j": ["vim::Down", { "displayLines": true }],
-      "g k": ["vim::Up", { "displayLines": true }],
-      "space r g": "project_search::SearchInNew",
+      "s": "vim::PushSneak",
+      "S": "vim::PushSneakBackward",
+      "g j": ["vim::Down", { "display_lines": true }],
+      "g k": ["vim::Up", { "display_lines": true }],
+      "space r g": "pane::DeploySearch",
+
+      // "space n": "TODO: open colab notes",
 
       // "space f f": "project_search::ToggleFocus",
       "space F": "file_finder::Toggle",
       "space f s": "workspace::Save",
+      "space f o": "workspace::FollowNextCollaborator",
 
       "space p": "file_finder::Toggle",
       "space b": "tab_switcher::Toggle",
-      "space tab": ["tab_switcher::Toggle", { "select_last": true }],
+      "space d": "pane::CloseActiveItem",
+      "space tab": "tab_switcher::Toggle" /*, { "select_last": true }*/,
 
       "space r n": "editor::Rename",
       "space c a": "editor::ToggleCodeActions",
@@ -73,11 +78,12 @@
       "space g b": "editor::ToggleGitBlameInline",
       "space g B": "editor::ToggleGitBlame",
 
-      "ctrl-/": "search::ToggleReplace",
       ", =": "editor::Format",
       "tab": "editor::SelectLargerSyntaxNode",
       "shift-tab": "editor::SelectSmallerSyntaxNode",
-      "g r": "editor::FindAllReferences" // zed specific
+      "g r": "editor::FindAllReferences",
+
+      "ctrl-/": "search::ToggleReplace"
     }
   },
   {

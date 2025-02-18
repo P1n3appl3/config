@@ -4,7 +4,7 @@
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
     fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine heh
-    tokei zellij rsync zstd pv sshping mdcat magic-wormhole-rs netscanner rage
+    tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs netscanner rage
     exiftool resvg get-keys vivid pipe-rename static-web-server
     ascii unicode-paracode sequin
     micro helix
