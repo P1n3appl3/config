@@ -18,6 +18,11 @@
     "folds": false,
     "code_actions": false
   },
+  "terminal": {
+    "env": {
+      "GIT_EDITOR": "zed --wait"
+    }
+  },
   "current_line_highlight": "gutter",
   "indent_guides": { "enabled": false },
   "languages": {

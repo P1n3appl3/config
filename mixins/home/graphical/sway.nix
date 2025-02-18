@@ -23,6 +23,7 @@
     libsForQt5.qt5.qtwayland
     wluma
     wttrbar
+    wdisplays
     # TODO: oneko wayland port and/or https://github.com/Ibrahim2750mi/linux-goose
     # see https://catgirl.ai/log/sway-spy and https://codeberg.org/ext0l/openbonzi
   ];

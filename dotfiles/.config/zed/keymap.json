@@ -30,6 +30,12 @@
     }
   },
   {
+    "context": "Pane",
+    "bindings": {
+      "space d": "pane::CloseActiveItem"
+    }
+  },
+  {
     "context": "VimControl && !menu",
     "bindings": {
       "g j": ["vim::Down", { "displayLines": true }],
@@ -42,7 +48,6 @@
 
       "space p": "file_finder::Toggle",
       "space b": "tab_switcher::Toggle",
-      "space d": "pane::CloseActiveItem",
       "space tab": ["tab_switcher::Toggle", { "select_last": true }],
 
       "space r n": "editor::Rename",
@@ -65,12 +70,14 @@
       "space g N": "editor::GoToPrevHunk",
       "space g r": "editor::RevertSelectedHunks",
       "space g R": "editor::RevertFile",
+      "space g b": "editor::ToggleGitBlameInline",
+      "space g B": "editor::ToggleGitBlame",
 
       "ctrl-/": "search::ToggleReplace",
       ", =": "editor::Format",
-      // "tab": "editor::SelectLargerSyntaxNode",
-      // "shift-tab": "editor::SelectSmallerSyntaxNode"
-      "g r": "editor::FindAllReferences", // zed specific
+      "tab": "editor::SelectLargerSyntaxNode",
+      "shift-tab": "editor::SelectSmallerSyntaxNode",
+      "g r": "editor::FindAllReferences" // zed specific
     }
   },
   {

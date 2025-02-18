@@ -14,4 +14,12 @@ input type:keyboard {
 output eDP-1 {
   resolution 2256x1504
   scale 1
+  position 1440,1056
+}
+
+output DP-3 {
+  resolution 2560x1440
+  scale 1
+  transform 90
+  position 0,0
 }
