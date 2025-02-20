@@ -1,4 +1,4 @@
-{ pkgs, self, ... }: {
+{ pkgs, lib, self, ... }: {
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
@@ -46,9 +46,18 @@
     flatpak.enable = true;
     automatic-timezoned.enable = true;
     upower.enable = true;
-    # interception-tools = { enable = true;
-    #   plugins = [ pkgs.interception-tools-plugins.caps2esc ];
-    # };
+    # TODO: try dual-function-keys for more options
+    interception-tools = let
+       tools = pkgs.interception-tools;
+       caps2esc = lib.getExe pkgs.interception-tools-plugins.caps2esc;
+    in { enable = true;
+      udevmonConfig = ''
+        - JOB: "${tools}/bin/intercept -g $DEVNODE | ${caps2esc} | ${tools}/bin/uinput -d $DEVNODE"
+          DEVICE:
+            EVENTS:
+              EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+      '';
+    };
     udev.extraRules = ''
     SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"
     SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="102b", MODE="0666"

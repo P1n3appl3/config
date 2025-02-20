@@ -21,6 +21,7 @@
 
     elf-info
     twiggy bloaty
+
     (writeShellScriptBin "uv" ''env UV_PYTHON_PREFERENCE=only-system \
       UV_PYTHON="${python3}" ${lib.getExe uv} $@'')
     (lib.lowPrio uv) ruff pyright (python3.withPackages (p: with p; [ debugpy ]))

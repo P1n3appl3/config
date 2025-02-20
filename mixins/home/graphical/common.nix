@@ -50,6 +50,8 @@ in {
     d-spy
     glkitty
     transmission_4-gtk
+    heaptrack
+    clockify
   ];
 
   programs = {
@@ -90,6 +92,7 @@ in {
     pasystray = { enable = true;
       extraOptions = ["-grSi" "1" "-N" "none" "-N" "new" "-m" "100"];
     };
+    gnome-keyring.enable = true;
   };
 
   systemd.user.services = {

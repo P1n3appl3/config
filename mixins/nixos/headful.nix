@@ -13,8 +13,8 @@
     mullvad-vpn = { enable = true; package = pkgs.mullvad-vpn; };
     udisks2 = { enable = true; mountOnMedia = true; };
     pipewire = { enable = true;
-      wireplumber.enable = true; alsa.enable = true;
-      pulse.enable = true; jack.enable = true;
+      wireplumber.enable = true; alsa.enable = true; pulse.enable = true;
+      jack.enable = false; # enable as needed
     };
     # I don't use xorg everywhere, so sometimes these are just for the tty
     # TODO: set these some other way, either console.keymap or interceptor

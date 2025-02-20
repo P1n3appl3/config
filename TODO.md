@@ -275,6 +275,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * howett.net fnlock light to capslock
   * bind caps to ctrl when held: https://gitlab.com/interception/linux/plugins/caps2esc
   * right ctrl -> fn
+  - right alt -> ? (currently meta)
 * [caps lock disk indicator](https://github.com/MeanEYE/Disk-Indicator)
 * [only autologin on tty1](https://github.com/NixOS/nixpkgs/issues/81552)
 * measure power draw in s2idle, as well as peak and idle (see [here](https://gitlab.freedesktop.org/drm/amd/-/blob/master/scripts/amd_s2idle.py))
