@@ -8,8 +8,14 @@
       description = lib.mdDoc "Path to your download of fightcade";
     };
   };
+  cfg = config.programs.fightcade;
 
-  libs = lib.makeLibraryPath (with pkgs; with pkgs.xorg; [
+  downloader = builtins.fetchurl {
+    url = "https://fightcade.download/fc2json.zip";
+    hash = "";
+  };
+
+  libs = lib.makeLibraryPath (with pkgs; [
     alsa-lib
     atk
     cairo
@@ -20,6 +26,13 @@
     glib
     gtk3
     libdrm
+    mesa
+    nss
+    nspr
+    pango
+    zlib
+    wine
+  ]) ++ (with pkgs.xorg; [
     libX11
     libxcb
     libXcomposite
@@ -32,12 +45,8 @@
     libXrender
     libXScrnSaver
     libXtst
-    mesa
-    nss
-    nspr
-    pango
   ]);
-  cfg = config.programs.fightcade;
+
   quark = (pkgs.makeDesktopItem {
     name = "fcade-quark";
     desktopName = "Fightcade Replay";
@@ -59,15 +68,24 @@ in {
   config = lib.mkIf cfg.enable {
     # TODO: not needed if desktop file is there?
     xdg.mimeApps.defaultApplications."x-scheme-handler/fcade" = "fcade-quark.desktop";
-    home.packages = [
-      (pkgs.callPackage ( { stdenvNoCC, copyDesktopItems }:
-        stdenvNoCC.mkDerivation {
-          name = "fightcade-desktop";
-          nativeBuildInputs = [ copyDesktopItems ];
-          desktopItems = [ quark desktop ];
-          phases = [ "installPhase" ];
-        }) {}
-      )
-    ];
+    home = {
+      packages = [
+        (pkgs.callPackage ( { stdenvNoCC, copyDesktopItems }:
+          stdenvNoCC.mkDerivation {
+            name = "fightcade-desktop";
+            nativeBuildInputs = [ copyDesktopItems ];
+            desktopItems = [ quark desktop ];
+            phases = [ "installPhase" ];
+          }) {}
+        )
+      ];
+
+      activation.extractFightcadeDownloader = lib.hm.dag.entryAfter
+      [ "writeBoundary" ] ''
+        if [ ! -f ${cfg.path}/emulator/fbneo_roms.json ]; then
+          unzip -d ${cfg.path}/emulator ${downloader}
+        fi
+      '';
+    };
   };
 }

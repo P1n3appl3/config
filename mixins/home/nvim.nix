@@ -25,6 +25,8 @@
       vim-startuptime
       plenary-nvim
       bigfile-nvim
+      (gh "lowitea" "aw-watcher.nvim" "790ec9e66415d8703c15f78ab567890e122c47e5"
+        "sha256-GtHHUoI+dDdECK46JzZdJLTp/f1hXRuGn+uKP2FOqQA=")
     # Appearance
       catppuccin-nvim
       nvim-colorizer-lua

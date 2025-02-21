@@ -25,6 +25,7 @@
     wttrbar
     wdisplays
     wayfarer kooha
+    aw-watcher-window-wayland
     # TODO: oneko wayland port and/or https://github.com/Ibrahim2750mi/linux-goose
     # see https://catgirl.ai/log/sway-spy and https://codeberg.org/ext0l/openbonzi
   ];
@@ -72,6 +73,10 @@
     cliphist.enable = true;
     swaync.enable = true; # TODO: ctp
     swayosd.enable = true; # TODO: ctp
+    activitywatch.watchers.aw-watcher-window-wayland = {
+      package = pkgs.aw-watcher-window-wayland;
+      settings = { poll_time = 5; exclude_title = true; };
+    };
   };
 
   systemd.user.services = {

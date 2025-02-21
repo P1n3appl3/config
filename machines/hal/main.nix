@@ -53,6 +53,10 @@
             urgency_critical = { background = "#D62929"; foreground = "#F9FAF9"; };
           };
         };
+        activitywatch.watchers.aw-watcher-windows = {
+          package = pkgs.activitywatch;
+          settings = { poll_time = 5; exclude_title = true; };
+        };
       };
 
       xsession = { enable = true; windowManager.command = "i3"; };

@@ -92,6 +92,12 @@ in {
     pasystray = { enable = true;
       extraOptions = ["-grSi" "1" "-N" "none" "-N" "new" "-m" "100"];
     };
+    activitywatch = { enable = true;
+      watchers.aw-watcher-afk = {
+        package = pkgs.activitywatch;
+        settings = { timeout = 300; poll_time = 5; };
+      };
+    };
     gnome-keyring.enable = true;
   };
 

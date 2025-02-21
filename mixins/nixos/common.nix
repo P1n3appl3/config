@@ -41,6 +41,7 @@
     zip unzip
     psmisc
     usbutils
+    uhubctl
     config.boot.kernelPackages.perf
     kitty.terminfo
     cntr

@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }: {
+{ pkgs, lib, inputs, config, ... }: {
   home.packages = with pkgs; [
     steam
     itch wine64
@@ -30,12 +30,15 @@
     everest-mons # celeste mods
   ];
 
-  programs.fightcade = { enable = true; path = lib.mkDefault "/home/julia/games/Fightcade"; };
+  # programs.fightcade = { enable = true;
+  #   path = lib.mkDefault (config.home.homeDirectory + "/games/Fightcade");
+  # };
 
   slippi-launcher = {
     useMonthlySubfolders = true;
     launchMeleeOnPlay = false;
     enableJukebox = false;
+    # useNetplayBeta = true;
   };
 
   imports = [ inputs.slippi.homeManagerModules.default ];
