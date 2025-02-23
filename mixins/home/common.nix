@@ -4,7 +4,7 @@
     atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
     fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine heh
-    tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs netscanner rage
+    tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs rage
     exiftool resvg get-keys vivid pipe-rename static-web-server
     ascii unicode-paracode sequin
     micro helix
@@ -26,6 +26,18 @@
     direnv = { enable = true;
       nix-direnv.enable = true;
       config.global.hide_env_diff = true;
+    };
+    ssh = { enable = true;
+      serverAliveInterval = 30;
+      controlPersist = "15h";
+      controlMaster = "auto";
+      compression = true;
+      includes = [ "extra-config" ];
+      matchBlocks = {
+        "pineapple.computer julia.blue Cortana" = {
+          hostname = "%h"; user = "julia"; port = 69;
+        };
+      };
     };
   };
 

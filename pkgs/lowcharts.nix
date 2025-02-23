@@ -1,11 +1,19 @@
-{ fetchFromGitHub, rustPlatform }: rustPlatform.buildRustPackage rec {
+{ lib, fetchFromGitHub, rustPlatform }: rustPlatform.buildRustPackage rec {
   pname = "lowcharts";
-  version = "2024-01-27";
+  version = "0.5.9";
   src = fetchFromGitHub {
     owner = "juan-leon";
     repo = pname;
-    rev = "a9512730570f131398f2d408ab599dd29d58feb9";
-    hash = "sha256-koNJ+sLltFO1aBHzU1+zXbKYx29fvfvcr6LE3RVxeCs=";
+    rev = "v${version}";
+    hash = "sha256-aGg7fCDdoV6N4qoRvcbuuvdgCM6FA1yhn89EUrBpa1Q=";
   };
-  cargoHash = "sha256-JZXrjQU4HPbF5m+nRDizO+nxVcrfFNBzXrwzPcqFY1I=";
+
+  cargoHash = "sha256-GClF57pNApoOQZZMTwSYz978qCo0O98Z+ieRuIlUml8=";
+
+  meta = {
+    description = "Tool to draw low-resolution graphs in terminal";
+    homepage = "https://github.com/juan-leon/lowcharts";
+    changelog = "https://github.com/juan-leon/lowcharts/blob/${src.rev}/CHANGELOG.md";
+    license = lib.licenses.mit;
+  };
 }

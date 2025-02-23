@@ -4,6 +4,7 @@
     nixpkgs.url            = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-stable.url     = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager.url       = "github:nix-community/home-manager";
+    nix-darwin.url         = "github:LnL7/nix-darwin/master";
     flake-utils.url        = "github:numtide/flake-utils";
     nixos-hardware.url     = "github:NixOS/nixos-hardware";
     ragenix.url            = "github:yaxitech/ragenix";
@@ -15,6 +16,7 @@
     obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
     ragenix.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
@@ -33,8 +35,8 @@
     obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, flake-utils, ragenix,
-              nixgl, rahul-config, obs-gamepad, self, ... } @ inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, nix-darwin, flake-utils,
+    ragenix, nixgl, rahul-config, obs-gamepad, self, ... } @ inputs:
   let
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
@@ -54,16 +56,23 @@
         builtins.attrValues self.outputs.homeModules;
     };
 
-    machine = system: module: lib.nixosSystem {
-      inherit system; specialArgs = special system;
-      modules = [
-        ./mixins/nixos/common.nix module
-        { home-manager.extraSpecialArgs = special system; }
-      ] ++ builtins.attrValues self.outputs.nixosModules;
-    };
+    machine = system: module: if system == "aarch64-darwin" then
+      (nix-darwin.lib.darwinSystem {
+        inherit system; specialArgs = special system;
+        modules = [
+          module
+          { home-manager.extraSpecialArgs = special system; }
+        ];
+      }) else (lib.nixosSystem {
+        inherit system; specialArgs = special system;
+        modules = [
+            ./mixins/nixos/common.nix module
+            { home-manager.extraSpecialArgs = special system; }
+        ] ++ builtins.attrValues self.outputs.nixosModules;
+      });
   in {
     homeConfigurations = {
-      ATLAS     = home "x86_64-linux"   ./machines/atlas.nix;
+      ATLAS = home "x86_64-linux" ./machines/atlas.nix;
     };
 
     nixosConfigurations = {
@@ -71,6 +80,10 @@
       WOPR    = machine "x86_64-linux"  ./machines/wopr/main.nix;
       HAL     = machine "x86_64-linux"  ./machines/hal/main.nix;
       ISO     = machine "x86_64-linux"  ./machines/iso.nix;
+    };
+
+    darwinConfigurations = {
+      GLaDOS = machine "aarch64-darwin" ./machines/glados.nix;
     };
 
     homeModules  = listDir { of = ./modules/home;  mapFunc = _: import; };

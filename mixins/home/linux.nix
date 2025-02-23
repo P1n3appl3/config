@@ -9,22 +9,10 @@
     sysz
     element
     binsider
+    netscanner
   ] ++ lib.optionals pkgs.stdenv.isx86_64 [
     lurk
   ];
-
-  programs.ssh = { enable = true;
-    serverAliveInterval = 30;
-    controlPersist = "15h";
-    controlMaster = "auto";
-    compression = true;
-    includes = [ "extra-config" ];
-    matchBlocks = {
-      "pineapple.computer julia.blue Cortana" = {
-        hostname = "%h"; user = "julia"; port = 69;
-      };
-    };
-  };
 
   targets.genericLinux.enable = true;
   xdg = { enable = true;

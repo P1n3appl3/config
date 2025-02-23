@@ -101,14 +101,15 @@ in {
         devices = {
              HAL.id = "ON6QDIA-Q76YZPP-2QDT5KI-DOJVPXS-6757LVB-P2FKJAS-LOMDKIW-JT36XQ6";
             WOPR.id = "R6XKQSK-3XE7J2H-LSELK56-HVO6PTF-5PX2HZP-775JTZO-ETP2BR3-5QZ6YAF";
+          GLaDOS.id = "YJBGW2A-Q4HIGF2-VYTUR6Y-6A53DPQ-Q2FVHDH-4U34TR7-36R4PXW-MOQHZAJ";
           dragon.id = "6TN3KGX-JU2KQEA-B6VKVCK-AJFAWQG-W2CLE5Q-2WYDPEN-YV3YKXU-HJV6UQL";
         };
         folders = (builtins.mapAttrs (n: d: { path = "~/${n}"; devices = d; }) {
-                notes = [ "HAL" "WOPR" "dragon" ];
-                music = [ "HAL" "WOPR" "dragon" ];
-              recipes = [ "HAL" "WOPR" "dragon" ];
-             torrents = [ "HAL" "WOPR" "dragon" ];
-          screenshots = [ "HAL" "WOPR" ];
+                notes = [ "HAL" "WOPR" "GLaDOS" "dragon" ];
+                music = [ "HAL" "WOPR" "GLaDOS" "dragon" ];
+              recipes = [ "HAL" "WOPR" "GLaDOS" "dragon" ];
+             torrents = [ "HAL" "WOPR" "GLaDOS" "dragon" ];
+          screenshots = [ "HAL" "WOPR" "GLaDOS" ];
         });
       };
     };

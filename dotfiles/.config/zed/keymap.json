@@ -18,9 +18,6 @@
       "ctrl-shift-k": null, // TODO: broken?
       "alt-l": "workspace::ActivateNextPane",
       "alt-h": "workspace::ActivatePreviousPane",
-
-            // "space f f": "project_search::ToggleFocus",
-            "space F": "file_finder::Toggle",
     }
   },
   {
@@ -86,6 +83,10 @@
       "space g R": "editor::RevertFile",
       "space g b": "editor::ToggleGitBlameInline",
       "space g B": "editor::ToggleGitBlame",
+
+      // TODO: try "editor && ! vim insert mode to not ruin make space pending"
+                  // "space f f": "project_search::ToggleFocus",
+                  "space F": "file_finder::Toggle",
 
       ", =": "editor::Format",
       "tab": "editor::SelectLargerSyntaxNode",

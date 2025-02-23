@@ -5,14 +5,20 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "ehuss";
     repo = pname;
-    rev = "857711f6e8897741e99be3d5a691c5f5303d949f";
-    hash = "sha256-YZt6w8BIJKr1AWWzqhvF7GK1s9DL1+jJefbdWpEE5hA=";
+    rev = "a72cf51c424e57c16327f3713b890e8c28757d86";
+    hash = "sha256-DfDp2wUNUy/1/kZMQr/arCgPQhSE5UrHZ/Mq/jMo/Kk=";
   };
-  cargoHash = "sha256-395lJLrcBGKrD9Sbg/qAtZ4TjS79ZjxvMyZg/iWJN2Y=";
+  cargoHash = "sha256-Sz7bg8Qc5RYzyO54cRKzbeffLGcjEeUiYPD3xliQKac=";
 
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ openssl ] ++ lib.optionals stdenv.isDarwin [ darwin.Security ];
+  buildInputs = [ openssl ] ++ lib.optionals stdenv.isDarwin
+    (with darwin.apple_sdk.frameworks; [ Security SystemConfiguration ]);
 
   doCheck = false; # it tries to run `git clone` in tests
-  meta.broken = stdenv.isDarwin; # TODO: add mac deps, see https://garnix.io/build/3Bwz1mY0
+  meta = {
+      description = "Cargo subcommand to clone a repo from the registry";
+      homepage = "https://github.com/ehuss/cargo-clone-crate";
+      license = lib.licenses.mit;
+      mainProgram = "cargo-clone";
+    };
 }

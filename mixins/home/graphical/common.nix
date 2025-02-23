@@ -1,7 +1,7 @@
 { pkgs, lib, config, pkgs-stable, ... } @ inputs: let
   nixGL = config.lib.nixGL.wrap;
 in {
-  imports = [ ./fonts.nix ./theme.nix ];
+  imports = [ ./terminal.nix ./fonts.nix ./theme.nix ];
 
   home.packages = with pkgs; [
     brightnessctl
@@ -55,25 +55,6 @@ in {
   ];
 
   programs = {
-    ghostty = { enable = true;
-      package = (nixGL pkgs.ghostty);
-      installVimSyntax = true;
-      settings = {
-        font-size = lib.mkDefault 12;
-        config-file = "common";
-      };
-    };
-    wezterm = { enable = true;
-      package = (nixGL pkgs.wezterm);
-      extraConfig = "return require 'config'";
-    };
-    kitty = { enable = true;
-      package = (nixGL pkgs.kitty);
-      settings = {
-        font_size = lib.mkDefault 12;
-        include = "~/.config/kitty/common.conf";
-      };
-    };
     # TODO: try anyrun
     # TODO: try plugins: rbw/pa source+sink/mpd/systemd/wifi
     rofi = { enable = true; plugins = [ pkgs.rofi-calc ]; };

@@ -34,9 +34,11 @@
   ]
 
   (lib.mkIf config.dev.compilers
-    [ rustup mold-wrapped clang clang-tools nasm pkgs-stable.j])
+    ([ rustup mold-wrapped clang clang-tools nasm ] ++
+      lib.optionals stdenv.isLinux [ pkgs-stable.j ]))
 
   (lib.mkIf config.dev.debuggers
-      [ gdb rr lldb vscode-extensions.vadimcn.vscode-lldb.adapter ])
+    ([ lldb vscode-extensions.vadimcn.vscode-lldb.adapter ] ++
+      lib.optionals stdenv.isLinux [ gdb rr ]))
   ];
 }

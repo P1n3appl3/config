@@ -15,6 +15,7 @@
     "light": "Catppuccin Latte",
     "dark": "Catppuccin Mocha"
   },
+  "icon_theme": "Catppuccin Mocha",
   "gutter": {
     "line_numbers": false,
     "folds": false,

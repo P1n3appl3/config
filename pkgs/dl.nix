@@ -4,11 +4,11 @@
 
   src = fetchFromGitHub {
     owner = "jdonszelmann"; repo = "dl";
-    rev = "edea9d2fff1125466891cfb11807b6a0c7b30da2";
-    hash = "sha256-7ozln2HxdbbdeuCroOprBegR5GC2GWzbHrrJYr44bY0=";
+    rev = "cb444427f2b58bf8262a68af2750f1f2c769c818";
+    hash = "sha256-UYEEYzVsVyAxEiYveWJLE1C8aM6vlgM07zvp3oprv9s=";
   };
 
-  cargoHash = "sha256-HshEkDJ6Hj9vyHKYEYji/EJVfnUe6F/F3ALCY1kGyUI=";
+  cargoHash = "sha256-iEj32A/041O2rIh7m6y1TFhBoSVt07VOxuddCzgJMwU=";
 
   meta = {
     description = "Jana's tool to get the latest download";
