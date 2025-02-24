@@ -32,7 +32,14 @@ function nixfind {
 alias nixsize=nix-tree
 function nixclean { nix-collect-garbage -d && sudo $(which nix-collect-garbage) -d; }
 function switch {
-    command -v nixos-rebuild >/dev/null && { cmd="os switch -H"; } || cmd="home switch -c"
-    eval nh $cmd $(hostname -s) -a $CONF_DIR $@
+    # TODO: change when nh darwin support releases
+    if [[ `uname` == "Darwin" ]]; then
+        darwin-rebuild switch --flake ~/config $@
+    else
+      command -v nixos-rebuild >/dev/null &&
+        { cmd="os switch -H"; } ||
+          cmd="home switch -c"
+      eval nh $cmd $(hostname -s) -a $CONF_DIR $@
+    fi
 }
 alias update="switch -u"

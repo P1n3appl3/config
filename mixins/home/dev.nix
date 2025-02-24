@@ -29,7 +29,7 @@
     asmfmt nasmfmt
     nurl nix-init
     typst tinymist typstyle
-    biome
+    # biome # TODO: fix on GLaDOS, just check phase fails
     posting
   ]
 

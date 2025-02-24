@@ -17,7 +17,7 @@
 
     mailmap=$(mktemp)
     echo "$newname <$newemail> <$oldemail>" >"$mailmap"
-    git filter-repo --mailmap "$mailmap"
+    git filter-repo --force --mailmap "$mailmap"
     blahaj -s
     rm "$mailmap"
 
