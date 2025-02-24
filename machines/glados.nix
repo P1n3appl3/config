@@ -1,4 +1,4 @@
-{ pkgs, self, myOverlays, inputs, config, ... }: {
+{ pkgs, self, myOverlays, inputs, ... }: {
   imports = [
     inputs.home-manager.darwinModules.home-manager
     inputs.ragenix.darwinModules.default
@@ -14,10 +14,11 @@
   system = {
     configurationRevision = self.rev or self.dirtyRev or null;
     stateVersion = 6;
-    keyboard = { enableKeyMapping = true;
-      swapLeftCtrlAndFn = true;
-      remapCapsLockToEscape = true;
-    };
+    # no longer needed because of karabiner... right?
+    # keyboard = { enableKeyMapping = true;
+    #   swapLeftCtrlAndFn = true;
+    #   remapCapsLockToEscape = true;
+    # };
     defaults = {
       ".GlobalPreferences" = {
         "com.apple.sound.beep.sound" = "/System/Library/Sounds/Pop.aiff";
@@ -49,7 +50,9 @@
         autohide = true;
         mineffect = "suck";
         slow-motion-allowed = true;
+        expose-group-apps = true;
         tilesize = 16;
+        # disable all hot corners
         wvous-tl-corner = 1; wvous-tr-corner = 1;
         wvous-bl-corner = 1; wvous-br-corner = 1;
       };

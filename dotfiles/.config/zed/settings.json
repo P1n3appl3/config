@@ -49,7 +49,11 @@
     "copilot": false,
     "edit_prediction_provider": "none"
   },
-  "assistant": { "enabled": false, "button": false, "version": "2" },
+  "assistant": { "default_model": {
+                         "provider": "zed.dev",
+                         "model": "claude-3-5-haiku-latest"
+                 },
+                 "enabled": false, "button": false, "version": "2" },
   "show_edit_predictions": false,
   "auto_install_extensions": {
     "catppuccin": true,
