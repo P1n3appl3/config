@@ -14,11 +14,7 @@
   system = {
     configurationRevision = self.rev or self.dirtyRev or null;
     stateVersion = 6;
-    # no longer needed because of karabiner... right?
-    # keyboard = { enableKeyMapping = true;
-    #   swapLeftCtrlAndFn = true;
-    #   remapCapsLockToEscape = true;
-    # };
+    keyboard.enableKeyMapping = false; # obviated by karabiner
     defaults = {
       ".GlobalPreferences" = {
         "com.apple.sound.beep.sound" = "/System/Library/Sounds/Pop.aiff";
@@ -83,15 +79,18 @@
       trackpad = { Clicking = true; Dragging = true; };
       # TODO: turn off gatekeeper/LSQuarantine(deprecated)
       # TODO: check if universalaccess.closeViewScrollWheelToggle is needed for external mouse
+      # TODO: don't check binaries from any of my terminal emulators or zed
     };
   };
 
   home-manager = let home-module = ({ pkgs, ...}: {
     home.packages = with pkgs; [
       obsidian
-      # vial # TODO: configure keyboard
       telegram-desktop signal-desktop
+      # vial # TODO: configure keyboard, maybe just do in karabiner?
     ];
+
+    dev.compilers = false;
 
     services = {
       syncthing = { enable = true;

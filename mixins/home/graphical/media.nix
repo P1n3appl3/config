@@ -1,6 +1,6 @@
 { pkgs, pkgs-stable, ... }: {
   home.packages = with pkgs; [
-    kdenlive
+    kdePackages.kdenlive
     yt-dlp
     godot_4
     blender

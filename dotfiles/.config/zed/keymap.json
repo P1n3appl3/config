@@ -1,7 +1,34 @@
 [
   {
     "bindings": {
-      "ctrl-.": "zed::OpenKeymap"
+      "ctrl-.": "zed::OpenKeymap",
+      "cmd-.": "zed::OpenKeymap",
+      "cmd-shift-o": "projects::OpenRecent",
+      "alt-h": "workspace::ActivatePaneLeft",
+      "alt-l": "workspace::ActivatePaneRight",
+      "alt-k": "workspace::ActivatePaneUp",
+      "alt-j": "workspace::ActivatePaneDown"
+    }
+  },
+  // {
+  //   "context": "Terminal",
+  //   "bindings": {
+  //     "alt-k": "workspace::ActivateNextPane"
+  //   }
+  // },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-k up": "pane::SplitUp",
+      "cmd-k down": "pane::SplitDown",
+      "cmd-k left": "pane::SplitLeft",
+      "cmd-k right": "pane::SplitRight"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "alt-l": "workspace::ActivateNextPane"
     }
   },
   {
@@ -17,7 +44,7 @@
       "ctrl-k": null,
       "ctrl-shift-k": null, // TODO: broken?
       "alt-l": "workspace::ActivateNextPane",
-      "alt-h": "workspace::ActivatePreviousPane",
+      "alt-h": "workspace::ActivatePreviousPane"
     }
   },
   {
@@ -43,56 +70,64 @@
     }
   },
   {
+    "context": "ChangesList || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Welcome",
+    "bindings": {}
+  },
+  {
     "context": "VimControl && !menu",
     "bindings": {
+      // TODO: these shouldn't be in vimcontrol, I want them anywhere I'm not doing text entry ("not_editing?")
+      "space f o": "workspace::FollowNextCollaborator",
+      "space b": "tab_switcher::Toggle",
+      // "space b": "tab_switcher::ToggleAll",
+      "space tab": ["workspace::SendKeystrokes", "ctrl-tab enter"],
+      "space d": "pane::CloseActiveItem",
+      "space q q": "zed::Quit",
+      "space F": "file_finder::Toggle",
+      "space space": "command_palette::Toggle",
+      "space r g": "pane::DeploySearch",
+      // "space n": "TODO: open colab notes",
+      "space w": ["workspace::SendKeystrokes", "ctrl-w"],
+      "space t": "outline::Toggle",
+      "space e l": "diagnostics::Deploy",
+      "space T": "project_symbols::Toggle",
+      // "space T": "outline_panel::ToggleFocus",
+
       "g j": ["vim::Down", { "display_lines": true }],
       "g k": ["vim::Up", { "display_lines": true }],
 
-      "space r g": "pane::DeploySearch",
       "space r w": "vim::Rewrap",
-
-      // "space n": "TODO: open colab notes",
       "space f s": "workspace::Save",
-      "space f o": "workspace::FollowNextCollaborator",
-
-      "space p": "file_finder::Toggle",
-      "space b": "tab_switcher::Toggle",
-      "space d": "pane::CloseActiveItem",
-      "space tab": "tab_switcher::Toggle" /*, { "select_last": true }*/,
 
       "space r n": "editor::Rename",
       "space c a": "editor::ToggleCodeActions",
       "space c l": ["editor::ToggleComments", { "advance_downwards": false }],
 
-      "space space": "command_palette::Toggle",
-      "space w": ["workspace::SendKeystrokes", "ctrl-w"],
-
-      "space t": "outline::Toggle",
-      "space T": "project_symbols::Toggle",
-      // "space T": "outline_panel::ToggleFocus",
-
-      "space e l": "diagnostics::Deploy",
       "space e e": "diagnostics::ToggleWarnings",
       "space e n": "editor::GoToDiagnostic",
       "space e N": "editor::GoToPrevDiagnostic",
 
-      "space g h": "git::ToggleStaged",
+      "g i": "editor::GoToImplementation",
+      "g t": "editor::GoToTypeDefinition",
+      "g r": "editor::FindAllReferences",
+
+      "space g h": "editor::ToggleSelectedDiffHunks",
       "space g n": "editor::GoToHunk",
       "space g N": "editor::GoToPrevHunk",
-      "space g r": "editor::RevertSelectedHunks",
-      "space g R": "editor::RevertFile",
+      "space g r": "git::Restore",
+      "space g R": "git::RestoreFile",
       "space g b": "editor::ToggleGitBlameInline",
       "space g B": "editor::ToggleGitBlame",
+      "space g s": "git::ToggleStaged",
 
-      // TODO: try "editor && ! vim insert mode to not ruin make space pending"
-                  // "space f f": "project_search::ToggleFocus",
-                  "space F": "file_finder::Toggle",
+      // "space f f": "project_search::ToggleFocus",
 
       ", =": "editor::Format",
       "tab": "editor::SelectLargerSyntaxNode",
       "shift-tab": "editor::SelectSmallerSyntaxNode",
-      "g r": "editor::FindAllReferences",
 
+      // TODO: not working try different mode and make this one do sendkeys / + <c-/>
+      // so it does search and replace straight from normal mode
       "ctrl-/": "search::ToggleReplace"
     }
   },

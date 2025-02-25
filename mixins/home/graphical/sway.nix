@@ -41,13 +41,6 @@
       enable = true; systemd.enable = true;
       style = ''@import "common.css";'';
     };
-    wpaperd = { enable = true;
-      settings.default = {
-        path = config.xdg.userDirs.pictures + "/wallpapers";
-        apply-shadow = true;
-        duration = "30m";
-      };
-    };
     swaylock = { enable = true;
       package = if inputs ? osConfig then pkgs.swaylock else pkgs.hello;
       settings = {
@@ -70,25 +63,19 @@
         { timeout = 120; command = screen "off"; resumeCommand = screen "on"; }
       ];
     };
+    wpaperd = { enable = true;
+          settings.default = {
+            path = config.xdg.userDirs.pictures + "/wallpapers";
+            apply-shadow = true;
+            duration = "30m";
+          };
+        };
     cliphist.enable = true;
     swaync.enable = true; # TODO: ctp
     swayosd.enable = true; # TODO: ctp
     activitywatch.watchers.aw-watcher-window-wayland = {
       package = pkgs.aw-watcher-window-wayland;
       settings = { poll_time = 5; exclude_title = true; };
-    };
-  };
-
-  systemd.user.services = {
-    # TODO: remove when https://github.com/nix-community/home-manager/pull/6249 lands
-    wpaperd = {
-      Unit = {
-        Description = "Wallpaper daemon";
-        PartOf = "graphical-session.target";
-        After = "graphical-session.target";
-      };
-      Install.WantedBy = [ "graphical-session.target" ];
-      Service.ExecStart = "${lib.getExe pkgs.wpaperd}";
     };
   };
 
