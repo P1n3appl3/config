@@ -9,6 +9,8 @@ config 🍍 nix flake show
 │   ├───WOPR:    framework laptop 13" (AMD 7640U)
 │   ├───HAL:     main desktop
 │   ╰───ISO:     bootable image for bootstrapping
+├───darwinConfigurations
+│   ╰───GLaDOS: work macbook (14" M4 Pro 64GB)
 ├───homeModules
 │   ╰───fightcade: wrapper to play retro fighting games
 ├───nixosModules

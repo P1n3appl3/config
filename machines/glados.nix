@@ -6,8 +6,6 @@
   ];
 
   services = {
-    # TODO: re-enable when https://github.com/LnL7/nix-darwin/issues/1041 is resolved
-    # karabiner-elements.enable = true;
     openssh.enable = true;
   };
 
@@ -85,17 +83,24 @@
 
   home-manager = let home-module = ({ pkgs, ...}: {
     home.packages = with pkgs; [
+      keycastr
+      stats # make sure this lands to decrease interval: https://github.com/exelban/stats/issues/2407
+      hidden-bar
+
       obsidian
+      kitty
       telegram-desktop signal-desktop
-      # vial # TODO: configure keyboard, maybe just do in karabiner?
     ];
+
+    # TODO: brewfile managed here?
+    # middleclick-sonoma linearmouse vial ghostty
+    # karabiner obs-studio activitywatch
 
     dev.compilers = false;
 
     services = {
-      syncthing = { enable = true;
-        # tray = { enable = true; command = "syncthingtray --wait"; };
-      };
+      # TODO: make module compatible with macos (so it can set up syncthing-tray)
+      syncthing.enable = true;
     };
 
     xdg.enable = true;
