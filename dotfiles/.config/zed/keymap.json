@@ -3,7 +3,8 @@
     "bindings": {
       "ctrl-.": "zed::OpenKeymap",
       "cmd-.": "zed::OpenKeymap",
-      "cmd-shift-o": "projects::OpenRecent",
+      "cmd-o": "projects::OpenRecent",
+      "cmd-shift-o": "workspace::Open",
       "alt-h": "workspace::ActivatePaneLeft",
       "alt-l": "workspace::ActivatePaneRight",
       "alt-k": "workspace::ActivatePaneUp",
@@ -50,10 +51,10 @@
   {
     "context": "showing_context_menu || showing_code_actions || showing_completions",
     "bindings": {
-      "ctrl-k": "editor::ContextMenuPrev",
+      "ctrl-k": "editor::ContextMenuPrevious",
       "ctrl-j": "editor::ContextMenuNext",
       "tab": "editor::ContextMenuNext",
-      "shift-tab": "editor::ContextMenuPrev"
+      "shift-tab": "editor::ContextMenuPrevious"
     }
   },
   {
@@ -105,7 +106,7 @@
 
       "space e e": "diagnostics::ToggleWarnings",
       "space e n": "editor::GoToDiagnostic",
-      "space e N": "editor::GoToPrevDiagnostic",
+      "space e N": "editor::GoToPreviousDiagnostic",
 
       "g i": "editor::GoToImplementation",
       "g t": "editor::GoToTypeDefinition",
@@ -113,7 +114,7 @@
 
       "space g h": "editor::ToggleSelectedDiffHunks",
       "space g n": "editor::GoToHunk",
-      "space g N": "editor::GoToPrevHunk",
+      "space g N": "editor::GoToPreviousHunk",
       "space g r": "git::Restore",
       "space g R": "git::RestoreFile",
       "space g b": "editor::ToggleGitBlameInline",

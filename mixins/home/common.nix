@@ -13,7 +13,7 @@
     # System info
     btop procs smartmontools duf ncdu du-dust
     # Nix
-    nix home-manager nh nix-output-monitor nix-tree nil comma ragenix
+    nix home-manager nh nix-output-monitor nix-tree nix-diff nil comma ragenix
     # Scripting tools
     stylua sumneko-lua-language-server shfmt shellcheck
     # Fun

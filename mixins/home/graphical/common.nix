@@ -51,7 +51,7 @@ in {
     glkitty
     transmission_4-gtk
     heaptrack
-    clockify
+    (nixGL meld)
   ];
 
   programs = {

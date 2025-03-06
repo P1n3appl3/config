@@ -17,11 +17,17 @@
       ".GlobalPreferences" = {
         "com.apple.sound.beep.sound" = "/System/Library/Sounds/Pop.aiff";
       };
+      CustomUserPreferences = {
+        "com.apple.dock" = {
+          workspaces-auto-swoosh = false;
+        };
+      };
       NSGlobalDomain = {
         AppleFontSmoothing = 0;
         AppleInterfaceStyle = "Dark";
         AppleShowAllExtensions = true;
         InitialKeyRepeat = 12; KeyRepeat = 2;
+        NSWindowShouldDragOnGesture = true;
         NSAutomaticCapitalizationEnabled = false;
         NSAutomaticInlinePredictionEnabled = false;
         NSAutomaticPeriodSubstitutionEnabled = false;
@@ -74,27 +80,34 @@
         IconType = 6; # cpu usage history
         SortColumn = "CPUUsage";
       };
-      trackpad = { Clicking = true; Dragging = true; };
+      # unfortunately tap to drag causes click delay
+      trackpad = { Clicking = true; Dragging = false; };
       # TODO: turn off gatekeeper/LSQuarantine(deprecated)
       # TODO: check if universalaccess.closeViewScrollWheelToggle is needed for external mouse
       # TODO: don't check binaries from any of my terminal emulators or zed
     };
   };
 
+  # TODO: use this, configure autoUpdate and cleanup (maybe zap?)
+  # homebrew = { enable = true;
+  #   brews = [
+  #     "linearmouse" "middlelcick" "sol" "quicksilver" "itsycal"
+  #     "pearcleaner" "vial" "syncthing" "nheko"
+  #     "github" "sublime-merge" "sourcetree"
+  #   ];
+  # };
+
   home-manager = let home-module = ({ pkgs, ...}: {
     home.packages = with pkgs; [
-      keycastr
-      stats # make sure this lands to decrease interval: https://github.com/exelban/stats/issues/2407
-      hidden-bar
+      karabiner-elements.driver kanata-with-cmd skhd keycastr
+      stats hidden-bar # itsycal # https://github.com/NixOS/nixpkgs/issues/377645
+      meld
+      utm
 
       obsidian
       kitty
       telegram-desktop signal-desktop
     ];
-
-    # TODO: brewfile managed here?
-    # middleclick-sonoma linearmouse vial ghostty
-    # karabiner obs-studio activitywatch
 
     dev.compilers = false;
 
@@ -128,7 +141,7 @@
     mononoki
   ];
 
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   networking = {
     knownNetworkServices = [ "Thunderbolt Ethernet Slot 0" "Thunderbolt Bridge" "Wi-Fi" ];

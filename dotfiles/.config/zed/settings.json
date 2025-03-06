@@ -1,20 +1,10 @@
 {
-  "ssh_connections": [
-    {
-      "host": "HAL",
-      "args": ["-J", "julia.blue"],
-      "projects": [
-        { "paths": ["~/config"] },
-        { "paths": ["~/dev/zed"] }
-      ]
-    }
-  ],
+  // UI
+  "use_system_path_prompts": false,
   "git_panel": { "dock": "right" },
-  "collaboration_panel": {"dock":"right"},
-  "outline_panel": {"dock":"right"},
-  "project_panel": {"dock":"right"},
-  "vim_mode": true,
-  "restore_on_startup": "none",
+  "collaboration_panel": { "dock": "right" },
+  "outline_panel": { "dock": "right" },
+  "project_panel": { "dock": "right" },
   "tab_bar": { "show": false },
   "vertical_scroll_margin": 6,
   "ui_font_size": 14,
@@ -35,30 +25,56 @@
     "folds": false,
     "code_actions": false
   },
+  "current_line_highlight": "gutter",
+  "indent_guides": { "enabled": false },
+
+  // general functionality
+  "vim_mode": true,
+  "restore_on_startup": "none",
   "load_direnv": "shell_hook",
   "terminal": {
+    "dock": "right",
     "env": {
       "GIT_EDITOR": "zed --wait"
     }
   },
-  "current_line_highlight": "gutter",
-  "indent_guides": { "enabled": false },
+  "format_on_save": "off",
+  "middle_click_paste": false,
+  "inlay_hints": {
+    "toggle_on_modifiers_press": { "alt": true }
+  },
+
+  // language support
+  "languages": {
+    "Rust": {},
+    "Nix": { "tab_size": 2, "language_servers": ["nil", "!nixd"] },
+    // "Markdown": { "soft_wrap": "bounded" },
+    "Markdown": { "soft_wrap": "editor_width" },
+    "JavaScript": { "tab_size": 4 },
+    "Proto": { "enable_language_server": false }
+  },
   "lsp": {
     "rust-analyzer": {
+      "cargo": {
+        "buildScripts": {
+          "enable": true
+        }
+      },
       "initialization_options": {
+        "checkOnSave": true,
         "check": { "workspace": false, "command": "clippy" },
         "diagnostics": { "experimental": { "enable": true } },
         "cachePriming": { "enable": false }
       }
+    },
+    "nil": {
+      "initialization_options": {
+        "formatting": { "command": ["nixfmt"] }
+      }
     }
   },
-  "languages": {
-    "Rust": {},
-    "Nix": { "tab_size": 2, "language_servers": ["nil", "!nixd"] },
-    "Markdown": { "soft_wrap": "preferred_line_length" },
-    "JavaScript": { "tab_size": 4 }
-  },
-  "format_on_save": "off",
+
+  // disable AI
   "features": {
     "copilot": false,
     "edit_prediction_provider": "none"
@@ -73,14 +89,18 @@
     "version": "2"
   },
   "show_edit_predictions": false,
+
+  //extensions
   "auto_install_extensions": {
     "catppuccin": true,
     "catppuccin-icons": true,
-    "git-firefly": true,
     // "activitywatch": true
-    // "discord-presence": true,
-    "codebook": true,
-    // "cspell": true, // pick between this and codebook
+    // "discord-presence": true, // lmao
+    // TODO: pick a spell checker
+    // "codebook": true,
+    // "cspell": true,
+    // "harper": true,
+    "git-firefly": true,
     "html": true,
     "toml": true,
     "cargo-tom": true,
@@ -89,5 +109,24 @@
     "ruff": true,
     "assembly": true,
     "typst": true
-  }
+  },
+
+  // remote
+  "ssh_connections": [
+    {
+      "host": "HAL",
+      "args": ["-J", "julia.blue"],
+      "projects": [
+        {
+          "paths": ["~/config"]
+        },
+        {
+          "paths": ["~/dev/website"]
+        },
+        {
+          "paths": ["~/dev/zed"]
+        }
+      ]
+    }
+  ]
 }

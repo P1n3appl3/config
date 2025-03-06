@@ -1,0 +1,30 @@
+(defsrc
+  esc f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    del
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  fn   lctl lalt lmet           spc            rmet ralt
+)
+
+;; backtick/grave key (@grl) which is an alias for a tap-hold key.
+(deflayer main
+  esc f1   f2   f3   f4   f5   f6   f7   f8   f9   f10   f11  f12
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    del
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @cap a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl fn   lmet lalt           spc            rmet ralt
+)
+
+(defalias
+  ;; tap: backtick (grave), hold: toggle layer-switching layer while held
+  ;; grl (tap-hold 200 200 grv (layer-toggle layers))
+
+  ;; layer-switch changes the base layer.
+  ;; dvk (layer-switch dvorak)
+  ;; qwr (layer-switch qwerty)
+
+  ;; tap for esc, hold for cmd
+  cap (tap-hold 200 200 esc lmet)
+)
