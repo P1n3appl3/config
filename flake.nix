@@ -10,36 +10,39 @@
     ragenix.url            = "github:yaxitech/ragenix";
     nix-index-database.url = "github:Mic92/nix-index-database";
     nixgl.url              = "github:guibou/nixGL";
-    rahul-config.url       = "github:rrbutani/nix-config";
+    mac-app-util.url       = "github:hraban/mac-app-util";
     catppuccin.url         = "github:catppuccin/nix";
     slippi.url             = "github:lytedev/slippi-nix";
     obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
+    rahul-config.url       = "github:rrbutani/nix-config";
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
+    mac-app-util.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
     ragenix.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
-    rahul-config.inputs = {
-      nixpkgs.follows = "nixpkgs"; nixos-hardware.follows = "nixos-hardware";
-      home-manager.follows = "home-manager"; flake-utils.follows = "flake-utils";
-      nix-index-database.follows = "nix-index-database";
-      agenix.follows = ""; ragenix.follows = ""; darwin.follows = "";
-      impermanence.follows = "";
-    };
     slippi.inputs = {
       nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
       git-hooks.follows = "";
     };
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
     obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
+    rahul-config.inputs = {
+          nixpkgs.follows = "nixpkgs"; nixos-hardware.follows = "nixos-hardware";
+          home-manager.follows = "home-manager"; flake-utils.follows = "flake-utils";
+          nix-index-database.follows = "nix-index-database";
+          agenix.follows = ""; ragenix.follows = ""; darwin.follows = "";
+          impermanence.follows = "";
+        };
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, nix-darwin, flake-utils,
-    ragenix, nixgl, rahul-config, obs-gamepad, self, ... } @ inputs:
+    ragenix, nixgl, obs-gamepad, self, rahul-config, ... } @ inputs:
   let
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
+    mapDir = lib.filesystem.packagesFromDirectoryRecursive;
     myOverlays = [
       self.overlays.default nixgl.overlays.default ragenix.overlays.default
       obs-gamepad.overlays.default (import ./overlays.nix inputs)
@@ -60,14 +63,13 @@
       (nix-darwin.lib.darwinSystem {
         inherit system; specialArgs = special system;
         modules = [
-          module
-          { home-manager.extraSpecialArgs = special system; }
+          module { home-manager.extraSpecialArgs = special system; }
         ];
       }) else (lib.nixosSystem {
         inherit system; specialArgs = special system;
         modules = [
-            ./mixins/nixos/common.nix module
-            { home-manager.extraSpecialArgs = special system; }
+          ./mixins/nixos/common.nix
+          module { home-manager.extraSpecialArgs = special system; }
         ] ++ builtins.attrValues self.outputs.nixosModules;
       });
   in {
@@ -89,8 +91,8 @@
     homeModules  = listDir { of = ./modules/home;  mapFunc = _: import; };
     nixosModules = listDir { of = ./modules/nixos; mapFunc = _: import; };
 
-    overlays.default = final: _: listDir {
-      of = ./pkgs; mapFunc = _: p: final.callPackage p {};
+    overlays.default = final: _: mapDir {
+      directory = ./pkgs; callPackage = final.callPackage;
     };
   } // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;

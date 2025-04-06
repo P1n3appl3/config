@@ -47,12 +47,13 @@
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
     inputs.nix-index-database.hmModules.nix-index
     inputs.ragenix.homeManagerModules.default
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
   ];
 
   catppuccin = {
     flavor = "mocha"; accent = "blue";
     bat.enable = true; cava.enable = true; helix.enable = true; btop.enable = true;
+    fish.enable = true;
     # TODO: fzf/zellij/zsh-syntax-highlighting
   };
 

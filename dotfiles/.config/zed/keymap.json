@@ -4,7 +4,7 @@
       "ctrl-.": "zed::OpenKeymap",
       "cmd-.": "zed::OpenKeymap",
       "cmd-o": "projects::OpenRecent",
-      "cmd-shift-o": "workspace::Open",
+      "cmd-O": "workspace::Open",
       "alt-h": "workspace::ActivatePaneLeft",
       "alt-l": "workspace::ActivatePaneRight",
       "alt-k": "workspace::ActivatePaneUp",
@@ -35,26 +35,35 @@
   {
     "context": "Workspace",
     "bindings": {
+      "ctrl-\"": "workspace::NewTerminal",
+      "ctrl-'": "terminal_panel::ToggleFocus"
       // "ctrl-h": "workspace::Previous",
       // "ctrl-l": "workspace::Next",
     }
   },
   {
-    "context": "Editor",
+    "context": "Editor || Terminal",
     "bindings": {
       "ctrl-k": null,
-      "ctrl-shift-k": null, // TODO: broken?
+      "ctrl-K": null, // TODO: broken?
       "alt-l": "workspace::ActivateNextPane",
       "alt-h": "workspace::ActivatePreviousPane"
     }
   },
   {
+    "context": "(FileFinder || Picker || menu) > Editor",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious"
+    }
+  },
+  {
     "context": "showing_context_menu || showing_code_actions || showing_completions",
     "bindings": {
-      "ctrl-k": "editor::ContextMenuPrevious",
-      "ctrl-j": "editor::ContextMenuNext",
       "tab": "editor::ContextMenuNext",
-      "shift-tab": "editor::ContextMenuPrevious"
+      "shift-tab": "editor::ContextMenuPrevious",
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious"
     }
   },
   {
@@ -77,6 +86,15 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
+      // thx João
+      "w": "vim::NextSubwordStart",
+      "b": "vim::PreviousSubwordStart",
+      "e": "vim::NextSubwordEnd",
+      "W": "vim::NextWordStart",
+      "B": "vim::PreviousWordStart",
+      "E": "vim::NextWordEnd",
+      "j": ["workspace::SendKeystrokes", "g j"],
+      "k": ["workspace::SendKeystrokes", "g k"],
       // TODO: these shouldn't be in vimcontrol, I want them anywhere I'm not doing text entry ("not_editing?")
       "space f o": "workspace::FollowNextCollaborator",
       "space b": "tab_switcher::Toggle",
@@ -87,6 +105,7 @@
       "space F": "file_finder::Toggle",
       "space space": "command_palette::Toggle",
       "space r g": "pane::DeploySearch",
+      // "space r g": "project_search::ToggleFocus",
       // "space n": "TODO: open colab notes",
       "space w": ["workspace::SendKeystrokes", "ctrl-w"],
       "space t": "outline::Toggle",
@@ -118,10 +137,12 @@
       "space g r": "git::Restore",
       "space g R": "git::RestoreFile",
       "space g b": "editor::ToggleGitBlameInline",
-      "space g B": "editor::ToggleGitBlame",
+      "space g B": "git::Blame",
       "space g s": "git::ToggleStaged",
-
-      // "space f f": "project_search::ToggleFocus",
+      "space g c": "git::Commit",
+      "space g f": "git::Fetch",
+      "space g d": "git::Diff",
+      "space g g": "git::Switch",
 
       ", =": "editor::Format",
       "tab": "editor::SelectLargerSyntaxNode",
@@ -135,11 +156,7 @@
   {
     "context": "vim_mode == normal && !menu",
     "bindings": {
-      "shift-y": ["workspace::SendKeystrokes", "y $"] // TODO: broken?
+      "Y": ["workspace::SendKeystrokes", "y $"]
     }
-  },
-  {
-    "context": "vim_mode == insert",
-    "bindings": {}
   }
 ]

@@ -8,7 +8,7 @@
     hash = "sha256-aGg7fCDdoV6N4qoRvcbuuvdgCM6FA1yhn89EUrBpa1Q=";
   };
 
-  cargoHash = "sha256-GClF57pNApoOQZZMTwSYz978qCo0O98Z+ieRuIlUml8=";
+  cargoHash = "sha256-e/ZN7PASGS0YTnuWlQoHlYQukdruqHtmW3IR+OEHeck=";
 
   meta = {
     description = "Tool to draw low-resolution graphs in terminal";

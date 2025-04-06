@@ -18,7 +18,7 @@ rustPlatform.buildRustPackage {
       --suffix PATH : ${lib.makeBinPath [ python3 ]}
   '';
 
-  cargoHash = "sha256-BJ+nqhPSgCTDDok+G3zeuuJdadHnFeZLUbyNf6Xj3HQ=";
+  cargoHash = "sha256-cwfTomB2q9bZf1tgVnDAo/eqF43S02I2pcviMAOR0cc=";
 
   meta = {
     description = "Jana's data-munging multitool";

@@ -23,7 +23,6 @@
 ["Me"                 "julia.blue"                          "/feed.xml"]
 ["Chris Fallin"       "cfallin.org"                         "/feed.xml"]
 ["J Haigh"            "optimistictypes.com"                 "/feed.xml"]
-["λ the Ultimate"     "http://lambda-the-ultimate.org"      "/node/feed"]
 ["TWiR"               "this-week-in-rust.org"               "/rss.xml"]
 ["Jorge Aparicio"     "http://blog.japaric.io"              "/index.xml"]
 ["Rust Blog"          "blog.rust-lang.org"                  "/feed.xml"]
@@ -84,7 +83,7 @@
 ["David Lemire"       "lemire.me/blog"                      "/feed"]
 ["Gankra"             "gankra.github.io"                    "/blah/rss.xml"]
 ["Jane"               "yaah.dev"                            "/feed.xml"]
-["Dan Luu"            "http://danluu.com"                   "/atom.xml"]
+["Dan Luu"            "danluu.com"                          "/atom.xml"]
 ["boats"              "without.boats"                       "/index.xml"]
 ["StefanSF"           "stefansf.de"                         "/feed.xml"]
 ["John Regehr"        "blog.regehr.org"                     "/feed"]
@@ -118,8 +117,16 @@
 ["dropbear"           "dropbear.sh"                         "https://julia.blue/allyrss.xml"]
 ["Luna"               "moonbase.lgbt"                       "/blog/atom.xml"]
 ["Charlotte"          "char.lt"                             "/blog.rss"]
-["mbuffett"           "mbuffett.com"                        "posts/index.xml"]
+["mbuffett"           "mbuffett.com"                        "/posts/index.xml"]
 ["Saron Yitbarek"     "notadesigner.io"                     "https://rss.beehiiv.com/feeds/uyO6uKaqK0.xml"]
+["100 rabbits"        "100r.co"                             "/links/rss.xml"]
+["aoife cassidy"      "enby.space"                          "/writing/index.xml"
+["Imran Nazar"        "imrannazar.com"                      "/rss.xml"]
+["Fabien Sanglard"    "fabiensanglard.net"                  "/rss.xml"]
+["Alex Chan"          "alexwlchan.net"                      "/atom.xml"]
+
+# ["Julia Violet"       "juliaviolet.dev"                     "N/A"]
+# ["nan.fyi"            "nan.fyi"                             "???"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]
@@ -148,8 +155,9 @@
 # use https://github.com/Siriusmart/feedscraper for:
 # TODO: blog.iximeow.net
 # TODO: tmpout.sh
-# ["nan.fyi"            "nan.fyi"                             "???"]
 
 # remove once it stops updating/i'm finished reading
 ["toxic yuri" "amawashigroup.wordpress.com" "/feed"]
+
+# ["λ the Ultimate"     "http://lambda-the-ultimate.org"      "/node/feed"]
 ])

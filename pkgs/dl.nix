@@ -8,7 +8,7 @@
     hash = "sha256-UYEEYzVsVyAxEiYveWJLE1C8aM6vlgM07zvp3oprv9s=";
   };
 
-  cargoHash = "sha256-iEj32A/041O2rIh7m6y1TFhBoSVt07VOxuddCzgJMwU=";
+  cargoHash = "sha256-RNoY0alyNhwTtyUE/jXSdJsdh/T2WLXhaHA5GkqUpuY=";
 
   meta = {
     description = "Jana's tool to get the latest download";

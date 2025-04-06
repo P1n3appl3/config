@@ -1,8 +1,8 @@
-{ pkgs, self, myOverlays, inputs, ... }: {
+{ pkgs, self, myOverlays, inputs, config, ... }: {
   imports = [
     inputs.home-manager.darwinModules.home-manager
     inputs.ragenix.darwinModules.default
-    # TODO: friends?
+    inputs.mac-app-util.darwinModules.default
   ];
 
   services = {
@@ -93,6 +93,7 @@
   #   brews = [
   #     "linearmouse" "middlelcick" "sol" "quicksilver" "itsycal"
   #     "pearcleaner" "vial" "syncthing" "nheko"
+  #     "fleet"
   #     "github" "sublime-merge" "sourcetree"
   #   ];
   # };
@@ -103,6 +104,8 @@
       stats hidden-bar # itsycal # https://github.com/NixOS/nixpkgs/issues/377645
       meld
       utm
+      duti
+      coreutils # TODO: uutils?
 
       obsidian
       kitty
@@ -125,6 +128,7 @@
         ../mixins/home/common.nix
         ../mixins/home/dev.nix
         ../mixins/home/graphical/terminal.nix
+        inputs.mac-app-util.homeManagerModules.default
       ] ++ builtins.attrValues self.outputs.homeModules;
     };
   };
@@ -155,17 +159,17 @@
     hostPlatform = "aarch64-darwin";
   };
   nix = {
-    # TODO: still generate config file from here... or just get off determinate nix daemon
-    enable = false;
-    # settings = {
-    #   trusted-users = [ "root" "@admin" ];
-    #   extra-experimental-features = [ "nix-command" "flakes" ];
-    #   extra-platforms = [ "x86_64-darwin" "aarch64-darwin" ]
-    # };
-    # registry.config.to = { type = "git";
-    #   url = "file://" + config.home-manager.users.julia.home.sessionVariables.CONF_DIR;
-    # };
-    # linux-builder.enable = true;
+    enable = true;
+    settings = {
+      trusted-users = [ "root" "@admin" ];
+      extra-experimental-features = [ "nix-command" "flakes" ];
+      extra-platforms = [ "x86_64-darwin" "aarch64-darwin" ];
+      sandbox = true;
+    };
+    registry.config.to = { type = "git";
+      url = "file://" + config.home-manager.users.julia.home.sessionVariables.CONF_DIR;
+    };
+    linux-builder.enable = true;
   };
   users.users.julia.home = "/Users/julia";
 }

@@ -3,13 +3,9 @@
     blesh
   ];
 
+  home.shell.enableBashIntegration = true;
+
   programs = {
-    # TODO: show ally
-    vim = { enable = true;
-      plugins = with pkgs.vimPlugins; [
-        fzf-vim
-      ];
-    };
     bash = {
       enable = true;
       bashrcExtra = ''
@@ -29,9 +25,14 @@
         tree = "l -T --git-ignore";
       };
     };
-          fzf = { enable = true; enableBashIntegration = true; };
-        atuin = { enable = true; enableBashIntegration = true; };
-       zoxide = { enable = true; enableBashIntegration = true; };
-     starship = { enable = true; enableBashIntegration = true; };
-   };
- }
+         fzf.enable = true;
+       atuin.enable = true;
+      zoxide.enable = true;
+      direnv.enable = true;
+    starship.enable = true;
+
+    wezterm.enableBashIntegration = true;
+    ghostty.enableBashIntegration = true;
+    kitty.shellIntegration.enableBashIntegration = true;
+  };
+}

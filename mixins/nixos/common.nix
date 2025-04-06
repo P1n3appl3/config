@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, config, myOverlays, self, ... }: {
+{ pkgs, lib, inputs, config, myOverlays, ... }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.ragenix.nixosModules.default

@@ -13,6 +13,6 @@ stdenvNoCC.mkDerivation rec {
     mkdir -p $out/bin
     cp $pname $out/bin/$pname
     wrapProgram $out/bin/$pname \
-      --suffix PATH : ${lib.makeBinPath [ git gnugrep barchart ]}
+      --suffix PATH : ${lib.makeBinPath [ git gnugrep ]}
   '';
 }

@@ -17,6 +17,8 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
   * navigate up a directory (see [comment](https://github.com/junegunn/fzf/issues/3159#issuecomment-1424575660). something like `--bind 'backward-eof:reload(__fzf "$(pwd)/.." $2)'`
 * starship tty ascii
 * inputrc for bash
+* fish?
+* [worktree switcher](https://github.com/mateusauler/git-worktree-switcher)
 
 ## Editor
 
@@ -108,6 +110,7 @@ ZSH_AUTOSUGGEST_STRATEGY=atuin
 * debug logisim(/evolution) blank window on launch
 * i3status-rs weather hide if no location (or error emoji instead of message+color)
 * [.desktop file finder](https://unix.stackexchange.com/questions/344188/list-all-desktop-files-that-appears-in-application-menu)
+* rustdesk enable nixos service
 
 ## Theme
 
@@ -215,6 +218,8 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 ## `pkgs/`
 
 - https://github.com/chrisduerr/sketch
+- https://github.com/Journeycorner/systemd-gtk or https://github.com/pyxvlad/services-gui
+- https://github.com/ardaku/whoami
 
 ## Other
 

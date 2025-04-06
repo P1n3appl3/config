@@ -7,5 +7,6 @@
     rev = version;
     hash = "sha256-RhgV+Uik2UErCaRfZE8n50DlOWKjrO9AcMHgRC45DxY=";
   };
-  cargoHash = "sha256-aPT5Ur2Tm7Fj8zpsaw3iJn/4XU/GCDr/cuaWFlzlxaU=";
+  # its lockfile doesn't have checksums, had to re-generate and check it in here
+  cargoLock.lockFile = ./Cargo.lock;
 }
