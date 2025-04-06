@@ -214,6 +214,8 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 
 ## `pkgs/`
 
+- https://github.com/chrisduerr/sketch
+
 ## Other
 
 * btrfs rule to not compress db files

@@ -18,6 +18,8 @@
 
     # TODO: transcribe lotus:
     # pkgs-stable.easyabc abctool
+
+    sweethome3d.application
   ];
 
   programs = {

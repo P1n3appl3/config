@@ -18,7 +18,7 @@
     stylua sumneko-lua-language-server shfmt shellcheck
     # Fun
     blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain pastel tab
-    ttyper nethack
+    ttyper solitaire-tui nethack
   ];
 
   programs = {
