@@ -26,7 +26,7 @@
 
   services = {
     atd.enable = true;
-    nixseparatedebuginfod.enable = true;
+    nixseparatedebuginfod.enable = false; # TODO: re-enable when rahul fixes symlink crawling
     getty = {
       autologinUser = "julia";
       greetingLine = ''\l'';

@@ -38,7 +38,7 @@ in {
       path = with pkgs; [ xh jq ];
       startAt = cfg.frequency;
       script = ''
-        endpoint=https://api.porkbun.com/api/json/v3
+        endpoint=https://api-ipv4.porkbun.com/api/json/v3
         api=apikey=`<${cfg.api-key}`
         secret=secretapikey=`<${cfg.secret-key}`
         ip=`xh post $endpoint/ping $api $secret -I | jq .yourIp -r`

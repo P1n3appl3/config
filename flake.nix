@@ -91,8 +91,8 @@
     homeModules  = listDir { of = ./modules/home;  mapFunc = _: import; };
     nixosModules = listDir { of = ./modules/nixos; mapFunc = _: import; };
 
-    overlays.default = final: _: mapDir {
-      directory = ./pkgs; callPackage = final.callPackage;
+    overlays.default = final: _: listDir {
+      of = ./pkgs; mapFunc = _: p: final.callPackage p {};
     };
   } // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
