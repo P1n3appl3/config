@@ -120,7 +120,7 @@
 ["mbuffett"           "mbuffett.com"                        "/posts/index.xml"]
 ["Saron Yitbarek"     "notadesigner.io"                     "https://rss.beehiiv.com/feeds/uyO6uKaqK0.xml"]
 ["100 rabbits"        "100r.co"                             "/links/rss.xml"]
-["aoife cassidy"      "enby.space"                          "/writing/index.xml"
+["aoife cassidy"      "enby.space"                          "/writing/index.xml"]
 ["Imran Nazar"        "imrannazar.com"                      "/rss.xml"]
 ["Fabien Sanglard"    "fabiensanglard.net"                  "/rss.xml"]
 ["Alex Chan"          "alexwlchan.net"                      "/atom.xml"]
