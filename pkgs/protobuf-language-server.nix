@@ -17,5 +17,6 @@
     description = "A language server implementation for Google Protocol Buffers";
     homepage = "https://github.com/lasorda/protobuf-language-server";
     license = lib.licenses.asl20;
+    broken = true;
   };
 }

@@ -18,9 +18,10 @@ in {
     # gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
     (nixGL zed-editor)
-      nodejs # TODO: figure out why bundled node isn't working
-      package-version-server
-      cargotom
+      # nodejs # TODO: figure out why bundled node isn't working
+      # package-version-server
+      # protobuf-language-server
+      # cargotom
       typescript
     (nixGL obsidian)
     # maybe https://github.com/digint/btrbk or buttermanager
@@ -48,7 +49,6 @@ in {
     udiskie
     glib.bin # gio/gsettings/gdbus
     d-spy
-    glkitty
     transmission_4-gtk
     heaptrack
     (nixGL meld)

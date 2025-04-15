@@ -40,6 +40,6 @@ rustPlatform.buildRustPackage rec {
   meta = {
     description = "Language server for Cargo.toml";
     homepage = "https://github.com/frederik-uni/cargotom";
-    mainProgram = "cargotom";
+    broken = true;
   };
 }

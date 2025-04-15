@@ -19,6 +19,7 @@
     golly
     fence
     aisleriot
+    # TODO: https://github.com/lynn/autumn
 
     punes mupen64plus dolphin-emu # snes9x-gtk simple64
     sameboy mgba melonDS

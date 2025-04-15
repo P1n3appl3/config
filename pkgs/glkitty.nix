@@ -1,12 +1,12 @@
 { stdenv, fetchFromGitHub, cmake, ninja, pkg-config, makeWrapper,
   glfw, zlib, mesa, vulkan-loader, vulkan-headers }: stdenv.mkDerivation {
   pname = "glkitty";
-  version = "2022-01-30";
+  version = "2025-03-04";
 
   src = fetchFromGitHub {
     owner = "michaeljclark"; repo = "glkitty";
-    rev = "31ee774de7813815b2227d70f8b54b1ef46b1b1d";
-    hash = "sha256-tWnlBKCZaRgfWTC64kiNgclts7ctPXPnTzdCaF6oIr8=";
+    rev = "dc407ae259a897fe610973bf8ab98ecd3cbd1aec";
+    hash = "sha256-4amrbFilb4UUX3/eGy2Q/wL5MJklXhWgzYr/lUDeDmQ=";
   };
 
   nativeBuildInputs = [
@@ -20,8 +20,8 @@
     glfw
     zlib
     mesa
-    mesa.osmesa
-    mesa.drivers
+    vulkan-headers
+    vulkan-loader
   ];
 
   cmakeFlags = [
@@ -45,6 +45,9 @@
   meta = {
     description = "Port of the OpenGL gears demo to kitty terminal graphics protocol";
     homepage = "https://github.com/michaeljclark/glkitty";
-    broken = stdenv.isDarwin;
+    # TODO: investigate osmesa removal:
+    # https://gitlab.freedesktop.org/mesa/mesa/-/commit/027ccd96
+    # https://github.com/NixOS/nixpkgs/pull/383432
+    broken = true; # stdenv.isDarwin;
   };
 }

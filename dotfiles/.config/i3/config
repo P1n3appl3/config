@@ -144,6 +144,7 @@ client.unfocused         $base     $base     $text  $accent   $overlay0
 client.urgent            $urgent   $urgent   $base  $urgent   $urgent
 client.background        $base
 
+exec_always xset r rate 300 30
 exec_always xsetroot -solid $base
 exec_always systemctl --user import-environment PATH && \
             systemctl --user restart xdg-desktop-portal.service

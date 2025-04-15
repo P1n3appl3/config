@@ -10,7 +10,7 @@
     hash = "sha256-/icXXzB9+Nto4CXsgDfdmYp3sGdwMoyiQvbESasWU8Y=";
   };
 
-  cargoHash = "sha256-LW1gx1p6JObGVUDYjoxoY2yL2xDRVOTrV7uuVdCu09o=";
+  cargoHash = "sha256-RjEWADW37FwgLaBqjfl2vaeHTOpaGbOaTqBwSeyDRRQ=";
   doCheck = false; # problem with nostd
 
   meta = {

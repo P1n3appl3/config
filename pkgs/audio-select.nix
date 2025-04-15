@@ -9,7 +9,7 @@ rustPlatform.buildRustPackage rec {
     rev = "v${version}";
     hash = "sha256-l09MSKuQrTXE6N1xpZuAqyxPz0uL5oRbtUtV4Pz280U=";
   };
-  cargoHash = "sha256-KS+p9W3xi8RJEs45CQGbgpVVG4lolDP3s1zCJ02K34M=";
+  cargoHash = "sha256-LEbzKCgR0pJv1qQ19Xk3Yb/7Y+ARmN7qCozGHmC/Tss=";
 
   nativeBuildInputs = [ pkg-config wrapGAppsHook ];
   buildInputs = [

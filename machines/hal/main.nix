@@ -87,7 +87,14 @@
     xserver = { enable = true;
       windowManager.i3.enable = true;
       screenSection = ''
-        Option "metamodes" "DP-4: 1920x1080_144 +2560+0 {rotation=left}, DP-2: 2560x1440_144 +0+480"
+        Device         "Device0"
+        Monitor        "Monitor0"
+        Option         "Stereo" "0"
+        Option         "nvidiaXineramaInfoOrder" "DP-2"
+        Option         "metamodes" "DP-2: 2560x1440_144 +1080+480, DP-0: 1920x1080_144 +0+0 {rotation=left}"
+        Option         "SLI" "Off"
+        Option         "MultiGPU" "Off"
+        Option         "BaseMosaic" "off"
       '';
       # TODO: test and point this at the lockscreen symlink
       # also add 2nd monitor
