@@ -3,24 +3,17 @@
 
   programs = {
     fish = { enable = true;
-      plugins = {
-        # TODO:
-        # pufferfish (!! !$ ..+ etc)
-        # done
-        # fish-you-should-use
-        # colored-man-pages
+      plugins = with pkgs.fishPlugins;
+        let mkPlugin = p: { inherit (p) src; name = "${p.pname}"; }; in
+      (map mkPlugin [
+        puffer # (!! !$ ..+ etc)
+        done
+        fish-you-should-use
+        colored-man-pages
+        autopair # try pisces?
+        # fzf or fzf.fish if default integration isn't enough
         # fifc
-        # fzf
-        # autopair/pisces
-        # git-worktree-switcher
-      };
-      # shellAliases = {
-      #   cat = "bat";
-      #   c = "clear";
-      #   l = "eza --icons";
-      #   ls = "l -l";
-      #   tree = "l -T --git-ignore";
-      # };
+     ]);
     };
           fzf.enable = true;
         atuin.enable = true;
@@ -28,8 +21,7 @@
        direnv.enable = true;
      starship.enable = true;
 
-     wezterm.enableFishIntegration = true;
      ghostty.enableFishIntegration = true;
-     kitty.shellIntegrationenableFishIntegration = true;
+     kitty.shellIntegration.enableFishIntegration = true;
   };
 }

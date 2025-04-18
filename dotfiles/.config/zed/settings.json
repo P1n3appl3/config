@@ -1,5 +1,6 @@
 {
   // UI
+  "relative_line_numbers": false,
   "use_system_path_prompts": false,
   "git_panel": { "dock": "right" },
   "collaboration_panel": { "dock": "right" },
@@ -10,6 +11,7 @@
     "show_nav_history_buttons": false,
     "show_tab_bar_buttons": false
   },
+  "tabs": { "git_status": true, "show_close_button": "hidden" },
   "vertical_scroll_margin": 6,
   "ui_font_size": 14,
   "buffer_font_size": 13.0,
@@ -48,6 +50,9 @@
   "inlay_hints": {
     "toggle_on_modifiers_press": { "alt": true }
   },
+  "search": {
+    "regex": true
+  },
 
   // language support
   "languages": {
@@ -67,8 +72,8 @@
       },
       "initialization_options": {
         "checkOnSave": true,
-        "check": { "workspace": false, "command": "clippy" },
-        "diagnostics": { "enable": false },
+        // "check": { "workspace": false, "command": "clippy" },
+        "diagnostics": { "enable": true },
         // "diagnostics": { "experimental": { "enable": true } },
         "cachePriming": { "enable": false }
       }

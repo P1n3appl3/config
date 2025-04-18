@@ -4,6 +4,7 @@
     git-heatmap git-undeadname
     gh
     onefetch
+    git-worktree-switcher
   ];
 
   programs = {

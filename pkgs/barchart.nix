@@ -2,9 +2,9 @@
   pname = "barchart";
   version = "2024-04-15";
   src = fetchFromGitHub {
-    owner = "p1n3appl3";
+    owner = "jez";
     repo = pname;
-    rev = "d8e49d2b81f8427d33e34abedac0343aad5b3b54";
+    rev = "55c47d922f5fa5262c4bb4f75aa228964e1b70f2";
     hash = "sha256-M++O6Vu4P8A/a5fXbCKfTgk+MzJNCK43oand602iDqw=";
   };
 

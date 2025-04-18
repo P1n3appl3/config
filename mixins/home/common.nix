@@ -15,7 +15,7 @@
     # Nix
     nix home-manager nh nix-output-monitor nix-tree nix-diff nil comma ragenix
     # Scripting tools
-    stylua sumneko-lua-language-server shfmt shellcheck
+    stylua sumneko-lua-language-server shfmt shellcheck fish-lsp
     # Fun
     blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain pastel tab
     ttyper solitaire-tui nethack
@@ -42,7 +42,7 @@
   };
 
   imports = [
-    ./git.nix ./nvim.nix ./htop.nix ./bash.nix
+    ./git.nix ./nvim.nix ./htop.nix ./bash.nix ./fish.nix
     (if builtins.hasAttr "osConfig" args then {} else
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
     inputs.nix-index-database.hmModules.nix-index
@@ -54,7 +54,7 @@
     flavor = "mocha"; accent = "blue";
     bat.enable = true; cava.enable = true; helix.enable = true; btop.enable = true;
     fish.enable = true;
-    # TODO: fzf/zellij/zsh-syntax-highlighting
+    # TODO: fzf/zellij/fish/zsh-syntax-highlighting
   };
 
   nix.registry = {

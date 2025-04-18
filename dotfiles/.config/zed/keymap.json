@@ -8,7 +8,8 @@
       "alt-h": "workspace::ActivatePaneLeft",
       "alt-l": "workspace::ActivatePaneRight",
       "alt-k": "workspace::ActivatePaneUp",
-      "alt-j": "workspace::ActivatePaneDown"
+      "alt-j": "workspace::ActivatePaneDown",
+      "ctrl-m": "collab::Mute"
     }
   },
   // {
@@ -86,13 +87,13 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
-      // thx João
-      "w": "vim::NextSubwordStart",
-      "b": "vim::PreviousSubwordStart",
-      "e": "vim::NextSubwordEnd",
-      "W": "vim::NextWordStart",
-      "B": "vim::PreviousWordStart",
-      "E": "vim::NextWordEnd",
+      // thx João ... wait but these don't work with vim motions like `ciw` D:
+      // "w": "vim::NextSubwordStart",
+      // "b": "vim::PreviousSubwordStart",
+      // "e": "vim::NextSubwordEnd",
+      // "W": "vim::NextWordStart",
+      // "B": "vim::PreviousWordStart",
+      // "E": "vim::NextWordEnd",
       "j": ["workspace::SendKeystrokes", "g j"],
       "k": ["workspace::SendKeystrokes", "g k"],
       // TODO: these shouldn't be in vimcontrol, I want them anywhere I'm not doing text entry ("not_editing?")

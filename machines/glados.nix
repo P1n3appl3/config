@@ -164,7 +164,7 @@
       trusted-users = [ "root" "@admin" ];
       extra-experimental-features = [ "nix-command" "flakes" ];
       extra-platforms = [ "x86_64-darwin" "aarch64-darwin" ];
-      sandbox = true;
+      # sandbox = true; # breaks fish plugins?
       builders-use-substitutes = true;
       # TODO: resolve https://github.com/nix-darwin/nix-darwin/issues/477
       builders = [

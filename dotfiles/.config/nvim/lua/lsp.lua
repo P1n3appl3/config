@@ -11,6 +11,7 @@ end
 server "clangd"
 server "nil_ls"
 server("tinymist", { settings = { exportPdf = "onSave" }, single_file_support = true })
+server "fish_lsp"
 
 vim.g.neoformat_nasm_nasmfmt = { exe = "nasmfmt", replace = 1 }
 vim.g.neoformat_enabled_nasm = { "nasmfmt" }
