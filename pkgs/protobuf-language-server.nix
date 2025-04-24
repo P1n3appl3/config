@@ -1,6 +1,6 @@
 { lib, buildGoModule, fetchFromGitHub }: buildGoModule rec {
   pname = "protobuf-language-server";
-  version = "unstable-2025-02-19";
+  version = "2025-02-19";
 
   src = fetchFromGitHub {
     owner = "lasorda";

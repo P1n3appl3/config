@@ -28,6 +28,6 @@ rustPlatform.buildRustPackage rec {
   meta = {
     description = "A language server that handles hover information in package.json files";
     homepage = "https://github.com/zed-industries/package-version-server";
-    mainProgram = "package-version-server";
+    broken = true;
   };
 }

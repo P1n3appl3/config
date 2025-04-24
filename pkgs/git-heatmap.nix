@@ -1,4 +1,4 @@
-{ fetchFromGitHub, lib, makeWrapper, stdenvNoCC, barchart, git, gnugrep }:
+{ fetchFromGitHub, lib, makeWrapper, stdenvNoCC, git, gnugrep, barchart }:
 stdenvNoCC.mkDerivation rec {
   pname = "git-heatmap";
   version = "2023-04-16";
@@ -13,6 +13,6 @@ stdenvNoCC.mkDerivation rec {
     mkdir -p $out/bin
     cp $pname $out/bin/$pname
     wrapProgram $out/bin/$pname \
-      --suffix PATH : ${lib.makeBinPath [ git gnugrep ]}
+      --suffix PATH : ${lib.makeBinPath [ git gnugrep barchart ]}
   '';
 }

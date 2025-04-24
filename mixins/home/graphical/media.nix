@@ -7,7 +7,7 @@
     # TODO: graphite
     inkscape krita pinta oculante aseprite
     helio-workstation
-    furnace
+    # deflemask furnace
     # non lmms ardour
     audacity # (or tenacity)
     logisim-evolution

@@ -8,8 +8,6 @@ volume_muted = ""
 cpu = ""
 cpu_boost_on = "󱐋"
 backlight = ["󰌶", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"]
-bat = ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-bat_charging = ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂄"]
 weather_clouds_night = ""
 
 [theme]
@@ -58,12 +56,6 @@ step_width = 1
 format = " $icon "
 cycle = [0, 50, 100]
 minimum = 0
-missing_format = ""
-
-[[block]]
-block = "battery"
-format = " $icon $percentage {$power |}"
-interval = 5
 missing_format = ""
 
 [[block]]

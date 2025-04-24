@@ -2,7 +2,7 @@
 
 rustPlatform.buildRustPackage {
   pname = "zeco";
-  version = "unstable-2025-02-02";
+  version = "2025-02-02";
 
   src = fetchFromGitHub {
     owner = "julianbuettner";

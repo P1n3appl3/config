@@ -24,6 +24,7 @@ config 🍍 nix flake show
     ├───apotris: block stacking game
     ├───ascii-rain: pretty terminal rain animation
     ├───audio-select: pulse-audio device selector
+    ├───autumn: autumn leaves solitaire card game
     ├───barchart: draw barcharts in the terminal
     ├───bibata-modern-classic: mouse cursor theme
     ├───cargo-clone-crate: better cargo clone command
@@ -42,6 +43,7 @@ config 🍍 nix flake show
     ├───posting: http api explorer
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
+    ├───rwing: melee replay review tool
     ├───s2yt: spotify to youtube music transfer tool
     ├───slpz: compress slippi replays
     ├───tab: command line music tabs

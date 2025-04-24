@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, config, ... }: {
+{ pkgs, inputs, ... }: {
   home.packages = with pkgs; [
     steam
     itch wine64
@@ -6,7 +6,13 @@
     lutris
     ludusavi
 
-    prismlauncher # minecraft
+    # melee tools
+    rwing
+    melee-quick-mod
+    slpz
+
+    # minecraft
+    prismlauncher
 
     osu-lazer-bin
     clonehero # TODO: make ~/.clonehero point to games subvol
@@ -15,13 +21,15 @@
     openttd
     space-cadet-pinball
     openspades
-    hovalaag
-    golly
-    fence
     aisleriot
-    # TODO: https://github.com/lynn/autumn
+    golly
 
-    punes mupen64plus dolphin-emu # snes9x-gtk simple64
+    # terminal
+    hovalaag
+    fence
+    autumn
+
+    punes dolphin-emu # mupen64plus snes9x-gtk simple64
     sameboy mgba melonDS
 
     pokefinder eontimer

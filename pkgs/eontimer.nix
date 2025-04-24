@@ -58,7 +58,6 @@ in python3.pkgs.buildPythonApplication rec {
     runHook preInstall
 
     mkdir -p $out/bin
-    mkdir -p $out/share/applications
     cp dist/EonTimer $out/bin/
     install -Dm755 -T ${wrapper} $out/bin/eontimer
     substituteInPlace $out/bin/eontimer --subst-var out

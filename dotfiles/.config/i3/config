@@ -149,6 +149,9 @@ exec_always xsetroot -solid $base
 exec_always systemctl --user import-environment PATH && \
             systemctl --user restart xdg-desktop-portal.service
 
+# fix for HAL
+exec_always echo Xft.dpi: 96 | xrdb -merge
+
 bar {
     height 28
     position top

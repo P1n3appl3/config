@@ -22,8 +22,7 @@
         xorg.xeyes xorg.xkill
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
         vscode
-        melee-quick-mod
-        slpz
+        nitrogen
       ];
 
       systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
@@ -95,6 +94,7 @@
         Option         "SLI" "Off"
         Option         "MultiGPU" "Off"
         Option         "BaseMosaic" "off"
+        Option         "DPI" "96 x 96"
       '';
       # TODO: test and point this at the lockscreen symlink
       # also add 2nd monitor
