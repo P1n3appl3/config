@@ -1,4 +1,4 @@
-invert_scrolling = true
+invert_scrolling = false
 error_format = " "
 
 [icons]

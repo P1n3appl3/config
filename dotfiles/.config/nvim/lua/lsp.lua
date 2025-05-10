@@ -10,12 +10,7 @@ end
 -- vim.lsp.set_log_level "debug"
 server "clangd"
 server "nil_ls"
-server("tinymist", {
-    settings = { exportPdf = "onSave" },
-    single_file_support = true,
-    -- TODO: remove when fixed: https://github.com/Myriad-Dreamin/tinymist/issues/638
-    offset_encoding = "utf-8",
-})
+server("tinymist", { settings = { exportPdf = "onSave" }, single_file_support = true })
 
 vim.g.neoformat_nasm_nasmfmt = { exe = "nasmfmt", replace = 1 }
 vim.g.neoformat_enabled_nasm = { "nasmfmt" }
@@ -38,10 +33,12 @@ server("lua_ls", {
 
 local ra_settings = {
     cachePriming = { enable = false },
-    diagnostics = { disabled = {
-        "unresolved-proc-macro",
-        "inactive-code"
-    } },
+    diagnostics = {
+        disabled = {
+            "unresolved-proc-macro",
+            "inactive-code",
+        },
+    },
     completion = { callable = { snippets = "none" }, postfix = { enable = false } },
     cargo = { cfgs = { miri = "true" } },
 }

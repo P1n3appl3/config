@@ -176,5 +176,15 @@ in {
         gzip -c   ${out} >   ${out}.gz
       '';
     };
+
+    reset-usb = {
+      description = "Reset the usb hub and remount the usb drive";
+      unitConfig.Type = "oneshot";
+      serviceConfig.ExecStart = ''
+        uhubctl -l 2 -a cycle -d 1
+        sleep 5
+        mount /dev/disk/by-label/pi-usb /media";
+      '';
+    };
   };
 }
