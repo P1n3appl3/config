@@ -55,7 +55,9 @@
     "context": "(FileFinder || Picker || menu) > Editor",
     "bindings": {
       "ctrl-j": "menu::SelectNext",
-      "ctrl-k": "menu::SelectPrevious"
+      "ctrl-k": "menu::SelectPrevious",
+      "tab": "menu::SelectNext",
+      "shift-tab": "menu::SelectPrevious"
     }
   },
   {
@@ -68,12 +70,6 @@
     }
   },
   {
-    "context": "Pane && !(vim_mode == insert)",
-    "bindings": {
-      // "space d": "pane::CloseActiveItem" // TODO: not working (happens in insert)
-    }
-  },
-  {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
       "s": "vim::PushSneak",
@@ -81,38 +77,10 @@
     }
   },
   {
-    "context": "ChangesList || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Welcome",
-    "bindings": {}
-  },
-  {
     "context": "VimControl && !menu",
     "bindings": {
-      // thx João ... wait but these don't work with vim motions like `ciw` D:
-      // "w": "vim::NextSubwordStart",
-      // "b": "vim::PreviousSubwordStart",
-      // "e": "vim::NextSubwordEnd",
-      // "W": "vim::NextWordStart",
-      // "B": "vim::PreviousWordStart",
-      // "E": "vim::NextWordEnd",
       "j": ["workspace::SendKeystrokes", "g j"],
       "k": ["workspace::SendKeystrokes", "g k"],
-      // TODO: these shouldn't be in vimcontrol, I want them anywhere I'm not doing text entry ("not_editing?")
-      "space f o": "workspace::FollowNextCollaborator",
-      "space b": "tab_switcher::Toggle",
-      // "space b": "tab_switcher::ToggleAll",
-      "space tab": ["workspace::SendKeystrokes", "ctrl-tab enter"],
-      "space d": "pane::CloseActiveItem",
-      "space q q": "zed::Quit",
-      "space F": "file_finder::Toggle",
-      "space space": "command_palette::Toggle",
-      "space r g": "pane::DeploySearch",
-      // "space r g": "project_search::ToggleFocus",
-      // "space n": "TODO: open colab notes",
-      "space w": ["workspace::SendKeystrokes", "ctrl-w"],
-      "space t": "outline::Toggle",
-      "space e l": "diagnostics::Deploy",
-      "space T": "project_symbols::Toggle",
-      // "space T": "outline_panel::ToggleFocus",
 
       "g j": ["vim::Down", { "display_lines": true }],
       "g k": ["vim::Up", { "display_lines": true }],
@@ -141,6 +109,7 @@
       "space g B": "git::Blame",
       "space g s": "git::ToggleStaged",
       "space g c": "git::Commit",
+      "space g a": "git::Amend",
       "space g f": "git::Fetch",
       "space g d": "git::Diff",
       "space g g": "git::Switch",
@@ -154,10 +123,42 @@
       "ctrl-/": "search::ToggleReplace"
     }
   },
+  // TODO: fix this in diff/diagnostics where you want to enter text. need vim_mode conditions?
+  {
+    "context": "VimControl && !menu || ChangesList || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Welcome || Diagnostics || ThemePreview",
+    "bindings": {
+      "space space": "command_palette::Toggle",
+      "space b": "tab_switcher::ToggleAll",
+      "space d": "pane::CloseActiveItem",
+      "space r g": "pane::DeploySearch",
+      // "space r g": "project_search::ToggleFocus",
+      // TODO: these shouldn't be in vimcontrol, I want them anywhere I'm not doing text entry ("not_editing?")
+      "space f o": "workspace::FollowNextCollaborator",
+      "space tab": ["workspace::SendKeystrokes", "ctrl-tab enter"],
+      "space q q": "zed::Quit",
+      "space F": "file_finder::Toggle",
+      // "space l": ["pane::DeploySearch", { "only_open_enabled": true }],
+      // space l for ^ +
+      // "space n": "TODO: open colab notes",
+      "space w": ["workspace::SendKeystrokes", "ctrl-w"],
+      "space e l": "diagnostics::Deploy",
+      "space t": "outline::Toggle",
+      "space T": "project_symbols::Toggle"
+      // "space T": "outline_panel::ToggleFocus",
+    }
+  },
   {
     "context": "vim_mode == normal && !menu",
     "bindings": {
       "Y": ["workspace::SendKeystrokes", "y $"]
+    }
+  },
+  {
+    "context": "Tasks > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "tab": "pane::ActivateNextItem",
+      "shift-tab": "pane::ActivatePreviousItem"
     }
   }
 ]

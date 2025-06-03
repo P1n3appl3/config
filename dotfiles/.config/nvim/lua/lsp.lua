@@ -35,6 +35,12 @@ server("lua_ls", {
 local ra_settings = {
     cachePriming = { enable = false },
     diagnostics = {
+        diagnostics = {
+            disabled = {
+                "unresolved-proc-macro",
+                "inactive-code",
+            },
+        },
         disabled = {
             "unresolved-proc-macro",
             "inactive-code",

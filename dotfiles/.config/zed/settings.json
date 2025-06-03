@@ -1,17 +1,20 @@
 {
   // UI
+  "base_keymap": "VSCode",
   "relative_line_numbers": false,
   "use_system_path_prompts": false,
   "git_panel": { "dock": "right" },
   "collaboration_panel": { "dock": "right" },
   "outline_panel": { "dock": "right" },
   "project_panel": { "dock": "right" },
+  "toolbar": { "selections_menu": false, "quick_actions": true },
   "tab_bar": {
     "show": true,
     "show_nav_history_buttons": false,
     "show_tab_bar_buttons": false
   },
-  "tabs": { "git_status": true, "show_close_button": "hidden" },
+  "tabs": { "git_status": true },
+  "preview_tabs": { "enabled": false, "enable_preview_from_code_navigation": true },
   "vertical_scroll_margin": 6,
   "ui_font_size": 14,
   "buffer_font_size": 13.0,
@@ -20,21 +23,32 @@
   // "ui_font_fallbacks": ["Symbols Nerd Font"],
   // "buffer_font_fallbacks": ["Symbols Nerd Font"],
   "preferred_line_length": 92,
-  "theme": {
-    "mode": "dark",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
-  },
+  "theme": "Catppuccin Mocha (blue)",
   "icon_theme": "Catppuccin Mocha",
   "gutter": {
     "line_numbers": false,
     "folds": false,
-    "code_actions": false
+    "code_actions": false,
+    "runnables": true,
+    "breakpoints": true
   },
+  "minimap": { "show": "never", "current_line_highlight": "gutter" },
   "current_line_highlight": "gutter",
   "indent_guides": { "enabled": false },
+  "title_bar": {
+    "show_sign_in": false,
+    "show_branch_icon": true,
+    "show_user_picture": false
+  },
+  "experimental.theme_overrides": {
+    "editor.gutter.background": "#000000"
+  },
 
   // general functionality
+  "vim": {
+    // "default_mode": "helix_normal",
+    "use_system_clipboard": "on_yank"
+  },
   "vim_mode": true,
   "restore_on_startup": "none",
   "load_direnv": "shell_hook",
@@ -53,29 +67,27 @@
   "search": {
     "regex": true
   },
-
   // language support
   "languages": {
     "Rust": {},
     "Nix": { "tab_size": 2, "language_servers": ["nil", "!nixd"] },
-    // "Markdown": { "soft_wrap": "bounded" },
-    "Markdown": { "soft_wrap": "editor_width" },
+    "Lua": { "language_servers": ["lua-language-server"] },
+    "Markdown": { "soft_wrap": "editor_width" }, // or "bounded"?
     "JavaScript": { "tab_size": 4 },
     "Proto": { "enable_language_server": false }
   },
   "lsp": {
     "rust-analyzer": {
-      "cargo": {
-        "buildScripts": {
-          "enable": true
-        }
-      },
+      // "cargo": { "buildScripts": { "enable": false } },
       "initialization_options": {
-        "checkOnSave": true,
-        // "check": { "workspace": false, "command": "clippy" },
-        "diagnostics": { "enable": true },
-        // "diagnostics": { "experimental": { "enable": true } },
-        "cachePriming": { "enable": false }
+        // "cachePriming": { "enable": false }
+        "files": { "watcher": "server" },
+        // "checkOnSave": true,
+        "check": { "workspace": false, "command": "clippy" },
+        "diagnostics": {
+          // "enable": false,
+          "experimental": { "enable": false }
+        }
       }
     },
     "nil": {
@@ -86,20 +98,18 @@
   },
 
   // disable AI
-  "features": {
-    "copilot": false,
-    "edit_prediction_provider": "none"
-  },
-  "assistant": {
+  "agent": {
+    "enabled": false,
+    "button": false,
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-3-7-sonnet-thinking-latest"
     },
-    "enabled": false,
-    "button": false,
     "version": "2"
   },
   "show_edit_predictions": false,
+  "features": { "edit_prediction_provider": "none" },
+  "edit_predictions": { "mode": "subtle" },
 
   //extensions
   "auto_install_extensions": {
@@ -107,10 +117,7 @@
     "catppuccin-icons": true,
     // "activitywatch": true
     // "discord-presence": true, // lmao
-    // TODO: pick a spell checker
-    // "codebook": true,
-    // "cspell": true,
-    // "harper": true,
+    // TODO: pick a spell checker "codebook"/"cspell"/"harper"
     "git-firefly": true,
     "html": true,
     "toml": true,
@@ -139,5 +146,14 @@
         }
       ]
     }
-  ]
+  ],
+
+  // conditional
+  "dev": {
+    // "smooth_scroll": true,
+    // "smooth_scroll_duration": 0.1
+  },
+  "nightly": {},
+  "preview": {},
+  "stable": {}
 }

@@ -7,9 +7,11 @@
 
   services = {
     openssh.enable = true;
+    # karabiner-elements.enable = true; // installed manually for now q.q
   };
 
   system = {
+    primaryUser = "julia";
     configurationRevision = self.rev or self.dirtyRev or null;
     stateVersion = 6;
     keyboard.enableKeyMapping = false; # obviated by karabiner
@@ -91,6 +93,7 @@
   # TODO: use this, configure autoUpdate and cleanup (maybe zap?)
   # homebrew = { enable = true;
   #   brews = [
+  #     "signal-desktop"
   #     "linearmouse" "middlelcick" "sol" "quicksilver" "itsycal"
   #     "pearcleaner" "vial" "syncthing" "nheko"
   #     "fleet"
@@ -106,13 +109,15 @@
       utm
       duti
       coreutils # TODO: uutils?
+      nixos-rebuild-ng # for deploying to Cortana
 
       obsidian
       kitty
-      telegram-desktop signal-desktop
+      telegram-desktop
     ];
 
     dev.compilers = false;
+    dev.debuggers = false;
 
     services = {
       # TODO: make module compatible with macos (so it can set up syncthing-tray)

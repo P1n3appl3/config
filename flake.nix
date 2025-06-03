@@ -21,7 +21,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nixgl.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
     mac-app-util.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
-    ragenix.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
+    ragenix.inputs = { nixpkgs.follows = "nixpkgs-stable"; flake-utils.follows = "flake-utils"; };
     slippi.inputs = {
       nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
       git-hooks.follows = "";
