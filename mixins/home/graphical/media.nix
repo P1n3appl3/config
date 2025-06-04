@@ -6,6 +6,7 @@
     blender
     # TODO: graphite
     inkscape krita pinta oculante aseprite
+    gthumb
     helio-workstation
     # deflemask furnace
     # non lmms ardour

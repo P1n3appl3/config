@@ -90,8 +90,9 @@ bindsym $mod+Shift+$up    move up
 bindsym $mod+Shift+$right move right
 bindsym $mod+Ctrl+Shift+$left  move workspace to output left
 bindsym $mod+Ctrl+Shift+$right move workspace to output right
-bindgesture swipe:up workspace back_and_forth
-bindgesture swipe:down workspace back_and_forth
+bindsym $mod+Ctrl+Shift+$up  move workspace to output up
+bindsym $mod+Ctrl+Shift+$down move workspace to output down
+# bindgesture swipe:up workspace back_and_forth
 bindgesture hold:4 workspace back_and_forth
 bindsym $mod+Tab workspace $wsT
 bindsym $mod+Grave workspace $ws0
@@ -128,6 +129,10 @@ client.urgent            $urgent   $urgent   $base  $urgent   $urgent
 client.background        $base
 
 output * bg $base solid_color
+input * {
+    repeat_delay 240
+    repeat_rate 30
+}
 
 titlebar_border_thickness 0
 titlebar_padding 5 0

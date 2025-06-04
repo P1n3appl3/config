@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    git-lfs # git-absorb jujutsu git-branchless
+    git-lfs # git-absorb git-branchless
     git-heatmap git-undeadname
     gh
     onefetch
@@ -32,6 +32,10 @@
           navigate = true;
         };
       };
+    };
+
+    jujutsu = {
+      enable = true;
     };
   };
 }

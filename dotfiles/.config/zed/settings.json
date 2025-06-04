@@ -50,6 +50,7 @@
     "use_system_clipboard": "on_yank"
   },
   "vim_mode": true,
+  "vim": { "use_system_clipboard": "on_yank" },
   "restore_on_startup": "none",
   "load_direnv": "shell_hook",
   "terminal": {

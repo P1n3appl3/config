@@ -15,11 +15,12 @@
         # fifc
      ]);
     };
-          fzf.enable = true;
-        atuin.enable = true;
-       zoxide.enable = true;
-       direnv.enable = true;
-     starship.enable = true;
+              fzf.enable = true;
+            atuin.enable = true;
+           zoxide.enable = true;
+           direnv.enable = true;
+         starship.enable = true;
+     pay-respects.enable = true;
 
      ghostty.enableFishIntegration = true;
      kitty.shellIntegration.enableFishIntegration = true;
