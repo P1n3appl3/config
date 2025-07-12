@@ -8,6 +8,7 @@
     inkscape krita pinta oculante aseprite
     gthumb
     helio-workstation
+    musescore
     # deflemask furnace
     # non lmms ardour
     audacity # (or tenacity)

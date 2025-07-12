@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, lib,  config, ... }: {
   home.packages = with pkgs; [
     steam
     itch wine64
@@ -17,7 +17,7 @@
     osu-lazer-bin
     clonehero # TODO: make ~/.clonehero point to games subvol
 
-    apotris
+    # apotris
     openttd
     space-cadet-pinball
     openspades
@@ -33,11 +33,11 @@
     sameboy mgba melonDS
 
     pokefinder eontimer
-    pokemmo-installer
 
     slipstream # ftl mods
     r2mod_cli # risk of rain 2 mods
-    everest-mons # celeste mods
+    olympus everest-mons # celeste mods
+    nexusmods-app-unfree # bg3 mods
   ];
 
   # programs.fightcade = { enable = true;

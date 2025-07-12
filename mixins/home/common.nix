@@ -5,7 +5,7 @@
     # Utils
     fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine heh
     tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs rage
-    exiftool resvg get-keys vivid pipe-rename static-web-server
+    exiftool resvg get-keys vivid pipe-rename static-web-server cached-path
     ascii unicode-paracode sequin pay-respects
     micro helix
     # Munge

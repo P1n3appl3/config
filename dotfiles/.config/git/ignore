@@ -11,3 +11,4 @@ rust-analyzer.json
 result
 .rustfmt.toml
 .direnv
+.cache

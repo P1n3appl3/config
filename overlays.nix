@@ -28,6 +28,7 @@ inputs: final: prev: {
     patches = [];
   };
 
+  # # for oneko
   # sway = prev.sway.overrideAttrs (old: {
   #   patches = (old.patches or []) ++ [ (final.fetchpatch {
   #       url = "https://catgirl.ai/log/sway-spy/spy.patch";

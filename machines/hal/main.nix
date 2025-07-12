@@ -23,6 +23,7 @@
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
         vscode
         nitrogen
+        nasa-wallpaper
       ];
 
       systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
@@ -106,12 +107,21 @@
     displayManager.defaultSession = "none+i3";
     flatpak.enable = true;
     openssh.enable = true;
-    # udev.packages = [ pkgs.input-integrity ];
+    udev.packages = [
+      # pkgs.xr-hardware
+      # pkgs.input-integrity
+    ];
     udev.extraRules = ''
       SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"
       SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="102b", MODE="0666"
     '';
+
+    # monado = {
+    #   enable = true;
+    #   defaultRuntime = true;
+    # };
   };
+  # systemd.user.services.monado.environment = { STEAMVR_LH_ENABLE = "1"; XRT_COMPOSITOR_COMPUTE = "1"; };
 
   environment.pathsToLink = [ "/libexec" ];
 

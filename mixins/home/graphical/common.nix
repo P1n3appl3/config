@@ -52,6 +52,7 @@ in {
     transmission_4-gtk
     heaptrack
     (nixGL meld)
+    rustdesk
   ];
 
   programs = {

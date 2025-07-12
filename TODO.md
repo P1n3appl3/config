@@ -220,6 +220,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 - https://github.com/chrisduerr/sketch
 - https://github.com/Journeycorner/systemd-gtk or https://github.com/pyxvlad/services-gui
 - https://github.com/ardaku/whoami
+- https://github.com/zquestz/s
 
 ## Other
 

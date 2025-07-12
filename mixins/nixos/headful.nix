@@ -5,6 +5,7 @@
     glib
     unrar-free
     jmtpfs
+    adwaita-icon-theme # seems to fix gsettings schema bug for some reason
   ];
 
   programs.dconf.enable = true;

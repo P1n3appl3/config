@@ -6,9 +6,13 @@
       "cmd-o": "projects::OpenRecent",
       "cmd-O": "workspace::Open",
       "alt-h": "workspace::ActivatePaneLeft",
+      "alt-shift-h": "workspace::SwapPaneLeft",
       "alt-l": "workspace::ActivatePaneRight",
+      "alt-shift-l": "workspace::SwapPaneRight",
       "alt-k": "workspace::ActivatePaneUp",
+      "alt-shift-k": "workspace::SwapPaneUp",
       "alt-j": "workspace::ActivatePaneDown",
+      "alt-shift-j": "workspace::SwapPaneDown",
       "ctrl-m": "collab::Mute"
     }
   },
@@ -116,11 +120,7 @@
 
       ", =": "editor::Format",
       "tab": "editor::SelectLargerSyntaxNode",
-      "shift-tab": "editor::SelectSmallerSyntaxNode",
-
-      // TODO: not working try different mode and make this one do sendkeys / + <c-/>
-      // so it does search and replace straight from normal mode
-      "ctrl-/": "search::ToggleReplace"
+      "shift-tab": "editor::SelectSmallerSyntaxNode"
     }
   },
   // TODO: fix this in diff/diagnostics where you want to enter text. need vim_mode conditions?
@@ -137,7 +137,7 @@
       "space tab": ["workspace::SendKeystrokes", "ctrl-tab enter"],
       "space q q": "zed::Quit",
       "space F": "file_finder::Toggle",
-      // "space l": ["pane::DeploySearch", { "only_open_enabled": true }],
+      // "space l": ["pane::DeploySearch", { "open_files": true }],
       // space l for ^ +
       // "space n": "TODO: open colab notes",
       "space w": ["workspace::SendKeystrokes", "ctrl-w"],
@@ -159,6 +159,28 @@
     "bindings": {
       "tab": "pane::ActivateNextItem",
       "shift-tab": "pane::ActivatePreviousItem"
+    }
+  },
+  {
+    "context": "ProjectSearchBar || BufferSearchBar",
+    "bindings": {
+      "ctrl-r": "search::ToggleReplace",
+      "ctrl-w": "search::ToggleWholeWord",
+      "ctrl-x": "search::ToggleRegex",
+      "ctrl-i": "search::ToggleIncludeIgnored",
+      "ctrl-s": "search::ToggleCaseSensitive",
+      "ctrl-m": "search::SelectAllMatches",
+      "ctrl-f": "project_search::ToggleFilters"
+    }
+  },
+  {
+    "context": "(ProjectSearchBar || BufferSearchBar) > Editor",
+    "bindings": { "ctrl-x": "search::ToggleRegex" }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-/": ["workspace::SendKeystrokes", "/ ctrl-r"]
     }
   }
 ]

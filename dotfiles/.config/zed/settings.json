@@ -9,7 +9,7 @@
   "project_panel": { "dock": "right" },
   "toolbar": { "selections_menu": false, "quick_actions": true },
   "tab_bar": {
-    "show": true,
+    "show": false,
     "show_nav_history_buttons": false,
     "show_tab_bar_buttons": false
   },
@@ -23,13 +23,13 @@
   // "ui_font_fallbacks": ["Symbols Nerd Font"],
   // "buffer_font_fallbacks": ["Symbols Nerd Font"],
   "preferred_line_length": 92,
-  "theme": "Catppuccin Mocha (blue)",
+  "theme": "Catppuccin Mocha",
   "icon_theme": "Catppuccin Mocha",
   "gutter": {
     "line_numbers": false,
     "folds": false,
     "code_actions": false,
-    "runnables": true,
+    "runnables": false,
     "breakpoints": true
   },
   "minimap": { "show": "never", "current_line_highlight": "gutter" },
@@ -41,7 +41,7 @@
     "show_user_picture": false
   },
   "experimental.theme_overrides": {
-    "editor.gutter.background": "#000000"
+    "editor.gutter.background": "#2e2e3e"
   },
 
   // general functionality
@@ -50,7 +50,6 @@
     "use_system_clipboard": "on_yank"
   },
   "vim_mode": true,
-  "vim": { "use_system_clipboard": "on_yank" },
   "restore_on_startup": "none",
   "load_direnv": "shell_hook",
   "terminal": {
@@ -79,7 +78,10 @@
   },
   "lsp": {
     "rust-analyzer": {
-      // "cargo": { "buildScripts": { "enable": false } },
+      "cargo": {
+        // "buildScripts": { "enable": false },
+        "features": "all"
+      },
       "initialization_options": {
         // "cachePriming": { "enable": false }
         "files": { "watcher": "server" },
@@ -126,6 +128,8 @@
     "nix": true,
     "lua": true,
     "ruff": true,
+    "ty": true,
+    "kdl": true,
     "assembly": true,
     "typst": true
   },

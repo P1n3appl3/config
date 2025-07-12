@@ -1,11 +1,11 @@
 { fetchFromGitHub, rustPlatform, lib }: rustPlatform.buildRustPackage rec {
   pname = "barchart";
-  version = "2024-04-15";
+  version = "2025-05-02";
   src = fetchFromGitHub {
     owner = "jez";
     repo = pname;
-    rev = "55c47d922f5fa5262c4bb4f75aa228964e1b70f2";
-    hash = "sha256-M++O6Vu4P8A/a5fXbCKfTgk+MzJNCK43oand602iDqw=";
+    rev = "18993469ebc950adf666b2e0a036bbe6c9b98e0c";
+    hash = "sha256-kNBv6ah+E29WN7cjBQgpJ54io8taj70badd2hfjEauU=";
   };
 
   cargoHash = "sha256-3sPVuH6whybCkDUFXTsjd3jlnUP1axk1G3HetSF4ayM=";

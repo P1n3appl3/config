@@ -40,6 +40,7 @@ config 🍍 nix flake show
     ├───lowcharts: draw plots and histograms in the terminal
     ├───m-overlay: gamecube input visualizer for dolphin
     ├───melee-quick-mod: ssbm texture patcher
+    ├───nasa-wallpaper: show nasa pictures of the day as wallpaper
     ├───posting: http api explorer
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy

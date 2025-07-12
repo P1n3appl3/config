@@ -14,6 +14,7 @@
         # fzf or fzf.fish if default integration isn't enough
         # fifc
      ]);
+     # extraConfig = "";
     };
               fzf.enable = true;
             atuin.enable = true;
