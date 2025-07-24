@@ -3,6 +3,8 @@
     "bindings": {
       "ctrl-.": "zed::OpenKeymap",
       "cmd-.": "zed::OpenKeymap",
+      "ctrl-shift-,": "zed::OpenProjectSettings",
+      "cmd-shift-,": "zed::OpenProjectSettings",
       "cmd-o": "projects::OpenRecent",
       "cmd-O": "workspace::Open",
       "alt-h": "workspace::ActivatePaneLeft",
@@ -12,23 +14,20 @@
       "alt-k": "workspace::ActivatePaneUp",
       "alt-shift-k": "workspace::SwapPaneUp",
       "alt-j": "workspace::ActivatePaneDown",
-      "alt-shift-j": "workspace::SwapPaneDown",
+      "alt-shift-h": ["workspace::MoveItemToPaneInDirection", { "direction": "left" }],
+      "alt-shift-l": ["workspace::MoveItemToPaneInDirection", { "direction": "right" }],
+      "alt-shift-k": ["workspace::MoveItemToPaneInDirection", { "direction": "up" }],
+      "alt-shift-j": ["workspace::MoveItemToPaneInDirection", { "direction": "down" }],
       "ctrl-m": "collab::Mute"
     }
   },
-  // {
-  //   "context": "Terminal",
-  //   "bindings": {
-  //     "alt-k": "workspace::ActivateNextPane"
-  //   }
-  // },
   {
     "context": "Pane",
     "bindings": {
-      "cmd-k up": "pane::SplitUp",
-      "cmd-k down": "pane::SplitDown",
-      "cmd-k left": "pane::SplitLeft",
-      "cmd-k right": "pane::SplitRight"
+      "cmd-k k": "pane::SplitUp",
+      "cmd-k j": "pane::SplitDown",
+      "cmd-k h": "pane::SplitLeft",
+      "cmd-k l": "pane::SplitRight"
     }
   },
   {
@@ -129,6 +128,7 @@
     "bindings": {
       "space space": "command_palette::Toggle",
       "space b": "tab_switcher::ToggleAll",
+      "space B": "editor::ToggleTabBar",
       "space d": "pane::CloseActiveItem",
       "space r g": "pane::DeploySearch",
       // "space r g": "project_search::ToggleFocus",
@@ -136,6 +136,8 @@
       "space f o": "workspace::FollowNextCollaborator",
       "space tab": ["workspace::SendKeystrokes", "ctrl-tab enter"],
       "space q q": "zed::Quit",
+      "space o": "workspace::Open",
+      "space f f": "workspace::Open",
       "space F": "file_finder::Toggle",
       // "space l": ["pane::DeploySearch", { "open_files": true }],
       // space l for ^ +

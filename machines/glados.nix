@@ -37,10 +37,6 @@
         NSDocumentSaveNewDocumentsToCloud = false;
         "com.apple.mouse.tapBehavior" = 1; # how does this interact with trackpad setting?
       };
-      alf = {
-        allowdownloadsignedenabled = 1;
-        allowsignedenabled = 1;
-      };
       controlcenter = {
         BatteryShowPercentage = true;
         Display = true;
@@ -105,15 +101,21 @@
     home.packages = with pkgs; [
       karabiner-elements.driver kanata-with-cmd skhd keycastr
       stats hidden-bar # itsycal # https://github.com/NixOS/nixpkgs/issues/377645
+      betterdisplay
       meld
       utm
       duti
       coreutils # TODO: uutils?
-      nixos-rebuild-ng # for deploying to Cortana
+      # nixos-rebuild-ng # for deploying to Cortana
 
       obsidian
       kitty
       telegram-desktop
+      nushell
+
+      # work stuff
+      go gopls # for testing go tooling in zed
+      sentry-cli minidump-stackwalk minidump-debugger
     ];
 
     dev.compilers = false;
@@ -156,6 +158,10 @@
     knownNetworkServices = [ "Thunderbolt Ethernet Slot 0" "Thunderbolt Bridge" "Wi-Fi" ];
     dns = [ "1.1.1.1" "8.8.8.8" ];
     computerName = "GLaDOS"; hostName = "GLaDOS";
+    applicationFirewall = {
+      allowSigned = true;
+      allowSignedApp = true;
+    };
   };
 
   nixpkgs = {

@@ -2,7 +2,7 @@ inputs: final: prev: {
   eza = prev.eza.overrideAttrs (old: {
     patches = (old.patches or []) ++ [ (final.fetchpatch {
       url = "https://github.com/eza-community/eza/compare/main...P1n3appl3:eza:main.diff";
-      hash = "sha256-TZnwIM8S4c0WeJtLEG1tFoKhqgMcE9top1S7Z7s9LeA=";
+      hash = "sha256-qYe0Vax+OQSjS9td3jOJ6OcxQiNxaCrTUf3mC3grjro=";
     }) ];
     doCheck = false;
   });

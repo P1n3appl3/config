@@ -7,14 +7,18 @@
   "collaboration_panel": { "dock": "right" },
   "outline_panel": { "dock": "right" },
   "project_panel": { "dock": "right" },
-  "toolbar": { "selections_menu": false, "quick_actions": true },
+  "debugger": { "dock": "right" },
+  "toolbar": { "selections_menu": false, "quick_actions": false },
   "tab_bar": {
     "show": false,
     "show_nav_history_buttons": false,
     "show_tab_bar_buttons": false
   },
   "tabs": { "git_status": true },
-  "preview_tabs": { "enabled": false, "enable_preview_from_code_navigation": true },
+  "preview_tabs": {
+    "enabled": false,
+    "enable_preview_from_code_navigation": true
+  },
   "vertical_scroll_margin": 6,
   "ui_font_size": 14,
   "buffer_font_size": 13.0,
@@ -23,33 +27,33 @@
   // "ui_font_fallbacks": ["Symbols Nerd Font"],
   // "buffer_font_fallbacks": ["Symbols Nerd Font"],
   "preferred_line_length": 92,
-  "theme": "Catppuccin Mocha",
+  "theme": "Catppuccin Mocha (blue)",
   "icon_theme": "Catppuccin Mocha",
   "gutter": {
     "line_numbers": false,
     "folds": false,
-    "code_actions": false,
     "runnables": false,
     "breakpoints": true
   },
+  "inline_code_actions": false,
   "minimap": { "show": "never", "current_line_highlight": "gutter" },
   "current_line_highlight": "gutter",
   "indent_guides": { "enabled": false },
   "title_bar": {
     "show_sign_in": false,
-    "show_branch_icon": true,
-    "show_user_picture": false
+    "show_user_picture": false,
+    "show_branch_icon": true
   },
   "experimental.theme_overrides": {
     "editor.gutter.background": "#2e2e3e"
   },
 
   // general functionality
+  "vim_mode": true,
   "vim": {
     // "default_mode": "helix_normal",
     "use_system_clipboard": "on_yank"
   },
-  "vim_mode": true,
   "restore_on_startup": "none",
   "load_direnv": "shell_hook",
   "terminal": {
@@ -58,6 +62,8 @@
     "env": {
       "GIT_EDITOR": "zed --wait"
     }
+    // "shell": {"program": "nu"}
+    // "shell": {"program": "fish"}
   },
   "format_on_save": "off",
   "middle_click_paste": false,
@@ -65,8 +71,13 @@
     "toggle_on_modifiers_press": { "alt": true }
   },
   "search": {
-    "regex": true
+    "regex": true,
+    "button": false
   },
+  "file_scan_exclusions": [
+    "crates/agent_ui" // ai stuff from work that always shows up in search results since "agent" is alphabetically early
+  ],
+
   // language support
   "languages": {
     "Rust": {},
@@ -76,6 +87,7 @@
     "JavaScript": { "tab_size": 4 },
     "Proto": { "enable_language_server": false }
   },
+
   "lsp": {
     "rust-analyzer": {
       "cargo": {
@@ -83,13 +95,16 @@
         "features": "all"
       },
       "initialization_options": {
+        // "checkOnSave": false,
         // "cachePriming": { "enable": false }
-        "files": { "watcher": "server" },
-        // "checkOnSave": true,
-        "check": { "workspace": false, "command": "clippy" },
+        // "files": { "watcher": "server" },
+        "check": {
+          "workspace": false
+          // "command": "clippy"
+        },
         "diagnostics": {
-          // "enable": false,
-          "experimental": { "enable": false }
+          "enable": false
+          // "experimental": { "enable": true }
         }
       }
     },
@@ -100,19 +115,20 @@
     }
   },
 
-  // disable AI
+  // ai
   "agent": {
-    "enabled": false,
-    "button": false,
+    "default_profile": "ask",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-7-sonnet-thinking-latest"
-    },
-    "version": "2"
+      "model": "claude-sonnet-4"
+    }
   },
-  "show_edit_predictions": false,
-  "features": { "edit_prediction_provider": "none" },
-  "edit_predictions": { "mode": "subtle" },
+  "show_edit_predictions": true,
+  "features": { "edit_prediction_provider": "zed" },
+  "edit_predictions": {
+    "mode": "subtle",
+    "disabled_globs": ["*.md"]
+  },
 
   //extensions
   "auto_install_extensions": {
@@ -140,25 +156,29 @@
       "host": "HAL",
       "args": ["-J", "julia.blue"],
       "projects": [
-        {
-          "paths": ["~/config"]
-        },
-        {
-          "paths": ["~/dev/website"]
-        },
-        {
-          "paths": ["~/dev/zed"]
-        }
+        { "paths": ["~/config"] },
+        { "paths": ["~/dev/tetris"] },
+        { "paths": ["~/dev/website"] },
+        { "paths": ["~/dev/zed"] }
       ]
     }
   ],
 
   // conditional
   "dev": {
-    // "smooth_scroll": true,
-    // "smooth_scroll_duration": 0.1
+    "experimental.theme_overrides": {
+      "title_bar.background": "#903050"
+    }
   },
-  "nightly": {},
-  "preview": {},
+  "nightly": {
+    "experimental.theme_overrides": {
+      "version_control.ignored": "#123456"
+    }
+  },
+  "preview": {
+    "experimental.theme_overrides": {
+      "title_bar.background": "#397CE1"
+    }
+  },
   "stable": {}
 }

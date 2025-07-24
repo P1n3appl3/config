@@ -1,0 +1,37 @@
+[settings]
+
+animate = true
+default_disable = true
+focus_follows_mouse = false
+mouse_follows_focus = false
+mouse_hides_on_focus = true
+
+[keys]
+"Alt + Z" = "toggle_space_activated"
+
+"Alt + H" = { move_focus = "left" }
+"Alt + J" = { move_focus = "down" }
+"Alt + K" = { move_focus = "up" }
+"Alt + L" = { move_focus = "right" }
+"Alt + Shift + H" = { move_node = "left" }
+"Alt + Shift + J" = { move_node = "down" }
+"Alt + Shift + K" = { move_node = "up" }
+"Alt + Shift + L" = { move_node = "right" }
+
+"Alt + A" = "ascend"
+"Alt + D" = "descend"
+
+"Alt + Backslash" = { split = "horizontal" }
+"Alt + Equal" = { split = "vertical" }
+"Alt + T" = { group = "horizontal" }
+"Alt + S" = { group = "vertical" }
+"Alt + E" = "ungroup"
+"Alt + Shift + Space" = "toggle_window_floating"
+"Alt + Space" = "toggle_focus_floating"
+"Alt + F" = "toggle_fullscreen"
+
+# Developer commands
+"Alt + Shift + E" = "save_and_exit"
+"Alt + Shift + D" = "debug"
+"Alt + M" = "show_timing"
+"Alt + Shift + S" = "serialize"

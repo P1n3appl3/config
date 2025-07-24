@@ -124,8 +124,9 @@
 ["Imran Nazar"        "imrannazar.com"                      "/rss.xml"]
 ["Fabien Sanglard"    "fabiensanglard.net"                  "/rss.xml"]
 ["Alex Chan"          "alexwlchan.net"                      "/atom.xml"]
+["Dave Gauer"         "ratfactor.com"                       "/atom.xml"]
 
-# ["Julia Violet"       "juliaviolet.dev"                     "N/A"]
+# ["Julia Violet"       "juliaviolet.dev"                     "???"]
 # ["nan.fyi"            "nan.fyi"                             "???"]
 
 # TODO: parse yyyy-mm-dd dates

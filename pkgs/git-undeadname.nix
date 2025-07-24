@@ -5,7 +5,7 @@
     read -r -p "please give me your new name: " newname
     for _ in {1..3}; do sleep 0.25 && echo -n "."; done
     echo -n " wow " && sleep 0.25
-    echo -n "\"$newname\" " | gay -t
+    echo -n "\"$newname\" " | gay -tu
     echo "is such a pretty name! i love it ^.^" && sleep 0.5
     read -rs -p "now could i have your old email (dw i wont look >.<): " oldemail
     echo ""

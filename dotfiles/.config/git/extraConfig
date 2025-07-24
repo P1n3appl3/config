@@ -1,7 +1,7 @@
 # vim:ft=gitconfig
 [user]
     name = Julia Ryan
-    email = p1n3appl3@users.noreply.github.com
+    email = juliaryan3.14@gmail.com
 	signingkey = ~/.ssh/id_ed25519.pub
 [alias]
     b = branch
