@@ -74,9 +74,6 @@
     "regex": true,
     "button": false
   },
-  "file_scan_exclusions": [
-    "crates/agent_ui" // ai stuff from work that always shows up in search results since "agent" is alphabetically early
-  ],
 
   // language support
   "languages": {

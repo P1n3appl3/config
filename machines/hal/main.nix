@@ -101,8 +101,8 @@
       # also add 2nd monitor
       # also try ly
       displayManager.lightdm.greeters.gtk.extraConfig = ''
-      background = "~/images/wallpapers/waneella_landscape/'053_Birds and Lanterns.webp"
-    '';
+        background = "~/images/wallpapers/waneella_landscape/053_Birds and Lanterns.webp"
+      '';
     };
     displayManager.defaultSession = "none+i3";
     flatpak.enable = true;

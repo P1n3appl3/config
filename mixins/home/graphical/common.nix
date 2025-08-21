@@ -13,7 +13,7 @@ in {
     nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
-    ffmpeg (nixGL imv) vlc
+    ffmpeg (nixGL oculante) vlc
     vial # TODO: check if I need via too
     # gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura

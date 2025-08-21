@@ -45,7 +45,7 @@
     ./git.nix ./nvim.nix ./htop.nix ./bash.nix ./fish.nix
     (if builtins.hasAttr "osConfig" args then {} else
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
-    inputs.nix-index-database.hmModules.nix-index
+    inputs.nix-index-database.homeModules.nix-index
     inputs.ragenix.homeManagerModules.default
     inputs.catppuccin.homeModules.catppuccin
   ];

@@ -62,6 +62,6 @@ in {
     ] []) // { shell = pkgs.fish; };
     yaah = (user [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvDoWAmF3JupYvTTSSA084bPdmYWUrIlK66r9QL2JlD"
-    ]);
+    ] []);
   };
 }

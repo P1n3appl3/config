@@ -28,7 +28,7 @@ format = " $icon $temp "
 format_alt = " $icon $temp {({$temp_fmin}-{$temp_fmax}) |}"
 autolocate = true
 autolocate_interval = "once"
-service = { name = "openweathermap", units = "imperial", forecast_hours = 24 }
+service = { name = "metno" }
 
 [[block]]
 block = "memory"

@@ -18,6 +18,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   programs = {
+    fish.enable = true;
     zsh = { enable = true; enableCompletion = false; };
     command-not-found.enable = false;
     bandwhich.enable = true;
