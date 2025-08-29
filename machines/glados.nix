@@ -106,7 +106,7 @@
       utm
       duti
       coreutils # TODO: uutils?
-      # nixos-rebuild-ng # for deploying to Cortana
+      nixos-rebuild-ng # for deploying to Cortana
 
       obsidian
       kitty

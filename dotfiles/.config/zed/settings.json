@@ -8,6 +8,7 @@
   "outline_panel": { "dock": "right" },
   "project_panel": { "dock": "right" },
   "debugger": { "dock": "right" },
+  "bottom_dock_layout": "full",
   "toolbar": { "selections_menu": false, "quick_actions": false },
   "tab_bar": {
     "show": false,
@@ -27,13 +28,22 @@
   // "ui_font_fallbacks": ["Symbols Nerd Font"],
   // "buffer_font_fallbacks": ["Symbols Nerd Font"],
   "preferred_line_length": 92,
-  "theme": "Catppuccin Mocha (blue)",
-  "icon_theme": "Catppuccin Mocha",
+  // "buffer_line_height": "standard",
+  "theme": {
+    "mode": "dark",
+    "light": "Catppuccin Mocha (blue)",
+    "dark": "Catppuccin Mocha (blue)"
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Mocha",
+    "dark": "Catppuccin Mocha"
+  },
   "gutter": {
     "line_numbers": false,
     "folds": false,
     "runnables": false,
-    "breakpoints": true
+    "breakpoints": false
   },
   "inline_code_actions": false,
   "minimap": { "show": "never", "current_line_highlight": "gutter" },
@@ -70,10 +80,14 @@
   "inlay_hints": {
     "toggle_on_modifiers_press": { "alt": true }
   },
+  "audio": {
+    "experimental.rodio_audio": true
+  },
   "search": {
     "regex": true,
     "button": false
   },
+  "auto_update": true, // for testing
 
   // language support
   "languages": {
@@ -87,21 +101,21 @@
 
   "lsp": {
     "rust-analyzer": {
-      "cargo": {
-        // "buildScripts": { "enable": false },
-        "features": "all"
-      },
       "initialization_options": {
+        "cargo": {
+          // "buildScripts": { "enable": false },
+          "features": "all"
+        },
         // "checkOnSave": false,
         // "cachePriming": { "enable": false }
         // "files": { "watcher": "server" },
         "check": {
+          // "command": "clippy",
           "workspace": false
-          // "command": "clippy"
         },
         "diagnostics": {
+          // "experimental": { "enable": true },
           "enable": false
-          // "experimental": { "enable": true }
         }
       }
     },
@@ -114,10 +128,11 @@
 
   // ai
   "agent": {
-    "default_profile": "ask",
+    "always_allow_tool_actions": true,
+    "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "model": "claude-3-7-sonnet"
     }
   },
   "show_edit_predictions": true,
@@ -141,7 +156,7 @@
     "nix": true,
     "lua": true,
     "ruff": true,
-    "ty": true,
+    // "ty": true, // enable when fixed? or switch our python extension in-tree to use it
     "kdl": true,
     "assembly": true,
     "typst": true
@@ -154,7 +169,6 @@
       "args": ["-J", "julia.blue"],
       "projects": [
         { "paths": ["~/config"] },
-        { "paths": ["~/dev/tetris"] },
         { "paths": ["~/dev/website"] },
         { "paths": ["~/dev/zed"] }
       ]
@@ -162,6 +176,14 @@
   ],
 
   // conditional
+  "windows": {
+    "theme": "Catppuccin Mocha"
+  },
+  "macos": {},
+  "linux": {
+    "theme": "Catppuccin Mocha"
+  },
+
   "dev": {
     "experimental.theme_overrides": {
       "title_bar.background": "#903050"

@@ -125,6 +125,7 @@
 ["Fabien Sanglard"    "fabiensanglard.net"                  "/rss.xml"]
 ["Alex Chan"          "alexwlchan.net"                      "/atom.xml"]
 ["Dave Gauer"         "ratfactor.com"                       "/atom.xml"]
+["Joshua Barretto"    "blog.jsbarretto.com"                 "/rss.xml"]
 
 # ["Julia Violet"       "juliaviolet.dev"                     "???"]
 # ["nan.fyi"            "nan.fyi"                             "???"]

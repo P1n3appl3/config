@@ -9,7 +9,7 @@
     yt-dlp ytmdl spotdl
     media-downloader
 
-    picard tageditor kid3 puddletag
+    picard kid3 puddletag # onetagger tageditor
 
     strawberry
   ];

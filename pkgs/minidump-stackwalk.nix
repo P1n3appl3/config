@@ -1,12 +1,4 @@
-{
-  lib,
-  rustPlatform,
-  fetchFromGitHub,
-  stdenv,
-  darwin,
-}:
-
-rustPlatform.buildRustPackage rec {
+{ lib, rustPlatform, fetchFromGitHub }: rustPlatform.buildRustPackage rec {
   pname = "minidump-stackwalk";
   version = "0.26.0";
 
@@ -18,11 +10,6 @@ rustPlatform.buildRustPackage rec {
   };
 
   cargoHash = "sha256-M8v8VVeWfA/WlhUmQnhy1EQ7gSMK4SvE+EVPI68JyRs=";
-
-  buildInputs = lib.optionals stdenv.isDarwin [
-    darwin.apple_sdk.frameworks.CoreServices
-    darwin.apple_sdk.frameworks.Security
-  ];
 
   meta = {
     description = "A CLI frontend providing both machine-readable and human-readable digests of a minidump";

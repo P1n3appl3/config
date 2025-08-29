@@ -42,7 +42,7 @@ in {
     # TODO: https://gitlab.freedesktop.org/rncbc/qpwgraph
     nixgl.nixGLIntel # nixgl.nixVulkanIntel
     glxinfo vulkan-tools
-    firmware-updater gnome-firmware firmware-manager # TODO: pick one
+    firmware-updater gnome-firmware # firmware-manager # TODO: pick one
     graphviz
     libnotify
     warp

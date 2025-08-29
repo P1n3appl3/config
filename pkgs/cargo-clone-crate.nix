@@ -1,18 +1,17 @@
-{ lib, rustPlatform, fetchFromGitHub, pkg-config, openssl, stdenv, darwin }:
+{ lib, rustPlatform, fetchFromGitHub, pkg-config, openssl }:
 rustPlatform.buildRustPackage rec {
   pname = "cargo-clone-crate";
-  version = "2024-04-19";
+  version = "2025-04-07";
   src = fetchFromGitHub {
     owner = "ehuss";
     repo = pname;
-    rev = "a72cf51c424e57c16327f3713b890e8c28757d86";
-    hash = "sha256-DfDp2wUNUy/1/kZMQr/arCgPQhSE5UrHZ/Mq/jMo/Kk=";
+    rev = "712f27d75dbb05259508e988b524e1d24e610dbd";
+    hash = "sha256-jHYVR9O/FAyVTmcDKzBNp24TUGoF+IRgbg0MBc8nVOk=";
   };
-  cargoHash = "sha256-gfo2g6UhdPsMEcFpJIu26NHyw29AIdMvc295S2iz0Vo=";
+  cargoHash = "sha256-1kzImZEhf+pgFggH093c6uEb1MxUvP766Uhyo3kD1DA=";
 
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ openssl ] ++ lib.optionals stdenv.isDarwin
-    (with darwin.apple_sdk.frameworks; [ Security SystemConfiguration ]);
+  buildInputs = [ openssl ];
 
   doCheck = false; # it tries to run `git clone` in tests
   meta = {

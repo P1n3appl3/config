@@ -1,4 +1,4 @@
-{ lib, rustPlatform, fetchFromGitHub, stdenv, darwin }:
+{ lib, rustPlatform, fetchFromGitHub }:
 rustPlatform.buildRustPackage rec {
   pname = "nasa-wallpaper";
   version = "2.1.1";
@@ -16,11 +16,6 @@ rustPlatform.buildRustPackage rec {
       "wallpaper-3.2.0" = "sha256-r5LemvZjkwNJIOOr/ihLb1xqiV/PtZeTz2WbTo6/IxA=";
     };
   };
-
-  buildInputs = lib.optionals stdenv.isDarwin [
-    darwin.apple_sdk.frameworks.Security
-    darwin.apple_sdk.frameworks.SystemConfiguration
-  ];
 
   meta = {
     description = "Change your desktop background with a NASA image";

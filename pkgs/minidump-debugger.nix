@@ -1,4 +1,4 @@
-{ lib, rustPlatform, stdenv, darwin, fetchFromGitHub, pkg-config,
+{ lib, rustPlatform, stdenv, fetchFromGitHub, pkg-config,
   wrapGAppsHook, atk, cairo, gdk-pixbuf, glib, gtk3, libxkbcommon,
   pango, wayland }: rustPlatform.buildRustPackage rec {
   pname = "minidump-debugger";
@@ -21,9 +21,7 @@
 
   buildInputs = [
     atk cairo gdk-pixbuf glib gtk3 libxkbcommon pango
-  ] ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk.frameworks; [
-    AppKit CoreGraphics CoreServices Foundation Security SystemConfiguration
-  ]) ++ lib.optionals stdenv.isLinux [
+  ] ++ lib.optionals stdenv.isLinux [
     wayland
   ];
 

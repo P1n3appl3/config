@@ -14,7 +14,7 @@
     onefetch
 
     cargo-edit cargo-nextest cargo-mommy cargo-feature cargo-expand cargo-clone-crate
-    cargo-udeps cargo-audit cargo-modules cargo-bloat cargo-binutils cargo-show-asm
+    cargo-udeps cargo-audit cargo-modules cargo-bloat cargo-show-asm # cargo-binutils
     taplo
     # term-rustdoc
 
@@ -23,7 +23,7 @@
 
     (writeShellScriptBin "uv" ''env UV_PYTHON_PREFERENCE=only-system \
       UV_PYTHON="${python3}" ${lib.getExe uv} $@'')
-    (lib.lowPrio uv) ruff pyright (python3.withPackages (p: with p; [ debugpy ]))
+    (lib.lowPrio uv) ruff pyright ty (python3.withPackages (p: with p; [ debugpy ]))
     beancount-language-server
     asmfmt nasmfmt
     nurl nix-init

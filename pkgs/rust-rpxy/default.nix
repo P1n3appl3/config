@@ -1,4 +1,4 @@
-{ lib, stdenv, darwin, fetchFromGitHub, rustPlatform, perl }:
+{ fetchFromGitHub, rustPlatform, perl }:
 rustPlatform.buildRustPackage rec {
   pname = "rust-rpxy";
   version = "0.8.0";
@@ -15,7 +15,6 @@ rustPlatform.buildRustPackage rec {
   });
 
   nativeBuildInputs = [ perl ];
-  buildInputs = lib.optionals stdenv.isDarwin [ darwin.Security ];
 
   # TODO: go back to rustls when it works
   buildNoDefaultFeatures = true;

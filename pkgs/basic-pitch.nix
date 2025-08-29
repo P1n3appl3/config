@@ -72,6 +72,7 @@ python311.pkgs.buildPythonApplication rec {
     description = "A lightweight yet powerful audio-to-MIDI converter with pitch bend detection";
     homepage = "https://github.com/spotify/basic-pitch";
     license = lib.licenses.asl20;
+    broken = true;
     platforms = [ "x86_64-linux" ]; # need coremltools for darwin support
   };
 }

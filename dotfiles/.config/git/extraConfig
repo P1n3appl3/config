@@ -8,6 +8,7 @@
     s = status
     c = commit --verbose
     ca = commit -a --verbose
+    can = commit --amend --no-edit
     cm = commit -m
     cam = commit -a -m
     caam = commit -a --amend
@@ -19,6 +20,7 @@
     new = switch -c
     pu = push -u
     fp = push --force-with-lease
+    rc = rebase --continue
     ll = "!log() { GIT_PAGER='less -+X' git log --pretty=\
 format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
 %Creset%<|(-1,trunc)%s\" $@; } ; log"

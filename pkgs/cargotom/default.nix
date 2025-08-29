@@ -1,5 +1,4 @@
 { lib, rustPlatform, fetchFromGitHub, pkg-config, libgit2, openssl, zlib, stdenv, darwin }:
-
 rustPlatform.buildRustPackage rec {
   pname = "cargotom";
   version = "0.15.2";

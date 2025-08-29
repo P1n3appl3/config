@@ -1,5 +1,4 @@
-{ lib, rustPlatform, fetchFromGitHub, stdenv, darwin }:
-rustPlatform.buildRustPackage rec {
+{ rustPlatform, fetchFromGitHub }: rustPlatform.buildRustPackage rec {
   pname = "rssfetch";
   version = "2024-07-06";
 
@@ -10,8 +9,4 @@ rustPlatform.buildRustPackage rec {
   };
 
   cargoHash = "sha256-11Zwam9bRVowESCKGxuyuHXteifUEGmXEPPnToUJxeg=";
-
-  buildInputs = lib.optionals stdenv.isDarwin [
-    darwin.apple_sdk.frameworks.Security
-  ];
 }

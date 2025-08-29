@@ -24,7 +24,7 @@ function ststatus {
 }
 
 alias sc=systemctl
-alias music=ncmpcpp
+alias music=rmpc
 function fontcheck {
     FC_DEBUG=4 pango-view -q -t $1 --font=${2:-sans} |&
         rg -or '$1' 'family: "([^"]+)"' | tail -1
@@ -33,7 +33,7 @@ function fontcheck {
 alias hm=home-manager
 alias nixlist='hm packages'
 function nixfind {
-    nix-locate --color=always -rt r -t x -t s --top-level $@ |
+    nix-locate --color=always -rt r -t x -t s $@ |
         sd '/nix/store/[^/\x1b]+' '' | sort
 }
 alias nixsize=nix-tree

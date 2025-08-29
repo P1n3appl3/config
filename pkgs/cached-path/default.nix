@@ -1,4 +1,4 @@
-{ lib, rustPlatform, fetchFromGitHub, pkg-config, bzip2, openssl, zstd, stdenv, darwin }:
+{ lib, rustPlatform, fetchFromGitHub, pkg-config, bzip2, openssl, zstd }:
 rustPlatform.buildRustPackage rec {
   pname = "cached-path";
   version = "0.8.1";
@@ -20,19 +20,8 @@ rustPlatform.buildRustPackage rec {
     ln -s ${./Cargo.lock} Cargo.lock
   '';
 
-  nativeBuildInputs = [
-    pkg-config
-  ];
-
-  buildInputs = [
-    bzip2
-    openssl
-    zstd
-  ] ++ lib.optionals stdenv.isDarwin [
-    darwin.apple_sdk.frameworks.Security
-    darwin.apple_sdk.frameworks.SystemConfiguration
-  ];
-
+  nativeBuildInputs = [ pkg-config ];
+  buildInputs = [ bzip2 openssl zstd ];
   env = {
     ZSTD_SYS_USE_PKG_CONFIG = true;
   };

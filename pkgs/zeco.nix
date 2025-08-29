@@ -1,6 +1,4 @@
-{ lib, rustPlatform, fetchFromGitHub, stdenv, darwin }:
-
-rustPlatform.buildRustPackage {
+{ rustPlatform, fetchFromGitHub }: rustPlatform.buildRustPackage {
   pname = "zeco";
   version = "2025-02-02";
 
@@ -12,11 +10,6 @@ rustPlatform.buildRustPackage {
   };
 
   cargoHash = "sha256-SG5HlsNtf6EL+iVlkLLKGioz/KefTpclnQystRlJZJM=";
-
-  buildInputs = lib.optionals stdenv.isDarwin [
-    darwin.apple_sdk.frameworks.Security
-    darwin.apple_sdk.frameworks.SystemConfiguration
-  ];
 
   meta = {
     description = "Zellij attach via the internet, end to end encrypted";

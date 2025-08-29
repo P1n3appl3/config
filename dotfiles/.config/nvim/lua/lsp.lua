@@ -52,6 +52,7 @@ local ra_settings = {
 local ra_log = vim.fn.tempname() .. "-rust-analyzer.log"
 vim.g.rustaceanvim = {
     capabilities = capabilities,
+    -- files = exclude_dirs = {}
     tools = { inlay_hints = { auto = false } },
     server = { default_settings = { ["rust-analyzer"] = ra_settings }, logfile = ra_log },
 }

@@ -9,7 +9,7 @@
     ascii unicode-paracode sequin pay-respects
     micro helix
     # Munge
-    jq pup choose datamash numbat lowcharts d-rs mawk csvlens
+    jq pup choose datamash numbat lowcharts d-rs mawk xan csvlens
     # System info
     btop procs smartmontools duf ncdu du-dust
     # Nix
@@ -28,12 +28,15 @@
       config.global.hide_env_diff = true;
     };
     ssh = { enable = true;
-      serverAliveInterval = 30;
-      controlPersist = "15h";
-      controlMaster = "auto";
-      compression = true;
       includes = [ "extra-config" ];
-      matchBlocks = {
+      enableDefaultConfig = false;
+      matchBlocks =  {
+        "*" = {
+          serverAliveInterval = 30;
+          controlPersist = "15h";
+          controlMaster = "auto";
+          compression = true;
+        };
         "pineapple.computer julia.blue Cortana" = {
           hostname = "%h"; user = "julia"; port = 69;
         };

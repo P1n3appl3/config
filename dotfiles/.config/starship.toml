@@ -50,7 +50,8 @@ untracked = "?"
 [nix_shell]
 format = '$symbol '
 # symbol = "❄️"
-symbol = "🧊"
+# symbol = "🧊"
+symbol = "󱄅"
 # heuristic broken with kitty https://github.com/NixOS/nix/issues/3862
 
 [palettes.catppuccin_mocha]

@@ -13,11 +13,11 @@
     fwupd.enable = true;
     logind = {
       lidSwitch = "suspend-then-hibernate";
-      extraConfig = ''
-        IdleAction=suspend-then-hibernate
-        IdleActionSec=10m
-      '';
       powerKey = "hibernate";
+      settings.Login = {
+        IdleAction = "suspend-then-hibernate";
+        IdleActionSec = "10m";
+      };
     };
   };
   systemd.sleep.extraConfig = "HibernateDelaySec=4h";
