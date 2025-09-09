@@ -6,12 +6,19 @@
     unrar-free
     jmtpfs
     adwaita-icon-theme # seems to fix gsettings schema bug for some reason
+    gparted
   ];
 
   programs.dconf.enable = true;
 
   services = {
     mullvad-vpn = { enable = true; package = pkgs.mullvad-vpn; };
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
     udisks2 = { enable = true; mountOnMedia = true; };
     pipewire = { enable = true;
       wireplumber.enable = true; alsa.enable = true; pulse.enable = true;

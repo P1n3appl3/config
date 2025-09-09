@@ -4,7 +4,8 @@ font pango:monospace 15
 input type:touchpad {
     natural_scroll true
     tap enabled
-    drag_lock disabled
+    drag_lock disable
+    # dwt disable
 }
 
 input type:keyboard {
@@ -17,9 +18,20 @@ output eDP-1 {
   position 1440,1056
 }
 
-output DP-3 {
-  resolution 2560x1440
-  scale 1
-  transform 90
-  position 0,0
+output 'Dell Inc. DELL U2724DE G494F34' {
+  mode 2560x1440@120hz
+  scale 0.8
 }
+
+output 'Google Inc. P2718EC C8021232' {
+  resolution 2560x1440
+  scale 0.8
+  transform 270
+}
+
+# output DP-3 {
+#   resolution 2560x1440
+#   scale 1
+#   transform 90
+#   position 0,0
+# }

@@ -8,7 +8,7 @@
     inkscape krita pinta # aseprite TODO: cmake
     gthumb
     helio-workstation
-    musescore
+    musescore transcribe
     # deflemask furnace
     # non lmms ardour
     audacity # (or tenacity)

@@ -29,16 +29,8 @@
   // "buffer_font_weight": 400,
   "preferred_line_length": 92,
   "buffer_line_height": "standard",
-  "theme": {
-    "mode": "dark",
-    "light": "Catppuccin Mocha (blue)",
-    "dark": "Catppuccin Mocha (blue)"
-  },
-  "icon_theme": {
-    "mode": "dark",
-    "light": "Catppuccin Mocha",
-    "dark": "Catppuccin Mocha"
-  },
+  "theme": "Catppuccin Mocha",
+  "icon_theme": "Catppuccin Mocha",
   "gutter": {
     "line_numbers": false,
     "folds": false,
@@ -139,7 +131,7 @@
     "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-3-7-sonnet"
+      "model": "claude-sonnet-4"
     }
   },
   "show_edit_predictions": true,

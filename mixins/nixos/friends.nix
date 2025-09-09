@@ -60,6 +60,10 @@ in {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG0im7/KNw4pgeH3RzgQaJeVFekbqXjDj+HYPqVbSFXv"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH8dZcQILx0u2efLceHWaXzulOsu9rHO1xeGT5SLeNWc"
     ] []) // { shell = pkgs.fish; };
+    david = user [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOZGpO0j6dZwiTvp8MZ+35cs/jRMVLpy/7FMN9irfzdG"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID3Nno8oD214qAxGeCZROOFMUPkuFPQ4zQARxq/JH30a"
+    ] [ "wheel" ];
     yaah = (user [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvDoWAmF3JupYvTTSSA084bPdmYWUrIlK66r9QL2JlD"
     ] []);

@@ -19,7 +19,13 @@
       "alt-shift-l": ["workspace::MoveItemToPaneInDirection", { "direction": "right" }],
       "alt-shift-k": ["workspace::MoveItemToPaneInDirection", { "direction": "up" }],
       "alt-shift-j": ["workspace::MoveItemToPaneInDirection", { "direction": "down" }],
-      "ctrl-m": "collab::Mute"
+      "ctrl-m": "collab::Mute",
+      "ctrl-\"": "workspace::NewTerminal",
+      "ctrl-'": "terminal_panel::ToggleFocus",
+      "alt-r": "workspace::ToggleRightDock",
+      "ctrl-j": "workspace::ToggleBottomDock",
+      // "ctrl-h": "workspace::Previous",
+      // "ctrl-l": "workspace::Next",
     }
   },
   {
@@ -35,15 +41,6 @@
     "context": "ProjectPanel",
     "bindings": {
       "alt-l": "workspace::ActivateNextPane"
-    }
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "ctrl-\"": "workspace::NewTerminal",
-      "ctrl-'": "terminal_panel::ToggleFocus"
-      // "ctrl-h": "workspace::Previous",
-      // "ctrl-l": "workspace::Next",
     }
   },
   {

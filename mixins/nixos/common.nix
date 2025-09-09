@@ -53,7 +53,10 @@
     identityPaths = [ "/home/julia/.ssh/id_ed25519" ];
   };
   home-manager.useGlobalPkgs = true;
-  security.sudo.extraConfig = ''Defaults env_keep += "path"'';
+  security = {
+    sudo.extraConfig = ''Defaults env_keep += "path"'';
+    polkit.enable = true;
+  };
   catppuccin = { enable = true; flavor = "mocha"; };
   console.useXkbConfig = true;
   nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
