@@ -11,6 +11,7 @@
     comic-neue
     inter
     mononoki
+    monaspace
     pango.bin
   ];
 

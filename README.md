@@ -37,6 +37,7 @@ config 🍍 nix flake show
     ├───git-undeadname: does what it says on the tin
     ├───glkitty: gears demo in the terminal
     ├───hovalaag: assembly programming game
+    ├───launchk: macos launchd tui
     ├───lowcharts: draw plots and histograms in the terminal
     ├───m-overlay: gamecube input visualizer for dolphin
     ├───melee-quick-mod: ssbm texture patcher

@@ -171,6 +171,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
   * maybe just make PR to `nh search`, it seems closest to what I want
 * pokedex neofetch on shell startup
 * cat motd
+* ascii-rain (like ascii-snow)
 * prettier lsp log viewer for nvim (see [issue](https://github.com/neovim/neovim/issues/16807))
 * numbat
   * implement `-> fraction` with [this functionality](https://github.com/sharkdp/numbat/issues/202)
@@ -221,6 +222,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 - https://github.com/Journeycorner/systemd-gtk or https://github.com/pyxvlad/services-gui
 - https://github.com/ardaku/whoami
 - https://github.com/zquestz/s
+- https://github.com/danbee/persephone
 
 ## Other
 

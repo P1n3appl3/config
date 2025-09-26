@@ -193,5 +193,10 @@
         }
       ]
     }
+  },
+  {
+    "bindings": {
+      "ctrl-cmd-shift-p": "zed::TestPanic"
+    }
   }
 ]

@@ -9,7 +9,7 @@
     ascii unicode-paracode sequin pay-respects
     micro helix
     # Munge
-    jq pup choose datamash numbat lowcharts d-rs mawk xan csvlens
+    jq pup choose datamash numbat lowcharts d-rs mawk csvlens # xan
     # System info
     btop procs smartmontools duf ncdu du-dust
     # Nix

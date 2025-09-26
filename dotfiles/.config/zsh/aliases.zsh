@@ -25,6 +25,7 @@ function ststatus {
 
 alias sc=systemctl
 alias music=rmpc
+alias m=music
 function fontcheck {
     FC_DEBUG=4 pango-view -q -t $1 --font=${2:-sans} |&
         rg -or '$1' 'family: "([^"]+)"' | tail -1

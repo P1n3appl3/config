@@ -1,4 +1,4 @@
-{ pkgs, self, myOverlays, inputs, config, ... }: {
+{ pkgs, self, myOverlays, inputs, config, lib, ... }: {
   imports = [
     inputs.home-manager.darwinModules.home-manager
     inputs.ragenix.darwinModules.default
@@ -107,15 +107,18 @@
       duti
       coreutils # TODO: uutils?
       nixos-rebuild-ng # for deploying to Cortana
+      nushell
+      # launchk
 
       obsidian
       kitty
       telegram-desktop
-      nushell
+      # avoid conflicting with choose-cli
+      (pkgs.writeShellScriptBin "choose-gui" "exec -a $0 ${choose-gui}/bin/choose $@")
 
       # work stuff
       go gopls # for testing go tooling in zed
-      sentry-cli minidump-stackwalk minidump-debugger
+      # sentry-cli minidump-stackwalk minidump-debugger
     ];
 
     dev.compilers = false;
@@ -124,6 +127,17 @@
     services = {
       # TODO: make module compatible with macos (so it can set up syncthing-tray)
       syncthing.enable = true;
+      mpd.musicDirectory = "/Users/julia/Music/new-library";
+    };
+
+    launchd.agents.mpd-discord-rpc = {
+      enable = true;
+      config = {
+        ProgramArguments = [ "${lib.getExe pkgs.mpd-discord-rpc}" ];
+        KeepAlive = true;
+        RunAtLoad = true;
+        StandardOutPath = "/Users/julia/.cache/mpd-discord.log";
+      };
     };
 
     xdg.enable = true;
@@ -134,6 +148,7 @@
         home-module
         ../mixins/home/common.nix
         ../mixins/home/dev.nix
+        ../mixins/home/graphical/music.nix
         ../mixins/home/graphical/terminal.nix
         inputs.mac-app-util.homeManagerModules.default
       ] ++ builtins.attrValues self.outputs.homeModules;

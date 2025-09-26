@@ -21,14 +21,14 @@
     "enable_preview_from_code_navigation": true
   },
   "vertical_scroll_margin": 6,
-  "ui_font_size": 14,
-  "buffer_font_size": 13.0,
-  // "font_family": "Symbols Nerd Font",
-  // "font_family": ["Source Code Pro"],
-  // "ui_font_fallbacks": ["Symbols Nerd Font"],
-  // "buffer_font_fallbacks": ["Symbols Nerd Font"],
+  "ui_font_size": 13,
+  "buffer_font_size": 12.0,
+  "buffer_font_family": "Monaspace Neon Var",
+  // "buffer_font_family": "Source Code Pro",
+  "buffer_font_features": { "calt": true },
+  // "buffer_font_weight": 400,
   "preferred_line_length": 92,
-  // "buffer_line_height": "standard",
+  "buffer_line_height": "standard",
   "theme": {
     "mode": "dark",
     "light": "Catppuccin Mocha (blue)",
@@ -50,12 +50,16 @@
   "current_line_highlight": "gutter",
   "indent_guides": { "enabled": false },
   "title_bar": {
+    // "show": "never",
     "show_sign_in": false,
     "show_user_picture": false,
     "show_branch_icon": true
   },
   "experimental.theme_overrides": {
     "editor.gutter.background": "#2e2e3e"
+    // "editor.foreground": "#FFFFFF",
+    // "editor.background": "#000000",
+    // "text": "#FFFFFF",
   },
 
   // general functionality
@@ -67,6 +71,7 @@
   "restore_on_startup": "none",
   "load_direnv": "shell_hook",
   "terminal": {
+    // "font_family": "Monaspace Krypton",
     "line_height": "standard",
     "dock": "right",
     "env": {
@@ -81,13 +86,15 @@
     "toggle_on_modifiers_press": { "alt": true }
   },
   "audio": {
-    "experimental.rodio_audio": true
+    "experimental.rodio_audio": true,
+    "experimental.denoise": true,
+    "experimental.auto_speaker_volume": true,
   },
   "search": {
     "regex": true,
     "button": false
   },
-  "auto_update": true, // for testing
+  "auto_update": true,
 
   // language support
   "languages": {
@@ -106,12 +113,12 @@
           // "buildScripts": { "enable": false },
           "features": "all"
         },
-        // "checkOnSave": false,
+        "checkOnSave": false,
         // "cachePriming": { "enable": false }
         // "files": { "watcher": "server" },
         "check": {
           // "command": "clippy",
-          "workspace": false
+          // "workspace": false
         },
         "diagnostics": {
           // "experimental": { "enable": true },
@@ -168,10 +175,32 @@
       "host": "HAL",
       "args": ["-J", "julia.blue"],
       "projects": [
-        { "paths": ["~/config"] },
-        { "paths": ["~/dev/website"] },
-        { "paths": ["~/dev/zed"] }
+        {
+          "paths": ["~/config"]
+        },
+        {
+          "paths": ["~/dev/website"]
+        },
+        {
+          "paths": ["~/dev/zed"]
+        }
       ]
+    },
+    {
+      "host": "Cortana",
+      "projects": []
+    },
+    {
+      "host": "localhost",
+      "projects": [
+        {
+          "paths": ["/Users/julia/dev/website"]
+        }
+      ]
+    },
+    {
+      "host": "julia.blue",
+      "projects": []
     }
   ],
 

@@ -1,32 +1,29 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, lib, ... }: {
   home.packages = with pkgs; [
-    mpc-cli
-    rmpc mmtc # music-player
-
+    mpc-cli rmpc mmtc # music-player
     sox
     mediainfo
-
     yt-dlp ytmdl spotdl
+    cava
+  ] ++ lib.optionals stdenv.isLinux [
+    kid3 strawberry ymuse
     media-downloader
-
-    picard kid3 puddletag # onetagger tageditor
-
-    strawberry
   ];
 
   services = {
     mpd = { enable = true;
-      musicDirectory = "${config.xdg.userDirs.music}/library";
+      musicDirectory = lib.mkDefault "${config.xdg.userDirs.music}/library";
       extraConfig = ''
         auto_update     "yes"
         replaygain      "album"
         metadata_to_use "artist,album,title,track,name,genre,date,composer,performer"
+      '' + (lib.optionalString pkgs.stdenv.isLinux ''
         audio_output {
             type "pipewire"
             name "Pipewire Sound Server"
-        }'';
+        }'');
     };
-    mpd-mpris.enable = true;
-    # mpd-discord-rpc.enable = true; # TODO: debug spinning a core (looking for discord?)
+    mpd-mpris.enable = pkgs.stdenv.isLinux;
+    mpd-discord-rpc.enable = pkgs.stdenv.isLinux;
   };
 }
