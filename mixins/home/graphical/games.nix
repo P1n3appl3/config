@@ -32,6 +32,8 @@
     punes dolphin-emu # mupen64plus snes9x-gtk simple64
     sameboy mgba melonDS
 
+    factorio-blueprint-helper
+
     pokefinder eontimer
 
     slipstream # ftl mods

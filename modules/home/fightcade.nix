@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: let
   opts = {
     enable = lib.mkEnableOption ''
-      Simple Dynamic DNS client for porkbun that points domains at your current ip
+      Arcade and fighting game emulator and netplay client
     '';
     path = lib.mkOption {
       type = lib.types.str;
