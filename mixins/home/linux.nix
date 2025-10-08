@@ -3,7 +3,7 @@
     util-linux
     moreutils
     lsof
-    usbtop
+    # usbtop # TODO: cmake
     powertop
     lm_sensors
     sysz

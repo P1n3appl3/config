@@ -3,7 +3,7 @@
     steam
     itch wine64
     # heroic
-    lutris
+    # lutris
     ludusavi
 
     # melee tools
@@ -20,7 +20,7 @@
     # apotris
     openttd
     space-cadet-pinball
-    openspades
+    # openspades TODO: cmake
     aisleriot
     golly
 
@@ -29,10 +29,10 @@
     fence
     autumn
 
-    punes dolphin-emu # mupen64plus snes9x-gtk simple64
-    sameboy mgba melonDS
+    punes # dolphin-emu mupen64plus snes9x-gtk simple64
+    sameboy melonDS # mgba TODO: cmake
 
-    factorio-blueprint-helper
+    factorio-bp-helper
 
     pokefinder eontimer
 

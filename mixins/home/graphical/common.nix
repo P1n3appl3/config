@@ -5,7 +5,7 @@ in {
 
   home.packages = with pkgs; [
     brightnessctl
-    pavucontrol playerctl pamixer audio-select
+    pavucontrol playerctl audio-select # pamixer TODO: cmake
     xdg-utils # TODO: try handlr-regex
     xorg.xeyes
     rofimoji # TODO: put in rofi plugins section
@@ -13,7 +13,7 @@ in {
     nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
-    ffmpeg (nixGL oculante) vlc
+    ffmpeg vlc # (nixGL oculante) # TODO: cmake
     vial # TODO: check if I need via too
     # gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
@@ -36,11 +36,11 @@ in {
     (nixGL caprine-bin) slack android-messages
     fractal element-desktop iamb # fluffychat cinny nheko # TODO: pick
     pkgs-stable.friture # praat # TODO: try this for voice training
-    (nixGL imhex) # (TODO: catppuccin) hexerator rizin cutter # TODO: try these
+    # (nixGL imhex) # (TODO: catppuccin) # TODO: try hexerator/rizin/cutter
     mepo # TODO: try
     # TODO: syncthing-gtk
     # TODO: https://gitlab.freedesktop.org/rncbc/qpwgraph
-    nixgl.nixGLIntel # nixgl.nixVulkanIntel
+    # nixgl.nixGLIntel nixgl.nixVulkanIntel
     glxinfo vulkan-tools
     firmware-updater gnome-firmware # firmware-manager # TODO: pick one
     graphviz

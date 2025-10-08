@@ -15,7 +15,7 @@
           OPENWEATHERMAP_API_KEY=`<${config.age.secrets.weather.path}` \
           exec ${lib.getExe i3status-rust} $@'')
         i3
-        xclip maim xcolor
+        xclip xcolor # maim TODO: cmake
         (rofi.override { plugins = [ rofi-calc ]; })
         dunst
         oneko

@@ -5,7 +5,7 @@
     godot_4
     blender
     # TODO: graphite
-    inkscape krita pinta oculante aseprite
+    inkscape krita pinta # aseprite TODO: cmake
     gthumb
     helio-workstation
     musescore
@@ -14,9 +14,8 @@
     audacity # (or tenacity)
     logisim-evolution
 
-    # TODO: re-enable when fixed
     kicad-small
-    calibre
+    # calibre TODO: cmake
 
     # TODO: transcribe lotus:
     # pkgs-stable.easyabc abctool
