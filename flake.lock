@@ -336,11 +336,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1759888488,
-        "narHash": "sha256-G9u8PuKl9BGMWzOIFYmcq6OBrGUZkwuZRIEPgd/dIU4=",
+        "lastModified": 1759891396,
+        "narHash": "sha256-XJAhxTozMWMN7Yiribmc2Iv9Fu0G/vJoKRmlykJrf+4=",
         "owner": "p1n3appl3",
         "repo": "obs-gamepad",
-        "rev": "ad9ea35c41935b47bd80be9a3f98e45a041d81b0",
+        "rev": "c84149484fb06696e41d72f468a3f2c74902c9e5",
         "type": "github"
       },
       "original": {
