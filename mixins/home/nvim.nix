@@ -63,7 +63,6 @@
       ]))
       nvim-treesitter-textobjects nvim-treesitter-context
       vim-nix
-      neodev-nvim
       rustaceanvim
       nvim-autopairs
       nvim-cmp

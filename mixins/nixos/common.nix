@@ -43,7 +43,7 @@
     psmisc
     usbutils
     uhubctl
-    config.boot.kernelPackages.perf
+    perf
     kitty.terminfo
     cntr
   ];

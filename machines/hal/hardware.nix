@@ -33,7 +33,7 @@
 
   networking = {
     usePredictableInterfaceNames = false; # I like eth0
-    useDHCP = true;
+    # useDHCP = true;
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];

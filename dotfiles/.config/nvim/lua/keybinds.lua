@@ -192,9 +192,7 @@ wk.add {
     { ",=", format, desc = "Format" },
 }
 
-local function fzf_g(command)
-    return G.lazy("fzf-lua", "lsp_" .. command, { jump_to_single_result = true })
-end
+local function fzf_g(command) return G.lazy("fzf-lua", "lsp_" .. command, { jump1 = true }) end
 
 wk.add {
     { "gd", fzf_g "definitions", desc = "Definition" },

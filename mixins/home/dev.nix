@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, lib, config, ... } @ args: {
+{ pkgs, lib, config, ... } @ args: {
   options.dev = {
     compilers = lib.mkOption {
       type = lib.types.bool; description = "Install compiler toolchains";
@@ -34,7 +34,7 @@
 
   (lib.mkIf config.dev.compilers
     ([ rustup mold-wrapped clang clang-tools nasm ] ++
-      lib.optionals stdenv.isLinux [ pkgs-stable.j ]))
+      lib.optionals stdenv.isLinux [ j ]))
 
   (lib.mkIf config.dev.debuggers
     ([ lldb vscode-extensions.vadimcn.vscode-lldb.adapter ] ++

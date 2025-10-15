@@ -15,7 +15,7 @@
           OPENWEATHERMAP_API_KEY=`<${config.age.secrets.weather.path}` \
           exec ${lib.getExe i3status-rust} $@'')
         i3
-        xclip xcolor # maim TODO: cmake
+        xclip xcolor maim
         (rofi.override { plugins = [ rofi-calc ]; })
         dunst
         oneko
@@ -84,6 +84,8 @@
   };
 
   services = {
+    # desktopManager.gnome.enable = true;
+    desktopManager.cosmic.enable = true;
     xserver = { enable = true;
       windowManager.i3.enable = true;
       screenSection = ''

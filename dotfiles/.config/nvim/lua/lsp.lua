@@ -1,30 +1,40 @@
-require("neodev").setup {}
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local lspconfig = require "lspconfig"
-local function server(name, cfg)
-    lspconfig[name].setup(
-        vim.tbl_extend("error", cfg or {}, { capabilities = capabilities })
-    )
+local cfg = vim.lsp.config
+-- TODO: migrate
+-- local function server(name, cfg)
+--     vim.lsp.config(
+--         name,
+--         vim.tbl_extend("error", cfg or {}, { capabilities = capabilities })
+--     )
+-- end
+
+for _, server in ipairs {
+    "clangd",
+    "nil_ls",
+    "tinymist",
+    "fish_lsp",
+    "asm_lsp",
+    "pyright",
+    "lua_ls",
+} do
+    vim.lsp.enable(server)
 end
 
 -- vim.lsp.set_log_level "debug"
-server "clangd"
-server "nil_ls"
-server("tinymist", { settings = { exportPdf = "onSave" }, single_file_support = true })
-server "fish_lsp"
+cfg("tinymist", { settings = { exportPdf = "onSave" }, single_file_support = true })
 
 vim.g.neoformat_nasm_nasmfmt = { exe = "nasmfmt", replace = 1 }
 vim.g.neoformat_enabled_nasm = { "nasmfmt" }
-server("asm_lsp", { filetypes = { "nasm" } })
+cfg("asm_lsp", { filetypes = { "nasm" } })
 
 vim.g.neoformat_enabled_javascript = { "biome" }
 
 vim.g.neoformat_enabled_python = { "ruff" }
-server("pyright", {
+cfg("pyright", {
     settings = { python = { analysis = { diagnosticMode = "openFilesOnly" } } },
 })
 
-server("lua_ls", {
+cfg("lua_ls", {
     settings = { Lua = { diagnostics = { globals = { "vim" } } } },
     on_attach = function(client)
         client.server_capabilities.documentFormattingProvider = false
@@ -47,12 +57,12 @@ local ra_settings = {
         },
     },
     completion = { callable = { snippets = "none" }, postfix = { enable = false } },
-    cargo = { cfgs = { miri = "true" } },
+    cargo = { cfgs = { "miri" } },
 }
 local ra_log = vim.fn.tempname() .. "-rust-analyzer.log"
-vim.g.rustaceanvim = {
+cfg("rust-analyzer", {
     capabilities = capabilities,
     -- files = exclude_dirs = {}
     tools = { inlay_hints = { auto = false } },
     server = { default_settings = { ["rust-analyzer"] = ra_settings }, logfile = ra_log },
-}
+})

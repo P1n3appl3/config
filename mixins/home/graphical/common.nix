@@ -5,7 +5,7 @@ in {
 
   home.packages = with pkgs; [
     brightnessctl
-    pavucontrol playerctl audio-select # pamixer TODO: cmake
+    pavucontrol playerctl audio-select pamixer
     xdg-utils # TODO: try handlr-regex
     xorg.xeyes
     rofimoji # TODO: put in rofi plugins section
@@ -13,7 +13,7 @@ in {
     nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (nixGL (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
-    ffmpeg vlc # (nixGL oculante) # TODO: cmake
+    ffmpeg vlc (nixGL oculante)
     vial # TODO: check if I need via too
     # gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
@@ -35,7 +35,7 @@ in {
     (nixGL telegram-desktop) (nixGL vesktop) signal-desktop
     (nixGL caprine-bin) slack android-messages
     fractal element-desktop iamb # fluffychat cinny nheko # TODO: pick
-    pkgs-stable.friture # praat # TODO: try this for voice training
+    # pkgs-stable.friture praat # TODO: try these for voice training
     # (nixGL imhex) # (TODO: catppuccin) # TODO: try hexerator/rizin/cutter
     mepo # TODO: try
     # TODO: syncthing-gtk

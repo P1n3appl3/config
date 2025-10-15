@@ -1,11 +1,11 @@
-{ pkgs, pkgs-stable, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     kdePackages.kdenlive
     yt-dlp
     godot_4
     blender
     # TODO: graphite
-    inkscape krita pinta # aseprite TODO: cmake
+    inkscape krita pinta aseprite
     gthumb
     helio-workstation
     musescore transcribe
@@ -15,7 +15,7 @@
     logisim-evolution
 
     kicad-small
-    # calibre TODO: cmake
+    calibre
 
     # TODO: transcribe lotus:
     # pkgs-stable.easyabc abctool

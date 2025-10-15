@@ -15,7 +15,7 @@
   };
 
   home.packages = with pkgs; [
-    wev wl-clipboard slurp hyprpicker wlprop # grim TODO: cmake
+    wev wl-clipboard grim slurp hyprpicker wlprop
     # TODO: wl-screenrec config (make sure hardware encode is working)
     # TODO: try satty or watershot
     swaynotificationcenter # TODO: try dunst/mako/fnott

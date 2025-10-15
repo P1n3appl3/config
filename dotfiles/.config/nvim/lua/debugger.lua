@@ -10,7 +10,7 @@ local port = 17776
 dap.adapters.codelldb = {
     type = "server",
     port = 17776,
-    executable = { command = "codelldbb", args = { "--port", 17776 } },
+    executable = { command = "codelldb", args = { "--port", 17776 } },
 }
 dap.adapters.gdb = {
     type = "executable",
@@ -22,11 +22,11 @@ dap.adapters.rust_gdb =
 
 dap.configurations.cpp = {
     {
-      name = "Attach to process",
-      type = 'cpp',  -- Adjust this to match your adapter name (`dap.adapters.<name>`)
-      request = 'attach',
-      pid = require('dap.utils').pick_process,
-      args = {},
+        name = "Attach to process",
+        type = "cpp", -- Adjust this to match your adapter name (`dap.adapters.<name>`)
+        request = "attach",
+        pid = require("dap.utils").pick_process,
+        args = {},
     },
 }
 

@@ -48,7 +48,7 @@
       obs-gamepad.overlays.default (import ./overlays.nix inputs)
     ];
     special = system: {
-      pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+      # pkgs-stable = nixpkgs-stable.legacyPackages.${system};
       inherit myOverlays inputs self;
     };
 

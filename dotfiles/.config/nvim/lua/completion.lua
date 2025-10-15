@@ -69,7 +69,7 @@ cmp.setup {
             end
         end, { "i" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
-            local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
+            local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
             if cmp.visible() then
                 cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
             elseif
