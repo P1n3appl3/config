@@ -2,7 +2,7 @@
   description = "nix configs for my computers";
   inputs = {
     nixpkgs.url            = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url     = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url     = "github:NixOS/nixpkgs/nixos-25.05";
     home-manager.url       = "github:nix-community/home-manager";
     nix-darwin.url         = "github:LnL7/nix-darwin/master";
     flake-utils.url        = "github:numtide/flake-utils";
@@ -99,7 +99,7 @@
     in with lib; {
       packages = pipe ./pkgs [
         (dir: listDir { of = dir; mapFunc = p: _: pkgs.${p}; })
-        (filterAttrs (_: meta.availableOn pkgs.hostPlatform))
+        (filterAttrs (_: meta.availableOn pkgs.stdenv.hostPlatform))
         (filterAttrs (_: p: !(p.meta.broken or false)))
       ];
     })

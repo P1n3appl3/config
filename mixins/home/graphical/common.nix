@@ -41,7 +41,7 @@ in {
     # TODO: syncthing-gtk
     # TODO: https://gitlab.freedesktop.org/rncbc/qpwgraph
     # nixgl.nixGLIntel nixgl.nixVulkanIntel
-    glxinfo vulkan-tools
+    mesa-demos vulkan-tools
     firmware-updater gnome-firmware # firmware-manager # TODO: pick one
     graphviz
     libnotify
@@ -56,7 +56,7 @@ in {
   ];
 
   programs = {
-    # TODO: try anyrun
+    # TODO: try anyrun, kickoff-dot-desktop, worf
     # TODO: try plugins: rbw/pa source+sink/mpd/systemd/wifi
     rofi = { enable = true; plugins = [ pkgs.rofi-calc ]; };
   };

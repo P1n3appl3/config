@@ -11,7 +11,7 @@
     git = { enable = true;
       includes = [{ path = "~/.config/git/extraConfig"; }];
 
-      extraConfig = {
+      settings = {
         core = {
           editor = "nvim";
           autocrlf = "input";
@@ -25,12 +25,13 @@
         http.cookiefile = "~/.config/git/cookies";
         init.defaultBranch = "main";
       };
+    };
 
-      delta = { enable = true;
-        options = {
-          line-numbers = false;
-          navigate = true;
-        };
+    delta = { enable = true;
+      enableGitIntegration = true;
+      options = {
+        line-numbers = false;
+        navigate = true;
       };
     };
 

@@ -19,4 +19,6 @@ python3.pkgs.buildPythonApplication rec {
       substituteInPlace ./setup.py --replace \
         "scripts=['bin/fio-plot', 'bin/bench-fio']," ""
     '';
+
+  meta.platforms = [ "x86_64-linux" ];
 }

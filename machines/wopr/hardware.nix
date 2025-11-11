@@ -12,9 +12,9 @@
     fprintd.tod = { enable = true; driver = pkgs.libfprint-2-tod1-goodix; };
     fwupd.enable = true;
     logind = {
-      lidSwitch = "suspend-then-hibernate";
-      powerKey = "hibernate";
       settings.Login = {
+        HandleLidSwitch = "suspend-then-hibernate";
+        HandlePowerKey = "hibernate";
         IdleAction = "suspend-then-hibernate";
         IdleActionSec = "10m";
       };

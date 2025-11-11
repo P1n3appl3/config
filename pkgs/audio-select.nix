@@ -1,4 +1,4 @@
-{ lib, rustPlatform, fetchFromGitHub, pkg-config, wrapGAppsHook, atk,
+{ lib, rustPlatform, fetchFromGitHub, pkg-config, wrapGAppsHook3, atk,
   cairo, gdk-pixbuf, glib, gtk3, libpulseaudio, pango }:
 rustPlatform.buildRustPackage rec {
   pname = "audio-select";
@@ -11,7 +11,7 @@ rustPlatform.buildRustPackage rec {
   };
   cargoHash = "sha256-LEbzKCgR0pJv1qQ19Xk3Yb/7Y+ARmN7qCozGHmC/Tss=";
 
-  nativeBuildInputs = [ pkg-config wrapGAppsHook ];
+  nativeBuildInputs = [ pkg-config wrapGAppsHook3 ];
   buildInputs = [
     atk
     cairo
