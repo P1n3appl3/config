@@ -11,11 +11,11 @@
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens # xan
     # System info
-    btop procs smartmontools duf ncdu du-dust
+    btop procs smartmontools duf ncdu dust
     # Nix
     nix home-manager nh nix-output-monitor nix-tree nix-diff nil comma ragenix
     # Scripting tools
-    stylua sumneko-lua-language-server shfmt shellcheck fish-lsp
+    stylua lua-language-server shfmt shellcheck fish-lsp
     # Fun
     blahaj gay lolcat fortune cowsay neo tmatrix sl pipes ascii-rain pastel tab
     ttyper solitaire-tui nethack

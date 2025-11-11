@@ -27,7 +27,7 @@
 
   services = {
     atd.enable = true;
-    nixseparatedebuginfod.enable = false; # TODO: re-enable when rahul fixes symlink crawling
+    nixseparatedebuginfod2.enable = false;
     getty = {
       autologinUser = "julia";
       greetingLine = ''\l'';
@@ -70,5 +70,8 @@
     };
   };
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
-  system.stateVersion = "24.05";
+  system = {
+    stateVersion = "24.05";
+    nixos.distroName = "🏳️‍⚧️";
+  };
 }

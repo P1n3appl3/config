@@ -1,6 +1,6 @@
 #![enable(implicit_some, unwrap_newtypes, unwrap_variant_newtypes)]
 (
-    // theme: "theme.ron",
+    theme: "theme.ron",
     scrolloff: 5,
     rewind_to_start_sec: 5,
     select_current_song_on_change: true,

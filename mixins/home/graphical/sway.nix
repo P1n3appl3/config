@@ -33,12 +33,6 @@
   ];
 
   programs = {
-    rofi = {
-      package = pkgs.rofi-wayland;
-      plugins = lib.mkForce (with pkgs; [
-        (rofi-calc.override { rofi-unwrapped = rofi-wayland-unwrapped; })
-      ]);
-    };
     waybar = {
       enable = true; systemd.enable = true;
       style = ''@import "common.css";'';

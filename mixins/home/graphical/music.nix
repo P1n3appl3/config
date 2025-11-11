@@ -1,10 +1,10 @@
 { pkgs, config, lib, ... }: {
   home.packages = with pkgs; [
-    mpc-cli rmpc mmtc # music-player
+    mpc rmpc mmtc # music-player
     sox
     mediainfo
     yt-dlp ytmdl spotdl
-    cava
+    # cava
   ] ++ lib.optionals stdenv.isLinux [
     kid3 strawberry ymuse
     media-downloader
@@ -13,6 +13,7 @@
   services = {
     mpd = { enable = true;
       musicDirectory = lib.mkDefault "${config.xdg.userDirs.music}/library";
+      playlistDirectory = lib.mkDefault "${config.xdg.userDirs.music}/library/0-playlists";
       extraConfig = ''
         auto_update     "yes"
         replaygain      "album"

@@ -1,10 +1,11 @@
 [
   {
     "bindings": {
+      "ctrl-w": "pane::CloseActiveItem",
       "ctrl-.": "zed::OpenKeymap",
-      "cmd-.": "zed::OpenKeymapEditor",
-      "ctrl-shift-,": "zed::OpenProjectSettings",
-      "cmd-shift-,": "zed::OpenProjectSettings",
+      "ctrl-,": "zed::OpenSettings",
+      "cmd-.": "zed::OpenKeymap",
+      "cmd-,": "zed::OpenSettings",
       "cmd-o": "projects::OpenRecent",
       "cmd-O": "workspace::Open",
       "alt-h": "workspace::ActivatePaneLeft",
@@ -22,10 +23,24 @@
       "ctrl-m": "collab::Mute",
       "ctrl-\"": "workspace::NewTerminal",
       "ctrl-'": "terminal_panel::ToggleFocus",
-      "alt-r": "workspace::ToggleRightDock",
-      "ctrl-j": "workspace::ToggleBottomDock",
+      "alt-r": "workspace::ToggleRightDock"
+      // "ctrl-j": "workspace::ToggleBottomDock",
       // "ctrl-h": "workspace::Previous",
       // "ctrl-l": "workspace::Next",
+    }
+  },
+  {
+    "context": "SettingsWindow",
+    "bindings": {
+      "ctrl-,": "zed::OpenSettingsFile",
+      "cmd-,": "zed::OpenSettingsFile"
+    }
+  },
+  {
+    "context": "KeymapEditor",
+    "bindings": {
+      "ctrl-,": "zed::OpenKeymapFile",
+      "cmd-,": "zed::OpenKeymapFile"
     }
   },
   {
@@ -110,6 +125,7 @@
       "space g a": "git::Amend",
       "space g f": "git::Fetch",
       "space g d": "git::Diff",
+      "space g D": "git::BranchDiff",
       "space g g": "git::Switch",
 
       ", =": "editor::Format",
@@ -158,20 +174,16 @@
     }
   },
   {
-    "context": "ProjectSearchBar || BufferSearchBar",
+    "context": "(ProjectSearchBar || BufferSearchBar) > Editor",
     "bindings": {
       "ctrl-r": "search::ToggleReplace",
-      "ctrl-w": "search::ToggleWholeWord",
+      "ctrl-o": "search::ToggleWholeWord",
       "ctrl-x": "search::ToggleRegex",
       "ctrl-i": "search::ToggleIncludeIgnored",
-      "ctrl-s": "search::ToggleCaseSensitive",
+      "ctrl-a": "search::ToggleCaseSensitive",
       "ctrl-m": "search::SelectAllMatches",
       "ctrl-f": "project_search::ToggleFilters"
     }
-  },
-  {
-    "context": "(ProjectSearchBar || BufferSearchBar) > Editor",
-    "bindings": { "ctrl-x": "search::ToggleRegex" }
   },
   {
     "context": "Editor",

@@ -1,13 +1,31 @@
 {
   // UI
+  "theme": "Catppuccin Mocha",
+  "helix_mode": false,
+  "hover_popover_delay": 300,
+  "drag_and_drop_selection": {
+    "delay": 300
+  },
+  "scroll_sensitivity": 1.0,
+  "on_last_window_closed": "platform_default",
+  "restore_on_startup": "none",
+  "confirm_quit": true,
+  "agent_servers": {
+    "claude": {
+      "default_mode": "acceptEdits"
+    }
+  },
+  "log": {
+    // "worktree": "debug"
+  },
   "base_keymap": "VSCode",
-  "relative_line_numbers": false,
+  // "relative_line_numbers": "disabled",
   "use_system_path_prompts": false,
   "git_panel": { "dock": "right" },
   "collaboration_panel": { "dock": "right" },
   "outline_panel": { "dock": "right" },
   "project_panel": { "dock": "right" },
-  "debugger": { "dock": "right" },
+  "debugger": { "dock": "bottom" },
   "bottom_dock_layout": "full",
   "toolbar": { "selections_menu": false, "quick_actions": false },
   "tab_bar": {
@@ -21,23 +39,15 @@
     "enable_preview_from_code_navigation": true
   },
   "vertical_scroll_margin": 6,
-  "ui_font_size": 13,
-  "buffer_font_size": 12.0,
-  "buffer_font_family": "Monaspace Neon Var",
-  // "buffer_font_family": "Source Code Pro",
-  "buffer_font_features": { "calt": true },
-  // "buffer_font_weight": 400,
-  "preferred_line_length": 92,
-  "buffer_line_height": "standard",
-  "theme": "Catppuccin Mocha",
   "icon_theme": "Catppuccin Mocha",
   "gutter": {
     "line_numbers": false,
     "folds": false,
     "runnables": false,
-    "breakpoints": false
+    "breakpoints": true
   },
   "inline_code_actions": false,
+  "lsp_document_colors": "inlay",
   "minimap": { "show": "never", "current_line_highlight": "gutter" },
   "current_line_highlight": "gutter",
   "indent_guides": { "enabled": false },
@@ -60,7 +70,6 @@
     // "default_mode": "helix_normal",
     "use_system_clipboard": "on_yank"
   },
-  "restore_on_startup": "none",
   "load_direnv": "shell_hook",
   "terminal": {
     // "font_family": "Monaspace Krypton",
@@ -75,12 +84,13 @@
   "format_on_save": "off",
   "middle_click_paste": false,
   "inlay_hints": {
+    "edit_debounce_ms": 700,
     "toggle_on_modifiers_press": { "alt": true }
   },
   "audio": {
-    "experimental.rodio_audio": true,
+    "experimental.rodio_audio": false,
     "experimental.denoise": true,
-    "experimental.auto_speaker_volume": true,
+    "experimental.auto_speaker_volume": true
   },
   "search": {
     "regex": true,
@@ -105,12 +115,12 @@
           // "buildScripts": { "enable": false },
           "features": "all"
         },
-        "checkOnSave": false,
+        "checkOnSave": true,
         // "cachePriming": { "enable": false }
         // "files": { "watcher": "server" },
         "check": {
           // "command": "clippy",
-          // "workspace": false
+          "workspace": false
         },
         "diagnostics": {
           // "experimental": { "enable": true },
@@ -128,10 +138,10 @@
   // ai
   "agent": {
     "always_allow_tool_actions": true,
-    "default_profile": "write",
+    "default_profile": "ask",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "model": "claude-sonnet-4-5"
     }
   },
   "show_edit_predictions": true,
@@ -154,45 +164,45 @@
     // "cargo-tom": true, // TODO: false positives and nix
     "nix": true,
     "lua": true,
-    "ruff": true,
-    // "ty": true, // enable when fixed? or switch our python extension in-tree to use it
     "kdl": true,
     "assembly": true,
-    "typst": true
+    "typst": true,
+    "color-highlight": true
   },
 
   // remote
   "ssh_connections": [
     {
-      "host": "HAL",
-      "args": ["-J", "julia.blue"],
-      "projects": [
-        {
-          "paths": ["~/config"]
-        },
-        {
-          "paths": ["~/dev/website"]
-        },
-        {
-          "paths": ["~/dev/zed"]
-        }
-      ]
-    },
-    {
       "host": "Cortana",
+      "args": [],
       "projects": []
     },
     {
       "host": "localhost",
+      "args": [],
       "projects": [
         {
           "paths": ["/Users/julia/dev/website"]
+        },
+        {
+          "paths": ["/tmp/testproj"]
         }
       ]
     },
     {
       "host": "julia.blue",
+      "args": [],
       "projects": []
+    },
+    {
+      "host": "192.168.1.80",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/julia/dev/obs-gamepad"]
+        }
+      ],
+      "nickname": "HAL"
     }
   ],
 
@@ -200,7 +210,20 @@
   "windows": {
     "theme": "Catppuccin Mocha"
   },
-  "macos": {},
+  "macos": {
+    "ui_font_size": 13,
+    "buffer_font_size": 14.0,
+    "buffer_font_family": "Source Code Pro",
+    // "buffer_font_family": "Monaspace Neon Var",
+    // "buffer_font_family": "JetBrains Mono Bold",
+    // "buffer_font_family": "Terminus (TTF)",
+
+    "buffer_font_features": { "calt": true },
+    // "buffer_font_weight": 400,
+    "preferred_line_length": 92,
+    "buffer_line_height": "standard",
+    "theme": "Catppuccin Mocha (blue)"
+  },
   "linux": {
     "theme": "Catppuccin Mocha"
   },

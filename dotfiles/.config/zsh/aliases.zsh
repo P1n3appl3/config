@@ -26,6 +26,7 @@ function ststatus {
 alias sc=systemctl
 alias music=rmpc
 alias m=music
+function shuffle { mpc clear && mpc ls | mpc add && mpc shuffle && mpc play; }
 alias bp=factorio-bp-helper
 function fontcheck {
     FC_DEBUG=4 pango-view -q -t $1 --font=${2:-sans} |&

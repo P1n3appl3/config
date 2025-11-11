@@ -1,4 +1,4 @@
-{ lib, rustPlatform, fetchFromGitHub, pkg-config, wrapGAppsHook, atk,
+{ lib, rustPlatform, fetchFromGitHub, pkg-config, wrapGAppsHook3, atk,
   cairo, expat, fontconfig, freetype, gdk-pixbuf, glib, gtk3, libsoup,
   libxkbcommon, pango, webkitgtk, stdenv, alsa-lib, wayland,
   nodejs, pnpm }:
@@ -23,7 +23,7 @@ rustPlatform.buildRustPackage rec {
   nativeBuildInputs = [
     pkg-config
     rustPlatform.bindgenHook
-    wrapGAppsHook
+    wrapGAppsHook3
     nodejs
     pnpm.configHook
   ];

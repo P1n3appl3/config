@@ -22,8 +22,7 @@
         xorg.xeyes xorg.xkill
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
         vscode
-        nitrogen
-        nasa-wallpaper
+        nitrogen nasa-wallpaper feh
       ];
 
       systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];

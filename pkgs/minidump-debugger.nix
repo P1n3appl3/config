@@ -1,5 +1,5 @@
 { lib, rustPlatform, stdenv, fetchFromGitHub, pkg-config,
-  wrapGAppsHook, atk, cairo, gdk-pixbuf, glib, gtk3, libxkbcommon,
+  wrapGAppsHook3, atk, cairo, gdk-pixbuf, glib, gtk3, libxkbcommon,
   pango, wayland }: rustPlatform.buildRustPackage rec {
   pname = "minidump-debugger";
   version = "0.3.4";
@@ -16,7 +16,7 @@
 
   nativeBuildInputs = [
     pkg-config
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
 
   buildInputs = [

@@ -1,4 +1,18 @@
 #!/usr/bin/env bash
 
-next_song=$(mpc listall | sort -R | rofi -i -dmenu -p song)
-[[ -n $next_song ]] && mpc insert "$next_song" && [[ -n $1 ]] && mpc next
+picker() {
+    case $(uname) in
+    Linux)
+        rofi -i -dmenu -p song
+        ;;
+    Darwin)
+        choose-gui -s 18 -n 30
+        ;;
+    *)
+        exit 1
+        ;;
+    esac
+}
+
+next_song=$(mpc listall | shuf | picker)
+[[ -n $next_song ]] && mpc insert "$next_song" && if [[ -n $1 ]]; then mpc next; fi
