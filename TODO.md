@@ -215,6 +215,7 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 * hoyle boardgames + fantastic contraption
 * apotris
 * airshipper
+* [romm](https://github.com/rommapp/romm)
 
 ## `pkgs/`
 

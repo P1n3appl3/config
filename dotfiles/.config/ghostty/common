@@ -1,2 +1,4 @@
 theme = catppuccin-mocha
 background = #000000
+window-decoration = none
+macos-titlebar-style = hidden

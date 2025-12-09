@@ -27,7 +27,8 @@
 
   services = {
     atd.enable = true;
-    nixseparatedebuginfod2.enable = false;
+    nixseparatedebuginfod2.enable = true;
+    angrr = { enable = true; timer.enable = true; };
     getty = {
       autologinUser = "julia";
       greetingLine = ''\l'';
@@ -71,7 +72,7 @@
   };
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
   system = {
-    stateVersion = "24.05";
-    nixos.distroName = "🏳️‍⚧️";
+    stateVersion = "25.11";
+    nixos.distroName = "💙";
   };
 }

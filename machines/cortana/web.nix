@@ -43,6 +43,8 @@ in {
         default_app = "julia.blue";
         apps = {
           static    = app                "julia.blue" 9000;
+          static2   = app         "julia.is.fckn.gay" 9000;
+          static3   = app      "xn--ni8h.is.fckn.gay" 9000;
           grafana   = app        "pineapple.computer" 9001;
           atuin     = app  "atuin.pineapple.computer" 9002;
           syncthing = app   "sync.pineapple.computer" 9003;

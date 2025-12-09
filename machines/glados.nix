@@ -99,7 +99,8 @@
 
   home-manager = let home-module = ({ pkgs, ...}: {
     home.packages = with pkgs; [
-      karabiner-elements.driver kanata-with-cmd skhd keycastr
+      # karabiner-elements.driver kanata-with-cmd
+      skhd keycastr
       stats hidden-bar # itsycal # https://github.com/NixOS/nixpkgs/issues/377645
       betterdisplay
       meld

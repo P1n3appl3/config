@@ -20,5 +20,5 @@ in appimageTools.wrapType2 {
     cp -r ${contents}/usr/share/icons $out/share
   '';
 
-  meta.platforms = lib.platforms.linux;
+  meta.platforms = [ "x86_64-linux" ];
 }

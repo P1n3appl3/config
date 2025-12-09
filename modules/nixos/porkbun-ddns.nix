@@ -30,7 +30,7 @@ in {
     };
   };
 
-  # TODO: try using haylee's crate instead of the script:
+  # TODO: try using hayley's crate instead of the script:
   # https://docs.rs/porkbun-api/latest/porkbun_api/struct.CreateOrEditDnsRecord.html
   config = lib.mkIf cfg.enable {
     systemd.services.porkbun-ddns = {

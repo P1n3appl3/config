@@ -155,14 +155,22 @@
       "space w": ["workspace::SendKeystrokes", "ctrl-w"],
       "space e l": "diagnostics::Deploy",
       "space t": "outline::Toggle",
-      "space T": "project_symbols::Toggle"
+      "space T": "project_symbols::Toggle",
       // "space T": "outline_panel::ToggleFocus",
+      "space l": "editor::ToggleFold",
+      "space L": "editor::ToggleFoldRecursive"
     }
   },
   {
     "context": "vim_mode == normal && !menu",
     "bindings": {
       "Y": ["workspace::SendKeystrokes", "y $"]
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "cmd-p": "editor::ShowEditPrediction",
     }
   },
   {

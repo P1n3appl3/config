@@ -14,6 +14,8 @@
     lurk
   ];
 
+  programs.direnv.stdlib = "use angr";
+
   targets.genericLinux.enable = true;
   xdg = { enable = true;
     userDirs = let home = config.home.homeDirectory; in {

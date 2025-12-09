@@ -9,7 +9,7 @@
     ascii unicode-paracode sequin pay-respects
     micro helix
     # Munge
-    jq pup choose datamash numbat lowcharts d-rs mawk csvlens # xan
+    jq pup choose datamash numbat lowcharts d-rs mawk csvlens # xan tabiew
     # System info
     btop procs smartmontools duf ncdu dust
     # Nix
@@ -77,7 +77,7 @@
   home = {
     username = lib.mkDefault "julia";
     homeDirectory = lib.mkDefault "/home/julia";
-    stateVersion = "23.11";
+    stateVersion = "25.11";
     preferXdgDirectories = true;
 
     sessionVariables = {

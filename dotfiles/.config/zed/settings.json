@@ -1,5 +1,6 @@
 {
   // UI
+  "restore_on_startup": "none",
   "theme": "Catppuccin Mocha",
   "helix_mode": false,
   "hover_popover_delay": 300,
@@ -8,7 +9,6 @@
   },
   "scroll_sensitivity": 1.0,
   "on_last_window_closed": "platform_default",
-  "restore_on_startup": "none",
   "confirm_quit": true,
   "agent_servers": {
     "claude": {
@@ -36,7 +36,7 @@
   "tabs": { "git_status": true },
   "preview_tabs": {
     "enabled": false,
-    "enable_preview_from_code_navigation": true
+    "enable_keep_preview_on_code_navigation": true
   },
   "vertical_scroll_margin": 6,
   "icon_theme": "Catppuccin Mocha",
@@ -44,11 +44,11 @@
     "line_numbers": false,
     "folds": false,
     "runnables": false,
-    "breakpoints": true
+    "breakpoints": false
   },
   "inline_code_actions": false,
   "lsp_document_colors": "inlay",
-  "minimap": { "show": "never", "current_line_highlight": "gutter" },
+  "minimap": { "thumb": "always", "show": "never", "current_line_highlight": "gutter" },
   "current_line_highlight": "gutter",
   "indent_guides": { "enabled": false },
   "title_bar": {
@@ -73,6 +73,8 @@
   "load_direnv": "shell_hook",
   "terminal": {
     // "font_family": "Monaspace Krypton",
+    "blinking": "on",
+    "cursor_shape": "bar",
     "line_height": "standard",
     "dock": "right",
     "env": {
@@ -100,12 +102,28 @@
 
   // language support
   "languages": {
-    "Rust": {},
-    "Nix": { "tab_size": 2, "language_servers": ["nil", "!nixd"] },
-    "Lua": { "language_servers": ["lua-language-server"] },
-    "Markdown": { "soft_wrap": "editor_width" }, // or "bounded"?
-    "JavaScript": { "tab_size": 4 },
-    "Proto": { "enable_language_server": false }
+    "Rust": {
+      "linked_edits": true,
+      "soft_wrap": "editor_width"
+    },
+    "Nix": {
+      "linked_edits": true,
+      "soft_wrap": "editor_width",
+      "tab_size": 2,
+      "language_servers": ["nil", "!nixd"]
+    },
+    "Lua": {
+      "linked_edits": true,
+      "soft_wrap": "editor_width",
+      "language_servers": ["lua-language-server"]
+    },
+    "Markdown": { "linked_edits": true, "soft_wrap": "editor_width" }, // or "bounded"?
+    "JavaScript": { "linked_edits": true, "soft_wrap": "editor_width", "tab_size": 4 },
+    "Proto": {
+      "linked_edits": true,
+      "soft_wrap": "editor_width",
+      "enable_language_server": false
+    }
   },
 
   "lsp": {
@@ -120,7 +138,7 @@
         // "files": { "watcher": "server" },
         "check": {
           // "command": "clippy",
-          "workspace": false
+          "workspace": true
         },
         "diagnostics": {
           // "experimental": { "enable": true },
@@ -137,17 +155,24 @@
 
   // ai
   "agent": {
+    "inline_assistant_model": {
+      "provider": "zed.dev",
+      "model": "claude-opus-4-5"
+    },
     "always_allow_tool_actions": true,
     "default_profile": "ask",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-5"
+      "model": "claude-opus-4-5"
     }
   },
   "show_edit_predictions": true,
-  "features": { "edit_prediction_provider": "zed" },
+  "features": { "experimental_edit_prediction_context_retrieval": true,
+                "edit_prediction_provider": {
+      "experimental": "sweep"
+    } },
   "edit_predictions": {
-    "mode": "subtle",
+    "mode": "eager",
     "disabled_globs": ["*.md"]
   },
 
@@ -178,31 +203,31 @@
       "projects": []
     },
     {
+      "host": "julia.blue",
+      "args": [],
+      "projects": []
+    },
+    {
       "host": "localhost",
       "args": [],
       "projects": [
         {
-          "paths": ["/Users/julia/dev/website"]
-        },
-        {
-          "paths": ["/tmp/testproj"]
+          "paths": [
+            "/tmp/testc"
+          ]
         }
       ]
-    },
-    {
-      "host": "julia.blue",
-      "args": [],
-      "projects": []
     },
     {
       "host": "192.168.1.80",
       "args": [],
       "projects": [
         {
-          "paths": ["/home/julia/dev/obs-gamepad"]
+          "paths": [
+            "/tmp/vs/vs"
+          ]
         }
-      ],
-      "nickname": "HAL"
+      ]
     }
   ],
 
@@ -212,7 +237,7 @@
   },
   "macos": {
     "ui_font_size": 13,
-    "buffer_font_size": 14.0,
+    "buffer_font_size": 12.0,
     "buffer_font_family": "Source Code Pro",
     // "buffer_font_family": "Monaspace Neon Var",
     // "buffer_font_family": "JetBrains Mono Bold",
@@ -229,6 +254,9 @@
   },
 
   "dev": {
+    "search": {
+      "search_on_input": true
+    },
     "experimental.theme_overrides": {
       "title_bar.background": "#903050"
     }
