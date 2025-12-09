@@ -29,22 +29,24 @@ in {
     # TODO: custom http 503 error page
     rust-rpxy = { enable = true;
       config = let
-        tls = {
+        tls-dns = {
           https_redirection = true;
           tls_cert_path = acme_dir + "fullchain.pem";
           tls_cert_key_path = acme_dir + "key-pkcs8.pem";
         };
+        tls-https = { https_redirection = true; acme = true; };
         proxy = port: [{ upstream = [{ location = "localhost:" + toString port; }]; }];
-        app = name: port: { inherit tls; server_name = name; reverse_proxy = proxy port; };
+        app = name: port: { tls = tls-dns; server_name = name; reverse_proxy = proxy port; };
       in {
         listen_port = 80;
         listen_port_tls = 443;
         listen_ipv6 = true;
         default_app = "julia.blue";
+        experimental.acme.email = "juliaryan3.14@gmail.com";
         apps = {
           static    = app                "julia.blue" 9000;
-          static2   = app         "julia.is.fckn.gay" 9000;
-          static3   = app      "xn--ni8h.is.fckn.gay" 9000;
+          static2   =(app         "julia.is.fckn.gay" 9000) // { tls = tls-https; };
+          static3   =(app      "xn--ni8h.is.fckn.gay" 9000) // { tls = tls-https; };
           grafana   = app        "pineapple.computer" 9001;
           atuin     = app  "atuin.pineapple.computer" 9002;
           syncthing = app   "sync.pineapple.computer" 9003;
@@ -113,6 +115,7 @@ in {
              torrents = [ "HAL" "WOPR" "GLaDOS" "dragon" ];
           screenshots = [ "HAL" "WOPR" "GLaDOS" ];
         });
+        gui.insecureSkipHostcheck = true;
       };
     };
 
@@ -138,7 +141,13 @@ in {
       dnsProvider = "porkbun";
       renewInterval = "weekly";
       email = "juliaryan3.14@gmail.com";
-      extraDomainNames = [ "*.pineapple.computer" "julia.blue" "*.julia.blue" ];
+      extraDomainNames = [
+        "pineapple.computer"
+        "*.pineapple.computer"
+        "julia.blue"
+        "*.julia.blue"
+      ];
+      extraLegoFlags = [ "--dns.propagation-disable-ans" ];
       environmentFile = builtins.toFile "envFile" "LEGO_DISABLE_CNAME_SUPPORT=true";
       credentialFiles = {
         "PORKBUN_API_KEY_FILE" = config.age.secrets.porkbun-api.path;
@@ -152,6 +161,7 @@ in {
       description = "Convert LetsEncrypt private key from PKCS1 to PKCS8";
       unitConfig.Type = "oneshot";
       serviceConfig = {
+        User = "acme"; Group = "acme";
         ExecStart = ''${pkgs.openssl}/bin/openssl pkcs8 -topk8 -nocrypt \
           -in ${acme_dir}/key.pem -inform PEM \
           -out ${acme_dir}/key-pkcs8.pem -outform PEM'';

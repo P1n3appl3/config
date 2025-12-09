@@ -160,7 +160,7 @@
       "model": "claude-opus-4-5"
     },
     "always_allow_tool_actions": true,
-    "default_profile": "ask",
+    "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-opus-4-5"
@@ -220,11 +220,14 @@
     },
     {
       "host": "192.168.1.80",
-      "args": [],
+      "args": [
+        "-J",
+        "julia.blue"
+      ],
       "projects": [
         {
           "paths": [
-            "/tmp/vs/vs"
+            "/home/julia/dev/zed"
           ]
         }
       ]
