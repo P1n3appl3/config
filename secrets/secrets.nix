@@ -6,4 +6,5 @@ in builtins.listToAttrs
   "porkbun-secret.age"
   "porkbun-api.age"
   "nix-conf.age"
+  "cortana-service-password.age"
 ])

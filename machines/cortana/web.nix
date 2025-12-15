@@ -1,5 +1,6 @@
 { pkgs, config, ... }: let
   acme_dir = "/var/lib/acme/pineapple.computer/";
+  email = "juliaryan3.14@gmail.com";
 in {
   networking.firewall = {
     allowedTCPPorts = [
@@ -42,7 +43,7 @@ in {
         listen_port_tls = 443;
         listen_ipv6 = true;
         default_app = "julia.blue";
-        experimental.acme.email = "juliaryan3.14@gmail.com";
+        experimental.acme.email = email;
         apps = {
           static    = app                "julia.blue" 9000;
           static2   =(app         "julia.is.fckn.gay" 9000) // { tls = tls-https; };
@@ -73,6 +74,10 @@ in {
           http_addr = "127.0.0.1";
           http_port = 9001;
           domain = "traffic.pineapple.computer";
+        };
+        security = {
+          admin_email = email;
+          admin_password = "$__file{${config.age.secrets.password.path}}";
         };
       };
     };
@@ -115,7 +120,10 @@ in {
              torrents = [ "HAL" "WOPR" "GLaDOS" "dragon" ];
           screenshots = [ "HAL" "WOPR" "GLaDOS" ];
         });
-        gui.insecureSkipHostcheck = true;
+        gui = {
+          insecureSkipHostcheck = true;
+          # password = config.age.secrets.password; // TODO: no way to pass this?
+        };
       };
     };
 
@@ -134,13 +142,14 @@ in {
   age.secrets = {
     porkbun-api.file = ../../secrets/porkbun-api.age;
     porkbun-secret.file = ../../secrets/porkbun-secret.age;
+    password.file = ../../secrets/cortana-service-password.age;
   };
 
   security.acme = { acceptTerms = true;
     certs."pineapple.computer" = {
       dnsProvider = "porkbun";
       renewInterval = "weekly";
-      email = "juliaryan3.14@gmail.com";
+      inherit email;
       extraDomainNames = [
         "pineapple.computer"
         "*.pineapple.computer"
@@ -192,6 +201,7 @@ in {
     reset-usb = {
       description = "Reset the usb hub and remount the usb drive";
       unitConfig.Type = "oneshot";
+      path = with pkgs; [ uhubctl ];
       serviceConfig.ExecStart = ''
         uhubctl -l 2 -a cycle -d 1
         sleep 5

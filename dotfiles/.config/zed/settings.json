@@ -160,10 +160,10 @@
       "model": "claude-opus-4-5"
     },
     "always_allow_tool_actions": true,
-    "default_profile": "write",
+    "default_profile": "ask",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-opus-4-5"
+      "model": "gpt-5.2"
     }
   },
   "show_edit_predictions": true,
@@ -258,7 +258,7 @@
 
   "dev": {
     "search": {
-      "search_on_input": true
+      // "search_on_input": true
     },
     "experimental.theme_overrides": {
       "title_bar.background": "#903050"

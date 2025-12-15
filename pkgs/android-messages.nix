@@ -1,7 +1,7 @@
 # TODO: use yarn2nix to build from source:
 # https://nixos.org/manual/nixpkgs/stable/#javascript-yarn2nix
 # https://github.com/NixOS/nixpkgs/issues/46382
-{ lib, appimageTools, fetchurl }: let
+{ appimageTools, fetchurl }: let
   pname = "android-messages";
   version = "5.4.2";
   src = fetchurl {
