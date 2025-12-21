@@ -23,25 +23,25 @@
       "ctrl-m": "collab::Mute",
       "ctrl-\"": "workspace::NewTerminal",
       "ctrl-'": "terminal_panel::ToggleFocus",
-      "alt-r": "workspace::ToggleRightDock"
+      "alt-r": "workspace::ToggleRightDock",
       // "ctrl-j": "workspace::ToggleBottomDock",
       // "ctrl-h": "workspace::Previous",
       // "ctrl-l": "workspace::Next",
-    }
+    },
   },
   {
     "context": "SettingsWindow",
     "bindings": {
       "ctrl-,": "zed::OpenSettingsFile",
-      "cmd-,": "zed::OpenSettingsFile"
-    }
+      "cmd-,": "zed::OpenSettingsFile",
+    },
   },
   {
     "context": "KeymapEditor",
     "bindings": {
       "ctrl-,": "zed::OpenKeymapFile",
-      "cmd-,": "zed::OpenKeymapFile"
-    }
+      "cmd-,": "zed::OpenKeymapFile",
+    },
   },
   {
     "context": "Pane",
@@ -49,14 +49,14 @@
       "cmd-k k": "pane::SplitUp",
       "cmd-k j": "pane::SplitDown",
       "cmd-k h": "pane::SplitLeft",
-      "cmd-k l": "pane::SplitRight"
-    }
+      "cmd-k l": "pane::SplitRight",
+    },
   },
   {
     "context": "ProjectPanel",
     "bindings": {
-      "alt-l": "workspace::ActivateNextPane"
-    }
+      "alt-l": "workspace::ActivateNextPane",
+    },
   },
   {
     "context": "Editor || Terminal",
@@ -64,8 +64,8 @@
       "ctrl-k": null,
       "ctrl-K": null, // TODO: broken?
       "alt-l": "workspace::ActivateNextPane",
-      "alt-h": "workspace::ActivatePreviousPane"
-    }
+      "alt-h": "workspace::ActivatePreviousPane",
+    },
   },
   {
     "context": "(FileFinder || Picker || menu) > Editor",
@@ -73,8 +73,8 @@
       "ctrl-j": "menu::SelectNext",
       "ctrl-k": "menu::SelectPrevious",
       "tab": "menu::SelectNext",
-      "shift-tab": "menu::SelectPrevious"
-    }
+      "shift-tab": "menu::SelectPrevious",
+    },
   },
   {
     "context": "showing_context_menu || showing_code_actions || showing_completions",
@@ -82,19 +82,20 @@
       "tab": "editor::ContextMenuNext",
       "shift-tab": "editor::ContextMenuPrevious",
       "ctrl-j": "editor::ContextMenuNext",
-      "ctrl-k": "editor::ContextMenuPrevious"
-    }
+      "ctrl-k": "editor::ContextMenuPrevious",
+    },
   },
   {
     "context": "vim_mode == normal || vim_mode == visual",
     "bindings": {
       "s": "vim::PushSneak",
-      "S": "vim::PushSneakBackward"
-    }
+      "S": "vim::PushSneakBackward",
+    },
   },
   {
     "context": "VimControl && !menu",
     "bindings": {
+      "space": null,
       "j": ["workspace::SendKeystrokes", "g j"],
       "k": ["workspace::SendKeystrokes", "g k"],
 
@@ -130,14 +131,15 @@
 
       ", =": "editor::Format",
       "tab": "editor::SelectLargerSyntaxNode",
-      "shift-tab": "editor::SelectSmallerSyntaxNode"
-    }
+      "shift-tab": "editor::SelectSmallerSyntaxNode",
+    },
   },
   // TODO: fix this in diff/diagnostics where you want to enter text. need vim_mode conditions?
   {
     "context": "VimControl && !menu || ChangesList || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Welcome || Diagnostics || ThemePreview || KeymapEditor",
     "bindings": {
       "space space": "command_palette::Toggle",
+      "space v v v": "zed::About",
       "space b": "tab_switcher::ToggleAll",
       "space B": "editor::ToggleTabBar",
       "space d": "pane::CloseActiveItem",
@@ -158,28 +160,28 @@
       "space T": "project_symbols::Toggle",
       // "space T": "outline_panel::ToggleFocus",
       "space l": "editor::ToggleFold",
-      "space L": "editor::ToggleFoldRecursive"
-    }
+      "space L": "editor::ToggleFoldRecursive",
+    },
   },
   {
     "context": "vim_mode == normal && !menu",
     "bindings": {
-      "Y": ["workspace::SendKeystrokes", "y $"]
-    }
+      "Y": ["workspace::SendKeystrokes", "y $"],
+    },
   },
   {
     "context": "vim_mode == insert",
     "bindings": {
       "cmd-p": "editor::ShowEditPrediction",
-    }
+    },
   },
   {
     "context": "Tasks > Editor",
     "use_key_equivalents": true,
     "bindings": {
       "tab": "pane::ActivateNextItem",
-      "shift-tab": "pane::ActivatePreviousItem"
-    }
+      "shift-tab": "pane::ActivatePreviousItem",
+    },
   },
   {
     "context": "(ProjectSearchBar || BufferSearchBar) > Editor",
@@ -190,14 +192,14 @@
       "ctrl-i": "search::ToggleIncludeIgnored",
       "ctrl-a": "search::ToggleCaseSensitive",
       "ctrl-m": "search::SelectAllMatches",
-      "ctrl-f": "project_search::ToggleFilters"
-    }
+      "ctrl-f": "project_search::ToggleFilters",
+    },
   },
   {
     "context": "Editor",
     "bindings": {
-      "ctrl-/": ["workspace::SendKeystrokes", "/ ctrl-r"]
-    }
+      "ctrl-/": ["workspace::SendKeystrokes", "/ ctrl-r"],
+    },
   },
   {
     "context": "(VimControl && !menu) || vim_operator == c",
@@ -206,14 +208,14 @@
         "vim::PushFindForward",
         {
           "before": true,
-          "multiline": false
-        }
-      ]
-    }
+          "multiline": false,
+        },
+      ],
+    },
   },
   {
     "bindings": {
-      "ctrl-cmd-shift-p": "zed::TestPanic"
-    }
-  }
+      "ctrl-cmd-shift-p": "zed::TestPanic",
+    },
+  },
 ]

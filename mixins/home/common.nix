@@ -6,7 +6,7 @@
     fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine heh
     tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs rage
     exiftool resvg get-keys vivid pipe-rename static-web-server cached-path
-    ascii unicode-paracode sequin pay-respects tty-share
+    ascii unicode-paracode sequin pay-respects tty-share bore-cli
     micro helix
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens fx # xan tabiew

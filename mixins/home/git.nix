@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     git-lfs # git-absorb git-branchless
-    git-heatmap git-undeadname
+    git-heatmap git-undeadname # git-coauthor
     gh
     onefetch
     git-worktree-switcher

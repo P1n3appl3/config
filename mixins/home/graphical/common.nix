@@ -1,7 +1,7 @@
 { pkgs, lib, config, pkgs-stable, ... } @ inputs: let
   nixGL = config.lib.nixGL.wrap;
 in {
-  imports = [ ./terminal.nix ./fonts.nix ./theme.nix ];
+  imports = [ ./terminal.nix ./fonts.nix ./theme.nix ./zed.nix ];
 
   home.packages = with pkgs; [
     brightnessctl

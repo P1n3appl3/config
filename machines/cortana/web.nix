@@ -6,8 +6,8 @@ in {
     allowedTCPPorts = [
       22 69     # ssh
       80 443    # http(s)
-      8080 8443 # testing
       22000     # syncthing
+      8080 8443 # testing
       9000 9001 9002 9003 9004 # testing
     ];
     allowedUDPPorts = [ 22000 21027 ]; # syncthing + discovery

@@ -107,7 +107,7 @@
       utm
       duti
       coreutils # TODO: uutils?
-      nixos-rebuild-ng # for deploying to Cortana
+      # nixos-rebuild-ng # for deploying to Cortana
       nushell
       # launchk
 
@@ -118,8 +118,9 @@
       (pkgs.writeShellScriptBin "choose-gui" "exec -a $0 ${choose-gui}/bin/choose $@")
 
       # work stuff
-      go gopls # for testing go tooling in zed
+      # go gopls # for testing go tooling in zed
       # sentry-cli minidump-stackwalk minidump-debugger
+      claude-code codex # for testing stuff at work
     ];
 
     dev.compilers = false;
@@ -128,7 +129,7 @@
     services = {
       # TODO: make module compatible with macos (so it can set up syncthing-tray)
       syncthing.enable = true;
-      mpd.musicDirectory = "/Users/julia/Music/new-library";
+      mpd.musicDirectory = "/Users/julia/Music/library";
     };
 
     launchd.agents.mpd-discord-rpc = {
@@ -151,6 +152,7 @@
         ../mixins/home/dev.nix
         ../mixins/home/graphical/music.nix
         ../mixins/home/graphical/terminal.nix
+        ../mixins/home/graphical/zed.nix
         inputs.mac-app-util.homeManagerModules.default
       ] ++ builtins.attrValues self.outputs.homeModules;
     };

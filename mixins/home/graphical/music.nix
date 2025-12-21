@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }: {
   home.packages = with pkgs; [
-    mpc rmpc mmtc # music-player
+    mpc rmpc mus mmtc # music-player
     sox
     mediainfo
     yt-dlp ytmdl spotdl
