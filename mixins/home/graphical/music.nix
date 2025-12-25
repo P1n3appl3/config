@@ -1,12 +1,12 @@
 { pkgs, config, lib, ... }: {
   home.packages = with pkgs; [
-    mpc rmpc mus mmtc # music-player
+    mpc rmpc inori mus mmtc # music-player
     sox
     mediainfo
     yt-dlp ytmdl spotdl
     # cava
   ] ++ lib.optionals stdenv.isLinux [
-    kid3 strawberry ymuse
+    kid3 strawberry ymuse cantata
     media-downloader
   ];
 

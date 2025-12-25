@@ -1,6 +1,7 @@
 unalias run-help && autoload -Uz run-help && alias help=run-help
 
 function path { echo $path | sd ' ' '\n'; }
+alias vi=hx
 alias cat=bat
 alias l="eza --icons --time-style relative --color-scale all --group-directories-first"
 alias ls="l -l" alias la="l -la"
@@ -11,10 +12,10 @@ alias sudo="sudo " # trailing space for alias expansion
 alias please="sudo "
 alias fuck=killall
 function note { cd ~/documents/notes && vi todo/TODO.md **/*.md && cd -; }
-alias wine32="WINEPREFIX=$HOME/.wine32 wine"
 alias send="wormhole-rs tx"
 alias receive="wormhole-rs rx"
 alias getsong="ytmdl --dont-transcode --download-archive ~/.cache/ytmdl/archive"
+alias wine32="WINEPREFIX=$HOME/.wine32 wine"
 function ststatus {
     IFS=$'\n' read -rd '' id uptime start url cpu < \
         <(syncthing cli show system |

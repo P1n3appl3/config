@@ -7,9 +7,10 @@ local extra=$HOME/.config/zsh/extra.zsh && test -f $extra && source $extra
 alias config='git -C $CONF_DIR'
 alias reload='unset __HM_SESS_VARS_SOURCED; exec zsh'
 function mkconfig {
-    eval "function ${1}config { pushd -q $CONF_DIR; vi dotfiles/$2 ${@:3}; popd -q }"
+    eval "function ${1}config { pushd -q $CONF_DIR; hx dotfiles/$2 ${@:3}; popd -q }"
 }
 mkconfig vim '.config/nvim/{init.lua,**/*.lua,**/*.vim(N)}'
+mkconfig hx '.config/helix/config.toml'
 mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
 mkconfig nix '../mixins/home/common.nix' '**/*.nix'
 mkconfig i3 '.config/{i3/config,i3status-rust/config.toml}'
