@@ -10,7 +10,7 @@ function mkconfig {
     eval "function ${1}config { pushd -q $CONF_DIR; hx dotfiles/$2 ${@:3}; popd -q }"
 }
 mkconfig vim '.config/nvim/{init.lua,**/*.lua,**/*.vim(N)}'
-mkconfig hx '.config/helix/config.toml'
+mkconfig hx '.config/helix/{config.toml,languages.toml}'
 mkconfig zsh '{.zshrc,.zshenv,.config/zsh/*}'
 mkconfig nix '../mixins/home/common.nix' '**/*.nix'
 mkconfig i3 '.config/{i3/config,i3status-rust/config.toml}'

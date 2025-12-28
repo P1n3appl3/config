@@ -7,7 +7,7 @@ give-me-a-ping-vasily() { # One Ping Only...
 
 source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
 
-export {EDITOR,VISUAL}=nvim
+export {EDITOR,VISUAL}=hx
 
 path_add() { remove=($1); path=($1 ${path:|remove}); }
 path_add_once() { if ! (($path[(Ie)$1])); then path_add $1; fi; }

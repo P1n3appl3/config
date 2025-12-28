@@ -1,0 +1,6 @@
+[[language]] # remove once we have modelines https://github.com/helix-editor/helix/pull/7788
+name = "git-config"
+file-types = ["gitconfig", { glob = ".gitmodules" }, { glob = "gitconfig" }, { glob = ".gitconfig" }, { glob = ".git/config" }, { glob = ".config/git/config" }, { glob = ".config/git/extraConfig" }]
+
+[language-server.rust-analyzer.config]
+check.command = "clippy"

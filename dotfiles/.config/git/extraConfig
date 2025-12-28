@@ -25,7 +25,7 @@
 format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
 %Creset%<|(-1,trunc)%s\" $@; } ; log"
     l = ll -n 20
-    vi = "!vi() { git diff ${@:-HEAD^} --diff-filter=d --name-only | xargs nvim; } ; vi"
+    vi = "!vi() { git diff ${@:-HEAD^} --diff-filter=d --name-only | xargs hx; } ; vi"
     changed = diff --stat HEAD~1
 [diff]
     colorMoved = default

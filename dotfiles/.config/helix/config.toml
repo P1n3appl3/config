@@ -3,9 +3,10 @@ theme = "catppuccin-mocha"
 [editor]
 cursorline = true
 color-modes = true
+clipboard-provider = "termcode"
 
 [editor.gutters]
-layout = ["diff", "diagnostics", "spacer"]
+layout = ["diff", "diagnostics"]
 
 [editor.cursor-shape]
 insert = "bar"
@@ -15,11 +16,19 @@ select = "underline"
 [keys.normal]
 "C-/" = "@%s"
 "C-." = "@<A-.>"
+tab = "expand_selection"
+"S-tab" = "shrink_selection"
+H = "select_prev_sibling"
+L = "select_next_sibling"
+"C-y" = "@\"+y"
 
 [keys.normal.space]
 space = "command_palette"
 d = ":buffer-close"
 w = { d = "wclose" }
+"=" = ":format"
+q = ":wqa"
 
 [keys.select]
-o = "flip_selections"
+"C-y" = "@\"+y"
+# o = "flip_selections" # maybe just get used to the alt-; binding since it works in normal mode too

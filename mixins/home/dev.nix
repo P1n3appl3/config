@@ -23,7 +23,7 @@
 
     (writeShellScriptBin "uv" ''env UV_PYTHON_PREFERENCE=only-system \
       UV_PYTHON="${python3}" ${lib.getExe uv} $@'')
-    (lib.lowPrio uv) ruff pyright ty (python3.withPackages (p: with p; [ debugpy ]))
+    (lib.lowPrio uv) ruff ty (python3.withPackages (p: with p; [ debugpy ]))
     beancount-language-server
     asmfmt nasmfmt
     nurl nix-init
