@@ -28,7 +28,7 @@
   services = {
     atd.enable = true;
     nixseparatedebuginfod2.enable = true;
-    angrr = { enable = true; timer.enable = true; };
+    # angrr = { enable = true; timer.enable = true; };
     getty = {
       autologinUser = "julia";
       greetingLine = ''\l'';

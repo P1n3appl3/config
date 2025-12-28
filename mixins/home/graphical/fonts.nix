@@ -13,6 +13,7 @@
     mononoki
     monaspace
     pango.bin
+    uiua386
   ];
 
   fonts.fontconfig = {
