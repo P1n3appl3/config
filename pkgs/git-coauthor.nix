@@ -3,10 +3,7 @@
   runtimeInputs = [ fzf choose ];
   # TODO: helptext
   text = ''
-    selection="$(git shortlog -nse | choose 1.. | fzf)"
-    if [ $? -eq 0 ]; then
-      git commit --amend --no-edit --trailer "Co-authored-by: $selection"
-    fi
+    selection="$(git shortlog -nse | choose 1.. | rg -Fv "$(git config user.email)" | fzf)"
+    git commit --amend --no-edit --trailer --if-missing "Co-authored-by: $selection"
   '';
-  meta.broken = true;
 }

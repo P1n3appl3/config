@@ -3,7 +3,7 @@ theme = "catppuccin-mocha"
 [editor]
 cursorline = true
 color-modes = true
-clipboard-provider = "termcode"
+# clipboard-provider = "termcode" # wasn't working for pasting on MACOS
 
 [editor.gutters]
 layout = ["diff", "diagnostics"]
@@ -21,9 +21,13 @@ tab = "expand_selection"
 H = "select_prev_sibling"
 L = "select_next_sibling"
 "C-y" = "@\"+y"
+"S-c" = "@t<ret>c"
+"S-d" = "@t<ret>d"
+"S-y" = "@t<ret>y"
 
 [keys.normal.space]
 space = "command_palette"
+tab = "goto_last_accessed_file"
 d = ":buffer-close"
 w = { d = "wclose" }
 "=" = ":format"
