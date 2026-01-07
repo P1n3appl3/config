@@ -102,9 +102,9 @@
       "space r w": "vim::Rewrap",
       "space f s": "workspace::Save",
 
-      "space r n": "editor::Rename",
-      "space c a": "editor::ToggleCodeActions",
-      "space c l": ["editor::ToggleComments", { "advance_downwards": false }],
+      // "space r n": "editor::Rename",
+      // "space c a": "editor::ToggleCodeActions",
+      // "space c l": ["editor::ToggleComments", { "advance_downwards": false }],
 
       "space e e": "diagnostics::ToggleWarnings",
       "space e n": "editor::GoToDiagnostic",
