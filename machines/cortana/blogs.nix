@@ -80,7 +80,6 @@
 ["Quil"               "robotlolita.me"                      "/atom.xml"]
 ["Raph Levien"        "raphlinus.github.io"                 "/feed.xml"]
 ["Tyler Mandry"       "tmandry.gitlab.io/blog"              "/index.xml"]
-["David Lemire"       "lemire.me/blog"                      "/feed"]
 ["Gankra"             "gankra.github.io"                    "/blah/rss.xml"]
 ["Jane"               "yaah.dev"                            "/feed.xml"]
 ["Dan Luu"            "danluu.com"                          "/atom.xml"]
@@ -126,9 +125,13 @@
 ["Alex Chan"          "alexwlchan.net"                      "/atom.xml"]
 ["Dave Gauer"         "ratfactor.com"                       "/atom.xml"]
 ["Joshua Barretto"    "blog.jsbarretto.com"                 "/rss.xml"]
+["andrew"             "https://ajfarkas.dev/blog"           "/index.xml"]
+["melody"             "blog.melodysium.gay"                 "/rss"]
 
 # ["Julia Violet"       "juliaviolet.dev"                     "???"]
 # ["nan.fyi"            "nan.fyi"                             "???"]
+# ["rainy"              "petrichorstreet.neocities.org"       "???"]
+# ["cliché"             "cleeshlow.neocities.org"             "???"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]
@@ -162,4 +165,7 @@
 ["toxic yuri" "amawashigroup.wordpress.com" "/feed"]
 
 # ["λ the Ultimate"     "http://lambda-the-ultimate.org"      "/node/feed"]
+
+# in time out for posting too much non-substantive stuff
+# ["David Lemire"       "lemire.me/blog"                      "/feed"]
 ])

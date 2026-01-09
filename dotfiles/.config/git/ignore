@@ -8,6 +8,7 @@ rust-analyzer.json
 *.temp
 *.o
 *.d
+!conf.d
 result
 .rustfmt.toml
 .direnv

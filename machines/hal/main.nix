@@ -126,6 +126,9 @@
 
   environment.pathsToLink = [ "/libexec" ];
 
-  networking.hostName = "HAL";
+  networking = {
+    hostName = "HAL";
+    hosts."127.0.0.1" = [ "HAL" ];
+  };
   time.timeZone = "America/Los_Angeles";
 }

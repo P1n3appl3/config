@@ -2,9 +2,9 @@ builds:
   include:
     - homeConfigurations.*
     - nixosConfigurations.*
-    - darwinConfigurations.*
+    # - darwinConfigurations.*
     - packages.x86_64-linux.*
     - packages.aarch64-linux.*
-    - packages.aarch64-darwin.*
+    # - packages.aarch64-darwin.*
   exclude:
     - packages.*.rwing # unfree

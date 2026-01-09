@@ -3,7 +3,7 @@
     steam
     itch wine64
     # heroic
-    # lutris
+    lutris
     ludusavi
 
     # melee tools

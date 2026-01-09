@@ -2,8 +2,12 @@ theme = "catppuccin-mocha"
 
 [editor]
 cursorline = true
+true-color = true
 color-modes = true
 # clipboard-provider = "termcode" # wasn't working for pasting on MACOS
+
+[editor.soft-wrap]
+enable = true
 
 [editor.gutters]
 layout = ["diff", "diagnostics"]

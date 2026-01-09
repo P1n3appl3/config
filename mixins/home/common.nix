@@ -1,13 +1,10 @@
 { pkgs, inputs, lib, config, myOverlays, ... } @ args: {
   home.packages = with pkgs; [
-    # Shell
-    atuin starship zoxide zsh-syntax-highlighting zsh-autosuggestions nix-zsh-completions
     # Utils
     fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine heh
     tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs rage
     exiftool resvg get-keys vivid pipe-rename static-web-server cached-path
-    ascii unicode-paracode sequin pay-respects tty-share bore-cli scooter
-    micro
+    ascii unicode-paracode sequin tty-share bore-cli scooter micro
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens fx # xan tabiew
     # System info
@@ -46,7 +43,7 @@
   };
 
   imports = [
-    ./git.nix ./nvim.nix ./htop.nix ./bash.nix ./fish.nix
+    ./git.nix ./nvim.nix ./htop.nix ./shells.nix
     (if builtins.hasAttr "osConfig" args then {} else
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
     inputs.nix-index-database.homeModules.nix-index
@@ -57,8 +54,7 @@
   catppuccin = {
     flavor = "mocha"; accent = "blue";
     bat.enable = true; cava.enable = true; helix.enable = true; btop.enable = true;
-    fish.enable = true;
-    # TODO: fzf/zellij/fish/zsh-syntax-highlighting
+    fish.enable = true; zellij.enable = true; fzf.enable = true;
   };
 
   nix.registry = {
