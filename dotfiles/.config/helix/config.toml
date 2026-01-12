@@ -4,10 +4,13 @@ theme = "catppuccin-mocha"
 cursorline = true
 true-color = true
 color-modes = true
-# clipboard-provider = "termcode" # wasn't working for pasting on MACOS
+clipboard-provider = "termcode"
 
 [editor.soft-wrap]
 enable = true
+
+[editor.file-picker]
+hidden = false
 
 [editor.gutters]
 layout = ["diff", "diagnostics"]

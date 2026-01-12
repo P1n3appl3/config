@@ -1,0 +1,1 @@
+set -e __HM_SESS_VARS_SOURCED

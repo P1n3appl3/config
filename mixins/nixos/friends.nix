@@ -67,5 +67,8 @@ in {
     yaah = (user [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvDoWAmF3JupYvTTSSA084bPdmYWUrIlK66r9QL2JlD"
     ] []);
+    kora = (user [
+      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCaRLHehM4Uhsnz/rjV/jEPx4ZxQGxxsmg6TO+GuQAO1aszjtmWlFnbtxxYJYKg2/lGr4JQ2AASpZ9/ntaOmQkZ27U2iAYFHpdmZBxn2j33GlpXkhTtu3Gd4CY7ceUh6pu9xD5URoEX8QWrUO+sMnlNo1OqV+lGEZNXY/614wpN/jLkv4VRjuJIsXlCH/dXlVx8D52oguVGGGvg+L+vQ2RaXMsBbGHxnC9tFw3rS1twnTT818Ln4ehTX9TtueWxmu0CRJWxK2MhNzjXSTbSRGzPTH9d8SfZt1n0+TjBg+G99Kh6KjanqxfIHqjaJ49yN+E++AAjYuHeUJOgPBBt7/BZ kora@fastmail.com"
+    ] [] // { shell = pkgs.bash; } );
   };
 }

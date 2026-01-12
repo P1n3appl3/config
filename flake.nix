@@ -84,9 +84,7 @@
       ISO     = machine "x86_64-linux"  ./machines/iso.nix;
     };
 
-    darwinConfigurations = {
-      GLaDOS = machine "aarch64-darwin" ./machines/glados.nix;
-    };
+    darwinConfigurations = { };
 
     homeModules  = listDir { of = ./modules/home;  mapFunc = _: import; };
     nixosModules = listDir { of = ./modules/nixos; mapFunc = _: import; };

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   home = {
     shell = {
@@ -28,13 +28,12 @@
           };
         in
         (map mkPlugin [
-          puffer # (!! !$ ..+ etc)
+          puffer # (!! !$ !* ..+)
           done
           fish-you-should-use
           colored-man-pages
           autopair # try pisces?
-          # fzf or fzf.fish if default integration isn't enough
-          # fifc
+          # fzf or fzf.fish or fifc if default integration isn't enough
         ]);
       shellInitLast = "source ~/.config/fish/extra.fish";
     };
@@ -43,7 +42,37 @@
     ghostty.enableFishIntegration = true;
     kitty.shellIntegration.enableFishIntegration = true;
 
-    fzf.enable = true;
+    fzf = let fd = "fd --mount --color=always"; in {
+      enable = true;
+      defaultCommand = fd;
+      # fileWidgetCommand = fd;
+      changeDirWidgetCommand = "${fd} -td";
+      defaultOptions = [
+        "--reverse"
+        "--bind=ctrl-z:ignore"
+        "--preview-window=down"
+        "--height=60%"
+        "--inline-info"
+        "--bind 'ctrl-p:change-preview-window(hidden|down)'"
+        "--bind ctrl-r:first"
+        "--bind alt-up:first"
+        "--bind alt-down:last"
+        "--bind shift-up:preview-page-up"
+        "--bind shift-down:preview-page-down"
+        "--bind ctrl-d:half-page-down"
+        "--bind ctrl-u:half-page-up"
+      ];
+      fileWidgetOptions = [
+        "--multi"
+        "--height=80%"
+        "--ansi"
+        ''--preview "~/.config/zsh/preview.sh {}"''
+        ''--bind "ctrl-/:reload(${fd} . / -H)"''
+        ''--bind "ctrl-h:reload(${fd} . ~ -H)"''
+        ''--bind "ctrl-w:reload(${fd})"''
+      ];
+      colors.bg = lib.mkForce "#000000";
+    };
     atuin = {
       enable = true;
       flags = [ "--disable-up-arrow" ];
@@ -57,6 +86,10 @@
     pay-respects = {
       enable = true;
       options = [ "--nocnf" ];
+    };
+    nix-index = {
+      enableFishIntegration = false;
+      enableBashIntegration = false;
     };
 
     bash = {

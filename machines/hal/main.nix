@@ -84,7 +84,7 @@
 
   services = {
     # desktopManager.gnome.enable = true;
-    desktopManager.cosmic.enable = true;
+    # desktopManager.cosmic.enable = true;
     xserver = { enable = true;
       windowManager.i3.enable = true;
       screenSection = ''

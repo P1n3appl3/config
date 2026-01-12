@@ -4,7 +4,7 @@
     fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine heh
     tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs rage
     exiftool resvg get-keys vivid pipe-rename static-web-server cached-path
-    ascii unicode-paracode sequin tty-share bore-cli scooter micro
+    ascii unicode-paracode sequin tty-share bore-cli scooter micro chafa
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens fx # xan tabiew
     # System info
@@ -19,7 +19,7 @@
   ];
 
   programs = {
-    helix = {enable = true; settings = lib.mkForce {}; };
+    helix = { enable = true; settings = lib.mkForce {}; };
     bat = { enable = true; };
     direnv = { enable = true;
       nix-direnv.enable = true;

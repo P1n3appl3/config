@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
+    # ../../mixins/nixos/cosmic.nix
   ];
 
   home-manager.users.julia.imports = [
@@ -43,6 +44,7 @@
   };
 
   services = {
+    openssh.enable = true;
     flatpak.enable = true;
     automatic-timezoned.enable = true;
     upower.enable = true;

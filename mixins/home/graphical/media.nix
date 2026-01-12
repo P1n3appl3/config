@@ -12,7 +12,7 @@
     # deflemask furnace
     # non lmms ardour
     audacity # (or tenacity)
-    logisim-evolution circuit-artist
+    logisim-evolution # circuit-artist
 
     kicad-small
     calibre

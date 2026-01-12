@@ -49,11 +49,10 @@
 
   services = {
     swayidle = { enable = true;
-      events = [
-        { event = "before-sleep"; command = "playerctl pause"; }
-        { event = "before-sleep"; command = "swaylock"; }
-        { event = "lock"; command = "swaylock"; }
-      ];
+      events = {
+        before-sleep = "playerctl pause && swaylock";
+        lock = "swaylock"; 
+      };
       timeouts = let screen = state: "swaymsg 'output * dpms ${state}'"; in [
         { timeout = 110; command = "swaylock"; }
         { timeout = 120; command = screen "off"; resumeCommand = screen "on"; }

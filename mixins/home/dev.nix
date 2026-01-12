@@ -11,6 +11,7 @@
   };
 
   config.home.packages = with pkgs; lib.mkMerge [ [
+    claude-code gemini-cli
     onefetch
 
     cargo-flamegraph
@@ -29,7 +30,7 @@
     asmfmt nasmfmt
     nurl nix-init
     typst tinymist typstyle
-    # biome # TODO: fix on GLaDOS, just check phase fails
+    biome # TODO: replace with oxfmt?
     posting
   ]
 

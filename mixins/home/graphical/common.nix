@@ -23,6 +23,7 @@ in {
       # protobuf-language-server
       # cargotom
       typescript
+    antigravity
     (nixGL obsidian)
     # maybe https://github.com/digint/btrbk or buttermanager
     # TODO: www.marginalia.nu or ddg default search engine, set profile to

@@ -5,12 +5,10 @@ config 🍍 nix flake show
 ├───homeConfigurations
 │   ╰───ATLAS: steamdeck
 ├───nixosConfigurations
-│   ├───Cortana: raspberry pi 4B
-│   ├───WOPR:    framework laptop 13" (AMD 7640U)
 │   ├───HAL:     main desktop
+│   ├───WOPR:    framework laptop 13" (AMD 7640U)
+│   ├───Cortana: raspberry pi 4B
 │   ╰───ISO:     bootable image for bootstrapping
-├───darwinConfigurations
-│   ╰───GLaDOS: work macbook (14" M4 Pro 64GB)
 ├───homeModules
 │   ╰───fightcade: wrapper to play retro fighting games
 ├───nixosModules
