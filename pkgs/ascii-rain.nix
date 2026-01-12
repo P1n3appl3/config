@@ -1,11 +1,12 @@
 { fetchFromGitHub, stdenv, ncurses }:
 stdenv.mkDerivation rec {
-  name = "ascii-rain";
+  pname = "ascii-rain";
+  version = "2026-01-12";
   src = fetchFromGitHub {
     owner = "nkleemann";
-    repo = name;
-    rev = "ba1a986065a6a1c12388306d82c7790135e35be8";
-    hash = "sha256-yYZpEevwPppMe9FOZGt5vDkhaeu3zhd2xZycGnT85jI=";
+    repo = "ascii-rain";
+    rev = "39396dea0a84b4580f0ee5f46de9de4468566ed0";
+    hash = "sha256-v2YN5epe3ZIkjc7he9Kc62v9Oalepu7t3vGzNFRNr3M=";
   };
   nativeBuildInputs = [ ncurses ];
   buildPhase = "cc rain.c -o rain -lncurses";
@@ -13,4 +14,6 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin
     cp rain $out/bin
   '';
+
+  meta.mainProgram = "rain";
 }

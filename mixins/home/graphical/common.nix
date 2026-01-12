@@ -1,6 +1,4 @@
-{ pkgs, lib, config, pkgs-stable, ... } @ inputs: let
-  nixGL = config.lib.nixGL.wrap;
-in {
+{ pkgs, lib, config, ... }: {
   imports = [ ./terminal.nix ./fonts.nix ./theme.nix ./zed.nix ];
 
   home.packages = with pkgs; [
@@ -12,36 +10,28 @@ in {
     libqalculate qalculate-gtk
     nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
-    (nixGL (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; }))
-    ffmpeg vlc (nixGL oculante)
+    (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; })
+    ffmpeg vlc imv # oculante
     vial # TODO: check if I need via too
     # gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
-    (nixGL zed-editor)
-      # nodejs # TODO: figure out why bundled node isn't working
-      # package-version-server
-      # protobuf-language-server
-      # cargotom
-      typescript
-    antigravity
-    (nixGL obsidian)
+    obsidian
     # maybe https://github.com/digint/btrbk or buttermanager
     # TODO: www.marginalia.nu or ddg default search engine, set profile to
     # automate setting up my userchrome css, sync userstyles
     # TODO: try xinput2 and select file picker: https://nixos.wiki/wiki/Firefox
     # TODO: bitwarden popup floating window
     # TODO: vaapi hardware decode, and nightly for webgpu
-    (nixGL firefox)
+    firefox
 
-    (nixGL telegram-desktop) (nixGL vesktop) signal-desktop
-    (nixGL caprine-bin) slack android-messages
+    telegram-desktop vesktop signal-desktop
+    caprine-bin slack android-messages
     fractal element-desktop iamb # fluffychat cinny nheko # TODO: pick
     # pkgs-stable.friture praat # TODO: try these for voice training
-    # (nixGL imhex) # (TODO: catppuccin) # TODO: try hexerator/rizin/cutter
+    # imhex # (TODO: catppuccin) # TODO: try hexerator/rizin/cutter
     mepo # TODO: try
     # TODO: syncthing-gtk
     # TODO: https://gitlab.freedesktop.org/rncbc/qpwgraph
-    # nixgl.nixGLIntel nixgl.nixVulkanIntel
     mesa-demos vulkan-tools
     firmware-updater gnome-firmware # firmware-manager # TODO: pick one
     graphviz
@@ -52,8 +42,9 @@ in {
     d-spy
     transmission_4-gtk
     heaptrack
-    (nixGL meld)
-    rustdesk
+    meld
+    antigravity
+    # rustdesk
   ];
 
   programs = {
@@ -112,10 +103,6 @@ in {
     xdgOpenUsePortal = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-wlr ];
     config.common.default = "gtk"; # TODO: set per-interface portal
-  };
-
-  targets.genericLinux.nixGL = lib.optionalAttrs (!(inputs ? osConfig)) {
-    packages = inputs.inputs.nixgl.packages;
   };
 
   home.keyboard.options = [ "caps:escape" "shift:both_capslock" ];

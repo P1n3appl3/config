@@ -143,8 +143,6 @@ Currently I'm trying out using catppuccin mocha everywhere I can manage. This [d
 
 ## Nix stuff
 
-* Upstream the nixGL wrapper I use (or use the upstream one they decide on)
-* add a custom livedisk flake output
 * add a vm flake output
 * my `warnIfUpdated` util function seems broken, though I could have sworn it worked at one point. I might be missing something about how evaluation caching works (I've noticed that other home-manager warnings only show up a single time after I `nix flake update`)
 * profile flake eval time, see [this thread](https://discourse.nixos.org/t/nix-flamegraph-or-profiling-tool/33333)

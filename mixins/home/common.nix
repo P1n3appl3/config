@@ -1,7 +1,7 @@
 { pkgs, inputs, lib, config, myOverlays, ... } @ args: {
   home.packages = with pkgs; [
     # Utils
-    fzf ripgrep fd eza sd dogdns ouch xh dl rbw pinentry-curses hyperfine heh
+    fzf ripgrep fd eza sd doggo ouch xh dl rbw pinentry-curses hyperfine heh
     tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs rage
     exiftool resvg get-keys vivid pipe-rename static-web-server cached-path
     ascii unicode-paracode sequin tty-share bore-cli scooter micro chafa
@@ -28,7 +28,7 @@
     ssh = { enable = true;
       includes = [ "extra-config" ];
       enableDefaultConfig = false;
-      matchBlocks =  {
+      matchBlocks = {
         "*" = {
           serverAliveInterval = 30;
           controlPersist = "15h";

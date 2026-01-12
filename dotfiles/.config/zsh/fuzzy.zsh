@@ -42,7 +42,7 @@ _fzf_comprun() {
     case "$command" in
     j) fzf --preview "eza --icons {}" "$@" ;;
     export | unset) fzf --preview "eval 'echo \$'{}" "$@" ;;
-    ssh) fzf --preview 'give-me-a-ping-vasily {}; dog --color=always {}' "$@" ;;
+    ssh) fzf --preview 'give-me-a-ping-vasily {}; doggo --color=always {}' "$@" ;;
     *) fzf "$@" ;;
     esac
 }

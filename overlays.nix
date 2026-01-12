@@ -28,6 +28,16 @@ inputs: final: prev: {
     patches = [];
   };
 
+  fishplugin-puffer = prev.fishplugin-puffer.overrideAttrs {
+    version = "mine";
+    src = final.fetchFromGitHub {
+      owner = "P1n3appl3";
+      repo = "puffer-fish";
+      rev = "83174b07de60078be79985ef6123d903329622b8";
+      hash = "sha256-Dhx5+XRxJvlhdnFyimNxFyFiASrGU4ZwyefsDwtKnSg=";
+    };
+  };
+
   # # for oneko
   # sway = prev.sway.overrideAttrs (old: {
   #   patches = (old.patches or []) ++ [ (final.fetchpatch {

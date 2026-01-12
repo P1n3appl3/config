@@ -35,8 +35,8 @@
   ]
 
   (lib.mkIf config.dev.compilers
-    ([ rustup mold clang clang-tools nasm uiua ] ++
-      lib.optionals stdenv.isLinux [ j ]))
+    ([ rustup mold clang clang-tools nasm uiua ])) # ++
+      # lib.optionals stdenv.isLinux [ j ]))
 
   (lib.mkIf config.dev.debuggers
     ([ lldb vscode-extensions.vadimcn.vscode-lldb.adapter ] ++

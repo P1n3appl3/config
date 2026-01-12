@@ -9,7 +9,6 @@
     nixos-hardware.url     = "github:NixOS/nixos-hardware";
     ragenix.url            = "github:yaxitech/ragenix";
     nix-index-database.url = "github:Mic92/nix-index-database";
-    nixgl.url              = "github:guibou/nixGL";
     mac-app-util.url       = "github:hraban/mac-app-util";
     catppuccin.url         = "github:catppuccin/nix";
     slippi.url             = "github:lytedev/slippi-nix";
@@ -19,7 +18,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    nixgl.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
     mac-app-util.inputs = { nixpkgs.follows = "nixpkgs"; flake-utils.follows = "flake-utils"; };
     ragenix.inputs = { nixpkgs.follows = "nixpkgs-stable"; flake-utils.follows = "flake-utils"; };
     slippi.inputs = {
@@ -38,13 +36,13 @@
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, nix-darwin, flake-utils,
-    ragenix, nixgl, obs-gamepad, self, rahul-config, ... } @ inputs:
+    ragenix, obs-gamepad, self, rahul-config, ... } @ inputs:
   let
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
     mapDir = lib.filesystem.packagesFromDirectoryRecursive;
     myOverlays = [
-      self.overlays.default nixgl.overlays.default ragenix.overlays.default
+      self.overlays.default ragenix.overlays.default
       obs-gamepad.overlays.default (import ./overlays.nix inputs)
     ];
     special = system: {

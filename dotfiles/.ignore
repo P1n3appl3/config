@@ -9,7 +9,7 @@ target
 *.o
 *.so
 *.so.*
-*.d
+# *.d
 *.dll
 *.class
 .firefox

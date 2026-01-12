@@ -2,9 +2,12 @@
 # TODO: keybindings
 
 if status --is-login
-    fish_add_path -p $HOME/.cargo/bin
-    fish_add_path -p $HOME/.local/bin
+    fish_add_path -P $HOME/.cargo/bin
+    fish_add_path -P $HOME/.local/bin
 end
+
+set -e __HM_SESS_VARS_SOURCED
+source ~/.nix-profile/etc/profile.d/hm-session-vars.fish
 
 abbr -a config git -C $CONF_DIR
 abbr -a reload exec fish
@@ -101,7 +104,7 @@ function _switch
     else
         set cmd home
     end
-    nh $cmd switch $CONF_DIR
+    nh $cmd switch $CONF_DIR $argv
 end
 abbr -a switch _switch
 abbr -a update switch -u

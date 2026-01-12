@@ -19,9 +19,7 @@
   programs = {
     fish = {
       enable = true;
-      plugins =
-        with pkgs.fishPlugins;
-        let
+      plugins = with pkgs.fishPlugins; let
           mkPlugin = p: {
             inherit (p) src;
             name = "${p.pname}";
@@ -44,8 +42,7 @@
 
     fzf = let fd = "fd --mount --color=always"; in {
       enable = true;
-      defaultCommand = fd;
-      # fileWidgetCommand = fd;
+      fileWidgetCommand = fd;
       changeDirWidgetCommand = "${fd} -td";
       defaultOptions = [
         "--reverse"
@@ -70,6 +67,9 @@
         ''--bind "ctrl-/:reload(${fd} . / -H)"''
         ''--bind "ctrl-h:reload(${fd} . ~ -H)"''
         ''--bind "ctrl-w:reload(${fd})"''
+      ];
+      changeDirWidgetOptions = [
+        "--ansi"
       ];
       colors.bg = lib.mkForce "#000000";
     };
