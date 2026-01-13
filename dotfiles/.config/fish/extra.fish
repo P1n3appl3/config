@@ -115,8 +115,7 @@ function give-me-a-ping-vasily
 end
 
 function fzf-dir-widget
-    set -x FZF_CTRL_T_COMMAND $FZF_ALT_C_COMMAND
-    fzf-file-widget
+    FZF_CTRL_T_COMMAND=$FZF_ALT_C_COMMAND fzf-file-widget
 end
 
 bind ctrl-f fzf-file-widget

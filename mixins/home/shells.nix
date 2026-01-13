@@ -63,10 +63,10 @@
         "--multi"
         "--height=80%"
         "--ansi"
-        ''--preview "~/.config/zsh/preview.sh {}"''
-        ''--bind "ctrl-/:reload(${fd} . / -H)"''
-        ''--bind "ctrl-h:reload(${fd} . ~ -H)"''
-        ''--bind "ctrl-w:reload(${fd})"''
+        "--preview '~/.config/zsh/preview.sh {}'"
+        "--bind 'ctrl-/:reload(${fd} . / -H)'"
+        "--bind 'ctrl-h:reload(${fd} . ~ -H)'"
+        "--bind 'ctrl-w:reload(${fd})'"
       ];
       changeDirWidgetOptions = [
         "--ansi"

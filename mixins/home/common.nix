@@ -1,7 +1,7 @@
 { pkgs, inputs, lib, config, myOverlays, ... } @ args: {
   home.packages = with pkgs; [
     # Utils
-    fzf ripgrep fd eza sd doggo ouch xh dl rbw pinentry-curses hyperfine heh
+    ripgrep fd eza sd doggo ouch xh dl rbw pinentry-curses hyperfine heh
     tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs rage
     exiftool resvg get-keys vivid pipe-rename static-web-server cached-path
     ascii unicode-paracode sequin tty-share bore-cli scooter micro chafa
@@ -54,7 +54,7 @@
   catppuccin = {
     flavor = "mocha"; accent = "blue";
     bat.enable = true; cava.enable = true; helix.enable = true; btop.enable = true;
-    fish.enable = true; zellij.enable = true; fzf.enable = true;
+    fish.enable = true; zellij.enable = true; # fzf.enable = true;
   };
 
   nix.registry = {
