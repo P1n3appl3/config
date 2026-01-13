@@ -93,7 +93,7 @@
     };
 
     bash = {
-      enable = true;
+      enable = false;
       bashrcExtra = ''
         source $(blesh-share)/ble.sh
         if [ -d "$HOME/.local/bin" ] ; then

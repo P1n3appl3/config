@@ -1,5 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, pkgs }:
-stdenv.mkDerivation {
+{ lib, stdenv, fetchFromGitHub, makeDesktopItem, pkgs }: stdenv.mkDerivation rec {
   pname = "circuit-artist";
   version = "2026-01-06";
 
@@ -15,74 +14,72 @@ stdenv.mkDerivation {
     cmake
     wayland-scanner
     pkg-config
+    makeWrapper
+    copyDesktopItems
   ];
 
-  buildInputs =
-    with pkgs;
-    [
-      # waylandpp
-      wayland
-      gtk3
-      glib
-      libsysprof-capture
-      pcre2
-       
-      util-linux
-      libselinux
-      libsepol
-      libthai
-      libdatrie
-      
-      libxkbcommon
-      libxdmcp
-      lerc
-      libdeflate
-      xz
-      zstd
-      libwebp
-      libepoxy
-    ]
-    ++ (with pkgs.xorg; [
-      libX11
-      libXrandr
-      libXinerama
-      libXcursor
-      libXi
-      libXtst
-    ]);
-    cmakeBuildTarget = "ca";
-
-  # installPhase = ''
-  #   mkdir -p $out/bin
-  #   cp -r $src/assets $out/assets
-  #   mv ca $out/bin/ca
-  #   makeBinaryWrapper ca --chdir $out/bin
+  buildInputs = with pkgs; [
+    wayland
+    gtk3
+    glib
+    alsa-lib
+    libsysprof-capture
+    pcre2
+     
+    util-linux
+    libselinux
+    libsepol
+    libthai
+    libdatrie
     
-  # '';
+    libxkbcommon
+    libxdmcp
+    lerc
+    libdeflate
+    xz
+    zstd
+    libwebp
+    libepoxy
+  ]
+  ++ (with pkgs.xorg; [
+    libX11
+    libXrandr
+    libXinerama
+    libXcursor
+    libXi
+    libXtst
+  ]);
+  cmakeBuildTarget = "ca";
+
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/bin
-    cp -r $src/assets $out
+    cp -r $src/assets $src/solutions $out
+    mkdir -p $out/share/icons/hicolor/32x32/apps
+    cp $src/assets/icon32.png $out/share/icons/hicolor/32x32/apps/circuit-artist.png
     mv ca $out/bin/ca-unwrapped
+    makeWrapper $out/bin/ca-unwrapped $out/bin/ca \
+      --run 'export data_dir="''${XDG_DATA_HOME:-$HOME/.local/share}/circuit-artist"' \
+      --run 'mkdir -p "$data_dir/bin"' \
+      --run 'cd "$data_dir/bin"' \
+      --run "ln -sfn $out/assets ../assets"
 
-    # Wrapper that runs from a per-user writable dir, but keeps ../assets working
-    makeWrapper ${pkgs.bash}/bin/bash $out/bin/ca \
-      --add-flags -lc \
-      --add-flags '
-        set -euo pipefail
-
-        data_dir="$${XDG_DATA_HOME:-$$HOME/.local/share}/circuit-artist"
-        mkdir -p "$data_dir/bin"
-
-        # Ensure ../assets resolves from $data_dir/bin -> $data_dir/assets -> store assets
-        ln -sfn "$out/assets" "$data_dir/assets"
-
-        cd "$data_dir/bin"
-        exec "$out/bin/ca-unwrapped" "$@"
-      '
+    runHook postInstall
   '';
 
+
+  desktopItems = [
+    (makeDesktopItem {
+      name = pname;
+      desktopName = pname;
+      exec = "ca";
+      icon = "circuit-artist";
+    })
+  ];
+
   meta = {
-    description = "Circuit Artist is a digital circuit drawing and simulation game";
+    description = "Digital circuit drawing and simulation game";
     homepage = "https://github.com/lets-all-be-stupid-forever/circuit-artist";
     license = lib.licenses.gpl3Only;
     mainProgram = "ca";

@@ -43,9 +43,7 @@ set -x EDITOR hx
 set -x VISUAL hx
 set -g fish_cursor_default line
 
-function p
-    echo $PATH | sd ' ' '\n'
-end
+abbr -a p string split ' ' \$PATH
 abbr -a vi hx
 abbr -a cat bat
 function l
@@ -65,6 +63,7 @@ end
 
 abbr -a send "wormhole-rs tx"
 abbr -a receive "wormhole-rs rx"
+abbr -a rs rsync -a --info=progress2
 abbr -a getsong "ytmdl --dont-transcode --download-archive ~/.cache/ytmdl/archive"
 abbr -a wine32 "WINEPREFIX=$HOME/.wine32 wine"
 function ststatus
@@ -108,8 +107,6 @@ function _switch
 end
 abbr -a switch _switch
 abbr -a update switch -u
-
-abbr -a rs rsync -a --info=progress2
 
 function give-me-a-ping-vasily
     # One Ping Only...

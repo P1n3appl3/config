@@ -1,5 +1,6 @@
 { stdenv, lib, python3, fetchFromGitHub,
   makeDesktopItem, copyDesktopItems, writeShellScript, ... }: let
+  # TODO: simplify with wrapProgram
   wrapper = writeShellScript "eontimer-wrapper" ''
     export QT_QPA_PLATFORM=xcb
     exec @out@/bin/EonTimer
@@ -59,6 +60,8 @@ in python3.pkgs.buildPythonApplication rec {
 
     mkdir -p $out/bin
     cp dist/EonTimer $out/bin/
+    mkdir -p $out/share/icons/hicolor/scalable/apps
+    cp $src/docs/icon.svg $out/share/icons/hicolor/scalable/apps/eontimer.svg
     install -Dm755 -T ${wrapper} $out/bin/eontimer
     substituteInPlace $out/bin/eontimer --subst-var out
 
@@ -66,7 +69,7 @@ in python3.pkgs.buildPythonApplication rec {
   '';
 
   desktopItems = [
-    (makeDesktopItem { name = pname; desktopName = "EonTimer"; exec = pname; })
+    (makeDesktopItem { name = pname; desktopName = "EonTimer"; exec = pname; icon = "eontimer"; })
   ];
 
   meta = {
