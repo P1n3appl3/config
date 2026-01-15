@@ -10,45 +10,11 @@
     fetchSubmodules = true;
   };
 
-  nativeBuildInputs = with pkgs; [
-    cmake
-    wayland-scanner
-    pkg-config
-    makeWrapper
-    copyDesktopItems
-  ];
+  nativeBuildInputs = with pkgs; [ cmake pkg-config makeWrapper copyDesktopItems ];
 
-  buildInputs = with pkgs; [
-    wayland
-    gtk3
-    glib
-    alsa-lib
-    libsysprof-capture
-    pcre2
-     
-    util-linux
-    libselinux
-    libsepol
-    libthai
-    libdatrie
-    
-    libxkbcommon
-    libxdmcp
-    lerc
-    libdeflate
-    xz
-    zstd
-    libwebp
-    libepoxy
-  ]
-  ++ (with pkgs.xorg; [
-    libX11
-    libXrandr
-    libXinerama
-    libXcursor
-    libXi
-    libXtst
-  ]);
+  buildInputs = with pkgs; [ raylib gtk3 glib ] ++
+    (with pkgs.xorg; [ libXrandr libXinerama libXcursor libXi ]);
+
   cmakeBuildTarget = "ca";
 
   installPhase = ''
@@ -67,7 +33,6 @@
 
     runHook postInstall
   '';
-
 
   desktopItems = [
     (makeDesktopItem {

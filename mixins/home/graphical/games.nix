@@ -15,7 +15,7 @@
     prismlauncher
 
     osu-lazer-bin
-    clonehero # TODO: make ~/.clonehero point to games subvol
+    yarg clonehero # TODO: make ~/.clonehero point to games subvol
 
     # apotris
     openttd
@@ -29,8 +29,9 @@
     fence
     autumn
 
-    punes # dolphin-emu mupen64plus snes9x-gtk simple64
+    punes dolphin-emu mupen64plus # snes9x-gtk simple64
     sameboy melonDS # mgba TODO: cmake
+    pcsx2
 
     factorio-bp-helper
 

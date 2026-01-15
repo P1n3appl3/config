@@ -18,8 +18,8 @@
   users.defaultUserShell = pkgs.fish;
 
   programs = {
-    fish.enable = true;
-    zsh = { enable = true; enableCompletion = false; };
+    fish = { enable = true; useBabelfish = true; };
+    zsh.enable = true;
     command-not-found.enable = false;
     bandwhich.enable = true;
     trippy.enable = true;
@@ -37,7 +37,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    uutils-coreutils-noprefix
     at
     file
     zip unzip

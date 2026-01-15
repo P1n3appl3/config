@@ -28,15 +28,18 @@ inputs: final: prev: {
     patches = [];
   };
 
-  fishPlugins = prev.fishPlugins // { puffer = prev.fishPlugins.puffer.overrideAttrs {
-    version = "mine";
-    src = final.fetchFromGitHub {
-      owner = "P1n3appl3";
-      repo = "puffer-fish";
-      rev = "83174b07de60078be79985ef6123d903329622b8";
-      hash = "sha256-Dhx5+XRxJvlhdnFyimNxFyFiASrGU4ZwyefsDwtKnSg=";
-    };
-  };};
+  fishPlugins = prev.fishPlugins.overrideScope (self: super: {
+    puffer = super.puffer.overrideAttrs (old: {
+      version = "mine";
+
+      src = final.fetchFromGitHub {
+        owner = "P1n3appl3";
+        repo = "puffer-fish";
+        rev = "8e81dff4ee38168907311573d570b6c97870ea53";
+        hash = "sha256-PZvUp7tFnzpvmJY5t+AtsHwL8ApXfKy3aqMP0Dupwpc=";
+      };
+    });
+  });
 
   # # for oneko
   # sway = prev.sway.overrideAttrs (old: {

@@ -1,7 +1,7 @@
 # TODO: completion configuration (troubleshoot kill signals not showing up)
 # TODO: keybindings
 
-if status --is-login
+if status is-login
     fish_add_path -P $HOME/.cargo/bin
     fish_add_path -P $HOME/.local/bin
 end
@@ -43,7 +43,9 @@ set -x EDITOR hx
 set -x VISUAL hx
 set -g fish_cursor_default line
 
-abbr -a p string split ' ' \$PATH
+function p
+    string split ' ' $PATH | sd $HOME '~'
+end
 abbr -a vi hx
 abbr -a cat bat
 function l
@@ -112,6 +114,12 @@ function give-me-a-ping-vasily
     # One Ping Only...
     echo -n "Ping: "
     ping -qc1 -W1 $argv[1] &| awk -F/ 'END{ print (/^rtt/? "OK "$5" ms":"FAIL") }'
+end
+
+function repeat
+    for i in (seq $argv[1])
+        eval "$argv[2..]"
+    end
 end
 
 function fzf-dir-widget
