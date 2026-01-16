@@ -6,6 +6,7 @@
     yt-dlp ytmdl spotdl
     # cava
   ] ++ lib.optionals stdenv.isLinux [
+    euphonica
     kid3 strawberry ymuse cantata
     media-downloader
   ];

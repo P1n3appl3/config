@@ -16,6 +16,7 @@
 
     osu-lazer-bin
     yarg clonehero # TODO: make ~/.clonehero point to games subvol
+    bridge
 
     # apotris
     openttd

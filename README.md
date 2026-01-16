@@ -24,24 +24,35 @@ config 🍍 nix flake show
     ├───audio-select: pulse-audio device selector
     ├───autumn: autumn leaves solitaire card game
     ├───barchart: draw barcharts in the terminal
+    ├───basic-pitch: audio to midi transcriber
     ├───bibata-modern-classic: mouse cursor theme
+    ├───bridge: rythm game chart downloader
+    ├───cached-path: download a resource once, then return that path
     ├───cargo-clone-crate: better cargo clone command
+    ├───cachedtom: local-first cargo toml language server
+    ├───circuit-artist: the best EDA software since logisim
     ├───d-rs: stream processing utilities
     ├───dl: get the latest downloaded file
     ├───ds-rom: extract nintendo ds rom files
     ├───eontimer: pokémon RNG timer
-    ├───fio-plot: disk benchmarking tool
     ├───fence: chess board visualizer
-    ├───git-heatmap: view change frequency of git repo
+    ├───fio-plot: disk benchmarking tool
+    ├───get-keys: bespoke tool to grab my ssh keys
+    ├───git-coauthor: easily add coauthors to the previous commit
+    ├───git-heatmap: view change frequency of a repo
     ├───git-undeadname: does what it says on the tin
     ├───glkitty: gears demo in the terminal
     ├───hovalaag: assembly programming game
+    ├───input-integrity: gamecube controller adapter manager
     ├───launchk: macos launchd tui
     ├───lowcharts: draw plots and histograms in the terminal
     ├───m-overlay: gamecube input visualizer for dolphin
     ├───melee-quick-mod: ssbm texture patcher
+    ├───minidump-debugger: gui minidump inspector
+    ├───minidump-stackwalk: cli minidump tool
     ├───nasa-wallpaper: show nasa pictures of the day as wallpaper
     ├───posting: http api explorer
+    ├───protobuf-language-server: LSP support for .proto files
     ├───rssfetch: RSS feed scraper
     ├───rust-rpxy: simple reverse proxy
     ├───rwing: melee replay review tool
