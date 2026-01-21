@@ -127,11 +127,13 @@
 ["Joshua Barretto"    "blog.jsbarretto.com"                 "/rss.xml"]
 ["andrew"             "https://ajfarkas.dev/blog"           "/index.xml"]
 ["melody"             "blog.melodysium.gay"                 "/rss"]
+["ivysly"             "ivysly.com"                          "/feeds/blog.rss.xml"]
 
 # ["Julia Violet"       "juliaviolet.dev"                     "???"]
 # ["nan.fyi"            "nan.fyi"                             "???"]
 # ["rainy"              "petrichorstreet.neocities.org"       "???"]
 # ["cliché"             "cleeshlow.neocities.org"             "???"]
+# ["James Hague"        "prog21.dadgum.com"                   "???"]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]

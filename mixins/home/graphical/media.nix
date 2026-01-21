@@ -1,26 +1,26 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    kdePackages.kdenlive
-    yt-dlp
-    godot_4
     blender
-    # TODO: graphite
+    kdePackages.kdenlive
+    kicad-small
     inkscape krita pinta aseprite
+    audacity # (or tenacity)
+    logisim-evolution circuit-artist
+    godot_4
+    freecad
+    # TODO: graphite
+    yt-dlp
     gthumb
     helio-workstation
     musescore transcribe
-    # deflemask furnace
+    furnace # deflemask
     # non lmms ardour
-    audacity # (or tenacity)
-    logisim-evolution circuit-artist
-
-    kicad-small
     calibre
 
     # TODO: transcribe lotus:
     # pkgs-stable.easyabc abctool
 
-    sweethome3d.application
+    # sweethome3d.application
   ];
 
   programs = {

@@ -51,6 +51,7 @@ config 🍍 nix flake show
     ├───minidump-debugger: gui minidump inspector
     ├───minidump-stackwalk: cli minidump tool
     ├───nasa-wallpaper: show nasa pictures of the day as wallpaper
+    ├───oolite: space exploration role playing game
     ├───posting: http api explorer
     ├───protobuf-language-server: LSP support for .proto files
     ├───rssfetch: RSS feed scraper

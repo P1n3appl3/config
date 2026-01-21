@@ -18,6 +18,10 @@
     yarg clonehero # TODO: make ~/.clonehero point to games subvol
     bridge
 
+    # oolite
+    endless-sky
+    min-ed-launcher edmarketconnector ed-odyssey-materials-helper
+
     # apotris
     openttd
     space-cadet-pinball

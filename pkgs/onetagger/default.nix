@@ -1,77 +1,71 @@
-{ lib, rustPlatform, fetchFromGitHub, pkg-config, wrapGAppsHook3, atk,
-  cairo, expat, fontconfig, freetype, gdk-pixbuf, glib, gtk3, libsoup,
-  libxkbcommon, pango, webkitgtk, stdenv, alsa-lib, wayland,
-  nodejs, pnpm }:
-rustPlatform.buildRustPackage rec {
+{ lib, stdenv, fetchFromGitHub, rustPlatform, pkg-config, openssl, alsa-lib,
+  webkitgtk_4_1, gtk3, glib, libsoup_3, cairo, pango, gdk-pixbuf, atk, nodejs,
+  pnpm, fetchPnpmDeps, pnpmConfigHook, makeWrapper }: rustPlatform.buildRustPackage rec {
   pname = "onetagger";
-  version = "2025-08-06";
+  version = "1.7.0";
 
   src = fetchFromGitHub {
     owner = "Marekkon5";
     repo = "onetagger";
-    rev = version;
+    rev = "2429a833cbafb9b057bc9e2268806e571a3ca1b5";
     hash = "sha256-EXkuBlOA/qBrgrckyufJ3HgxsaUycbYdfF9PanZ0O4g=";
   };
 
   cargoLock = {
-    lockFile = ./Cargo.lock;
+    lockFile = "${src}/Cargo.lock";
     outputHashes = {
       "songrec-0.2.1" = "sha256-pQKU99x52cYQjBVctsI4gdju9neB6R1bluL76O1MZMw=";
     };
   };
 
+  pnpmDeps = fetchPnpmDeps {
+    fetcherVersion = 3;
+    pname = "${pname}-pnpm-deps";
+    inherit version src;
+    pnpmLock = ./pnpm-lock.yaml;
+    hash = lib.fakeHash;
+  };
+
   nativeBuildInputs = [
     pkg-config
-    rustPlatform.bindgenHook
-    wrapGAppsHook3
     nodejs
-    pnpm.configHook
+    pnpm
+    pnpmConfigHook
+    makeWrapper
   ];
 
-  postPatch = ''
-      ln -s ${./pnpm-lock.yaml} client/pnpm-lock.yaml
-  '';
+  buildInputs = [
+    openssl
+    alsa-lib
+    webkitgtk_4_1
+    gtk3
+    glib
+    libsoup_3
+    cairo
+    pango
+    gdk-pixbuf
+    atk
+  ];
 
-  pnpmDeps = pnpm.fetchDeps {
-    inherit pname version src;
-    fetcherVersion = 2;
-    hash = "sha256-nQrt1kIKlSynHcnYPWeDUmPH1Bwxg2TWrWsZm7fTcZQ=";
-    sourceRoot = "${src.name}/client";
-    postPatch = ''
-        ln -s ${./pnpm-lock.yaml} pnpm-lock.yaml
-    '';
-  };
   pnpmRoot = "client";
 
   preBuild = ''
-    runHook preBuild
-    pnpm -C client run build
-    runHook postBuild
+    export HOME="$(mktemp -d)"
+
+    cd client
+    pnpm install --offline --frozen-lockfile
+    pnpm run build
+    cd ..
   '';
 
-  buildInputs = [
-    atk
-    cairo
-    expat
-    fontconfig
-    freetype
-    gdk-pixbuf
-    glib
-    gtk3
-    libxkbcommon
-    pango
-    # libsoup
-    # webkitgtk
-  ] ++ lib.optionals stdenv.isLinux [
-    alsa-lib
-    wayland
-  ];
+  # postInstall = ''
+  #   wrapProgram "$out/bin/onetagger" \
+  #     --set-default WEBKIT_DISABLE_COMPOSITING_MODE 1
+  # '';
 
-  meta = {
-    description = "Cross platform music tagger";
+  meta = with lib; {
+    description = "Cross-platform music tagger for DJs";
     homepage = "https://github.com/Marekkon5/onetagger";
-    changelog = "https://github.com/Marekkon5/onetagger/blob/${src.rev}/CHANGELOG.md";
-    license = lib.licenses.gpl3Only;
-    broken = true;
+    license = licenses.gpl3Only;
   };
 }

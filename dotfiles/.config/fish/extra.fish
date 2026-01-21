@@ -1,10 +1,10 @@
 # TODO: completion configuration (troubleshoot kill signals not showing up)
 # TODO: keybindings
 
-if status is-login
-    fish_add_path -P $HOME/.cargo/bin
-    fish_add_path -P $HOME/.local/bin
-end
+# if status is-login
+fish_add_path -P $HOME/.cargo/bin
+fish_add_path -P $HOME/.local/bin
+# end
 
 set -e __HM_SESS_VARS_SOURCED
 source ~/.nix-profile/etc/profile.d/hm-session-vars.fish

@@ -1,5 +1,5 @@
 { lib, stdenv, fetchFromGitHub, nodejs, pnpmConfigHook, fetchPnpmDeps,
-  electron, copyDesktopItems, makeDesktopItem, makeWrapper }: let
+  pnpm, electron, copyDesktopItems, makeDesktopItem, makeWrapper }: let
   pname = "bridge";
   version = "3.4.5";
 
@@ -33,6 +33,7 @@ in stdenv.mkDerivation {
     pnpmConfigHook
     makeWrapper
     copyDesktopItems
+    pnpm
   ];
 
   inherit pnpmDeps;
@@ -60,7 +61,7 @@ in stdenv.mkDerivation {
     cp -R node_modules $out/share/${pname}/
     cp package.json pnpm-lock.yaml $out/share/${pname}/
 
-    install -Dm644 src/assets/icons/icon.png \
+    install -Dm644 src-angular/assets/images/system/icons/png/512x512.png \
       $out/share/icons/hicolor/512x512/apps/${pname}.png
 
     mkdir -p $out/bin
@@ -77,4 +78,3 @@ in stdenv.mkDerivation {
     license = licenses.gpl3Only;
   };
 }
-
