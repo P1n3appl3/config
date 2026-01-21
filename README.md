@@ -28,6 +28,7 @@ config 🍍 nix flake show
     ├───cargo-clone-crate: better cargo clone command
     ├───d-rs: stream processing utilities
     ├───dl: get the latest downloaded file
+    ├───ds-rom: extract nintendo ds rom files
     ├───eontimer: pokémon RNG timer
     ├───fio-plot: disk benchmarking tool
     ├───fence: chess board visualizer

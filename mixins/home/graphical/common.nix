@@ -40,7 +40,7 @@
     udiskie
     glib.bin # gio/gsettings/gdbus
     d-spy
-    transmission_4-gtk
+    qbittorrent qbittorrent-cli # transmission_4-gtk
     heaptrack
     meld
     antigravity

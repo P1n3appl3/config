@@ -13,7 +13,7 @@
 
       settings = {
         core = {
-          editor = "nvim";
+          editor = "hx";
           autocrlf = "input";
           excludesfile = "~/.config/git/ignore";
         };

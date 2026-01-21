@@ -28,6 +28,7 @@
     hovalaag
     fence
     autumn
+    ds-rom
 
     punes dolphin-emu mupen64plus # snes9x-gtk simple64
     sameboy melonDS # mgba TODO: cmake

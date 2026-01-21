@@ -129,3 +129,5 @@ end
 bind ctrl-f fzf-file-widget
 bind ctrl-g fzf-dir-widget
 bind ctrl-e edit_command_buffer
+bind ctrl-k up-or-search
+bind ctrl-j down-or-search

@@ -28,7 +28,8 @@ tab = "expand_selection"
 H = "select_prev_sibling"
 L = "select_next_sibling"
 "C-y" = "@\"+y"
-# "S-c" = "@t<ret>c" # need alternate bind for multicurosr then
+"S-c" = "@t<ret>c"
+"A-c" = "copy_selection_on_next_line"
 "S-d" = "@t<ret>d"
 "S-y" = "@t<ret>y"
 
