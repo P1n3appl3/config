@@ -4,7 +4,7 @@
 in {
   networking.firewall = {
     allowedTCPPorts = [
-      22 69     # ssh
+      22 28     # ssh
       80 443    # http(s)
       22000     # syncthing
       8080 8443 # testing
@@ -15,7 +15,7 @@ in {
 
   services = {
     openssh = { enable = true;
-      ports = [ 69 ];
+      ports = [ 28 ];
       settings.PasswordAuthentication = false;
       # TODO: watch /run/utmp and export to prometheus, or just read ssh log?
     };

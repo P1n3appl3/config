@@ -16,6 +16,7 @@ set -gx fish_lsp_diagnostic_disable_error_codes 4004
 
 function fish_greeting
     random choice "Hello!" Hi Howdy Yo "Meowdy :3"
+    fortune
 end
 
 function mkconfig

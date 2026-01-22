@@ -1,3 +1,8 @@
 if status is-login
-    source /run/current-system/sw/share/fish/vendor_conf.d/flatpak.fish
+    for dir in $__fish_vendor_confdirs
+        if [ -e $dir/flatpak.fish ]
+            source $dir/flatpak.fish
+            break
+        end
+    end
 end

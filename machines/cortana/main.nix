@@ -13,7 +13,6 @@
   environment.systemPackages = with pkgs; [
     raspberrypi-eeprom
     libraspberrypi
-    wezterm.headless
   ];
 
   catppuccin.enable = lib.mkForce false;

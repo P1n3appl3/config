@@ -21,7 +21,7 @@
     bacon
     # term-rustdoc
 
-    elf-info
+    elf-info binsider
     twiggy bloaty
 
     (writeShellScriptBin "uv" ''env UV_PYTHON_PREFERENCE=only-system \

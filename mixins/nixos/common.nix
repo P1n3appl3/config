@@ -48,6 +48,9 @@
     cntr
   ];
 
+  boot.extraModulePackages = [ pkgs.uwurandom ];
+  boot.kernelModules = [ "uwurandom" ];
+
   age = {
     ageBin = lib.getExe pkgs.rage;
     identityPaths = [ "/home/julia/.ssh/id_ed25519" ];
