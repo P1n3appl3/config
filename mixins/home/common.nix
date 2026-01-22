@@ -36,7 +36,7 @@
           compression = true;
         };
         "pineapple.computer julia.blue Cortana" = {
-          hostname = "%h"; user = "julia"; port = 69;
+          hostname = "%h"; user = "julia"; port = 28;
         };
       };
     };

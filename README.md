@@ -61,6 +61,7 @@ config 🍍 nix flake show
     ├───slpz: compress slippi replays
     ├───tab: command line music tabs
     ├───term-rustdoc: tui docs browser
+    ├───uwurandom: like /dev/urandom, but objectively better
     ╰───zeco: zellij remote multiplayer
 ```
 

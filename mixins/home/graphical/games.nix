@@ -46,7 +46,7 @@
     slipstream # ftl mods
     r2mod_cli # risk of rain 2 mods
     olympus everest-mons # celeste mods
-    nexusmods-app-unfree # bg3 mods
+    # nexusmods-app-unfree # bg3 mods (need to switch to vortex?)
   ];
 
   # programs.fightcade = { enable = true;
