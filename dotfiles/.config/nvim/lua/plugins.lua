@@ -16,24 +16,25 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
     callback = function() lint.try_lint() end,
 })
 
+-- TODO: read breaking api changes and update
 -- stylua: ignore
-require("nvim-treesitter.configs").setup {
-    highlight = { enable = true,
-        disable = { "python" },
-        additional_vim_regex_highlighting = { "markdown" },
-    },
-    textobjects = { select = { enable = true,
-        keymaps = {
-            ["af"] = "@function.outer", ["if"] = "@function.inner",
-            ["aa"] = "@parameter.outer", ["ia"] = "@parameter.inner",
-            ["as"] = "@statement.outer",
-        }
-    }},
-    incremental_selection = { enable = true,
-        keymaps = {
-            init_selection = "<tab>", scope_incremental = "<CR>",
-            node_incremental = "<tab>", node_decremental = "<s-tab>",
-        },
-    },
-}
+-- require("nvim-treesitter.configs").setup {
+--     highlight = { enable = true,
+--         disable = { "python" },
+--         additional_vim_regex_highlighting = { "markdown" },
+--     },
+--     textobjects = { select = { enable = true,
+--         keymaps = {
+--             ["af"] = "@function.outer", ["if"] = "@function.inner",
+--             ["aa"] = "@parameter.outer", ["ia"] = "@parameter.inner",
+--             ["as"] = "@statement.outer",
+--         }
+--     }},
+--     incremental_selection = { enable = true,
+--         keymaps = {
+--             init_selection = "<tab>", scope_incremental = "<CR>",
+--             node_incremental = "<tab>", node_decremental = "<s-tab>",
+--         },
+--     },
+-- }
 require("treesitter-context").setup { patterns = { python = { "if", "elif" } } }

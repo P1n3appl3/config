@@ -1,4 +1,4 @@
-{ pkgs, ... }: let
+{ pkgs, lib, ... }: let
   gh = owner: repo: rev: hash: pkgs.vimUtils.buildVimPlugin {
     pname = repo; version = rev;
     src = pkgs.fetchFromGitHub { inherit owner repo rev hash; };
@@ -79,11 +79,11 @@
 
     # used by image.nvim
     extraPackages = [ pkgs.imagemagick ]; extraLuaPackages = ps: [ ps.magick ];
+    extraLuaConfig = lib.mkAfter "require 'main'";
   };
 in {
   programs.neovim = nvim-config;
   xdg.configFile = {
-    "nvim/init.lua".enable = false;
     "nvim/queries/numbat".source = "${numbat-grammar}/queries";
     "nvim/syntax/vasm.vim".source = pkgs.fetchzip {
       url = "https://gist.github.com/porglezomp/690bb0f75883dc69350174b576ad643f/archive/fd0f08a6b45187123d9af450307f7836fc35bd4d.zip";

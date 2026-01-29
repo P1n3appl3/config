@@ -28,7 +28,7 @@ function mkconfig
 end
 
 mkconfig hx .config/helix/config.toml, .config/helix/languages.toml
-mkconfig vim .config/nvim/init.lua, ".config/nvim/**/*.lua", ".config/nvim/**/*.vim"
+mkconfig vim .config/nvim/lua/main.lua, ".config/nvim/**/*.lua", ".config/nvim/**/*.vim"
 mkconfig zsh .zshrc, .zshenv, ".config/zsh/*"
 mkconfig fish .config/fish/extra.fish, ".config/fish/conf.d/*"
 mkconfig i3 .config/i3/config, .config/i3status-rust/config.toml
