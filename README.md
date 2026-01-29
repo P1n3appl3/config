@@ -55,6 +55,7 @@ config 🍍 nix flake show
     ├───posting: http api explorer
     ├───protobuf-language-server: LSP support for .proto files
     ├───rssfetch: RSS feed scraper
+    ├───rsspls: RSS feed generator (for sites with no feed)
     ├───rust-rpxy: simple reverse proxy
     ├───rwing: melee replay review tool
     ├───s2yt: spotify to youtube music transfer tool

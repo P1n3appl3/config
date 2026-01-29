@@ -3,7 +3,8 @@
 # ... or https://www.jvt.me/posts/2022/06/19/cli-feed-discovery
 (map (l: { title=builtins.head l; feed=builtins.elemAt l 2;
   url=let s=builtins.elemAt l 1;in if builtins.substring 0 4 s == "http"
-  then s else "https://" + s; }) [
+  then s else "https://" + s; })
+(let feed = "https://julia.blue/feeds/"; in [
 ["Jade"               "jade.fyi"                            "/rss.xml"]
 ["Julia Evans"        "jvns.ca"                             "/atom.xml"]
 ["Joy of Computing"   "joy.recurse.com"                     "/feed.atom"]
@@ -81,7 +82,6 @@
 ["Raph Levien"        "raphlinus.github.io"                 "/feed.xml"]
 ["Tyler Mandry"       "tmandry.gitlab.io/blog"              "/index.xml"]
 ["Gankra"             "gankra.github.io"                    "/blah/rss.xml"]
-["Jane"               "yaah.dev"                            "/feed.xml"]
 ["Dan Luu"            "danluu.com"                          "/atom.xml"]
 ["boats"              "without.boats"                       "/index.xml"]
 ["StefanSF"           "stefansf.de"                         "/feed.xml"]
@@ -113,7 +113,6 @@
 ["Ella"               "ectcetera.net/blog"                  "/atom.xml"]
 ["ash"                "catgirl.ai"                          "/log/atom.xml"]
 ["Alejandra González" "blog.goose.love"                     "/index.xml"]
-["dropbear"           "dropbear.sh"                         "https://julia.blue/allyrss.xml"]
 ["Luna"               "moonbase.lgbt"                       "/blog/atom.xml"]
 ["Charlotte"          "char.lt"                             "/blog.rss"]
 ["mbuffett"           "mbuffett.com"                        "/posts/index.xml"]
@@ -129,11 +128,18 @@
 ["melody"             "blog.melodysium.gay"                 "/rss"]
 ["ivysly"             "ivysly.com"                          "/feeds/blog.rss.xml"]
 
-# ["Julia Violet"       "juliaviolet.dev"                     "???"]
-# ["nan.fyi"            "nan.fyi"                             "???"]
-# ["rainy"              "petrichorstreet.neocities.org"       "???"]
-# ["cliché"             "cleeshlow.neocities.org"             "???"]
-# ["James Hague"        "prog21.dadgum.com"                   "???"]
+["iximeow"            "blog.iximeow.net"                    (feed + "ixi")]
+["dropbear"           "dropbear.sh"                         (feed + "ally")]
+["Julia Violet"       "juliaviolet.dev"                     (feed + "violet")]
+["nan.fyi"            "nan.fyi"                             (feed + "nan")]
+# ["tmp.out"            "tmpout.sh"                           (feed + "tmpout")]
+
+# TODO: javascript
+# ["rainy"              "petrichorstreet.neocities.org"       (feed + "rainy")]
+# ["cliché"             "cleeshlow.neocities.org"             (feed + "cliche")]
+
+# TODO: no dates
+# ["James Hague"        "prog21.dadgum.com"                   (feed + "prog21")]
 
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]
@@ -147,27 +153,26 @@
 # TODO: Ask him to update pubdate for articles older than Aug 25 2021
 ["Veit Heller"       "http://blog.veitheller.de"           "/feed.rss"]
 
-# TODO: ask jordan to add timestamps to the 2822 dates
-# ["jam1garner"        "jam1.re"                             "/rss"]
-
 # TODO: parse dates from pages or ask for pubDate
-# ["theorangeduck"     "http://theorangeduck.com"            "/feeds/pages"]
+["theorangeduck"     "http://theorangeduck.com"            "/feeds/pages"]
 
 # TODO: debug missing feed root, maybe WP generators are bad?
-# ["Organic Donut"     "organicdonut.com"                    "/feed"]
+["Organic Donut"     "organicdonut.com"                    "/feed"]
 
-# mmmmm maybe
-# ["Drew DeVault"      "drewdevault.com"                     "/blog/index.xml"]
-
-# use https://github.com/Siriusmart/feedscraper for:
-# TODO: blog.iximeow.net
-# TODO: tmpout.sh
+# hope she gets it back :(
+# ["Jane"               "yaah.dev"                            "/feed.xml"]
 
 # remove once it stops updating/i'm finished reading
 ["toxic yuri" "amawashigroup.wordpress.com" "/feed"]
 
 # ["λ the Ultimate"     "http://lambda-the-ultimate.org"      "/node/feed"]
 
+# TODO: ask jordan to add timestamps to the 2822 dates
+# ["jam1garner"        "jam1.re"                             "/rss"]
+
+# mmmmm maybe
+# ["Drew DeVault"      "drewdevault.com"                     "/blog/index.xml"]
+
 # in time out for posting too much non-substantive stuff
 # ["David Lemire"       "lemire.me/blog"                      "/feed"]
-])
+]))

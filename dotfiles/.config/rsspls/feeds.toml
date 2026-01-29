@@ -1,0 +1,42 @@
+[rsspls]
+
+[[feed]]
+title = "ixi"
+filename = "ixi"
+[feed.config]
+url = "https://blog.iximeow.net"
+item = "li:nth-child(n+3)"
+heading = "a"
+link = "a"
+# ixi why would you write 2023-12-? how am i supposed to handle that q.q
+date = "pre"
+
+[[feed]]
+title = "ally"
+filename = "ally"
+[feed.config]
+url = "https://dropbear.sh/blog/"
+item = ".list-post"
+heading = ".post-info strong"
+link = ".post-info a"
+date = ".date"
+
+[[feed]]
+title = "julia violet"
+filename = "violet"
+[feed.config]
+url = "https://juliaviolet.dev/Projects"
+item = ".grid a"
+heading = "h1"
+link = "a"
+date = "h3"
+
+[[feed]]
+title = "nan.fyi"
+filename = "nan"
+[feed.config]
+url = "https://www.nan.fyi/"
+item = "li.relative"
+heading = "h1 span"
+link = "a"
+date = "header p"
