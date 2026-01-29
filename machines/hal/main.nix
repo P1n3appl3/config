@@ -122,6 +122,10 @@
     #   enable = true;
     #   defaultRuntime = true;
     # };
+    nfs.server = {
+      enable = true;
+      exports = "/home/julia/videos/torrents 192.168.1.0/24(ro,fsid=0)";
+    };
   };
   # systemd.user.services.monado.environment = { STEAMVR_LH_ENABLE = "1"; XRT_COMPOSITOR_COMPUTE = "1"; };
 
@@ -130,6 +134,7 @@
   networking = {
     hostName = "HAL";
     hosts."127.0.0.1" = [ "HAL" ];
+    firewall.allowedTCPPorts = [ 2049 ]; # nft
   };
   time.timeZone = "America/Los_Angeles";
 }
