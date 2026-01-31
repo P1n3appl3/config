@@ -10,6 +10,8 @@
     nix-index-database.url = "github:Mic92/nix-index-database";
     catppuccin.url         = "github:catppuccin/nix";
     slippi.url             = "github:lytedev/slippi-nix";
+    # TODO: swap back from fork once lazymc is merged
+    nix-minecraft.url      = "github:Yeshey/nix-minecraft";
     obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
     rahul-config.url       = "github:rrbutani/nix-config";
 
@@ -23,6 +25,7 @@
       nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
       git-hooks.follows = "";
     };
+    nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
     obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
     rahul-config.inputs = {
@@ -34,13 +37,13 @@
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, flake-utils,
-    ragenix, obs-gamepad, self, rahul-config, ... } @ inputs:
+    ragenix, obs-gamepad, self, rahul-config, nix-minecraft, ... } @ inputs:
   let
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
     mapDir = lib.filesystem.packagesFromDirectoryRecursive;
     myOverlays = [
-      self.overlays.default ragenix.overlays.default
+      self.overlays.default ragenix.overlays.default nix-minecraft.overlay
       obs-gamepad.overlays.default (import ./overlays.nix inputs)
     ];
     special = system: {

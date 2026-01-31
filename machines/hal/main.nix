@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
+    ../../mixins/nixos/minecraft.nix
   ];
 
   age.secrets = {
