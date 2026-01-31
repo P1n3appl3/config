@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+shopt -s lastpipe
+
+user=$1
+title=$2
+homepage=${3-https://gist.github.com/$1}
+
+feed=$(cat <<EOF
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>$title</title>
+    <link>$homepage</link>
+    <description></description>
+    <generator>julia's silly script</generator>
+EOF
+)
+
+function escape {
+  sd \&   "&amp;"|
+  sd \"   "&quot;" |
+  sd \'   "&apos;" |
+  sd \<   "&lt;" |
+  sd \>   "&gt;"
+}
+
+gh api --paginate users/$user/gists | jq '.[] | [.created_at, .html_url, .description, (.files | keys | first)]' -c | while read line; do
+  # ew... but how would i do this better?
+  date="$(jq -r '.[0]'<<<"$line")"
+  link="$(jq -r '.[1]'<<<"$line")"
+  desc="$(jq -r '.[2]'<<<"$line" | escape)"
+  file="$(jq -r '.[3]'<<<"$line" | escape)"
+  title="${desc:-"$file"}"
+  feed+="<item>
+    <title>$title</title>
+    <link>$link</link>
+    <guid isPermaLink=\"false\">$link</guid>
+    <pubDate>$(date -d "$date" -R)</pubDate>
+  </item>"
+done
+  
+feed+="
+  </channel>
+</rss>"
+
+echo "$feed"

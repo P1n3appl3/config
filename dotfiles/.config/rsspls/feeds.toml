@@ -12,7 +12,7 @@ link = "a"
 date = "pre"
 
 [[feed]]
-title = "ally"
+title = "dropbear"
 filename = "ally"
 [feed.config]
 url = "https://dropbear.sh/blog/"
@@ -40,3 +40,34 @@ item = "li.relative"
 heading = "h1 span"
 link = "a"
 date = "header p"
+
+[[feed]]
+title = "rainy"
+filename = "rainy"
+[feed.config]
+url = "https://petrichorstreet.neocities.org/archive"
+javascript = true
+item = "#postlistdiv li"
+heading = "a" # TODO: remove up to " » "
+link = "a"
+[feed.config.date]
+selector = "a"
+type = "Date"
+regex = ".* » "
+format = "[year]-[month padding:none]-[day padding:none] » "
+
+[[feed]]
+title = "cliché"
+filename = "cliche"
+[feed.config]
+url = "https://cleeshlow.neocities.org/archive"
+javascript = true
+item = "#postlistdiv li"
+heading = "a" # TODO: remove up to " » "
+link = "a"
+[feed.config.date]
+selector = "a"
+type = "Date"
+regex = ".* » "
+format = "[year]-[month padding:none]-[day padding:none] » "
+

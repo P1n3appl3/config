@@ -1,0 +1,4 @@
+#!/bin/sh
+# thank you julia evans:
+# https://gist.github.com/jvns/2f69f19ec09d9ace166962828930a463
+printf "\033]52;c;%s\007" "$(base64 | tr -d '\n')"
