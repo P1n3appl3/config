@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     blender
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     kicad-small
     inkscape krita pinta aseprite
     audacity # (or tenacity)

@@ -1,16 +1,18 @@
 { lib, rustPlatform, fetchFromGitHub, pkg-config, openssl, stdenv, darwin }:
 rustPlatform.buildRustPackage rec {
   pname = "rsspls";
-  version = "0.11.2";
+  version = "0.11.3";
 
   src = fetchFromGitHub {
-    owner = "wezm";
+    owner = "p1n3appl3";
     repo = "rsspls";
-    rev = version;
-    hash = "sha256-jF8hd9kc1ZZdKOiF9XGl3wzAjuHZWBUXPgy8+rU+v7w=";
+    rev = "d20fa5d0f79df5415abb4f7efb5d981c7b6d0994";
+    hash = "sha256-ahojJ/FSUZQgb5Ox2BGPBba6PuvAqKXerp4MH+XAdh0=";
   };
 
-  cargoHash = "sha256-h+IgAa54wzkjagdp5aMS/RJ2lGOBnIRqgGNU92cW7g8=";
+  cargoHash = "sha256-UtDpbDRw18oonALl2km6OSapF2YbWGadT+PtGWasWCo=";
+
+  buildFeatures = ["javascript"];
 
   nativeBuildInputs = [
     pkg-config

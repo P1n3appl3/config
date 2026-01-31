@@ -71,7 +71,6 @@
 ["Bob Nystrom"        "journal.stuffwithstuff.com"          "/rss.xml"]
 ["There oughta be"    "there.oughta.be"                     "/feed.xml"]
 ["Lord"               "lord.io"                             "/feed.xml"]
-["Mozilla Hacks"      "hacks.mozilla.org"                   "/feed"]
 ["Nick Fitzgerald"    "fitzgeraldnick.com"                  "/feed.xml"]
 ["aki"                "lethalbit.net"                       "/atom.xml"]
 ["Greg Davill"        "gregdavill.com"                      "/index.xml"]
@@ -127,16 +126,18 @@
 ["andrew"             "https://ajfarkas.dev/blog"           "/index.xml"]
 ["melody"             "blog.melodysium.gay"                 "/rss"]
 ["ivysly"             "ivysly.com"                          "/feeds/blog.rss.xml"]
+["computers are bad"  "computer.rip"                        "/rss.xml"]
+["Jamie Brandon"      "scattered-thoughts.net"              "/atom.xml"]
+["Veit Heller"        "http://blog.veitheller.de"           "/feed.rss"]
 
 ["iximeow"            "blog.iximeow.net"                    (feed + "ixi")]
 ["dropbear"           "dropbear.sh"                         (feed + "ally")]
 ["Julia Violet"       "juliaviolet.dev"                     (feed + "violet")]
 ["nan.fyi"            "nan.fyi"                             (feed + "nan")]
+["rainy"              "petrichorstreet.neocities.org"       (feed + "rainy")]
+["cliché"             "cleeshlow.neocities.org"             (feed + "cliche")]
+["rahul"              "rahul.red"                           (feed + "rahul")]
 # ["tmp.out"            "tmpout.sh"                           (feed + "tmpout")]
-
-# TODO: javascript
-# ["rainy"              "petrichorstreet.neocities.org"       (feed + "rainy")]
-# ["cliché"             "cleeshlow.neocities.org"             (feed + "cliche")]
 
 # TODO: no dates
 # ["James Hague"        "prog21.dadgum.com"                   (feed + "prog21")]
@@ -144,26 +145,17 @@
 # TODO: parse yyyy-mm-dd dates
 ["Peter Norvig"      "http://www.norvig.com"               "/rss-feed.xml"]
 
-# TODO: handle "Z" for timezone in 2822 date
-["computers are bad" "computer.rip"                        "/rss.xml"]
-
-# TODO: trim titles
-["Jamie Brandon"     "scattered-thoughts.net"              "/feed.xml"]
-
-# TODO: Ask him to update pubdate for articles older than Aug 25 2021
-["Veit Heller"       "http://blog.veitheller.de"           "/feed.rss"]
-
 # TODO: parse dates from pages or ask for pubDate
 ["theorangeduck"     "http://theorangeduck.com"            "/feeds/pages"]
 
 # TODO: debug missing feed root, maybe WP generators are bad?
 ["Organic Donut"     "organicdonut.com"                    "/feed"]
 
+# TODO: remove once it stops updating/i'm finished reading
+["toxic yuri" "amawashigroup.wordpress.com" "/feed"]
+
 # hope she gets it back :(
 # ["Jane"               "yaah.dev"                            "/feed.xml"]
-
-# remove once it stops updating/i'm finished reading
-["toxic yuri" "amawashigroup.wordpress.com" "/feed"]
 
 # ["λ the Ultimate"     "http://lambda-the-ultimate.org"      "/node/feed"]
 
@@ -175,4 +167,7 @@
 
 # in time out for posting too much non-substantive stuff
 # ["David Lemire"       "lemire.me/blog"                      "/feed"]
+
+# rip
+# ["Mozilla Hacks"      "hacks.mozilla.org"                   "/feed"]
 ]))

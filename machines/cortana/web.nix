@@ -177,6 +177,29 @@ in {
       after = parent; wantedBy = parent;
     };
 
+    rahul-gists = {
+      description = "Grab rahuls gists (until he makes a blog)";
+      startAt = "0 0 */2 * *"; # every 2 days
+      path = with pkgs; [ gh jq sd ];
+      serviceConfig = {
+        ExecStart = ''/home/julia/.local/bin/gist-rss \
+          rrbutani rahul https://rahul.red > /media/static/feeds/rahul'';
+        User = "julia";
+        Group = "julia";
+      };
+    };
+
+    rsspls = {
+      description = "Extract rss feeds from web pages";
+      startAt = "00,12:00"; # twice a day
+      path = [ pkgs.rsspls ];
+      serviceConfig = {
+        ExecStart = "rsspls -o /media/static/feeds";
+        User = "julia";
+        Group = "julia";
+      };
+    };
+
     rssfetch = let
       blogs = builtins.toFile "blogs.json" (builtins.toJSON (import ./blogs.nix));
     in {

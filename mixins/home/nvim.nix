@@ -79,7 +79,7 @@
 
     # used by image.nvim
     extraPackages = [ pkgs.imagemagick ]; extraLuaPackages = ps: [ ps.magick ];
-    extraLuaConfig = lib.mkAfter "require 'main'";
+    initLua = lib.mkAfter "require 'main'";
   };
 in {
   programs.neovim = nvim-config;
