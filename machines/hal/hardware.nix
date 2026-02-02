@@ -14,7 +14,7 @@
       efi.canTouchEfiVariables = true;
     };
     # offset from btrfs inspect-internal map-swapfile -r /swap/swapfile
-    kernelParams = [ "mem_sleep_default=deep" "resume_offset=533760" ];
+    kernelParams = [ "mem_sleep_default=deep" "resume_offset=92180856" ];
     resumeDevice = "/dev/disk/by-label/HAL";
     initrd.availableKernelModules = [
       "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"

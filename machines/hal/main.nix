@@ -24,6 +24,7 @@
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
         vscode
         nitrogen nasa-wallpaper feh
+        i3-swallow
       ];
 
       systemd.user.services.clipmenu.Service.Environment = ["CM_SELECTIONS=clipboard"];
