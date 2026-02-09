@@ -24,7 +24,10 @@
   hardware = {
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
-    nvidia.open = false;
+    nvidia = {
+      open = false;
+      powerManagement.enable = true;
+    };
     opentabletdriver = {
       enable = true;
       blacklistedKernelModules = [ "wacom" ];

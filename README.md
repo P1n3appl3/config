@@ -37,12 +37,15 @@ config 🍍 nix flake show
     ├───eontimer: pokémon RNG timer
     ├───fence: chess board visualizer
     ├───fio-plot: disk benchmarking tool
+    ├───gc-fst: gamecube filesystem extractor/rebuilder
     ├───get-keys: bespoke tool to grab my ssh keys
     ├───git-coauthor: easily add coauthors to the previous commit
     ├───git-heatmap: view change frequency of a repo
     ├───git-undeadname: does what it says on the tin
     ├───glkitty: gears demo in the terminal
+    ├───hgecko: wrapper/helper for devkitpro ppc toolchain
     ├───hovalaag: assembly programming game
+    ├───hmex: elf/dat manipulation tool using devkitpro
     ├───input-integrity: gamecube controller adapter manager
     ├───launchk: macos launchd tui
     ├───lowcharts: draw plots and histograms in the terminal

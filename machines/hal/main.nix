@@ -78,7 +78,12 @@
   ] ++ builtins.attrValues self.outputs.homeModules;
 
   programs = {
-    steam.enable = true;
+    steam = {
+      enable = true;
+      protontricks.enable = true;
+      localNetworkGameTransfers.openFirewall = true;
+      remotePlay.openFirewall = true;
+    };
     appimage = { enable = true; binfmt = true; };
     nix-ld.enable = true;
     m-overlay.enable = true;
