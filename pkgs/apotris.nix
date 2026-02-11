@@ -1,6 +1,7 @@
 # TODO: scale down icon for other sizes
 { stdenv, fetchFromGitea, meson, ninja, cmake, python3, xxd, pkg-config,
-  libopus, SDL2, SDL2_mixer, libogg, zlib, xorg, makeWrapper,
+  libopus, SDL2, SDL2_mixer, libogg, zlib, makeWrapper,
+  libxscrnsaver, libxcursor, libxi, libxfixes, libxrandr,
   makeDesktopItem, copyDesktopItems}:
 stdenv.mkDerivation rec {
   pname = "Apotris";
@@ -32,13 +33,12 @@ stdenv.mkDerivation rec {
     libopus
     libogg
     zlib
-  ] ++ (with xorg; [
-    libXScrnSaver
-    libXcursor
-    libXi
-    libXfixes
-    libXrandr
-  ]);
+    libxscrnsaver
+    libxcursor
+    libxi
+    libxfixes
+    libxrandr
+  ];
 
   desktopItems = [ (makeDesktopItem {
     desktopName = pname; name = pname; exec = pname; icon = pname;

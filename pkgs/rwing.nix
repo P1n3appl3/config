@@ -1,5 +1,5 @@
-{ stdenv, lib, fetchurl, makeDesktopItem, copyDesktopItems,
-  glib, gtk3, xorg, libxkbcommon, libGL, fontconfig, vulkan-loader, ... }:
+{ stdenv, lib, fetchurl, makeDesktopItem, copyDesktopItems, glib, gtk3,
+libxkbcommon, libxcb, libx11, libGL, fontconfig, vulkan-loader, ... }:
 stdenv.mkDerivation rec {
   pname = "rwing";
   version = "alpha-2.3";
@@ -20,8 +20,8 @@ stdenv.mkDerivation rec {
     glib
     gtk3
     libxkbcommon
-    xorg.libxcb
-    xorg.libX11
+    libxcb
+    libx11
     fontconfig.lib # TODO: debug not showing japanese characters
     vulkan-loader
     libGL

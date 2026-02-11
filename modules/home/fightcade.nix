@@ -32,19 +32,18 @@
     pango
     zlib
     wine
-  ]) ++ (with pkgs.xorg; [
-    libX11
+    libx11
     libxcb
-    libXcomposite
-    libXcursor
-    libXdamage
-    libXext
-    libXfixes
-    libXi
-    libXrandr
-    libXrender
-    libXScrnSaver
-    libXtst
+    libxcomposite
+    libxcursor
+    libxdamage
+    libxext
+    libxfixes
+    libxi
+    libxrandr
+    libxrender
+    libxscrnsaver
+    libxtst
   ]);
 
   quark = (pkgs.makeDesktopItem {

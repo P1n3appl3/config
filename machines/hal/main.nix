@@ -20,7 +20,7 @@
         (rofi.override { plugins = [ rofi-calc ]; })
         dunst
         oneko
-        xorg.xeyes xorg.xkill
+        xkill
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
         vscode
         nitrogen nasa-wallpaper feh

@@ -5,7 +5,7 @@
     brightnessctl
     pavucontrol playerctl audio-select pamixer
     xdg-utils # TODO: try handlr-regex
-    xorg.xeyes
+    xeyes
     rofimoji # TODO: put in rofi plugins section
     libqalculate qalculate-gtk
     nautilus # TODO: pick: fm/nautilus/dolphin/nemo/spacefm/pcmanfm/thunar

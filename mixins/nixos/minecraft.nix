@@ -10,6 +10,7 @@
     scalablelux = fetchurl { url = "https://cdn.modrinth.com/data/Ps1zyz6x/versions/PV9KcrYQ/ScalableLux-0.1.6%2Bfabric.c25518a-all.jar"; sha512 = "729515c1e75cf8d9cd704f12b3487ddb9664cf9928e7b85b12289c8fbbc7ed82d0211e1851375cbd5b385820b4fedbc3f617038fff5e30b302047b0937042ae7"; };
     carpet = fetchurl { url = "https://cdn.modrinth.com/data/TQTTVgYE/versions/HzPcczDK/fabric-carpet-1.21.11-1.4.194%2Bv251223.jar"; sha512 = "1135807e44b34a628c89674a4df94d617120aea932c24c7d4a375410103884e94713b4252d29035d1722d149cc65465afef24eafbfc476c51bc64b6fffff57e0"; };
     fabric-api = fetchurl { url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/L34yYPTD/fabric-api-0.141.2%2B1.21.11.jar"; sha512 = "3c1e7991ae72304a997bdbecc34a4bc742d4601349f000a7d9816b376a2e341c700f519cebb224f565d9b79d9c9492e1d7f918ec3f86e4f363e15df0c07f4b7e"; };
+    discord = fetchurl { url = "https://cdn.modrinth.com/data/rbJ7eS5V/versions/yGb7L3Am/dcintegration-fabric-MC1.21.11-3.1.0.2.jar"; sha512 = "ebb5c6a7947eb02448cfde522d683181e81ef19af99bb20b4299347f0f966a4c0c14f5ca54dea3804f70925c289347267fa5c7efb9072922b025fbe2d3fbb24b"; };
     # syncmatica-revolution = fetchurl { url = "https://cdn.modrinth.com/data/ZFRiWThj/versions/A3d76mQs/syncmatica_r-1.21.11-0.3.18.jar"; sha512 = "5f7de6e9ea5c27f647132f39037991869795bc52556cf805858dc3f5b3aaf01f9a7df9de91d618f0c141e333b450c20cf47a05b692c032499f2cd365ca043ad0"; };
   });
 in
@@ -35,13 +36,13 @@ in
     symlinks = { inherit mods; };
     whitelist = {
       "314neapple" = "0e75035d-2631-4bd1-9cf2-6349de192563";
-      "iuyag" = "35ed48ab-8fd2-4137-b1fd-b59ed8806d6b";
-      "jspspike" = "9c1a5c93-454d-445c-88fd-a226eac44444";
-      "Thalie247" = "2a5bac8a-e864-4e32-87f9-1317f4dba4ea";
+           "iuyag" = "35ed48ab-8fd2-4137-b1fd-b59ed8806d6b";
+        "jspspike" = "9c1a5c93-454d-445c-88fd-a226eac44444";
+       "Thalie247" = "2a5bac8a-e864-4e32-87f9-1317f4dba4ea";
       "kitkat2306" = "649bce69-7aa0-4f93-8c91-8ec27a10a096";
-      "meowjana" = "ae528e39-5a10-40f7-84e9-9d15ddaf7c7d";
-      "theLocalChicken" = "8b7dda7e-b989-4d9b-b991-52b50b1e0d44";
-      "DevoidOfLife" = "2c749f19-2864-4e7d-ae38-d7181e3223d9";
+        "meowjana" = "ae528e39-5a10-40f7-84e9-9d15ddaf7c7d";
+ "theLocalChicken" = "8b7dda7e-b989-4d9b-b991-52b50b1e0d44";
+    "DevoidOfLife" = "2c749f19-2864-4e7d-ae38-d7181e3223d9";
     };
   };
 }

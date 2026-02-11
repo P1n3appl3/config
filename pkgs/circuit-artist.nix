@@ -12,8 +12,15 @@
 
   nativeBuildInputs = with pkgs; [ cmake pkg-config makeWrapper copyDesktopItems ];
 
-  buildInputs = with pkgs; [ raylib gtk3 glib ] ++
-    (with pkgs.xorg; [ libXrandr libXinerama libXcursor libXi ]);
+  buildInputs = with pkgs; [
+    raylib
+    gtk3
+    glib
+    libxrandr
+    libxinerama
+    libxcursor
+    libxi
+  ];
 
   cmakeBuildTarget = "ca";
 

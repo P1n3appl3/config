@@ -4,7 +4,7 @@
 # context here: https://github.com/dotnet/core/blob/main/Documentation/self-contained-linux-apps.md
 
 { lib, stdenvNoCC, fetchurl, makeWrapper, autoPatchelfHook,
-  libz, stdenv, fontconfig, icu, xorg }:
+  libz, stdenv, fontconfig, icu, libx11 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "lossless-adapter-manager";
   version = "2024-03-19";
@@ -27,7 +27,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   runtimeDependencies = [
     icu
     fontconfig.lib
-    xorg.libX11
+    libx11
   ];
 
   buildPhase = ''
