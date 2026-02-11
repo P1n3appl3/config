@@ -62,7 +62,8 @@ config 🍍 nix flake show
     ├───rust-rpxy: simple reverse proxy
     ├───rwing: melee replay review tool
     ├───s2yt: spotify to youtube music transfer tool
-    ├───slpz: compress slippi replays
+    ├───slippc: compress/analyze slippi replays
+    ├───slpz: compress slippi replays faster
     ├───tab: command line music tabs
     ├───term-rustdoc: tui docs browser
     ├───uwurandom: like /dev/urandom, but objectively better
