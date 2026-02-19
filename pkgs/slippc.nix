@@ -1,12 +1,12 @@
 { lib, stdenv, fetchFromGitHub, xz }: stdenv.mkDerivation rec {
   pname = "slippc";
-  version = "0.8.1";
+  version = "2026-02-07";
 
   src = fetchFromGitHub {
     owner = "pcrain";
     repo = "slippc";
-    rev = version;
-    hash = "sha256-DHJLRT3BqnqFS8NLfqX7pwSRNyJGXRfNyPyzqM2NBjU=";
+    rev = "8d79a665392e491edd62150687a956e45a7a0fe7";
+    hash = "sha256-v/qtILvLCku3Vyec3HQbJCXcplTaBozJV9Y3K2JNE7s=";
   };
 
   buildInputs = [ xz ];

@@ -90,7 +90,7 @@
 ["Niko Matsakis"      "smallcultfollowing.com/babysteps"    "/atom.xml"]
 ["Francesco Mazzoli"  "mazzo.li"                            "/rss.xml"]
 ["Dennis Schubert"    "overengineer.dev"                    "/blog/feeds/all.xml"]
-["Ben Fredrickson"    "http://www.benfrederickson.com"      "/atom.xml"]
+["Ben Fredrickson"    "www.benfrederickson.com"             "/atom.xml"]
 ["Susam Pal"          "susam.net"                           "/blog/feed.xml"]
 ["Serge Zaitsev"      "zserge.com"                          "/rss.xml"]
 ["Sadgrl"             "sadgrl.online"                       "/feed.xml"]
@@ -128,7 +128,8 @@
 ["ivysly"             "ivysly.com"                          "/feeds/blog.rss.xml"]
 ["computers are bad"  "computer.rip"                        "/rss.xml"]
 ["Jamie Brandon"      "scattered-thoughts.net"              "/atom.xml"]
-["Veit Heller"        "http://blog.veitheller.de"           "/feed.rss"]
+["Veit Heller"        "blog.veitheller.de"                  "/feed.rss"]
+["Mason"              "gamesbymason.com"                    "/feed.xml"]
 
 ["iximeow"            "blog.iximeow.net"                    (feed + "ixi")]
 ["dropbear"           "dropbear.sh"                         (feed + "ally")]
