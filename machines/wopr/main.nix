@@ -2,7 +2,7 @@
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
-    # ../../mixins/nixos/cosmic.nix
+    ../../mixins/nixos/cosmic.nix
   ];
 
   home-manager.users.julia.imports = [

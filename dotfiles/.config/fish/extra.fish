@@ -31,7 +31,6 @@ mkconfig hx .config/helix/config.toml, .config/helix/languages.toml
 mkconfig vim .config/nvim/lua/main.lua, ".config/nvim/**/*.lua", ".config/nvim/**/*.vim"
 mkconfig zsh .zshrc, .zshenv, ".config/zsh/*"
 mkconfig fish .config/fish/extra.fish, ".config/fish/conf.d/*"
-mkconfig i3 .config/i3/config, .config/i3status-rust/config.toml
 mkconfig sway .config/sway/common_config, .config/sway/(hostname -s), \
     .config/waybar/config.jsonc, ".config/waybar/*.css"
 mkconfig wez .config/wezterm/config.lua, ".config/wezterm/*.lua"

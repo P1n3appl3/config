@@ -1,9 +1,5 @@
-{ pkgs, ... }: {
+{
   imports = [ ../../mixins/nixos/btrfs.nix ];
-
-  environment.systemPackages = with pkgs; [
-    nvtopPackages.nvidia
-  ];
 
   boot = {
     loader = {
@@ -24,22 +20,14 @@
   hardware = {
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
-    nvidia = {
-      open = false;
-      powerManagement.enable = true;
-    };
+    amdgpu.initrd.enable = true;
     opentabletdriver = {
       enable = true;
       blacklistedKernelModules = [ "wacom" ];
     };
   };
 
-  networking = {
-    usePredictableInterfaceNames = false; # I like eth0
-    # useDHCP = true;
-  };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
+  networking.usePredictableInterfaceNames = false; # I like eth0
 
   fileSystems = {
     "/boot" = { label = "boot"; fsType = "vfat"; };

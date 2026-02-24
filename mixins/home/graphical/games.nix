@@ -36,7 +36,7 @@
     ds-rom
 
     punes dolphin-emu mupen64plus # snes9x-gtk simple64
-    sameboy melonDS # mgba TODO: cmake
+    sameboy melonds # mgba TODO: cmake
     pcsx2
 
     factorio-bp-helper
