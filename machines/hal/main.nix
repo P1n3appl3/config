@@ -25,7 +25,7 @@
 
       programs.kitty.settings.font_size = 10;
       slippi-launcher = { enable = true;
-        isoPath = "/media/alt/games/ROMs/Gamecube/Animelee [GALE01]/game.iso";
+        isoPath = "/media/alt/games/ROMs/Gamecube/Melee [GALE01]/game.iso";
         rootSlpPath = "/media/alt/games/melee/replays";
       };
     }

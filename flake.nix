@@ -9,7 +9,7 @@
     ragenix.url            = "github:yaxitech/ragenix";
     nix-index-database.url = "github:Mic92/nix-index-database";
     catppuccin.url         = "github:catppuccin/nix";
-    slippi.url             = "github:lytedev/slippi-nix";
+    slippi.url             = "github:p1n3appl3/slippi-nix/remove-trace";
     # TODO: swap back from fork once lazymc is merged
     nix-minecraft.url      = "github:Yeshey/nix-minecraft";
     obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
