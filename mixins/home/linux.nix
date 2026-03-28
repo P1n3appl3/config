@@ -19,6 +19,7 @@
   xdg = { enable = true;
     userDirs = let home = config.home.homeDirectory; in {
       enable = true;
+      setSessionVariables = true;
       desktop = home;
       templates = home + "/.templates";
       publicShare = null;

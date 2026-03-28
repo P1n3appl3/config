@@ -19,6 +19,7 @@
       gtk-error-bell = 0;
       gtk-decoration-layout = "appmenu:none";
     };
+    gtk4.theme = null;
   };
 
   catppuccin = {

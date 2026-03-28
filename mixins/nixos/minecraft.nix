@@ -11,6 +11,7 @@
     carpet = fetchurl { url = "https://cdn.modrinth.com/data/TQTTVgYE/versions/HzPcczDK/fabric-carpet-1.21.11-1.4.194%2Bv251223.jar"; sha512 = "1135807e44b34a628c89674a4df94d617120aea932c24c7d4a375410103884e94713b4252d29035d1722d149cc65465afef24eafbfc476c51bc64b6fffff57e0"; };
     fabric-api = fetchurl { url = "https://cdn.modrinth.com/data/P7dR8mSH/versions/L34yYPTD/fabric-api-0.141.2%2B1.21.11.jar"; sha512 = "3c1e7991ae72304a997bdbecc34a4bc742d4601349f000a7d9816b376a2e341c700f519cebb224f565d9b79d9c9492e1d7f918ec3f86e4f363e15df0c07f4b7e"; };
     discord = fetchurl { url = "https://cdn.modrinth.com/data/rbJ7eS5V/versions/yGb7L3Am/dcintegration-fabric-MC1.21.11-3.1.0.2.jar"; sha512 = "ebb5c6a7947eb02448cfde522d683181e81ef19af99bb20b4299347f0f966a4c0c14f5ca54dea3804f70925c289347267fa5c7efb9072922b025fbe2d3fbb24b"; };
+    servux = fetchurl { url = "https://cdn.modrinth.com/data/zQhsx8KF/versions/wdbe92T5/servux-fabric-1.21.11-0.9.2.jar"; sha512 = "0f5efd7707007aa7ecb502e7140baff78919b3c37bb85cb8fd9673442d0446e88e36bc151ecaccf0ef223aca957dbcfb0ef0454d3733ed05349fd562014df544"; };
     # syncmatica-revolution = fetchurl { url = "https://cdn.modrinth.com/data/ZFRiWThj/versions/A3d76mQs/syncmatica_r-1.21.11-0.3.18.jar"; sha512 = "5f7de6e9ea5c27f647132f39037991869795bc52556cf805858dc3f5b3aaf01f9a7df9de91d618f0c141e333b450c20cf47a05b692c032499f2cd365ca043ad0"; };
   });
 in

@@ -78,6 +78,7 @@ in {
         security = {
           admin_email = email;
           admin_password = "$__file{${config.age.secrets.password.path}}";
+          secret_key = "SW2YcwTIb9zpOOhoPsMm";
         };
       };
     };
