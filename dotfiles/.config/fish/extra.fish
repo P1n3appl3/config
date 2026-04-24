@@ -66,6 +66,7 @@ end
 abbr -a send "wormhole-rs tx"
 abbr -a receive "wormhole-rs rx"
 abbr -a rs rsync -a --info=progress2
+abbr -a drag ripdrag
 abbr -a getsong "ytmdl --dont-transcode --download-archive ~/.cache/ytmdl/archive"
 abbr -a wine32 "WINEPREFIX=$HOME/.wine32 wine"
 function ststatus

@@ -15,6 +15,8 @@
     obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
     rahul-config.url       = "github:rrbutani/nix-config";
 
+    ouchie.url = "https://flakehub.com/f/0x5a4/nand2tetris-flake/*";
+
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     ragenix.inputs = {

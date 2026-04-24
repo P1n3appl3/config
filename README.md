@@ -31,6 +31,7 @@ config 🍍 nix flake show
     ├───cargo-clone-crate: better cargo clone command
     ├───cachedtom: local-first cargo toml language server
     ├───circuit-artist: the best EDA software since logisim
+    ├───cos-cli: cli for manipulating cosmic-desktop windows
     ├───d-rs: stream processing utilities
     ├───dl: get the latest downloaded file
     ├───ds-rom: extract nintendo ds rom files

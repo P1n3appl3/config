@@ -1,15 +1,14 @@
-{ fetchFromGitHub, rustPlatform }:
-rustPlatform.buildRustPackage rec {
+{ fetchFromGitHub, rustPlatform }: rustPlatform.buildRustPackage rec {
   pname = "rust-rpxy";
-  version = "0.10.3";
+  version = "0.11.3";
 
   src = fetchFromGitHub {
     owner = "junkurihara"; repo = pname; rev = version;
-    hash = "sha256-vrCAdZmdOe7f8RlSrYucYfP2crd/7nEddby+3qpAAo0=";
+    hash = "sha256-LoZ6On/837RJSsf7Qxol83PkczSp+VDk66IBUm/tVWY=";
     fetchSubmodules = true;
   };
 
-  cargoHash = "sha256-SOGJlr7RiAaCARRvMN26B3h51nl2Pj1Y6ePNs6nigZk=";
+  cargoHash = "sha256-L3+kGyeIUHdQfcZ5hHd6YsFYbsyq2R8XwE9HUFJMyd8=";
 
   meta.mainProgram = "rpxy";
 }

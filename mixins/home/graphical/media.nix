@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     blender
-    # kdePackages.kdenlive # TODO: enable when fixed
+    kdePackages.kdenlive
     kicad-small
     inkscape krita pinta aseprite
     audacity # (or tenacity)

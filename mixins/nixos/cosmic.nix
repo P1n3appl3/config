@@ -1,6 +1,6 @@
 { pkgs, lib, ... }: {
   environment.systemPackages = with pkgs; [
-    wev wl-clipboard grim slurp hyprpicker wlprop
+    wev wl-clipboard grim slurp hyprpicker wlprop cos-cli
   ];
 
   services = {

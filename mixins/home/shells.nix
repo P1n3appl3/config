@@ -76,6 +76,15 @@
     atuin = {
       enable = true;
       flags = [ "--disable-up-arrow" ];
+      settings = {
+        dialect = "us";
+        style = "compact";
+        invert = true;
+        inline_height = 20;
+        show_tabs = false;
+        show_help = false;
+        sync_frequency = "12h";
+      };
     };
     zoxide = {
       enable = true;

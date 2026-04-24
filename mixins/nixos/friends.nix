@@ -59,7 +59,7 @@ in {
       "ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAGuyes0oNZO+LWvjx6JnPMth7nFwUDg4MoJs5Q00uZAEwjC+eAkk3SxAAiyORaRD250ASjJ/ArZWUQ7IZENcHBEVQGWaCWuw06Rr2f4KVNmnPzPFKpd91QxyBd3EXXScpDeOKGF/yB1GCMkNN52StVEllhiz/eorAXFo4d0bzlRxNivBg=="
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG0im7/KNw4pgeH3RzgQaJeVFekbqXjDj+HYPqVbSFXv"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH8dZcQILx0u2efLceHWaXzulOsu9rHO1xeGT5SLeNWc"
-    ] []) // { shell = pkgs.fish; };
+    ] [ "wheel" ]) // { shell = pkgs.fish; };
     david = user [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOZGpO0j6dZwiTvp8MZ+35cs/jRMVLpy/7FMN9irfzdG"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID3Nno8oD214qAxGeCZROOFMUPkuFPQ4zQARxq/JH30a"

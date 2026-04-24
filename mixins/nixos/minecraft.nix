@@ -46,4 +46,7 @@ in
     "DevoidOfLife" = "2c749f19-2864-4e7d-ae38-d7181e3223d9";
     };
   };
+  environment.systemPackages = with pkgs; [
+    tmux # to open the server console
+  ];
 }

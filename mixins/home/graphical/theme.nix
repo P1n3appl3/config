@@ -19,15 +19,18 @@
       gtk-error-bell = 0;
       gtk-decoration-layout = "appmenu:none";
     };
-    gtk4.theme = null;
+    # gtk4.theme = null;
   };
 
   catppuccin = {
-    sway.enable = true; waybar.enable = true; swaylock.enable = true;
+    sway.enable = true;
+    waybar.enable = true;
+    swaylock.enable = true;
     rofi.enable = true;
     kvantum.enable = true;
-    zathura.enable = true; imv.enable = true;
-    zed.enable = true; obs.enable = true;
+    zathura.enable = true;
+    imv.enable = true;
+    obs.enable = true;
   };
 
   qt = { enable = true;

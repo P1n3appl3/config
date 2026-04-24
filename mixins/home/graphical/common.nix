@@ -1,9 +1,10 @@
 { pkgs, lib, config, ... }: {
-  imports = [ ./terminal.nix ./fonts.nix ./theme.nix ./zed.nix ];
+  imports = [ ./terminal.nix ./fonts.nix ./theme.nix ];
 
   home.packages = with pkgs; [
     brightnessctl
     pavucontrol playerctl audio-select pamixer
+    ripdrag
     xdg-utils # TODO: try handlr-regex
     xeyes
     rofimoji # TODO: put in rofi plugins section
@@ -26,7 +27,7 @@
 
     telegram-desktop vesktop signal-desktop
     caprine-bin slack android-messages
-    fractal element-desktop iamb # fluffychat cinny nheko # TODO: pick
+    # fractal element-desktop iamb # fluffychat cinny nheko # TODO: pick
     # pkgs-stable.friture praat # TODO: try these for voice training
     # imhex # (TODO: catppuccin) # TODO: try hexerator/rizin/cutter
     mepo # TODO: try
