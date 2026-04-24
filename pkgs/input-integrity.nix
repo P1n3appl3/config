@@ -65,6 +65,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   meta = {
     mainProgram = finalAttrs.pname;
     platforms = [ "x86_64-linux" ];
-    # broken = true;
+    broken = true;
   };
 })

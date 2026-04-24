@@ -65,6 +65,8 @@ config 🍍 nix flake show
     ├───rwing: melee replay review tool
     ├───s2yt: spotify to youtube music transfer tool
     ├───slippc: compress/analyze slippi replays
+    ├───slp2mp4: convert slippi replays to videos
+    ├───slp-to-video: convert slippi replays to videos
     ├───slpz: compress slippi replays faster
     ├───tab: command line music tabs
     ├───term-rustdoc: tui docs browser
