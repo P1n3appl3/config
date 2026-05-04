@@ -26,7 +26,7 @@
     firefox
 
     telegram-desktop vesktop signal-desktop
-    caprine-bin slack android-messages
+    android-messages
     # fractal element-desktop iamb # fluffychat cinny nheko # TODO: pick
     # pkgs-stable.friture praat # TODO: try these for voice training
     # imhex # (TODO: catppuccin) # TODO: try hexerator/rizin/cutter

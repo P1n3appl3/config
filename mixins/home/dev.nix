@@ -16,7 +16,8 @@
 
     cargo-flamegraph
     cargo-edit cargo-nextest cargo-mommy cargo-feature cargo-expand cargo-clone-crate
-    cargo-udeps cargo-audit cargo-modules cargo-bloat cargo-show-asm # cargo-binutils
+    cargo-udeps cargo-audit cargo-modules cargo-bloat cargo-show-asm cargo-workspaces
+    # cargo-binutils
     taplo
     bacon
     # term-rustdoc

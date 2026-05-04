@@ -20,7 +20,7 @@
       };
     };
   };
-  systemd.sleep.settings.Sleep = "HibernateDelaySec=4h";
+  systemd.sleep.settings.Sleep.HibernateDelaySec = "4h";
 
   boot = {
     loader = {

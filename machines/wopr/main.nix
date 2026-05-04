@@ -2,7 +2,7 @@
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
-    ../../mixins/nixos/cosmic.nix
+    # ../../mixins/nixos/cosmic.nix
   ];
 
   home-manager.users.julia.imports = [
@@ -40,6 +40,7 @@
   programs = {
     steam.enable = true;
     appimage = { enable = true; binfmt = true; };
+    nix-ld.enable = true;
     ydotool.enable = true;
   };
 
@@ -60,10 +61,9 @@
               EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
       '';
     };
-    udev.extraRules = ''
-    SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"
-    SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="102b", MODE="0666"
-    '';
+    udev.packages = [
+      pkgs.input-integrity
+    ];
   };
 
   networking = { hostName = "WOPR"; networkmanager.enable = true; };

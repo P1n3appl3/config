@@ -1,5 +1,5 @@
 # TODO: icon from https://www.google.com/s2/favicons?sz=64&domain_url=input-integrity.com
-{ lib, stdenvNoCC, fetchurl, makeWrapper,
+{ lib, stdenvNoCC, stdenv, fetchurl, makeWrapper, zlib,
   fontconfig, icu, libx11, libICE, libSM, libusb1, openssl }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "lossless-adapter-manager";
@@ -16,6 +16,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   # it's dlopening these. we can't patchelf cuz it somehow fucks up the binary
   buildInputs = [
+    zlib
+    stdenv.cc.cc
     icu
     fontconfig.lib
     libx11
@@ -29,9 +31,12 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
+    # makeWrapper ${lib.getExe' stdenv.cc.libc_bin "ld.so" } $out/bin/$pname \
+    #   --add-flag $src \
+    #   --prefix LD_LIBRARY_PATH : ${ lib.makeLibraryPath finalAttrs.buildInputs }
     install -Dm755 $src $out/bin/$pname
     wrapProgram $out/bin/$pname --prefix LD_LIBRARY_PATH : ${ lib.makeLibraryPath finalAttrs.buildInputs }
-    
+
     mkdir -p $out/etc/udev/rules.d
     cat >$out/etc/udev/rules.d/51-gcadapter.rules <<EOF
     SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"
