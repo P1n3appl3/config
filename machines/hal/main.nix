@@ -42,10 +42,12 @@
   programs = {
     steam = {
       enable = true;
+      gamescopeSession.enable = true;
       protontricks.enable = true;
       localNetworkGameTransfers.openFirewall = true;
       remotePlay.openFirewall = true;
     };
+    gamescope.enable  = true;
     appimage = { enable = true; binfmt = true; };
     nix-ld.enable = true;
     m-overlay.enable = true;
@@ -55,12 +57,9 @@
     flatpak.enable = true;
     openssh.enable = true;
     udev.packages = [
-      # pkgs.xr-hardware
-      # pkgs.input-integrity
+      pkgs.input-integrity
     ];
     udev.extraRules = ''
-      SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"
-      SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="102b", MODE="0666"
       KERNEL=="hidraw*", TAG+="uaccess"
     '';
 

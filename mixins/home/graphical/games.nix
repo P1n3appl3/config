@@ -3,13 +3,14 @@
     steam
     itch wine64
     # heroic
-    lutris
+    # lutris
     ludusavi
 
     # melee tools
     rwing
     melee-quick-mod
     slpz
+    input-integrity
 
     # minecraft
     prismlauncher

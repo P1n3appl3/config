@@ -77,5 +77,6 @@
     description = "An app for automating the recording of lists of sentences into individual audio files";
     homepage = "https://github.com/benjaminkitt/recordr";
     license = lib.licenses.mpl20;
+    broken = true;
   };
 })

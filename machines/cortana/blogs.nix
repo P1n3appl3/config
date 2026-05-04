@@ -130,6 +130,7 @@
 ["Jamie Brandon"      "scattered-thoughts.net"              "/atom.xml"]
 ["Veit Heller"        "blog.veitheller.de"                  "/feed.rss"]
 ["Mason"              "gamesbymason.com"                    "/feed.xml"]
+["linkedlist"         "linkedlist.org"                      "/atom.xml"]
 
 ["iximeow"            "blog.iximeow.net"                    (feed + "ixi")]
 ["dropbear"           "dropbear.sh"                         (feed + "ally")]
