@@ -67,5 +67,6 @@
     description = "Cross-platform music tagger for DJs";
     homepage = "https://github.com/Marekkon5/onetagger";
     license = licenses.gpl3Only;
+    broken = true;
   };
 }

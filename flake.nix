@@ -88,16 +88,19 @@
   } // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
     in with lib; {
-      packages = pipe ./pkgs [
+      packages = (pipe ./pkgs [
         (dir: listDir { of = dir; mapFunc = p: _: pkgs.${p}; })
         (filterAttrs (_: meta.availableOn pkgs.stdenv.hostPlatform))
         (filterAttrs (_: p: !(p.meta.broken or false)))
-      ];
+      ]) // { inherit (pkgs) eza ragenix; }; # just adding these for caching
     })
   );
 
   nixConfig = {
-    extra-substituters = [ "https://cache.garnix.io" "https://pineapple.cachix.org" ];
+    extra-substituters = [
+      "https://cache.garnix.io"
+      "https://pineapple.cachix.org"
+    ];
     extra-trusted-public-keys = [
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "pineapple.cachix.org-1:FjFjdb26PFCZL09M2yHiPw1J+c1Ab9AbpfnFeTpzNQk="

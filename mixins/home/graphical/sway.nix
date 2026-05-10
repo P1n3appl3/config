@@ -59,12 +59,12 @@
       ];
     };
     wpaperd = { enable = true;
-          settings.default = {
-            path = config.xdg.userDirs.pictures + "/wallpapers";
-            apply-shadow = true;
-            duration = "30m";
-          };
-        };
+      settings.default = {
+        path = config.xdg.userDirs.pictures + "/wallpapers";
+        apply-shadow = true;
+        duration = "30m";
+      };
+    };
     cliphist.enable = true;
     swaync.enable = true; # TODO: ctp
     swayosd.enable = true; # TODO: ctp

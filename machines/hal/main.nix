@@ -11,7 +11,7 @@
       home.packages = with pkgs; [
         oneko
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
-        nitrogen nasa-wallpaper feh
+        nitrogen feh
       ];
 
       services = {

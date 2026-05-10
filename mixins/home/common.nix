@@ -1,10 +1,10 @@
 { pkgs, inputs, lib, config, myOverlays, ... } @ args: {
   home.packages = with pkgs; [
     # Utils
-    ripgrep fd eza sd doggo ouch xh dl rbw pinentry-curses hyperfine heh
-    tokei zellij zeco rsync zstd pv sshping mdcat magic-wormhole-rs rage
-    exiftool resvg get-keys vivid pipe-rename static-web-server cached-path
-    ascii unicode-paracode sequin tty-share bore-cli scooter micro chafa
+    ripgrep fd eza sd doggo ouch xh dl rbw pinentry-curses hyperfine heh tokei
+    zellij zeco tty-share teamtype rsync magic-wormhole-rs bore-cli cached-path
+    zstd pv sshping mdcat rage exiftool resvg get-keys vivid static-web-server
+    ascii unicode-paracode sequin tty-share micro chafa pipe-rename scooter
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens fx # xan tabiew
     # System info
@@ -43,7 +43,7 @@
   };
 
   imports = [
-    ./git.nix ./nvim.nix ./htop.nix ./shells.nix
+    ./git.nix ./htop.nix ./shells.nix
     (if builtins.hasAttr "osConfig" args then {} else
       { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
     inputs.nix-index-database.homeModules.nix-index

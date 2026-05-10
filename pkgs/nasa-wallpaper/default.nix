@@ -21,5 +21,6 @@ rustPlatform.buildRustPackage rec {
     description = "Change your desktop background with a NASA image";
     homepage = "https://github.com/davidpob99/nasa-wallpaper";
     license = lib.licenses.asl20;
+    broken = true;
   };
 }

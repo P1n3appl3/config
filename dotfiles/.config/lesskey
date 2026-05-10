@@ -11,3 +11,5 @@ LESS_TERMCAP_se=\e[0m
 # underline
 LESS_TERMCAP_us=\e[1;96m
 LESS_TERMCAP_ue=\e[0m
+
+LESS=--quit-if-one-screen --ignore-case --long-prompt --tabs=4 --redraw-on-quit --use-color --RAW-CONTROL-CHARS --chop-long-lines --exit-follow-on-close

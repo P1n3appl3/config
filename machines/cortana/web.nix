@@ -57,9 +57,8 @@ in {
     };
 
     # TODO: prometheus
-    # https://github.com/static-web-server/static-web-server/pull/306
     static-web-server = { enable = true;
-      root = "/media/static";
+      root = "/media/static --disable-symlinks=false";
       listen = "[::]:9000";
       configuration.general = {
         health = true;
@@ -181,12 +180,12 @@ in {
     rahul-gists = {
       description = "Grab rahuls gists (until he makes a blog)";
       startAt = "0 0 */2 * *"; # every 2 days
-      path = with pkgs; [ gh jq sd ];
+      path = with pkgs; [ bash gh jq sd ];
       serviceConfig = {
         ExecStart = ''/home/julia/.local/bin/gist-rss \
           rrbutani rahul https://rahul.red > /media/static/feeds/rahul'';
         User = "julia";
-        Group = "julia";
+        Group = "users";
       };
     };
 
@@ -197,7 +196,7 @@ in {
       serviceConfig = {
         ExecStart = "rsspls -o /media/static/feeds";
         User = "julia";
-        Group = "julia";
+        Group = "users";
       };
     };
 

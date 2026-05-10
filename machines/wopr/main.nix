@@ -21,6 +21,12 @@
         isoPath = "/home/julia/games/roms/Gamecube/Melee [GALE01]/game.iso";
         rootSlpPath = "/home/julia/games/melee/replays";
       };
+      services.wpaperd = { enable = true;
+        settings = {
+          # jana liked this one best
+          "re:LG ULTRAWIDE".path = "/home/julia/images/waneella/motionless/2020/Lull_8450x3560.png";
+        };
+      };
     }
     ../../mixins/home/common.nix
     ../../mixins/home/linux.nix
@@ -64,6 +70,17 @@
     udev.packages = [
       pkgs.input-integrity
     ];
+    snapper = {
+      # snapshotInterval = "daily";
+      persistentTimer = true;
+      configs.home = {
+        SUBVOLUME = "/home";
+        NUMBER_CLEANUP = true;
+        TIMELINE_CLEANUP = true;
+        TIMELINE_CREATE = true;
+        ALLOW_USERS = [ "julia" ];
+      };
+    };
   };
 
   networking = { hostName = "WOPR"; networkmanager.enable = true; };
