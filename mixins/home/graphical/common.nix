@@ -52,6 +52,7 @@
     # TODO: try anyrun, kickoff-dot-desktop, worf
     # TODO: try plugins: rbw/pa source+sink/mpd/systemd/wifi
     rofi = { enable = true; plugins = [ pkgs.rofi-calc ]; };
+    awawausb.enable = true;
   };
 
   home.file."${config.programs.rofi.configPath}".text = ''@import "extraConfig"'';

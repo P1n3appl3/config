@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: let
+{ pkgs, config, lib, ... }: let
   acme_dir = "/var/lib/acme/pineapple.computer/";
   email = "juliaryan3.14@gmail.com";
 in {
@@ -62,6 +62,7 @@ in {
       listen = "[::]:9000";
       configuration.general = {
         health = true;
+        metrics = true;
         directory-listing = true;
         compression-static = true;
       };
@@ -181,9 +182,11 @@ in {
       description = "Grab rahuls gists (until he makes a blog)";
       startAt = "0 0 */2 * *"; # every 2 days
       path = with pkgs; [ bash gh jq sd ];
+      script = ''
+        ~/.local/bin/gist-rss \
+          rrbutani rahul https://rahul.red > /media/static/feeds/rahul;
+      '';
       serviceConfig = {
-        ExecStart = ''/home/julia/.local/bin/gist-rss \
-          rrbutani rahul https://rahul.red > /media/static/feeds/rahul'';
         User = "julia";
         Group = "users";
       };
@@ -192,9 +195,8 @@ in {
     rsspls = {
       description = "Extract rss feeds from web pages";
       startAt = "00,12:00"; # twice a day
-      path = [ pkgs.rsspls ];
       serviceConfig = {
-        ExecStart = "rsspls -o /media/static/feeds";
+        ExecStart = "${lib.getExe pkgs.rsspls} -o /media/static/feeds";
         User = "julia";
         Group = "users";
       };
