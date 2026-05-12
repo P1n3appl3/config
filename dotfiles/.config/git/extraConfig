@@ -28,7 +28,10 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
     vi = "!vi() { git diff ${@:-HEAD^} --diff-filter=d --name-only | xargs hx; } ; hx"
     changed = diff --stat HEAD~1
 [diff]
-    colorMoved = default
+    external = difft --display inline
+[difftool "difftastic"]
+    # See `man git-difftool` for a description of MERGED, LOCAL and REMOTE.
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
 [diff "age"]
     textconv = "rage -di ~/.ssh/id_ed25519"
 [diff "image"]
@@ -36,7 +39,10 @@ format:\"%C(yellow)%h %Cred%ad %Cblue%>(14,mtrunc)%an%Cgreen%d \
     cachetextconv = true
 [merge]
     tool = nvimdiff
-    conflictstyle = zdiff3
+    conflictstyle = diff3 # zdiff3 works poorly with mergiraf
+[merge "mergiraf"]
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
 [mergetool]
     keepBackup = false
     prompt = true

@@ -1,3 +1,4 @@
+*       merge=mergiraf
 *.age   diff=age
 *.png   diff=image
 *.apng  diff=image

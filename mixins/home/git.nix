@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     git-lfs # git-absorb git-branchless
     git-heatmap git-undeadname git-coauthor
+    difftastic mergiraf
     gh
     onefetch
     git-worktree-switcher
