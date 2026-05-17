@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+
+# set -x
+set -euo pipefail
+
+if [[ $# -lt 1 || $# -gt 3 ]]; then
+  echo "usage: $0 <file> [line] [line_end]" >&2
+  exit 1
+fi
+
+file="$1"
+line="${2:-}"
+line_end="${3:-}"
+
+root="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+  echo "not in a git repository" >&2
+  exit 1
+}
+
+file="$(realpath --relative-to="$root" "$file")"
+git ls-files --error-unmatch "$file" >/dev/null 2>&1 || {
+  echo "file is not tracked by git: $file" >&2
+  exit 1
+}
+
+commit="$(git rev-parse HEAD)"
+
+# TODO: some heuristic for still using links on upstream if the given file hasn't been modified in a local branch/by this commit
+choose_remote() {
+  if git remote get-url upstream >/dev/null 2>&1; then
+    if git branch -r --contains "$commit" | grep -q '^ *upstream/'; then
+      echo upstream
+      return
+    fi
+  fi
+  echo origin
+}
+
+remote_name="$(choose_remote)"
+remote_url="$(git remote get-url "$remote_name")"
+remote="$(echo "$remote_url" | sd "([^:]+):" '$1/' | sd "^git@" https://)"
+
+base_url=""
+blob_path="blob"
+
+case "$remote_url" in
+  git@github.com:*)
+    repo="${remote_url#git@github.com:}"
+    repo="${repo%.git}"
+    base_url="https://github.com/$repo"
+    blob_path="blob"
+    ;;
+  https://github.com/*)
+    repo="${remote_url#https://github.com/}"
+    repo="${repo%.git}"
+    base_url="https://github.com/$repo"
+    blob_path="blob"
+    ;;
+
+  git@git.sr.ht:*)
+    repo="${remote_url#git@git.sr.ht:}"
+    base_url="https://git.sr.ht/$repo"
+    blob_path="tree"
+    ;;
+  https://git.sr.ht/*)
+    repo="${remote_url#https://git.sr.ht/}"
+    base_url="https://git.sr.ht/$repo"
+    blob_path="tree"
+    ;;
+
+  ssh://forgejo@git.donsz.nl/*)
+    repo="${remote_url#ssh://forgejo@git.donsz.nl/}"
+    base_url="https://git.donsz.nl/$repo"
+    blob_path="src/commit"
+    ;;
+
+  *)
+    echo "unsupported remote: $remote_url" >&2
+    exit 1
+    ;;
+esac
+# echo $remote_url
+# echo $repo
+# echo $base_url
+
+url="$base_url/$blob_path/$commit/$file"
+
+if [[ -n "$line" ]]; then
+  if [[ -n "$line_end" && "$line_end" != "$line" ]]; then
+    case "$base_url" in
+      *git.sr.ht*)
+        url="$url#L$line-$line_end"
+        ;;
+      *)
+        url="$url#L$line-L$line_end"
+        ;;
+    esac
+  else
+    url="$url#L$line"
+  fi
+fi
+
+echo "$url"
+

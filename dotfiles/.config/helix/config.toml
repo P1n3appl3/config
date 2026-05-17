@@ -41,6 +41,7 @@ w = { d = "wclose" }
 "=" = ":format"
 q = ":wqa"
 B = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"
+l = ":echo %sh{git permalink %{buffer_name} %{selection_line_start} %{selection_line_end} | osc copy}copied permalink to clipboard"
 
 [keys.select]
 "C-y" = "@\"+y"

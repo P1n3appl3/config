@@ -4,7 +4,7 @@
     ripgrep fd eza sd doggo ouch xh dl rbw pinentry-curses hyperfine heh tokei
     zellij zeco tty-share teamtype rsync magic-wormhole-rs bore-cli cached-path
     zstd pv sshping mdcat rage exiftool resvg get-keys vivid static-web-server
-    ascii unicode-paracode sequin tty-share micro chafa pipe-rename scooter
+    ascii unicode-paracode sequin tty-share micro chafa pipe-rename scooter osc
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens fx # xan tabiew
     # System info
