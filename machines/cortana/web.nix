@@ -212,7 +212,7 @@ in {
         out = "/media/static/posts.json";
         blogs_out = "/media/static/blogs.json";
       in ''
-        ln -sf ${blogs} ${blogs_out}
+        cp ${blogs} ${blogs_out}
         rssfetch <(jq '.[]' ${blogs} -c) |
           jq -sc '. |= sort_by(.date) | reverse' > ${out}
         zstd ${blogs} -f -10 -o ${blogs_out}.zst

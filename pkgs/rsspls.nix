@@ -28,5 +28,6 @@ rustPlatform.buildRustPackage rec {
     description = "Generate RSS feeds from websites";
     homepage = "https://github.com/wezm/rsspls";
     license = with lib.licenses; [ asl20 mit ];
+    mainProgram = "rsspls";
   };
 }

@@ -14,7 +14,7 @@
     inherit pname version src;
 
     fetcherVersion = 3;
-    hash = "sha256-pUqZZySdd8wihYMNZgU2b1muK+Hh2v330vjY76/2C3w=";
+    hash = "sha256-f+jAl2KgmbosN4XqNq8zCzg5Fk3fTZ6tgU+J4qmhDQ8=";
   };
 
   desktopItem = makeDesktopItem {
@@ -73,7 +73,7 @@ in stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    description = "Rhythm game chart searching and downloading tool. ";
+    description = "Rhythm game chart searching and downloading tool";
     homepage = "https://github.com/Geomitron/Bridge";
     license = licenses.gpl3Only;
   };
