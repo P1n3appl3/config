@@ -117,6 +117,12 @@ function give-me-a-ping-vasily
     ping -qc1 -W1 $argv[1] &| awk -F/ 'END{ print (/^rtt/? "OK "$5" ms":"FAIL") }'
 end
 
+function latest-screenshot
+    set -l p ~/images/screenshots/
+    echo -n $p
+    l $p --sort=time | tail -n1
+end
+
 function repeat
     for i in (seq $argv[1])
         eval "$argv[2..]"

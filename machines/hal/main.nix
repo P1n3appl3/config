@@ -1,7 +1,6 @@
 { pkgs, self, ... }: {
   imports = [
     ./hardware.nix
-    ../../mixins/nixos/cosmic.nix
     ../../mixins/nixos/headful.nix
     ../../mixins/nixos/minecraft.nix
   ];
@@ -9,6 +8,12 @@
   home-manager.users.julia.imports = [
     {
       home.packages = with pkgs; [
+        niri
+        noctalia-shell
+        xwayland-satellite
+        mpvpaper
+        wev wl-clipboard hyprpicker
+        qt5.qtwayland qt6.qtwayland
         oneko
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
         nitrogen feh
@@ -28,6 +33,8 @@
         isoPath = "/media/alt/games/ROMs/Gamecube/Melee [GALE01]/game.iso";
         rootSlpPath = "/media/alt/games/melee/replays";
       };
+
+      xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
     }
     ../../mixins/home/common.nix
     ../../mixins/home/linux.nix
@@ -63,6 +70,8 @@
       KERNEL=="hidraw*", TAG+="uaccess"
     '';
 
+    pipewire.jack.enable = true;
+
     # monado = {
     #   enable = true;
     #   defaultRuntime = true;
@@ -80,7 +89,8 @@
   networking = {
     hostName = "HAL";
     hosts."127.0.0.1" = [ "HAL" ];
-    firewall.allowedTCPPorts = [ 2049 ]; # nft
+    firewall.allowedTCPPorts = [ 2049 27016 ]; # nft
+    firewall.allowedUDPPorts = [ 27016 ]; # stationeers
   };
   time.timeZone = "America/Los_Angeles";
 }

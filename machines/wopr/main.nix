@@ -34,6 +34,7 @@
     ../../mixins/home/dev.nix
     ../../mixins/home/graphical/common.nix
     ../../mixins/home/graphical/sway.nix
+    ../../mixins/home/graphical/laptop.nix
     ../../mixins/home/graphical/music.nix
     ../../mixins/home/graphical/games.nix
     ../../mixins/home/graphical/media.nix

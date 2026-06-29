@@ -28,7 +28,7 @@
     ssh = { enable = true;
       includes = [ "extra-config" ];
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "*" = {
           serverAliveInterval = 30;
           controlPersist = "15h";
@@ -51,7 +51,7 @@
     inputs.catppuccin.homeModules.catppuccin
   ];
 
-  catppuccin = {
+  catppuccin = { enable = true; autoEnable = false;
     flavor = "mocha"; accent = "blue";
     bat.enable = true; cava.enable = true; helix.enable = true; btop.enable = true;
     fish.enable = true; zellij.enable = true; # fzf.enable = true;

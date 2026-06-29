@@ -48,6 +48,13 @@
     cntr
   ];
 
+  
+  networking.firewall = {
+    allowedTCPPorts = [
+      8000 8080
+    ];
+  };
+
   boot.extraModulePackages = [ pkgs.uwurandom ];
   boot.kernelModules = [ "uwurandom" ];
 
@@ -60,7 +67,7 @@
     sudo.extraConfig = ''Defaults env_keep += "path"'';
     polkit.enable = true;
   };
-  catppuccin = { enable = true; flavor = "mocha"; };
+  catppuccin = { enable = true; autoEnable = true; flavor = "mocha"; };
   console.useXkbConfig = true;
   nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
   nix = {
@@ -75,6 +82,6 @@
   i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
   system = {
     stateVersion = "25.11";
-    nixos.distroName = "💙";
+    nixos.distroName = "gay linux";
   };
 }

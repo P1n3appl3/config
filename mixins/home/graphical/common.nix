@@ -1,8 +1,7 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, config, ... }: {
   imports = [ ./terminal.nix ./fonts.nix ./theme.nix ];
 
   home.packages = with pkgs; [
-    brightnessctl
     pavucontrol playerctl audio-select pamixer
     ripdrag
     xdg-utils # TODO: try handlr-regex
@@ -62,12 +61,6 @@
     syncthing = { enable = true;
       tray = { enable = true; command = "syncthingtray --wait"; };
     };
-    network-manager-applet.enable = true; # TODO: greyed out available networks?
-    # TODO: make reverse scrolling vary based on touchpad,
-    # check mute mouse binding and volume keys
-    pasystray = { enable = true;
-      extraOptions = ["-grSi" "1" "-N" "none" "-N" "new" "-m" "100"];
-    };
     # activitywatch = { enable = true;
     #   watchers.aw-watcher-afk = {
     #     package = pkgs.activitywatch;
@@ -88,16 +81,6 @@
         ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
         Restart = "on-failure"; RestartSec = 1; TimeoutStopSec = 10;
       };
-    };
-
-    change-lockscreen = let script = pkgs.writeShellScript "change-lockscreen" ''
-      set -ex
-      images="''${XDG_PICTURES_DIR-$HOME/images}"
-      new=$(${lib.getExe pkgs.fd} . "$images/wallpapers" -Ltf | shuf -n1)
-      ln -sf "$new" "$images/lockscreen"
-    ''; in {
-      Unit.Description = "Swap my lockscreen background";
-      Service = { Type = "oneshot"; ExecStart = "${script}"; };
     };
   };
 

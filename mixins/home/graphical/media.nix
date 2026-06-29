@@ -11,11 +11,14 @@
     # TODO: graphite
     yt-dlp
     gthumb
-    helio-workstation
-    musescore transcribe
-    furnace # deflemask
-    # non lmms ardour
     calibre
+
+    musescore transcribe helio-workstation
+    furnace # deflemask
+    # ardour non lmms
+    reaper reaper-sws-extension reaper-reapack-extension
+    guitarix jalv carla tonelib-gfx
+    neural-amp-modeler-lv2
 
     # TODO: transcribe lotus:
     # pkgs-stable.easyabc abctool

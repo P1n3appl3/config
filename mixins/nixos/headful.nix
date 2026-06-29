@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{ pkgs, lib, ...}: {
 
   environment.systemPackages = with pkgs; [
     google-chrome
@@ -7,6 +7,8 @@
     jmtpfs
     adwaita-icon-theme # seems to fix gsettings schema bug for some reason
     gparted
+    qpwgraph
+    piper
   ];
 
   programs.dconf.enable = true;
@@ -22,8 +24,9 @@
     udisks2 = { enable = true; mountOnMedia = true; };
     pipewire = { enable = true;
       wireplumber.enable = true; alsa.enable = true; pulse.enable = true;
-      jack.enable = false; # enable as needed
+      jack.enable = lib.mkDefault false; # enable as needed
     };
+    ratbagd.enable = true;
     # I don't use xorg everywhere, so sometimes these are just for the tty
     # TODO: set these some other way, either console.keymap or interceptor
     xserver.xkb.options = "altwin:swap_alt_win,caps:escape,shift:both_capslock";

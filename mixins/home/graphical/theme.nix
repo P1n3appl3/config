@@ -10,7 +10,14 @@
     size = lib.mkDefault 28;
   };
 
-  dconf.settings = { "org.gnome.desktop.interface" = { color-scheme = "prefer-dark"; }; };
+  dconf.settings = {
+    "org.gnome.desktop.interface" = { color-scheme = "prefer-dark"; };
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      enable-hot-corners = false;
+      gtk-enable-primary-paste = false;
+    };
+  };
 
   gtk = { enable = true;
     iconTheme = { package = pkgs.papirus-icon-theme; name = "Papirus-Dark"; };

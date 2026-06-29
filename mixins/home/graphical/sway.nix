@@ -48,6 +48,11 @@
   };
 
   services = {
+    # TODO: make reverse scrolling vary based on touchpad,
+    # check mute mouse binding and volume keys
+    pasystray = { enable = true;
+      extraOptions = ["-grSi" "1" "-N" "none" "-N" "new" "-m" "100"];
+    };
     swayidle = { enable = true;
       events = {
         before-sleep = "playerctl pause && swaylock";

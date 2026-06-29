@@ -8,6 +8,8 @@
     nixos-hardware.url     = "github:NixOS/nixos-hardware";
     ragenix.url            = "github:yaxitech/ragenix";
     nix-index-database.url = "github:Mic92/nix-index-database";
+    noctalia.url           = "github:noctalia-dev/noctalia-shell";
+
     catppuccin.url         = "github:catppuccin/nix";
     slippi.url             = "github:lytedev/slippi-nix";
     # TODO: swap back from fork once lazymc is merged
@@ -25,6 +27,7 @@
       nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
       git-hooks.follows = "";
     };
+    noctalia.inputs.nixpkgs.follows  = "nixpkgs";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
     obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
@@ -36,15 +39,16 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, home-manager, flake-utils,
-    ragenix, obs-gamepad, self, rahul-config, nix-minecraft, ... } @ inputs:
+  outputs = { nixpkgs, nixpkgs-stable, home-manager, flake-utils, ragenix,
+  self, obs-gamepad, rahul-config, nix-minecraft, noctalia, ... } @ inputs:
   let
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
     mapDir = lib.filesystem.packagesFromDirectoryRecursive;
     myOverlays = [
       self.overlays.default ragenix.overlays.default nix-minecraft.overlay
-      obs-gamepad.overlays.default (import ./overlays.nix inputs)
+      obs-gamepad.overlays.default noctalia.overlays.default
+      (import ./overlays.nix inputs)
     ];
     special = system: {
       # pkgs-stable = nixpkgs-stable.legacyPackages.${system};
