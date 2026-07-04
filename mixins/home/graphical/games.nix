@@ -40,6 +40,8 @@
     sameboy melonds # mgba TODO: cmake
     pcsx2
 
+    tgm-games.tgm tgm-games.tap mame-tgm
+
     factorio-bp-helper
 
     pokefinder eontimer

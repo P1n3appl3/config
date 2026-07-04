@@ -12,6 +12,7 @@
 
     catppuccin.url         = "github:catppuccin/nix";
     slippi.url             = "github:lytedev/slippi-nix";
+    tgm.url                = "github:p1n3appl3/mame-tgm";
     # TODO: swap back from fork once lazymc is merged
     nix-minecraft.url      = "github:p1n3appl3/nix-minecraft/lazymc";
     obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
@@ -19,6 +20,7 @@
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
     ragenix.inputs = {
       nixpkgs.follows = "nixpkgs-stable"; flake-utils.follows = "flake-utils";
       agenix.inputs.home-manager.follows = "home-manager";
@@ -27,6 +29,7 @@
       nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
       git-hooks.follows = "";
     };
+    tgm.inputs.nixpkgs.follows = "nixpkgs";
     noctalia.inputs.nixpkgs.follows  = "nixpkgs";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
@@ -40,14 +43,14 @@
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, flake-utils, ragenix,
-  self, obs-gamepad, rahul-config, nix-minecraft, noctalia, ... } @ inputs:
+  self, obs-gamepad, rahul-config, nix-minecraft, tgm, noctalia, ... } @ inputs:
   let
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
     mapDir = lib.filesystem.packagesFromDirectoryRecursive;
     myOverlays = [
       self.overlays.default ragenix.overlays.default nix-minecraft.overlay
-      obs-gamepad.overlays.default noctalia.overlays.default
+      obs-gamepad.overlays.default noctalia.overlays.default tgm.overlays.default
       (import ./overlays.nix inputs)
     ];
     special = system: {

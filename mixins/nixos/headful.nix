@@ -8,6 +8,7 @@
     adwaita-icon-theme # seems to fix gsettings schema bug for some reason
     gparted
     qpwgraph
+    via vial
     piper
   ];
 

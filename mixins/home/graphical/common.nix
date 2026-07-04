@@ -12,7 +12,7 @@
     # TODO: https://github.com/tomasklaen/uosc/blob/main/dist/script-opts/uosc.conf
     (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; })
     ffmpeg vlc imv # oculante
-    vial # TODO: check if I need via too
+    via vial # TODO: check if I need via too
     # gpodder # TODO: sync with dragon using cortana and test mrpis2 with statusbar
     zathura
     obsidian

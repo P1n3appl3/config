@@ -25,9 +25,11 @@ input {
 
 spawn-at-startup "noctalia-shell"
 spawn-at-startup "firefox"
-spawn-at-startup "obsidian"
 spawn-at-startup "vesktop"
 spawn-at-startup "Telegram"
+spawn-at-startup "obsidian"
+spawn-at-startup "signal-desktop"
+spawn-at-startup "qbittorrent"
 spawn-at-startup "steam"
 spawn-at-startup "slippi-launcher"
 
@@ -53,12 +55,19 @@ animations {
 
 window-rule {
     match app-id="vesktop"
+    match app-id=r#"^org\.telegram\.desktop$"#
+    match app-id="signal-desktop"
     open-on-workspace ""
+}
 
+window-rule {
+    match app-id="steam"
+    open-on-workspace ""
 }
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="firefox" title=r#"Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox"#
     open-floating true
 }
 
