@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib,  config, ... }: {
+{ pkgs, inputs, ... }: {
   home.packages = with pkgs; [
     steam
     itch wine64

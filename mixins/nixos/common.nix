@@ -49,10 +49,13 @@
   ];
 
   
-  networking.firewall = {
-    allowedTCPPorts = [
-      8000 8080
-    ];
+  networking = {
+    firewall = {
+      allowedTCPPorts = [
+        8000 8080
+      ];
+    };
+    dhcpcd.extraConfig = "slaac hwaddr";
   };
 
   boot.extraModulePackages = [ pkgs.uwurandom ];

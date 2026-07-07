@@ -19,8 +19,7 @@
     # TODO: wl-screenrec config (make sure hardware encode is working)
     # TODO: try satty or watershot
     swaynotificationcenter # TODO: try dunst/mako/fnott
-    qt6.qtwayland
-    libsForQt5.qt5.qtwayland
+    qt5.qtwayland qt6.qtwayland
     wluma
     wttrbar
     wdisplays

@@ -40,10 +40,6 @@
     ../../mixins/home/graphical/media.nix
   ] ++ builtins.attrValues self.outputs.homeModules;
 
-  environment.systemPackages = with pkgs; [
-    littlefs-fuse
-  ];
-
   programs = {
     steam.enable = true;
     appimage = { enable = true; binfmt = true; };
