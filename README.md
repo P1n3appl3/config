@@ -57,6 +57,7 @@ config 🍍 nix flake show
     ├───nasa-wallpaper: show nasa pictures of the day as wallpaper
     ├───oolite: space exploration role playing game
     ├───peppi-slp: compress and process slippi replays
+│   ├───porkbun-ddns: simple ddns client for porkbun
     ├───posting: http api explorer
     ├───protobuf-language-server: LSP support for .proto files
     ├───rssfetch: RSS feed scraper

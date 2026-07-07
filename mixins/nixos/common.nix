@@ -28,6 +28,7 @@
   services = {
     atd.enable = true;
     nixseparatedebuginfod2.enable = true;
+    avahi.enable = true;
     # angrr = { enable = true; timer.enable = true; };
     getty = {
       autologinUser = "julia";
@@ -55,7 +56,7 @@
         8000 8080
       ];
     };
-    dhcpcd.extraConfig = "slaac hwaddr";
+    dhcpcd.extraConfig = "slaac hwaddr"; # fixed ipv6 address
   };
 
   boot.extraModulePackages = [ pkgs.uwurandom ];

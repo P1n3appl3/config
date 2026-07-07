@@ -1,4 +1,4 @@
-{ pkgs, self, ... }: {
+{ config, pkgs, self, ... }: {
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
@@ -81,8 +81,20 @@
       enable = true;
       exports = "/home/julia/videos/torrents 192.168.1.0/24(ro,fsid=0)";
     };
+    porkbun-ddns = { enable = true;
+      secret-key = config.age.secrets.porkbun-secret.path;
+      api-key = config.age.secrets.porkbun-api.path;
+      ipv6 = true;
+      ipv4 = false;
+      domains = [ "hal.pineapple.computer" ];
+    };
   };
   # systemd.user.services.monado.environment = { STEAMVR_LH_ENABLE = "1"; XRT_COMPOSITOR_COMPUTE = "1"; };
+  
+  age.secrets = {
+    porkbun-api.file = ../../secrets/porkbun-api.age;
+    porkbun-secret.file = ../../secrets/porkbun-secret.age;
+  };
 
   environment.pathsToLink = [ "/libexec" ];
 

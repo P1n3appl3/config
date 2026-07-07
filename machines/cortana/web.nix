@@ -14,6 +14,10 @@ in {
   };
 
   services = {
+    caddy = { enable = true;
+      configFile = ./Caddyfile;
+    };
+
     openssh = { enable = true;
       ports = [ 28 ];
       settings.PasswordAuthentication = false;
@@ -28,46 +32,6 @@ in {
 
     # TODO: prometheus export with tracing opentelemetry
     # TODO: custom http 503 error page
-    rust-rpxy = { enable = true;
-      config = let
-        tls-dns = {
-          https_redirection = true;
-          tls_cert_path = acme_dir + "fullchain.pem";
-          tls_cert_key_path = acme_dir + "key-pkcs8.pem";
-        };
-        tls-https = { https_redirection = true; acme = true; };
-        proxy = port: [{ upstream = [{ location = "localhost:" + toString port; }]; }];
-        app = name: port: { tls = tls-dns; server_name = name; reverse_proxy = proxy port; };
-      in {
-        listen_port = 80;
-        listen_port_tls = 443;
-        listen_ipv6 = true;
-        default_app = "julia.blue";
-        experimental.acme.email = email;
-        apps = {
-          static    = app                "julia.blue" 9000;
-          static2   =(app         "julia.is.fckn.gay" 9000) // { tls = tls-https; };
-          static3   =(app      "xn--ni8h.is.fckn.gay" 9000) // { tls = tls-https; };
-          grafana   = app        "pineapple.computer" 9001;
-          atuin     = app  "atuin.pineapple.computer" 9002;
-          syncthing = app   "sync.pineapple.computer" 9003;
-          uptime    = app "uptime.pineapple.computer" 9004;
-        };
-      };
-    };
-
-    # TODO: prometheus
-    static-web-server = { enable = true;
-      root = "/media/static --disable-symlinks=false";
-      listen = "[::]:9000";
-      configuration.general = {
-        health = true;
-        metrics = true;
-        directory-listing = true;
-        compression-static = true;
-      };
-    };
-
     grafana = { enable = true;
       settings = {
         server = {
@@ -127,14 +91,10 @@ in {
       };
     };
 
-    # TODO: replace with grafana page
-    uptime-kuma = { enable = true;
-      settings.PORT = "9004";
-    };
-
     porkbun-ddns = { enable = true;
       secret-key = config.age.secrets.porkbun-secret.path;
       api-key = config.age.secrets.porkbun-api.path;
+      ipv6 = true;
       domains = [ "pineapple.computer" "julia.blue" ];
     };
   };

@@ -11,15 +11,26 @@ in {
       description = "A list of domain names to update the DNS entries for";
     };
     api-key = lib.mkOption {
-      type = types.path; description = "A file containing your porkbun api key";
+      type = types.path;
+      description = "A file containing your porkbun api key";
     };
     secret-key = lib.mkOption {
-      type = types.path; description = "A file containing your porkbun secret key";
+      type = types.path;
+      description = "A file containing your porkbun api secret";
+    };
+    ipv4 = lib.mkOption {
+      type = types.bool;
+      description = "Set A records for your domain(s)";
+      default = true;
+    };
+    ipv6 = lib.mkOption {
+      type = types.bool;
+      description = "Set AAAA records for your domain(s)";
     };
     ttl = lib.mkOption {
       default = 21600;
       type = types.ints.unsigned;
-      description = lib.mdDoc ''The [Time to Live](https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/) for new DNS records in seconds'';
+      description = lib.mdDoc "The [Time to Live](https://developers.cloudflare.com/dns/manage-dns-records/reference/ttl/) for new DNS records in seconds";
     };
     frequency = lib.mkOption {
       default = "00/6:00";
@@ -30,29 +41,18 @@ in {
     };
   };
 
-  # TODO: try using hayley's crate instead of the script:
-  # https://docs.rs/porkbun-api/latest/porkbun_api/struct.CreateOrEditDnsRecord.html
   config = lib.mkIf cfg.enable {
     systemd.services.porkbun-ddns = {
       description = "Update porkbun DNS entry to point to this computer";
-      path = with pkgs; [ xh jq ];
       startAt = cfg.frequency;
       script = ''
-        endpoint=https://api-ipv4.porkbun.com/api/json/v3
-        api=apikey=`<${cfg.api-key}`
-        secret=secretapikey=`<${cfg.secret-key}`
-        ip=`xh post $endpoint/ping $api $secret -I | jq .yourIp -r`
-        echo "Updating record(s) to point at $ip"
-        edit() {
-          echo $1:
-          xh post $endpoint/dns/editByNameType/$1/A $api $secret \
-            content=$ip ttl=${toString cfg.ttl} -I 2>/dev/null |
-            jq -r 'if has("message") then .message else .status end'
-        }
-        for domain in ${builtins.concatStringsSep " " cfg.domains}; do
-          edit $domain
-        done
-      '';
+        PORKBUN_API_KEY=`<${cfg.api-key}`
+        PORKBUN_API_SECRET=`<${cfg.secret-key}`
+        ${lib.getExe pkgs.porkbun-ddns} \
+            ${if cfg.ipv4 then "-4" else ""} \
+            ${if cfg.ipv6 then "-6" else ""} \
+            --ttl ${cfg.ttl} \
+            ${builtins.concatStringsSep " " cfg.domains}'';
     };
   };
 }

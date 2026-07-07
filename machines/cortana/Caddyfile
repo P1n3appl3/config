@@ -1,0 +1,21 @@
+julia.blue pineapple.computer julia.is.fckn.gay xn--ni8h.is.fckn.gay {
+	root /media/static
+	try_files {path} {path}.html
+	file_server
+	handle_errors {
+		rewrite /{err.status_code}.html
+		file_server
+	}
+}
+
+stats.pineapple.computer {
+	reverse_proxy localhost:9001
+}
+
+atuin.pineapple.computer {
+	reverse_proxy localhost:9002
+}
+
+sync.pineapple.computer {
+	reverse_proxy localhost:9003
+}

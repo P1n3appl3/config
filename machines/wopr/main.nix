@@ -1,4 +1,4 @@
-{ pkgs, lib, self, ... }: {
+{ config, pkgs, lib, self, ... }: {
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
@@ -78,6 +78,18 @@
         ALLOW_USERS = [ "julia" ];
       };
     };
+    porkbun-ddns = { enable = true;
+      secret-key = config.age.secrets.porkbun-secret.path;
+      api-key = config.age.secrets.porkbun-api.path;
+      ipv6 = true;
+      ipv4 = false;
+      domains = [ "wopr.pineapple.computer" ];
+    };
+  };
+
+  age.secrets = {
+    porkbun-api.file = ../../secrets/porkbun-api.age;
+    porkbun-secret.file = ../../secrets/porkbun-secret.age;
   };
 
   networking = { hostName = "WOPR"; networkmanager.enable = true; };
