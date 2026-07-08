@@ -51,7 +51,7 @@ in {
         ${lib.getExe pkgs.porkbun-ddns} \
             ${if cfg.ipv4 then "-4" else ""} \
             ${if cfg.ipv6 then "-6" else ""} \
-            --ttl ${cfg.ttl} \
+            --ttl ${toString cfg.ttl} \
             ${builtins.concatStringsSep " " cfg.domains}'';
     };
   };

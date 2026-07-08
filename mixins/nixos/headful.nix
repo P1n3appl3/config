@@ -27,6 +27,7 @@
       wireplumber.enable = true; alsa.enable = true; pulse.enable = true;
       jack.enable = lib.mkDefault false; # enable as needed
     };
+    inputplumber.enable = true;
     ratbagd.enable = true;
     # I don't use xorg everywhere, so sometimes these are just for the tty
     # TODO: set these some other way, either console.keymap or interceptor
