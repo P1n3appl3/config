@@ -1,5 +1,4 @@
 { pkgs, config, lib, ... }: let
-  acme_dir = "/var/lib/acme/pineapple.computer/";
   email = "juliaryan3.14@gmail.com";
 in {
   networking.firewall = {
@@ -69,6 +68,8 @@ in {
     syncthing = { enable = true;
       # port 8384 by default, /metrics for prometheus
       guiAddress = "127.0.0.1:9003";
+      user = "julia";
+      dataDir = "/home/julia/syncthing";
       overrideDevices = true; overrideFolders = true;
       settings.options.localAnnounceEnabled = true;
       settings = {
@@ -77,7 +78,7 @@ in {
             WOPR.id = "R6XKQSK-3XE7J2H-LSELK56-HVO6PTF-5PX2HZP-775JTZO-ETP2BR3-5QZ6YAF";
           dragon.id = "6TN3KGX-JU2KQEA-B6VKVCK-AJFAWQG-W2CLE5Q-2WYDPEN-YV3YKXU-HJV6UQL";
         };
-        folders = (builtins.mapAttrs (n: d: { path = "~/${n}"; devices = d; }) {
+        folders = (builtins.mapAttrs (n: d: { path = "~/syncthing/${n}"; devices = d; }) {
                 notes = [ "HAL" "WOPR" "dragon" ];
                 music = [ "HAL" "WOPR" "dragon" ];
               recipes = [ "HAL" "WOPR" "dragon" ];
@@ -105,39 +106,7 @@ in {
     password.file = ../../secrets/cortana-service-password.age;
   };
 
-  security.acme = { acceptTerms = true;
-    certs."pineapple.computer" = {
-      dnsProvider = "porkbun";
-      renewInterval = "weekly";
-      inherit email;
-      extraDomainNames = [
-        "pineapple.computer"
-        "*.pineapple.computer"
-        "julia.blue"
-        "*.julia.blue"
-      ];
-      extraLegoFlags = [ "--dns.propagation-disable-ans" ];
-      environmentFile = builtins.toFile "envFile" "LEGO_DISABLE_CNAME_SUPPORT=true";
-      credentialFiles = {
-        "PORKBUN_API_KEY_FILE" = config.age.secrets.porkbun-api.path;
-        "PORKBUN_SECRET_API_KEY_FILE" = config.age.secrets.porkbun-secret.path;
-      };
-    };
-  };
-
   systemd.services = {
-    convert-pem = let parent = [ "acme-pineapple.computer.service" ]; in {
-      description = "Convert LetsEncrypt private key from PKCS1 to PKCS8";
-      unitConfig.Type = "oneshot";
-      serviceConfig = {
-        User = "acme"; Group = "acme";
-        ExecStart = ''${pkgs.openssl}/bin/openssl pkcs8 -topk8 -nocrypt \
-          -in ${acme_dir}/key.pem -inform PEM \
-          -out ${acme_dir}/key-pkcs8.pem -outform PEM'';
-      };
-      after = parent; wantedBy = parent;
-    };
-
     rahul-gists = {
       description = "Grab rahuls gists (until he makes a blog)";
       startAt = "0 0 */2 * *"; # every 2 days

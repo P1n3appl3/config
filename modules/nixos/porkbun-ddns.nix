@@ -46,8 +46,8 @@ in {
       description = "Update porkbun DNS entry to point to this computer";
       startAt = cfg.frequency;
       script = ''
-        PORKBUN_API_KEY=`<${cfg.api-key}`
-        PORKBUN_API_SECRET=`<${cfg.secret-key}`
+        export PORKBUN_API_KEY=`<${cfg.api-key}`
+        export PORKBUN_API_SECRET=`<${cfg.secret-key}`
         ${lib.getExe pkgs.porkbun-ddns} \
             ${if cfg.ipv4 then "-4" else ""} \
             ${if cfg.ipv6 then "-6" else ""} \
