@@ -1,3 +1,11 @@
+{
+	log {
+		format console {
+			time_key "" # journalctl already provides timestamps
+		}
+	}
+}
+
 julia.blue pineapple.computer julia.is.fckn.gay xn--ni8h.is.fckn.gay {
 	root /media/static
 	encode
@@ -10,16 +18,28 @@ julia.blue pineapple.computer julia.is.fckn.gay xn--ni8h.is.fckn.gay {
 		rewrite /{err.status_code}.html
 		file_server
 	}
+	log {
+        output file /var/log/caddy/main.log
+    }
 }
 
 stats.pineapple.computer {
 	reverse_proxy localhost:9001
+	log {
+        output file /var/log/caddy/stats.log
+    }
 }
 
 atuin.pineapple.computer {
 	reverse_proxy localhost:9002
+	log {
+        output file /var/log/caddy/atuin.log
+    }
 }
 
 sync.pineapple.computer {
 	reverse_proxy localhost:9003
+	log {
+        output file /var/log/caddy/sync.log
+    }
 }

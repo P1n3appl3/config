@@ -12,9 +12,16 @@ in {
     allowedUDPPorts = [ 22000 21027 ]; # syncthing + discovery
   };
 
-  services = {
+  age.secrets = {
+    porkbun-api.file = ../../secrets/porkbun-api.age;
+    porkbun-secret.file = ../../secrets/porkbun-secret.age;
+    password.file = ../../secrets/cortana-service-password.age;
+  };
+
+    services = let home-config = config.home-manager.users.julia; in {
     caddy = { enable = true;
-      configFile = ./Caddyfile;
+      configFile = home-config.lib.file.mkOutOfStoreSymlink
+        (home-config.home.sessionVariables.CONF_DIR + "/machines/cortana/Caddyfile");
     };
 
     openssh = { enable = true;
@@ -100,12 +107,6 @@ in {
     };
   };
 
-  age.secrets = {
-    porkbun-api.file = ../../secrets/porkbun-api.age;
-    porkbun-secret.file = ../../secrets/porkbun-secret.age;
-    password.file = ../../secrets/cortana-service-password.age;
-  };
-
   systemd.services = {
     rahul-gists = {
       description = "Grab rahuls gists (until he makes a blog)";
@@ -162,4 +163,6 @@ in {
       '';
     };
   };
+
+  users.users.caddy.extraGroups = [ "julia" ];
 }
