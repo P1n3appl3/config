@@ -79,15 +79,16 @@
 
     sessionVariables = {
       NIX_PATH = "nixpkgs=flake:nixpkgs";
-      CONF_DIR = lib.mkDefault inputs.self;
+      CONF_DIR = lib.mkDefault (config.home.homeDirectory + "/config");
     };
 
-    file = builtins.listToAttrs (map (path:
-      let f = lib.strings.removePrefix (inputs.self + "/dotfiles/") (toString path);
+    file = builtins.listToAttrs (map (path: let
+        f = lib.strings.removePrefix ((inputs.self + "/dotfiles/")) ((toString path));
       in {
-        name = f ;
+        name = f;
         value.source = config.lib.file.mkOutOfStoreSymlink
           (config.home.sessionVariables.CONF_DIR + "/dotfiles/" + f);
-      }) (lib.filesystem.listFilesRecursive ../../dotfiles));
+      }) (lib.filesystem.listFilesRecursive ../../dotfiles)
+    );
   };
 }

@@ -42,8 +42,19 @@
 
     fzf = let fd = "fd --mount --color=always"; in {
       enable = true;
-      fileWidgetCommand = fd;
-      changeDirWidgetCommand = "${fd} -td";
+      fileWidget = { command = fd;
+        options = [
+          "--multi"
+          "--height=80%"
+          "--ansi"
+          "--preview '~/.config/zsh/preview.sh {}'"
+          "--bind 'ctrl-/:reload(${fd} . / -H)'"
+          "--bind 'ctrl-h:reload(${fd} . ~ -H)'"
+          "--bind 'ctrl-w:reload(${fd})'"
+        ];
+      };
+      changeDirWidget = { command = "${fd} -td"; options = [ "--ansi" ]; };
+      historyWidget.command = ""; # use atuin for history
       defaultOptions = [
         "--reverse"
         "--bind=ctrl-z:ignore"
@@ -58,18 +69,6 @@
         "--bind shift-down:preview-page-down"
         "--bind ctrl-d:half-page-down"
         "--bind ctrl-u:half-page-up"
-      ];
-      fileWidgetOptions = [
-        "--multi"
-        "--height=80%"
-        "--ansi"
-        "--preview '~/.config/zsh/preview.sh {}'"
-        "--bind 'ctrl-/:reload(${fd} . / -H)'"
-        "--bind 'ctrl-h:reload(${fd} . ~ -H)'"
-        "--bind 'ctrl-w:reload(${fd})'"
-      ];
-      changeDirWidgetOptions = [
-        "--ansi"
       ];
       colors.bg = lib.mkForce "#000000";
     };

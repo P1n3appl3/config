@@ -4,6 +4,7 @@
 			time_key "" # journalctl already provides timestamps
 		}
 	}
+	email "juliaryan3.14@gmail.com"
 }
 
 julia.blue pineapple.computer julia.is.fckn.gay xn--ni8h.is.fckn.gay {
@@ -19,27 +20,35 @@ julia.blue pineapple.computer julia.is.fckn.gay xn--ni8h.is.fckn.gay {
 		file_server
 	}
 	log {
-        output file /var/log/caddy/main.log
+        output file /var/log/caddy/main.log {
+    		mode 644
+	    }
     }
 }
 
 stats.pineapple.computer {
 	reverse_proxy localhost:9001
 	log {
-        output file /var/log/caddy/stats.log
+        output file /var/log/caddy/stats.log {
+	    	mode 644
+	    }
     }
 }
 
 atuin.pineapple.computer {
 	reverse_proxy localhost:9002
 	log {
-        output file /var/log/caddy/atuin.log
+        output file /var/log/caddy/atuin.log {
+	    	mode 644
+	    }
     }
 }
 
 sync.pineapple.computer {
 	reverse_proxy localhost:9003
 	log {
-        output file /var/log/caddy/sync.log
+        output file /var/log/caddy/sync.log {
+	    	mode 644
+	    }
     }
 }

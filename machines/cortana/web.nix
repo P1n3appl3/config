@@ -43,7 +43,7 @@ in {
         server = {
           http_addr = "127.0.0.1";
           http_port = 9001;
-          domain = "traffic.pineapple.computer";
+          domain = "stats.pineapple.computer";
         };
         security = {
           admin_email = email;
@@ -94,7 +94,7 @@ in {
         });
         gui = {
           insecureSkipHostcheck = true;
-          # password = config.age.secrets.password; // TODO: no way to pass this?
+          # password = config.age.secrets.password; # TODO: no way to pass this?
         };
       };
     };
@@ -116,10 +116,7 @@ in {
         ~/.local/bin/gist-rss \
           rrbutani rahul https://rahul.red > /media/static/feeds/rahul;
       '';
-      serviceConfig = {
-        User = "julia";
-        Group = "users";
-      };
+      serviceConfig = { User = "julia"; Group = "users"; };
     };
 
     rsspls = {
@@ -127,8 +124,7 @@ in {
       startAt = "00,12:00"; # twice a day
       serviceConfig = {
         ExecStart = "${lib.getExe pkgs.rsspls} -o /media/static/feeds";
-        User = "julia";
-        Group = "users";
+        User = "julia"; Group = "users";
       };
     };
 
@@ -164,5 +160,12 @@ in {
     };
   };
 
-  users.users.caddy.extraGroups = [ "julia" ];
+  # all this so caddy can read the assets from my syncthing'd dir in my home dir
+  users.users.caddy.extraGroups = [ "users" ];
+  systemd.services.caddy.serviceConfig.ProtectHome = lib.mkForce false;
+  home-manager.users.julia.imports = [{
+    home.activation.setHomePermissions =
+      config.home-manager.users.julia.lib.dag.entryAfter
+        ["writeBoundary"] "run chmod g+x /home/julia";
+  }];
 }
