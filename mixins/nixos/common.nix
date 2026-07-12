@@ -45,7 +45,7 @@
     usbutils
     uhubctl
     perf
-    kitty.terminfo
+    kitty.terminfo kitty.kitten
     cntr
   ];
 

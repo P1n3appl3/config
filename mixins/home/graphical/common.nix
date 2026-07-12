@@ -43,7 +43,6 @@
     qbittorrent qbittorrent-cli # transmission_4-gtk
     heaptrack
     meld
-    antigravity
     # rustdesk
   ];
 

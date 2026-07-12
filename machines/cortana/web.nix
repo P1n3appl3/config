@@ -15,13 +15,23 @@ in {
   age.secrets = {
     porkbun-api.file = ../../secrets/porkbun-api.age;
     porkbun-secret.file = ../../secrets/porkbun-secret.age;
-    password.file = ../../secrets/cortana-service-password.age;
+    password = { # TODO: replace with ldap?
+      file = ../../secrets/cortana-service-password.age;
+      group = "grafana"; mode = "660";
+    };
+    caddy-env.file = ../../secrets/caddy.age;
   };
 
-    services = let home-config = config.home-manager.users.julia; in {
+  environment.systemPackages = with pkgs; [
+    caddy
+    prometheus.cli
+  ];
+
+  services = let home-config = config.home-manager.users.julia; in {
     caddy = { enable = true;
       configFile = home-config.lib.file.mkOutOfStoreSymlink
         (home-config.home.sessionVariables.CONF_DIR + "/machines/cortana/Caddyfile");
+      environmentFile = config.age.secrets.caddy-env.path;
     };
 
     openssh = { enable = true;
@@ -33,11 +43,10 @@ in {
     endlessh-go = { enable = true;
       port = 22;
       prometheus = { enable = true; port = 9100; };
-      extraOptions = [ "-alsologtostderr"];
+      extraOptions = [ "-alsologtostderr" "-geoip_supplier" "ip-api" ];
+      # TODO: use maxmind csv for offline geoip (just download it manually)
     };
 
-    # TODO: prometheus export with tracing opentelemetry
-    # TODO: custom http 503 error page
     grafana = { enable = true;
       settings = {
         server = {
@@ -45,6 +54,7 @@ in {
           http_port = 9001;
           domain = "stats.pineapple.computer";
         };
+        # TODO: remove and enable anonymous users once basic auth works
         security = {
           admin_email = email;
           admin_password = "$__file{${config.age.secrets.password.path}}";
@@ -53,8 +63,7 @@ in {
       };
     };
 
-    # TODO: add btrfs
-    prometheus = {
+    prometheus = { enable = true;
       exporters.node = {
         enable = true;
         enabledCollectors = [ "systemd" ];
@@ -62,18 +71,23 @@ in {
       };
       scrapeConfigs = [{
         job_name = "prometheus";
-        static_configs = [{ targets = [ "localhost:9100" "localhost:9101" ]; }];
+        static_configs = [{ targets = [
+          "localhost:2019" # caddy
+          "localhost:9100" # endlessh
+          "localhost:9101" # node
+          "localhost:9003" # syncthing
+          # TODO: atuin
+          # TODO: btrfs if it's not in node
+        ]; }];
       }];
     };
 
     atuin = { enable = true;
-      # path = "/atuin"; # TODO: is this needed
       port = 9002;
       openRegistration = true; # TODO: how to add my user statically?
     };
 
     syncthing = { enable = true;
-      # port 8384 by default, /metrics for prometheus
       guiAddress = "127.0.0.1:9003";
       user = "julia";
       dataDir = "/home/julia/syncthing";
@@ -92,11 +106,15 @@ in {
              torrents = [ "HAL" "WOPR" ];
           screenshots = [ "HAL" "WOPR" ];
         });
-        gui = {
-          insecureSkipHostcheck = true;
-          # password = config.age.secrets.password; # TODO: no way to pass this?
-        };
+        gui.insecureSkipHostcheck = true; # expose web dashboard
       };
+    };
+
+    pgadmin = { enable = true;
+      port = 9004;
+      initialEmail = email;
+      initialPasswordFile = config.age.secrets.password.path;
+      # TODO: disable admin password once http auth works
     };
 
     porkbun-ddns = { enable = true;
@@ -160,12 +178,11 @@ in {
     };
   };
 
-  # all this so caddy can read the assets from my syncthing'd dir in my home dir
+  # all this so caddy can read the caddyfile/assets in my home dir
   users.users.caddy.extraGroups = [ "users" ];
-  systemd.services.caddy.serviceConfig.ProtectHome = lib.mkForce false;
-  home-manager.users.julia.imports = [{
-    home.activation.setHomePermissions =
-      config.home-manager.users.julia.lib.dag.entryAfter
-        ["writeBoundary"] "run chmod g+x /home/julia";
-  }];
+  users.users.julia.homeMode = "750";
+  systemd.services.caddy.serviceConfig = {
+    # ReadWritePaths = [ "/home/julia" ];
+    ProtectHome = lib.mkForce false;
+  };
 }

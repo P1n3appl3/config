@@ -11,7 +11,6 @@
   };
 
   config.home.packages = with pkgs; lib.mkMerge [ [
-    claude-code gemini-cli
     onefetch
 
     cargo-flamegraph
