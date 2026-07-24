@@ -19,7 +19,7 @@
   };
 
   pnpmDeps = fetchPnpmDeps {
-    fetcherVersion = 3;
+    fetcherVersion = 4;
     pname = "${pname}-pnpm-deps";
     inherit version src;
     pnpmLock = ./pnpm-lock.yaml;

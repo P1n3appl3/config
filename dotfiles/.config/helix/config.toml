@@ -20,6 +20,9 @@ insert = "bar"
 normal = "block"
 select = "underline"
 
+[keys.insert]
+"C-space" = "completion"
+
 [keys.normal]
 "C-/" = "@%s"
 "C-." = "@<A-.>"

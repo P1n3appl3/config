@@ -4,7 +4,6 @@
     google-chrome
     glib
     unrar-free
-    jmtpfs
     adwaita-icon-theme # seems to fix gsettings schema bug for some reason
     gparted
     qpwgraph
@@ -15,7 +14,7 @@
   programs.dconf.enable = true;
 
   services = {
-    mullvad-vpn = { enable = true; package = pkgs.mullvad-vpn; };
+    mullvad-vpn = { enable = true; gui.enable = true; };
     printing.enable = true;
     avahi = {
       enable = true;
@@ -36,7 +35,7 @@
 
   # only needed for flatpak, home-manager controls wlr/gtk portals for sway
   # and this is maybe possible to dedup with the home-manager settings
-  xdg.portal = { enable = true; wlr.enable = true; config.common.default = "*"; };
+  xdg.portal = lib.mkDefault { enable = true; wlr.enable = true; config.common.default = "*"; };
 
   users.users.julia.extraGroups = [ "dialout" "netdev" ];
 }

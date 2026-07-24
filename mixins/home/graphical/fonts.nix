@@ -36,10 +36,10 @@
         "Noto Sans CJK JP"
       ];
       monospace = [
+        "Source Code Pro"
         "Noto Sans Symbols"
         "Noto Sans Symbols 2"
         "Symbols Nerd Font Mono"
-        "Source Code Pro"
         "Noto Sans Mono CJK JP"
         "Noto Sans Math"
       ];

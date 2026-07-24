@@ -4,7 +4,7 @@
     adwaita-qt
   ];
 
-  home.pointerCursor = {
+  home.pointerCursor = { enable = true;
     gtk.enable = true; x11.enable = true;
     name = "Bibata-Modern-Classic"; package = pkgs.bibata-modern-classic;
     size = lib.mkDefault 28;

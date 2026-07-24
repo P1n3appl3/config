@@ -1,4 +1,4 @@
-{ config, pkgs, self, ... }: {
+{ config, lib, pkgs, self, ... }: {
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
@@ -8,7 +8,6 @@
   home-manager.users.julia.imports = [
     {
       home.packages = with pkgs; [
-        niri
         noctalia-shell
         xwayland-satellite
         mpvpaper
@@ -34,7 +33,7 @@
         rootSlpPath = "/media/alt/games/melee/replays";
       };
 
-      xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-gnome ];
+      xdg.portal.enable = lib.mkForce false; # configured outside of hm
     }
     ../../mixins/home/common.nix
     ../../mixins/home/linux.nix
@@ -47,6 +46,7 @@
   ] ++ builtins.attrValues self.outputs.homeModules;
 
   programs = {
+    niri.enable = true;
     steam = {
       enable = true;
       gamescopeSession.enable = true;
@@ -96,13 +96,31 @@
     porkbun-secret.file = ../../secrets/porkbun-secret.age;
   };
 
+  xdg.portal = {
+    wlr.enable = false;
+    config = {
+      common.default = [ "gnome" "gtk" ];
+        niri = {
+          default = [ "gnome" "gtk" ];
+          "org.freedesktop.impl.portal.Screencast" = "gnome";
+          "org.freedesktop.impl.portal.Screenshot" = "gnome";
+      };
+    };
+  };
+
   environment.pathsToLink = [ "/libexec" ];
 
   networking = {
     hostName = "HAL";
     hosts."127.0.0.1" = [ "HAL" ];
-    firewall.allowedTCPPorts = [ 2049 27016 ]; # nft
-    firewall.allowedUDPPorts = [ 27016 ]; # stationeers
+    firewall.allowedTCPPorts = [
+      2049 # nft
+      27016 # stationeers
+    ];
+    firewall.allowedUDPPorts = [
+      27016 # stationeers
+      34197 # factorio
+    ];
   };
   time.timeZone = "America/Los_Angeles";
 }

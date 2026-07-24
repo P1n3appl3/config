@@ -13,6 +13,7 @@
     gthumb
     calibre
 
+    metronome
     musescore transcribe helio-workstation
     furnace # deflemask
     # ardour non lmms

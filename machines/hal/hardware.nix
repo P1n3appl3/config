@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [ ../../mixins/nixos/btrfs.nix ];
 
   boot = {
