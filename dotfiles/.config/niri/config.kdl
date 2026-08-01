@@ -72,6 +72,11 @@ window-rule {
 }
 
 window-rule {
+    match title="Avatar Legends: The Fighting Game"
+    open-fullscreen true
+}
+
+window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
