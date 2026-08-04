@@ -10,6 +10,8 @@ jobs:
     steps:
       - uses: cachix/install-nix-action@v31
       - name: Build
+        env:
+          CACHIX_AUTH_TOKEN: '${{ secrets.CACHIX_AUTH_TOKEN }}'
         run: |
           nix run github:Mic92/nix-fast-build -- --skip-cached --cachix pineapple \
             --flake github:p1n3appl3/config/$GITHUB_SHA#ci.x86_64-linux
@@ -29,5 +31,5 @@ jobs:
 
       - name: Build Cortana
         run: |
-          nix build --no-link --print-out-paths .#nixosConfigurations.Cortana |
-            cachix push pineapple
+          nix build --no-link --print-out-paths \
+            .#nixosConfigurations.Cortana.config.system.build.toplevel | cachix push pineapple
