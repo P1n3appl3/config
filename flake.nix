@@ -17,29 +17,6 @@
     nix-minecraft.url      = "github:p1n3appl3/nix-minecraft/lazymc";
     obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
     rahul-config.url       = "github:rrbutani/nix-config";
-
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
-    ragenix.inputs = {
-      nixpkgs.follows = "nixpkgs-stable"; flake-utils.follows = "flake-utils";
-      agenix.inputs.home-manager.follows = "home-manager";
-    };
-    slippi.inputs = {
-      nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
-      git-hooks.follows = "";
-    };
-    tgm.inputs.nixpkgs.follows = "nixpkgs";
-    noctalia.inputs.nixpkgs.follows  = "nixpkgs";
-    nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
-    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
-    obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
-    rahul-config.inputs = {
-      nixpkgs.follows = "nixpkgs"; nixos-hardware.follows = "nixos-hardware";
-      home-manager.follows = "home-manager"; flake-utils.follows = "flake-utils";
-      nix-index-database.follows = "nix-index-database";
-      agenix.follows = ""; ragenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
-    };
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, flake-utils, ragenix,
@@ -90,14 +67,24 @@
     overlays.default = final: _: listDir {
       of = ./pkgs; mapFunc = _: p: final.callPackage p {};
     };
-  } // (flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system}.extend self.overlays.default;
-    in with lib; {
+
+  } // (flake-utils.lib.eachSystem (with flake-utils.lib.system; [ x86_64-linux aarch64-linux ])
+    (system: let
+      pkgs = import nixpkgs { inherit system; 
+        overlays = [ self.overlays.default ];
+        config.allowUnfree = true;
+      };
+    in with lib; rec {
       packages = (pipe ./pkgs [
         (dir: listDir { of = dir; mapFunc = p: _: pkgs.${p}; })
         (filterAttrs (_: meta.availableOn pkgs.stdenv.hostPlatform))
         (filterAttrs (_: p: !(p.meta.broken or false)))
       ]) // { inherit (pkgs) eza ragenix; }; # just adding these for caching
+
+      ci = (pipe self.nixosConfigurations [
+        (lib.filterAttrs (_: v: v.config.nixpkgs.system == system))
+        (lib.mapAttrs (_: v: v.config.system.build.toplevel))
+      ]) // packages;
     })
   );
 
@@ -106,5 +93,31 @@
     extra-trusted-public-keys = [
       "pineapple.cachix.org-1:FjFjdb26PFCZL09M2yHiPw1J+c1Ab9AbpfnFeTpzNQk="
     ];
+  };
+
+  # let me put this in the lock file or smth >:(
+  inputs = {
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
+    ragenix.inputs = {
+      nixpkgs.follows = "nixpkgs-stable"; flake-utils.follows = "flake-utils";
+      agenix.inputs.home-manager.follows = "home-manager";
+    };
+    slippi.inputs = {
+      nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
+      git-hooks.follows = "";
+    };
+    tgm.inputs.nixpkgs.follows = "nixpkgs";
+    noctalia.inputs.nixpkgs.follows  = "nixpkgs";
+    nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
+    obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
+    rahul-config.inputs = {
+      nixpkgs.follows = "nixpkgs"; nixos-hardware.follows = "nixos-hardware";
+      home-manager.follows = "home-manager"; flake-utils.follows = "flake-utils";
+      nix-index-database.follows = "nix-index-database";
+      agenix.follows = ""; ragenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
+    };
   };
 }

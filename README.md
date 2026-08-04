@@ -77,11 +77,7 @@ config 🍍 nix flake show
 
 I [used to](https://github.com/P1n3appl3/config/tree/cd6d498014) use this as a [bare git repo](https://www.atlassian.com/git/tutorials/dotfiles). If you're not sold on nix/home-manager I think it's still a pretty ideal way to manage your dotfiles. Now when my home-manager activation script runs, it symlinks everything in the [dotfiles dir](dotfiles) into `$HOME` so that you can edit most config files without having to run `switch`.
 
-[garnix](https://garnix.io) gives me speedy CI and caching so I don't have to rebuild my packages or overrides on all of my machines:
-
-<div align="center"><a href="https://garnix.io"><img alt="built with garnix" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fgarnix.io%2Fapi%2Fbadges%2FP1n3appl3%2Fconfig"></a></div>
-
-I learned a lot from trawling through other peoples configs, here are some cool ones to check out:
+I use [cachix](https://cachix.org) to avoid rebuilding my packages/configurations/overrides on all of my machines. I learned a lot from trawling through other peoples configs, here are some cool ones to check out:
 
 - <https://github.com/Misterio77/nix-config>
 - <https://github.com/rrbutani/nix-config>

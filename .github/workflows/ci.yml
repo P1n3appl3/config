@@ -1,0 +1,33 @@
+name: "CI"
+
+on:
+  push:
+
+jobs:
+  build-x86:
+    name: "Build x86 (HAL, WOPR, ISO, Packages)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v31
+      - name: Build
+        run: |
+          nix run github:Mic92/nix-fast-build -- --skip-cached --cachix pineapple \
+            --flake github:p1n3appl3/config/$GITHUB_SHA#ci.x86_64-linux
+
+  build-arm:
+    name: "Build ARM (Cortana)"
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v17
+        with:
+          name: pineapple
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+          useDaemon: false
+          skipPush: true
+
+      - name: Build Cortana
+        run: |
+          nix build --no-link --print-out-paths .#nixosConfigurations.Cortana |
+            cachix push pineapple
