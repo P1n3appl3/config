@@ -27,11 +27,13 @@
     mapDir = lib.filesystem.packagesFromDirectoryRecursive;
     myOverlays = [
       self.overlays.default ragenix.overlays.default nix-minecraft.overlay
-      obs-gamepad.overlays.default noctalia.overlays.default tgm.overlays.default
+      obs-gamepad.overlays.default noctalia.overlays.default
       (import ./overlays.nix inputs)
     ];
     special = system: {
-      # pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+      pkgs-stable = import nixpkgs-stable { inherit system; 
+        config.allowUnfree = true;
+      };
       inherit myOverlays inputs self;
     };
 
@@ -108,7 +110,7 @@
       nixpkgs.follows = "nixpkgs"; home-manager.follows = "home-manager";
       git-hooks.follows = "";
     };
-    tgm.inputs.nixpkgs.follows = "nixpkgs";
+    tgm.inputs.nixpkgs.follows = "nixpkgs-stable";
     noctalia.inputs.nixpkgs.follows  = "nixpkgs";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";

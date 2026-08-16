@@ -72,5 +72,5 @@ stdenv.mkDerivation rec {
     runHook postInstall
   '';
 
-  meta.broken = stdenv.isDarwin;
+  meta.broken = stdenv.hostPlatform.isDarwin;
 }

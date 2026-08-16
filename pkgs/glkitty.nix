@@ -48,6 +48,6 @@
     # TODO: investigate osmesa removal:
     # https://gitlab.freedesktop.org/mesa/mesa/-/commit/027ccd96
     # https://github.com/NixOS/nixpkgs/pull/383432
-    broken = true; # stdenv.isDarwin;
+    broken = true; # stdenv.hostPlatform.isDarwin;
   };
 }

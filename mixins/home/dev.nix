@@ -37,10 +37,10 @@
 
   (lib.mkIf config.dev.compilers
     ([ rustup mold clang clang-tools nasm uiua ])) # ++
-      # lib.optionals stdenv.isLinux [ j ]))
+      # lib.optionals stdenv.hostPlatform.isLinux [ j ]))
 
   (lib.mkIf config.dev.debuggers
     ([ lldb vscode-extensions.vadimcn.vscode-lldb.adapter ] ++
-      lib.optionals stdenv.isLinux [ gdb rr ]))
+      lib.optionals stdenv.hostPlatform.isLinux [ gdb rr ]))
   ];
 }

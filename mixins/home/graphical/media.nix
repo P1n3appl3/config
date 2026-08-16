@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-stable, ... }: {
   home.packages = with pkgs; [
     blender
     kdePackages.kdenlive
     kicad-small
-    inkscape krita pinta aseprite
+    inkscape krita pinta pkgs-stable.aseprite
     audacity # (or tenacity)
     logisim-evolution circuit-artist
     godot_4

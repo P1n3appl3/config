@@ -134,6 +134,14 @@ function fzf-dir-widget
     FZF_CTRL_T_COMMAND=$FZF_ALT_C_COMMAND fzf-file-widget
 end
 
+# alt for W's, ctrl for w's
+bind alt-backspace backward-kill-token
+bind ctrl-backspace backward-kill-word
+bind alt-left prevd-or-backward-token
+bind ctrl-left backward-word
+bind alt-right nextd-or-forward-token
+bind ctrl-right forward-word
+
 bind ctrl-f fzf-file-widget
 bind ctrl-g fzf-dir-widget
 bind ctrl-e edit_command_buffer

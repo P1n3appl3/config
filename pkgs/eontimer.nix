@@ -76,7 +76,7 @@ in python3.pkgs.buildPythonApplication rec {
     description = "Pokémon RNG Timer";
     homepage = "https://github.com/DasAmpharos/EonTimer";
     license = lib.licenses.mit;
-    broken = stdenv.isDarwin;
+    broken = stdenv.hostPlatform.isDarwin;
   };
 }
 

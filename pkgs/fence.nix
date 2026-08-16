@@ -17,6 +17,6 @@
     description = "TUI program to print chess boards";
     homepage = "https://codeberg.org/tiffany/fence";
     licenses = [ lib.licenses.gpl3Only ];
-    broken = stdenv.isAarch64;
+    broken = stdenv.hostPlatform.isAarch64;
   };
 }

@@ -16,6 +16,7 @@
         oneko
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
         nitrogen feh
+        amdgpu_top
       ];
 
       services = {
@@ -61,6 +62,7 @@
   };
 
   services = {
+    lact.enable = true;
     flatpak.enable = true;
     openssh.enable = true;
     udev.packages = [

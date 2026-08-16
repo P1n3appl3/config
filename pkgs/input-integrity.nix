@@ -3,11 +3,11 @@
   fontconfig, icu, libx11, libICE, libSM, libusb1, openssl }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "lossless-adapter-manager";
-  version = "2026-5-03";
+  version = "2026-05-03";
   src = fetchurl {
     inherit (finalAttrs) pname version;
     url = "https://drive.usercontent.google.com/download?id=1WwRvPNgeafW2MwGbrG1QZ0jOuu_af8XT&confirm=xxx";
-    hash = "sha256-sKkC0tZk76iQ19pqzWw+163wvgMSPtAtQ4qyH0xEdJ0=";
+    hash = "sha256-ckMntkeVzoKdadEc+p+rBGEoNU8rVmgkvs/kBibSh9M=";
   };
 
   dontUnpack = true;

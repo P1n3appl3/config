@@ -5,7 +5,7 @@
     mediainfo
     yt-dlp ytmdl spotdl
     # cava
-  ] ++ lib.optionals stdenv.isLinux [
+  ] ++ lib.optionals stdenv.hostPlatform.isLinux [
     euphonica
     kid3 strawberry ymuse cantata
     media-downloader
@@ -19,13 +19,13 @@
         auto_update     "yes"
         replaygain      "album"
         metadata_to_use "artist,album,title,track,name,genre,date,composer,performer"
-      '' + (lib.optionalString pkgs.stdenv.isLinux ''
+      '' + (lib.optionalString pkgs.stdenv.hostPlatform.isLinux ''
         audio_output {
             type "pipewire"
             name "Pipewire Sound Server"
         }'');
     };
-    mpd-mpris.enable = pkgs.stdenv.isLinux;
-    mpd-discord-rpc.enable = pkgs.stdenv.isLinux;
+    mpd-mpris.enable = pkgs.stdenv.hostPlatform.isLinux;
+    mpd-discord-rpc.enable = pkgs.stdenv.hostPlatform.isLinux;
   };
 }

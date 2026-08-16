@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }: let nixGL = config.lib.nixGL.wrap; in {
   programs = {
-    ghostty = { enable = pkgs.stdenv.isLinux;
+    ghostty = { enable = pkgs.stdenv.hostPlatform.isLinux;
       package = (nixGL pkgs.ghostty);
       installVimSyntax = true;
       settings = {

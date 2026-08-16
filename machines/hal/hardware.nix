@@ -20,7 +20,10 @@
   hardware = {
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
-    amdgpu.initrd.enable = true;
+    amdgpu = {
+      overdrive.enable = true;
+      initrd.enable = true;
+    };
     opentabletdriver = {
       enable = true;
       blacklistedKernelModules = [ "wacom" ];

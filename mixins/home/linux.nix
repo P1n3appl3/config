@@ -9,7 +9,7 @@
     sysz
     element
     netscanner
-  ] ++ lib.optionals pkgs.stdenv.isx86_64 [
+  ] ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
     lurk
   ];
 

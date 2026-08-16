@@ -36,11 +36,14 @@
     autumn
     ds-rom
 
-    punes dolphin-emu mupen64plus # snes9x-gtk simple64
+    dolphin-emu # punes mupen64plus # snes9x-gtk simple64
     sameboy melonds # mgba TODO: cmake
-    pcsx2
+    # pcsx2
 
-    tgm-games.tgm tgm-games.tap mame-tgm
+    # TODO: figure out what to do when gconf2 goes out of nixpkgs-stable
+    inputs.tgm.packages.${pkgs.stdenv.hostPlatform.system}.tgm
+    inputs.tgm.packages.${pkgs.stdenv.hostPlatform.system}.tap
+    inputs.tgm.packages.${pkgs.stdenv.hostPlatform.system}.mame-tgm
 
     factorio-bp-helper
 

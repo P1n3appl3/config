@@ -21,7 +21,7 @@
 
   buildInputs = [
     atk cairo gdk-pixbuf glib gtk3 libxkbcommon pango
-  ] ++ lib.optionals stdenv.isLinux [
+  ] ++ lib.optionals stdenv.hostPlatform.isLinux [
     wayland
   ];
 
