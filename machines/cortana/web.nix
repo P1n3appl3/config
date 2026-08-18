@@ -54,12 +54,20 @@ in {
           http_port = 9001;
           domain = "stats.pineapple.computer";
         };
-        # TODO: remove and enable anonymous users once basic auth works
-        security = {
-          admin_email = email;
-          admin_password = "$__file{${config.age.secrets.password.path}}";
-          secret_key = "SW2YcwTIb9zpOOhoPsMm";
+        auth = {
+          disable_login_form = true;
+          anonymous = { enable = true;
+            org_name = "pineapple";
+            org_role = "Admin";
+            hide_version = true;
+          };
         };
+        # TODO: remove and enable anonymous users once basic auth works
+        # security = {
+        #   admin_email = email;
+        #   admin_password = "$__file{${config.age.secrets.password.path}}";
+        #   secret_key = "SW2YcwTIb9zpOOhoPsMm";
+        # };
       };
     };
 
