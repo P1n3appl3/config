@@ -18,6 +18,7 @@
   };
 
   hardware = {
+    bluetooth.enable = true;
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
     amdgpu = {

@@ -6,7 +6,7 @@
     yt-dlp ytmdl spotdl
     # cava
   ] ++ lib.optionals stdenv.hostPlatform.isLinux [
-    tagular
+    taguar
     euphonica
     kid3 strawberry ymuse cantata
     media-downloader

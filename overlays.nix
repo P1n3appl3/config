@@ -29,6 +29,16 @@ inputs: final: prev: {
     });
   });
 
+  gallery-dl = prev.gallery-dl.overrideAttrs {
+    version = "2026-08-20";
+    src = final.fetchFromGitHub {
+      owner = "mikf";
+      repo = "gallery-dl";
+      rev = "86047cf67a12bdb6ff1085774f8ad9fc347e8da9";
+      hash = "sha256-i5jo9M7WFwsRksUDzKXHbFfr/z5NJzM7zveEzz9/mSA=";
+    };
+  };
+
   # # for oneko
   # sway = prev.sway.overrideAttrs (old: {
   #   patches = (old.patches or []) ++ [ (final.fetchpatch {

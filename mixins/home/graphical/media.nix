@@ -10,6 +10,7 @@
     freecad
     # TODO: graphite
     yt-dlp
+    gallery-dl
     gthumb
     calibre
 
@@ -29,7 +30,6 @@
 
   programs = {
     obs-studio = { enable = true;
-      package = (pkgs.obs-studio.override { cudaSupport = true; });
       plugins = with pkgs.obs-studio-plugins; [
         obs-vkcapture
         obs-livesplit-one # TODO: see if it works and i can delete mine

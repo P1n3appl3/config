@@ -15,7 +15,6 @@
         qt5.qtwayland qt6.qtwayland
         oneko
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
-        nitrogen feh
         amdgpu_top
       ];
 
@@ -70,7 +69,8 @@
     ];
     udev.extraRules = ''
       KERNEL=="hidraw*", TAG+="uaccess"
-    '';
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="17cb", TAG+="uaccess", RUN+="/bin/sh -c 'echo -n %k > /sys/bus/usb/drivers/btusb/unbind'"
+    ''; # bt adapter for wiimotes in dolphin
 
     pipewire.jack.enable = true;
 
