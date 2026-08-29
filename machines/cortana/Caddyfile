@@ -63,7 +63,7 @@ db.pineapple.computer {
 	import auth
 }
 
-link.pineapple.computer {
-	reverse proxy localhost:4567
+link.julia.blue {
+	reverse_proxy localhost:9005
 	import log chhoto
 }

@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, config, myOverlays, ... } @ args: {
+{ pkgs, inputs, lib, config, self, ... } @ args: {
   home.packages = with pkgs; [
     # Utils
     ripgrep fd eza sd doggo ouch xh dl rbw pinentry-curses hyperfine heh tokei
@@ -45,7 +45,7 @@
   imports = [
     ./git.nix ./htop.nix ./shells.nix
     (if builtins.hasAttr "osConfig" args then {} else
-      { nixpkgs = { overlays = myOverlays; config.allowUnfree = true; }; })
+      { nixpkgs = { overlays = [ self.overlays.default ]; config.allowUnfree = true; }; })
     inputs.nix-index-database.homeModules.nix-index
     inputs.ragenix.homeManagerModules.default
     inputs.catppuccin.homeModules.catppuccin

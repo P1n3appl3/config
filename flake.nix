@@ -25,16 +25,11 @@
     inherit (nixpkgs) lib;
     listDir = rahul-config.lib.util.list-dir;
     mapDir = lib.filesystem.packagesFromDirectoryRecursive;
-    myOverlays = [
-      self.overlays.default ragenix.overlays.default nix-minecraft.overlay
-      obs-gamepad.overlays.default noctalia.overlays.default
-      (import ./overlays.nix inputs)
-    ];
     special = system: {
       pkgs-stable = import nixpkgs-stable { inherit system; 
         config.allowUnfree = true;
       };
-      inherit myOverlays inputs self;
+      inherit inputs self;
     };
 
     home = system: module: home-manager.lib.homeManagerConfiguration {
@@ -66,9 +61,13 @@
     homeModules  = listDir { of = ./modules/home;  mapFunc = _: import; };
     nixosModules = listDir { of = ./modules/nixos; mapFunc = _: import; };
 
-    overlays.default = final: _: listDir {
+    overlays.default = let myPackages = final: _: listDir {
       of = ./pkgs; mapFunc = _: p: final.callPackage p {};
-    };
+    }; in lib.composeManyExtensions [
+      ragenix.overlays.default nix-minecraft.overlay
+      obs-gamepad.overlays.default noctalia.overlays.default
+      (import ./overlays.nix) myPackages
+    ];
 
   } // (flake-utils.lib.eachSystem (with flake-utils.lib.system; [ x86_64-linux aarch64-linux ])
     (system: let
@@ -81,7 +80,7 @@
         (dir: listDir { of = dir; mapFunc = p: _: pkgs.${p}; })
         (filterAttrs (_: meta.availableOn pkgs.stdenv.hostPlatform))
         (filterAttrs (_: p: !(p.meta.broken or false)))
-      ]) // { inherit (pkgs) eza ragenix; }; # just adding these for caching
+      ]) // { inherit (pkgs) eza ragenix chhoto-url; }; # just for caching
 
       ci = (pipe self.nixosConfigurations [
         (lib.filterAttrs (_: v: v.config.nixpkgs.system == system))

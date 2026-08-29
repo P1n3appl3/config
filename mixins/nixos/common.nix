@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, config, myOverlays, ... }: {
+{ pkgs, lib, inputs, config, self, ... }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     inputs.ragenix.nixosModules.default
@@ -73,7 +73,7 @@
   };
   catppuccin = { enable = true; autoEnable = true; flavor = "mocha"; };
   console.useXkbConfig = true;
-  nixpkgs = { overlays = myOverlays; config.allowUnfree = true; };
+  nixpkgs = { overlays = [ self.overlays.default ]; config.allowUnfree = true; };
   nix = {
     settings = {
       trusted-users = [ "root" "@wheel" ];

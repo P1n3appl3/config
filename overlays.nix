@@ -1,4 +1,4 @@
-inputs: final: prev: {
+final: prev: {
   eza = prev.eza.overrideAttrs (old: {
     patches = (old.patches or []) ++ [ (final.fetchpatch {
       url = "https://github.com/eza-community/eza/compare/main...P1n3appl3:eza:main.diff";
@@ -39,11 +39,13 @@ inputs: final: prev: {
     };
   };
 
-  chhoto-url = prev.eza.overrideAttrs (old: {
-    patches = (old.patches or []) ++ [ (final.fetchpatch {
-      url = "https://github.com/eza-community/eza/compare/main...P1n3appl3:eza:main.diff";
-      hash = "sha256-qYe0Vax+OQSjS9td3jOJ6OcxQiNxaCrTUf3mC3grjro=";
-    }) ];
+  chhoto-url = prev.chhoto-url.overrideAttrs (old: {
+    src = final.fetchFromGitHub {
+      inherit (old.src) repo;
+      owner = "p1n3appl3";
+      rev = "b1f14fdbfd1102661dde33954c10c9366ea1632a";
+      hash = "sha256-YWsvvFBYmXqEdGfnHiDIAqA7Y8aLvvElHBa4abcFdUg=";
+    };
     doCheck = false;
   });
 

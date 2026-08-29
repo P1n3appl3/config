@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: let
+{ pkgs, config, lib, inputs, ... }: let
   email = "juliaryan3.14@gmail.com";
 in {
   networking.firewall = {
@@ -127,12 +127,11 @@ in {
 
     chhoto-url = { enable = true;
       settings = {
-        site_url = "https://link.pineapple.computer";
+        site_url = "https://link.julia.blue";
         port = 9005;
-        db_url = "/media/chhoto-url-db.sqlite";
-        slug_style = "UNICODE";
         try_longer_slugs = true;
         public_mode = true;
+        # db_url = "/media/chhoto-url-db.sqlite";
       };
     };
 
@@ -145,6 +144,11 @@ in {
   };
 
   systemd.services = {
+    chhoto-url.environment = {
+      slug_style = lib.mkForce "UNICODE";
+      slug_length = lib.mkForce "2";
+      CHHOTO_SQLITE_USE_WAL_MODE="True";
+    };
     rahul-gists = {
       description = "Grab rahuls gists (until he makes a blog)";
       startAt = "0 0 */2 * *"; # every 2 days
