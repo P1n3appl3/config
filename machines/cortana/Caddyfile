@@ -62,3 +62,8 @@ db.pineapple.computer {
 	import log pgadmin
 	import auth
 }
+
+link.pineapple.computer {
+	reverse proxy localhost:4567
+	import log chhoto
+}

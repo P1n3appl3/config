@@ -2,7 +2,6 @@
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
-    # ../../mixins/nixos/cosmic.nix
   ];
 
   home-manager.users.julia.imports = [
@@ -16,6 +15,7 @@
       '';
       wayland.windowManager.sway.extraSessionCommands = ''
         export QT_SCALE_FACTOR=1.5
+        export OBS_VKCAPTURE=1
       '';
       slippi-launcher = { # enable = true;
         isoPath = "/home/julia/games/roms/Gamecube/Melee [GALE01]/game.iso";

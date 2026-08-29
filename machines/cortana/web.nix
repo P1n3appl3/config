@@ -6,8 +6,7 @@ in {
       22 28     # ssh
       80 443    # http(s)
       22000     # syncthing
-      8080 8443 # testing
-      9000 9001 9002 9003 9004 # testing
+      8080 8443 9000 9001 9002 9003 9004 9005 # testing
     ];
     allowedUDPPorts = [ 22000 21027 ]; # syncthing + discovery
   };
@@ -54,20 +53,21 @@ in {
           http_port = 9001;
           domain = "stats.pineapple.computer";
         };
-        auth = {
-          disable_login_form = true;
-          anonymous = { enable = true;
-            org_name = "pineapple";
-            org_role = "Admin";
-            hide_version = true;
-          };
-        };
         # TODO: remove and enable anonymous users once basic auth works
-        # security = {
-        #   admin_email = email;
-        #   admin_password = "$__file{${config.age.secrets.password.path}}";
-        #   secret_key = "SW2YcwTIb9zpOOhoPsMm";
+        security = {
+          admin_email = email;
+          admin_password = "$__file{${config.age.secrets.password.path}}";
+          secret_key = "SW2YcwTIb9zpOOhoPsMm";
+        };
+        # auth = {
+        #   disable_login_form = true;
+        #   anonymous = { enable = true;
+        #     org_name = "pineapple";
+        #     org_role = "Admin";
+        #     hide_version = true;
+        #   };
         # };
+        # security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
       };
     };
 
@@ -123,6 +123,17 @@ in {
       initialEmail = email;
       initialPasswordFile = config.age.secrets.password.path;
       # TODO: disable admin password once http auth works
+    };
+
+    chhoto-url = { enable = true;
+      settings = {
+        site_url = "https://link.pineapple.computer";
+        port = 9005;
+        db_url = "/media/chhoto-url-db.sqlite";
+        slug_style = "UNICODE";
+        try_longer_slugs = true;
+        public_mode = true;
+      };
     };
 
     porkbun-ddns = { enable = true;

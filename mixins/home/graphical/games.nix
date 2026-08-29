@@ -60,12 +60,12 @@
   # };
 
   slippi-launcher = {
-    netplayVersion = "3.6.4";
-    netplayHash = "sha256-qkU/Ck9k9gEgxIEeMftvZUIMNjNT5l65fsUmdrDOpBs=";
+    # netplayVersion = "3.6.4";
+    # netplayHash = "sha256-qkU/Ck9k9gEgxIEeMftvZUIMNjNT5l65fsUmdrDOpBs=";
     useMonthlySubfolders = true;
     launchMeleeOnPlay = false;
     enableJukebox = false;
-    # useNetplayBeta = true;
+    useNetplayBeta = true;
   };
 
   imports = [ inputs.slippi.homeManagerModules.default ];

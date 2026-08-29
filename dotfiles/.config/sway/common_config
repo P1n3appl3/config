@@ -139,4 +139,5 @@ titlebar_padding 5 0
 
 include "`hostname -s`"
 
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP PATH
 exec swaymsg -t subscribe '["shutdown"]' && systemctl --user stop sway-session.target

@@ -9,9 +9,13 @@
     qpwgraph
     via vial
     piper
+    wireshark
   ];
 
-  programs.dconf.enable = true;
+  programs = {
+    dconf.enable = true;
+    wireshark = { enable = true; usbmon.enable = true; };
+  };
 
   services = {
     mullvad-vpn = { enable = true; gui.enable = true; };
@@ -33,9 +37,25 @@
     xserver.xkb.options = "altwin:swap_alt_win,caps:escape,shift:both_capslock";
   };
 
-  # only needed for flatpak, home-manager controls wlr/gtk portals for sway
-  # and this is maybe possible to dedup with the home-manager settings
-  xdg.portal = lib.mkDefault { enable = true; wlr.enable = true; config.common.default = "*"; };
+  xdg.portal = lib.mkDefault {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common = {
+      default = "gtk";
+      "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+      "org.freedesktop.impl.portal.Screenshot" = "wlr";
+      # "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+    };
+    wlr = {
+      enable = true;
+      settings.screencast = {
+        chooser_type = "dmenu";
+        chooser_cmd  = "${pkgs.rofi}/bin/rofi -dmenu -i -p 'Screen to share'";
+        max_fps = 60;
+      };
+    };
+  };
 
   users.users.julia.extraGroups = [ "dialout" "netdev" ];
 }

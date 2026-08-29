@@ -32,8 +32,6 @@
         isoPath = "/media/alt/games/ROMs/Gamecube/Melee [GALE01]/game.iso";
         rootSlpPath = "/media/alt/games/melee/replays";
       };
-
-      xdg.portal.enable = lib.mkForce false; # configured outside of hm
     }
     ../../mixins/home/common.nix
     ../../mixins/home/linux.nix

@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... } @ inputs: {
   imports = [ ./terminal.nix ./fonts.nix ./theme.nix ];
 
   home.packages = with pkgs; [
@@ -83,12 +83,14 @@
     };
   };
 
-  xdg.portal = { enable = true;
-    xdgOpenUsePortal = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-cosmic xdg-desktop-portal-wlr ];
+  xdg.portal = { enable = !(inputs ? osConfig);
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk xdg-desktop-portal-wlr ];
     config = {
-      common.default = "gtk"; # TODO: set per-interface portal
-      cosmic.default = "cosmic";
+      common = {
+        default = "gtk";
+        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+        "org.freedesktop.impl.portal.Screenshot" = "wlr";
+      };
     };
   };
 

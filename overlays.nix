@@ -39,6 +39,14 @@ inputs: final: prev: {
     };
   };
 
+  chhoto-url = prev.eza.overrideAttrs (old: {
+    patches = (old.patches or []) ++ [ (final.fetchpatch {
+      url = "https://github.com/eza-community/eza/compare/main...P1n3appl3:eza:main.diff";
+      hash = "sha256-qYe0Vax+OQSjS9td3jOJ6OcxQiNxaCrTUf3mC3grjro=";
+    }) ];
+    doCheck = false;
+  });
+
   # # for oneko
   # sway = prev.sway.overrideAttrs (old: {
   #   patches = (old.patches or []) ++ [ (final.fetchpatch {
