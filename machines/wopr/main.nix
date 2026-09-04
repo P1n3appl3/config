@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
+    ../../mixins/nixos/backups.nix
   ];
 
   home-manager.users.julia.imports = [
@@ -67,17 +68,6 @@
     udev.packages = [
       pkgs.input-integrity
     ];
-    snapper = {
-      # snapshotInterval = "daily";
-      persistentTimer = true;
-      configs.home = {
-        SUBVOLUME = "/home";
-        NUMBER_CLEANUP = true;
-        TIMELINE_CLEANUP = true;
-        TIMELINE_CREATE = true;
-        ALLOW_USERS = [ "julia" ];
-      };
-    };
     porkbun-ddns = { enable = true;
       secret-key = config.age.secrets.porkbun-secret.path;
       api-key = config.age.secrets.porkbun-api.path;

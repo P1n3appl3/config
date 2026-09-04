@@ -1,7 +1,8 @@
-{ config, lib, pkgs, self, ... }: {
+{ config, pkgs, lib, self, ... }: {
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix
+    ../../mixins/nixos/backups.nix
     ../../mixins/nixos/minecraft.nix
   ];
 
@@ -62,6 +63,7 @@
     lact.enable = true;
     flatpak.enable = true;
     openssh.enable = true;
+    pipewire.jack.enable = true;
     udev.packages = [
       pkgs.input-integrity
     ];
@@ -70,12 +72,6 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="17cb", TAG+="uaccess", RUN+="/bin/sh -c 'echo -n %k > /sys/bus/usb/drivers/btusb/unbind'"
     ''; # bt adapter for wiimotes in dolphin
 
-    pipewire.jack.enable = true;
-
-    # monado = {
-    #   enable = true;
-    #   defaultRuntime = true;
-    # };
     hardware.openrgb.enable = true;
     nfs.server = {
       enable = true;
@@ -89,7 +85,6 @@
       domains = [ "hal.pineapple.computer" ];
     };
   };
-  # systemd.user.services.monado.environment = { STEAMVR_LH_ENABLE = "1"; XRT_COMPOSITOR_COMPUTE = "1"; };
   
   age.secrets = {
     porkbun-api.file = ../../secrets/porkbun-api.age;
@@ -108,8 +103,6 @@
     };
   };
 
-  environment.pathsToLink = [ "/libexec" ];
-
   networking = {
     hostName = "HAL";
     hosts."127.0.0.1" = [ "HAL" ];
@@ -119,8 +112,10 @@
     ];
     firewall.allowedUDPPorts = [
       27016 # stationeers
-      34197 # factorio
+      34196 34197 # factorio
+      20582 # slippi discovery
     ];
   };
   time.timeZone = "America/Los_Angeles";
+  environment.pathsToLink = [ "/libexec" ];
 }

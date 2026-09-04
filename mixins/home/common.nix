@@ -38,6 +38,7 @@
         "pineapple.computer julia.blue Cortana" = {
           hostname = "%h"; user = "julia"; port = 28;
         };
+        "u662900.your-storagebox.de" = { user = "u662900"; port = 23; };
       };
     };
   };
