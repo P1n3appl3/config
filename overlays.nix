@@ -1,9 +1,23 @@
 final: prev: {
   eza = prev.eza.overrideAttrs (old: {
     patches = (old.patches or []) ++ [ (final.fetchpatch {
-      url = "https://github.com/eza-community/eza/compare/main...P1n3appl3:eza:main.diff";
+      url = "https://github.com/eza-community/eza/compare/v${old.version}...P1n3appl3:eza:main.diff";
       hash = "sha256-qYe0Vax+OQSjS9td3jOJ6OcxQiNxaCrTUf3mC3grjro=";
-    }) ];
+    })];
+    doCheck = false;
+  });
+
+  gdu = prev.gdu.overrideAttrs (old: {
+    patches = (old.patches or []) ++ [
+      (final.fetchpatch {
+        url = "https://github.com/dundee/gdu/compare/v${old.version}...P1n3appl3:gdu:subvolume.diff";
+        hash = "sha256-BtFPxV/i+1/dQs/Uk5HkN7QGKMGQdZI9Q0gvwHpbyao=";
+      })
+      (final.fetchpatch {
+        url = "https://github.com/dundee/gdu/compare/v${old.version}...P1n3appl3:gdu:ignore.diff";
+        hash = "sha256-LpakP2C9hz0nU/Tuyr4yxPZ6RXsMrMgl6t4tqTe+77w=";
+      })
+    ];
     doCheck = false;
   });
 

@@ -9,6 +9,26 @@ fish_add_path -P $HOME/.local/bin
 set -e __HM_SESS_VARS_SOURCED
 source ~/.nix-profile/etc/profile.d/hm-session-vars.fish
 
+function give-me-a-ping-vasily
+    # One Ping Only...
+    echo -n "Ping: "
+    ping -qc1 -W1 $argv[1] &| awk -F/ 'END{ print (/^rtt/? "OK "$5" ms":"FAIL") }'
+end
+
+function latest-screenshot
+    set -l p ~/images/screenshots/
+    echo -n $p
+    l $p --sort=time | tail -n1
+end
+
+function latest-snapshot
+    find /home/.snapshots -mindepth 2 -maxdepth 2 -type d -name snapshot | sort -V | tail -n 1
+end
+
+if ! status is-interactive
+    return
+end
+
 abbr -a config git -C $CONF_DIR
 abbr -a reload exec fish
 
@@ -70,6 +90,8 @@ abbr -a rs rsync -a --info=progress2
 abbr -a drag ripdrag
 abbr -a getsong "ytmdl --dont-transcode --download-archive ~/.cache/ytmdl/archive"
 abbr -a wine32 "WINEPREFIX=$HOME/.wine32 wine"
+abbr -a du diskus
+abbr -a ncdu gdu
 function ststatus
     syncthing cli show system |
         jq -r '.myID, .uptime, .startTime, .guiAddressUsed, .cpuPercent' |
@@ -111,18 +133,6 @@ function _switch
 end
 abbr -a switch _switch
 abbr -a update switch -u
-
-function give-me-a-ping-vasily
-    # One Ping Only...
-    echo -n "Ping: "
-    ping -qc1 -W1 $argv[1] &| awk -F/ 'END{ print (/^rtt/? "OK "$5" ms":"FAIL") }'
-end
-
-function latest-screenshot
-    set -l p ~/images/screenshots/
-    echo -n $p
-    l $p --sort=time | tail -n1
-end
 
 function repeat
     for i in (seq $argv[1])

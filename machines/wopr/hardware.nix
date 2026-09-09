@@ -6,11 +6,16 @@
 
   environment.systemPackages = with pkgs; [
     nvtopPackages.amd amdgpu_top
+    fw-ectool
+    framework-tool-tui
+    framework-control
   ];
 
   services = {
     fprintd.tod = { enable = true; driver = pkgs.libfprint-2-tod1-goodix; };
     fwupd.enable = true;
+    upower.enable = true;
+    framework-control.enable = true;
     logind = {
       settings.Login = {
         HandleLidSwitch = "suspend-then-hibernate";

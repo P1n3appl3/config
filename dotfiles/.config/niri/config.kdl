@@ -23,6 +23,19 @@ input {
     }
 }
 
+workspace "󰋑"
+workspace "󰖟"
+workspace "󰀳"
+workspace ""
+workspace ""
+workspace ""
+workspace ""
+workspace ""
+workspace ""
+workspace ""
+workspace ""
+workspace ""
+
 spawn-at-startup "noctalia-shell"
 spawn-at-startup "firefox"
 spawn-at-startup "vesktop"
@@ -55,14 +68,27 @@ animations {
 }
 
 window-rule {
-    match app-id="vesktop"
+    match app-id="firefox$" at-startup=true
+    open-on-workspace "󰖟"
+}
+
+window-rule {
+    match app-id="vesktop$"
     match app-id=r#"^org\.telegram\.desktop$"#
     match app-id="signal-desktop"
+    match app-id="pw.kmr.amd" // google messages
     open-on-workspace ""
 }
 
 window-rule {
-    match app-id="steam"
+    match app-id="md.Obsidian$"
+    match app-id="org.qbittorrent.qBittorrent$"
+    open-on-workspace ""
+}
+
+window-rule {
+    match app-id="steam$"
+    match app-id="Slippi Launcher$"
     open-on-workspace ""
 }
 
@@ -81,19 +107,6 @@ window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
-
-workspace "󰋑"
-workspace "󰖟"
-workspace "󰀳"
-workspace ""
-workspace ""
-workspace ""
-workspace ""
-workspace ""
-workspace ""
-workspace ""
-workspace ""
-workspace ""
 
 binds {
     Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }

@@ -49,6 +49,7 @@
   in {
     homeConfigurations = {
       ATLAS = home "x86_64-linux" ./machines/atlas.nix;
+      guest = home "x86_64-linux" ./machines/guest.nix;
     };
 
     nixosConfigurations = {

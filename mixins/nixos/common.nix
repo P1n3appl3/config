@@ -47,7 +47,7 @@
     perf
     kitty.terminfo kitty.kitten
     cntr
-  ];
+  ] ++ config.home-manager.users.julia.home.packages;
 
   
   networking = {

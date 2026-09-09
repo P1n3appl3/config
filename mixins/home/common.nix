@@ -8,7 +8,7 @@
     # Munge
     jq pup choose datamash numbat lowcharts d-rs mawk csvlens fx # xan tabiew
     # System info
-    btop procs smartmontools duf ncdu dust
+    btop procs smartmontools duf gdu diskus dust
     # Nix
     nix home-manager nh nix-output-monitor nix-tree nix-diff nil comma ragenix
     # Scripting tools

@@ -52,6 +52,7 @@
     openssh.enable = true;
     flatpak.enable = true;
     automatic-timezoned.enable = true;
+    framework-control.enable = true;
     upower.enable = true;
     # TODO: try dual-function-keys for more options
     interception-tools = let

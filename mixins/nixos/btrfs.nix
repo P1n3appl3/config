@@ -5,7 +5,7 @@
       options = [ "subvol=${name}" ] ++ opts;
     };
   in {
-    "/"        = subvol "root" [ "compress=zstd" ];
+    "/"        = subvol "root" [ "compress=zstd" "user_subvol_rm_allowed" ];
     "/nix"     = subvol "nix"  [ "compress=zstd" "noatime" ];
     "/home"    = subvol "home" [ "compress=zstd" ];
     "/swap"    = subvol "swap" [ "noatime" ];
