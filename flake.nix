@@ -8,62 +8,68 @@
     nixos-hardware.url     = "github:NixOS/nixos-hardware";
     ragenix.url            = "github:yaxitech/ragenix";
     nix-index-database.url = "github:Mic92/nix-index-database";
-    noctalia.url           = "github:noctalia-dev/noctalia-shell";
 
+    noctalia.url           = "github:noctalia-dev/noctalia-shell";
     catppuccin.url         = "github:catppuccin/nix";
     slippi.url             = "github:lytedev/slippi-nix";
     tgm.url                = "github:p1n3appl3/mame-tgm";
     # TODO: swap back from fork once lazymc is merged
     nix-minecraft.url      = "github:p1n3appl3/nix-minecraft/lazymc";
     obs-gamepad.url        = "github:p1n3appl3/obs-gamepad";
-    rahul-config.url       = "github:rrbutani/nix-config";
   };
 
   outputs = { nixpkgs, nixpkgs-stable, home-manager, flake-utils, ragenix,
-  self, obs-gamepad, rahul-config, nix-minecraft, tgm, noctalia, ... } @ inputs:
+  self, obs-gamepad, nix-minecraft, tgm, noctalia, ... } @ inputs:
   let
     inherit (nixpkgs) lib;
-    listDir = rahul-config.lib.util.list-dir;
     mapDir = lib.filesystem.packagesFromDirectoryRecursive;
-    special = system: {
-      pkgs-stable = import nixpkgs-stable { inherit system; 
-        config.allowUnfree = true;
-      };
+    system = "x86_64-linux";
+    special = {
+      pkgs-stable = import nixpkgs-stable { inherit system;  config.allowUnfree = true; };
       inherit inputs self;
     };
 
-    home = system: module: home-manager.lib.homeManagerConfiguration {
+    home = module: home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.${system};
-      extraSpecialArgs = special system;
+      extraSpecialArgs = special;
       modules = [ ./mixins/home/common.nix module ] ++
         builtins.attrValues self.outputs.homeModules;
     };
 
-    machine = system: module: lib.nixosSystem {
-        inherit system; specialArgs = special system;
+    machine = module: lib.nixosSystem {
+        inherit system; specialArgs = special;
         modules = [
           ./mixins/nixos/common.nix
-          module { home-manager.extraSpecialArgs = special system; }
+          module { home-manager.extraSpecialArgs = special; }
         ] ++ builtins.attrValues self.outputs.nixosModules;
       };
   in {
     homeConfigurations = {
-      ATLAS = home "x86_64-linux" ./machines/atlas.nix;
-      guest = home "x86_64-linux" ./machines/guest.nix;
+      ATLAS = home ./machines/atlas.nix;
+      guest = home ./machines/guest.nix;
     };
 
     nixosConfigurations = {
-      Cortana = machine "aarch64-linux" ./machines/cortana/main.nix;
-      WOPR    = machine "x86_64-linux"  ./machines/wopr/main.nix;
-      HAL     = machine "x86_64-linux"  ./machines/hal/main.nix;
-      ISO     = machine "x86_64-linux"  ./machines/iso.nix;
+      Cortana = machine ./machines/cortana/main.nix;
+      WOPR    = machine ./machines/wopr/main.nix;
+      HAL     = machine ./machines/hal/main.nix;
+      ISO     = machine ./machines/iso.nix;
     };
 
-    homeModules  = listDir { of = ./modules/home;  mapFunc = _: import; };
-    nixosModules = listDir { of = ./modules/nixos; mapFunc = _: import; };
+    # homeModules  = mapDir { directory = ./modules/home; callPackage = import; };
+    # nixosModules = mapDir { directory = ./modules/nixos; callPackage = import; };
+    homeModules = {
+      awawausb = import ./modules/home/awawausb.nix;
+      fightcade = import ./modules/home/fightcade.nix;
+    };
+    nixosModules = {
+      m-overlay = import ./modules/nixos/m-overlay.nix;
+      porkbun-ddns = import ./modules/nixos/porkbun-ddns.nix;
+      rust-rpxy = import ./modules/nixos/rust-rpxy.nix;
+    };
 
-    overlays.default = let myPackages = final: _: listDir {
-      of = ./pkgs; mapFunc = _: p: final.callPackage p {};
+    overlays.default = let myPackages = final: _: mapDir {
+      directory = ./pkgs; inherit (final) callPackage;
     }; in lib.composeManyExtensions [
       ragenix.overlays.default nix-minecraft.overlay
       obs-gamepad.overlays.default noctalia.overlays.default
@@ -78,10 +84,10 @@
       };
     in with lib; rec {
       packages = (pipe ./pkgs [
-        (dir: listDir { of = dir; mapFunc = p: _: pkgs.${p}; })
+        (dir: mapDir { directory = dir; inherit (pkgs) callPackage; })
         (filterAttrs (_: meta.availableOn pkgs.stdenv.hostPlatform))
         (filterAttrs (_: p: !(p.meta.broken or false)))
-      ]) // { inherit (pkgs) eza ragenix chhoto-url; }; # just for caching
+      ]) // { inherit (pkgs) eza gdu ragenix chhoto-url; }; # just for caching
 
       ci = (pipe self.nixosConfigurations [
         (lib.filterAttrs (_: v: v.config.nixpkgs.system == system))
@@ -115,11 +121,5 @@
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
     obs-gamepad.inputs.nixpkgs.follows = "nixpkgs";
-    rahul-config.inputs = {
-      nixpkgs.follows = "nixpkgs"; nixos-hardware.follows = "nixos-hardware";
-      home-manager.follows = "home-manager"; flake-utils.follows = "flake-utils";
-      nix-index-database.follows = "nix-index-database";
-      agenix.follows = ""; ragenix.follows = ""; darwin.follows = ""; impermanence.follows = "";
-    };
   };
 }

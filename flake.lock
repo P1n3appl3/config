@@ -318,42 +318,6 @@
         "type": "github"
       }
     },
-    "rahul-config": {
-      "inputs": {
-        "agenix": [],
-        "darwin": [],
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "home-manager": [
-          "home-manager"
-        ],
-        "impermanence": [],
-        "nix-index-database": [
-          "nix-index-database"
-        ],
-        "nixos-hardware": [
-          "nixos-hardware"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "ragenix": []
-      },
-      "locked": {
-        "lastModified": 1732077156,
-        "narHash": "sha256-jVD02VoEr9T3xYI8hDtqR44PSEkuKcoHVAeJ+fyFGyY=",
-        "owner": "rrbutani",
-        "repo": "nix-config",
-        "rev": "6aec7854761a3a7cc5579ee23497456f7092a15e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rrbutani",
-        "repo": "nix-config",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
@@ -367,7 +331,6 @@
         "noctalia": "noctalia",
         "obs-gamepad": "obs-gamepad",
         "ragenix": "ragenix",
-        "rahul-config": "rahul-config",
         "slippi": "slippi",
         "tgm": "tgm"
       }

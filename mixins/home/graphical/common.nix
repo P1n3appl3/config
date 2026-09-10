@@ -56,6 +56,7 @@
   home.file."${config.programs.rofi.configPath}".text = ''@import "extraConfig"'';
 
   services = {
+    cliphist.enable = true;
     udiskie.enable = true;
     syncthing = { enable = true;
       tray = { enable = true; command = "syncthingtray --wait"; };

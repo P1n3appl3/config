@@ -67,3 +67,13 @@ link.julia.blue {
 	reverse_proxy localhost:9005
 	import log chhoto
 }
+
+cache.pineapple.computer {
+	reverse_proxy localhost:9006
+	import log attic
+}
+
+images.pineapple.computer {
+	reverse_proxy localhost:9007
+	import log immich
+}

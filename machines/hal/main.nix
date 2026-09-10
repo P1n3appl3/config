@@ -20,7 +20,6 @@
       ];
 
       services = {
-        cliphist.enable = true;
         udiskie.settings.device_config = [ { device_file = "/dev/sda"; ignore = true; } ];
         activitywatch.watchers.aw-watcher-windows = {
           package = pkgs.activitywatch;
@@ -46,6 +45,7 @@
 
   programs = {
     niri.enable = true;
+    kdeconnect.enable = true;
     steam = {
       enable = true;
       gamescopeSession.enable = true;

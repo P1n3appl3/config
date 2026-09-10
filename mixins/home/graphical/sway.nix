@@ -69,7 +69,6 @@
         duration = "30m";
       };
     };
-    cliphist.enable = true;
     swaync.enable = true; # TODO: ctp
     swayosd.enable = true; # TODO: ctp
     activitywatch.watchers.aw-watcher-window-wayland = {

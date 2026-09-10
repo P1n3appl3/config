@@ -2,6 +2,8 @@
   imports = [
     ./hardware.nix
     ./web.nix
+    ../../mixins/nixos/headful.nix
+    ../../mixins/nixos/backups.nix
   ];
 
   home-manager.users.julia.imports = [
@@ -10,12 +12,12 @@
     ../../mixins/home/btrfs.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    raspberrypi-eeprom
-    libraspberrypi
-  ];
+  environment = {
+    systemPackages = with pkgs; [
 
-  catppuccin.enable = lib.mkForce false;
+    ];
+    enableAllTerminfo = true;
+  };
 
   time.timeZone = "America/Los_Angeles";
   networking.hostName = "Cortana";

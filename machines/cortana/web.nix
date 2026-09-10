@@ -1,4 +1,4 @@
-{ pkgs, config, lib, inputs, ... }: let
+{ pkgs, config, lib, ... }: let
   email = "juliaryan3.14@gmail.com";
 in {
   networking.firewall = {
@@ -6,8 +6,8 @@ in {
       22 28     # ssh
       80 443    # http(s)
       22000     # syncthing
-      8080 8443 9000 9001 9002 9003 9004 9005 # testing
-    ];
+      8080 8443 # testing
+    ] ++ lib.lists.range 9000 9010; # testing
     allowedUDPPorts = [ 22000 21027 ]; # syncthing + discovery
   };
 
@@ -97,8 +97,7 @@ in {
 
     syncthing = { enable = true;
       guiAddress = "127.0.0.1:9003";
-      user = "julia";
-      dataDir = "/home/julia/syncthing";
+      dataDir = "/syncthing";
       overrideDevices = true; overrideFolders = true;
       settings.options.localAnnounceEnabled = true;
       settings = {
@@ -107,7 +106,7 @@ in {
             WOPR.id = "R6XKQSK-3XE7J2H-LSELK56-HVO6PTF-5PX2HZP-775JTZO-ETP2BR3-5QZ6YAF";
           dragon.id = "6TN3KGX-JU2KQEA-B6VKVCK-AJFAWQG-W2CLE5Q-2WYDPEN-YV3YKXU-HJV6UQL";
         };
-        folders = (builtins.mapAttrs (n: d: { path = "~/syncthing/${n}"; devices = d; }) {
+        folders = (builtins.mapAttrs (n: d: { path = "/syncthing/${n}"; devices = d; }) {
                 notes = [ "HAL" "WOPR" "dragon" ];
                 music = [ "HAL" "WOPR" "dragon" ];
               recipes = [ "HAL" "WOPR" "dragon" ];
@@ -131,8 +130,22 @@ in {
         port = 9005;
         try_longer_slugs = true;
         public_mode = true;
+        # TODO: allow path in service
         # db_url = "/media/chhoto-url-db.sqlite";
       };
+    };
+
+    # TODO: do i want this or just ssh-ng and use my nix store as a substitutor?
+    # atticd = { enable = true;
+    #   # environmentFile = 
+    #   settings = {
+    #     listen = "[::]:9006";
+    #   };
+    # };
+
+    immich = { enable = true;
+      # TODO: figure out how i'm gonna setup uploads, do initial immich-go takeout batch,
+      # and configure public-proxy
     };
 
     porkbun-ddns = { enable = true;
@@ -149,6 +162,7 @@ in {
       slug_length = lib.mkForce "2";
       CHHOTO_SQLITE_USE_WAL_MODE="True";
     };
+
     rahul-gists = {
       description = "Grab rahuls gists (until he makes a blog)";
       startAt = "0 0 */2 * *"; # every 2 days
@@ -188,24 +202,10 @@ in {
         gzip -c   ${out} >   ${out}.gz
       '';
     };
-
-    reset-usb = {
-      description = "Reset the usb hub and remount the usb drive";
-      unitConfig.Type = "oneshot";
-      path = with pkgs; [ uhubctl ];
-      serviceConfig.ExecStart = ''
-        uhubctl -l 2 -a cycle -d 1
-        sleep 5
-        mount /dev/disk/by-label/pi-usb /media";
-      '';
-    };
   };
 
   # all this so caddy can read the caddyfile/assets in my home dir
   users.users.caddy.extraGroups = [ "users" ];
   users.users.julia.homeMode = "750";
-  systemd.services.caddy.serviceConfig = {
-    # ReadWritePaths = [ "/home/julia" ];
-    ProtectHome = lib.mkForce false;
-  };
+  systemd.services.caddy.serviceConfig.ProtectHome = lib.mkForce false;
 }
