@@ -9,6 +9,7 @@
     ragenix.url            = "github:yaxitech/ragenix";
     nix-index-database.url = "github:Mic92/nix-index-database";
 
+    sorcery.url            = "git+https://git.t4t.associates/char/sorcery?shallow=1";
     noctalia.url           = "github:noctalia-dev/noctalia-shell";
     catppuccin.url         = "github:catppuccin/nix";
     slippi.url             = "github:lytedev/slippi-nix";
@@ -66,6 +67,7 @@
       m-overlay = import ./modules/nixos/m-overlay.nix;
       porkbun-ddns = import ./modules/nixos/porkbun-ddns.nix;
       rust-rpxy = import ./modules/nixos/rust-rpxy.nix;
+      sorcery = import ./modules/nixos/sorcery.nix;
     };
 
     overlays.default = let myPackages = final: _: mapDir {
@@ -117,6 +119,7 @@
       git-hooks.follows = "";
     };
     tgm.inputs.nixpkgs.follows = "nixpkgs-stable";
+    sorcery.inputs.nixpkgs.follows = "nixpkgs";
     noctalia.inputs.nixpkgs.follows  = "nixpkgs";
     nix-minecraft.inputs.nixpkgs.follows = "nixpkgs";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";

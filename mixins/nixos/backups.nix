@@ -26,7 +26,7 @@
         mkdir -p ${path}
         LATEST=$(find /home/.snapshots -mindepth 2 -maxdepth 2 -type d -name "snapshot" | sort -V | tail -n 1)
         if [ -z "$LATEST" ]; then
-          echo "No snapshots found in /home/.snapshots"
+          echo "no snapshots found in /home/.snapshots"
           exit 1
         fi
         echo backing up snapshot: $LATEST

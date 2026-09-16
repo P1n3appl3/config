@@ -26,7 +26,7 @@
 }
 
 julia.blue pineapple.computer julia.is.fckn.gay xn--ni8h.is.fckn.gay {
-	root /media/static
+	root /website
 	encode
 	try_files {path} {path}.html
 	file_server {
@@ -63,17 +63,116 @@ db.pineapple.computer {
 	import auth
 }
 
-link.julia.blue {
+l.julia.blue {
 	reverse_proxy localhost:9005
 	import log chhoto
 }
 
 cache.pineapple.computer {
 	reverse_proxy localhost:9006
-	import log attic
+	import log harmonia
 }
 
-images.pineapple.computer {
+images.julia.blue {
 	reverse_proxy localhost:9007
 	import log immich
+	import auth
+}
+
+git.julia.blue {
+	vars repoRoot "^/[^/]+/[^/]+/"
+	vars webRoot /var/cache/sorcery
+	vars socket unix//run/sorcery/sock
+	vars gitDir "/git/public"
+	import log sorcery
+
+	root * {vars.webRoot}
+	header Cache-Control "no-cache"
+
+	@assets {
+		path /css/style.css /js/* /fonts/*
+		file {path}
+	}
+	handle @assets {
+		file_server
+	}
+
+	@repoDirIndex {
+		path_regexp {vars.repoRoot}$
+		file {path}index.html
+	}
+	@repoRefDirIndex {
+		path_regexp {vars.repoRoot}ref/.+/$
+		file {path}index.html
+	}
+	handle @repoDirIndex {
+		rewrite * {path}index.html
+		file_server
+	}
+	handle @repoRefDirIndex {
+		rewrite * {path}index.html
+		file_server
+	}
+
+	@repoHtml {
+		path_regexp {vars.repoRoot}"(?:refs|ref/.+/blob/.+)$"
+		file {path}
+	}
+	handle @repoHtml {
+		header Content-Type "text/html"
+		file_server
+	}
+
+	@gitinfo {
+		path_regexp ${vars.repoRoot}gitinfo\.json$
+		file {path}
+	}
+	handle @gitinfo {
+		file_server
+	}
+
+	@homepage path /
+	handle @homepage {
+		reverse_proxy {vars.socket}
+	}
+
+	handle {
+		header -Cache-Control
+
+		reverse_proxy {vars.socket} {
+			@accel header X-Accel-Redirect *
+			handle_response @accel {
+				rewrite * {http.reverse_proxy.header.X-Accel-Redirect}
+
+				@git path /_sorcery-git/*
+				handle @git {
+					header -Cache-Control
+					copy_response_headers {
+						include Cache-Control
+					}
+					root * {vars.gitDir}
+					uri strip_prefix /_sorcery-git
+					file_server
+				}
+
+				handle {
+					root * {vars.webRoot}
+					uri strip_prefix /_sorcery
+
+					@rendered path_regexp {vars.repoRoot}"(?:refs|ref/.+/blob/.+)$"
+					handle @rendered {
+						header Content-Type "text/html"
+						file_server
+					}
+					handle {
+						file_server
+					}
+				}
+			}
+		}
+	}
+
+	request_body {
+		max_size 64MB
+	}
 }

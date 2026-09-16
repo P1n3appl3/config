@@ -28,13 +28,9 @@
   systemd.sleep.settings.Sleep.HibernateDelaySec = "4h";
 
   boot = {
-    loader = {
-      systemd-boot = { enable = true;
-        configurationLimit = 10;
-        memtest86.enable = true;
-        consoleMode = "1";
-      };
-      efi.canTouchEfiVariables = true;
+    loader.systemd-boot = {
+      configurationLimit = 10;
+      consoleMode = "1";
     };
     # offset from btrfs inspect-internal map-swapfile -r /swap/swapfile
     kernelParams = [ "mem_sleep_default=deep" "resume_offset=533760" ];
@@ -50,6 +46,4 @@
   fileSystems = {
     "/boot" = { label = "boot"; fsType = "vfat"; };
   };
-
-  nixpkgs.hostPlatform = "x86_64-linux";
 }

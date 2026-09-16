@@ -5,6 +5,7 @@ in {
     allowedTCPPorts = [
       22 28     # ssh
       80 443    # http(s)
+      2283      # immich
       22000     # syncthing
       8080 8443 # testing
     ] ++ lib.lists.range 9000 9010; # testing
@@ -126,7 +127,7 @@ in {
 
     chhoto-url = { enable = true;
       settings = {
-        site_url = "https://link.julia.blue";
+        site_url = "https://l.julia.blue";
         port = 9005;
         try_longer_slugs = true;
         public_mode = true;
@@ -135,17 +136,21 @@ in {
       };
     };
 
-    # TODO: do i want this or just ssh-ng and use my nix store as a substitutor?
-    # atticd = { enable = true;
-    #   # environmentFile = 
-    #   settings = {
-    #     listen = "[::]:9006";
-    #   };
-    # };
+    # TODO: hook up grafana dashboard from the repo
+    harmonia.cache = { enable = true; settings.bind = "[::]:9006"; };
 
-    immich = { enable = true;
+    immich = { # enable = true;
       # TODO: figure out how i'm gonna setup uploads, do initial immich-go takeout batch,
       # and configure public-proxy
+      port = 9007;
+      mediaLocation = "/photos";
+      accelerationDevices = [ "/dev/dri/renderD128" ];
+    };
+
+    sorcery = { enable = true;
+      name = "git.julia.blue";
+      url_base = "https://git.julia.blue";
+      repositories = "/git/public";
     };
 
     porkbun-ddns = { enable = true;
@@ -208,4 +213,6 @@ in {
   users.users.caddy.extraGroups = [ "users" ];
   users.users.julia.homeMode = "750";
   systemd.services.caddy.serviceConfig.ProtectHome = lib.mkForce false;
+
+  # virtualisation.vmVariant = { };
 }

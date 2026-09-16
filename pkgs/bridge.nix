@@ -14,7 +14,7 @@
     inherit pname version src;
 
     fetcherVersion = 4;
-    hash = "sha256-f300GxpKCNtCZ6q1LsFJWmNsIU8HJqiLhJQ7gWFUMxg=";
+    hash = "sha256-lpJyjq1+Dv2422hJF5ED4aNU13WNvk9Ce6GxttxuaPo=";
   };
 
   desktopItem = makeDesktopItem {

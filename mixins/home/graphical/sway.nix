@@ -36,14 +36,14 @@
       enable = true; systemd.enable = true;
       style = ''@import "common.css";'';
     };
-    swaylock = { enable = true;
-      package = if inputs ? osConfig then pkgs.swaylock else pkgs.hello;
-      settings = {
-        daemonize = true; scaling = "fill"; image = "~/images/lockscreen";
-        ignore-empty-password = true; show-failed-attempts = true;
-        inside-color = lib.mkForce "1e1e2eaa";
-      };
-    };
+    # swaylock = { enable = true;
+    #   package = if inputs ? osConfig then pkgs.swaylock else pkgs.hello;
+    #   settings = {
+    #     daemonize = true; scaling = "fill"; image = "~/images/lockscreen";
+    #     ignore-empty-password = true; show-failed-attempts = true;
+    #     inside-color = lib.mkForce "1e1e2eaa";
+    #   };
+    # };
   };
 
   services = {

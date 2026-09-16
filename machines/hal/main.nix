@@ -1,4 +1,4 @@
-{ config, pkgs, lib, self, ... }: {
+{ config, pkgs, lib, self, pkgs-stable, ... }: {
   imports = [
     ./hardware.nix
     ../../mixins/nixos/headful.nix

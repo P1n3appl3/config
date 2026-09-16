@@ -14,7 +14,8 @@ config 🍍 nix flake show
 ├───nixosModules
 │   ├───m-overlay:    security wrapper for input viewer
 │   ├───porkbun-ddns: update ip for porkbun DNS entries
-│   ╰───rust-rpxy:    reverse proxy service
+│   ├───rust-rpxy:    reverse proxy service
+│   ╰───sorcery:      git repo http server
 ├───overlays
 │   ╰───default: Nixpkgs overlay with my packages and overrides
 ╰───packages
@@ -57,7 +58,7 @@ config 🍍 nix flake show
     ├───nasa-wallpaper: show nasa pictures of the day as wallpaper
     ├───oolite: space exploration role playing game
     ├───peppi-slp: compress and process slippi replays
-│   ├───porkbun-ddns: simple ddns client for porkbun
+    ├───porkbun-ddns: simple ddns client for porkbun
     ├───posting: http api explorer
     ├───protobuf-language-server: LSP support for .proto files
     ├───rssfetch: RSS feed scraper

@@ -59,8 +59,17 @@
     dhcpcd.extraConfig = "slaac hwaddr"; # fixed ipv6 address
   };
 
-  boot.extraModulePackages = [ pkgs.uwurandom ];
-  boot.kernelModules = [ "uwurandom" ];
+  boot = {
+    extraModulePackages = [ pkgs.uwurandom ];
+    kernelModules = [ "uwurandom" ];
+    loader = {
+      systemd-boot = { enable = true;
+        configurationLimit = 5;
+        memtest86.enable = true;
+      };
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   age = {
     ageBin = lib.getExe pkgs.rage;
@@ -73,7 +82,11 @@
   };
   catppuccin = { enable = true; autoEnable = true; flavor = "mocha"; };
   console.useXkbConfig = true;
-  nixpkgs = { overlays = [ self.overlays.default ]; config.allowUnfree = true; };
+  nixpkgs = {
+    overlays = [ self.overlays.default ];
+    config.allowUnfree = true;
+    hostPlatform = lib.mkDefault "x86_64-linux";
+  };
   nix = {
     settings = {
       trusted-users = [ "root" "@wheel" ];

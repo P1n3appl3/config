@@ -7,7 +7,7 @@
     audacity # (or tenacity)
     logisim-evolution circuit-artist
     godot_4
-    freecad
+    # freecad
     # TODO: graphite
     yt-dlp
     gallery-dl
