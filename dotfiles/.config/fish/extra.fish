@@ -92,6 +92,7 @@ abbr -a getsong "ytmdl --dont-transcode --download-archive ~/.cache/ytmdl/archiv
 abbr -a wine32 "WINEPREFIX=$HOME/.wine32 wine"
 abbr -a du diskus
 abbr -a ncdu gdu
+abbr -a dirdiff git diff --no-index
 function ststatus
     syncthing cli show system |
         jq -r '.myID, .uptime, .startTime, .guiAddressUsed, .cpuPercent' |

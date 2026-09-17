@@ -7,7 +7,7 @@
   ];
 
   users.users.julia = {
-    isNormalUser = true;
+    isNormalUser = true; uid = 1337;
     extraGroups = [ "julia" "wheel" ];
     initialPassword = "changethis";
     openssh.authorizedKeys.keys = [
@@ -63,7 +63,7 @@
     extraModulePackages = [ pkgs.uwurandom ];
     kernelModules = [ "uwurandom" ];
     loader = {
-      systemd-boot = { enable = true;
+      systemd-boot = lib.mkDefault { enable = true;
         configurationLimit = 5;
         memtest86.enable = true;
       };

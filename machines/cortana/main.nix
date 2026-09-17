@@ -3,6 +3,7 @@
     ./hardware.nix
     ./web.nix
     ../../mixins/nixos/headful.nix
+    ../../mixins/nixos/btrfs.nix
     ../../mixins/nixos/backups.nix
   ];
 

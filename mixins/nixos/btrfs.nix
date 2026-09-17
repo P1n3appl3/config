@@ -2,7 +2,7 @@
   fileSystems = let
     subvol = name: opts: {
       label = config.networking.hostName; fsType = "btrfs";
-      options = [ "subvol=${name}" ] ++ opts;
+      options = [ "subvol=@${name}" ] ++ opts;
     };
   in {
     "/"        = subvol "root" [ "compress=zstd" ];
