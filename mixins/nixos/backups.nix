@@ -9,8 +9,8 @@
       };
     };
     borgbackup.jobs.home = let
-      path = "/mnt/borg-snapper";
       name = config.networking.hostName;
+      path = "/mnt/borg-snapper-${name}";
     in {
       paths = [ path ]; readWritePaths = [ "/mnt" ];
       repo = "ssh://u662900@u662900.your-storagebox.de:23/home/backups/${name}";

@@ -15,7 +15,7 @@ config 🍍 nix flake show
 │   ├───m-overlay:    security wrapper for input viewer
 │   ├───porkbun-ddns: update ip for porkbun DNS entries
 │   ├───rust-rpxy:    reverse proxy service
-│   ╰───sorcery:      git repo http server
+│   ╰───sorcery:      git repo viewer
 ├───overlays
 │   ╰───default: Nixpkgs overlay with my packages and overrides
 ╰───packages

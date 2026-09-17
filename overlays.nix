@@ -57,8 +57,8 @@ final: prev: {
     src = final.fetchFromGitHub {
       inherit (old.src) repo;
       owner = "p1n3appl3";
-      rev = "b1f14fdbfd1102661dde33954c10c9366ea1632a";
-      hash = "sha256-YWsvvFBYmXqEdGfnHiDIAqA7Y8aLvvElHBa4abcFdUg=";
+      rev = "a00467d9352e7855b06e05f8603d503e45c16fa9";
+      hash = "sha256-yizwlCzlKakRqongQHo+O51uaUMsn36RTTpigW3oxFg=";
     };
     doCheck = false;
   });

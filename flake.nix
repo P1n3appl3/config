@@ -40,8 +40,8 @@
     machine = module: lib.nixosSystem {
         inherit system; specialArgs = special;
         modules = [
-          ./mixins/nixos/common.nix
-          module { home-manager.extraSpecialArgs = special; }
+          ./mixins/nixos/common.nix module
+          { home-manager.extraSpecialArgs = special; }
         ] ++ builtins.attrValues self.outputs.nixosModules;
       };
   in {

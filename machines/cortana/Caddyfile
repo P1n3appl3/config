@@ -79,6 +79,12 @@ images.julia.blue {
 	import auth
 }
 
+home.julia.blue {
+	reverse_proxy localhost:8123
+	import log home-assistant
+	import auth
+}
+
 git.julia.blue {
 	vars repoRoot "^/[^/]+/[^/]+/"
 	vars webRoot /var/cache/sorcery

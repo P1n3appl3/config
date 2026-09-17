@@ -8,6 +8,7 @@ in {
       2283      # immich
       22000     # syncthing
       8080 8443 # testing
+      8123      # home-assistant
     ] ++ lib.lists.range 9000 9010; # testing
     allowedUDPPorts = [ 22000 21027 ]; # syncthing + discovery
   };
@@ -131,8 +132,6 @@ in {
         port = 9005;
         try_longer_slugs = true;
         public_mode = true;
-        # TODO: allow path in service
-        # db_url = "/media/chhoto-url-db.sqlite";
       };
     };
 
@@ -146,6 +145,9 @@ in {
       mediaLocation = "/photos";
       accelerationDevices = [ "/dev/dri/renderD128" ];
     };
+
+    home-assistant.enable = true;
+    # home-assistant-matter-hub.enable = true;
 
     sorcery = { enable = true;
       name = "git.julia.blue";
@@ -174,7 +176,7 @@ in {
       path = with pkgs; [ bash gh jq sd ];
       script = ''
         ~/.local/bin/gist-rss \
-          rrbutani rahul https://rahul.red > /media/static/feeds/rahul;
+          rrbutani rahul https://rahul.red > /website/feeds/rahul;
       '';
       serviceConfig = { User = "julia"; Group = "users"; };
     };
@@ -183,7 +185,7 @@ in {
       description = "Extract rss feeds from web pages";
       startAt = "00,12:00"; # twice a day
       serviceConfig = {
-        ExecStart = "${lib.getExe pkgs.rsspls} -o /media/static/feeds";
+        ExecStart = "${lib.getExe pkgs.rsspls} -o /website/feeds";
         User = "julia"; Group = "users";
       };
     };
@@ -195,8 +197,8 @@ in {
       startAt = "01,13:00"; # twice a day
       path = with pkgs; [ rssfetch jq zstd gzip ];
       script = let
-        out = "/media/static/posts.json";
-        blogs_out = "/media/static/blogs.json";
+        out = "/website/posts.json";
+        blogs_out = "/website/blogs.json";
       in ''
         cp ${blogs} ${blogs_out}
         rssfetch <(jq '.[]' ${blogs} -c) |

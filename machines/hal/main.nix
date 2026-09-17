@@ -25,6 +25,7 @@
           package = pkgs.activitywatch;
           settings = { poll_time = 5; exclude_title = true; };
         };
+        kdeConnect = { enable = true; indicator = true; };
       };
 
       programs.kitty.settings.font_size = 10;
@@ -45,7 +46,6 @@
 
   programs = {
     niri.enable = true;
-    kdeconnect.enable = true;
     steam = {
       enable = true;
       gamescopeSession.enable = true;
