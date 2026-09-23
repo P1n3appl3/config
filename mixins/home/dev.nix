@@ -43,4 +43,6 @@
     ([ lldb vscode-extensions.vadimcn.vscode-lldb.adapter ] ++
       lib.optionals stdenv.hostPlatform.isLinux [ gdb rr ]))
   ];
+
+  config.home.sessionVariables.GOPATH = "${config.home.homeDirectory}/.cache/go";
 }

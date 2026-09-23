@@ -6,17 +6,20 @@
   hardware = {
     enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;
+    cpu.intel.npu.enable = true;
     graphics.enable = true;
+    bluetooth.enable = true;
     nvidia = {
       modesetting.enable = true;
       powerManagement.finegrained = false;
       open = false;
       nvidiaSettings = true;
-      # package = config.boot.kernelPackages.nvidiaPackages.stable;
+      branch = "legacy_580";
     };
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
+  services.hardware.openrgb.enable = true;
 
   fileSystems = let
     subvol = name: opts: { label = "data"; fsType = "btrfs";
@@ -26,5 +29,6 @@
     "/git"    = subvol "git" [ "noatime" ];
     "/photos" = subvol "photos" [ ];
     "/website"= subvol "website" [ ];
+    # "/mnt/data" = { device = "UUID=BE18B5B118B56953"; fsType = "ntfs-3g"; options = ["nofail"]; };
   };
 }

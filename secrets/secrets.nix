@@ -7,4 +7,5 @@ in builtins.listToAttrs
   "nix-conf.age"
   "cortana-service-password.age"
   "caddy.age"
+  "home-assistant-matter-hub.age"
 ])

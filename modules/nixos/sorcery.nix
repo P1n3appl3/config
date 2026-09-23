@@ -26,7 +26,10 @@ in {
     environment.systemPackages = [ pkg.default pkg.sorcery-ssh pkg.sorcery-ssh-tui ];
     systemd.services.sorcery = {
       description = "Sorcery Git forge";
-      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
+      path = [ pkgs.gitMinimal ];
       serviceConfig = {
         ExecStart = [ "${lib.getExe pkg.default}" ];
         Type = "simple";
@@ -37,11 +40,7 @@ in {
         ConfigurationDirectory = "sorcery";
         Restart = "on-failure";
         RestartSec = 2;
-        UMask = "0027";
-        NoNewPrivileges = "true";
-        PrivateTmp = "true";
-        ProtectSystem = "strict";
-        ProtectHome = "read-only";
+        UMask = "0007";
       };
       environment = {
         SORCERY_REPOSITORIES = "${cfg.repositories}";
@@ -58,13 +57,14 @@ in {
         ForceCommand ${lib.getExe pkg.sorcery-ssh}
     '';
 
-    # TODO: do i need this?
     users = {
       groups.git.gid = config.ids.gids.git;
       users.git = {
         description = "git user";
         group = "git";
         uid = config.ids.uids.git;
+        shell = pkgs.bashInteractive;
+        openssh.authorizedKeys = config.users.users.julia.openssh.authorizedKeys;
       };
     };
   };

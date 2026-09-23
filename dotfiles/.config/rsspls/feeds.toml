@@ -12,15 +12,16 @@
 # # ixi why would you write 2023-12-? how am i supposed to handle that q.q
 # date = "pre"
 
-[[feed]]
-title = "dropbear"
-filename = "ally"
-[feed.config]
-url = "https://dropbear.sh/blog/"
-item = ".list-post"
-heading = ".post-info strong"
-link = ".post-info a"
-date = ".date"
+# TODO: reenable when i point at her site
+# [[feed]]
+# title = "dropbear"
+# filename = "ally"
+# [feed.config]
+# url = "https://dropbear.sh/blog/"
+# item = ".list-post"
+# heading = ".post-info strong"
+# link = ".post-info a"
+# date = ".date"
 
 [[feed]]
 title = "julia violet"

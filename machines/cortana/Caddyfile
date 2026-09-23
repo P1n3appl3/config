@@ -40,6 +40,10 @@ julia.blue pineapple.computer julia.is.fckn.gay xn--ni8h.is.fckn.gay {
 	import log main
 }
 
+ally.pineapple.computer {
+	redir 75.31.75.213:23443/{uri}
+}
+
 stats.pineapple.computer {
 	reverse_proxy localhost:9001
 	import log stats
@@ -82,7 +86,6 @@ images.julia.blue {
 home.julia.blue {
 	reverse_proxy localhost:8123
 	import log home-assistant
-	import auth
 }
 
 git.julia.blue {

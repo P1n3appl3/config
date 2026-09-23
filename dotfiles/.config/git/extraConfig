@@ -14,6 +14,7 @@
     caam = commit -a --amend
     caan = commit -a --amend --no-edit
     d = diff
+    dd = diff --no-ext-diff
     f = fetch --all
     ls = ls-files
     sw = switch
