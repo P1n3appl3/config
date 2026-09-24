@@ -8,7 +8,7 @@
 
   users.users.julia = {
     isNormalUser = true; uid = 1337;
-    extraGroups = [ "julia" "wheel" ];
+    extraGroups = [ "julia" "wheel" "wireshark" "dialout" "netdev" ];
     initialPassword = "changethis";
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCatP3klEjfQPSiJNUc3FRDdz927BG1IzektpouzOZR"
@@ -69,6 +69,8 @@
       };
       efi.canTouchEfiVariables = true;
     };
+    # fix systemd having one big cgroup
+    kernelParams = [ "cgroup_no_v1=all" "systemd.unified_cgroup_hierarchy=1" ];
   };
 
   age = {

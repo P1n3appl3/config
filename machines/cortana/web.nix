@@ -3,16 +3,17 @@
 in {
   networking.firewall = {
     allowedTCPPorts = [
-      22 28      # ssh
-      80 443     # http(s)
-      2283       # immich
-      22000      # syncthing
-      8080 8443  # testing
+      22 28     # ssh
+      80 443    # http(s)
+      2283      # immich
+      22000     # syncthing
+      8080 8443 # testing
       8123 21063 # home-assistant
+      5580 # matter server
     ] ++ lib.lists.range 9000 9010 # testing
       ++ lib.lists.range 1714 1764; # kde connect
     allowedUDPPorts = [
-      5353        # home-assistant
+      5353        # mdns
       22000 21027 # syncthing + discovery
     ]; 
   };
@@ -20,7 +21,6 @@ in {
   age.secrets = {
     porkbun-api.file = ../../secrets/porkbun-api.age;
     porkbun-secret.file = ../../secrets/porkbun-secret.age;
-    matter-hub.file = ../../secrets/home-assistant-matter-hub.age;
     password = {
       file = ../../secrets/cortana-service-password.age;
       group = "grafana"; mode = "660";
@@ -39,7 +39,9 @@ in {
         (home-config.home.sessionVariables.CONF_DIR + "/machines/cortana/Caddyfile");
       environmentFile = config.age.secrets.caddy-env.path;
       # TODO: ipban or ratelimit?
-      # package = pkgs.caddy.withPlugins { plugins = []; hash = ""; };
+      package = pkgs.caddy.withPlugins { plugins = [
+        "github.com/mholt/caddy-l4@v0.1.2"
+      ]; hash = "sha256-C+ksbA6ucY3GUsYHSUhkYoh1gTP8SIAJv0MLjhX8BQM="; };
     };
 
     openssh = { enable = true;
@@ -137,7 +139,7 @@ in {
     # TODO: hook up grafana dashboard from the repo
     harmonia.cache = { enable = true; settings.bind = "[::]:9006"; };
 
-    immich = { # enable = true;
+    immich = { enable = true;
       # TODO: figure out how i'm gonna setup uploads, do initial immich-go takeout batch,
       # and configure public-proxy
       port = 9007;
@@ -149,15 +151,13 @@ in {
       extraPackages = python3packages: with python3packages; [ gtts zlib-ng isal ];
       config.default_config = {};
     };
-    home-assistant-matter-hub = { enable = true;
-      settings.homeAssistantUrl = "https://home.julia.blue";
-      accessTokenFile = config.age.secrets.matter-hub.path;
-    };
+    matterjs-server.enable = true;
+    matterjs-server.listenAddress = "::";
 
     sorcery = { enable = true;
       name = "git.julia.blue";
       url_base = "https://git.julia.blue";
-      repositories = "/git/public";
+      repositories = "/git";
     };
 
     # TODO: vaultwarden
@@ -221,6 +221,7 @@ in {
   # caddy needs to read files in /home, /syncthing, and /git
   systemd.services = {
     caddy.serviceConfig.ProtectHome = lib.mkForce false;
+    immich-server.serviceConfig.UMask = lib.mkForce "0027";
   };
   users.users = {
     caddy.extraGroups = [ "users" "syncthing" "git" ];

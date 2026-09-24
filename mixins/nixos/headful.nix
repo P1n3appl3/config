@@ -58,6 +58,4 @@
     })
     { extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; }
   ];
-
-  users.users.julia.extraGroups = [ "dialout" "netdev" ];
 }

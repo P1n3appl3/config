@@ -9,6 +9,20 @@
 		observe_catchall_hosts
 	}
 	email "juliaryan3.14@gmail.com"
+	layer4 {
+		:443 {
+			@ally tls sni dropbear.sh
+			route @ally {
+				proxy tcp/hassium.ddns.net:23443
+			}
+
+			@tls-any tls
+			route "@tls-any" {
+				proxy localhost:23443
+			}
+		}
+	}
+	https_port 23443
 }
 
 (log) {
@@ -38,10 +52,6 @@ julia.blue pineapple.computer julia.is.fckn.gay xn--ni8h.is.fckn.gay {
 		file_server
 	}
 	import log main
-}
-
-ally.pineapple.computer {
-	redir 75.31.75.213:23443/{uri}
 }
 
 stats.pineapple.computer {
@@ -77,7 +87,7 @@ cache.pineapple.computer {
 	import log harmonia
 }
 
-images.julia.blue {
+photos.julia.blue images.julia.blue {
 	reverse_proxy localhost:9007
 	import log immich
 	import auth
@@ -92,7 +102,7 @@ git.julia.blue {
 	vars repoRoot "^/[^/]+/[^/]+/"
 	vars webRoot /var/cache/sorcery
 	vars socket unix//run/sorcery/sock
-	vars gitDir "/git/public"
+	vars gitDir "/git"
 	import log sorcery
 
 	root * {vars.webRoot}

@@ -18,8 +18,10 @@
     };
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  services.hardware.openrgb.enable = true;
+  services = {
+    xserver.videoDrivers = [ "nvidia" ];
+    hardware.openrgb.enable = true;
+  };
 
   fileSystems = let
     subvol = name: opts: { label = "data"; fsType = "btrfs";

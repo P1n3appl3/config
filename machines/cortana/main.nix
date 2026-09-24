@@ -4,7 +4,7 @@
     ./web.nix
     ../../mixins/nixos/headful.nix
     ../../mixins/nixos/btrfs.nix
-    ../../mixins/nixos/backups.nix
+    # ../../mixins/nixos/backups.nix
   ];
 
   home-manager.users.julia.imports = [
@@ -21,22 +21,32 @@
   ];
 
   services = {
-    desktopManager.plasma6 = { enable = true;
-      excludePacakges = with pkgs.kdePackages; [ kate ];
-    };
+    desktopManager.plasma6.enable = true;
     displayManager = {
       sddm.enable = true;
       autoLogin.user = "julia";
       sessionPackages = with pkgs.kdePackages; [ plasma-bigscreen ];
     };
   };
+
+  programs = {
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      protontricks.enable = true;
+      localNetworkGameTransfers.openFirewall = true;
+      remotePlay.openFirewall = true;
+    };
+  };
   
   environment = {
+    plasma6.excludePackages = with pkgs.kdePackages; [ kate ];
     enableAllTerminfo = true;
     systemPackages = with pkgs; [
       firefox
       (mpv.override { scripts = with mpvScripts; [ mpris uosc thumbfast ]; })
       ffmpeg imv qbittorrent qbittorrent-cli
+      nvtopPackages.nvidia
     ];
   };
 

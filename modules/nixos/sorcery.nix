@@ -61,6 +61,7 @@ in {
       groups.git.gid = config.ids.gids.git;
       users.git = {
         description = "git user";
+        home = cfg.repositories;
         group = "git";
         uid = config.ids.uids.git;
         shell = pkgs.bashInteractive;
