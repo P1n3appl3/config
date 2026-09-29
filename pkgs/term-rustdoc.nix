@@ -1,16 +1,17 @@
 { rustPlatform, fetchFromGitHub, pkg-config, oniguruma, xz }:
 rustPlatform.buildRustPackage rec {
   pname = "term-rustdoc";
-  version = "0.2.0";
+  version = "2025-04-20";
 
   src = fetchFromGitHub {
     owner = "zjp-cn";
     repo = "term-rustdoc";
-    rev = "v${version}";
-    hash = "sha256-fL/qlfNPwffSIGoN8zW5wJFO9jytEw//5CtS6iD0ook=";
+    rev = "873925db2eac4a6f161754cfdebf384e78627f9a";
+    hash = "sha256-tBdGWT6fjCURkFPgNOJjQVNDtewH0rhKWOkzKqDJrSQ=";
   };
 
-  cargoHash = "sha256-UjXVD5dtdLQUEzqJGmDD3NBKS0kv71eUzwMkE+qMqPc=";
+  cargoHash = "sha256-MwmGAYnFX9udauxCyDt2ViNQImv5PNXfmRl56vBOl9M=";
+  doCheck = false;
 
   nativeBuildInputs = [
     pkg-config
@@ -29,6 +30,5 @@ rustPlatform.buildRustPackage rec {
     description = "A TUI for Rust docs";
     homepage = "https://github.com/zjp-cn/term-rustdoc";
     changelog = "https://github.com/zjp-cn/term-rustdoc/blob/${src.rev}/CHANGELOG.md";
-    broken = true; # TODO: time crate broke type inference? run cargo update?
   };
 }

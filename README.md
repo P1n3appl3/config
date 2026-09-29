@@ -10,6 +10,7 @@ config 🍍 nix flake show
 │   ├───Cortana: raspberry pi 4B
 │   ╰───ISO:     bootable image for bootstrapping
 ├───homeModules
+│   ├───awawausb: firefox webusb support
 │   ╰───fightcade: wrapper to play retro fighting games
 ├───nixosModules
 │   ├───m-overlay:    security wrapper for input viewer
@@ -24,19 +25,21 @@ config 🍍 nix flake show
     ├───ascii-rain: pretty terminal rain animation
     ├───audio-select: pulse-audio device selector
     ├───autumn: autumn leaves solitaire card game
+    ├───awawausb: firefox webusb support
     ├───barchart: draw barcharts in the terminal
     ├───basic-pitch: audio to midi transcriber
     ├───bibata-modern-classic: mouse cursor theme
     ├───bridge: rythm game chart downloader
     ├───cached-path: download a resource once, then return that path
     ├───cargo-clone-crate: better cargo clone command
-    ├───cachedtom: local-first cargo toml language server
+    ├───cargotom: local-first cargo toml language server
     ├───circuit-artist: the best EDA software since logisim
     ├───cos-cli: cli for manipulating cosmic-desktop windows
     ├───d-rs: stream processing utilities
     ├───dl: get the latest downloaded file
     ├───ds-rom: extract nintendo ds rom files
     ├───eontimer: pokémon RNG timer
+    ├───factorio-bp-helper: manage and modify your factorio blueprints
     ├───fence: chess board visualizer
     ├───fio-plot: disk benchmarking tool
     ├───gc-fst: gamecube filesystem extractor/rebuilder
@@ -46,8 +49,8 @@ config 🍍 nix flake show
     ├───git-undeadname: does what it says on the tin
     ├───glkitty: gears demo in the terminal
     ├───hgecko: wrapper/helper for devkitpro ppc toolchain
-    ├───hovalaag: assembly programming game
     ├───hmex: elf/dat manipulation tool using devkitpro
+    ├───hovalaag: assembly programming game
     ├───input-integrity: gamecube controller adapter manager
     ├───launchk: macos launchd tui
     ├───lowcharts: draw plots and histograms in the terminal
@@ -59,7 +62,6 @@ config 🍍 nix flake show
     ├───oolite: space exploration role playing game
     ├───peppi-slp: compress and process slippi replays
     ├───porkbun-ddns: simple ddns client for porkbun
-    ├───posting: http api explorer
     ├───protobuf-language-server: LSP support for .proto files
     ├───rssfetch: RSS feed scraper
     ├───rsspls: RSS feed generator (for sites with no feed)
@@ -72,6 +74,7 @@ config 🍍 nix flake show
     ├───slpz: compress slippi replays faster
     ├───tab: command line music tabs
     ├───term-rustdoc: tui docs browser
+    ├───taguar: audio file tag editor
     ├───uwurandom: like /dev/urandom, but objectively better
     ╰───zeco: zellij remote multiplayer
 ```
