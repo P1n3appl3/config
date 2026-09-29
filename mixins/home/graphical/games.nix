@@ -17,7 +17,7 @@
 
     osu-lazer-bin
     yarg clonehero # TODO: make ~/.clonehero point to games subvol
-    bridge
+    # bridge
 
     # oolite
     endless-sky

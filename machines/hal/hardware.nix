@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [ ../../mixins/nixos/btrfs.nix ];
 
   boot = {
@@ -22,6 +22,19 @@
       enable = true;
       blacklistedKernelModules = [ "wacom" ];
     };
+  };
+
+  services = {
+    logind = { settings.Login = { IdleAction = "suspend"; IdleActionSec = "1h"; }; };
+    udev.packages = [
+      pkgs.input-integrity
+    ];
+    udev.extraRules = ''
+      KERNEL=="hidraw*", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="17cb", TAG+="uaccess", RUN+="/bin/sh -c 'echo -n %k > /sys/bus/usb/drivers/btusb/unbind'"
+    ''; # bt adapter for wiimotes in dolphin
+
+    hardware.openrgb.enable = true;
   };
 
   networking.usePredictableInterfaceNames = false; # I like eth0

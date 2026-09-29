@@ -16,7 +16,7 @@
         qt5.qtwayland qt6.qtwayland
         oneko
         xsnow # TODO: https://github.com/Icelk/xsnow-comp-patch
-        amdgpu_top
+        amdgpu_top nvtopPackages.amd
       ];
 
       services = {
@@ -25,7 +25,17 @@
           package = pkgs.activitywatch;
           settings = { poll_time = 5; exclude_title = true; };
         };
+        swayidle = let sc = "${pkgs.systemd}/bin"; in { enable = true;
+          events = { before-sleep = "playerctl pause"; };
+          extraArgs = [ "idlehint" "10" ];
+          timeouts = [{ timeout = 300;
+            command       = "${sc}/systemd-run --user --unit screensaver --scope ~/.local/bin/screensaver";
+            resumeCommand =   "${sc}/systemctl --user   stop screensaver.scope";
+          }];
+        };
       };
+      systemd.user.services.swayidle.Service.Environment =
+        "PATH=${lib.makeBinPath (with pkgs; [ bash coreutils fd mpv ])}";
 
       programs.kitty.settings.font_size = 10;
       slippi-launcher = { enable = true;
@@ -63,15 +73,6 @@
     flatpak.enable = true;
     openssh.enable = true;
     pipewire.jack.enable = true;
-    udev.packages = [
-      pkgs.input-integrity
-    ];
-    udev.extraRules = ''
-      KERNEL=="hidraw*", TAG+="uaccess"
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="17cb", TAG+="uaccess", RUN+="/bin/sh -c 'echo -n %k > /sys/bus/usb/drivers/btusb/unbind'"
-    ''; # bt adapter for wiimotes in dolphin
-
-    hardware.openrgb.enable = true;
     nfs.server = {
       enable = true;
       exports = "/home/julia/videos/torrents 192.168.1.0/24(ro,fsid=0)";

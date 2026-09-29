@@ -104,6 +104,18 @@ window-rule {
 }
 
 window-rule {
+    match app-id="^portrait$"
+    open-on-output "DP-1"
+    open-floating true
+}
+
+window-rule {
+    match app-id="^landscape$"
+    open-on-output "DP-2"
+    open-floating true
+}
+
+window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }

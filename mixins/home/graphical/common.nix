@@ -39,7 +39,7 @@
     warp
     udiskie
     glib.bin # gio/gsettings/gdbus
-    d-spy
+    bustle d-spy
     qbittorrent qbittorrent-cli # transmission_4-gtk
     heaptrack
     meld

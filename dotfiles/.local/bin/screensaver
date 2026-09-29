@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+options="--loop --fs --stop-screensaver=no --osc=no --quiet --panscan=1:1"
+function rand() {
+  fd . ~/images/waneella/"$1" | shuf -n 1
+}
+rand portrait
+rand landscape
+mpv "$(rand portrait)" --wayland-app-id=portrait $options &
+mpv "$(rand landscape)" --wayland-app-id=landscape $options
