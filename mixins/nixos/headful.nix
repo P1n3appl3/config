@@ -37,25 +37,27 @@
     xserver.xkb.options = "altwin:swap_alt_win,caps:escape,shift:both_capslock";
   };
 
-  xdg.portal = lib.mkDefault {
-    enable = true;
-    xdgOpenUsePortal = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common = {
-      default = "gtk";
-      "org.freedesktop.impl.portal.ScreenCast" = "wlr";
-      "org.freedesktop.impl.portal.Screenshot" = "wlr";
-      # "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
-    };
-    wlr = {
+  xdg.portal = lib.mkMerge [
+    (lib.mkDefault {
       enable = true;
-      settings.screencast = {
-        chooser_type = "dmenu";
-        chooser_cmd  = "${pkgs.rofi}/bin/rofi -dmenu -i -p 'Screen to share'";
-        max_fps = 60;
+      xdgOpenUsePortal = true;
+      config.common = {
+        default = "gtk";
+        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
+        "org.freedesktop.impl.portal.Screenshot" = "wlr";
+        # "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
       };
-    };
-  };
+      wlr = {
+        enable = true;
+        settings.screencast = {
+          chooser_type = "dmenu";
+          chooser_cmd  = "${pkgs.rofi}/bin/rofi -dmenu -i -p 'Screen to share'";
+          max_fps = 60;
+        };
+      };
+    })
+    { extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; }
+  ];
 
   users.users.julia.extraGroups = [ "dialout" "netdev" ];
 }

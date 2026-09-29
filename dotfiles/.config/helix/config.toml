@@ -43,8 +43,10 @@ d = ":buffer-close"
 w = { d = "wclose" }
 "=" = ":format"
 q = ":wqa"
-B = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"
+B = ":echo %sh{git lineblame %{buffer_name} %{cursor_line}}"
 l = ":echo %sh{git permalink %{buffer_name} %{selection_line_start} %{selection_line_end} | osc copy}copied permalink to clipboard"
+y = ":echo %sh{echo %{buffer_name} | osc copy}copied path to clipboard"
+Y = ":echo %sh{realpath %{buffer_name} | osc copy}copied abspath to clipboard"
 
 [keys.select]
 "C-y" = "@\"+y"

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -ne 2 ]]; then
+  echo "usage: $0 <file> <line>" >&2
+  exit 1
+fi
+
+file="$1"
+line="$2"
+
+rev=$(git blame -L "$line",+1 "$file" | choose 0)
+
+if echo "$rev" | rg '^0+$' >/dev/null; then
+  echo Not Committed Yet
+  exit 0
+fi
+
+git show --format="%an | %ar | %s" $rev -s
